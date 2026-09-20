@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>声調コーチ</title>
+  <meta name="description" content="日本人のための中国語発音・声調練習アプリ" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%235b5cf0'/%3E%3Cpath d='M18 36h8l8 8V20l-8 8h-8z' fill='white'/%3E%3Cpath d='M42 25c4 4 4 10 0 14M48 19c8 8 8 18 0 26' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <style>
+    :root{--ink:#172033;--muted:#7d8799;--blue:#5b5cf0;--soft:#f4f5ff;--line:#e8eaf2;--green:#16a37b;}
+    *{box-sizing:border-box} body{margin:0;background:#eef0f7;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
+    .phone{max-width:430px;min-height:100vh;margin:auto;background:#fff;padding:18px 18px 28px;overflow:hidden}
+    .top{display:flex;justify-content:space-between;align-items:center;margin:4px 0 24px}.logo{font-weight:800;font-size:20px;letter-spacing:.02em}.logo span{color:var(--blue)}
+    .avatar{width:36px;height:36px;border-radius:50%;background:#ececff;display:grid;place-items:center;color:var(--blue);font-weight:700}
+    .eyebrow{font-size:13px;color:var(--muted);margin:0 0 8px}.hero h1{font-size:27px;line-height:1.25;margin:0 0 10px;letter-spacing:-.04em}.hero h1 em{font-style:normal;color:var(--blue)}.hero p{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 20px}
+    .streak{display:flex;align-items:center;gap:12px;background:linear-gradient(120deg,#f0efff,#fafaff);border:1px solid #e5e5ff;border-radius:18px;padding:14px 16px;margin-bottom:22px}.streak .fire{font-size:25px}.streak b{font-size:18px}.streak small{display:block;color:var(--muted);margin-top:3px}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}.section-head h2{font-size:17px;margin:0}.section-head a{font-size:12px;color:var(--blue);text-decoration:none}
+    .lesson{border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 8px 22px rgba(37,42,80,.05)}.lesson-top{display:flex;justify-content:space-between;align-items:center}.tag{font-size:12px;color:var(--blue);background:var(--soft);padding:6px 9px;border-radius:8px}.time{font-size:12px;color:var(--muted)}
+    .jp{font-size:13px;color:var(--muted);margin-top:18px}.cn{font-size:29px;font-weight:800;margin:3px 0 4px}.pinyin{font-size:15px;color:var(--blue);letter-spacing:.08em}.meaning{font-size:13px;color:var(--muted);margin:6px 0 16px}
+    .tones{display:flex;gap:7px;margin-bottom:16px}.tone{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 3px;text-align:center;cursor:pointer}.tone b{display:block;font-size:16px}.tone small{color:var(--muted);font-size:10px}.tone.active{background:#efefff;border-color:#b9b9ff;color:var(--blue)}
+    .speak{border:1px solid #d9d9ff;background:#f7f7ff;color:var(--blue);border-radius:10px;padding:8px 11px;font-size:12px;font-weight:700;cursor:pointer}.speak:active{transform:scale(.97)}.lesson-speak{margin:0 0 12px;width:100%;padding:11px}.voice-note{font-size:11px;color:var(--muted);text-align:center;margin:-3px 0 12px}
+    .record{width:100%;border:0;border-radius:14px;background:var(--blue);color:white;padding:14px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 8px 15px rgba(91,92,240,.24)}.record.recording{background:#e45572;animation:pulse 1.2s infinite}.result{display:none;margin-top:14px;background:#f0fbf7;border-radius:12px;padding:12px;font-size:13px;line-height:1.6;color:#26735f}.result.show{display:block}@keyframes pulse{50%{transform:scale(.98);opacity:.82}}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}.mini .icon{font-size:23px}.mini b{display:block;font-size:14px;margin-top:9px}.mini small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+    .examples{display:grid;gap:9px}.example{border:1px solid var(--line);border-radius:15px;padding:12px 14px;background:#fff}.example-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.example .jp{margin:0;font-size:12px}.example .level{font-size:10px;color:var(--green);background:#edf9f5;padding:4px 7px;border-radius:7px;white-space:nowrap}.example .cn{font-size:20px;margin:6px 0 1px}.example .pinyin{font-size:12px}.example .meaning{font-size:11px;margin:3px 0 0}
+    .nav{position:sticky;bottom:0;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:flex;justify-content:space-around;margin:26px -18px -28px;padding:12px 8px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}.nav a{font-size:11px;color:var(--muted);text-decoration:none;text-align:center}.nav a.active{color:var(--blue);font-weight:700}.nav i{display:block;font-style:normal;font-size:19px;margin-bottom:3px}
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <header class="top"><div class="logo">声調<span>コーチ</span></div><div class="avatar">A</div></header>
+    <section class="hero"><p class="eyebrow">日本人のための中国語発音練習</p><h1>今日も5分、<em>声調</em>を整えよう。</h1><p>日本人が間違いやすい中国語を、短く・わかりやすく練習できます。</p></section>
+    <section class="streak"><div class="fire">🔥</div><div><b>3日連続</b><small>今週の目標まであと2回</small></div></section>
+    <div class="section-head"><h2>今日のレッスン</h2><a href="#" onclick="return false">すべて見る →</a></div>
+    <section class="lesson">
+      <div class="lesson-top"><span class="tag">声調トレーニング</span><span class="time">約3分</span></div>
+      <div class="jp">「ご飯を食べましたか？」</div><div class="cn">你吃饭了吗？</div><div class="pinyin">nǐ chī fàn le ma</div><div class="meaning">自然な中国語で言ってみましょう</div>
+      <div class="tones"><button class="tone active" onclick="tone(this)"><b>你</b><small>3声</small></button><button class="tone" onclick="tone(this)"><b>吃</b><small>1声</small></button><button class="tone" onclick="tone(this)"><b>饭</b><small>4声</small></button><button class="tone" onclick="tone(this)"><b>吗</b><small>軽声</small></button></div>
+      <button class="speak lesson-speak" onclick="speakSentence('你吃饭了吗？', this)">🔊 標準音声を聞く</button><div class="voice-note" id="voiceNote">タップすると標準中国語を再生します</div><button class="record" id="record" onclick="recordVoice()">🎙 録音して練習</button><div class="result" id="result">いい感じです！「你」の3声をもう少し低くしてから上げると、さらに自然になります。</div>
+    </section>
+    <div class="section-head"><h2>基本例文20</h2><a href="#" onclick="return false">初級向け</a></div>
+    <section class="examples">
+      <article class="example"><div class="example-top"><div class="jp">こんにちは。</div><span class="level">あいさつ</span></div><div class="cn">你好！</div><div class="pinyin">nǐ hǎo</div></article>
+      <article class="example"><div class="example-top"><div class="jp">お元気ですか？</div><span class="level">あいさつ</span></div><div class="cn">你好吗？</div><div class="pinyin">nǐ hǎo ma</div></article>
+      <article class="example"><div class="example-top"><div class="jp">私は日本人です。</div><span class="level">自己紹介</span></div><div class="cn">我是日本人。</div><div class="pinyin">wǒ shì Rìběn rén</div></article>
+      <article class="example"><div class="example-top"><div class="jp">私の名前は橋本太郎です。</div><span class="level">自己紹介</span></div><div class="cn">我叫桥本太郎。</div><div class="pinyin">wǒ jiào Qiáoběn Tàiláng</div></article>
+      <article class="example"><div class="example-top"><div class="jp">初めまして。</div><span class="level">あいさつ</span></div><div class="cn">初次见面。</div><div class="pinyin">chūcì jiànmiàn</div></article>
+      <article class="example"><div class="example-top"><div class="jp">よろしくお願いします。</div><span class="level">あいさつ</span></div><div class="cn">请多关照。</div><div class="pinyin">qǐng duō guānzhào</div></article>
+      <article class="example"><div class="example-top"><div class="jp">ありがとうございます。</div><span class="level">基本表現</span></div><div class="cn">谢谢你。</div><div class="pinyin">xièxie nǐ</div></article>
+      <article class="example"><div class="example-top"><div class="jp">どういたしまして。</div><span class="level">基本表現</span></div><div class="cn">不客气。</div><div class="pinyin">bú kèqi</div></article>
+      <article class="example"><div class="example-top"><div class="jp">すみません。</div><span class="level">基本表現</span></div><div class="cn">对不起。</div><div class="pinyin">duìbuqǐ</div></article>
+      <article class="example"><div class="example-top"><div class="jp">大丈夫です。</div><span class="level">基本表現</span></div><div class="cn">没关系。</div><div class="pinyin">méi guānxi</div></article>
+      <article class="example"><div class="example-top"><div class="jp">これは何ですか？</div><span class="level">質問</span></div><div class="cn">这是什么？</div><div class="pinyin">zhè shì shénme</div></article>
+      <article class="example"><div class="example-top"><div class="jp">これはいくらですか？</div><span class="level">買い物</span></div><div class="cn">这个多少钱？</div><div class="pinyin">zhège duōshao qián</div></article>
+      <article class="example"><div class="example-top"><div class="jp">これをください。</div><span class="level">買い物</span></div><div class="cn">请给我这个。</div><div class="pinyin">qǐng gěi wǒ zhège</div></article>
+      <article class="example"><div class="example-top"><div class="jp">トイレはどこですか？</div><span class="level">旅行</span></div><div class="cn">洗手间在哪里？</div><div class="pinyin">xǐshǒujiān zài nǎlǐ</div></article>
+      <article class="example"><div class="example-top"><div class="jp">駅はどこですか？</div><span class="level">旅行</span></div><div class="cn">车站在哪里？</div><div class="pinyin">chēzhàn zài nǎlǐ</div></article>
+      <article class="example"><div class="example-top"><div class="jp">水を一杯ください。</div><span class="level">レストラン</span></div><div class="cn">请给我一杯水。</div><div class="pinyin">qǐng gěi wǒ yì bēi shuǐ</div></article>
+      <article class="example"><div class="example-top"><div class="jp">これは辛いですか？</div><span class="level">レストラン</span></div><div class="cn">这个辣吗？</div><div class="pinyin">zhège là ma</div></article>
+      <article class="example"><div class="example-top"><div class="jp">中国語を勉強しています。</div><span class="level">学習</span></div><div class="cn">我在学习中文。</div><div class="pinyin">wǒ zài xuéxí Zhōngwén</div></article>
+      <article class="example"><div class="example-top"><div class="jp">中国語は難しいですが、面白いです。</div><span class="level">学習</span></div><div class="cn">中文很难，但是很有意思。</div><div class="pinyin">Zhōngwén hěn nán, dànshì hěn yǒu yìsi</div></article>
+      <article class="example"><div class="example-top"><div class="jp">また明日会いましょう。</div><span class="level">あいさつ</span></div><div class="cn">明天见。</div><div class="pinyin">míngtiān jiàn</div></article>
+    </section>
+    <div class="section-head"><h2>学習メニュー</h2></div>
+    <section class="cards"><div class="mini"><div class="icon">🎧</div><b>聞き取り練習</b><small>似た音を聞き分ける</small></div><div class="mini"><div class="icon">💬</div><b>会話ロールプレイ</b><small>旅行・仕事で使う表現</small></div><div class="mini"><div class="icon">📝</div><b>間違いノート</b><small>自分の苦手を復習</small></div><div class="mini"><div class="icon">📊</div><b>学習レポート</b><small>上達を確認する</small></div></section>
+    <nav class="nav"><a class="active" href="#"><i>⌂</i>ホーム</a><a href="#"><i>◉</i>練習</a><a href="#"><i>▣</i>レポート</a><a href="#"><i>⚙</i>設定</a></nav>
+  </main>
+  <script>
+    function tone(el){document.querySelectorAll('.tone').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+    let chineseVoice=null;let currentAudio=null;
+    function refreshVoices(){
+      if(!('speechSynthesis' in window)) return;
+      const voices=window.speechSynthesis.getVoices();
+      chineseVoice=voices.find(v=>/^zh-CN/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;
+    }
+    if('speechSynthesis' in window){refreshVoices();window.speechSynthesis.onvoiceschanged=refreshVoices;}
+    function nativeSpeech(text,button){
+      if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined'){
+        return false
+      }
+      refreshVoices();window.speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance(text);u.lang=chineseVoice?chineseVoice.lang:'zh-CN';if(chineseVoice)u.voice=chineseVoice;u.rate=.78;u.pitch=1;
+      u.onend=()=>button.textContent='🔊 もう一度聞く';u.onerror=()=>button.textContent='⚠️ 音声を確認';window.speechSynthesis.speak(u);
+      return true
+    }
+    function fallbackAudio(text,button){
+      if(currentAudio){currentAudio.pause();currentAudio=null}
+      const url='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q='+encodeURIComponent(text);
+      const audio=new Audio(url);currentAudio=audio;audio.onended=()=>button.textContent='🔊 もう一度聞く';
+      audio.onerror=()=>button.textContent='⚠️ 音声を再生できません';
+      audio.play().catch(()=>button.textContent='⚠️ 音声を再生できません');
+    }
+    function speakSentence(text, button){
+      button.textContent='🔊 再生中…';
+      if(!nativeSpeech(text,button)) fallbackAudio(text,button);
+    }
+    document.querySelectorAll('.example').forEach(card=>{
+      const text=card.querySelector('.cn').textContent.trim();
+      const button=document.createElement('button');button.className='speak';button.textContent='🔊 聞く';
+      button.onclick=()=>speakSentence(text,button);card.appendChild(button);
+    });
+    function recordVoice(){const b=document.getElementById('record'),r=document.getElementById('result');if(b.classList.contains('recording')){b.classList.remove('recording');b.textContent='🎙 もう一度録音';r.classList.add('show')}else{b.classList.add('recording');b.textContent='■ 録音中… タップで停止';r.classList.remove('show');}}
+  </script>
+</body>
+</html>
