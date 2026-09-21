@@ -144,6 +144,7 @@ async function recordVoice(){
     };
 
     mediaRecorder.start();
+    startPronunciationCheck();
     recordTimer = setTimeout(() => {
   if(mediaRecorder && mediaRecorder.state === 'recording'){
     mediaRecorder.stop();
