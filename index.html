@@ -98,7 +98,70 @@
       const button=document.createElement('button');button.className='speak';button.textContent='🔊 聞く';
       button.onclick=()=>speakSentence(text,button);card.appendChild(button);
     });
-    function recordVoice(){const b=document.getElementById('record'),r=document.getElementById('result');if(b.classList.contains('recording')){b.classList.remove('recording');b.textContent='🎙 もう一度録音';r.classList.add('show')}else{b.classList.add('recording');b.textContent='■ 録音中… タップで停止';r.classList.remove('show');}}
-  </script>
+    let mediaRecorder;
+let audioChunks = [];
+let recordedAudio = null;
+let recordTimer = null;
+async function recordVoice(){
+  const b = document.getElementById('record');
+  const r = document.getElementById('result');
+
+  if(mediaRecorder && mediaRecorder.state === 'recording'){
+    mediaRecorder.stop();
+    b.classList.remove('recording');
+    b.textContent = '🎙 もう一度録音';
+    return;
+  }
+
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+
+    mediaRecorder.ondataavailable = e => {
+      if(e.data.size > 0) audioChunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(audioChunks, {type: mediaRecorder.mimeType});
+      const url = URL.createObjectURL(blob);
+
+      if(recordedAudio) recordedAudio.remove();
+
+      recordedAudio = document.createElement('audio');
+      recordedAudio.controls = true;
+      recordedAudio.src = url;
+      recordedAudio.style.width = '100%';
+      recordedAudio.style.marginTop = '14px';
+
+      b.insertAdjacentElement('afterend', recordedAudio);
+
+      r.textContent = '自分の発音を聞いて、標準音声と比べてみましょう。';
+      r.classList.add('show');
+
+      stream.getTracks().forEach(track => track.stop());
+    };
+
+    mediaRecorder.start();
+    recordTimer = setTimeout(() => {
+  if(mediaRecorder && mediaRecorder.state === 'recording'){
+    mediaRecorder.stop();
+    clearTimeout(recordTimer);
+recordTimer = null;
+    b.classList.remove('recording');
+    b.textContent = '🎙 もう一度録音';
+  }
+}, 15000);
+
+    b.classList.add('recording');
+    b.textContent = '■ 録音中… タップで停止';
+    r.classList.remove('show');
+
+  }catch(e){
+    r.textContent = 'マイクを使用できません。Safariのマイク許可を確認してください。';
+    r.classList.add('show');
+  }
+}</script>
 </body>
 </html>
