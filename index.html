@@ -111,7 +111,7 @@ async function sendFeedback(e){
   body.append('_subject','声調コーチ DEMO 6：ユーザー意見');
   body.append('_url','https://jinyu-chinese.com/');
   body.append('_honey','');
-  const r=await fetch('https://formsubmit.co/ajax/chenchen20061026@gmail.com',{
+  const r=await fetch('https://formspree.io/f/mzezelqb',{
    method:'POST',headers:{'Accept':'application/json'},body,signal:controller.signal
   });
   const d=await r.json().catch(()=>({}));
