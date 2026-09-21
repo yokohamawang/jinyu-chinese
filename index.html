@@ -1,667 +1,856 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>声調コーチ</title>
-  <meta name="description" content="日本人のための中国語発音・声調練習アプリ" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%235b5cf0'/%3E%3Cpath d='M18 36h8l8 8V20l-8 8h-8z' fill='white'/%3E%3Cpath d='M42 25c4 4 4 10 0 14M48 19c8 8 8 18 0 26' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
-  <style>
-    :root{--ink:#172033;--muted:#7d8799;--blue:#5b5cf0;--soft:#f4f5ff;--line:#e8eaf2;--green:#16a37b;}
-    *{box-sizing:border-box} body{margin:0;background:#eef0f7;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
-    .phone{max-width:430px;min-height:100vh;margin:auto;background:#fff;padding:18px 18px 28px;overflow:hidden}
-    .top{display:flex;justify-content:space-between;align-items:center;margin:4px 0 24px}.logo{font-weight:800;font-size:20px;letter-spacing:.02em}.logo span{color:var(--blue)}
-    .avatar{width:36px;height:36px;border-radius:50%;background:#ececff;display:grid;place-items:center;color:var(--blue);font-weight:700}
-    .eyebrow{font-size:13px;color:var(--muted);margin:0 0 8px}.hero h1{font-size:27px;line-height:1.25;margin:0 0 10px;letter-spacing:-.04em}.hero h1 em{font-style:normal;color:var(--blue)}.hero p{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 20px}
-    .streak{display:flex;align-items:center;gap:12px;background:linear-gradient(120deg,#f0efff,#fafaff);border:1px solid #e5e5ff;border-radius:18px;padding:14px 16px;margin-bottom:22px}.streak .fire{font-size:25px}.streak b{font-size:18px}.streak small{display:block;color:var(--muted);margin-top:3px}
-    .section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}.section-head h2{font-size:17px;margin:0}.section-head a{font-size:12px;color:var(--blue);text-decoration:none}
-    .lesson{border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 8px 22px rgba(37,42,80,.05)}.lesson-top{display:flex;justify-content:space-between;align-items:center}.tag{font-size:12px;color:var(--blue);background:var(--soft);padding:6px 9px;border-radius:8px}.time{font-size:12px;color:var(--muted)}
-    .jp{font-size:13px;color:var(--muted);margin-top:18px}.cn{font-size:29px;font-weight:800;margin:3px 0 4px}.pinyin{font-size:15px;color:var(--blue);letter-spacing:.08em}.meaning{font-size:13px;color:var(--muted);margin:6px 0 16px}
-    .tones{display:flex;gap:7px;margin-bottom:16px}.tone{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 3px;text-align:center;cursor:pointer}.tone b{display:block;font-size:16px}.tone small{color:var(--muted);font-size:10px}.tone.active{background:#efefff;border-color:#b9b9ff;color:var(--blue)}
-    .speak{border:1px solid #d9d9ff;background:#f7f7ff;color:var(--blue);border-radius:10px;padding:8px 11px;font-size:12px;font-weight:700;cursor:pointer}.speak:active{transform:scale(.97)}.lesson-speak{margin:0 0 12px;width:100%;padding:11px}.voice-note{font-size:11px;color:var(--muted);text-align:center;margin:-3px 0 12px}
-    .record{width:100%;border:0;border-radius:14px;background:var(--blue);color:white;padding:14px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 8px 15px rgba(91,92,240,.24)}.record.recording{background:#e45572;animation:pulse 1.2s infinite}.result{display:none;margin-top:14px;background:#f0fbf7;border-radius:12px;padding:12px;font-size:13px;line-height:1.6;color:#26735f}.result.show{display:block}@keyframes pulse{50%{transform:scale(.98);opacity:.82}}
-    .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}.mini .icon{font-size:23px}.mini b{display:block;font-size:14px;margin-top:9px}.mini small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
-    .examples{display:grid;gap:9px}.example{border:1px solid var(--line);border-radius:15px;padding:12px 14px;background:#fff}.example-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.example .jp{margin:0;font-size:12px}.example .level{font-size:10px;color:var(--green);background:#edf9f5;padding:4px 7px;border-radius:7px;white-space:nowrap}.example .cn{font-size:20px;margin:6px 0 1px}.example .pinyin{font-size:12px}.example .meaning{font-size:11px;margin:3px 0 0}
-    .nav{position:sticky;bottom:0;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:flex;justify-content:space-around;margin:26px -18px -28px;padding:12px 8px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}.nav a{font-size:11px;color:var(--muted);text-decoration:none;text-align:center}.nav a.active{color:var(--blue);font-weight:700}.nav i{display:block;font-style:normal;font-size:19px;margin-bottom:3px}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>声調コーチ</title>
+<meta name="description" content="日本人のための中国語発音・声調練習アプリ">
+
+<style>
+:root{
+  --ink:#172033;
+  --muted:#7d8799;
+  --blue:#5b5cf0;
+  --soft:#f4f5ff;
+  --line:#e8eaf2;
+  --green:#16a37b;
+  --red:#e45572;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:#eef0f7;color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif
+}
+button{font-family:inherit}
+.phone{
+  max-width:430px;min-height:100vh;margin:auto;background:#fff;
+  padding:18px 18px 30px;overflow:hidden
+}
+.top{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:4px 0 24px
+}
+.logo{font-weight:800;font-size:20px}
+.logo span{color:var(--blue)}
+.avatar{
+  width:36px;height:36px;border-radius:50%;background:#ececff;
+  display:grid;place-items:center;color:var(--blue);font-weight:700
+}
+.eyebrow{font-size:13px;color:var(--muted);margin:0 0 8px}
+.hero h1{font-size:27px;line-height:1.25;margin:0 0 10px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero p{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 20px}
+
+.streak{
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(120deg,#f0efff,#fafaff);
+  border:1px solid #e5e5ff;border-radius:18px;padding:14px 16px;
+  margin-bottom:22px
+}
+.fire{font-size:25px}
+.streak b{font-size:18px}
+.streak small{display:block;color:var(--muted);margin-top:3px}
+
+.section-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:22px 0 12px
+}
+.section-head h2{font-size:17px;margin:0}
+.section-head span{font-size:12px;color:var(--muted)}
+
+.challenge{
+  border:1px solid #dedfff;border-radius:22px;padding:18px;
+  background:linear-gradient(145deg,#f7f7ff,#fff);
+  box-shadow:0 10px 28px rgba(60,61,150,.08)
+}
+.challenge-top{
+  display:flex;justify-content:space-between;align-items:center
+}
+.tag{
+  font-size:12px;color:var(--blue);background:#ececff;
+  padding:6px 9px;border-radius:8px
+}
+.progress{font-size:12px;color:var(--muted)}
+.challenge-title{
+  text-align:center;font-size:13px;color:var(--muted);
+  margin-top:20px
+}
+.big-cn{
+  text-align:center;font-size:38px;font-weight:850;
+  margin:8px 0 4px
+}
+.big-pinyin{
+  text-align:center;color:var(--blue);font-size:17px;
+  letter-spacing:.05em
+}
+.big-jp{
+  text-align:center;font-size:13px;color:var(--muted);
+  margin:7px 0 16px
+}
+.tip{
+  background:#fff7e8;border-radius:12px;padding:11px 12px;
+  font-size:12px;line-height:1.6;margin-bottom:14px
+}
+
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.btn{
+  border:0;border-radius:12px;padding:12px 8px;
+  font-size:13px;font-weight:750;cursor:pointer
+}
+.listen{background:#eeeeff;color:var(--blue)}
+.record{background:var(--blue);color:#fff}
+.record.recording{
+  background:var(--red);
+  animation:pulse 1.1s infinite
+}
+.next{
+  width:100%;margin-top:10px;background:#fff;border:1px solid var(--line);
+  color:var(--ink)
+}
+@keyframes pulse{50%{transform:scale(.98);opacity:.82}}
+
+.status{
+  display:none;margin-top:13px;border-radius:12px;
+  padding:12px;font-size:13px;line-height:1.65
+}
+.status.show{display:block}
+.status.info{background:#f1f2ff;color:#5051aa}
+.status.ok{background:#edf9f5;color:#26735f}
+
+audio{
+  width:100%;height:42px;margin-top:11px
+}
+
+.examples{display:grid;gap:9px}
+.example{
+  border:1px solid var(--line);border-radius:16px;
+  padding:13px 14px;background:#fff
+}
+.example-top{
+  display:flex;justify-content:space-between;
+  gap:10px;align-items:center
+}
+.jp{font-size:12px;color:var(--muted)}
+.level{
+  font-size:10px;color:var(--green);background:#edf9f5;
+  padding:4px 7px;border-radius:7px;white-space:nowrap
+}
+.cn{font-size:20px;font-weight:800;margin:6px 0 2px}
+.pinyin{font-size:12px;color:var(--blue)}
+.example-buttons{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:7px;margin-top:10px
+}
+.small-btn{
+  border:1px solid #dedfff;background:#f8f8ff;color:var(--blue);
+  border-radius:9px;padding:8px;font-size:11px;font-weight:700
+}
+.practice-btn{
+  background:#fff;border-color:var(--line);color:var(--ink)
+}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{
+  border:1px solid var(--line);border-radius:16px;padding:14px
+}
+.mini .icon{font-size:23px}
+.mini b{display:block;font-size:14px;margin-top:9px}
+.mini small{
+  display:block;color:var(--muted);font-size:11px;
+  margin-top:4px;line-height:1.4
+}
+
+.nav{
+  position:sticky;bottom:0;background:rgba(255,255,255,.95);
+  border-top:1px solid var(--line);display:flex;
+  justify-content:space-around;margin:26px -18px -30px;
+  padding:12px 8px calc(10px + env(safe-area-inset-bottom));
+  backdrop-filter:blur(12px)
+}
+.nav a{
+  font-size:11px;color:var(--muted);text-decoration:none;text-align:center
+}
+.nav a.active{color:var(--blue);font-weight:700}
+.nav i{display:block;font-style:normal;font-size:19px;margin-bottom:3px}
+</style>
 </head>
+
 <body>
-  <main class="phone">
-    <header class="top"><div class="logo">声調<span>コーチ</span></div><div class="avatar">A</div></header>
-    <section class="hero"><p class="eyebrow">日本人のための中国語発音練習</p><h1>今日も5分、<em>声調</em>を整えよう。</h1><p>日本人が間違いやすい中国語を、短く・わかりやすく練習できます。</p></section>
-    <section class="streak"><div class="fire">🔥</div><div><b>3日連続</b><small>今週の目標まであと2回</small></div></section>
-    <div class="section-head"><h2>今日のレッスン</h2><a href="#" onclick="return false">すべて見る →</a></div>
-    <section class="lesson">
-      <div class="lesson-top"><span class="tag">声調トレーニング</span><span class="time">約3分</span></div>
-      <div class="jp">「ご飯を食べましたか？」</div><div class="cn">你吃饭了吗？</div><div class="pinyin">nǐ chī fàn le ma</div><div class="meaning">自然な中国語で言ってみましょう</div>
-      <div class="tones"><button class="tone active" onclick="tone(this)"><b>你</b><small>3声</small></button><button class="tone" onclick="tone(this)"><b>吃</b><small>1声</small></button><button class="tone" onclick="tone(this)"><b>饭</b><small>4声</small></button><button class="tone" onclick="tone(this)"><b>了</b><small>軽声</small></button><button class="tone" onclick="tone(this)"><b>吗</b><small>軽声</small></button></div>
-      <button class="speak lesson-speak" onclick="speakSentence('你吃饭了吗？', this)">🔊 標準音声を聞く</button><div class="voice-note" id="voiceNote">タップすると標準中国語を再生します</div><button class="record" id="record" onclick="recordVoice()">🎙 録音して練習</button><div class="result" id="result">いい感じです！「你」の3声をもう少し低くしてから上げると、さらに自然になります。</div>
-    </section>
-    <div class="section-head"><h2>基本例文20</h2><a href="#" onclick="return false">初級向け</a></div>
-    <section class="examples">
-      <article class="example"><div class="example-top"><div class="jp">こんにちは。</div><span class="level">あいさつ</span></div><div class="cn">你好！</div><div class="pinyin">nǐ hǎo</div></article>
-      <article class="example"><div class="example-top"><div class="jp">お元気ですか？</div><span class="level">あいさつ</span></div><div class="cn">你好吗？</div><div class="pinyin">nǐ hǎo ma</div></article>
-      <article class="example"><div class="example-top"><div class="jp">私は日本人です。</div><span class="level">自己紹介</span></div><div class="cn">我是日本人。</div><div class="pinyin">wǒ shì Rìběn rén</div></article>
-      <article class="example"><div class="example-top"><div class="jp">私の名前は橋本太郎です。</div><span class="level">自己紹介</span></div><div class="cn">我叫桥本太郎。</div><div class="pinyin">wǒ jiào Qiáoběn Tàiláng</div></article>
-      <article class="example"><div class="example-top"><div class="jp">初めまして。</div><span class="level">あいさつ</span></div><div class="cn">初次见面。</div><div class="pinyin">chūcì jiànmiàn</div></article>
-      <article class="example"><div class="example-top"><div class="jp">よろしくお願いします。</div><span class="level">あいさつ</span></div><div class="cn">请多关照。</div><div class="pinyin">qǐng duō guānzhào</div></article>
-      <article class="example"><div class="example-top"><div class="jp">ありがとうございます。</div><span class="level">基本表現</span></div><div class="cn">谢谢你。</div><div class="pinyin">xièxie nǐ</div></article>
-      <article class="example"><div class="example-top"><div class="jp">どういたしまして。</div><span class="level">基本表現</span></div><div class="cn">不客气。</div><div class="pinyin">bú kèqi</div></article>
-      <article class="example"><div class="example-top"><div class="jp">すみません。</div><span class="level">基本表現</span></div><div class="cn">对不起。</div><div class="pinyin">duìbuqǐ</div></article>
-      <article class="example"><div class="example-top"><div class="jp">大丈夫です。</div><span class="level">基本表現</span></div><div class="cn">没关系。</div><div class="pinyin">méi guānxi</div></article>
-      <article class="example"><div class="example-top"><div class="jp">これは何ですか？</div><span class="level">質問</span></div><div class="cn">这是什么？</div><div class="pinyin">zhè shì shénme</div></article>
-      <article class="example"><div class="example-top"><div class="jp">これはいくらですか？</div><span class="level">買い物</span></div><div class="cn">这个多少钱？</div><div class="pinyin">zhège duōshao qián</div></article>
-      <article class="example"><div class="example-top"><div class="jp">これをください。</div><span class="level">買い物</span></div><div class="cn">请给我这个。</div><div class="pinyin">qǐng gěi wǒ zhège</div></article>
-      <article class="example"><div class="example-top"><div class="jp">トイレはどこですか？</div><span class="level">旅行</span></div><div class="cn">洗手间在哪里？</div><div class="pinyin">xǐshǒujiān zài nǎlǐ</div></article>
-      <article class="example"><div class="example-top"><div class="jp">駅はどこですか？</div><span class="level">旅行</span></div><div class="cn">车站在哪里？</div><div class="pinyin">chēzhàn zài nǎlǐ</div></article>
-      <article class="example"><div class="example-top"><div class="jp">水を一杯ください。</div><span class="level">レストラン</span></div><div class="cn">请给我一杯水。</div><div class="pinyin">qǐng gěi wǒ yì bēi shuǐ</div></article>
-      <article class="example"><div class="example-top"><div class="jp">これは辛いですか？</div><span class="level">レストラン</span></div><div class="cn">这个辣吗？</div><div class="pinyin">zhège là ma</div></article>
-      <article class="example"><div class="example-top"><div class="jp">中国語を勉強しています。</div><span class="level">学習</span></div><div class="cn">我在学习中文。</div><div class="pinyin">wǒ zài xuéxí Zhōngwén</div></article>
-      <article class="example"><div class="example-top"><div class="jp">中国語は難しいですが、面白いです。</div><span class="level">学習</span></div><div class="cn">中文很难，但是很有意思。</div><div class="pinyin">Zhōngwén hěn nán, dànshì hěn yǒu yìsi</div></article>
-      <article class="example"><div class="example-top"><div class="jp">また明日会いましょう。</div><span class="level">あいさつ</span></div><div class="cn">明天见。</div><div class="pinyin">míngtiān jiàn</div></article>
-    </section>
-    <div class="section-head"><h2>学習メニュー</h2></div>
-    <section class="cards"><div class="mini"><div class="icon">🎧</div><b>聞き取り練習</b><small>似た音を聞き分ける</small></div><div class="mini"><div class="icon">💬</div><b>会話ロールプレイ</b><small>旅行・仕事で使う表現</small></div><div class="mini"><div class="icon">📝</div><b>間違いノート</b><small>自分の苦手を復習</small></div><div class="mini"><div class="icon">📊</div><b>学習レポート</b><small>上達を確認する</small></div></section>
-    <nav class="nav"><a class="active" href="#"><i>⌂</i>ホーム</a><a href="#"><i>◉</i>練習</a><a href="#"><i>▣</i>レポート</a><a href="#"><i>⚙</i>設定</a></nav>
-  </main>
- <script>
-  function tone(el){
-    document.querySelectorAll('.tone').forEach(x=>{
-      x.classList.remove('active');
-    });
-    el.classList.add('active');
+<main class="phone">
+
+<header class="top">
+  <div class="logo">声調<span>コーチ</span></div>
+  <div class="avatar">A</div>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">日本人のための中国語発音トレーニング</p>
+  <h1>中国語、<em>通じる発音</em>へ。</h1>
+  <p>日本人が間違いやすい声調を、1日3分。聞いて、話して、自分の耳で比べてみましょう。</p>
+</section>
+
+<section class="streak">
+  <div class="fire">🔥</div>
+  <div>
+    <b>今日の3分チャレンジ</b>
+    <small>まずは5問やってみよう</small>
+  </div>
+</section>
+
+<div class="section-head">
+  <h2>🎯 声調チャレンジ</h2>
+  <span id="challengeCounter">1 / 5</span>
+</div>
+
+<section class="challenge">
+
+  <div class="challenge-top">
+    <span class="tag">日本人が間違いやすい</span>
+    <span class="progress" id="progressText">● ○ ○ ○ ○</span>
+  </div>
+
+  <div class="challenge-title">この言葉を発音してみよう</div>
+
+  <div class="big-cn" id="challengeCN">买</div>
+  <div class="big-pinyin" id="challengePinyin">mǎi · 3声</div>
+  <div class="big-jp" id="challengeJP">買う</div>
+
+  <div class="tip" id="challengeTip">
+    💡 3声は、いったん低く下げてから上げるイメージです。
+  </div>
+
+  <div class="actions">
+    <button class="btn listen" id="listenBtn"
+      onclick="listenCurrent()">🔊 標準音声</button>
+
+    <button class="btn record" id="recordBtn"
+      onclick="toggleRecording()">🎙 録音する</button>
+  </div>
+
+  <div id="audioArea"></div>
+
+  <div class="status" id="status"></div>
+
+  <button class="btn next" onclick="nextChallenge()">
+    次の問題 →
+  </button>
+
+</section>
+
+
+<div class="section-head">
+  <h2>基本例文20</h2>
+  <span>タップして練習</span>
+</div>
+
+<section class="examples" id="examples"></section>
+
+
+<div class="section-head"><h2>これから追加予定</h2></div>
+
+<section class="cards">
+  <div class="mini">
+    <div class="icon">👂</div>
+    <b>聞き分け</b>
+    <small>買う？売る？似た声調を聞き分ける</small>
+  </div>
+
+  <div class="mini">
+    <div class="icon">🎙️</div>
+    <b>AI発音チェック</b>
+    <small>苦手な声調を自動分析</small>
+  </div>
+
+  <div class="mini">
+    <div class="icon">🔥</div>
+    <b>毎日3分</b>
+    <small>短い練習を毎日続ける</small>
+  </div>
+
+  <div class="mini">
+    <div class="icon">📊</div>
+    <b>苦手レポート</b>
+    <small>間違いやすい発音を復習</small>
+  </div>
+</section>
+
+<nav class="nav">
+  <a class="active" href="#" onclick="return false"><i>⌂</i>ホーム</a>
+  <a href="#" onclick="return false"><i>◉</i>練習</a>
+  <a href="#" onclick="return false"><i>▣</i>記録</a>
+  <a href="#" onclick="return false"><i>⚙</i>設定</a>
+</nav>
+
+</main>
+
+
+<script>
+
+/* ========================================
+   数据
+======================================== */
+
+const challenges = [
+  {
+    cn:"买",
+    pinyin:"mǎi · 3声",
+    jp:"買う",
+    tip:"💡 3声：低く下げてから、最後を少し上げます。",
+    tones:"买（3声）"
+  },
+  {
+    cn:"卖",
+    pinyin:"mài · 4声",
+    jp:"売る",
+    tip:"⚠️ 「买 mǎi」と要注意！4声は上から一気に下げます。",
+    tones:"卖（4声）"
+  },
+  {
+    cn:"水",
+    pinyin:"shuǐ · 3声",
+    jp:"水",
+    tip:"💡 低い位置をしっかり意識。日本語の平坦な音にしないのがポイント。",
+    tones:"水（3声）"
+  },
+  {
+    cn:"睡",
+    pinyin:"shuì · 4声",
+    jp:"寝る",
+    tip:"😴 「水 shuǐ」と似ていますが、こちらは4声。一気に下げます。",
+    tones:"睡（4声）"
+  },
+  {
+    cn:"你好",
+    pinyin:"nǐ hǎo · 3声＋3声",
+    jp:"こんにちは",
+    tip:"💡 3声＋3声では、実際の会話では前の音が2声のように変化します。",
+    tones:"你（3声→2声に変化）→ 好（3声）"
+  }
+];
+
+const examples = [
+["こんにちは。","あいさつ","你好！","nǐ hǎo"],
+["お元気ですか？","あいさつ","你好吗？","nǐ hǎo ma"],
+["私は日本人です。","自己紹介","我是日本人。","wǒ shì Rìběn rén"],
+["私の名前は橋本太郎です。","自己紹介","我叫桥本太郎。","wǒ jiào Qiáoběn Tàiláng"],
+["初めまして。","あいさつ","初次见面。","chūcì jiànmiàn"],
+["よろしくお願いします。","あいさつ","请多关照。","qǐng duō guānzhào"],
+["ありがとうございます。","基本表現","谢谢你。","xièxie nǐ"],
+["どういたしまして。","基本表現","不客气。","bú kèqi"],
+["すみません。","基本表現","对不起。","duìbuqǐ"],
+["大丈夫です。","基本表現","没关系。","méi guānxi"],
+["これは何ですか？","質問","这是什么？","zhè shì shénme"],
+["これはいくらですか？","買い物","这个多少钱？","zhège duōshao qián"],
+["これをください。","買い物","请给我这个。","qǐng gěi wǒ zhège"],
+["トイレはどこですか？","旅行","洗手间在哪里？","xǐshǒujiān zài nǎlǐ"],
+["駅はどこですか？","旅行","车站在哪里？","chēzhàn zài nǎlǐ"],
+["水を一杯ください。","レストラン","请给我一杯水。","qǐng gěi wǒ yì bēi shuǐ"],
+["これは辛いですか？","レストラン","这个辣吗？","zhège là ma"],
+["中国語を勉強しています。","学習","我在学习中文。","wǒ zài xuéxí Zhōngwén"],
+["中国語は難しいですが、面白いです。","学習","中文很难，但是很有意思。","Zhōngwén hěn nán, dànshì hěn yǒu yìsi"],
+["また明日会いましょう。","あいさつ","明天见。","míngtiān jiàn"]
+];
+
+
+/* ========================================
+   基本例文生成
+======================================== */
+
+const examplesBox = document.getElementById("examples");
+
+examples.forEach((x,index)=>{
+
+  const card=document.createElement("article");
+  card.className="example";
+
+  card.innerHTML=`
+    <div class="example-top">
+      <div class="jp">${x[0]}</div>
+      <span class="level">${x[1]}</span>
+    </div>
+
+    <div class="cn">${x[2]}</div>
+    <div class="pinyin">${x[3]}</div>
+
+    <div class="example-buttons">
+      <button class="small-btn"
+        onclick="speakText(${index})">
+        🔊 聞く
+      </button>
+
+      <button class="small-btn practice-btn"
+        onclick="practiceExample(${index})">
+        🎙 練習
+      </button>
+    </div>
+  `;
+
+  examplesBox.appendChild(card);
+});
+
+
+/* ========================================
+   标准音
+======================================== */
+
+let chineseVoice=null;
+
+function refreshVoices(){
+
+  if(!("speechSynthesis" in window)) return;
+
+  const voices=window.speechSynthesis.getVoices();
+
+  chineseVoice=
+    voices.find(v=>/^zh-CN/i.test(v.lang)) ||
+    voices.find(v=>/^zh/i.test(v.lang)) ||
+    null;
+}
+
+if("speechSynthesis" in window){
+  refreshVoices();
+  window.speechSynthesis.onvoiceschanged=refreshVoices;
+}
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("この端末では音声再生を利用できません。");
+    return;
   }
 
+  window.speechSynthesis.cancel();
 
-  // ==================================================
-  // 标准中文语音
-  // ==================================================
+  refreshVoices();
 
-  let chineseVoice = null;
-  let currentAudio = null;
+  const u=new SpeechSynthesisUtterance(text);
 
-  function refreshVoices(){
-    if(!('speechSynthesis' in window)) return;
+  u.lang=chineseVoice ? chineseVoice.lang : "zh-CN";
 
-    const voices = window.speechSynthesis.getVoices();
-
-    chineseVoice =
-      voices.find(v => /^zh-CN/i.test(v.lang)) ||
-      voices.find(v => /^zh/i.test(v.lang)) ||
-      null;
+  if(chineseVoice){
+    u.voice=chineseVoice;
   }
 
-  if('speechSynthesis' in window){
-    refreshVoices();
-    window.speechSynthesis.onvoiceschanged = refreshVoices;
+  u.rate=.78;
+  u.pitch=1;
+
+  window.speechSynthesis.speak(u);
+}
+
+function listenCurrent(){
+  speak(challenges[currentChallenge].cn);
+}
+
+function speakText(index){
+  speak(examples[index][2]);
+}
+
+
+/* ========================================
+   Challenge
+======================================== */
+
+let currentChallenge=0;
+
+function renderChallenge(){
+
+  const x=challenges[currentChallenge];
+
+  document.getElementById("challengeCN").textContent=x.cn;
+  document.getElementById("challengePinyin").textContent=x.pinyin;
+  document.getElementById("challengeJP").textContent=x.jp;
+  document.getElementById("challengeTip").textContent=x.tip;
+
+  document.getElementById("challengeCounter").textContent=
+    (currentChallenge+1)+" / "+challenges.length;
+
+  document.getElementById("progressText").textContent=
+    challenges.map((_,i)=>i<=currentChallenge?"●":"○").join(" ");
+
+  clearRecording();
+
+  const status=document.getElementById("status");
+  status.className="status";
+  status.innerHTML="";
+}
+
+function nextChallenge(){
+
+  if(isRecording){
+    stopRecording();
+    return;
   }
 
+  currentChallenge=
+    (currentChallenge+1)%challenges.length;
 
-  function nativeSpeech(text, button){
+  renderChallenge();
 
-    if(
-      !('speechSynthesis' in window) ||
-      typeof SpeechSynthesisUtterance === 'undefined'
-    ){
-      return false;
-    }
+  document.querySelector(".challenge")
+    .scrollIntoView({behavior:"smooth",block:"center"});
+}
 
-    refreshVoices();
 
-    window.speechSynthesis.cancel();
+/* ========================================
+   从基本例句进入练习
+======================================== */
 
-    const u = new SpeechSynthesisUtterance(text);
+let customPractice=null;
 
-    u.lang = chineseVoice ? chineseVoice.lang : 'zh-CN';
+function practiceExample(index){
 
-    if(chineseVoice){
-      u.voice = chineseVoice;
-    }
+  const x=examples[index];
 
-    u.rate = 0.78;
-    u.pitch = 1;
+  customPractice={
+    cn:x[2],
+    pinyin:x[3],
+    jp:x[0],
+    tones:"この文を標準音声と聞き比べてみましょう。"
+  };
 
-    u.onend = function(){
-      button.textContent = '🔊 もう一度聞く';
-    };
+  document.getElementById("challengeCN").textContent=x[2];
+  document.getElementById("challengePinyin").textContent=x[3];
+  document.getElementById("challengeJP").textContent=x[0];
 
-    u.onerror = function(){
-      button.textContent = '⚠️ 音声を確認';
-    };
+  document.getElementById("challengeTip").textContent=
+    "🎧 標準音声を聞いてから、同じリズムで発音してみましょう。";
 
-    window.speechSynthesis.speak(u);
+  clearRecording();
 
-    return true;
+  const status=document.getElementById("status");
+  status.className="status info show";
+  status.innerHTML="<b>例文練習モード</b><br>標準音声 → 録音 → 聞き比べ の順で練習しましょう。";
+
+  document.querySelector(".challenge")
+    .scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+function getPracticeText(){
+
+  if(customPractice){
+    return customPractice.cn;
   }
 
+  return challenges[currentChallenge].cn;
+}
 
-  function fallbackAudio(text, button){
 
-    if(currentAudio){
-      try{
-        currentAudio.pause();
-      }catch(e){}
+/* 标准音按钮在例文模式也正确播放 */
 
-      currentAudio = null;
-    }
+function listenCurrent(){
 
-    const url =
-      'https://translate.google.com/translate_tts' +
-      '?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' +
-      encodeURIComponent(text);
+  speak(getPracticeText());
+}
 
-    const audio = new Audio(url);
 
-    currentAudio = audio;
+/* 下一题时回到 Challenge */
 
-    audio.onended = function(){
-      button.textContent = '🔊 もう一度聞く';
-    };
+const originalNext=nextChallenge;
 
-    audio.onerror = function(){
-      button.textContent = '⚠️ 音声を再生できません';
-    };
+nextChallenge=function(){
 
-    audio.play().catch(function(){
-      button.textContent = '⚠️ 音声を再生できません';
-    });
+  if(isRecording){
+    stopRecording();
+    return;
   }
 
+  customPractice=null;
 
-  function speakSentence(text, button){
+  currentChallenge=
+    (currentChallenge+1)%challenges.length;
 
-    button.textContent = '🔊 再生中…';
+  renderChallenge();
 
-    if(!nativeSpeech(text, button)){
-      fallbackAudio(text, button);
-    }
+  document.querySelector(".challenge")
+    .scrollIntoView({behavior:"smooth",block:"center"});
+};
+
+
+/* ========================================
+   录音
+======================================== */
+
+let mediaRecorder=null;
+let microphoneStream=null;
+let chunks=[];
+let recordedURL=null;
+let isRecording=false;
+let starting=false;
+let autoStopTimer=null;
+
+
+function clearRecording(){
+
+  const area=document.getElementById("audioArea");
+
+  area.innerHTML="";
+
+  if(recordedURL){
+    URL.revokeObjectURL(recordedURL);
+    recordedURL=null;
   }
+}
 
 
-  // 基本例文的播放按钮
-  document.querySelectorAll('.example').forEach(card=>{
+function releaseMicrophone(){
 
-    const cn = card.querySelector('.cn');
-
-    if(!cn) return;
-
-    const text = cn.textContent.trim();
-
-    const button = document.createElement('button');
-
-    button.className = 'speak';
-    button.textContent = '🔊 聞く';
-
-    button.onclick = function(){
-      speakSentence(text, button);
-    };
-
-    card.appendChild(button);
-  });
-
-
-
-  // ==================================================
-  // 用户录音
-  // ==================================================
-
-  let mediaRecorder = null;
-  let microphoneStream = null;
-  let recordedAudio = null;
-  let recordedURL = null;
-  let recordTimer = null;
-  let isStartingRecording = false;
-
-
-
-  // ==================================================
-  // 清理旧播放器
-  // ==================================================
-
-  function removeOldRecording(){
-
-    if(recordedAudio){
-
-      try{
-        recordedAudio.pause();
-      }catch(e){}
-
-      try{
-        recordedAudio.removeAttribute('src');
-        recordedAudio.load();
-      }catch(e){}
-
-      try{
-        recordedAudio.remove();
-      }catch(e){}
-
-      recordedAudio = null;
-    }
-
-
-    if(recordedURL){
-
-      try{
-        URL.revokeObjectURL(recordedURL);
-      }catch(e){}
-
-      recordedURL = null;
-    }
-  }
-
-
-
-  // ==================================================
-  // 关闭麦克风
-  // ==================================================
-
-  function stopMicrophone(){
-
-    if(!microphoneStream) return;
+  if(microphoneStream){
 
     microphoneStream.getTracks().forEach(track=>{
-
-      try{
-        track.stop();
-      }catch(e){}
-
+      try{track.stop()}catch(e){}
     });
 
-    microphoneStream = null;
+    microphoneStream=null;
+  }
+}
+
+
+async function toggleRecording(){
+
+  if(isRecording){
+
+    stopRecording();
+    return;
   }
 
+  if(starting) return;
+
+  await startRecording();
+}
 
 
-  // ==================================================
-  // 恢复按钮
-  // ==================================================
+async function startRecording(){
 
-  function resetRecordButton(){
+  const btn=document.getElementById("recordBtn");
+  const status=document.getElementById("status");
 
-    const b = document.getElementById('record');
-
-    if(!b) return;
-
-    b.classList.remove('recording');
-    b.disabled = false;
-    b.textContent = '🎙 もう一度録音';
+  if(
+    !navigator.mediaDevices ||
+    !navigator.mediaDevices.getUserMedia ||
+    typeof MediaRecorder==="undefined"
+  ){
+    status.className="status info show";
+    status.textContent="このブラウザでは録音機能を利用できません。";
+    return;
   }
 
+  starting=true;
 
+  btn.disabled=true;
+  btn.textContent="🎙 準備中…";
 
-  // ==================================================
-  // 创建录音播放器
-  // ==================================================
+  try{
 
-  function createRecordingPlayer(blob){
-
-    const b = document.getElementById('record');
-    const r = document.getElementById('result');
-
-    if(!b || !r) return;
-
-
-    removeOldRecording();
-
-
-    recordedURL = URL.createObjectURL(blob);
-
-
-    const audio = document.createElement('audio');
-
-    audio.controls = true;
-    audio.preload = 'metadata';
-    audio.src = recordedURL;
-
-    audio.style.width = '100%';
-    audio.style.marginTop = '14px';
-
-    b.insertAdjacentElement('afterend', audio);
-
-    recordedAudio = audio;
-
-
-    // 录音成功后的练习提示
-    r.innerHTML =
-      '<b>録音できました！</b><br>' +
-      '▶️ 自分の発音を聞いて、標準音声と比べてみましょう。<br>' +
-      '声調：你（3声）→ 吃（1声）→ 饭（4声）→ 了（軽声）→ 吗（軽声）';
-
-    r.classList.add('show');
-  }
-
-
-
-  // ==================================================
-  // 停止录音
-  // ==================================================
-
-  function stopRecording(){
-
-    if(recordTimer){
-      clearTimeout(recordTimer);
-      recordTimer = null;
+    if("speechSynthesis" in window){
+      window.speechSynthesis.cancel();
     }
 
+    releaseMicrophone();
+    clearRecording();
 
-    if(
-      mediaRecorder &&
-      mediaRecorder.state === 'recording'
-    ){
+    const stream=
+      await navigator.mediaDevices.getUserMedia({
+        audio:true
+      });
 
-      try{
-        mediaRecorder.stop();
-      }catch(e){
-        console.log('Recorder stop error:', e);
+    microphoneStream=stream;
 
-        stopMicrophone();
-        mediaRecorder = null;
-        resetRecordButton();
+    chunks=[];
+
+    const recorder=new MediaRecorder(stream);
+
+    mediaRecorder=recorder;
+
+
+    recorder.ondataavailable=e=>{
+
+      if(e.data && e.data.size>0){
+        chunks.push(e.data);
+      }
+    };
+
+
+    recorder.onerror=()=>{
+
+      isRecording=false;
+      starting=false;
+
+      releaseMicrophone();
+
+      btn.disabled=false;
+      btn.classList.remove("recording");
+      btn.textContent="🎙 もう一度";
+
+      status.className="status info show";
+      status.textContent="録音エラーが発生しました。もう一度お試しください。";
+    };
+
+
+    recorder.onstop=()=>{
+
+      isRecording=false;
+
+      if(autoStopTimer){
+        clearTimeout(autoStopTimer);
+        autoStopTimer=null;
       }
 
-    }else{
+      releaseMicrophone();
 
-      stopMicrophone();
-      mediaRecorder = null;
-      resetRecordButton();
-    }
-  }
+      btn.disabled=false;
+      btn.classList.remove("recording");
+      btn.textContent="🎙 もう一度録音";
+
+      if(!chunks.length){
+
+        status.className="status info show";
+        status.textContent="録音データを取得できませんでした。";
+
+        return;
+      }
+
+      const type=
+        recorder.mimeType ||
+        chunks[0].type ||
+        "audio/mp4";
+
+      const blob=new Blob(chunks,{type});
+
+      if(!blob.size){
+
+        status.className="status info show";
+        status.textContent="録音データを取得できませんでした。";
+
+        return;
+      }
+
+      recordedURL=URL.createObjectURL(blob);
+
+      const audio=document.createElement("audio");
+
+      audio.controls=true;
+      audio.preload="metadata";
+      audio.src=recordedURL;
+
+      document.getElementById("audioArea")
+        .appendChild(audio);
+
+      let hint;
+
+      if(customPractice){
+        hint="標準音声をもう一度聞いて、自分の録音とリズム・高さを比べてみましょう。";
+      }else{
+        hint="声調："+challenges[currentChallenge].tones;
+      }
+
+      status.className="status ok show";
+
+      status.innerHTML=
+        "<b>✓ 録音できました！</b><br>"+
+        "自分の声を再生して、標準音声と聞き比べてみましょう。<br>"+
+        hint;
+    };
 
 
+    recorder.start();
 
-  // ==================================================
-  // 录音按钮
-  // ==================================================
+    isRecording=true;
+    starting=false;
 
-  async function recordVoice(){
+    btn.disabled=false;
+    btn.classList.add("recording");
+    btn.textContent="■ 録音を停止";
 
-    const b = document.getElementById('record');
-    const r = document.getElementById('result');
+    status.className="status info show";
 
-    if(!b || !r) return;
-
-
-    // ----------------------------------------------
-    // 已经正在录音 → 点击就是停止
-    // ----------------------------------------------
-
-    if(
-      mediaRecorder &&
-      mediaRecorder.state === 'recording'
-    ){
-
-      stopRecording();
-      return;
-    }
+    status.innerHTML=
+      "<b>● 録音中…</b><br>「"+
+      getPracticeText()+
+      "」と発音してみましょう。";
 
 
-    // 防止快速连续点击导致同时申请多个麦克风
-    if(isStartingRecording){
-      return;
-    }
-
-
-    isStartingRecording = true;
-
-    b.disabled = true;
-
-    b.textContent = '🎙 準備中…';
-
-
-    try{
+    autoStopTimer=setTimeout(()=>{
 
       if(
-        !navigator.mediaDevices ||
-        !navigator.mediaDevices.getUserMedia ||
-        typeof MediaRecorder === 'undefined'
+        mediaRecorder===recorder &&
+        recorder.state==="recording"
       ){
-        throw new Error('Recording unsupported');
+        stopRecording();
       }
 
+    },10000);
 
-      // 停掉标准音，避免标准音被录进去
-      if('speechSynthesis' in window){
-        try{
-          window.speechSynthesis.cancel();
-        }catch(e){}
-      }
 
+  }catch(e){
 
-      if(currentAudio){
-        try{
-          currentAudio.pause();
-        }catch(e){}
+    console.error(e);
 
-        currentAudio = null;
-      }
+    starting=false;
+    isRecording=false;
 
+    releaseMicrophone();
 
-      // 清除上一轮计时器
-      if(recordTimer){
-        clearTimeout(recordTimer);
-        recordTimer = null;
-      }
+    btn.disabled=false;
+    btn.classList.remove("recording");
+    btn.textContent="🎙 録音する";
 
+    status.className="status info show";
 
-      // 确保旧麦克风彻底关闭
-      stopMicrophone();
+    status.innerHTML=
+      "<b>マイクを開始できませんでした。</b><br>"+
+      "Safariのマイク許可を確認して、もう一度お試しください。";
+  }
+}
 
 
-      // 删除上一轮播放器
-      removeOldRecording();
+function stopRecording(){
 
+  if(autoStopTimer){
+    clearTimeout(autoStopTimer);
+    autoStopTimer=null;
+  }
 
-      // ----------------------------------------------
-      // 每次重新取得麦克风
-      // ----------------------------------------------
+  if(
+    mediaRecorder &&
+    mediaRecorder.state==="recording"
+  ){
 
-      const stream =
-        await navigator.mediaDevices.getUserMedia({
-          audio: true
-        });
-
-
-      microphoneStream = stream;
-
-
-      // ----------------------------------------------
-      // 每次录音使用自己的 chunks
-      // ----------------------------------------------
-
-      const chunks = [];
-
-
-      const recorder =
-        new MediaRecorder(stream);
-
-
-      mediaRecorder = recorder;
-
-
-      recorder.ondataavailable = function(event){
-
-        if(
-          event.data &&
-          event.data.size > 0
-        ){
-          chunks.push(event.data);
-        }
-      };
-
-
-      recorder.onerror = function(event){
-
-        console.log(
-          'MediaRecorder error:',
-          event
-        );
-
-
-        stopMicrophone();
-
-
-        if(mediaRecorder === recorder){
-          mediaRecorder = null;
-        }
-
-
-        resetRecordButton();
-
-
-        r.textContent =
-          '録音中にエラーが発生しました。もう一度お試しください。';
-
-        r.classList.add('show');
-      };
-
-
-      recorder.onstop = function(){
-
-        // 先释放麦克风
-        stopMicrophone();
-
-
-        if(recordTimer){
-          clearTimeout(recordTimer);
-          recordTimer = null;
-        }
-
-
-        if(mediaRecorder === recorder){
-          mediaRecorder = null;
-        }
-
-
-        resetRecordButton();
-
-
-        // ------------------------------------------
-        // 检查是否真正拿到数据
-        // ------------------------------------------
-
-        if(chunks.length === 0){
-
-          r.textContent =
-            '録音データを取得できませんでした。もう一度お試しください。';
-
-          r.classList.add('show');
-
-          return;
-        }
-
-
-        const mimeType =
-          recorder.mimeType ||
-          chunks[0].type ||
-          'audio/mp4';
-
-
-        const blob =
-          new Blob(
-            chunks,
-            {
-              type: mimeType
-            }
-          );
-
-
-        if(blob.size === 0){
-
-          r.textContent =
-            '録音データを取得できませんでした。もう一度お試しください。';
-
-          r.classList.add('show');
-
-          return;
-        }
-
-
-        // ------------------------------------------
-        // 成功
-        // ------------------------------------------
-
-        createRecordingPlayer(blob);
-      };
-
-
-      // ----------------------------------------------
-      // 开始录音
-      // 不使用 timeslice
-      // ----------------------------------------------
-
-      recorder.start();
-
-
-      isStartingRecording = false;
-
-      b.disabled = false;
-
-      b.classList.add('recording');
-
-      b.textContent =
-        '■ 録音を停止';
-
-
-      r.innerHTML =
-        '<b>録音中…</b><br>' +
-        '「你吃饭了吗？」と自然に発音してみましょう。';
-
-      r.classList.add('show');
-
-
-      // ----------------------------------------------
-      // 最长 15 秒自动停止
-      // ----------------------------------------------
-
-      recordTimer = setTimeout(function(){
-
-        if(
-          mediaRecorder === recorder &&
-          recorder.state === 'recording'
-        ){
-          stopRecording();
-        }
-
-      }, 15000);
-
-
+    try{
+      mediaRecorder.stop();
     }catch(e){
 
-      console.error(
-        'Microphone error:',
-        e
-      );
+      releaseMicrophone();
 
-
-      isStartingRecording = false;
-
-
-      stopMicrophone();
-
-
-      mediaRecorder = null;
-
-
-      if(recordTimer){
-        clearTimeout(recordTimer);
-        recordTimer = null;
-      }
-
-
-      b.disabled = false;
-
-      b.classList.remove('recording');
-
-      b.textContent =
-        '🎙 録音して練習';
-
-
-      r.textContent =
-        'マイクを開始できませんでした。Safariのマイク許可を確認して、もう一度お試しください。';
-
-      r.classList.add('show');
+      isRecording=false;
+      mediaRecorder=null;
     }
+
+  }else{
+
+    releaseMicrophone();
+    isRecording=false;
   }
+}
+
+
+/* 页面离开时释放麦克风 */
+
+window.addEventListener("pagehide",()=>{
+
+  if(autoStopTimer){
+    clearTimeout(autoStopTimer);
+  }
+
+  releaseMicrophone();
+
+  if(recordedURL){
+    URL.revokeObjectURL(recordedURL);
+  }
+});
+
+
+renderChallenge();
+
 </script>
 </body>
 </html>
