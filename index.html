@@ -66,13 +66,16 @@
   </main>
  <script>
   function tone(el){
-    document.querySelectorAll('.tone').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tone').forEach(x=>{
+      x.classList.remove('active');
+    });
     el.classList.add('active');
   }
 
-  // =========================
-  // 标准中文语音播放
-  // =========================
+
+  // ==================================================
+  // 标准中文语音
+  // ==================================================
 
   let chineseVoice = null;
   let currentAudio = null;
@@ -83,8 +86,8 @@
     const voices = window.speechSynthesis.getVoices();
 
     chineseVoice =
-      voices.find(v=>/^zh-CN/i.test(v.lang)) ||
-      voices.find(v=>/^zh/i.test(v.lang)) ||
+      voices.find(v => /^zh-CN/i.test(v.lang)) ||
+      voices.find(v => /^zh/i.test(v.lang)) ||
       null;
   }
 
@@ -93,7 +96,9 @@
     window.speechSynthesis.onvoiceschanged = refreshVoices;
   }
 
-  function nativeSpeech(text,button){
+
+  function nativeSpeech(text, button){
+
     if(
       !('speechSynthesis' in window) ||
       typeof SpeechSynthesisUtterance === 'undefined'
@@ -102,427 +107,406 @@
     }
 
     refreshVoices();
+
     window.speechSynthesis.cancel();
 
     const u = new SpeechSynthesisUtterance(text);
 
     u.lang = chineseVoice ? chineseVoice.lang : 'zh-CN';
 
-    if(chineseVoice) u.voice = chineseVoice;
+    if(chineseVoice){
+      u.voice = chineseVoice;
+    }
 
-    u.rate = .78;
+    u.rate = 0.78;
     u.pitch = 1;
 
-    u.onend = ()=> button.textContent = '🔊 もう一度聞く';
-    u.onerror = ()=> button.textContent = '⚠️ 音声を確認';
+    u.onend = function(){
+      button.textContent = '🔊 もう一度聞く';
+    };
+
+    u.onerror = function(){
+      button.textContent = '⚠️ 音声を確認';
+    };
 
     window.speechSynthesis.speak(u);
+
     return true;
   }
 
-  function fallbackAudio(text,button){
+
+  function fallbackAudio(text, button){
+
     if(currentAudio){
-      currentAudio.pause();
+      try{
+        currentAudio.pause();
+      }catch(e){}
+
       currentAudio = null;
     }
 
     const url =
-      'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' +
+      'https://translate.google.com/translate_tts' +
+      '?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' +
       encodeURIComponent(text);
 
     const audio = new Audio(url);
+
     currentAudio = audio;
 
-    audio.onended = ()=> button.textContent = '🔊 もう一度聞く';
-    audio.onerror = ()=> button.textContent = '⚠️ 音声を再生できません';
+    audio.onended = function(){
+      button.textContent = '🔊 もう一度聞く';
+    };
 
-    audio.play().catch(()=>
-      button.textContent = '⚠️ 音声を再生できません'
-    );
+    audio.onerror = function(){
+      button.textContent = '⚠️ 音声を再生できません';
+    };
+
+    audio.play().catch(function(){
+      button.textContent = '⚠️ 音声を再生できません';
+    });
   }
 
-  function speakSentence(text,button){
+
+  function speakSentence(text, button){
+
     button.textContent = '🔊 再生中…';
 
-    if(!nativeSpeech(text,button)){
-      fallbackAudio(text,button);
+    if(!nativeSpeech(text, button)){
+      fallbackAudio(text, button);
     }
   }
 
+
+  // 基本例文的播放按钮
   document.querySelectorAll('.example').forEach(card=>{
-    const text = card.querySelector('.cn').textContent.trim();
+
+    const cn = card.querySelector('.cn');
+
+    if(!cn) return;
+
+    const text = cn.textContent.trim();
 
     const button = document.createElement('button');
+
     button.className = 'speak';
     button.textContent = '🔊 聞く';
 
-    button.onclick = ()=> speakSentence(text,button);
+    button.onclick = function(){
+      speakSentence(text, button);
+    };
 
     card.appendChild(button);
   });
 
 
-  // =========================
-  // 录音
-  // =========================
+
+  // ==================================================
+  // 用户录音
+  // ==================================================
 
   let mediaRecorder = null;
+  let microphoneStream = null;
   let recordedAudio = null;
+  let recordedURL = null;
   let recordTimer = null;
-  let recognition = null;
-  let recognizedText = '';
+  let isStartingRecording = false;
 
 
-  // =========================
-  // 中文语音识别
-  // =========================
 
-  function startPronunciationCheck(){
-    recognizedText = '';
+  // ==================================================
+  // 清理旧播放器
+  // ==================================================
 
-    if(recognition){
+  function removeOldRecording(){
+
+    if(recordedAudio){
+
       try{
-        recognition.abort();
+        recordedAudio.pause();
       }catch(e){}
-      recognition = null;
+
+      try{
+        recordedAudio.removeAttribute('src');
+        recordedAudio.load();
+      }catch(e){}
+
+      try{
+        recordedAudio.remove();
+      }catch(e){}
+
+      recordedAudio = null;
     }
 
-    const SpeechRecognition =
-      window.SpeechRecognition ||
-      window.webkitSpeechRecognition;
 
-    if(!SpeechRecognition) return;
+    if(recordedURL){
 
-    try{
-      const newRecognition = new SpeechRecognition();
-      recognition = newRecognition;
+      try{
+        URL.revokeObjectURL(recordedURL);
+      }catch(e){}
 
-      newRecognition.lang = 'zh-CN';
-      newRecognition.continuous = false;
-      newRecognition.interimResults = true;
-      newRecognition.maxAlternatives = 1;
-
-      newRecognition.onresult = function(event){
-        let text = '';
-
-        for(let i=event.resultIndex; i<event.results.length; i++){
-          text += event.results[i][0].transcript;
-        }
-
-        recognizedText = text.trim();
-
-        const r = document.getElementById('result');
-
-        if(recognizedText){
-          r.innerHTML =
-            '認識中：<b>' +
-            escapeHTML(recognizedText) +
-            '</b>';
-
-          r.classList.add('show');
-        }
-      };
-
-      newRecognition.onerror = function(event){
-        console.log('Speech recognition error:', event.error);
-      };
-
-      newRecognition.onend = function(){
-        if(recognition === newRecognition){
-          recognition = null;
-        }
-      };
-
-      newRecognition.start();
-
-    }catch(e){
-      console.log('Speech recognition unavailable:', e);
-      recognition = null;
-    }
-  }
-
-  function stopPronunciationCheck(){
-    if(!recognition) return;
-
-    const oldRecognition = recognition;
-    recognition = null;
-
-    try{
-      oldRecognition.onresult = null;
-      oldRecognition.onerror = null;
-      oldRecognition.onend = null;
-      oldRecognition.abort();
-    }catch(e){
-      console.log('Recognition stop error:', e);
+      recordedURL = null;
     }
   }
 
 
-  // =========================
-  // 识别结果比较
-  // =========================
 
-  function normalizeChinese(text){
-    return (text || '')
-      .replace(/[，。！？、,.!?\s]/g,'')
-      .trim();
+  // ==================================================
+  // 关闭麦克风
+  // ==================================================
+
+  function stopMicrophone(){
+
+    if(!microphoneStream) return;
+
+    microphoneStream.getTracks().forEach(track=>{
+
+      try{
+        track.stop();
+      }catch(e){}
+
+    });
+
+    microphoneStream = null;
   }
 
-  function showPronunciationResult(){
+
+
+  // ==================================================
+  // 恢复按钮
+  // ==================================================
+
+  function resetRecordButton(){
+
+    const b = document.getElementById('record');
+
+    if(!b) return;
+
+    b.classList.remove('recording');
+    b.disabled = false;
+    b.textContent = '🎙 もう一度録音';
+  }
+
+
+
+  // ==================================================
+  // 创建录音播放器
+  // ==================================================
+
+  function createRecordingPlayer(blob){
+
+    const b = document.getElementById('record');
     const r = document.getElementById('result');
 
-    if(!recognizedText){
-      r.innerHTML =
-        '録音できました。自分の発音を聞いて、標準音声と比べてみましょう。';
+    if(!b || !r) return;
 
-      r.classList.add('show');
-      return;
-    }
 
-    const target = '你吃饭了吗';
-    const spoken = normalizeChinese(recognizedText);
+    removeOldRecording();
 
-    if(spoken === target){
-      r.innerHTML =
-        'あなたの発音：<b>' +
-        escapeHTML(recognizedText) +
-        '</b><br>✅ 文全体を正しく認識できました。標準音声と聞き比べて、声調も確認してみましょう。';
-    }else{
-      r.innerHTML =
-        'あなたの発音：<b>' +
-        escapeHTML(recognizedText) +
-        '</b><br>もう一度練習してみましょう。';
-    }
+
+    recordedURL = URL.createObjectURL(blob);
+
+
+    const audio = document.createElement('audio');
+
+    audio.controls = true;
+    audio.preload = 'metadata';
+    audio.src = recordedURL;
+
+    audio.style.width = '100%';
+    audio.style.marginTop = '14px';
+
+    b.insertAdjacentElement('afterend', audio);
+
+    recordedAudio = audio;
+
+
+    // 录音成功后的练习提示
+    r.innerHTML =
+      '<b>録音できました！</b><br>' +
+      '▶️ 自分の発音を聞いて、標準音声と比べてみましょう。<br>' +
+      '声調：你（3声）→ 吃（1声）→ 饭（4声）→ 了（軽声）→ 吗（軽声）';
 
     r.classList.add('show');
   }
 
-  function escapeHTML(text){
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
 
 
-  // =========================
-  // 清理上一轮录音
-  // =========================
+  // ==================================================
+  // 停止录音
+  // ==================================================
 
-  function removeOldRecording(){
-    if(!recordedAudio) return;
+  function stopRecording(){
 
-    try{
-      recordedAudio.pause();
-    }catch(e){}
-
-    const oldURL = recordedAudio.dataset.blobUrl;
-
-    recordedAudio.removeAttribute('src');
-
-    try{
-      recordedAudio.load();
-    }catch(e){}
-
-    try{
-      recordedAudio.remove();
-    }catch(e){}
-
-    if(oldURL){
-      try{
-        URL.revokeObjectURL(oldURL);
-      }catch(e){}
+    if(recordTimer){
+      clearTimeout(recordTimer);
+      recordTimer = null;
     }
 
-    recordedAudio = null;
-  }
 
-
-  // =========================
-  // 录音按钮
-  // =========================
-
-  async function recordVoice(){
-    const b = document.getElementById('record');
-    const r = document.getElementById('result');
-
-    // 正在录音 → 手动停止
-    if(mediaRecorder && mediaRecorder.state === 'recording'){
-
-      if(recordTimer){
-        clearTimeout(recordTimer);
-        recordTimer = null;
-      }
-
-      stopPronunciationCheck();
-
-      try{
-        if(typeof mediaRecorder.requestData === 'function'){
-          mediaRecorder.requestData();
-        }
-      }catch(e){}
+    if(
+      mediaRecorder &&
+      mediaRecorder.state === 'recording'
+    ){
 
       try{
         mediaRecorder.stop();
       }catch(e){
         console.log('Recorder stop error:', e);
+
+        stopMicrophone();
+        mediaRecorder = null;
+        resetRecordButton();
       }
 
-      b.classList.remove('recording');
-      b.textContent = '🎙 もう一度録音';
+    }else{
 
+      stopMicrophone();
+      mediaRecorder = null;
+      resetRecordButton();
+    }
+  }
+
+
+
+  // ==================================================
+  // 录音按钮
+  // ==================================================
+
+  async function recordVoice(){
+
+    const b = document.getElementById('record');
+    const r = document.getElementById('result');
+
+    if(!b || !r) return;
+
+
+    // ----------------------------------------------
+    // 已经正在录音 → 点击就是停止
+    // ----------------------------------------------
+
+    if(
+      mediaRecorder &&
+      mediaRecorder.state === 'recording'
+    ){
+
+      stopRecording();
       return;
     }
 
+
+    // 防止快速连续点击导致同时申请多个麦克风
+    if(isStartingRecording){
+      return;
+    }
+
+
+    isStartingRecording = true;
+
+    b.disabled = true;
+
+    b.textContent = '🎙 準備中…';
+
+
     try{
+
       if(
         !navigator.mediaDevices ||
-        !navigator.mediaDevices.getUserMedia
+        !navigator.mediaDevices.getUserMedia ||
+        typeof MediaRecorder === 'undefined'
       ){
-        throw new Error('getUserMedia unsupported');
+        throw new Error('Recording unsupported');
       }
 
-      removeOldRecording();
-      stopPronunciationCheck();
 
+      // 停掉标准音，避免标准音被录进去
+      if('speechSynthesis' in window){
+        try{
+          window.speechSynthesis.cancel();
+        }catch(e){}
+      }
+
+
+      if(currentAudio){
+        try{
+          currentAudio.pause();
+        }catch(e){}
+
+        currentAudio = null;
+      }
+
+
+      // 清除上一轮计时器
       if(recordTimer){
         clearTimeout(recordTimer);
         recordTimer = null;
       }
 
+
+      // 确保旧麦克风彻底关闭
+      stopMicrophone();
+
+
+      // 删除上一轮播放器
+      removeOldRecording();
+
+
+      // ----------------------------------------------
       // 每次重新取得麦克风
+      // ----------------------------------------------
+
       const stream =
         await navigator.mediaDevices.getUserMedia({
-          audio:true
+          audio: true
         });
 
-      // 每轮录音使用自己的数据数组
+
+      microphoneStream = stream;
+
+
+      // ----------------------------------------------
+      // 每次录音使用自己的 chunks
+      // ----------------------------------------------
+
       const chunks = [];
 
-      const recorder = new MediaRecorder(stream);
+
+      const recorder =
+        new MediaRecorder(stream);
+
+
       mediaRecorder = recorder;
 
-      const recorderMimeType =
-        recorder.mimeType || 'audio/mp4';
 
       recorder.ondataavailable = function(event){
-        if(event.data && event.data.size > 0){
+
+        if(
+          event.data &&
+          event.data.size > 0
+        ){
           chunks.push(event.data);
-
-          console.log(
-            'Audio chunk:',
-            event.data.size
-          );
         }
       };
 
-      recorder.onstop = function(){
-
-        stream.getTracks().forEach(track=>{
-          try{
-            track.stop();
-          }catch(e){}
-        });
-
-        stopPronunciationCheck();
-
-        if(recordTimer){
-          clearTimeout(recordTimer);
-          recordTimer = null;
-        }
-
-        if(!chunks.length){
-          console.log('No audio data');
-
-          r.textContent =
-            '録音データを取得できませんでした。もう一度お試しください。';
-
-          r.classList.add('show');
-
-          if(mediaRecorder === recorder){
-            mediaRecorder = null;
-          }
-
-          return;
-        }
-
-        const blob =
-          new Blob(chunks,{
-            type: recorderMimeType
-          });
-
-        console.log(
-          'Recorded blob:',
-          blob.size,
-          blob.type
-        );
-
-        if(blob.size === 0){
-          r.textContent =
-            '録音データを取得できませんでした。もう一度お試しください。';
-
-          r.classList.add('show');
-
-          if(mediaRecorder === recorder){
-            mediaRecorder = null;
-          }
-
-          return;
-        }
-
-        const url = URL.createObjectURL(blob);
-
-        const audio = document.createElement('audio');
-
-        audio.controls = true;
-        audio.preload = 'metadata';
-        audio.dataset.blobUrl = url;
-        audio.src = url;
-        audio.style.width = '100%';
-        audio.style.marginTop = '14px';
-
-        audio.load();
-
-        b.insertAdjacentElement(
-          'afterend',
-          audio
-        );
-
-        recordedAudio = audio;
-
-        audio.onerror = function(){
-          console.log(
-            'Audio playback error:',
-            audio.error,
-            blob.size,
-            blob.type
-          );
-        };
-
-        showPronunciationResult();
-
-        if(mediaRecorder === recorder){
-          mediaRecorder = null;
-        }
-      };
 
       recorder.onerror = function(event){
+
         console.log(
           'MediaRecorder error:',
           event
         );
 
-        stream.getTracks().forEach(track=>{
-          try{
-            track.stop();
-          }catch(e){}
-        });
+
+        stopMicrophone();
+
 
         if(mediaRecorder === recorder){
           mediaRecorder = null;
         }
 
-        b.classList.remove('recording');
-        b.textContent = '🎙 もう一度録音';
+
+        resetRecordButton();
+
 
         r.textContent =
           '録音中にエラーが発生しました。もう一度お試しください。';
@@ -531,47 +515,115 @@
       };
 
 
-      // ★ iPhone Safari：录音过程中定期产生数据
-      recorder.start(1000);
+      recorder.onstop = function(){
 
-      startPronunciationCheck();
+        // 先释放麦克风
+        stopMicrophone();
+
+
+        if(recordTimer){
+          clearTimeout(recordTimer);
+          recordTimer = null;
+        }
+
+
+        if(mediaRecorder === recorder){
+          mediaRecorder = null;
+        }
+
+
+        resetRecordButton();
+
+
+        // ------------------------------------------
+        // 检查是否真正拿到数据
+        // ------------------------------------------
+
+        if(chunks.length === 0){
+
+          r.textContent =
+            '録音データを取得できませんでした。もう一度お試しください。';
+
+          r.classList.add('show');
+
+          return;
+        }
+
+
+        const mimeType =
+          recorder.mimeType ||
+          chunks[0].type ||
+          'audio/mp4';
+
+
+        const blob =
+          new Blob(
+            chunks,
+            {
+              type: mimeType
+            }
+          );
+
+
+        if(blob.size === 0){
+
+          r.textContent =
+            '録音データを取得できませんでした。もう一度お試しください。';
+
+          r.classList.add('show');
+
+          return;
+        }
+
+
+        // ------------------------------------------
+        // 成功
+        // ------------------------------------------
+
+        createRecordingPlayer(blob);
+      };
+
+
+      // ----------------------------------------------
+      // 开始录音
+      // 不使用 timeslice
+      // ----------------------------------------------
+
+      recorder.start();
+
+
+      isStartingRecording = false;
+
+      b.disabled = false;
 
       b.classList.add('recording');
-      b.textContent =
-        '■ 録音中… タップで停止';
 
-      r.textContent =
-        '中国語で「你吃饭了吗？」と言ってみましょう。';
+      b.textContent =
+        '■ 録音を停止';
+
+
+      r.innerHTML =
+        '<b>録音中…</b><br>' +
+        '「你吃饭了吗？」と自然に発音してみましょう。';
 
       r.classList.add('show');
 
 
-      // 最长15秒自动停止
-      recordTimer = setTimeout(()=>{
+      // ----------------------------------------------
+      // 最长 15 秒自动停止
+      // ----------------------------------------------
 
-        if(recorder.state === 'recording'){
+      recordTimer = setTimeout(function(){
 
-          stopPronunciationCheck();
-
-          try{
-            if(typeof recorder.requestData === 'function'){
-              recorder.requestData();
-            }
-          }catch(e){}
-
-          try{
-            recorder.stop();
-          }catch(e){
-            console.log('Auto stop error:', e);
-          }
-
-          b.classList.remove('recording');
-          b.textContent = '🎙 もう一度録音';
+        if(
+          mediaRecorder === recorder &&
+          recorder.state === 'recording'
+        ){
+          stopRecording();
         }
 
-        recordTimer = null;
+      }, 15000);
 
-      },15000);
 
     }catch(e){
 
@@ -580,17 +632,29 @@
         e
       );
 
+
+      isStartingRecording = false;
+
+
+      stopMicrophone();
+
+
       mediaRecorder = null;
+
 
       if(recordTimer){
         clearTimeout(recordTimer);
         recordTimer = null;
       }
 
-      stopPronunciationCheck();
+
+      b.disabled = false;
 
       b.classList.remove('recording');
-      b.textContent = '🎙 録音して練習';
+
+      b.textContent =
+        '🎙 録音して練習';
+
 
       r.textContent =
         'マイクを開始できませんでした。Safariのマイク許可を確認して、もう一度お試しください。';
