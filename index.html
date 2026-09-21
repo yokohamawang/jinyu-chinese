@@ -8,7 +8,7 @@
 .poll-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;color:var(--ink)}
 .poll-btn:disabled{opacity:.6}.poll-thanks{font-size:12px;color:#26735f;margin-top:9px}
 </style></head><body><main class="phone">
-<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10</small></div></header>
+<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.1</small></div></header>
 <section class="hero"><p class="eyebrow">日本人のための中国語発音トレーニング</p><h1>中国語はわかる。<br>でも、発音に自信がない。</h1><div class="target-note">単語や文法は勉強した。でも声調や自然な言い方に自信がない。単音節から変調・短文まで、聞いて話す短時間トレーニングです。</div><p>聞き分けて、答えて、自分でも発音。1問ずつ声調を身につけましょう。</p></section>
 <section class="streak"><div style="font-size:25px">🔥</div><div><b>今日の3分チャレンジ</b><small>5問をひとつの流れで練習</small></div></section>
 <div class="section-head"><h2>🎯 今日のチャレンジ</h2><span id="count">1 / 5</span></div>
@@ -55,6 +55,17 @@ const bank=[
 ];
 const examples=[['こんにちは。','あいさつ','你好！','nǐ hǎo'],['お元気ですか？','あいさつ','你好吗？','nǐ hǎo ma'],['私は日本人です。','自己紹介','我是日本人。','wǒ shì Rìběn rén'],['私の名前は橋本太郎です。','自己紹介','我叫桥本太郎。','wǒ jiào Qiáoběn Tàiláng'],['初めまして。','あいさつ','初次见面。','chūcì jiànmiàn'],['よろしくお願いします。','あいさつ','请多关照。','qǐng duō guānzhào'],['ありがとうございます。','基本表現','谢谢你。','xièxie nǐ'],['どういたしまして。','基本表現','不客气。','bú kèqi'],['すみません。','基本表現','对不起。','duìbuqǐ'],['大丈夫です。','基本表現','没关系。','méi guānxi'],['これは何ですか？','質問','这是什么？','zhè shì shénme'],['これはいくらですか？','買い物','这个多少钱？','zhège duōshao qián'],['これをください。','買い物','请给我这个。','qǐng gěi wǒ zhège'],['トイレはどこですか？','旅行','洗手间在哪里？','xǐshǒujiān zài nǎlǐ'],['駅はどこですか？','旅行','车站在哪里？','chēzhàn zài nǎlǐ'],['水を一杯ください。','レストラン','请给我一杯水。','qǐng gěi wǒ yì bēi shuǐ'],['これは辛いですか？','レストラン','这个辣吗？','zhège là ma'],['中国語を勉強しています。','学習','我在学习中文。','wǒ zài xuéxí Zhōngwén'],['中国語は難しいですが、面白いです。','学習','中文很难，但是很有意思。','Zhōngwén hěn nán, dànshì hěn yǒu yìsi'],['また明日会いましょう。','あいさつ','明天见。','míngtiān jiàn']];
 let round=[],idx=0,score=0,answered=false,wrongCats=[],wrongQuestions=[];
+bank.forEach(function(q){
+  q.answer=q.meaning;
+  q.jp=q.meaning;
+  if(!q.tip){
+    if(q.cat==='三声変調') q.tip='3声が続くときは、前の3声が2声に近く変化します。';
+    else if(q.cat==='一・不の変調') q.tip='「一」「不」は、後ろの声調によって実際の声調が変わります。';
+    else if(q.cat==='短文・リズム') q.tip='一字ずつではなく、文全体の声調とリズムを意識して聞きましょう。';
+    else if(q.cat==='二音節・声調') q.tip='2つの音節の声調の組み合わせを意識して聞きましょう。';
+    else q.tip='声調の高さの動きを意識して、もう一度聞いてみましょう。';
+  }
+});
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function newRound(){round=shuffle(bank).slice(0,5).map(q=>({...q,choices:shuffle(q.choices)}));idx=0;score=0;wrongCats=[];wrongQuestions=[];render()}
 function render(){answered=false;clearRecording();const q=round[idx];count.textContent=(idx+1)+' / '+round.length;dots.textContent=round.map((_,i)=>i<=idx?'●':'○').join(' ');phaseTag.textContent='① 聞き分け';quiz.style.display='block';reveal.className='reveal';feedback.className='feedback';feedback.innerHTML='';choices.innerHTML='';q.choices.forEach(label=>{const b=document.createElement('button');b.className='choice';b.textContent=label;b.onclick=()=>answer(label);choices.appendChild(b)});cn.textContent=q.cn;py.textContent=q.py;jp.textContent=q.jp;tip.textContent='💡 '+q.tip;status.className='status';status.innerHTML='';recordBtn.textContent='🎙 録音する';nextBtn.textContent=idx===round.length-1?'結果を見る →':'次の問題 →'}
