@@ -175,7 +175,13 @@
   function startPronunciationCheck(){
 
     recognizedText = '';
-
+  // Safariで前回の音声認識が残っている場合は完全に終了
+  if(recognition){
+    try{
+      recognition.abort();
+    }catch(e){}
+    recognition = null;
+  }
     const SpeechRecognition =
       window.SpeechRecognition ||
       window.webkitSpeechRecognition;
@@ -231,20 +237,20 @@
       recognition = null;
     }
   }
-
-
-  function stopPronunciationCheck(){
-
-    if(recognition){
-      try{
-        recognition.stop();
-      }catch(e){}
-
-      recognition = null;
+function stopPronunciationCheck(){
+  if(recognition){
+    try{
+      recognition.onresult = null;
+      recognition.onerror = null;
+      recognition.onend = null;
+      recognition.abort();
+    }catch(e){
+      console.log('Recognition stop error:', e);
     }
+    recognition = null;
   }
-
-
+}
+  
   // =========================
   // 识别结果简单比较
   // =========================
