@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>声調コーチ｜TTS単字テスト</title>
+<style>
+:root{--p:#5b5cf0;--bg:#f6f7fb;--text:#202235;--muted:#70758b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;color:var(--text)}
+.wrap{max-width:620px;margin:auto;padding:22px 16px 50px}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;font-size:21px}.tag{font-size:12px;color:var(--muted)}
+.card{background:#fff;border-radius:22px;padding:20px;margin-top:16px;box-shadow:0 7px 24px rgba(30,35,70,.07)}
+h1{font-size:23px;margin:0 0 8px}.desc{color:var(--muted);font-size:14px;line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:16px}
+.word{border:1px solid #e7e8f2;border-radius:18px;padding:16px;text-align:center;background:#fff}
+.hanzi{font-size:39px;font-weight:800}.py{font-size:16px;color:var(--p);margin:3px 0 10px}
+button{width:100%;border:0;border-radius:13px;padding:11px 8px;font-size:14px;font-weight:700;background:#eeefff;color:#4142bf}
+button:active{transform:scale(.98)}.controls{display:flex;gap:9px;margin-top:14px}.controls button{background:#f0f1f6;color:#333}
+.status{margin-top:12px;font-size:13px;color:var(--muted);min-height:20px}
+.note{font-size:13px;line-height:1.65;color:var(--muted)}
+textarea{width:100%;min-height:75px;border:1px solid #dddfea;border-radius:13px;padding:12px;font-size:16px;margin:10px 0;resize:vertical}
+.primary{background:var(--p);color:#fff}
+@media(max-width:380px){.grid{grid-template-columns:1fr}.hanzi{font-size:36px}}
+</style>
+</head>
+<body><main class="wrap">
+<div class="top"><div class="brand">声調コーチ</div><div class="tag">TTS LAB 01</div></div>
+<section class="card">
+<h1>単字・声調テスト</h1>
+<div class="desc">本番の DEMO 10.1 は変更しません。まずこのページで、iPhone に入っている中国語音声を単字中心に比較します。</div>
+<div class="grid" id="grid"></div>
+<div class="status" id="status"></div>
+</section>
+<section class="card">
+<b>速度比較</b>
+<div class="controls">
+<button onclick="setRate(.65)">0.65（現行）</button>
+<button onclick="setRate(.8)">0.80</button>
+<button onclick="setRate(1)">1.00</button>
+</div>
+<div class="status">現在速度：<span id="rate">0.80</span></div>
+</section>
+<section class="card">
+<b>短文も確認</b>
+<textarea id="free">你吃饭了吗？</textarea>
+<button class="primary" onclick="speak(document.getElementById('free').value)">🔊 再生</button>
+</section>
+<section class="card">
+<div class="note"><b>今回見るポイント：</b> ① 1〜4声の差が明瞭か　② 3声が不自然につぶれないか　③ 0.65に落とした時に音が崩れないか。<br><br>これは候補選定用の独立ページです。クラウドAPIキーは入れていません。</div>
+</section>
+</main>
+<script>
+const tests=[['妈','mā','1声'],['麻','má','2声'],['马','mǎ','3声'],['骂','mà','4声'],['买','mǎi','3声'],['卖','mài','4声']];
+let rate=.8, voice=null;
+function refreshVoices(){
+ const vs=speechSynthesis.getVoices();
+ voice=vs.find(v=>/^zh-CN/i.test(v.lang))||vs.find(v=>/^zh/i.test(v.lang))||null;
+ document.getElementById('status').textContent=voice?'使用音声：'+voice.name+' / '+voice.lang:'中国語音声を読み込み中…';
+}
+function speak(text){
+ if(!('speechSynthesis' in window)){document.getElementById('status').textContent='この端末はブラウザ音声に対応していません。';return}
+ speechSynthesis.cancel(); refreshVoices();
+ const u=new SpeechSynthesisUtterance(text);u.lang=voice?voice.lang:'zh-CN';if(voice)u.voice=voice;u.rate=rate;u.pitch=1;
+ speechSynthesis.speak(u);
+}
+function setRate(x){rate=x;document.getElementById('rate').textContent=x.toFixed(2)}
+document.getElementById('grid').innerHTML=tests.map(x=>`<div class="word"><div class="hanzi">${x[0]}</div><div class="py">${x[1]} · ${x[2]}</div><button onclick="speak('${x[0]}')">🔊 聞く</button></div>`).join('');
+if('speechSynthesis' in window){refreshVoices();speechSynthesis.onvoiceschanged=refreshVoices}
+</script></body></html>
