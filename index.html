@@ -300,181 +300,314 @@ function stopPronunciationCheck(){
     return div.innerHTML;
   }
 
+// =========================
+// 录音按钮
+// =========================
 
-  // =========================
-  // 录音按钮
-  // =========================
+async function recordVoice(){
 
-  async function recordVoice(){
+  const b = document.getElementById('record');
+  const r = document.getElementById('result');
 
-    const b = document.getElementById('record');
-    const r = document.getElementById('result');
+  // 正在录音 → 手动停止
+  if(mediaRecorder && mediaRecorder.state === 'recording'){
+
+    clearTimeout(recordTimer);
+    recordTimer = null;
+
+    stopPronunciationCheck();
+
+    try{
+      mediaRecorder.stop();
+    }catch(e){
+      console.log('Recorder stop error:', e);
+    }
+
+    b.classList.remove('recording');
+    b.textContent = '🎙 もう一度録音';
+
+    return;
+  }
 
 
-    // 正在录音 → 手动停止
-    if(mediaRecorder && mediaRecorder.state === 'recording'){
+  try{
 
-      clearTimeout(recordTimer);
-      recordTimer = null;
+    if(!navigator.mediaDevices ||
+       !navigator.mediaDevices.getUserMedia){
+
+      throw new Error('getUserMedia unsupported');
+    }
+
+
+    // =========================
+    // 先彻底清理上一次播放器
+    // =========================
+
+    if(recordedAudio){
+
+      try{
+        recordedAudio.pause();
+      }catch(e){}
+
+      const oldURL =
+        recordedAudio.dataset.blobUrl;
+
+      recordedAudio.removeAttribute('src');
+
+      try{
+        recordedAudio.load();
+      }catch(e){}
+
+      recordedAudio.remove();
+
+      if(oldURL){
+        try{
+          URL.revokeObjectURL(oldURL);
+        }catch(e){}
+      }
+
+      recordedAudio = null;
+    }
+
+
+    // =========================
+    // 获取新的麦克风 stream
+    // =========================
+
+    const stream =
+      await navigator.mediaDevices.getUserMedia({
+        audio:true
+      });
+
+
+    audioChunks = [];
+
+
+    // 每次录音都使用独立 recorder
+    const recorder =
+      new MediaRecorder(stream);
+
+    mediaRecorder = recorder;
+
+
+    // 保存这一次真正的 mimeType
+    const recorderMimeType =
+      recorder.mimeType || 'audio/mp4';
+
+
+    recorder.ondataavailable = function(e){
+
+      if(e.data && e.data.size > 0){
+        audioChunks.push(e.data);
+      }
+
+    };
+
+
+    recorder.onstop = function(){
+
+      // 立即停止麦克风
+      stream.getTracks().forEach(track=>{
+        try{
+          track.stop();
+        }catch(e){}
+      });
+
 
       stopPronunciationCheck();
 
-      mediaRecorder.stop();
 
-      b.classList.remove('recording');
-      b.textContent = '🎙 もう一度録音';
+      // 没有录到数据时不创建播放器
+      if(!audioChunks.length){
 
-      return;
-    }
+        console.log('No audio data');
 
+        r.textContent =
+          '録音データを取得できませんでした。もう一度お試しください。';
 
-    try{
+        r.classList.add('show');
 
-      // 先确认浏览器支持麦克风
-      if(!navigator.mediaDevices ||
-         !navigator.mediaDevices.getUserMedia){
+        mediaRecorder = null;
 
-        throw new Error('getUserMedia unsupported');
+        return;
       }
 
-      const stream =
-        await navigator.mediaDevices.getUserMedia({
-          audio:true
-        });
 
-
-      audioChunks = [];
-
-      mediaRecorder = new MediaRecorder(stream);
-
-
-      mediaRecorder.ondataavailable = e => {
-
-        if(e.data && e.data.size > 0){
-          audioChunks.push(e.data);
-        }
-
-      };
-
-
-      mediaRecorder.onstop = () => {
-
-        stopPronunciationCheck();
-
-        const blob =
-          new Blob(
-            audioChunks,
-            {
-              type:
-                mediaRecorder.mimeType ||
-                'audio/mp4'
-            }
-          );
-
-        const url = URL.createObjectURL(blob);
-
-
-        // 删除上一次播放器
-        if(recordedAudio){
-
-          const oldURL = recordedAudio.src;
-
-          recordedAudio.remove();
-
-          if(oldURL &&
-             oldURL.startsWith('blob:')){
-
-            try{
-              URL.revokeObjectURL(oldURL);
-            }catch(e){}
-
+      // 使用这一次 recorder 自己的 MIME 类型
+      const blob =
+        new Blob(
+          audioChunks,
+          {
+            type: recorderMimeType
           }
-        }
-
-
-        // 创建自己的录音播放器
-        recordedAudio =
-          document.createElement('audio');
-
-        recordedAudio.controls = true;
-        recordedAudio.src = url;
-
-        recordedAudio.style.width = '100%';
-        recordedAudio.style.marginTop = '14px';
-
-
-        b.insertAdjacentElement(
-          'afterend',
-          recordedAudio
         );
 
 
-        stream
-          .getTracks()
-          .forEach(track => track.stop());
+      console.log(
+        'Recorded blob:',
+        blob.size,
+        blob.type
+      );
 
 
-        showPronunciationResult();
+      const url =
+        URL.createObjectURL(blob);
+
+
+      // =========================
+      // 创建新的播放器
+      // =========================
+
+      const audio =
+        document.createElement('audio');
+
+      audio.controls = true;
+      audio.preload = 'metadata';
+
+      // 单独保存 blob URL
+      audio.dataset.blobUrl = url;
+
+      audio.src = url;
+
+      audio.style.width = '100%';
+      audio.style.marginTop = '14px';
+
+
+      // Safari 强制重新载入
+      audio.load();
+
+
+      b.insertAdjacentElement(
+        'afterend',
+        audio
+      );
+
+
+      recordedAudio = audio;
+
+
+      audio.onerror = function(){
+
+        console.log(
+          'Audio playback error:',
+          audio.error,
+          blob.size,
+          blob.type
+        );
 
       };
 
 
-      // 开始真正录音
-      mediaRecorder.start();
+      showPronunciationResult();
 
 
-      // 再尝试语音识别
-      // 即使识别失败也不会破坏录音
-      startPronunciationCheck();
+      // 当前这次 recorder 已经结束
+      if(mediaRecorder === recorder){
+        mediaRecorder = null;
+      }
+
+    };
 
 
-      b.classList.add('recording');
-      b.textContent =
-        '■ 録音中… タップで停止';
+    recorder.onerror = function(e){
 
-      r.textContent =
-        '中国語で「你吃饭了吗？」と言ってみましょう。';
+      console.log(
+        'MediaRecorder error:',
+        e
+      );
 
-      r.classList.add('show');
+      stream.getTracks().forEach(track=>{
+        try{
+          track.stop();
+        }catch(err){}
+      });
+
+      if(mediaRecorder === recorder){
+        mediaRecorder = null;
+      }
+
+    };
 
 
-      // 最长15秒自动停止
-      recordTimer = setTimeout(()=>{
+    // =========================
+    // 开始录音
+    // =========================
 
-        if(
-          mediaRecorder &&
-          mediaRecorder.state === 'recording'
-        ){
+    recorder.start();
 
-          stopPronunciationCheck();
 
-          mediaRecorder.stop();
+    // 开始语音识别
+    startPronunciationCheck();
 
-          b.classList.remove('recording');
-          b.textContent =
-            '🎙 もう一度録音';
 
+    b.classList.add('recording');
+
+    b.textContent =
+      '■ 録音中… タップで停止';
+
+
+    r.textContent =
+      '中国語で「你吃饭了吗？」と言ってみましょう。';
+
+    r.classList.add('show');
+
+
+    // =========================
+    // 最长15秒自动停止
+    // =========================
+
+    recordTimer = setTimeout(()=>{
+
+      if(
+        recorder &&
+        recorder.state === 'recording'
+      ){
+
+        stopPronunciationCheck();
+
+        try{
+          recorder.stop();
+        }catch(e){
+          console.log(
+            'Auto stop error:',
+            e
+          );
         }
 
-        recordTimer = null;
+        b.classList.remove('recording');
 
-      },15000);
+        b.textContent =
+          '🎙 もう一度録音';
+
+      }
+
+      recordTimer = null;
+
+    },15000);
 
 
-    }catch(e){
+  }catch(e){
 
-      console.error('Microphone error:',e);
+    console.error(
+      'Microphone error:',
+      e
+    );
 
-      b.classList.remove('recording');
-      b.textContent = '🎙 録音して練習';
+    mediaRecorder = null;
 
-      r.textContent =
-        'マイクを開始できませんでした。Safariのマイク許可を確認して、もう一度お試しください。';
+    b.classList.remove('recording');
 
-      r.classList.add('show');
+    b.textContent =
+      '🎙 録音して練習';
 
-    }
+    r.textContent =
+      'マイクを開始できませんでした。Safariのマイク許可を確認して、もう一度お試しください。';
+
+    r.classList.add('show');
+
   }
+}
+
 </script>
 </body>
 </html>
