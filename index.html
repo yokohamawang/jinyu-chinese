@@ -2,12 +2,11 @@
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>声調コーチ</title>
 <style>
 :root{--ink:#172033;--muted:#7d8799;--blue:#5b5cf0;--line:#e8eaf2;--green:#16a37b;--red:#e45572}*{box-sizing:border-box}body{margin:0;background:#eef0f7;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}button{font-family:inherit}.phone{max-width:430px;min-height:100vh;margin:auto;background:#fff;padding:18px 18px 30px}.top{display:flex;justify-content:space-between;align-items:center;margin:4px 0 24px}.logo{font-weight:800;font-size:20px}.logo span{color:var(--blue)}.avatar{width:36px;height:36px;border-radius:50%;background:#ececff;display:grid;place-items:center;color:var(--blue);font-weight:700}.hero .eyebrow{font-size:13px;color:var(--muted)}.hero h1{font-size:27px;margin:8px 0}.hero h1 em{font-style:normal;color:var(--blue)}.hero p{font-size:14px;line-height:1.7;color:var(--muted)}.streak{display:flex;gap:12px;align-items:center;background:#f6f6ff;border:1px solid #e5e5ff;border-radius:18px;padding:14px 16px;margin:20px 0}.streak b{font-size:18px}.streak small{display:block;color:var(--muted);margin-top:3px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}.section-head h2{font-size:17px;margin:0}.section-head span{font-size:12px;color:var(--muted)}.flow{border:1px solid #dedfff;border-radius:22px;padding:18px;background:linear-gradient(145deg,#f7f7ff,#fff);box-shadow:0 10px 28px rgba(60,61,150,.08)}.flow-top{display:flex;justify-content:space-between;align-items:center}.tag{font-size:12px;color:var(--blue);background:#ececff;padding:6px 9px;border-radius:8px}.progress{font-size:12px;color:var(--muted)}.stage{text-align:center;font-size:15px;font-weight:800;margin:20px 0 6px}.sub{text-align:center;font-size:12px;color:var(--muted);margin-bottom:14px}.play{width:100%;border:0;border-radius:14px;background:var(--blue);color:#fff;padding:14px;font-size:15px;font-weight:800}.choices,.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.choice,.btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 8px;font-size:13px;font-weight:750}.choice{font-size:14px;padding:14px 8px}.feedback,.status{display:none;margin-top:12px;border-radius:12px;padding:12px;font-size:13px;line-height:1.65}.show{display:block}.good{background:#edf9f5;color:#26735f}.bad{background:#fff3f5;color:#9c4054}.reveal{display:none;text-align:center;margin-top:16px}.reveal.show{display:block}.big-cn{font-size:42px;font-weight:850}.pinyin{color:var(--blue)}.tip{background:#fff7e8;border-radius:12px;padding:11px;margin-top:12px;font-size:12px;line-height:1.6;text-align:left}.listen{background:#eeeeff;color:var(--blue);border:0}.record{background:var(--blue);color:#fff;border:0}.record.recording{background:var(--red)}.next{width:100%;margin-top:14px}.next-primary{border:0;background:var(--blue);color:#fff;padding:14px;font-size:15px;font-weight:850;box-shadow:0 6px 16px rgba(91,92,240,.18)}.next[disabled]{opacity:.4}.info{background:#f1f2ff;color:#5051aa}.ok{background:#edf9f5;color:#26735f}audio{width:100%;height:42px;margin-top:11px}.examples{display:grid;gap:9px}.example{border:1px solid var(--line);border-radius:16px;padding:13px 14px}.example-top{display:flex;justify-content:space-between}.jp{font-size:12px;color:var(--muted)}.level{font-size:10px;color:var(--green);background:#edf9f5;padding:4px 7px;border-radius:7px}.cn{font-size:20px;font-weight:800;margin:6px 0 2px}.example-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.small-btn{border:1px solid #dedfff;background:#f8f8ff;color:var(--blue);border-radius:9px;padding:8px;font-size:11px;font-weight:700}.score{text-align:center;padding:20px 8px}.score strong{font-size:38px;color:var(--blue)}.review-list{display:grid;gap:8px;text-align:left;margin:16px 0}.review-item{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}.review-item b{font-size:17px}.review-item small{display:block;color:var(--muted);margin-top:3px}.secondary{width:100%;border:1px solid #d9d9ff;background:#f7f7ff;color:var(--blue);border-radius:14px;padding:13px;font-size:14px;font-weight:800;margin-top:9px}
-.feedback-box{margin-top:24px;border:1px solid var(--line);border-radius:18px;padding:16px;background:#fafaff}.feedback-box h2{font-size:17px;margin:0 0 6px}.feedback-box p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 12px}.feedback-box select,.feedback-box textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px 12px;font:inherit;color:var(--ink);margin-top:8px}.feedback-box textarea{min-height:100px;resize:vertical}.feedback-send{width:100%;border:0;border-radius:12px;background:var(--blue);color:#fff;padding:12px;font-size:14px;font-weight:800;margin-top:10px}.feedback-send:disabled{opacity:.55}.feedback-msg{display:none;margin-top:10px;border-radius:10px;padding:10px;font-size:12px;line-height:1.55}.feedback-msg.show{display:block}.feedback-msg.ok{background:#edf9f5;color:#26735f}.feedback-msg.err{background:#fff1f3;color:#a43d54}
-.target-note{margin:10px 0 0;font-size:12px;line-height:1.7;color:var(--muted);max-width:360px}
+.feedback-box{margin-top:24px;border:1px solid var(--line);border-radius:18px;padding:16px;background:#fafaff}.feedback-box h2{font-size:17px;margin:0 0 6px}.feedback-box p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 12px}.feedback-box select,.feedback-box textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px 12px;font:inherit;color:var(--ink);margin-top:8px}.feedback-box textarea{min-height:100px;resize:vertical}.feedback-send{width:100%;border:0;border-radius:12px;background:var(--blue);color:#fff;padding:12px;font-size:14px;font-weight:800;margin-top:10px}.feedback-send:disabled{opacity:.55}.feedback-msg{display:none;margin-top:10px;border-radius:10px;padding:10px;font-size:12px;line-height:1.55}.feedback-msg.show{display:block}.feedback-msg.ok{background:#edf9f5;color:#26735f}.feedback-msg.err{background:#fff1f3;color:#a43d54}.target-note{margin:10px 0 0;font-size:12px;line-height:1.7;color:var(--muted);max-width:360px}
 .result-poll{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fafaff}
-.result-poll b{font-size:13px}.poll-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.result-poll b{font-size:13px;line-height:1.5}.poll-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
 .poll-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;color:var(--ink)}
-.poll-btn:disabled{opacity:.65}.poll-thanks{font-size:12px;color:#26735f;margin-top:8px}
+.poll-btn:disabled{opacity:.6}.poll-thanks{font-size:12px;color:#26735f;margin-top:9px}
 </style></head><body><main class="phone">
 <header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 8</small></div><div class="avatar">A</div></header>
 <section class="hero"><p class="eyebrow">日本人のための中国語発音トレーニング</p><h1>中国語はわかる。<br>でも、発音に自信がない。</h1><div class="target-note">単語や文法は勉強した。でも声調が通じるか不安。そんな学習経験者向けの、短時間トレーニングです。</div><p>聞き分けて、答えて、自分でも発音。1問ずつ声調を身につけましょう。</p></section>
@@ -94,7 +93,7 @@ const review=wrongQuestions.map((q,i)=>
 ).join('');
 flow.innerHTML='<div class="score"><div>'+round.length+'問終了 🎉</div><strong>'+score+' / '+round.length+'</strong><p>'+advice+'</p>'+
   (misses?'<div class="review-list">'+review+'</div><button class="secondary" onclick="startReview()">🔁 間違えた'+misses+'問を復習</button>':'')+
-  '<button class="play" style="margin-top:10px" onclick="location.reload()">別の5問に挑戦</button></div><div class="result-poll" id="resultPoll"><b>この練習、また使いたいと思いますか？</b><div class="poll-row"><button class="poll-btn" onclick="sendPoll('ぜひ使いたい')">ぜひ使いたい</button><button class="poll-btn" onclick="sendPoll('たぶん使いたい')">たぶん使いたい</button><button class="poll-btn" onclick="sendPoll('わからない')">わからない</button></div><div id="pollThanks"></div></div>';
+  '<button class="play" style="margin-top:10px" onclick="location.reload()">別の5問に挑戦</button></div>';
 count.textContent='完了';
 }
 function restoreFlow(){
@@ -104,6 +103,8 @@ flow.innerHTML='<div class="flow-top"><span class="tag" id="phaseTag">① 聞き
 '<div class="reveal" id="reveal"><div class="big-cn" id="cn"></div><div class="pinyin" id="py"></div><div class="sub" id="jp"></div><div class="tip" id="tip"></div>'+
 '<div class="actions"><button class="btn listen" onclick="playQuestion()">🔊 標準音声</button><button class="btn record" id="recordBtn" onclick="toggleRecording()">🎙 録音する</button></div>'+
 '<button class="btn next next-primary" id="nextBtn" onclick="nextQuestion()">次の問題 →</button><div id="audioArea"></div><div class="status" id="status"></div></div>';
+
+  addResultPoll();
 }
 function startReview(){
 if(!wrongQuestions.length)return;
@@ -116,26 +117,46 @@ document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'}
 const examplesBox=document.getElementById('examples');examples.forEach((x,i)=>{const c=document.createElement('article');c.className='example';c.innerHTML='<div class="example-top"><div class="jp">'+x[0]+'</div><span class="level">'+x[1]+'</span></div><div class="cn">'+x[2]+'</div><div class="pinyin">'+x[3]+'</div><div class="example-buttons"><button class="small-btn" onclick="speak(examples['+i+'][2])">🔊 聞く</button><button class="small-btn" onclick="practiceExample('+i+')">🎙 練習</button></div>';examplesBox.appendChild(c)});function practiceExample(i){speak(examples[i][2]);alert('基本例文の録音練習は次の更新でチャレンジ画面に統合します。')}
 let mediaRecorder=null,microphoneStream=null,chunks=[],recordedURL=null,isRecording=false,starting=false,autoStopTimer=null;function clearRecording(){if(typeof audioArea!=='undefined')audioArea.innerHTML='';if(recordedURL){URL.revokeObjectURL(recordedURL);recordedURL=null}}function releaseMicrophone(){if(microphoneStream){microphoneStream.getTracks().forEach(t=>{try{t.stop()}catch(e){}});microphoneStream=null}}async function toggleRecording(){if(isRecording){stopRecording();return}if(starting)return;const btn=recordBtn;if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){status.className='status info show';status.textContent='このブラウザでは録音機能を利用できません。';return}starting=true;btn.disabled=true;btn.textContent='🎙 準備中…';try{if('speechSynthesis'in window)speechSynthesis.cancel();releaseMicrophone();clearRecording();const stream=await navigator.mediaDevices.getUserMedia({audio:true});microphoneStream=stream;chunks=[];const recorder=new MediaRecorder(stream);mediaRecorder=recorder;recorder.ondataavailable=e=>{if(e.data&&e.data.size>0)chunks.push(e.data)};recorder.onstop=()=>{isRecording=false;releaseMicrophone();if(autoStopTimer){clearTimeout(autoStopTimer);autoStopTimer=null}btn.disabled=false;btn.classList.remove('recording');btn.textContent='🎙 もう一度録音';if(!chunks.length)return;const blob=new Blob(chunks,{type:recorder.mimeType||chunks[0].type||'audio/mp4'});if(!blob.size)return;recordedURL=URL.createObjectURL(blob);const a=document.createElement('audio');a.controls=true;a.src=recordedURL;audioArea.appendChild(a);status.className='status ok show';status.innerHTML='<b>✓ 録音できました！</b><br>自分の声と標準音声を聞き比べてみましょう。'};recorder.start();isRecording=true;starting=false;btn.disabled=false;btn.classList.add('recording');btn.textContent='■ 録音を停止';status.className='status info show';status.innerHTML='<b>● 録音中…</b><br>「'+round[idx].cn+'」と発音してみましょう。';autoStopTimer=setTimeout(()=>{if(recorder.state==='recording')stopRecording()},10000)}catch(e){starting=false;isRecording=false;releaseMicrophone();btn.disabled=false;btn.classList.remove('recording');btn.textContent='🎙 録音する';status.className='status info show';status.innerHTML='マイクを開始できませんでした。Safariのマイク許可を確認してください。'}}function stopRecording(){if(autoStopTimer){clearTimeout(autoStopTimer);autoStopTimer=null}if(mediaRecorder&&mediaRecorder.state==='recording'){try{mediaRecorder.stop()}catch(e){releaseMicrophone();isRecording=false}}else{releaseMicrophone();isRecording=false}}
 
+function addResultPoll(){
+  const result=document.getElementById('flow');
+  if(!result || document.getElementById('resultPoll')) return;
+  const box=document.createElement('div');
+  box.className='result-poll';
+  box.id='resultPoll';
+  box.innerHTML='<b>この練習、また使いたいと思いますか？</b>'+
+    '<div class="poll-row">'+
+    '<button class="poll-btn" data-answer="ぜひ使いたい">ぜひ使いたい</button>'+
+    '<button class="poll-btn" data-answer="たぶん使いたい">たぶん使いたい</button>'+
+    '<button class="poll-btn" data-answer="わからない">わからない</button>'+
+    '</div><div id="pollThanks"></div>';
+  result.appendChild(box);
+  box.querySelectorAll('.poll-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){ sendPoll(btn.dataset.answer); });
+  });
+}
 async function sendPoll(answer){
- const box=document.getElementById('resultPoll'),thanks=document.getElementById('pollThanks');
- if(!box||box.dataset.sent)return;
- box.dataset.sent='1';
- box.querySelectorAll('button').forEach(b=>b.disabled=true);
- try{
-  const fd=new FormData();
-  fd.append('category','継続利用アンケート');
-  fd.append('message',answer);
-  fd.append('_subject','声調コーチ DEMO 8：継続利用アンケート');
-  const r=await fetch('https://formspree.io/f/mzezelqb',{method:'POST',headers:{'Accept':'application/json'},body:fd});
-  if(!r.ok)throw 0;
-  thanks.className='poll-thanks';
-  thanks.textContent='ありがとうございます！';
- }catch(e){
-  box.dataset.sent='';
-  box.querySelectorAll('button').forEach(b=>b.disabled=false);
-  thanks.className='feedback-msg err show';
-  thanks.textContent='送信できませんでした。もう一度お試しください。';
- }
+  const box=document.getElementById('resultPoll');
+  const thanks=document.getElementById('pollThanks');
+  if(!box || box.dataset.sent==='1') return;
+  box.dataset.sent='1';
+  box.querySelectorAll('button').forEach(function(b){b.disabled=true;});
+  try{
+    const fd=new FormData();
+    fd.append('category','継続利用アンケート');
+    fd.append('message',answer);
+    fd.append('_subject','声調コーチ DEMO 8：継続利用アンケート');
+    const r=await fetch('https://formspree.io/f/mzezelqb',{
+      method:'POST',headers:{'Accept':'application/json'},body:fd
+    });
+    if(!r.ok) throw new Error('send failed');
+    thanks.className='poll-thanks';
+    thanks.textContent='ありがとうございます！';
+  }catch(e){
+    box.dataset.sent='0';
+    box.querySelectorAll('button').forEach(function(b){b.disabled=false;});
+    thanks.className='feedback-msg err show';
+    thanks.textContent='送信できませんでした。もう一度お試しください。';
+  }
 }
 async function sendFeedback(e){
  e.preventDefault();
