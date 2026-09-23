@@ -7,8 +7,8 @@
 .result-poll b{font-size:13px;line-height:1.5}.poll-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
 .poll-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;color:var(--ink)}
 .poll-btn:disabled{opacity:.6}.poll-thanks{font-size:12px;color:#26735f;margin-top:9px}
-</style></head><body><main class="phone">
-<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.9</small></div></header>
+.tone-copy-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.tone-copy-actions button{white-space:normal;line-height:1.5;font-size:12px}#copyFeedback{margin-top:7px;font-weight:700}.pitch-diagnostic{background:#fff;border:1px solid #e5e5ff;border-radius:12px;margin-top:12px;padding:10px;font-size:12px;line-height:1.6}.pitch-diagnostic svg{display:block;width:100%;height:95px;margin:8px 0;background:#fafaff;border-radius:8px}.pitch-diagnostic small{display:block;color:#7d8799}.example-practice{margin-top:12px;padding:12px;border-radius:12px;background:#f6f6ff;border:1px solid #e2e2ff}.example-practice h3{margin:0 0 6px;font-size:14px}.example-practice p{font-size:12px;line-height:1.55;margin:4px 0 10px;color:var(--muted)}.example-practice .example-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.example-practice .example-controls button{min-height:42px}.example-practice .example-close{width:100%;margin-top:8px;background:transparent;border:0;color:var(--muted);font-size:12px}.example-practice .example-result{font-size:12px;line-height:1.6;margin-top:10px;color:#5051aa}.example-practice audio{margin-top:8px}</style></head><body><main class="phone">
+<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.25</small></div></header>
 <section class="hero"><p class="eyebrow">日本人のための中国語発音トレーニング</p><h1>中国語はわかる。<br>でも、発音に自信がない。</h1><div class="target-note">単語や文法は勉強した。でも声調や自然な言い方に自信がない。単音節から変調・短文まで、聞いて話す短時間トレーニングです。</div><p>聞き分けて、答えて、自分でも発音。1問ずつ声調を身につけましょう。</p></section>
 <section class="streak"><div style="font-size:25px">🔥</div><div><b>今日の3分チャレンジ</b><small>5問をひとつの流れで練習</small></div></section>
 <div class="section-head"><h2>🎯 今日のチャレンジ</h2><span id="count">1 / 5</span></div>
@@ -69,7 +69,7 @@ bank.forEach(function(q){
   }
 });
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-function newRound(){round=shuffle(bank).slice(0,5).map(q=>({...q,choices:shuffle(q.choices)}));idx=0;score=0;wrongCats=[];wrongQuestions=[];render()}
+function newRound(){const toneBank=bank.filter(q=>q.cn in TONE_PAIRS);const requested=new URLSearchParams(location.search).get('target');const preferred=toneBank.find(q=>q.cn===requested)||toneBank.find(q=>q.cn==='买');round=[preferred,...shuffle(toneBank.filter(q=>q!==preferred)).slice(0,4)].map(q=>({...q,choices:shuffle(q.choices)}));idx=0;score=0;wrongCats=[];wrongQuestions=[];render()}
 function render(){answered=false;clearRecording();const q=round[idx];getEl('count').textContent=(idx+1)+' / '+round.length;getEl('dots').textContent=round.map((_,i)=>i<=idx?'●':'○').join(' ');getEl('phaseTag').textContent='① 聞き分け';getEl('quiz').style.display='block';getEl('reveal').className='reveal';getEl('feedback').className='feedback';getEl('feedback').innerHTML='';getEl('choices').innerHTML='';q.choices.forEach(label=>{const b=document.createElement('button');b.className='choice';b.textContent=label;b.onclick=()=>answer(label);getEl('choices').appendChild(b)});getEl('cn').textContent=q.cn;getEl('py').textContent=q.py;getEl('jp').textContent=q.jp;getEl('tip').textContent='💡 '+q.tip;getEl('status').className='status';getEl('status').innerHTML='';getEl('recordBtn').textContent='🎙 録音する';getEl('nextBtn').textContent=idx===round.length-1?'結果を見る →':'次の問題 →'}
 function answer(label){if(answered)return;answered=true;const q=round[idx],ok=label===q.answer;if(ok)score++;else{wrongCats.push(q.cat);wrongQuestions.push({...q});}[...getEl('choices').children].forEach(b=>b.disabled=true);getEl('feedback').className='feedback show '+(ok?'good':'bad');getEl('feedback').innerHTML='<b>'+(ok?'🎉 正解！':'惜しい！')+'</b><br>'+q.cn+' '+q.py+' ＝ '+q.jp;getEl('phaseTag').textContent='② 発音してみよう';getEl('reveal').className='reveal show'}
 let standardAudio=null;
@@ -80,7 +80,7 @@ const TTS_API='https://worker-xiaoshuang.wangjinyu00.workers.dev';
 const STT_API=TTS_API+'/stt';
 const ttsCache=new Map();
 
-async function playMachine(t){
+async function playMachine(t,feedbackTargetId){
   const text=String(t||'').trim();
   if(!text)return;
 
@@ -122,9 +122,9 @@ async function playMachine(t){
     await standardAudio.play();
   }catch(e){
     console.error('Azure TTS error',e);
-    const s=document.getElementById('status');
+    const s=document.getElementById(feedbackTargetId||'status');
     if(s){
-      s.className='status info show';
+      s.className=feedbackTargetId==='exampleResult'?'example-result':'status info show';
       s.textContent=e&&e.name==='AbortError'
         ? '標準音声の取得がタイムアウトしました。もう一度お試しください。'
         : '標準音声を再生できませんでした。通信状態を確認して、もう一度お試しください。';
@@ -180,7 +180,150 @@ restoreFlow();
 render();
 document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'});
 }
-const examplesBox=document.getElementById('examples');examples.forEach((x,i)=>{const c=document.createElement('article');c.className='example';c.innerHTML='<div class="example-top"><div class="jp">'+x[0]+'</div><span class="level">'+x[1]+'</span></div><div class="cn">'+x[2]+'</div><div class="pinyin">'+x[3]+'</div><div class="example-buttons"><button class="small-btn" onclick="speak(examples['+i+'][2])">🔊 聞く</button><button class="small-btn" onclick="practiceExample('+i+')">🎙 練習</button></div>';examplesBox.appendChild(c)});function practiceExample(i){speak(examples[i][2]);alert('基本例文の録音練習は次の更新でチャレンジ画面に統合します。')}
+const examplesBox=document.getElementById('examples');examples.forEach((x,i)=>{const c=document.createElement('article');c.className='example';c.innerHTML='<div class="example-top"><div class="jp">'+x[0]+'</div><span class="level">'+x[1]+'</span></div><div class="cn">'+x[2]+'</div><div class="pinyin">'+x[3]+'</div><div class="example-buttons"><button class="small-btn" onclick="speak(examples['+i+'][2])">🔊 聞く</button><button class="small-btn" onclick="practiceExample('+i+')">🎙 練習</button></div>';examplesBox.appendChild(c)});let examplePracticeIndex=-1;
+let exampleGeneration=0;
+let exampleRecorder=null;
+let exampleStream=null;
+let exampleRecording=false;
+let exampleStarting=false;
+let exampleAudioURL=null;
+let exampleAutoStop=null;
+
+function examplePanel(){return document.getElementById('examplePracticePanel')}
+function exampleMessage(message){const el=document.getElementById('exampleResult');if(el)el.textContent=message}
+function releaseExampleStream(stream){
+  if(stream){stream.getTracks().forEach(track=>{try{track.stop()}catch(e){}})}
+  if(exampleStream===stream)exampleStream=null;
+}
+function clearExampleAudio(){
+  const area=document.getElementById('exampleAudio');
+  if(area)area.replaceChildren();
+  if(exampleAudioURL){URL.revokeObjectURL(exampleAudioURL);exampleAudioURL=null}
+}
+function closeExamplePractice(){
+  exampleGeneration++;
+  if(exampleAutoStop){clearTimeout(exampleAutoStop);exampleAutoStop=null}
+  if(exampleRecorder&&exampleRecorder.state==='recording'){
+    try{exampleRecorder.stop()}catch(e){}
+  }
+  releaseExampleStream(exampleStream);
+  exampleRecorder=null;exampleRecording=false;exampleStarting=false;
+  clearExampleAudio();
+  const panel=examplePanel();if(panel)panel.remove();
+  examplePracticeIndex=-1;
+}
+function practiceExample(i){
+  if(isRecording||starting){
+    const status=getEl('status');
+    if(status){status.className='status info show';status.textContent='まずチャレンジの録音を停止してください。'}
+    return;
+  }
+  if(examplePracticeIndex===i){closeExamplePractice();return}
+  closeExamplePractice();
+  examplePracticeIndex=i;
+  const panel=document.createElement('div');
+  panel.className='example-practice';panel.id='examplePracticePanel';
+  panel.innerHTML='<h3>🎙 例文を練習</h3><p>'+escapeHtml(examples[i][2])+' '+escapeHtml(examples[i][3])
+    +'<br>お手本を聞いてから録音し、自分の声と聞き比べましょう。</p>'
+    +'<div class="example-controls"><button type="button" class="small-btn" id="exampleListen">🔊 お手本を聞く</button>'
+    +'<button type="button" class="small-btn" id="exampleRecord">🎙 録音する</button></div>'
+    +'<div id="exampleAudio"></div><div class="example-result" id="exampleResult"></div>'
+    +'<button type="button" class="example-close" id="exampleClose">閉じる</button>';
+  examplesBox.children[i].appendChild(panel);
+  document.getElementById('exampleListen').onclick=()=>playMachine(examples[i][2],'exampleResult');
+  document.getElementById('exampleRecord').onclick=toggleExampleRecording;
+  document.getElementById('exampleClose').onclick=closeExamplePractice;
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function stopExampleRecording(){
+  if(exampleAutoStop){clearTimeout(exampleAutoStop);exampleAutoStop=null}
+  if(exampleRecorder&&exampleRecorder.state==='recording'){
+    try{if(exampleRecorder.requestData)exampleRecorder.requestData()}catch(e){}
+    try{exampleRecorder.stop()}catch(e){exampleMessage('録音を停止できませんでした。もう一度お試しください。')}
+  }
+}
+async function toggleExampleRecording(){
+  if(exampleRecording){stopExampleRecording();return}
+  if(exampleStarting||examplePracticeIndex<0||!examplePanel())return;
+  if(isRecording||starting){exampleMessage('まずチャレンジの録音を停止してください。');return}
+  if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia||typeof MediaRecorder==='undefined'){
+    exampleMessage('録音を利用できません。HTTPSのページをSafariまたはChromeで開いてください。');return;
+  }
+  const i=examplePracticeIndex,gen=++exampleGeneration;
+  const btn=document.getElementById('exampleRecord');
+  exampleStarting=true;btn.disabled=true;
+  exampleMessage('マイクを準備しています…');
+  clearExampleAudio();
+  let stream=null;
+  try{
+    stopStandardAudio();
+    try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}})}
+    catch(e){stream=await navigator.mediaDevices.getUserMedia({audio:true})}
+    if(gen!==exampleGeneration||i!==examplePracticeIndex){releaseExampleStream(stream);return}
+    exampleStream=stream;
+    const opts=getRecorderOptions();
+    let recorder;
+    try{recorder=opts?new MediaRecorder(stream,opts):new MediaRecorder(stream)}
+    catch(e){recorder=new MediaRecorder(stream)}
+    exampleRecorder=recorder;
+    const chunks=[];
+    recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+    recorder.onerror=()=>{if(gen===exampleGeneration)exampleMessage('録音中にエラーが発生しました。もう一度お試しください。')};
+    recorder.onstop=()=>{
+      releaseExampleStream(stream);
+      if(exampleRecorder===recorder)exampleRecorder=null;
+      if(gen!==exampleGeneration||i!==examplePracticeIndex)return;
+      exampleRecording=false;exampleStarting=false;
+      if(exampleAutoStop){clearTimeout(exampleAutoStop);exampleAutoStop=null}
+      const button=document.getElementById('exampleRecord');
+      if(button){button.disabled=false;button.textContent='🎙 もう一度録音'}
+      const blob=new Blob(chunks,{type:recorder.mimeType||(chunks[0]&&chunks[0].type)||'audio/webm'});
+      if(!blob.size){exampleMessage('録音データを保存できませんでした。もう一度お試しください。');return}
+      clearExampleAudio();
+      exampleAudioURL=URL.createObjectURL(blob);
+      const player=document.createElement('audio');
+      player.controls=true;player.preload='auto';player.src=exampleAudioURL;
+      document.getElementById('exampleAudio').appendChild(player);
+      try{player.load()}catch(e){}
+      let firstPlay=true;
+      player.addEventListener('play',()=>{firstPlay=false},{once:true});
+      player.addEventListener('pause',()=>{if(firstPlay&&player.currentTime===0&&player.readyState<2){try{player.load()}catch(e){}}});
+      exampleMessage('録音できました。自分の声を再生してお手本と聞き比べましょう。');
+      assessExampleSentence(blob,i,gen);
+    };
+    recorder.start(250);
+    exampleRecording=true;exampleStarting=false;
+    btn.disabled=false;btn.textContent='■ 録音を停止';
+    exampleMessage('例文を読んでから停止してください。');
+    exampleAutoStop=setTimeout(()=>{if(gen===exampleGeneration)stopExampleRecording()},12000);
+  }catch(e){
+    releaseExampleStream(stream);
+    if(gen!==exampleGeneration)return;
+    exampleRecorder=null;exampleRecording=false;exampleStarting=false;
+    btn.disabled=false;btn.textContent='🎙 録音する';
+    exampleMessage(recordingErrorMessage(e));
+  }
+}
+async function assessExampleSentence(blob,i,gen){
+  if(gen!==exampleGeneration||i!==examplePracticeIndex)return;
+  exampleMessage('録音できました。例文を確認中…');
+  try{
+    const wav=await recordedBlobToWav16kMono(blob);
+    if(gen!==exampleGeneration||i!==examplePracticeIndex)return;
+    const result=await assessWithReference(wav,examples[i][2]);
+    if(gen!==exampleGeneration||i!==examplePracticeIndex)return;
+    if(result.ok&&result.completeness!==null&&Number(result.completeness)>=70){
+      exampleMessage('録音を確認できました。お手本と自分の声を聞き比べ、声調とリズムを練習しましょう。例文全体の声調の正誤は採点していません。');
+    }else{
+      exampleMessage('今回は音声を十分に確認できませんでした。録音は再生できます。お手本と聞き比べ、必要ならもう一度録音してください。');
+    }
+  }catch(e){
+    if(gen===exampleGeneration&&i===examplePracticeIndex)
+      exampleMessage('音声の自動確認は利用できませんでした。録音を再生し、お手本と聞き比べてください。');
+  }
+}
+
 
 async function recordedBlobToWav16kMono(blob){
   const buf=await blob.arrayBuffer();
@@ -241,56 +384,250 @@ function escapeHtml(s){
     .replace(/'/g,'&#039;');
 }
 
-async function recognizeRecordedSpeech(blob, generation){
+const TONE_PAIRS={"买":"卖","卖":"买","水":"睡","睡":"水","糖":"汤","汤":"糖"};
+let latestToneComparison=null;
+let latestToneWavBlob=null;
+let latestToneGeneration=null;
+let manualRetryBusy=false;
+
+async function assessOnce(wavBlob,reference){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),20000);
+  try{
+    const response=await fetch(STT_API+'?target='+encodeURIComponent(reference),{
+      method:'POST',headers:{'Content-Type':'audio/wav'},body:wavBlob,signal:controller.signal
+    });
+    const data=await response.json().catch(()=>({}));
+    return {reference,httpStatus:response.status,ok:response.ok && data.ok===true,
+      recognized:data.text??null,recognitionStatus:data.recognitionStatus??null,
+      accuracy:data.accuracyScore??null,completeness:data.completenessScore??null,
+      error:response.ok?(data.error??null):(data.error||'HTTP '+response.status)};
+  }catch(e){return {reference,ok:false,error:e.name==='AbortError'?'timeout':String(e.message||e)}}
+  finally{clearTimeout(timer)}
+}
+
+async function assessWithReference(wavBlob,reference){
+  let result=await assessOnce(wavBlob,reference);
+  let attempts=1;
+  if(!result.ok && ([500,502,503,504,429].includes(result.httpStatus) || result.error==='timeout')){
+    await new Promise(resolve=>setTimeout(resolve,450));
+    result=await assessOnce(wavBlob,reference);
+    attempts=2;
+  }
+  return {...result,attempts};
+}
+
+function toneVerdict(original,contrast){
+  const valid=r=>r.ok && r.recognitionStatus==='Success'
+    && r.accuracy!==null && r.completeness!==null
+    && Number.isFinite(Number(r.accuracy)) && Number.isFinite(Number(r.completeness))
+    && Number(r.completeness)>=70;
+  if(!original.ok||!contrast.ok)return {category:'unavailable',difference:null,
+    message:'音声サービスから一部の採点結果を取得できませんでした。声調は判定できません。失敗した側を再試行してください。'};
+  const incomplete=[original,contrast].filter(r=>r.completeness!==null
+    && Number.isFinite(Number(r.completeness)) && Number(r.completeness)<70);
+  if(incomplete.length)return {category:'unavailable',difference:null,
+    message:incomplete.map(r=>'「'+r.reference+'」の完全度'+Math.round(Number(r.completeness))).join('、')
+      +'のため声調を比較できません。もう一度録音してください。'};
+  if(!valid(original)||!valid(contrast))return {category:'unavailable',difference:null,
+    message:'有効な採点結果がそろわず、声調は判定できません。もう一度録音してください。'};
+  const difference=Math.round((Number(original.accuracy)-Number(contrast.accuracy))*10)/10;
+  const targetTone=bank.find(q=>q.cn===original.reference).tone;
+  const otherTone=bank.find(q=>q.cn===contrast.reference).tone;
+  const targetScore=Number(original.accuracy),otherScore=Number(contrast.accuracy);
+  const targetStrong=(difference>=15 && targetScore>=80)
+    || (difference>=10 && targetScore>=90 && otherScore<=85);
+  const otherStrong=(difference<=-15 && otherScore>=80)
+    || (difference<=-10 && otherScore>=90 && targetScore<=85);
+  if(targetStrong)return {category:'target-leaning',difference,
+    message:'目標の'+targetTone+'に近い結果です。いい調子です！お手本と聞き比べてみましょう（試験中）。'};
+  if(otherStrong)return {category:'contrast-leaning',difference,
+    message:otherTone+'に近い結果です。'+otherTone+'の練習としては良い方向です。今回は目標の'+targetTone+'も試してみましょう（試験中）。'};
+  if(difference>=10)return {category:'target-progress',difference,
+    message:'目標の'+targetTone+'の点数が上回りました。よい手がかりです。お手本を聞いてもう一度練習しましょう。'};
+  if(difference<=-10)return {category:'contrast-progress',difference,
+    message:otherTone+'の点数が上回りました。声調の判定はまだ控えます。目標の'+targetTone+'のお手本を聞いてみましょう。'};
+  if(difference>0)return {category:'uncertain-target',difference,
+    message:'目標の'+targetTone+'の点数が少し高めです。よい方向ですが、声調はまだ判定できません。お手本と聞き比べましょう。'};
+  if(difference<0)return {category:'uncertain-contrast',difference,
+    message:otherTone+'の点数が少し高めです。声調はまだ判定できません。目標の'+targetTone+'のお手本を聞いて、もう一度試しましょう。'};
+  return {category:'uncertain',difference,
+    message:'2つの声調の点数が同じです。まだ判定できません。お手本を聞いてもう一度試しましょう。'};
+}
+
+function scoreDescription(result){
+  if(!result.ok)return '取得できず'+(result.error?'（'+escapeHtml(result.error)+'）':'');
+  const accuracy=Number(result.accuracy),completeness=Number(result.completeness);
+  const score=result.accuracy!==null && Number.isFinite(accuracy)?Math.round(accuracy)+'/100':'—';
+  const complete=result.completeness!==null && Number.isFinite(completeness)?Math.round(completeness)+'/100':'—';
+  return '発音 '+score+' / 完全度 '+complete+'<br><small>認識 '+escapeHtml(result.recognized||'—')+'</small>';
+}
+
+async function copyToneComparison(spokenTone){
+  if(!latestToneComparison)return;
+  const report=JSON.stringify({...latestToneComparison,spokenTone},null,2);
+  try{
+    if(navigator.clipboard && window.isSecureContext)await navigator.clipboard.writeText(report);
+    else throw new Error('clipboard unavailable');
+    getEl('copyFeedback').textContent='コピーしました。チャットに貼り付けてください。';
+  }catch(e){
+    const field=getEl('copyFallback');
+    field.value=report;field.style.display='block';field.focus();field.select();
+    try{const copied=document.execCommand('copy');getEl('copyFeedback').textContent=copied?'コピーしました。チャットに貼り付けてください。':'下のテキストを長押ししてコピーしてください。'}
+    catch(err){getEl('copyFeedback').textContent='下のテキストを長押ししてコピーしてください。'}
+  }
+}
+
+// Experimental diagnostic only: this curve never changes the Azure comparison verdict.
+function analyzeVoicedPitch(wavBuffer){
+  const view=new DataView(wavBuffer);
+  if(view.byteLength<44)return {quality:'unavailable',reason:'empty audio',points:[]};
+  const pcmCount=Math.floor((view.byteLength-44)/2);
+  const audio=new Float32Array(Math.floor(pcmCount/2));
+  for(let i=0;i<audio.length;i++)audio[i]=(view.getInt16(44+i*4,true)+view.getInt16(46+i*4,true))/65536;
+  const rate=8000,frame=384,hop=80,minLag=18,maxLag=160;
+  const rows=[];
+  for(let pos=0;pos+frame<=audio.length;pos+=hop){
+    let energy=0,mean=0;
+    for(let j=0;j<frame;j++)mean+=audio[pos+j];
+    mean/=frame;
+    for(let j=0;j<frame;j++){const sample=audio[pos+j]-mean;energy+=sample*sample}
+    const rms=Math.sqrt(energy/frame);
+    if(rms<0.002){rows.push({t:(pos+frame/2)/rate,rms,hz:null});continue}
+    let cumulative=0,chosen=null,chosenValue=1,bestLag=0,bestValue=1;
+    for(let lag=1;lag<=maxLag;lag++){
+      let sum=0;
+      for(let j=0;j<frame-maxLag;j++){
+        const delta=audio[pos+j]-audio[pos+j+lag];sum+=delta*delta;
+      }
+      cumulative+=sum;
+      if(lag<minLag)continue;
+      const value=cumulative>0?lag*sum/cumulative:1;
+      if(value<bestValue){bestValue=value;bestLag=lag}
+      if(value<0.20 && value<chosenValue){chosen=lag;chosenValue=value}
+      else if(chosen!==null && value>0.20)break;
+    }
+    const selected=chosen || (bestValue<0.28?bestLag:null);
+    rows.push({t:(pos+frame/2)/rate,rms,hz:selected?rate/selected:null});
+  }
+  const peak=Math.max(0,...rows.map(r=>r.rms));
+  const floor=Math.max(0.003,peak*0.14);
+  const groups=[];
+  let group=[];
+  for(const row of rows){
+    if(row.hz && row.rms>=floor){
+      if(group.length && row.t-group[group.length-1].t>0.031){groups.push(group);group=[]}
+      group.push(row);
+    }else if(group.length && row.t-group[group.length-1].t>0.031){groups.push(group);group=[]}
+  }
+  if(group.length)groups.push(group);
+  groups.sort((a,b)=>(b[b.length-1].t-b[0].t)-(a[a.length-1].t-a[0].t));
+  const best=groups[0]||[];
+  const duration=best.length>1?best[best.length-1].t-best[0].t:0;
+  const usable=best.length>=26 && duration>=0.30;
+  if(!usable)return {quality:'insufficient',reason:'pitch fragment too short to represent the full tone',
+    groups:groups.length,voicedPoints:best.length,voicedSeconds:+duration.toFixed(2),
+    fragment:best.length?{startHz:Math.round(best[0].hz),endHz:Math.round(best[best.length-1].hz)}:null,
+    points:[]};
+  const pitches=best.map(row=>row.hz);
+  const filtered=pitches.map((hz,i)=>{
+    if(i===0||i===pitches.length-1)return hz;
+    const left=pitches[i-1],right=pitches[i+1];
+    if(Math.abs(12*Math.log2(hz/left))>8 && Math.abs(12*Math.log2(right/left))<3)return (left+right)/2;
+    return hz;
+  });
+  return {quality:'experimental',groups:groups.length,voicedPoints:best.length,
+    voicedSeconds:+duration.toFixed(2),points:best.map((r,i)=>[+r.t.toFixed(2),Math.round(filtered[i])])};
+}
+
+function pitchDiagnosticHtml(pitch){
+  if(!pitch)return '';
+  if(pitch.quality!=='experimental')return '<div class="pitch-diagnostic">音高曲線：解析できた区間が短いため表示を控えます（'+pitch.voicedPoints+'点 / '+pitch.voicedSeconds+'秒）。発音が間違いという意味ではありません。<br><small>短い区間の高さは声調判定に使えません。</small></div>';
+  const points=pitch.points,first=points[0][0],last=points[points.length-1][0];
+  const values=points.map(p=>12*Math.log2(p[1]));
+  const sorted=values.slice().sort((a,b)=>a-b),center=sorted[Math.floor(sorted.length/2)];
+  const low=center-6,high=center+6;
+  const path=points.map((p,i)=>(i?'L':'M')+(15+270*(p[0]-first)/(last-first)).toFixed(1)+' '+Math.max(12,Math.min(75,75-55*(values[i]-low)/(high-low))).toFixed(1)).join(' ');
+  return '<div class="pitch-diagnostic">声の高さの動き（試験中）：'+pitch.voicedPoints+'点 / '+pitch.voicedSeconds+'秒'
+    +'<svg viewBox="0 0 300 95" role="img" aria-label="録音から取れた声の高さの変化"><path d="'+path+'" fill="none" stroke="#5b5cf0" stroke-width="2.5"/><text x="10" y="91" font-size="10" fill="#777">始め</text><text x="263" y="91" font-size="10" fill="#777">終わり</text></svg>'
+    +'<small>この線は発声の一部です。曲線だけで声調の正誤は判定していません。</small></div>';
+}
+
+function renderToneComparison(){
+  const report=latestToneComparison;
+  if(!report)return;
+  const {target,alternative,original,contrast,verdict}=report;
+  const targetTone=bank.find(q=>q.cn===target).tone;
+  const contrastTone=bank.find(q=>q.cn===alternative).tone;
+  const statusEl=getEl('status');
+  statusEl.className='status info show';
+  statusEl.innerHTML='<b>'+escapeHtml(verdict.message)+'</b><br>目標の '+escapeHtml(target)+'（'+escapeHtml(targetTone)+'）：'+scoreDescription(original)
+    +'<br>対照の '+escapeHtml(alternative)+'（'+escapeHtml(contrastTone)+'）：'+scoreDescription(contrast)
+    +pitchDiagnosticHtml(report.pitch)
+    +'<br><small>分差（目標 − 対照）：'+(verdict.difference===null?'—':verdict.difference)+'。少数の録音から決めた暫定的な目安です。実際に読んだ声調を選んで結果を送ってください。</small>'
+    +(!original.ok||!contrast.ok?'<button type="button" class="secondary" onclick="retryMissingTone()">失敗した側だけ再試行（録り直し不要）</button>':'')
+    +'<div class="tone-copy-actions"><button type="button" class="small-btn" data-tone="'+escapeHtml(targetTone)+'" onclick="copyToneComparison(this.dataset.tone)">'+escapeHtml(targetTone)+'で読んだ結果をコピー</button>'
+    +'<button type="button" class="small-btn" data-tone="'+escapeHtml(contrastTone)+'" onclick="copyToneComparison(this.dataset.tone)">'+escapeHtml(contrastTone)+'で読んだ結果をコピー</button></div>'
+    +'<div id="copyFeedback"></div><textarea id="copyFallback" readonly style="display:none;width:100%;height:130px"></textarea>';
+}
+
+async function retryMissingTone(){
+  if(manualRetryBusy||!latestToneWavBlob||!latestToneComparison||latestToneGeneration!==recordingGeneration)return;
+  const generation=recordingGeneration;
+  const old=latestToneComparison;
+  if(old.original.ok && old.contrast.ok)return;
+  manualRetryBusy=true;
+  const statusEl=getEl('status');
+  statusEl.textContent='🔎 失敗した側を同じ録音でもう一度確認しています…';
+  try{
+    const [original,contrast]=await Promise.all([
+      old.original.ok?Promise.resolve(old.original):assessWithReference(latestToneWavBlob,old.target),
+      old.contrast.ok?Promise.resolve(old.contrast):assessWithReference(latestToneWavBlob,old.alternative)
+    ]);
+    if(generation!==recordingGeneration||latestToneComparison!==old)return;
+    const combined=(prior,updated)=>prior.ok?prior:{...updated,attempts:(prior.attempts||0)+(updated.attempts||0)};
+    const updatedOriginal=combined(old.original,original);
+    const updatedContrast=combined(old.contrast,contrast);
+    latestToneComparison={...old,original:updatedOriginal,contrast:updatedContrast,
+      verdict:toneVerdict(updatedOriginal,updatedContrast)};
+    renderToneComparison();
+  }catch(e){
+    if(generation===recordingGeneration&&latestToneComparison===old)renderToneComparison();
+  }finally{manualRetryBusy=false}
+}
+
+async function recognizeRecordedSpeech(blob,generation){
   const statusEl=getEl('status');
   const stillCurrent=()=>generation===recordingGeneration && getEl('status')===statusEl;
-  const target=round[idx] && round[idx].cn;
-  const pinyin=round[idx] && round[idx].py;
+  const target=round[idx].cn,contrast=TONE_PAIRS[target];
+  latestToneComparison=null;
+  latestToneWavBlob=null;
+  latestToneGeneration=null;
   statusEl.className='status info show';
-  statusEl.innerHTML='<b>🔎 発音を確認中…</b><br>お手本との近さを調べています。';
-
+  statusEl.textContent='🔎 同じ録音を2つの参照文字で比較しています…';
   try{
     const wavBlob=await recordedBlobToWav16kMono(blob);
-    const controller=new AbortController();
-    const timer=setTimeout(()=>controller.abort(),15000);
-
-    let r;
-    try{
-      r=await fetch(STT_API+'?target='+encodeURIComponent(target),{
-        method:'POST',
-        headers:{'Content-Type':'audio/wav'},
-        body:wavBlob,
-        signal:controller.signal
-      });
-    }finally{
-      clearTimeout(timer);
-    }
-
-    const data=await r.json().catch(()=>({}));
-    if(!r.ok) throw new Error(data.error||('STT '+r.status));
-
     if(!stillCurrent())return;
-    const heard=String(data.text||'').trim();
-    const normalized=s=>String(s).replace(/[\s.,!?。，！？、…·:;；：()（）「」『』]/g,'');
-    const isSingle=/^[\u3400-\u9fff]$/u.test(target);
-    const exact=normalized(heard)===normalized(target);
-    const accuracy=Number(data.accuracyScore);
-    const hasScore=data.accuracyScore!=null && Number.isFinite(accuracy) && accuracy>=0 && accuracy<=100;
-    const reference='<br>お手本：<strong>'+escapeHtml(target)+' '+escapeHtml(pinyin)+'</strong>';
-    const completeness=data.completenessScore==null?null:Number(data.completenessScore);
-    if(data.ok && exact && hasScore && (completeness===null || completeness>=70)){
-      const verdict=accuracy>=80?'発音はお手本に近いです。':accuracy>=60?'発音はもう少し練習しましょう。':'発音を確認して、もう一度練習しましょう。';
-      statusEl.className='status '+(accuracy>=80?'ok':'info')+' show';
-      statusEl.innerHTML='<b>'+verdict+'</b>'+reference+'<br>発音の参考値：<strong>'+Math.round(accuracy)+'/100</strong><br>自分の声とお手本を聞き比べましょう。'+(isSingle?'<br><small>声調だけを正確に採点した結果ではありません。</small>':'');
-    }else{
-      statusEl.className='status info show';
-      statusEl.innerHTML='<b>✓ 録音できました！</b>'+reference+'<br>今回は発音を確実に判定できませんでした。お手本を聞いて、もう一度発音してみましょう。';
-    }
+    latestToneWavBlob=wavBlob;
+    latestToneGeneration=generation;
+    let pitch;
+    try{pitch=analyzeVoicedPitch(await wavBlob.arrayBuffer())}
+    catch(e){pitch={quality:'unavailable',reason:String(e.message||e),points:[]}}
+    if(!stillCurrent())return;
+    const [original,alternative]=await Promise.all([
+      assessWithReference(wavBlob,target),assessWithReference(wavBlob,contrast)
+    ]);
+    if(!stillCurrent())return;
+    latestToneComparison={version:'10.25',target,alternative:contrast,pitch,
+      verdict:toneVerdict(original,alternative),
+      audioSeconds:Math.round((wavBlob.size-44)/32000*100)/100,
+      original,contrast:alternative};
+    renderToneComparison();
   }catch(e){
     if(!stillCurrent())return;
-    console.error('STT error',e);
-    statusEl.className='status ok show';
-    statusEl.innerHTML='<b>✓ 録音できました！</b><br>音声認識は利用できませんでしたが、録音は再生できます。';
+    console.error('Comparison error',e);
+    statusEl.className='status info show';
+    statusEl.textContent='比較できませんでした。録音は再生できます。もう一度お試しください。';
   }
 }
 
@@ -305,6 +642,9 @@ let autoStopTimer=null;
 
 function clearRecording(){
   recordingGeneration++;
+  latestToneComparison=null;
+  latestToneWavBlob=null;
+  latestToneGeneration=null;
   if(getEl('audioArea')) getEl('audioArea').innerHTML='';
   if(recordedURL){
     URL.revokeObjectURL(recordedURL);
@@ -370,6 +710,11 @@ function recordingErrorMessage(err){
 }
 
 async function toggleRecording(){
+  if(exampleRecording||exampleStarting){
+    const status=getEl('status');
+    if(status){status.className='status info show';status.textContent='まず例文の録音を停止してください。'}
+    return;
+  }
   if(isRecording){
     stopRecording();
     return;
@@ -502,6 +847,7 @@ async function toggleRecording(){
       });
 
       getEl('audioArea').innerHTML='';
+      latestToneComparison=null;
       getEl('audioArea').appendChild(a);
 
       getEl('status').className='status ok show';
@@ -645,5 +991,5 @@ async function sendFeedback(e){
   clearTimeout(timer);b.disabled=false;b.textContent='送信する';
  }
 }
-window.addEventListener('pagehide',()=>{try{stopRecording()}catch(e){} releaseMicrophone();});newRound();
+window.addEventListener('pagehide',()=>{try{stopRecording()}catch(e){} releaseMicrophone();closeExamplePractice();});newRound();
 </script></body></html>
