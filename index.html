@@ -8,7 +8,7 @@
 .poll-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;color:var(--ink)}
 .poll-btn:disabled{opacity:.6}.poll-thanks{font-size:12px;color:#26735f;margin-top:9px}
 </style></head><body><main class="phone">
-<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.3</small></div></header>
+<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.4</small></div></header>
 <section class="hero"><p class="eyebrow">日本人のための中国語発音トレーニング</p><h1>中国語はわかる。<br>でも、発音に自信がない。</h1><div class="target-note">単語や文法は勉強した。でも声調や自然な言い方に自信がない。単音節から変調・短文まで、聞いて話す短時間トレーニングです。</div><p>聞き分けて、答えて、自分でも発音。1問ずつ声調を身につけましょう。</p></section>
 <section class="streak"><div style="font-size:25px">🔥</div><div><b>今日の3分チャレンジ</b><small>5問をひとつの流れで練習</small></div></section>
 <div class="section-head"><h2>🎯 今日のチャレンジ</h2><span id="count">1 / 5</span></div>
@@ -240,17 +240,17 @@ function getRecorderOptions(){
 
   const candidates=[
     'audio/webm;codecs=opus',
-    'audio/webm',
+    'audio/ogg;codecs=opus',
     'audio/mp4;codecs=mp4a.40.2',
-    'audio/mp4',
-    'audio/ogg;codecs=opus'
+    'audio/webm',
+    'audio/mp4'
   ];
 
   if(typeof MediaRecorder.isTypeSupported==='function'){
     for(const mimeType of candidates){
       try{
         if(MediaRecorder.isTypeSupported(mimeType)){
-          return {mimeType};
+          return {mimeType,audioBitsPerSecond:128000};
         }
       }catch(e){}
     }
@@ -312,13 +312,21 @@ async function toggleRecording(){
     releaseMicrophone();
     clearRecording();
 
-    const stream=await navigator.mediaDevices.getUserMedia({
-      audio:{
-        echoCancellation:true,
-        noiseSuppression:true,
-        autoGainControl:true
-      }
-    });
+    let stream;
+    try{
+      stream=await navigator.mediaDevices.getUserMedia({
+        audio:{
+          echoCancellation:false,
+          noiseSuppression:false,
+          autoGainControl:false,
+          channelCount:1,
+          sampleRate:48000
+        }
+      });
+    }catch(primaryErr){
+      console.warn('High-quality audio constraints unavailable, retrying with default audio constraints.',primaryErr);
+      stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    }
 
     microphoneStream=stream;
     chunks=[];
