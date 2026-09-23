@@ -7,12 +7,12 @@
 .result-poll b{font-size:13px;line-height:1.5}.poll-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
 .poll-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;color:var(--ink)}
 .poll-btn:disabled{opacity:.6}.poll-thanks{font-size:12px;color:#26735f;margin-top:9px}
-.tone-copy-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.tone-copy-actions button{white-space:normal;line-height:1.5;font-size:12px}#copyFeedback{margin-top:7px;font-weight:700}.pitch-diagnostic{background:#fff;border:1px solid #e5e5ff;border-radius:12px;margin-top:12px;padding:10px;font-size:12px;line-height:1.6}.pitch-diagnostic svg{display:block;width:100%;height:95px;margin:8px 0;background:#fafaff;border-radius:8px}.pitch-diagnostic small{display:block;color:#7d8799}.example-practice{margin-top:12px;padding:12px;border-radius:12px;background:#f6f6ff;border:1px solid #e2e2ff}.example-practice h3{margin:0 0 6px;font-size:14px}.example-practice p{font-size:12px;line-height:1.55;margin:4px 0 10px;color:var(--muted)}.example-practice .example-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.example-practice .example-controls button{min-height:42px}.example-practice .example-close{width:100%;margin-top:8px;background:transparent;border:0;color:var(--muted);font-size:12px}.example-practice .example-result{font-size:12px;line-height:1.6;margin-top:10px;color:#5051aa}.example-practice audio{margin-top:8px}</style></head><body><main class="phone">
-<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.25</small></div></header>
+.tone-copy-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.tone-copy-actions button{white-space:normal;line-height:1.5;font-size:12px}#copyFeedback{margin-top:7px;font-weight:700}.pitch-diagnostic{background:#fff;border:1px solid #e5e5ff;border-radius:12px;margin-top:12px;padding:10px;font-size:12px;line-height:1.6}.pitch-diagnostic svg{display:block;width:100%;height:95px;margin:8px 0;background:#fafaff;border-radius:8px}.pitch-diagnostic small{display:block;color:#7d8799}.example-practice{margin-top:12px;padding:12px;border-radius:12px;background:#f6f6ff;border:1px solid #e2e2ff}.example-practice h3{margin:0 0 6px;font-size:14px}.example-practice p{font-size:12px;line-height:1.55;margin:4px 0 10px;color:var(--muted)}.example-practice .example-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.example-practice .example-controls button{min-height:42px}.example-practice .example-close{width:100%;margin-top:8px;background:transparent;border:0;color:var(--muted);font-size:12px}.example-practice .example-result{font-size:12px;line-height:1.6;margin-top:10px;color:#5051aa}.example-practice audio{margin-top:8px}.record-notice{font-size:11px;line-height:1.55;color:#7d8799;margin:8px 0 0}.measure-details{margin-top:11px;padding:9px 10px;border:1px solid #e3e4f5;border-radius:10px;background:#fff;font-size:12px;text-align:left}.measure-details summary{font-weight:750;color:#5051aa;cursor:pointer}.measure-details[open] summary{margin-bottom:9px}</style></head><body><main class="phone">
+<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.26 試用版</small></div></header>
 <section class="hero"><p class="eyebrow">日本人のための中国語発音トレーニング</p><h1>中国語はわかる。<br>でも、発音に自信がない。</h1><div class="target-note">単語や文法は勉強した。でも声調や自然な言い方に自信がない。単音節から変調・短文まで、聞いて話す短時間トレーニングです。</div><p>聞き分けて、答えて、自分でも発音。1問ずつ声調を身につけましょう。</p></section>
 <section class="streak"><div style="font-size:25px">🔥</div><div><b>今日の3分チャレンジ</b><small>5問をひとつの流れで練習</small></div></section>
 <div class="section-head"><h2>🎯 今日のチャレンジ</h2><span id="count">1 / 5</span></div>
-<section class="flow" id="flow"><div class="flow-top"><span class="tag" id="phaseTag">① 聞き分け</span><span class="progress" id="dots">○ ○ ○ ○ ○</span></div><div id="quiz"><div class="stage">音声を聞いて、意味を選ぼう</div><div class="sub">漢字は答えたあとに表示されます</div><button class="play" onclick="playQuestion()">🔊 音声を聞く</button><div class="choices" id="choices"></div><div class="feedback" id="feedback"></div></div><div class="reveal" id="reveal"><div class="big-cn" id="cn"></div><div class="pinyin" id="py"></div><div class="sub" id="jp"></div><div class="tip" id="tip"></div><div class="actions" id="pronunciationActions"><button class="btn listen" onclick="playMachine(round[idx].cn)">🔊 ゆっくり標準音</button><button class="btn record" id="recordBtn" onclick="toggleRecording()">🎙 録音する</button></div><button class="btn next next-primary" id="nextBtn" onclick="nextQuestion()">次の問題 →</button><div id="audioArea"></div><div class="status" id="status"></div></div></section>
+<section class="flow" id="flow"><div class="flow-top"><span class="tag" id="phaseTag">① 聞き分け</span><span class="progress" id="dots">○ ○ ○ ○ ○</span></div><div id="quiz"><div class="stage">音声を聞いて、意味を選ぼう</div><div class="sub">漢字は答えたあとに表示されます</div><button class="play" onclick="playQuestion()">🔊 音声を聞く</button><div class="choices" id="choices"></div><div class="feedback" id="feedback"></div></div><div class="reveal" id="reveal"><div class="big-cn" id="cn"></div><div class="pinyin" id="py"></div><div class="sub" id="jp"></div><div class="tip" id="tip"></div><div class="actions" id="pronunciationActions"><button class="btn listen" onclick="playMachine(round[idx].cn)">🔊 ゆっくり標準音</button><button class="btn record" id="recordBtn" onclick="toggleRecording()">🎙 録音する</button></div><p class="record-notice">録音した音声は、発音確認のため外部の音声サービス（Azure Speech）に送信されます。</p><button class="btn next next-primary" id="nextBtn" onclick="nextQuestion()">次の問題 →</button><div id="audioArea"></div><div class="status" id="status"></div></div></section>
 
 <div class="section-head"><h2>基本例文20</h2><span>自由練習</span></div><section class="examples" id="examples"></section>
 <section class="feedback-box"><h2>💬 ご意見・改善リクエスト</h2><p>ログイン不要です。発音・録音・問題など、気になったところを教えてください。</p><form id="feedbackForm" onsubmit="sendFeedback(event)"><select id="feedbackCategory" name="category"><option>発音・標準音声</option><option>録音</option><option>問題・内容</option><option>使いやすさ</option><option>その他</option></select><textarea id="feedbackText" name="message" maxlength="1000" required placeholder="例：3声と4声の標準音声が少し聞き分けにくかったです。"></textarea><input id="feedbackHoney" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><input type="hidden" name="_url" value="https://jinyu-chinese.com/"><button class="feedback-send" id="feedbackSend" type="submit">送信する</button><div class="feedback-msg" id="feedbackMsg"></div></form></section></main><script>
@@ -169,6 +169,7 @@ getEl('flow').innerHTML='<div class="flow-top"><span class="tag" id="phaseTag">�
 '<button class="play" onclick="playQuestion()">🔊 音声を聞く</button><div class="choices" id="choices"></div><div class="feedback" id="feedback"></div></div>'+
 '<div class="reveal" id="reveal"><div class="big-cn" id="cn"></div><div class="pinyin" id="py"></div><div class="sub" id="jp"></div><div class="tip" id="tip"></div>'+
 '<div class="actions" id="pronunciationActions"><button class="btn listen" onclick="playMachine(round[idx].cn)">🔊 ゆっくり標準音</button><button class="btn record" id="recordBtn" onclick="toggleRecording()">🎙 録音する</button></div>'+
+'<p class="record-notice">録音した音声は、発音確認のため外部の音声サービス（Azure Speech）に送信されます。</p>'+
 '<button class="btn next next-primary" id="nextBtn" onclick="nextQuestion()">次の問題 →</button><div id="audioArea"></div><div class="status" id="status"></div></div>';
 
 }
@@ -227,6 +228,7 @@ function practiceExample(i){
     +'<br>お手本を聞いてから録音し、自分の声と聞き比べましょう。</p>'
     +'<div class="example-controls"><button type="button" class="small-btn" id="exampleListen">🔊 お手本を聞く</button>'
     +'<button type="button" class="small-btn" id="exampleRecord">🎙 録音する</button></div>'
+    +'<p class="record-notice">録音した音声は、発音確認のため外部の音声サービス（Azure Speech）に送信されます。</p>'
     +'<div id="exampleAudio"></div><div class="example-result" id="exampleResult"></div>'
     +'<button type="button" class="example-close" id="exampleClose">閉じる</button>';
   examplesBox.children[i].appendChild(panel);
@@ -560,15 +562,19 @@ function renderToneComparison(){
   const targetTone=bank.find(q=>q.cn===target).tone;
   const contrastTone=bank.find(q=>q.cn===alternative).tone;
   const statusEl=getEl('status');
-  statusEl.className='status info show';
-  statusEl.innerHTML='<b>'+escapeHtml(verdict.message)+'</b><br>目標の '+escapeHtml(target)+'（'+escapeHtml(targetTone)+'）：'+scoreDescription(original)
-    +'<br>対照の '+escapeHtml(alternative)+'（'+escapeHtml(contrastTone)+'）：'+scoreDescription(contrast)
+  statusEl.className='status '+(verdict.category==='target-leaning'?'ok':'info')+' show';
+  statusEl.innerHTML='<b>'+escapeHtml(verdict.message)+'</b>'
+    +'<br>今回の目標：'+escapeHtml(target)+'（'+escapeHtml(targetTone)+'）'
+    +(!original.ok||!contrast.ok?'<button type="button" class="secondary" onclick="retryMissingTone()">測定に失敗した側を再試行</button>':'')
+    +'<details class="measure-details"><summary>測定の詳細を見る</summary>'
+    +'目標の '+escapeHtml(target)+'（'+escapeHtml(targetTone)+'）：'+scoreDescription(original)
+    +'<br>比較した '+escapeHtml(alternative)+'（'+escapeHtml(contrastTone)+'）：'+scoreDescription(contrast)
     +pitchDiagnosticHtml(report.pitch)
-    +'<br><small>分差（目標 − 対照）：'+(verdict.difference===null?'—':verdict.difference)+'。少数の録音から決めた暫定的な目安です。実際に読んだ声調を選んで結果を送ってください。</small>'
-    +(!original.ok||!contrast.ok?'<button type="button" class="secondary" onclick="retryMissingTone()">失敗した側だけ再試行（録り直し不要）</button>':'')
-    +'<div class="tone-copy-actions"><button type="button" class="small-btn" data-tone="'+escapeHtml(targetTone)+'" onclick="copyToneComparison(this.dataset.tone)">'+escapeHtml(targetTone)+'で読んだ結果をコピー</button>'
-    +'<button type="button" class="small-btn" data-tone="'+escapeHtml(contrastTone)+'" onclick="copyToneComparison(this.dataset.tone)">'+escapeHtml(contrastTone)+'で読んだ結果をコピー</button></div>'
-    +'<div id="copyFeedback"></div><textarea id="copyFallback" readonly style="display:none;width:100%;height:130px"></textarea>';
+    +'<br><small>点数は声調だけの採点ではありません。目標との差：'+(verdict.difference===null?'測定不可':verdict.difference)+'。判定方法は試験中です。</small>'
+    +'<div class="tone-copy-actions"><button type="button" class="small-btn" data-tone="'+escapeHtml(targetTone)+'" onclick="copyToneComparison(this.dataset.tone)">'+escapeHtml(targetTone)+'を読んだ結果をコピー</button>'
+    +'<button type="button" class="small-btn" data-tone="'+escapeHtml(contrastTone)+'" onclick="copyToneComparison(this.dataset.tone)">'+escapeHtml(contrastTone)+'を読んだ結果をコピー</button></div>'
+    +'<div id="copyFeedback"></div><textarea id="copyFallback" readonly style="display:none;width:100%;height:130px"></textarea>'
+    +'</details>';
 }
 
 async function retryMissingTone(){
@@ -618,7 +624,7 @@ async function recognizeRecordedSpeech(blob,generation){
       assessWithReference(wavBlob,target),assessWithReference(wavBlob,contrast)
     ]);
     if(!stillCurrent())return;
-    latestToneComparison={version:'10.25',target,alternative:contrast,pitch,
+    latestToneComparison={version:'10.26',target,alternative:contrast,pitch,
       verdict:toneVerdict(original,alternative),
       audioSeconds:Math.round((wavBlob.size-44)/32000*100)/100,
       original,contrast:alternative};
