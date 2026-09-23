@@ -271,8 +271,10 @@ function escapeHtml(s){
 async function recognizeRecordedSpeech(blob, generation){
   const statusEl=getEl('status');
   const stillCurrent=()=>generation===recordingGeneration && getEl('status')===statusEl;
+  const target=round[idx] && round[idx].cn;
+  const pinyin=round[idx] && round[idx].py;
   statusEl.className='status info show';
-  statusEl.innerHTML='<b>🔎 音声を確認中…</b><br>発音した中国語を認識しています。';
+  statusEl.innerHTML='<b>🔎 発音を確認中…</b><br>お手本との近さを調べています。';
 
   try{
     const wavBlob=await recordedBlobToWav16kMono(blob);
@@ -281,7 +283,7 @@ async function recognizeRecordedSpeech(blob, generation){
 
     let r;
     try{
-      r=await fetch(STT_API,{
+      r=await fetch(STT_API+'?target='+encodeURIComponent(target),{
         method:'POST',
         headers:{'Content-Type':'audio/wav'},
         body:wavBlob,
@@ -296,12 +298,20 @@ async function recognizeRecordedSpeech(blob, generation){
 
     if(!stillCurrent())return;
     const heard=String(data.text||'').trim();
-    if(heard){
-      statusEl.className='status ok show';
-      statusEl.innerHTML='<b>✓ 録音できました！</b><br>認識結果：<strong>'+escapeHtml(heard)+'</strong><br>自分の声と標準音声を聞き比べてみましょう。';
+    const normalized=s=>String(s).replace(/[\s.,!?。，！？、…·:;；：()（）「」『』]/g,'');
+    const isSingle=/^[\u3400-\u9fff]$/u.test(target);
+    const exact=normalized(heard)===normalized(target);
+    const accuracy=Number(data.accuracyScore);
+    const hasScore=data.accuracyScore!=null && Number.isFinite(accuracy) && accuracy>=0 && accuracy<=100;
+    const reference='<br>お手本：<strong>'+escapeHtml(target)+' '+escapeHtml(pinyin)+'</strong>';
+    const completeness=data.completenessScore==null?null:Number(data.completenessScore);
+    if(data.ok && exact && hasScore && (completeness===null || completeness>=70)){
+      const verdict=accuracy>=80?'発音はお手本に近いです。':accuracy>=60?'発音はもう少し練習しましょう。':'発音を確認して、もう一度練習しましょう。';
+      statusEl.className='status '+(accuracy>=80?'ok':'info')+' show';
+      statusEl.innerHTML='<b>'+verdict+'</b>'+reference+'<br>発音の参考値：<strong>'+Math.round(accuracy)+'/100</strong><br>自分の声とお手本を聞き比べましょう。'+(isSingle?'<br><small>声調だけを正確に採点した結果ではありません。</small>':'');
     }else{
       statusEl.className='status info show';
-      statusEl.innerHTML='<b>✓ 録音できました！</b><br>今回は音声をうまく認識できませんでした。もう一度ゆっくり発音してみましょう。';
+      statusEl.innerHTML='<b>✓ 録音できました！</b>'+reference+'<br>今回は発音を確実に判定できませんでした。お手本を聞いて、もう一度発音してみましょう。';
     }
   }catch(e){
     if(!stillCurrent())return;
