@@ -8,7 +8,7 @@
 .poll-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;color:var(--ink)}
 .poll-btn:disabled{opacity:.6}.poll-thanks{font-size:12px;color:#26735f;margin-top:9px}
 </style></head><body><main class="phone">
-<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.6</small></div></header>
+<header class="top"><div class="logo">声調<span>コーチ</span> <small style="font-size:10px;color:#16a37b">DEMO 10.7</small></div></header>
 <section class="hero"><p class="eyebrow">日本人のための中国語発音トレーニング</p><h1>中国語はわかる。<br>でも、発音に自信がない。</h1><div class="target-note">単語や文法は勉強した。でも声調や自然な言い方に自信がない。単音節から変調・短文まで、聞いて話す短時間トレーニングです。</div><p>聞き分けて、答えて、自分でも発音。1問ずつ声調を身につけましょう。</p></section>
 <section class="streak"><div style="font-size:25px">🔥</div><div><b>今日の3分チャレンジ</b><small>5問をひとつの流れで練習</small></div></section>
 <div class="section-head"><h2>🎯 今日のチャレンジ</h2><span id="count">1 / 5</span></div>
@@ -16,6 +16,8 @@
 
 <div class="section-head"><h2>基本例文20</h2><span>自由練習</span></div><section class="examples" id="examples"></section>
 <section class="feedback-box"><h2>💬 ご意見・改善リクエスト</h2><p>ログイン不要です。発音・録音・問題など、気になったところを教えてください。</p><form id="feedbackForm" onsubmit="sendFeedback(event)"><select id="feedbackCategory" name="category"><option>発音・標準音声</option><option>録音</option><option>問題・内容</option><option>使いやすさ</option><option>その他</option></select><textarea id="feedbackText" name="message" maxlength="1000" required placeholder="例：3声と4声の標準音声が少し聞き分けにくかったです。"></textarea><input id="feedbackHoney" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><input type="hidden" name="_url" value="https://jinyu-chinese.com/"><button class="feedback-send" id="feedbackSend" type="submit">送信する</button><div class="feedback-msg" id="feedbackMsg"></div></form></section></main><script>
+const getEl=id=>document.getElementById(id);
+
 const bank=[
 {cn:'买',py:'mǎi',tone:'3声',meaning:'買う',choices:['買う','売る'],cat:'単音節・声調'},
 {cn:'卖',py:'mài',tone:'4声',meaning:'売る',choices:['売る','買う'],cat:'単音節・声調'},
@@ -68,8 +70,8 @@ bank.forEach(function(q){
 });
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function newRound(){round=shuffle(bank).slice(0,5).map(q=>({...q,choices:shuffle(q.choices)}));idx=0;score=0;wrongCats=[];wrongQuestions=[];render()}
-function render(){answered=false;clearRecording();const q=round[idx];count.textContent=(idx+1)+' / '+round.length;dots.textContent=round.map((_,i)=>i<=idx?'●':'○').join(' ');phaseTag.textContent='① 聞き分け';quiz.style.display='block';reveal.className='reveal';feedback.className='feedback';feedback.innerHTML='';choices.innerHTML='';q.choices.forEach(label=>{const b=document.createElement('button');b.className='choice';b.textContent=label;b.onclick=()=>answer(label);choices.appendChild(b)});cn.textContent=q.cn;py.textContent=q.py;jp.textContent=q.jp;tip.textContent='💡 '+q.tip;status.className='status';status.innerHTML='';recordBtn.textContent='🎙 録音する';nextBtn.textContent=idx===round.length-1?'結果を見る →':'次の問題 →'}
-function answer(label){if(answered)return;answered=true;const q=round[idx],ok=label===q.answer;if(ok)score++;else{wrongCats.push(q.cat);wrongQuestions.push({...q});}[...choices.children].forEach(b=>b.disabled=true);feedback.className='feedback show '+(ok?'good':'bad');feedback.innerHTML='<b>'+(ok?'🎉 正解！':'惜しい！')+'</b><br>'+q.cn+' '+q.py+' ＝ '+q.jp;phaseTag.textContent='② 発音してみよう';reveal.className='reveal show';updateAudioButtons()}
+function render(){answered=false;clearRecording();const q=round[idx];getEl('count').textContent=(idx+1)+' / '+round.length;getEl('dots').textContent=round.map((_,i)=>i<=idx?'●':'○').join(' ');getEl('phaseTag').textContent='① 聞き分け';getEl('quiz').style.display='block';getEl('reveal').className='reveal';getEl('feedback').className='feedback';getEl('feedback').innerHTML='';getEl('choices').innerHTML='';q.choices.forEach(label=>{const b=document.createElement('button');b.className='choice';b.textContent=label;b.onclick=()=>answer(label);getEl('choices').appendChild(b)});getEl('cn').textContent=q.cn;getEl('py').textContent=q.py;getEl('jp').textContent=q.jp;getEl('tip').textContent='💡 '+q.tip;getEl('status').className='status';getEl('status').innerHTML='';getEl('recordBtn').textContent='🎙 録音する';getEl('nextBtn').textContent=idx===round.length-1?'結果を見る →':'次の問題 →'}
+function answer(label){if(answered)return;answered=true;const q=round[idx],ok=label===q.answer;if(ok)score++;else{wrongCats.push(q.cat);wrongQuestions.push({...q});}[...getEl('choices').children].forEach(b=>b.disabled=true);getEl('feedback').className='feedback show '+(ok?'good':'bad');getEl('feedback').innerHTML='<b>'+(ok?'🎉 正解！':'惜しい！')+'</b><br>'+q.cn+' '+q.py+' ＝ '+q.jp;getEl('phaseTag').textContent='② 発音してみよう';getEl('reveal').className='reveal show';updateAudioButtons()}
 const verifiedAudio={"买": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zh-m%C7%8Ei.ogg", "卖": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zh-m%C3%A0i.ogg", "水": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zh-shu%C7%90.ogg", "睡": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zh-shu%C3%AC.ogg", "糖": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zh-t%C3%A1ng.ogg", "汤": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zh-t%C4%81ng.ogg"};
 let standardAudio=null;
 function stopStandardAudio(){
@@ -182,14 +184,14 @@ const review=wrongQuestions.map((q,i)=>
   '<button class="small-btn" style="margin-top:8px" onclick="playMachine(wrongQuestions['+i+'].cn)">🔊 ゆっくり標準音</button>'+
   (verifiedAudio[q.cn]?'<button class="small-btn" style="margin-top:8px;margin-left:6px" onclick="playHuman(wrongQuestions['+i+'].cn)">👤 真人発音</button>':'')+'</div>'
 ).join('');
-flow.innerHTML='<div class="score"><div>'+round.length+'問終了 🎉</div><strong>'+score+' / '+round.length+'</strong><p>'+advice+'</p>'+
+getEl('flow').innerHTML='<div class="score"><div>'+round.length+'問終了 🎉</div><strong>'+score+' / '+round.length+'</strong><p>'+advice+'</p>'+
   (misses?'<div class="review-list">'+review+'</div><button class="secondary" onclick="startReview()">🔁 間違えた'+misses+'問を復習</button>':'')+
   '<button class="play" style="margin-top:10px" onclick="location.reload()">別の5問に挑戦</button></div>';
-count.textContent='完了';
+getEl('count').textContent='完了';
 addResultPoll();
 }
 function restoreFlow(){
-flow.innerHTML='<div class="flow-top"><span class="tag" id="phaseTag">① 聞き分け</span><span class="progress" id="dots">○ ○ ○ ○ ○</span></div>'+
+getEl('flow').innerHTML='<div class="flow-top"><span class="tag" id="phaseTag">① 聞き分け</span><span class="progress" id="dots">○ ○ ○ ○ ○</span></div>'+
 '<div id="quiz"><div class="stage">音声を聞いて、意味を選ぼう</div><div class="sub">漢字は答えたあとに表示されます</div>'+
 '<button class="play" onclick="playQuestion()">🔊 音声を聞く</button><div class="choices" id="choices"></div><div class="feedback" id="feedback"></div></div>'+
 '<div class="reveal" id="reveal"><div class="big-cn" id="cn"></div><div class="pinyin" id="py"></div><div class="sub" id="jp"></div><div class="tip" id="tip"></div>'+
@@ -259,16 +261,18 @@ async function recordedBlobToWav16kMono(blob){
 
 function escapeHtml(s){
   return String(s)
-    .replaceAll('&','&amp;')
-    .replaceAll('<','&lt;')
-    .replaceAll('>','&gt;')
-    .replaceAll('"','&quot;')
-    .replaceAll("'","&#039;");
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
 }
 
-async function recognizeRecordedSpeech(blob){
-  status.className='status info show';
-  status.innerHTML='<b>🔎 音声を確認中…</b><br>発音した中国語を認識しています。';
+async function recognizeRecordedSpeech(blob, generation){
+  const statusEl=getEl('status');
+  const stillCurrent=()=>generation===recordingGeneration && getEl('status')===statusEl;
+  statusEl.className='status info show';
+  statusEl.innerHTML='<b>🔎 音声を確認中…</b><br>発音した中国語を認識しています。';
 
   try{
     const wavBlob=await recordedBlobToWav16kMono(blob);
@@ -290,18 +294,20 @@ async function recognizeRecordedSpeech(blob){
     const data=await r.json().catch(()=>({}));
     if(!r.ok) throw new Error(data.error||('STT '+r.status));
 
+    if(!stillCurrent())return;
     const heard=String(data.text||'').trim();
     if(heard){
-      status.className='status ok show';
-      status.innerHTML='<b>✓ 録音できました！</b><br>認識結果：<strong>'+escapeHtml(heard)+'</strong><br>自分の声と標準音声を聞き比べてみましょう。';
+      statusEl.className='status ok show';
+      statusEl.innerHTML='<b>✓ 録音できました！</b><br>認識結果：<strong>'+escapeHtml(heard)+'</strong><br>自分の声と標準音声を聞き比べてみましょう。';
     }else{
-      status.className='status info show';
-      status.innerHTML='<b>✓ 録音できました！</b><br>今回は音声をうまく認識できませんでした。もう一度ゆっくり発音してみましょう。';
+      statusEl.className='status info show';
+      statusEl.innerHTML='<b>✓ 録音できました！</b><br>今回は音声をうまく認識できませんでした。もう一度ゆっくり発音してみましょう。';
     }
   }catch(e){
+    if(!stillCurrent())return;
     console.error('STT error',e);
-    status.className='status ok show';
-    status.innerHTML='<b>✓ 録音できました！</b><br>音声認識は利用できませんでしたが、録音は再生できます。';
+    statusEl.className='status ok show';
+    statusEl.innerHTML='<b>✓ 録音できました！</b><br>音声認識は利用できませんでしたが、録音は再生できます。';
   }
 }
 
@@ -309,12 +315,14 @@ let mediaRecorder=null;
 let microphoneStream=null;
 let chunks=[];
 let recordedURL=null;
+let recordingGeneration=0;
 let isRecording=false;
 let starting=false;
 let autoStopTimer=null;
 
 function clearRecording(){
-  if(typeof audioArea!=='undefined') audioArea.innerHTML='';
+  recordingGeneration++;
+  if(getEl('audioArea')) getEl('audioArea').innerHTML='';
   if(recordedURL){
     URL.revokeObjectURL(recordedURL);
     recordedURL=null;
@@ -385,17 +393,17 @@ async function toggleRecording(){
   }
   if(starting) return;
 
-  const btn=recordBtn;
+  const btn=getEl('recordBtn');
 
   if(!window.isSecureContext){
-    status.className='status info show';
-    status.textContent='録音には HTTPS 接続が必要です。https://jinyu-chinese.com から開いてください。';
+    getEl('status').className='status info show';
+    getEl('status').textContent='録音には HTTPS 接続が必要です。https://jinyu-chinese.com から開いてください。';
     return;
   }
 
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder==='undefined'){
-    status.className='status info show';
-    status.textContent=isInAppBrowser()
+    getEl('status').className='status info show';
+    getEl('status').textContent=isInAppBrowser()
       ? 'LINEなどのアプリ内ブラウザでは録音できない場合があります。右上メニューから Chrome / Safari で開いてください。'
       : 'このブラウザでは録音機能を利用できません。Chrome または Safari の最新版でお試しください。';
     return;
@@ -447,8 +455,8 @@ async function toggleRecording(){
 
     recorder.onerror=e=>{
       console.error('MediaRecorder error',e);
-      status.className='status info show';
-      status.textContent='録音中にエラーが発生しました。Chrome / Safari でページを開き直してお試しください。';
+      getEl('status').className='status info show';
+      getEl('status').textContent='録音中にエラーが発生しました。Chrome / Safari でページを開き直してお試しください。';
     };
 
     recorder.onstop=()=>{
@@ -471,8 +479,8 @@ async function toggleRecording(){
       mediaRecorder=null;
 
       if(!blob.size){
-        status.className='status info show';
-        status.textContent='音声データを保存できませんでした。Chrome / Safari でページを開き直してもう一度お試しください。';
+        getEl('status').className='status info show';
+        getEl('status').textContent='音声データを保存できませんでした。Chrome / Safari でページを開き直してもう一度お試しください。';
         return;
       }
 
@@ -510,13 +518,13 @@ async function toggleRecording(){
         }
       });
 
-      audioArea.innerHTML='';
-      audioArea.appendChild(a);
+      getEl('audioArea').innerHTML='';
+      getEl('audioArea').appendChild(a);
 
-      status.className='status ok show';
-      status.innerHTML='<b>✓ 録音できました！</b><br>自分の声と標準音声を聞き比べてみましょう。';
+      getEl('status').className='status ok show';
+      getEl('status').innerHTML='<b>✓ 録音できました！</b><br>自分の声と標準音声を聞き比べてみましょう。';
 
-      recognizeRecordedSpeech(blob);
+      recognizeRecordedSpeech(blob, recordingGeneration);
     };
 
     recorder.start(250);
@@ -526,8 +534,8 @@ async function toggleRecording(){
     btn.classList.add('recording');
     btn.textContent='■ 録音を停止';
 
-    status.className='status info show';
-    status.innerHTML='<b>● 録音中…</b><br>「'+round[idx].cn+'」と発音してみましょう。';
+    getEl('status').className='status info show';
+    getEl('status').innerHTML='<b>● 録音中…</b><br>「'+round[idx].cn+'」と発音してみましょう。';
 
     autoStopTimer=setTimeout(()=>{
       if(mediaRecorder && mediaRecorder.state==='recording') stopRecording();
@@ -544,8 +552,8 @@ async function toggleRecording(){
     btn.classList.remove('recording');
     btn.textContent='🎙 録音する';
 
-    status.className='status info show';
-    status.textContent=recordingErrorMessage(e);
+    getEl('status').className='status info show';
+    getEl('status').textContent=recordingErrorMessage(e);
   }
 }
 
