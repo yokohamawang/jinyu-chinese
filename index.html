@@ -918,8 +918,53 @@ body{overflow-x:hidden}
 }
 </style>
 
-</head><body>
-<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.98</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
+
+<style id="demo1099-home-navigation-clean">
+/* DEMO 10.99 — Home is navigation only. Existing feature internals stay untouched. */
+.home-free-preview,
+.learning-path-image{
+  display:none!important;
+}
+
+/* Initial home: show only the brand + three navigation cards. */
+body.app-home-mode #listeningGame,
+body.app-home-mode #flow,
+body.app-home-mode #pandaChat,
+body.app-home-mode #examplePractice,
+body.app-home-mode #examples,
+body.app-home-mode #voicePrivacy,
+body.app-home-mode .feedback-box,
+body.app-home-mode .floating-home{
+  display:none!important;
+}
+
+/* Inside a feature, hide the home/navigation area to avoid one long mixed page. */
+body.app-function-mode .brand-effect-header,
+body.app-function-mode .home-card-1060{
+  display:none!important;
+}
+
+/* Only the selected feature area is visible. Natural display values are preserved. */
+body.app-function-mode:not(.app-area-listen) #listeningGame,
+body.app-function-mode:not(.app-area-listen) #flow{
+  display:none!important;
+}
+body.app-function-mode:not(.app-area-chat) #pandaChat{
+  display:none!important;
+}
+body.app-function-mode:not(.app-area-repeat) #examplePractice,
+body.app-function-mode:not(.app-area-repeat) #examples{
+  display:none!important;
+}
+
+/* In feature mode, keep support/privacy below the chosen function if reached by a link. */
+body.app-function-mode .floating-home{
+  display:flex!important;
+}
+</style>
+
+</head><body class="app-home-mode">
+<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.99</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 
 <header class="brand-effect-header" aria-label="声調コーチ ブランド">
@@ -2812,5 +2857,80 @@ window.addEventListener('pagehide',()=>{chatGeneration++;chatStop();chatRelease(
    Keep complete pinyin readable; mouth motion may still animate with audio. */
 #mouthPop #popSteps{display:none!important}
 </style>
+
+
+<script id="demo1099-home-navigation-js">
+(function(){
+  const AREA_BY_HASH={
+    '#listeningGame':'listen',
+    '#pandaChat':'chat',
+    '#examplePractice':'repeat'
+  };
+
+  function setBodyMode(area){
+    document.body.classList.remove('app-home-mode','app-function-mode','app-area-listen','app-area-chat','app-area-repeat');
+    if(!area){
+      document.body.classList.add('app-home-mode');
+      return;
+    }
+    document.body.classList.add('app-function-mode','app-area-'+area);
+  }
+
+  function areaTarget(area){
+    if(area==='listen') return document.getElementById('listeningGame');
+    if(area==='chat') return document.getElementById('pandaChat');
+    if(area==='repeat') return document.getElementById('examplePractice');
+    return null;
+  }
+
+  window.openHomeArea=function(area){
+    setBodyMode(area);
+    const target=areaTarget(area);
+    requestAnimationFrame(function(){
+      if(target) target.scrollIntoView({block:'start',behavior:'auto'});
+    });
+  };
+
+  window.returnToAppHome=function(){
+    setBodyMode(null);
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+    requestAnimationFrame(function(){ window.scrollTo({top:0,left:0,behavior:'auto'}); });
+  };
+
+  function bindHomeNavigation(){
+    document.querySelectorAll('.lesson-steps a[href]').forEach(function(link){
+      const hash=link.getAttribute('href');
+      const area=AREA_BY_HASH[hash];
+      if(!area) return;
+      link.addEventListener('click',function(e){
+        e.preventDefault();
+        try{ history.replaceState(null,'',hash); }catch(err){}
+        window.openHomeArea(area);
+      });
+    });
+
+    const home=document.querySelector('.floating-home');
+    if(home){
+      home.addEventListener('click',function(e){
+        e.preventDefault();
+        window.returnToAppHome();
+      });
+    }
+
+    const initialArea=AREA_BY_HASH[location.hash];
+    if(initialArea){
+      window.openHomeArea(initialArea);
+    }else{
+      setBodyMode(null);
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',bindHomeNavigation,{once:true});
+  }else{
+    bindHomeNavigation();
+  }
+})();
+</script>
 
 </body></html>
