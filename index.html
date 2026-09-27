@@ -919,7 +919,7 @@ body{overflow-x:hidden}
 </style>
 
 </head><body>
-<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.94</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
+<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.96</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 
 <header class="brand-effect-header" aria-label="声調コーチ ブランド">
@@ -1098,25 +1098,43 @@ function stagesFor(char){
  let py='';try{py=pinyinPro.pinyin(char,{toneType:'none'}).toLowerCase()}catch(e){}
  if(!/^[a-zü]+$/.test(py))return [[char,'mid']];
  const initial=py.match(/^(zh|ch|sh|[bpmfdtnlgkhjqxrzcsyw])/)?.[0]||'';
- const final=py.slice(initial.length);const stages=[];
- if(/[bpm]/.test(initial)&&initial.length===1)stages.push([initial,'closed']);
- else if(/^(f|sh|ch|zh|r|j|q|x|y)$/.test(initial))stages.push([initial,'narrow']);
- else if(/^(w)$/.test(initial))stages.push([initial,'round']);
- else if(/^(d|t|n|l|z|c|s|g|k|h)$/.test(initial))stages.push([initial,'mid']);
- const add=(label,shape)=>{if(!stages.length||stages[stages.length-1][1]!==shape)stages.push([label,shape])};
- if(/^(ao|iao|uao)/.test(final)){add('a','open');add('o','round')}
- else if(/^(ai|uai)/.test(final)){add('a','open');add('i','narrow')}
- else if(/^ei/.test(final)){add('e','mid');add('i','narrow')}
- else if(/^(ui|uei)/.test(final)){add('u','round');add('i','narrow')}
- else if(/^(ia|ian|iang)/.test(final)){add('i','narrow');add('a','open')}
- else if(/^(ua|uan|uang)/.test(final)){add('u','round');add('a','open')}
- else if(/^(uo|ou|o|u|ü|iong|ong)/.test(final))add('o/u','round');
- else if(/^(i|ie|in|ing)/.test(final))add('i','narrow');
- else if(/a/.test(final))add('a','open');
- else if(/e/.test(final))add('e','mid');
- else add(py,'mid');
+ const final=py.slice(initial.length);
+ const stages=[];
+ const push=(label,shape)=>{
+   if(!label)return;
+   const last=stages[stages.length-1];
+   if(!last||last[0]!==label||last[1]!==shape)stages.push([label,shape]);
+ };
+ if(/[bpm]/.test(initial)&&initial.length===1)push(initial,'closed');
+ else if(/^(f|sh|ch|zh|r|j|q|x|y)$/.test(initial))push(initial,'narrow');
+ else if(/^(w)$/.test(initial))push(initial,'round');
+ else if(/^(d|t|n|l|z|c|s|g|k|h)$/.test(initial))push(initial,'mid');
+
+ if(/^(ao|iao|uao)/.test(final)){push('a','open');push('o','round')}
+ else if(/^(ai|uai)/.test(final)){push('a','open');push('i','narrow')}
+ else if(/^ei/.test(final)){push('e','mid');push('i','narrow')}
+ else if(/^(ui|uei)/.test(final)){push('u','round');push('i','narrow')}
+ else if(/^(iu|iou)/.test(final)){push('i','narrow');push('u','round')}
+ else if(/^(ia|ian|iang)/.test(final)){push('i','narrow');push('a','open')}
+ else if(/^(ua|uan|uang)/.test(final)){push('u','round');push('a','open')}
+ else if(/^uo/.test(final)){push('u','round');push('o','round')}
+ else if(/^ou/.test(final)){push('o','round');push('u','round')}
+ else if(/^iong/.test(final)){push('i','narrow');push('o','round');push('ng','mid')}
+ else if(/^ong/.test(final)){push('o','round');push('ng','mid')}
+ else if(/^ing/.test(final)){push('i','narrow');push('ng','mid')}
+ else if(/^in/.test(final)){push('i','narrow');push('n','mid')}
+ else if(/^ie/.test(final)){push('i','narrow');push('e','mid')}
+ else if(/^o/.test(final))push('o','round');
+ else if(/^u/.test(final))push('u','round');
+ else if(/^ü/.test(final))push('ü','round');
+ else if(/^i/.test(final))push('i','narrow');
+ else if(/a/.test(final))push('a','open');
+ else if(/e/.test(final))push('e','mid');
+ else push(py,'mid');
  return stages;
 }
+
+/* DEMO 10.95 — keep pinyin stage letters complete even when adjacent stages use the same mouth shape (e.g. wo, shi). */
 const PHASE_WEIGHTS={m:[.16,.53,.31],sh:[.29,.34,.37],t:[.15,.62,.23]};
 function stageAtProgress(stages,progress){if(stages.length<2)return 0;const first=stages[0][0];const weights=PHASE_WEIGHTS[first]||stages.map(()=>1/stages.length);const total=weights.reduce((a,b)=>a+b,0);let edge=0;for(let i=0;i<stages.length;i++){edge+=weights[i]/total;if(progress<edge)return i}return stages.length-1}
 function paintFace(box,stage){if(!box)return;const face=box.querySelector('.cartoon-face,.mouth-current-mascot');const oval=box.querySelector('ellipse');const tongue=box.querySelector('.tongue');if(!face||!oval)return;let [rx,ry]=LIP_SHAPES[stage[1]]||LIP_SHAPES.mid;oval.setAttribute('rx',Math.round(rx*.7));oval.setAttribute('ry',Math.max(2,Math.round(ry*.67)));tongue.style.opacity=stage[1]==='open'?'0.72':'0';tongue.style.transform='translateY(0)';face.classList.add('talking')}
@@ -1179,7 +1197,29 @@ function playGuideSlow(loop){
 function hideMouthPop(){const p=getEl('mouthPop');if(p){p.classList.remove('visible');p.setAttribute('aria-hidden','true');if(p.parentNode!==document.body)document.body.appendChild(p)}cancelAnimationFrame(mouthFrame);mouthFrame=0;activeAudio=null;activeChatBubble=null;activeChatPinyin=null;mouthToken++}
 function syllables(text){return [...text].filter(c=>/\p{Script=Han}/u.test(c))}
 function startMouthPop(text,audio,token){if(token!==mouthToken||activeAudio===audio||audio.ended)return;activeAudio=audio;const p=getEl('mouthPop'),face=getEl('popFace');if(!p||!face)return;face.innerHTML=mouthMascotHtml();const anchor=activeChatBubble?.isConnected?activeChatBubble:getEl('resultScreen')?.classList.contains('visible')?getEl('resultScreen').querySelector('.review-list')||getEl('resultScreen').querySelector('.score'):activeMouthExample>=0?examplesBox.children[activeMouthExample]?.querySelector('.example-buttons'):getEl('reveal')?.classList.contains('show')?getEl('pronunciationActions'):getEl('quiz')?.querySelector('.play')||getEl('flow');if(anchor)anchor.insertAdjacentElement('afterend',p);p.classList.add('visible');if(p.getBoundingClientRect().bottom>window.innerHeight-8)p.scrollIntoView({behavior:'smooth',block:'nearest'});p.setAttribute('aria-hidden','false');const chars=syllables(text),single=chars.length===1;let lastKey='';
- const frame=()=>{if(token!==mouthToken||audio!==activeAudio||audio.paused||audio.ended)return;const duration=Number.isFinite(audio.duration)&&audio.duration>0?audio.duration:Math.max(.7,chars.length*.45);const lead=Math.min(.09,duration*.09);const fraction=Math.min(.999,Math.max(0,(audio.currentTime+lead)/duration));const ci=Math.min(chars.length-1,Math.floor(fraction*chars.length));const char=chars[Math.max(0,ci)]||text;const stages=stagesFor(char);const local=(fraction*chars.length)-ci;const si=stageAtProgress(stages,Math.max(0,local));const key=ci+':'+si;if(key!==lastKey){lastKey=key;if(activeChatPinyin){activeChatPinyin.querySelectorAll('.chat-pinyin-syllable').forEach((span,j)=>span.classList.toggle('speaking',j===ci))}paintFace(face,stages[si]);const word=getEl('popWord');word.replaceChildren();if(single){word.textContent=(!answered&&round[idx]&&text===round[idx].cn)?'発音を聞こう':char+'  '+(PINYIN_HINT[char]||'')}else{chars.forEach((c,j)=>{const span=document.createElement('span');span.textContent=c;span.style.cssText=j===ci?'color:#168e75;background:#d8f5e5;border-radius:5px;padding:2px;cursor:pointer;':'padding:2px;cursor:pointer;';span.tabIndex=0;span.setAttribute('role','button');span.setAttribute('aria-label',c+' の口の形を見る');span.onclick=()=>showSyllableDetail(c);span.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showSyllableDetail(c)}};word.appendChild(span)})}const stepsEl=getEl('popSteps');if(!answered&&round[idx]&&text===round[idx].cn){stepsEl.replaceChildren()}else paintStages(stepsEl,stages,si,()=>{if(single){openMouthGuide()}else showSyllableDetail(char)});getEl('popNote').textContent=single?'ピンインから作った唇の形の目安です。':'唇の形と文字の切り替えは目安です。音声との完全な同期ではありません。'}mouthFrame=requestAnimationFrame(frame)};mouthFrame=requestAnimationFrame(frame)}
+ const frame=()=>{if(token!==mouthToken||audio!==activeAudio||audio.paused||audio.ended)return;const duration=Number.isFinite(audio.duration)&&audio.duration>0?audio.duration:Math.max(.7,chars.length*.45);const lead=Math.min(.09,duration*.09);const fraction=Math.min(.999,Math.max(0,(audio.currentTime+lead)/duration));const ci=Math.min(chars.length-1,Math.floor(fraction*chars.length));const char=chars[Math.max(0,ci)]||text;const stages=stagesFor(char);const local=(fraction*chars.length)-ci;const si=stageAtProgress(stages,Math.max(0,local));const key=ci+':'+si;if(key!==lastKey){lastKey=key;if(activeChatPinyin){activeChatPinyin.querySelectorAll('.chat-pinyin-syllable').forEach((span,j)=>span.classList.toggle('speaking',j===ci))}paintFace(face,stages[si]);const word=getEl('popWord');word.replaceChildren();if(single){word.textContent=(!answered&&round[idx]&&text===round[idx].cn)?'発音を聞こう':char+'  '+(PINYIN_HINT[char]||'')}else{
+  const line=document.createElement('span');
+  line.className='playback-syllable-line';
+  chars.forEach((c,j)=>{
+    const span=document.createElement('span');
+    span.className='playback-syllable'+(j===ci?' active':'');
+    span.tabIndex=0;
+    span.setAttribute('role','button');
+    span.setAttribute('aria-label',c+' の口の形を見る');
+    const cn=document.createElement('span');
+    cn.className='playback-syllable-cn';
+    cn.textContent=c;
+    const py=document.createElement('span');
+    py.className='playback-syllable-py';
+    py.textContent=PINYIN_HINT[c]||chatPinyinFor(c)||'';
+    span.appendChild(cn);
+    span.appendChild(py);
+    span.onclick=()=>showSyllableDetail(c);
+    span.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showSyllableDetail(c)}};
+    line.appendChild(span);
+  });
+  word.appendChild(line);
+}const stepsEl=getEl('popSteps');if(!answered&&round[idx]&&text===round[idx].cn){stepsEl.replaceChildren()}else paintStages(stepsEl,stages,si,()=>{if(single){openMouthGuide()}else showSyllableDetail(char)});getEl('popNote').textContent=single?'ピンインから作った唇の形の目安です。':'唇の形と文字の切り替えは目安です。音声との完全な同期ではありません。'}mouthFrame=requestAnimationFrame(frame)};mouthFrame=requestAnimationFrame(frame)}
 function showSyllableDetail(char){const chatTarget=activeChatBubble;hideMouthPop();const i=activeMouthExample>=0?activeMouthExample:examplePracticeIndex;const target=chatTarget?.isConnected?chatTarget:i>=0?examplesBox.children[i]:getEl('flow');if(!target)return;let box=target.querySelector('.mouth-syllable');if(!box){box=document.createElement('div');box.className='mouth-syllable';target.appendChild(box)}box.replaceChildren();const title=document.createElement('b');title.textContent=char+' '+(PINYIN_HINT[char]||chatPinyinFor(char))+' の唇の形（目安）';box.appendChild(title);const face=document.createElement('div');face.innerHTML=faceHtml();face.style.cssText='display:flex;justify-content:center;margin:8px';box.appendChild(face);const row=document.createElement('div');row.className='mouth-pop-steps';row.style.justifyContent='center';box.appendChild(row);const steps=stagesFor(char);const select=n=>{paintFace(face,steps[n]);paintStages(row,steps,n,select)};select(0);box.scrollIntoView({behavior:'smooth',block:'nearest'})}
 function localDayKey(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),d=String(date.getDate()).padStart(2,'0');return y+'-'+m+'-'+d}
 function dayDistance(a,b){const parse=x=>{const p=x.split('-').map(Number);return Date.UTC(p[0],p[1]-1,p[2])/86400000};return parse(b)-parse(a)}
@@ -2710,6 +2750,61 @@ window.addEventListener('pagehide',()=>{chatGeneration++;chatStop();chatRelease(
 .mouth-pop-word {
   padding-left: 4px !important;
   padding-right: 4px !important;
+}
+</style>
+
+
+<style id="demo1096-pinyin-readable-playback">
+/* DEMO 10.96 — during sentence playback, keep the full pinyin line visible.
+   Only the highlight moves; the text itself no longer appears/disappears rapidly. */
+.playback-syllable-line{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:flex-start;
+  gap:5px;
+  width:100%;
+  margin-top:2px;
+}
+.playback-syllable{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:36px;
+  padding:4px 5px 5px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.playback-syllable-cn{
+  display:block;
+  font-size:18px;
+  line-height:1.15;
+  color:#355f55;
+  font-weight:800;
+}
+.playback-syllable-py{
+  display:block;
+  margin-top:3px;
+  font-size:15px;
+  line-height:1.15;
+  color:#a45e41;
+  font-weight:850;
+  white-space:nowrap;
+}
+.playback-syllable.active{
+  background:#dff5e9;
+  box-shadow:0 0 0 2px #a9dcc6 inset;
+  transform:scale(1.04);
+}
+.playback-syllable.active .playback-syllable-cn{color:#168e75}
+.playback-syllable.active .playback-syllable-py{color:#c66e45}
+@media(max-width:360px){
+  .playback-syllable-line{gap:3px}
+  .playback-syllable{min-width:31px;padding:3px 3px 4px}
+  .playback-syllable-cn{font-size:16px}
+  .playback-syllable-py{font-size:13px}
 }
 </style>
 
