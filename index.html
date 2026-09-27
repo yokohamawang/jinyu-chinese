@@ -919,7 +919,7 @@ body{overflow-x:hidden}
 </style>
 
 </head><body>
-<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.93</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
+<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.94</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 
 <header class="brand-effect-header" aria-label="声調コーチ ブランド">
@@ -1100,7 +1100,9 @@ function stagesFor(char){
  const initial=py.match(/^(zh|ch|sh|[bpmfdtnlgkhjqxrzcsyw])/)?.[0]||'';
  const final=py.slice(initial.length);const stages=[];
  if(/[bpm]/.test(initial)&&initial.length===1)stages.push([initial,'closed']);
- else if(/^(f|sh|ch|zh)$/.test(initial))stages.push([initial,'narrow']);
+ else if(/^(f|sh|ch|zh|r|j|q|x|y)$/.test(initial))stages.push([initial,'narrow']);
+ else if(/^(w)$/.test(initial))stages.push([initial,'round']);
+ else if(/^(d|t|n|l|z|c|s|g|k|h)$/.test(initial))stages.push([initial,'mid']);
  const add=(label,shape)=>{if(!stages.length||stages[stages.length-1][1]!==shape)stages.push([label,shape])};
  if(/^(ao|iao|uao)/.test(final)){add('a','open');add('o','round')}
  else if(/^(ai|uai)/.test(final)){add('a','open');add('i','narrow')}
@@ -1126,6 +1128,7 @@ const TONGUE_POSITIONS={
  sh:['M43 67 Q62 58 91 65 Q137 82 210 91 Q146 105 90 102 Z','舌先を上あごに近づけ、触れずに息を通す。'],
  u:['M43 91 Q102 92 164 77 Q190 69 210 85 Q159 106 90 104 Z','唇を丸め、舌の奥を高くする。'],
  t:['M43 57 Q59 61 82 73 Q142 84 210 91 Q145 105 90 103 Z','舌先を上の歯の後ろにつけ、すぐ離す。'],
+ n:['M43 57 Q59 61 82 73 Q142 84 210 91 Q145 105 90 103 Z','舌先を上の歯ぐきの後ろにつけ、鼻に響かせる。'],
  ng:['M43 94 Q107 93 168 62 Q196 52 216 78 Q170 106 93 105 Z','舌の奥を上あごの奥に近づける。'],
  mid:['M43 88 Q110 84 160 83 Q187 80 210 91 Q144 106 90 104 Z','舌を自然な位置に。'],
  round:['M43 91 Q102 92 164 77 Q190 69 210 85 Q159 106 90 104 Z','唇を丸め、舌の奥を上げる。'],
