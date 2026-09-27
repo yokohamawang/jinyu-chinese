@@ -2657,41 +2657,18 @@ window.addEventListener('pagehide',()=>{chatGeneration++;chatStop();chatRelease(
 </style>
 
 
-<style id="demo1094-result-panda-resize">
-/* DEMO 10.94 — result page mascot resized and visually softened. */
-.result-screen .score{padding-top:16px!important}
-.result-sparkles{margin-bottom:6px!important}
+<style id="demo1095-result-panda-balanced">
+/* DEMO 10.95 - based directly on working 10.93; only resize the result mascot container. */
 .result-panda-wrap{
-  width:132px!important;
-  height:132px!important;
-  margin:10px auto 8px!important;
-  overflow:hidden!important;
-  border:none!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  border-radius:28px!important;
-  display:grid!important;
-  place-items:center!important;
+  width:166px!important;
+  height:170px!important;
+  margin:10px auto 6px!important;
 }
-.result-panda-img{
-  width:124%!important;
-  height:124%!important;
-  object-fit:cover!important;
-  object-position:center 44%!important;
-  transform:translateY(2px)!important;
-  border-radius:28px!important;
-  -webkit-mask-image:radial-gradient(ellipse at center,#000 55%,rgba(0,0,0,.98) 66%,rgba(0,0,0,.5) 80%,transparent 91%)!important;
-  mask-image:radial-gradient(ellipse at center,#000 55%,rgba(0,0,0,.98) 66%,rgba(0,0,0,.5) 80%,transparent 91%)!important;
-  filter:drop-shadow(0 8px 8px rgba(72,115,87,.15))!important;
+@media(max-width:390px){
+  .result-panda-wrap{width:158px!important;height:162px!important;}
 }
-@media (max-width:390px){
-  .result-panda-wrap{width:122px!important;height:122px!important;margin:8px auto 8px!important}
-  .result-panda-img{width:122%!important;height:122%!important}
-}
-@media (max-width:350px){
-  .result-panda-wrap{width:114px!important;height:114px!important}
-  .result-panda-img{width:120%!important;height:120%!important}
+@media(max-width:350px){
+  .result-panda-wrap{width:150px!important;height:154px!important;}
 }
 </style>
-
 </body></html>
