@@ -963,8 +963,23 @@ body.app-function-mode .floating-home{
 }
 </style>
 
+
+<style id="demo10105-recording-state-restored">
+/* DEMO 10.105 — restore clear microphone states without touching recording/audio logic. */
+#recordBtn{transition:transform .16s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease}
+#recordBtn.preparing{background:radial-gradient(circle at 30% 28%,#ffd7a8,#ffc078 62%,#ffad61 100%);border-color:#ffe3bd;box-shadow:0 10px 22px rgba(255,171,91,.28)}
+#recordBtn.preparing::before{content:'…';font-family:system-ui,-apple-system,sans-serif;font-size:54px;line-height:1;color:#fff;letter-spacing:5px;animation:recordPreparing 1s ease-in-out infinite}
+#recordBtn.preparing::after{content:'準備中…';color:#dd8a32}
+#recordBtn.recording{background:radial-gradient(circle at 30% 28%,#ff8e9d,#ff5f72 60%,#ef4058 100%);border-color:#ffc1ca;box-shadow:0 0 0 0 rgba(239,64,88,.34),0 12px 25px rgba(239,64,88,.28);animation:recordPulse 1.15s ease-out infinite}
+#recordBtn.recording::before{content:'■';font-family:system-ui,-apple-system,sans-serif;font-size:46px;line-height:1;color:#fff;text-shadow:none}
+#recordBtn.recording::after{content:'タップして停止';color:#e94d62;font-size:19px}
+#recordBtn.recording:active{transform:scale(.95)}
+@keyframes recordPulse{0%{box-shadow:0 0 0 0 rgba(239,64,88,.34),0 12px 25px rgba(239,64,88,.28)}70%{box-shadow:0 0 0 15px rgba(239,64,88,0),0 12px 25px rgba(239,64,88,.20)}100%{box-shadow:0 0 0 0 rgba(239,64,88,0),0 12px 25px rgba(239,64,88,.28)}}
+@keyframes recordPreparing{0%,100%{opacity:.55;transform:translateY(0)}50%{opacity:1;transform:translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){#recordBtn.recording,#recordBtn.preparing::before{animation:none}}
+</style>
 </head><body class="app-home-mode">
-<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.104</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
+<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.105</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 
 <header class="brand-effect-header" aria-label="声調コーチ ブランド">
@@ -1486,6 +1501,7 @@ function speak(t,exampleIndex){activeMouthExample=Number.isInteger(exampleIndex)
 function playQuestion(){audioDiag('① playQuestion 実行','ok');activeMouthExample=-1;try{if(!round||!round[idx]){audioDiag('問題データ未初期化 → newRound() を再実行','err');newRound()}const q=round&&round[idx];audioDiag('問題データ: '+JSON.stringify(q));if(!q||!q.cn)throw new Error('問題データを取得できません');playMachine(q.cn)}catch(e){audioDiag('playQuestion ERROR: '+e.message,'err')}}
 function nextQuestion(){if(isRecording){stopRecording();return}if(!answered)return;dismissCelebration();if(idx<round.length-1){idx++;render();document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'})}else{showScore()}}
 function hideResultScreen(){const screen=getEl('resultScreen');if(!screen)return;if(screen.classList.contains('visible'))stopStandardAudio();screen.classList.remove('visible');screen.setAttribute('aria-hidden','true');document.body.classList.remove('showing-result');const count=getEl('count');if(count&&round.length)count.textContent=(idx+1)+' / '+round.length}
+/* DEMO 10.105: recording visual state restored on top of DEMO 10.104. */
 /* DEMO 10.104 — score-sensitive encouragement + varied full-score celebration.\n   Base: DEMO 10.103. No audio/recording/navigation logic changed. */
 function choosePerfectFx(){
   const types=['bubble','fireworks','confetti','stars','combo'];
@@ -2140,6 +2156,8 @@ async function toggleRecording(){stopStandardAudio();stopGuide();
 
   starting=true;
   btn.disabled=true;
+  btn.classList.remove('recording');
+  btn.classList.add('preparing');
   btn.textContent='🎙 準備中…';
 
   try{
@@ -2198,8 +2216,9 @@ async function toggleRecording(){stopStandardAudio();stopGuide();
       }
 
       btn.disabled=false;
-      btn.classList.remove('recording');
+      btn.classList.remove('recording','preparing');
       btn.textContent='🎙 もう一度録音';
+      btn.setAttribute('aria-label','もう一度録音');
 
       const mimeType=recorder.mimeType || (chunks[0]&&chunks[0].type) || 'audio/webm';
       const blob=new Blob(chunks,{type:mimeType});
@@ -2261,8 +2280,10 @@ async function toggleRecording(){stopStandardAudio();stopGuide();
     isRecording=true;
     starting=false;
     btn.disabled=false;
+    btn.classList.remove('preparing');
     btn.classList.add('recording');
     btn.textContent='■ 録音を停止';
+    btn.setAttribute('aria-label','録音を停止');
 
     getEl('status').className='status info show';
     getEl('status').innerHTML='<b>● 録音中…</b><br>「'+round[idx].cn+'」と発音してみましょう。';
@@ -2279,8 +2300,9 @@ async function toggleRecording(){stopStandardAudio();stopGuide();
     mediaRecorder=null;
 
     btn.disabled=false;
-    btn.classList.remove('recording');
+    btn.classList.remove('recording','preparing');
     btn.textContent='🎙 録音する';
+    btn.setAttribute('aria-label','録音する');
 
     getEl('status').className='status info show';
     getEl('status').textContent=recordingErrorMessage(e);
