@@ -964,7 +964,7 @@ body.app-function-mode .floating-home{
 </style>
 
 </head><body class="app-home-mode">
-<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.100</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
+<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.101</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 
 <header class="brand-effect-header" aria-label="声調コーチ ブランド">
@@ -3009,6 +3009,172 @@ window.addEventListener('pagehide',()=>{chatGeneration++;chatStop();chatRelease(
   .section-head#examplePractice::before{right:10px!important;padding:6px 9px!important;font-size:10px!important}
   .chat-title-row{padding-right:70px!important}
   .chat-card#pandaChat::before{right:10px!important}
+}
+</style>
+
+
+<style id="demo10101-unified-step-headers">
+/* DEMO 10.101
+   Base: DEMO 10.100
+   Scope: visual normalization of the three destination headers only.
+   No audio / recording / pinyin / mouth-animation / navigation logic changes. */
+
+:root{
+  --step-head-green:#2b755f;
+  --step-head-soft:#e9f8ef;
+  --step-head-border:#d7eadf;
+}
+
+/* Shared STEP pill: deliberately simple CSS for iOS Safari / Android Chrome compatibility. */
+.section-head#listeningGame::before,
+.section-head#examplePractice::before,
+.chat-title-row::before{
+  position:static!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  min-width:64px!important;
+  min-height:30px!important;
+  box-sizing:border-box!important;
+  margin:0 12px 0 0!important;
+  padding:6px 12px!important;
+  border:1px solid var(--step-head-border)!important;
+  border-radius:999px!important;
+  background:var(--step-head-soft)!important;
+  color:var(--step-head-green)!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  letter-spacing:.04em!important;
+  transform:none!important;
+  inset:auto!important;
+}
+
+/* STEP 1 */
+.section-head#listeningGame{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  min-height:54px!important;
+  margin:12px 0!important;
+  padding:0 4px!important;
+  box-sizing:border-box!important;
+}
+.section-head#listeningGame::before{content:"STEP 1"!important}
+.section-head#listeningGame h2{
+  margin:0!important;
+  color:#2d715f!important;
+  font-size:20px!important;
+  line-height:1.25!important;
+  font-weight:900!important;
+}
+.section-head#listeningGame #count{
+  margin-left:auto!important;
+  flex:0 0 auto!important;
+  padding:7px 10px!important;
+  border:1px solid #dce8e2!important;
+  border-radius:999px!important;
+  background:#eef7fb!important;
+  color:#66817a!important;
+  font-size:12px!important;
+  font-weight:850!important;
+  line-height:1!important;
+}
+
+/* STEP 2 */
+.chat-card#pandaChat::before{
+  content:none!important;
+  display:none!important;
+}
+.chat-title-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  min-height:54px!important;
+  gap:0!important;
+  padding:0 4px!important;
+  margin:0 0 12px!important;
+  box-sizing:border-box!important;
+}
+.chat-title-row::before{content:"STEP 2"!important}
+.chat-title-row h2{
+  margin:0!important;
+  color:#2d715f!important;
+  font-size:20px!important;
+  line-height:1.25!important;
+  font-weight:900!important;
+}
+.chat-title-note{
+  margin-left:auto!important;
+  flex:0 1 auto!important;
+  max-width:42%!important;
+  color:#71867e!important;
+  font-size:11px!important;
+  line-height:1.25!important;
+  font-weight:800!important;
+  text-align:right!important;
+  white-space:normal!important;
+}
+
+/* STEP 3 */
+.section-head#examplePractice{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  min-height:54px!important;
+  margin:12px 0!important;
+  padding:0 4px!important;
+  box-sizing:border-box!important;
+}
+.section-head#examplePractice::before{content:"STEP 3"!important}
+.section-head#examplePractice h2{
+  margin:0!important;
+  color:#2d715f!important;
+  font-size:20px!important;
+  line-height:1.25!important;
+  font-weight:900!important;
+}
+.section-head#examplePractice > span{
+  display:none!important;
+}
+
+/* Stable anchor landing on mobile browsers, without relying on newer viewport units. */
+#listeningGame,
+#pandaChat,
+#examplePractice{
+  scroll-margin-top:16px!important;
+}
+
+/* Narrow phones: preserve one-line hierarchy without clipping. */
+@media (max-width:390px){
+  .section-head#listeningGame::before,
+  .section-head#examplePractice::before,
+  .chat-title-row::before{
+    min-width:58px!important;
+    min-height:28px!important;
+    margin-right:9px!important;
+    padding:5px 9px!important;
+    font-size:10px!important;
+  }
+  .section-head#listeningGame h2,
+  .section-head#examplePractice h2,
+  .chat-title-row h2{
+    font-size:18px!important;
+  }
+  .section-head#listeningGame #count{
+    padding:6px 8px!important;
+    font-size:11px!important;
+  }
+  .chat-title-note{
+    max-width:36%!important;
+    font-size:10px!important;
+  }
+}
+
+/* Very narrow Android/iPhone widths: allow auxiliary text to disappear before the title wraps badly. */
+@media (max-width:350px){
+  .chat-title-note{display:none!important}
 }
 </style>
 
