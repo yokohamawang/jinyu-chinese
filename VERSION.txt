@@ -1,3 +1,3 @@
-Koepanda DEMO 10.106
-Base: DEMO 10.105
-Change scope: file split / maintainability only
+Koepanda DEMO 10.106.1
+Base: DEMO 10.106 split build
+Patch: synchronized mouth/tongue guide for answer reveal, slow standard audio, and contrast audio
