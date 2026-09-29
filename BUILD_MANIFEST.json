@@ -1,0 +1,13 @@
+{
+  "version": "DEMO 10.106",
+  "base_version": "DEMO 10.105",
+  "purpose": "structural split only; no intentional feature/UI behavior changes",
+  "original_10_105_index_sha256": "46919724a1898a055d353f93bf5e64df8b239388c23bd61b05029084365ad4d5",
+  "style_files": 27,
+  "script_files": 3,
+  "notes": [
+    "Each former inline style/script is kept at the same DOM position via external same-origin file reference.",
+    "Existing embedded images/audio remain inline in this version to minimize regression risk.",
+    "data/ and assets/ folder skeletons are prepared for future course/reward/story/season work."
+  ]
+}
