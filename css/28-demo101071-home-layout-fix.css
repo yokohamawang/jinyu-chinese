@@ -1,0 +1,103 @@
+/* DEMO 10.107.1 — iPhone/Safari homepage layout repair only.
+   Keeps 10.107 branding/background/streak visuals; restores the stable stacked lesson-card structure.
+   No audio, recording, mouth-sync, quiz or navigation logic changes. */
+body.app-home-mode .lesson-heading{
+  display:grid!important;
+  grid-template-columns:44px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:9px!important;
+}
+body.app-home-mode .lesson-heading-copy{min-width:0!important;width:auto!important;writing-mode:horizontal-tb!important}
+body.app-home-mode .lesson-heading h1,
+body.app-home-mode .lesson-heading p{writing-mode:horizontal-tb!important;word-break:normal!important;overflow-wrap:normal!important}
+body.app-home-mode .lesson-heading h1{white-space:normal!important}
+body.app-home-mode .home-streak-live{writing-mode:horizontal-tb!important;white-space:nowrap!important}
+
+body.app-home-mode .lesson-steps{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:11px!important;
+  width:100%!important;
+}
+body.app-home-mode .lesson-step{
+  display:grid!important;
+  grid-template-columns:34px 54px minmax(0,1fr) 24px!important;
+  grid-template-rows:1fr!important;
+  align-items:center!important;
+  gap:10px!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:92px!important;
+  height:auto!important;
+  padding:12px 12px 12px 5px!important;
+  border-radius:22px!important;
+  text-align:left!important;
+  overflow:visible!important;
+}
+body.app-home-mode .lesson-step:not(:last-child)::after{
+  display:block!important;
+  content:''!important;
+  position:absolute!important;
+  left:20px!important;
+  bottom:-15px!important;
+  height:17px!important;
+  border-left:3px dotted currentColor!important;
+  opacity:.28!important;
+}
+body.app-home-mode .step-number{
+  position:static!important;
+  display:grid!important;
+  place-items:center!important;
+  width:32px!important;
+  height:32px!important;
+  padding:0!important;
+  border-radius:50%!important;
+  background:currentColor!important;
+  color:#fff!important;
+  font-size:16px!important;
+  line-height:1!important;
+  box-shadow:none!important;
+}
+body.app-home-mode .step-number::before{content:none!important}
+body.app-home-mode .step-icon{
+  width:52px!important;height:52px!important;flex:none!important;margin:0!important;
+  border:0!important;border-radius:50%!important;background:#fff!important;font-size:28px!important;
+}
+body.app-home-mode .step-short{display:none!important}
+body.app-home-mode .step-copy{
+  display:block!important;width:auto!important;min-width:0!important;writing-mode:horizontal-tb!important;
+}
+body.app-home-mode .step-copy strong{
+  display:block!important;font-size:20px!important;line-height:1.2!important;font-weight:950!important;
+  writing-mode:horizontal-tb!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:break-word!important;
+}
+body.app-home-mode .step-copy small{
+  display:block!important;overflow:visible!important;-webkit-line-clamp:unset!important;-webkit-box-orient:initial!important;
+  margin-top:5px!important;font-size:13px!important;line-height:1.35!important;color:#66766f!important;font-weight:650!important;
+  text-shadow:none!important;writing-mode:horizontal-tb!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important;
+}
+body.app-home-mode .step-arrow{display:block!important;font-size:34px!important;line-height:1!important;color:currentColor!important;font-weight:850!important}
+body.app-home-mode .step-one{color:#197b5e!important;background:linear-gradient(180deg,#f4fff7,#fbfffc)!important;border-color:#afe0c6!important}
+body.app-home-mode .step-two{color:#865b22!important;background:linear-gradient(180deg,#fff9ea,#fffdf7)!important;border-color:#f0d49b!important}
+body.app-home-mode .step-three{color:#a72f4a!important;background:linear-gradient(180deg,#fff2f5,#fff8fa)!important;border-color:#efbdc8!important}
+
+@media(max-width:390px){
+  body.app-home-mode .lesson-heading{grid-template-columns:40px minmax(0,1fr) auto!important;gap:7px!important}
+  body.app-home-mode .lesson-heading h1{font-size:22px!important}
+  body.app-home-mode .home-streak-live{padding:7px 8px!important;font-size:11px!important}
+  body.app-home-mode .lesson-step{grid-template-columns:32px 48px minmax(0,1fr) 20px!important;gap:8px!important;min-height:88px!important;padding:11px 10px 11px 5px!important}
+  body.app-home-mode .step-number{width:30px!important;height:30px!important;font-size:15px!important}
+  body.app-home-mode .step-icon{width:47px!important;height:47px!important;font-size:25px!important}
+  body.app-home-mode .step-copy strong{font-size:18px!important}
+  body.app-home-mode .step-copy small{font-size:12px!important}
+}
+@media(max-width:350px){
+  body.app-home-mode .lesson-heading{grid-template-columns:38px minmax(0,1fr)!important}
+  body.app-home-mode .home-streak-live{grid-column:2!important;justify-self:start!important;margin-top:1px!important}
+  body.app-home-mode .lesson-steps{grid-template-columns:1fr!important}
+  body.app-home-mode .lesson-step{grid-template-columns:28px 44px minmax(0,1fr) 18px!important;grid-template-rows:1fr!important;min-height:86px!important;text-align:left!important;padding:10px 8px 10px 5px!important}
+  body.app-home-mode .step-number{width:28px!important;height:28px!important;font-size:14px!important}
+  body.app-home-mode .step-icon{grid-row:auto!important;width:43px!important;height:43px!important;font-size:23px!important}
+  body.app-home-mode .step-copy strong{font-size:16px!important}
+  body.app-home-mode .step-copy small{font-size:11px!important;text-align:left!important}
+}
