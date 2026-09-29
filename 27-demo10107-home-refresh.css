@@ -1,0 +1,224 @@
+/* DEMO 10.107 — homepage visual refresh only.
+   Base: DEMO 10.106.2. Stable baseline DEMO 10.105 untouched.
+   No audio, recording, mouth-sync, quiz or navigation logic is modified. */
+
+body.app-home-mode{
+  background:
+    radial-gradient(circle at 12% 7%,rgba(159,224,191,.34),transparent 22%),
+    radial-gradient(circle at 88% 12%,rgba(136,211,244,.28),transparent 24%),
+    linear-gradient(180deg,#eaf9f0 0%,#f8fff7 42%,#fffaf0 100%);
+}
+body.app-home-mode .phone{
+  position:relative;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse 150px 190px at -5% 18%,rgba(112,197,126,.14),transparent 72%),
+    radial-gradient(ellipse 180px 220px at 104% 29%,rgba(104,194,147,.13),transparent 73%),
+    linear-gradient(180deg,#f5fff8 0%,#fffdf5 46%,#f8fff6 100%)!important;
+  box-shadow:0 0 0 1px rgba(121,183,148,.18),0 18px 58px rgba(52,104,75,.14)!important;
+}
+body.app-home-mode .phone::before,
+body.app-home-mode .phone::after{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  width:95px;
+  height:180px;
+  opacity:.18;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 13px 31px at 50% 12%,#37a95e 0 66%,transparent 68%),
+    radial-gradient(ellipse 13px 31px at 30% 32%,#37a95e 0 66%,transparent 68%),
+    radial-gradient(ellipse 13px 31px at 70% 46%,#37a95e 0 66%,transparent 68%),
+    linear-gradient(90deg,transparent 48%,#3a9b58 49% 52%,transparent 53%);
+  filter:blur(.1px);
+}
+body.app-home-mode .phone::before{left:-38px;top:84px;transform:rotate(-17deg)}
+body.app-home-mode .phone::after{right:-38px;top:212px;transform:rotate(19deg) scaleX(-1)}
+
+body.app-home-mode .brand-effect-header{
+  position:relative;
+  z-index:1;
+  margin:0 0 15px!important;
+  padding:5px 5px 0!important;
+}
+body.app-home-mode .brand-effect-img{
+  width:calc(100% + 8px)!important;
+  max-width:none;
+  margin-left:-4px;
+  border-radius:30px!important;
+  box-shadow:0 10px 0 rgba(206,235,211,.75),0 20px 34px rgba(62,121,82,.16)!important;
+  transform:translateZ(0);
+}
+
+body.app-home-mode .home-card-1060{
+  position:relative;
+  z-index:1;
+  margin:0 0 16px!important;
+  padding:15px 11px 13px!important;
+  border:2px solid rgba(191,225,197,.95)!important;
+  border-radius:30px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,253,246,.97))!important;
+  box-shadow:0 7px 0 rgba(216,237,218,.95),0 15px 30px rgba(66,120,80,.10)!important;
+}
+body.app-home-mode .lesson-heading{
+  display:grid!important;
+  grid-template-columns:44px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:9px!important;
+  padding:2px 4px 13px!important;
+}
+body.app-home-mode .lesson-heading-copy{min-width:0}
+body.app-home-mode .lesson-leaf{
+  flex-basis:auto!important;
+  width:44px!important;
+  height:44px!important;
+  background:linear-gradient(145deg,#e8fae6,#d7f4dd)!important;
+  box-shadow:inset 0 0 0 1px #cbe9d0,0 3px 0 #d9eadc;
+}
+body.app-home-mode .lesson-heading h1{
+  font-size:25px!important;
+  color:#174f42!important;
+  letter-spacing:-.035em!important;
+}
+body.app-home-mode .lesson-heading p{
+  margin-top:5px!important;
+  font-size:12px!important;
+  color:#61756d!important;
+}
+body.app-home-mode .home-streak-live{
+  align-self:start;
+  white-space:nowrap;
+  padding:8px 10px;
+  border:1px solid #ffd8a2;
+  border-radius:999px;
+  background:linear-gradient(180deg,#fff9e8,#fff0cf);
+  color:#e96b24;
+  font-size:12px;
+  line-height:1;
+  font-weight:900;
+  box-shadow:0 3px 0 #f7dfb6;
+}
+
+body.app-home-mode .lesson-steps{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+body.app-home-mode .lesson-step{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:6px!important;
+  min-width:0!important;
+  min-height:174px!important;
+  padding:12px 7px 10px!important;
+  border-width:2px!important;
+  border-radius:24px!important;
+  text-align:center!important;
+  box-shadow:0 6px 0 rgba(0,0,0,.08),0 11px 18px rgba(54,95,70,.08)!important;
+  overflow:hidden!important;
+}
+body.app-home-mode .lesson-step:not(:last-child)::after{display:none!important}
+body.app-home-mode .step-one{
+  color:#a93f30!important;
+  background:linear-gradient(180deg,#ffd5a7 0%,#ff9c8d 47%,#ff6d71 100%)!important;
+  border-color:#ffb07d!important;
+}
+body.app-home-mode .step-two{
+  color:#0f72a9!important;
+  background:linear-gradient(180deg,#c9f0ff 0%,#73c9f3 45%,#42a9e8 100%)!important;
+  border-color:#91d4f5!important;
+}
+body.app-home-mode .step-three{
+  color:#257b3d!important;
+  background:linear-gradient(180deg,#d8f7b7 0%,#93df7c 45%,#55bc64 100%)!important;
+  border-color:#9bdf83!important;
+}
+body.app-home-mode .step-number{
+  position:absolute!important;
+  right:8px!important;
+  bottom:7px!important;
+  width:auto!important;
+  height:auto!important;
+  padding:4px 7px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.9)!important;
+  color:currentColor!important;
+  font-size:10px!important;
+  line-height:1!important;
+  box-shadow:none!important;
+}
+body.app-home-mode .step-number::before{content:'Step '}
+body.app-home-mode .step-icon{
+  width:58px!important;
+  height:58px!important;
+  flex:0 0 58px!important;
+  margin-top:0!important;
+  border:2px solid rgba(255,255,255,.9)!important;
+  background:rgba(255,255,255,.92)!important;
+  font-size:30px!important;
+  box-shadow:0 5px 12px rgba(54,86,69,.12)!important;
+}
+body.app-home-mode .step-short{
+  display:block!important;
+  color:#fff!important;
+  font-size:23px!important;
+  line-height:1.05!important;
+  font-weight:950!important;
+  letter-spacing:-.03em!important;
+  text-shadow:0 2px 0 rgba(0,0,0,.09)!important;
+}
+body.app-home-mode .step-copy{display:block!important;width:100%!important}
+body.app-home-mode .step-copy strong{
+  display:none!important;
+}
+body.app-home-mode .step-copy small{
+  display:-webkit-box!important;
+  overflow:hidden!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  margin:0!important;
+  color:rgba(255,255,255,.97)!important;
+  font-size:10.5px!important;
+  line-height:1.3!important;
+  font-weight:800!important;
+  text-shadow:0 1px 0 rgba(0,0,0,.08)!important;
+}
+body.app-home-mode .step-arrow{display:none!important}
+body.app-home-mode .lesson-step:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.08)!important}
+
+body.app-home-mode .home-free-preview{
+  border-color:#d8ead8!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(249,255,247,.96))!important;
+  box-shadow:0 7px 0 #e6f0e3,0 15px 27px rgba(72,123,82,.08)!important;
+}
+body.app-home-mode .learning-path-image{
+  border-radius:26px!important;
+  overflow:hidden;
+  box-shadow:0 8px 0 #e8efdf,0 15px 26px rgba(90,121,76,.08);
+}
+
+@media(max-width:390px){
+  body.app-home-mode .lesson-heading{grid-template-columns:40px minmax(0,1fr) auto!important;gap:7px!important}
+  body.app-home-mode .lesson-leaf{width:40px!important;height:40px!important}
+  body.app-home-mode .lesson-heading h1{font-size:22px!important}
+  body.app-home-mode .lesson-heading p{font-size:11px!important}
+  body.app-home-mode .home-streak-live{padding:7px 8px;font-size:11px}
+  body.app-home-mode .lesson-steps{gap:6px!important}
+  body.app-home-mode .lesson-step{min-height:166px!important;padding:10px 5px 9px!important;border-radius:21px!important}
+  body.app-home-mode .step-icon{width:52px!important;height:52px!important;flex-basis:52px!important;font-size:27px!important}
+  body.app-home-mode .step-short{font-size:20px!important}
+  body.app-home-mode .step-copy small{font-size:9.7px!important}
+  body.app-home-mode .step-number{right:6px!important;bottom:6px!important;font-size:9px!important;padding:4px 6px!important}
+}
+@media(max-width:350px){
+  body.app-home-mode .lesson-heading{grid-template-columns:38px 1fr!important}
+  body.app-home-mode .home-streak-live{grid-column:2;justify-self:start;margin-top:1px}
+  body.app-home-mode .lesson-steps{grid-template-columns:1fr!important;gap:9px!important}
+  body.app-home-mode .lesson-step{min-height:94px!important;display:grid!important;grid-template-columns:52px minmax(0,1fr)!important;grid-template-rows:auto auto!important;text-align:left!important;padding:10px 12px!important}
+  body.app-home-mode .step-icon{grid-row:1/3!important}
+  body.app-home-mode .step-short{align-self:end!important;font-size:22px!important}
+  body.app-home-mode .step-copy small{font-size:10px!important;text-align:left!important}
+}
