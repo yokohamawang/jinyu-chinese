@@ -1,3 +1,4 @@
-Koepanda DEMO 10.106.1
+Koepanda DEMO 10.106.2
 Base: DEMO 10.106 split build
-Patch: synchronized mouth/tongue guide for answer reveal, slow standard audio, and contrast audio
+Patch: answer selection now opens the inline mouth/tongue guide AND automatically plays the target standard pronunciation; slow standard audio and contrast audio remain mouth-synced.
+Stable baseline DEMO 10.105 remains unchanged.

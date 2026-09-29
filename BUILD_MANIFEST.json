@@ -1,22 +1,24 @@
 {
-  "version": "DEMO 10.106.1",
-  "base_version": "DEMO 10.106",
-  "purpose": "mouth/tongue synchronization patch on split front-end",
-  "original_10_105_index_sha256": "46919724a1898a055d353f93bf5e64df8b239388c23bd61b05029084365ad4d5",
-  "style_files": 27,
-  "script_files": 3,
-  "notes": [
-    "Selecting an answer now expands the target pronunciation mouth/tongue guide.",
-    "Slow standard audio opens the guide and synchronizes its stages to playback.",
-    "Contrast audio opens the same guide and synchronizes to the contrast pronunciation.",
-    "No Worker/backend changes."
+  "version": "10.106.2",
+  "base": "10.106",
+  "stable_baseline": "10.105",
+  "changes": [
+    "answer selection auto-plays target pronunciation with inline mouth guide",
+    "slow standard audio mouth-synced",
+    "contrast audio mouth-synced"
   ],
-  "patch_files": [
-    "index.html",
-    "js/01-features.js",
-    "VERSION.txt",
-    "BUILD_MANIFEST.json"
-  ],
-  "index_sha256": "ec8d7029a52ba3ec7a399e7def80a377fa7eca280ff061a727c2b1d36f2d9b1f",
-  "features_js_sha256": "8275b1da491af9b22ddd8152b99ae79db27e40f4559c2f795f14bdc2bd829955"
+  "files": {
+    "index.html": {
+      "bytes": 3334980,
+      "sha256": "75c7db22561cac63e9b51fd66e37cc8ae65e1798b5440e022503b00f1c8e43f8"
+    },
+    "js/01-features.js": {
+      "bytes": 614014,
+      "sha256": "5f015b338ac793a8ab78efba52a371bcaa2e1d036dad8f23e362d5278a4a3ef0"
+    },
+    "VERSION.txt": {
+      "bytes": 283,
+      "sha256": "dbb61d0532df2491b6682f63c7ea70963d095dfd964b541edca74d7541e4b917"
+    }
+  }
 }
