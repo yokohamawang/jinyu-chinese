@@ -1,24 +1,15 @@
 {
-  "version": "10.106.2",
-  "base": "10.106",
+  "version": "10.107",
+  "base": "10.106.2 AnswerAutoVoice Full",
   "stable_baseline": "10.105",
   "changes": [
     "answer selection auto-plays target pronunciation with inline mouth guide",
     "slow standard audio mouth-synced",
     "contrast audio mouth-synced"
   ],
-  "files": {
-    "index.html": {
-      "bytes": 3334980,
-      "sha256": "75c7db22561cac63e9b51fd66e37cc8ae65e1798b5440e022503b00f1c8e43f8"
-    },
-    "js/01-features.js": {
-      "bytes": 614014,
-      "sha256": "5f015b338ac793a8ab78efba52a371bcaa2e1d036dad8f23e362d5278a4a3ef0"
-    },
-    "VERSION.txt": {
-      "bytes": 283,
-      "sha256": "dbb61d0532df2491b6682f63c7ea70963d095dfd964b541edca74d7541e4b917"
-    }
-  }
+  "files": [
+    "css/27-demo10107-home-refresh.css",
+    "js/03-demo10107-home-refresh.js"
+  ],
+  "change": "Homepage visual refresh; live streak badge; cache-busting query versions"
 }

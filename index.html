@@ -1,48 +1,48 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>声調コーチ</title>
-<link rel="stylesheet" href="./css/00-base.css">
-<link rel="stylesheet" href="./css/01-ui54-fix.css" id="ui54-fix">
+<link rel="stylesheet" href="./css/00-base.css?v=10.107">
+<link rel="stylesheet" href="./css/01-ui54-fix.css?v=10.107" id="ui54-fix">
 
-<link rel="stylesheet" href="./css/02-ui55-home-fix.css" id="ui55-home-fix">
+<link rel="stylesheet" href="./css/02-ui55-home-fix.css?v=10.107" id="ui55-home-fix">
 
-<link rel="stylesheet" href="./css/03-ui56-character-assets.css" id="ui56-character-assets">
+<link rel="stylesheet" href="./css/03-ui56-character-assets.css?v=10.107" id="ui56-character-assets">
 
-<link rel="stylesheet" href="./css/04-demo1057-polish.css" id="demo1057-polish">
-
-
-<link rel="stylesheet" href="./css/05-demo1058-path.css" id="demo1058-path">
+<link rel="stylesheet" href="./css/04-demo1057-polish.css?v=10.107" id="demo1057-polish">
 
 
-<link rel="stylesheet" href="./css/06-demo1059-ui-polish.css" id="demo1059-ui-polish">
-
-<link rel="stylesheet" href="./css/07-demo1070-brand-effect-match.css" id="demo1070-brand-effect-match">
+<link rel="stylesheet" href="./css/05-demo1058-path.css?v=10.107" id="demo1058-path">
 
 
-<link rel="stylesheet" href="./css/08-demo1071-freepreview-fix.css" id="demo1071-freepreview-fix">
+<link rel="stylesheet" href="./css/06-demo1059-ui-polish.css?v=10.107" id="demo1059-ui-polish">
+
+<link rel="stylesheet" href="./css/07-demo1070-brand-effect-match.css?v=10.107" id="demo1070-brand-effect-match">
 
 
-<link rel="stylesheet" href="./css/09-demo1072-stepbuttons-fix.css" id="demo1072-stepbuttons-fix">
+<link rel="stylesheet" href="./css/08-demo1071-freepreview-fix.css?v=10.107" id="demo1071-freepreview-fix">
 
 
-<link rel="stylesheet" href="./css/10-demo1073-step-image-buttons.css" id="demo1073-step-image-buttons">
+<link rel="stylesheet" href="./css/09-demo1072-stepbuttons-fix.css?v=10.107" id="demo1072-stepbuttons-fix">
 
 
-<link rel="stylesheet" href="./css/11-demo1074-audio-mouth-fix.css" id="demo1074-audio-mouth-fix">
+<link rel="stylesheet" href="./css/10-demo1073-step-image-buttons.css?v=10.107" id="demo1073-step-image-buttons">
 
 
-<link rel="stylesheet" href="./css/12-demo1087-small-fixes.css" id="demo1087-small-fixes">
-
-<link rel="stylesheet" href="./css/13-demo1088-quiz-dots-mascot-fix.css" id="demo1088-quiz-dots-mascot-fix">
+<link rel="stylesheet" href="./css/11-demo1074-audio-mouth-fix.css?v=10.107" id="demo1074-audio-mouth-fix">
 
 
-<link rel="stylesheet" href="./css/14-demo1099-home-navigation-clean.css" id="demo1099-home-navigation-clean">
+<link rel="stylesheet" href="./css/12-demo1087-small-fixes.css?v=10.107" id="demo1087-small-fixes">
+
+<link rel="stylesheet" href="./css/13-demo1088-quiz-dots-mascot-fix.css?v=10.107" id="demo1088-quiz-dots-mascot-fix">
 
 
-<link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="DEMO 10.106.1 mouth-sync-patch">
+<link rel="stylesheet" href="./css/14-demo1099-home-navigation-clean.css?v=10.107" id="demo1099-home-navigation-clean">
+
+
+<link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107" id="demo10105-recording-state-restored">
+<meta name="koepanda-build" content="DEMO 10.107 home-refresh">
 </head><body class="app-home-mode">
-<!-- DEMO 10.106.1: mouth/tongue synchronization patch on DEMO 10.106 split build. -->
-<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.106.1</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
+<!-- DEMO 10.107: home visual refresh on DEMO 10.106.2. Stable baseline DEMO 10.105 remains untouched. -->
+<div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.107</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 
 <header class="brand-effect-header" aria-label="声調コーチ ブランド">
@@ -51,19 +51,20 @@
 <section class="home-card home-card-1060" aria-label="今日のレッスン">
   <div class="lesson-heading">
     <div class="lesson-leaf" aria-hidden="true">🌱</div>
-    <div><h1>今日のレッスン</h1><p>3つのステップで、発音をマスターしよう！</p></div>
+    <div class="lesson-heading-copy"><h1>今日のレッスン</h1><p>3つのステップで、発音をマスターしよう！</p></div>
+    <div class="home-streak-live" id="homeStreakLive" aria-label="連続学習日数">🔥 連続記録</div>
   </div>
   <nav class="lesson-steps" aria-label="3つのステップ">
     <a class="lesson-step step-one" href="#listeningGame">
-      <span class="step-number">1</span><span class="step-icon">👄</span>
+      <span class="step-number">1</span><span class="step-icon">👄</span><span class="step-short">聞く</span>
       <span class="step-copy"><strong>口の形・舌の位置を見る</strong><small>イラストで発音のコツを確認しよう。</small></span><span class="step-arrow">›</span>
     </a>
     <a class="lesson-step step-two" href="#examplePractice">
-      <span class="step-number">2</span><span class="step-icon">🎙️</span>
+      <span class="step-number">2</span><span class="step-icon">🎙️</span><span class="step-short">まねる</span>
       <span class="step-copy"><strong>まねして言う</strong><small>お手本を聞いて、声に出して練習しよう。</small></span><span class="step-arrow">›</span>
     </a>
     <a class="lesson-step step-three" href="#pandaChat">
-      <span class="step-number">3</span><span class="step-icon">📋</span>
+      <span class="step-number">3</span><span class="step-icon">📋</span><span class="step-short">話す</span>
       <span class="step-copy"><strong>自由に練習</strong><small>自分のことばで練習してみよう。</small></span><span class="step-arrow">›</span>
     </a>
   </nav>
@@ -119,38 +120,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 -->
-<script src="./js/00-core.js"></script>
-<script src="./js/01-features.js"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css" id="demo1077-final-fix">
+<script src="./js/00-core.js?v=10.107"></script>
+<script src="./js/01-features.js?v=10.107"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.107" id="demo1077-final-fix">
 
-<link rel="stylesheet" href="./css/17-demo1078-step1-visual-only.css" id="demo1078-step1-visual-only">
+<link rel="stylesheet" href="./css/17-demo1078-step1-visual-only.css?v=10.107" id="demo1078-step1-visual-only">
 
 <!-- DEMO 10.83: restored STEP1 audio path exactly from stable 10.74; current visual assets preserved -->
 
-<link rel="stylesheet" href="./css/18-demo1086-ui-detail-fix.css" id="demo1086-ui-detail-fix">
+<link rel="stylesheet" href="./css/18-demo1086-ui-detail-fix.css?v=10.107" id="demo1086-ui-detail-fix">
 
 
-<link rel="stylesheet" href="./css/19-demo1092-dynamic-mouth-new-xiaoyin.css" id="demo1092-dynamic-mouth-new-xiaoyin">
+<link rel="stylesheet" href="./css/19-demo1092-dynamic-mouth-new-xiaoyin.css?v=10.107" id="demo1092-dynamic-mouth-new-xiaoyin">
 
 
-<link rel="stylesheet" href="./css/20-demo1093-pinyin-left-edge-fix.css" id="demo1093-pinyin-left-edge-fix">
+<link rel="stylesheet" href="./css/20-demo1093-pinyin-left-edge-fix.css?v=10.107" id="demo1093-pinyin-left-edge-fix">
 
 
-<link rel="stylesheet" href="./css/21-demo1096-pinyin-readable-playback.css" id="demo1096-pinyin-readable-playback">
-<link rel="stylesheet" href="./css/22-demo1098-no-fast-letter-switch.css" id="demo1098-no-fast-letter-switch">
+<link rel="stylesheet" href="./css/21-demo1096-pinyin-readable-playback.css?v=10.107" id="demo1096-pinyin-readable-playback">
+<link rel="stylesheet" href="./css/22-demo1098-no-fast-letter-switch.css?v=10.107" id="demo1098-no-fast-letter-switch">
 
 
-<script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js"></script>
+<script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.107"></script>
+<script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.107"></script>
 
 
-<link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css" id="demo10100-step23-header-align-fix">
+<link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107" id="demo10100-step23-header-align-fix">
 
 
-<link rel="stylesheet" href="./css/24-demo10101-unified-step-headers.css" id="demo10101-unified-step-headers">
+<link rel="stylesheet" href="./css/24-demo10101-unified-step-headers.css?v=10.107" id="demo10101-unified-step-headers">
 
 
-<link rel="stylesheet" href="./css/25-demo10103-result-mascot-restored.css" id="demo10103-result-mascot-restored">
+<link rel="stylesheet" href="./css/25-demo10103-result-mascot-restored.css?v=10.107" id="demo10103-result-mascot-restored">
 
 
-<link rel="stylesheet" href="./css/26-demo10104-result-celebration.css" id="demo10104-result-celebration">
+<link rel="stylesheet" href="./css/26-demo10104-result-celebration.css?v=10.107" id="demo10104-result-celebration">
+
+<link rel="stylesheet" href="./css/27-demo10107-home-refresh.css?v=10.107" id="demo10107-home-refresh">
 
 </body></html>
