@@ -1,0 +1,12 @@
+/* DEMO 10.105 — restore clear microphone states without touching recording/audio logic. */
+#recordBtn{transition:transform .16s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease}
+#recordBtn.preparing{background:radial-gradient(circle at 30% 28%,#ffd7a8,#ffc078 62%,#ffad61 100%);border-color:#ffe3bd;box-shadow:0 10px 22px rgba(255,171,91,.28)}
+#recordBtn.preparing::before{content:'…';font-family:system-ui,-apple-system,sans-serif;font-size:54px;line-height:1;color:#fff;letter-spacing:5px;animation:recordPreparing 1s ease-in-out infinite}
+#recordBtn.preparing::after{content:'準備中…';color:#dd8a32}
+#recordBtn.recording{background:radial-gradient(circle at 30% 28%,#ff8e9d,#ff5f72 60%,#ef4058 100%);border-color:#ffc1ca;box-shadow:0 0 0 0 rgba(239,64,88,.34),0 12px 25px rgba(239,64,88,.28);animation:recordPulse 1.15s ease-out infinite}
+#recordBtn.recording::before{content:'■';font-family:system-ui,-apple-system,sans-serif;font-size:46px;line-height:1;color:#fff;text-shadow:none}
+#recordBtn.recording::after{content:'タップして停止';color:#e94d62;font-size:19px}
+#recordBtn.recording:active{transform:scale(.95)}
+@keyframes recordPulse{0%{box-shadow:0 0 0 0 rgba(239,64,88,.34),0 12px 25px rgba(239,64,88,.28)}70%{box-shadow:0 0 0 15px rgba(239,64,88,0),0 12px 25px rgba(239,64,88,.20)}100%{box-shadow:0 0 0 0 rgba(239,64,88,0),0 12px 25px rgba(239,64,88,.28)}}
+@keyframes recordPreparing{0%,100%{opacity:.55;transform:translateY(0)}50%{opacity:1;transform:translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){#recordBtn.recording,#recordBtn.preparing::before{animation:none}}

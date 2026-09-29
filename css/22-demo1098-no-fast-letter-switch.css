@@ -1,0 +1,3 @@
+/* DEMO 10.98 — remove fast letter-by-letter playback cues.
+   Keep complete pinyin readable; mouth motion may still animate with audio. */
+#mouthPop #popSteps{display:none!important}

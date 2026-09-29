@@ -1,0 +1,80 @@
+/* DEMO 10.92 — new Xiao Yin artwork + audio-driven lip animation. */
+.mouth-title-icon{
+  width:30px;height:30px;object-fit:cover;border-radius:50%;
+  vertical-align:middle;margin-right:7px;box-shadow:0 2px 0 #d8eee3;
+}
+.mouth-pop-top span{display:flex;align-items:center;gap:3px}
+
+.new-xiaoyin-face{
+  position:relative!important;
+  width:140px!important;
+  height:125px!important;
+  margin:0 auto!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  isolation:isolate;
+}
+.new-xiaoyin-face .xiaoyin-face-img{
+  display:block;width:100%;height:100%;object-fit:cover;border-radius:32px;
+}
+.new-xiaoyin-face .mouth-mask{
+  position:absolute;z-index:3;left:50%;top:64%;
+  transform:translate(-50%,-50%);
+  width:48px;height:25px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 40%,#fff7ee 0 60%,#fff1e6 100%);
+}
+.new-xiaoyin-face .cartoon-mouth{
+  position:absolute!important;z-index:5!important;
+  left:50%!important;top:64%!important;
+  transform:translate(-50%,-50%)!important;
+  width:54px!important;height:38px!important;
+  overflow:visible!important;
+}
+.new-xiaoyin-face .cartoon-mouth ellipse{
+  fill:#d96f7f!important;stroke:#a95264!important;stroke-width:3!important;
+  transition:rx .08s linear,ry .08s linear,cy .08s linear;
+}
+.new-xiaoyin-face .cartoon-mouth .tongue{
+  stroke:#ffb0b2!important;stroke-width:3!important;
+  transition:opacity .08s linear,transform .08s linear;
+}
+
+/* Large articulation guide */
+.mouth-animation #guideFace{
+  display:flex!important;justify-content:center!important;
+  min-height:138px!important;padding-top:6px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face{
+  width:154px!important;height:138px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face .mouth-mask{
+  top:64%!important;width:52px!important;height:27px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face .cartoon-mouth{
+  top:64%!important;width:58px!important;height:40px!important;
+}
+
+/* Small audio popup */
+#popFace .new-xiaoyin-face{
+  width:92px!important;height:82px!important;
+}
+#popFace .new-xiaoyin-face .mouth-mask{
+  top:64%!important;width:33px!important;height:18px!important;
+}
+#popFace .new-xiaoyin-face .cartoon-mouth{
+  top:64%!important;width:38px!important;height:27px!important;
+}
+
+/* Do not apply the old hand-drawn panda positioning to the new image face. */
+.new-xiaoyin-face .panda-ear,
+.new-xiaoyin-face .panda-patch,
+.new-xiaoyin-face .panda-nose,
+.new-xiaoyin-face .cartoon-cheek,
+.new-xiaoyin-face .panda-brow,
+.new-xiaoyin-face .panda-scarf{display:none!important}
+
+@media(max-width:390px){
+  .mouth-animation #guideFace .new-xiaoyin-face{width:146px!important;height:131px!important}
+}

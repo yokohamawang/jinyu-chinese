@@ -1,0 +1,40 @@
+.learning-path-image{
+  padding:0!important;
+  margin:0 0 18px!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+.step-image-wrap{
+  position:relative;
+  width:100%;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 8px 0 #e6f1e7,0 16px 28px rgba(83,131,99,.10);
+  background:#fafffb;
+}
+.step-dashboard-image{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.step-hotspot{
+  position:absolute;
+  top:24.5%;
+  height:49%;
+  border-radius:18px;
+  text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.hs-listen{left:4.7%;width:29.5%}
+.hs-talk{left:35.4%;width:29.5%}
+.hs-repeat{left:66.2%;width:29.1%}
+.step-hotspot:focus-visible{
+  outline:4px solid rgba(54,154,111,.65);
+  outline-offset:-4px;
+}
+@media(max-width:390px){
+  .step-image-wrap{border-radius:24px}
+}

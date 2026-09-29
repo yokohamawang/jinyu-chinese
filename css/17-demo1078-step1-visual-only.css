@@ -1,0 +1,22 @@
+/* DEMO 10.78 — STEP 1 visual-only correction. No audio/recording/chat JS changes. */
+#flow.flow{
+  border:2px solid #b9dfca;
+  border-radius:28px;
+  padding:16px 15px 18px;
+  background:linear-gradient(180deg,#f9fff9 0%,#f3fbf6 62%,#fffdf8 100%);
+  box-shadow:0 8px 0 #dcefe3,0 17px 26px rgba(70,128,96,.10);
+  overflow:hidden;
+}
+#flow.flow::after{
+  right:-10px;
+  bottom:4px;
+  width:88px;
+  height:150px;
+  opacity:.34;
+  filter:saturate(1.15);
+  z-index:0;
+}
+#flow.flow > *{
+  position:relative;
+  z-index:1;
+}

@@ -1,0 +1,4 @@
+.brand-effect-header{margin:0 0 16px;padding:0;background:transparent;border:0;box-shadow:none;overflow:visible}
+.brand-effect-img{display:block;width:100%;height:auto;border-radius:28px;box-shadow:0 10px 24px rgba(67,133,98,.10)}
+@media(max-width:390px){.brand-effect-header{margin-bottom:14px}.brand-effect-img{border-radius:24px}}
+@media(max-width:350px){.brand-effect-img{border-radius:22px}}

@@ -1,0 +1,41 @@
+/* DEMO 10.99 — Home is navigation only. Existing feature internals stay untouched. */
+.home-free-preview,
+.learning-path-image{
+  display:none!important;
+}
+
+/* Initial home: show only the brand + three navigation cards. */
+body.app-home-mode #listeningGame,
+body.app-home-mode #flow,
+body.app-home-mode #pandaChat,
+body.app-home-mode #examplePractice,
+body.app-home-mode #examples,
+body.app-home-mode #voicePrivacy,
+body.app-home-mode .feedback-box,
+body.app-home-mode .floating-home{
+  display:none!important;
+}
+
+/* Inside a feature, hide the home/navigation area to avoid one long mixed page. */
+body.app-function-mode .brand-effect-header,
+body.app-function-mode .home-card-1060{
+  display:none!important;
+}
+
+/* Only the selected feature area is visible. Natural display values are preserved. */
+body.app-function-mode:not(.app-area-listen) #listeningGame,
+body.app-function-mode:not(.app-area-listen) #flow{
+  display:none!important;
+}
+body.app-function-mode:not(.app-area-chat) #pandaChat{
+  display:none!important;
+}
+body.app-function-mode:not(.app-area-repeat) #examplePractice,
+body.app-function-mode:not(.app-area-repeat) #examples{
+  display:none!important;
+}
+
+/* In feature mode, keep support/privacy below the chosen function if reached by a link. */
+body.app-function-mode .floating-home{
+  display:flex!important;
+}

@@ -1,0 +1,37 @@
+/* DEMO 10.104 — result-message tiers and five non-repeating full-score effects.
+   Visual/result-only override on top of DEMO 10.103. */
+.result-screen .score{overflow:hidden;isolation:isolate}
+.result-screen .score>*:not(.perfect-fx){position:relative;z-index:2}
+.result-screen .score.perfect::after{display:none!important}
+.result-screen .score.almost .result-sparkles{animation:demo104-soft-spark .7s ease-out 2}
+
+.perfect-fx{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:hidden;border-radius:22px}
+.perfect-fx span{position:absolute;display:none;will-change:transform,opacity}
+.fx-bubble-mark{right:14px;top:48px;padding:8px 13px;background:#fff4cb;border:2px solid #e8ca73;border-radius:22px 22px 22px 6px;color:#b96039;font-size:16px;font-weight:900;box-shadow:0 4px 0 #f3df9d;transform:rotate(7deg)}
+.fx-bubble-mark::after{content:'';position:absolute;right:12px;bottom:-7px;width:11px;height:11px;background:#fff4cb;border-right:2px solid #e8ca73;border-bottom:2px solid #e8ca73;transform:rotate(45deg)}
+
+.fx-bubble .fx-bubble-mark,.fx-combo .fx-bubble-mark{display:block;animation:demo104-bubble .86s cubic-bezier(.2,.9,.3,1.25) both}
+.fx-fireworks .fx-fire,.fx-combo .fx-fire{display:block;font-weight:900;line-height:1;color:#f2a650;text-shadow:0 0 8px #fff7c7;animation:demo104-fire .95s ease-out both}
+.fx-fire.f1{left:14%;top:18%;font-size:28px}.fx-fire.f2{right:13%;top:25%;font-size:35px;animation-delay:.08s}.fx-fire.f3{left:47%;top:7%;font-size:23px;animation-delay:.15s}
+.fx-confetti .fx-conf{display:block;font-size:12px;top:-18px;animation:demo104-confetti 1.12s ease-out both}
+.fx-confetti .c1{left:12%;color:#e9a15f;animation-delay:.02s}.fx-confetti .c2{left:27%;color:#83bfa0;animation-delay:.10s}.fx-confetti .c3{left:43%;color:#d9a8c7;animation-delay:.04s}.fx-confetti .c4{left:60%;color:#e9bf5b;animation-delay:.14s}.fx-confetti .c5{left:76%;color:#8fb3d7;animation-delay:.07s}.fx-confetti .c6{left:90%;color:#d98f82;animation-delay:.18s}
+.fx-stars .fx-star{display:block;color:#efb44f;text-shadow:0 2px 5px #fff5ba;animation:demo104-star 1s ease-out both}
+.fx-stars .s1{left:11%;top:22%;font-size:24px}.fx-stars .s2{right:13%;top:12%;font-size:29px;animation-delay:.08s}.fx-stars .s3{right:18%;top:43%;font-size:18px;animation-delay:.15s}.fx-stars .s4{left:23%;top:49%;font-size:20px;animation-delay:.21s}
+.fx-combo .fx-fire.f1{left:10%;top:20%}.fx-combo .fx-fire.f2{right:9%;top:18%}.fx-combo .fx-fire.f3{left:41%;top:4%}
+
+@keyframes demo104-bubble{0%{opacity:0;transform:translateY(13px) scale(.55) rotate(7deg)}55%{opacity:1;transform:translateY(-3px) scale(1.12) rotate(7deg)}78%{transform:translateY(1px) scale(.97) rotate(7deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(7deg)}}
+@keyframes demo104-fire{0%{opacity:0;transform:scale(.15) rotate(-18deg)}48%{opacity:1;transform:scale(1.45) rotate(8deg)}100%{opacity:0;transform:scale(1.9) rotate(18deg)}}
+@keyframes demo104-confetti{0%{opacity:0;transform:translateY(-10px) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translateY(185px) translateX(22px) rotate(310deg)}}
+@keyframes demo104-star{0%{opacity:0;transform:scale(.2) rotate(-25deg)}38%{opacity:1;transform:scale(1.35) rotate(10deg)}72%{opacity:.95;transform:scale(.9) rotate(-5deg)}100%{opacity:0;transform:scale(1.15) rotate(8deg)}}
+@keyframes demo104-soft-spark{0%{transform:scale(.9);opacity:.55}50%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:.8}}
+
+/* Keep the full-score mascot movement short and celebratory rather than continuously busy. */
+.result-screen .score.perfect .result-panda-wrap{animation:demo104-panda-hop .82s cubic-bezier(.2,.8,.3,1.15) 1 both}
+@keyframes demo104-panda-hop{0%,100%{transform:translateY(0)}38%{transform:translateY(-8px) scale(1.025)}68%{transform:translateY(2px) scale(.99)}}
+
+@media(max-width:345px){.fx-bubble-mark{right:7px;top:42px;font-size:14px;padding:7px 10px}}
+@media(prefers-reduced-motion:reduce){
+  .perfect-fx span,.result-screen .score.perfect .result-panda-wrap,.result-screen .score.almost .result-sparkles{animation:none!important}
+  .fx-bubble .fx-bubble-mark,.fx-combo .fx-bubble-mark{opacity:1;transform:rotate(7deg)}
+  .fx-fire,.fx-conf,.fx-star{display:none!important}
+}

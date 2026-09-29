@@ -1,0 +1,19 @@
+.home-panda-wrap{width:126px;height:124px;overflow:visible;position:relative;place-items:center}
+.home-panda-img{width:132px;height:138px;object-fit:cover;object-position:center 55%;border-radius:32px;-webkit-mask-image:radial-gradient(ellipse at center,#000 64%,transparent 82%);mask-image:radial-gradient(ellipse at center,#000 64%,transparent 82%);filter:drop-shadow(0 10px 12px rgba(75,111,83,.17))}
+.home-hero{grid-template-columns:126px 1fr;align-items:center;margin-top:4px;margin-bottom:4px}
+.home-speech{margin-left:-4px;max-width:162px}
+.mood-strip{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;gap:3px;margin:2px 0 10px;padding:5px 6px;border-radius:18px;background:rgba(255,255,255,.76);box-shadow:inset 0 0 0 1px rgba(212,230,238,.8)}
+.mood-strip img{width:46px;height:44px;object-fit:cover;object-position:center 45%;border-radius:14px;mix-blend-mode:multiply}
+.lesson-mascot{display:grid;grid-template-columns:112px 1fr;align-items:center;gap:8px;margin:4px 0 8px;padding:2px 4px 0}
+.lesson-mascot img{width:112px;height:105px;object-fit:cover;border-radius:24px;-webkit-mask-image:radial-gradient(ellipse at center,#000 65%,transparent 87%);mask-image:radial-gradient(ellipse at center,#000 65%,transparent 87%);filter:drop-shadow(0 7px 8px rgba(75,111,83,.16))}
+.lesson-mascot span{justify-self:end;position:relative;padding:10px 12px;border:2px solid #b9e3ff;border-radius:18px;background:#fff;color:#2f8fd8;font-size:14px;line-height:1.35;font-weight:950;box-shadow:0 4px 0 #e4f3fb}
+.lesson-mascot span::before{content:'';position:absolute;left:-9px;top:31px;width:13px;height:13px;background:#fff;border-left:2px solid #b9e3ff;border-bottom:2px solid #b9e3ff;transform:rotate(45deg)}
+.result-panda-wrap{width:210px!important;height:214px!important;overflow:hidden!important;border:none!important;background:transparent!important;box-shadow:none!important;border-radius:28px!important}
+.result-panda-img{width:100%;height:100%;object-fit:cover;border-radius:28px;-webkit-mask-image:radial-gradient(ellipse at center,#000 70%,transparent 94%);mask-image:radial-gradient(ellipse at center,#000 70%,transparent 94%);filter:drop-shadow(0 12px 12px rgba(72,115,87,.18))}
+.menu-panda-face{width:42px;height:42px;object-fit:cover;border-radius:12px;mix-blend-mode:multiply}
+.panda-icon{background:#fff!important;overflow:hidden}
+.celebration-panda-img{width:84px;height:82px;object-fit:cover;border-radius:20px;mix-blend-mode:multiply}
+.dance-figure:has(.celebration-panda-img) .dance-body,.dance-figure:has(.celebration-panda-img) .dance-arm,.dance-figure:has(.celebration-panda-img) .dance-foot{display:none}
+.dance-figure:has(.celebration-panda-img){width:92px;height:88px;display:grid;place-items:center}
+@media(max-width:390px){.home-hero{grid-template-columns:116px 1fr}.home-panda-wrap{width:116px}.home-panda-img{width:122px;height:130px}.mood-strip img{width:42px;height:41px}.lesson-mascot{grid-template-columns:102px 1fr}.lesson-mascot img{width:102px;height:98px}.lesson-mascot span{font-size:13px}.result-panda-wrap{width:196px!important;height:202px!important}}
+@media(max-width:350px){.mood-strip{gap:1px}.mood-strip img{width:38px;height:37px}.home-hero{grid-template-columns:104px 1fr}.home-panda-wrap{width:104px}.home-panda-img{width:110px;height:120px}.lesson-mascot{grid-template-columns:94px 1fr}.lesson-mascot img{width:94px;height:90px}}

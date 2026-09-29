@@ -1,0 +1,50 @@
+/* DEMO 10.93 — pinyin first-letter clipping fix.
+   Visual-only: do not change audio, recording, mouth timing, or question logic. */
+
+/* Safari/iPhone can clip the leftmost glyph when bold Latin text sits in a
+   centered/animated container. Give all learner-facing pinyin a tiny safe
+   inline area and explicitly disable clipping/indent transforms. */
+#py,
+.reveal .pinyin,
+.example .pinyin,
+.review-item .pinyin,
+.chat-pinyin,
+.chat-pinyin-syllable,
+.mouth-pop-word {
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  text-indent: 0 !important;
+  clip: auto !important;
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+}
+
+/* Main listening-answer pinyin: protect the first and last Latin glyph.
+   Padding is deliberately small so alignment does not visibly shift. */
+#py {
+  display: block !important;
+  width: 100% !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+}
+
+/* Pinyin shown while audio is playing / in chat-style syllable rows. */
+.chat-pinyin {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.chat-pinyin-syllable:first-child {
+  margin-left: 2px !important;
+}
+
+/* Small pronunciation popup text gets a matching safe edge. */
+.mouth-pop-word {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}

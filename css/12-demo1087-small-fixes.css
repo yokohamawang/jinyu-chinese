@@ -1,0 +1,14 @@
+/* DEMO 10.87 — two small UI fixes only. */
+/* 今日のステップ: keep the 話す card clean; no legacy mascot/icon overlay. */
+.step-image-wrap > img:not(.step-dashboard-image){display:none!important;}
+.hs-talk::before,.hs-talk::after{content:none!important;display:none!important;}
+.step-dashboard-image{position:relative;z-index:1;}
+.step-hotspot{z-index:2;}
+
+/* Floating Home: move closer to the right edge so it blocks less content. */
+.floating-home{
+  right:max(4px,calc((100vw - 430px)/2 + 4px))!important;
+}
+@media(max-width:430px){
+  .floating-home{right:4px!important;}
+}

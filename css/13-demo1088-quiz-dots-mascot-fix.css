@@ -1,0 +1,29 @@
+/* DEMO 10.88 — keep all 5 progress circles on one line on small phones. */
+#flow .flow-top{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  flex-wrap:nowrap!important;
+}
+#flow #phaseTag{
+  min-width:0!important;
+  flex:1 1 auto!important;
+}
+#flow #dots{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  letter-spacing:1px!important;
+  font-size:15px!important;
+  line-height:1!important;
+}
+@media(max-width:390px){
+  #flow .flow-top{gap:6px!important}
+  #flow #phaseTag{padding:8px 9px!important;font-size:15px!important}
+  #flow #dots{font-size:14px!important;letter-spacing:0!important}
+}
+/* Clean 小音 artwork: no cropped lettering inside the mascot image. */
+#flow .lesson-mascot img{
+  object-position:center center!important;
+}

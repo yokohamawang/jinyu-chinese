@@ -1,0 +1,20 @@
+/* DEMO 10.75: direct iPhone tap handler + head-only mouth guide */
+.chat-bubble{position:relative;z-index:2;overflow:visible!important}
+.chat-bubble button,.chat-bubble .chat-practice-button{
+  position:relative;z-index:6;pointer-events:auto!important;
+  -webkit-tap-highlight-color:rgba(22,142,117,.12);
+  touch-action:manipulation;
+  cursor:pointer;
+}
+.chat-thread>.mouth-pop,.chat-history-entry>.mouth-pop{position:relative;z-index:1}
+#mouthPop[aria-hidden="true"]{display:none!important;pointer-events:none!important}
+#mouthPop.visible{display:block!important;pointer-events:auto!important}
+
+/* Replace the old CSS panda face with the same current mascot artwork used on the page. */
+.mouth-current-mascot{position:relative;width:92px;height:92px;display:grid;place-items:center;overflow:visible}
+.mouth-current-mascot img{display:block;width:86px;height:86px;object-fit:cover;object-position:center 42%;border-radius:24px;-webkit-mask-image:radial-gradient(ellipse at center,#000 68%,transparent 92%);mask-image:radial-gradient(ellipse at center,#000 68%,transparent 92%);filter:drop-shadow(0 5px 7px rgba(72,115,87,.16));pointer-events:none}
+.mouth-current-mascot .live-mouth{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);width:42px;height:25px;pointer-events:none}
+.mouth-current-mascot .live-mouth ellipse{fill:#b7707b;stroke:#c58b91;stroke-width:2.3;transition:rx .065s linear,ry .065s linear,cy .065s linear}
+.mouth-current-mascot .live-mouth .tongue{stroke:#ffb0b2;stroke-width:2.5;transition:transform .065s,opacity .065s}
+.mouth-current-mascot.talking{animation:face-bob .38s ease-in-out infinite alternate}
+@media(max-width:390px){.mouth-current-mascot{width:86px;height:86px}.mouth-current-mascot img{width:80px;height:80px}.mouth-current-mascot .live-mouth{bottom:11px;width:39px;height:23px}}

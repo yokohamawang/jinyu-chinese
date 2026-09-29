@@ -1,0 +1,34 @@
+/* DEMO 10.103
+   Restore only the result-screen mascot image/layout from the previously verified DEMO 10.97.
+   Base remains DEMO 10.102; no audio/recording/navigation changes. */
+
+/* DEMO 10.97 — result screen mascot composition only. */
+.result-screen .score{padding-top:12px!important;}
+.result-screen .result-sparkles{margin:0 0 2px!important;line-height:1!important;}
+.result-screen .result-panda-wrap{
+  width:142px!important;
+  height:142px!important;
+  margin:2px auto 8px!important;
+  overflow:hidden!important;
+  border-radius:50%!important;
+  background:#f3fbf7!important;
+  box-shadow:0 7px 0 #dcefe4!important;
+}
+.result-screen .result-panda-img{
+  width:156px!important;
+  height:156px!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center 47%!important;
+  border-radius:50%!important;
+  transform:translate(-7px,-4px)!important;
+  -webkit-mask-image:radial-gradient(circle at 50% 48%,#000 0 66%,rgba(0,0,0,.92) 72%,transparent 89%)!important;
+  mask-image:radial-gradient(circle at 50% 48%,#000 0 66%,rgba(0,0,0,.92) 72%,transparent 89%)!important;
+  filter:drop-shadow(0 5px 7px rgba(72,115,87,.14))!important;
+}
+.result-screen .result-ribbon{margin-top:3px!important;}
+.result-screen .score.perfect h2{margin-top:8px!important;}
+@media(max-width:390px){
+  .result-screen .result-panda-wrap{width:132px!important;height:132px!important;}
+  .result-screen .result-panda-img{width:146px!important;height:146px!important;}
+}

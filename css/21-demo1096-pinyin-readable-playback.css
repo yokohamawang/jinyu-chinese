@@ -1,0 +1,51 @@
+/* DEMO 10.96 — during sentence playback, keep the full pinyin line visible.
+   Only the highlight moves; the text itself no longer appears/disappears rapidly. */
+.playback-syllable-line{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:flex-start;
+  gap:5px;
+  width:100%;
+  margin-top:2px;
+}
+.playback-syllable{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:36px;
+  padding:4px 5px 5px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.playback-syllable-cn{
+  display:block;
+  font-size:18px;
+  line-height:1.15;
+  color:#355f55;
+  font-weight:800;
+}
+.playback-syllable-py{
+  display:block;
+  margin-top:3px;
+  font-size:15px;
+  line-height:1.15;
+  color:#a45e41;
+  font-weight:850;
+  white-space:nowrap;
+}
+.playback-syllable.active{
+  background:#dff5e9;
+  box-shadow:0 0 0 2px #a9dcc6 inset;
+  transform:scale(1.04);
+}
+.playback-syllable.active .playback-syllable-cn{color:#168e75}
+.playback-syllable.active .playback-syllable-py{color:#c66e45}
+@media(max-width:360px){
+  .playback-syllable-line{gap:3px}
+  .playback-syllable{min-width:31px;padding:3px 3px 4px}
+  .playback-syllable-cn{font-size:16px}
+  .playback-syllable-py{font-size:13px}
+}

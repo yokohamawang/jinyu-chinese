@@ -1,0 +1,69 @@
+html{scroll-padding-top:92px}
+body{overflow-x:hidden}
+#listeningGame,#pandaChat,#examplePractice,.mouth-guide{scroll-margin-top:92px}
+
+/* Brand: one strong identity anchor, with a softer supporting card on the right. */
+.app-brand{grid-template-columns:minmax(0,1fr) 154px!important;gap:12px!important;align-items:center!important;margin-bottom:12px!important;padding:4px 2px 2px}
+.brand-main{font-size:39px!important;letter-spacing:-.025em!important;filter:drop-shadow(0 2px 0 rgba(255,255,255,.8))}
+.brand-blue,.brand-coral{color:#176c52!important}
+.brand-leaf{font-size:24px!important;vertical-align:5px!important}
+.brand-note{font-size:15px!important;color:#4b7b6c!important;margin-top:7px!important;letter-spacing:.01em}
+.brand-copy{padding:10px 11px!important;border-radius:18px;background:linear-gradient(180deg,#f5fff8,#fffdf5);border:1px solid #d7ebdd;box-shadow:0 4px 0 #e8f1e9;color:#547267!important;line-height:1.35!important}
+.brand-copy strong{font-size:12px!important;color:#28725a!important;margin:0 0 4px!important}
+.brand-copy small{display:block;font-size:11px!important;color:#71867e!important}
+.brand-version{margin-top:6px!important;font-size:9px!important;opacity:.72}
+.home-logo{font-size:27px!important;color:#286d58!important}
+.home-toprow{align-items:center!important}
+.home-streak-pill{transform:scale(.94);transform-origin:right center}
+
+/* STEP 2 / STEP 3 now follow the actual page order: free practice, then imitation examples. */
+.chat-card#pandaChat::before{background:#e8faef!important;color:#28745d!important}
+.section-head#examplePractice::before{background:#fff0c9!important;color:#9b742f!important}
+.chat-title-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-right:64px}
+.chat-title-row h2{margin:0}
+.chat-title-note{font-size:12px;font-weight:850;color:#7b8d84;white-space:nowrap}
+
+/* Compact articulation guide: key controls remain reachable without an extra scroll on common iPhone heights. */
+.mouth-guide{margin:10px 0!important;border-radius:20px!important}
+.mouth-guide summary{min-height:44px!important;padding:10px 13px!important;font-size:16px!important}
+.mouth-inner{padding:0 10px 10px!important}
+.mouth-animation{margin-top:7px!important;padding:8px!important;border-radius:16px!important}
+.mouth-animation .cartoon-face{width:96px!important;height:88px!important}
+.mouth-animation .panda-face:before,.mouth-animation .panda-face:after{transform:scale(.86)}
+.mouth-animation .panda-face .cartoon-mouth{transform:scale(.82);transform-origin:center}
+.mouth-pop-steps{gap:6px!important;margin-top:5px!important}
+.mouth-animation .mouth-pop-steps button{min-width:38px!important;min-height:38px!important;padding:6px 8px!important;font-size:14px!important}
+.articulation-label{margin:6px 0 3px!important;font-size:12px!important}
+.mouth-detail-label{margin:4px 0!important;font-size:12px!important}
+.tongue-diagram{padding:7px!important;margin-top:7px!important;border-radius:14px!important}
+.tongue-diagram svg{width:min(100%,245px)!important;margin:1px auto!important;max-height:112px!important}
+.tongue-key{font-size:11px!important;line-height:1.3!important}
+.tongue-hint{font-size:12px!important;line-height:1.35!important;margin:4px 0 1px!important}
+.mouth-guide-controls{gap:8px!important;margin-top:7px!important;position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:3;padding-top:4px;background:linear-gradient(180deg,rgba(255,255,255,0),#fcfffc 22%)}
+.mouth-guide-controls button{min-height:48px!important;padding:8px 7px!important;font-size:13px!important;line-height:1.25!important;box-shadow:0 3px 0 #e3eee7}
+.mouth-copy{margin-top:7px!important;padding:8px 9px!important;border-radius:13px;background:#fff9ef;font-size:12px!important;line-height:1.4!important}
+.mouth-copy b{font-size:13px!important}.mouth-copy p{margin:2px 0!important;font-size:12px!important;line-height:1.4!important}
+.guide-note{margin:6px 0 0!important;padding:7px 8px!important;font-size:10.5px!important;line-height:1.35!important}
+
+/* Friendly visual feedback after imitation recording. */
+.chat-practice-result{display:flex!important;align-items:center;gap:10px!important;padding:10px 12px!important;border:2px solid #d6eddc!important;background:linear-gradient(180deg,#f6fff7,#fffaf2)!important;border-radius:18px!important;box-shadow:0 4px 0 #e7efe6;font-size:14px!important;line-height:1.5!important}
+.chat-practice-result[hidden]{display:none!important}
+.chat-feedback-panda{width:54px;height:54px;flex:0 0 54px;object-fit:cover;border-radius:18px;background:#fff;box-shadow:0 2px 0 #dfeadf}
+.chat-feedback-panda-fallback{width:54px;height:54px;display:grid;place-items:center;flex:0 0 54px;border-radius:18px;background:#fff;font-size:30px}
+.chat-feedback-copy{display:block;font-weight:800;color:#32624f}
+
+/* Floating home: true flex centering + symmetric SVG avoids the previous off-center arrow/house look. */
+.floating-home{position:fixed;right:max(18px,calc((100vw - 430px)/2 + 18px));bottom:max(18px,calc(env(safe-area-inset-bottom) + 14px));z-index:1000;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#29936f;color:#fff;box-shadow:0 10px 24px rgba(37,112,85,.28),inset 0 0 0 1px rgba(255,255,255,.2);text-decoration:none}
+.floating-home svg{display:block;width:26px;height:26px;flex:none;transform:translateY(.5px)}
+.floating-home:focus-visible{outline:3px solid #f3b45f;outline-offset:3px}
+
+@media(max-width:390px){
+ .app-brand{grid-template-columns:minmax(0,1fr) 132px!important}.brand-main{font-size:34px!important}.brand-note{font-size:13px!important}.brand-copy{padding:9px!important}.brand-copy strong{font-size:11px!important}.brand-copy small{font-size:10px!important}
+ .home-logo{font-size:24px!important}.chat-title-row{padding-right:56px}.chat-title-note{font-size:11px}
+ .mouth-animation .cartoon-face{width:90px!important;height:82px!important}.tongue-diagram svg{max-height:105px!important}.mouth-guide-controls button{font-size:12px!important}
+}
+@media(max-width:350px){
+ .app-brand{grid-template-columns:1fr!important}.brand-copy{display:none}.brand-main{font-size:33px!important}.brand-note{font-size:12px!important}
+ .chat-title-row{display:block;padding-right:52px}.chat-title-note{display:block;margin-top:5px;white-space:normal}
+ .floating-home{width:54px;height:54px;right:14px}.floating-home svg{width:24px;height:24px}
+}

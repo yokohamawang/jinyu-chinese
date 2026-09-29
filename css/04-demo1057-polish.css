@@ -1,0 +1,93 @@
+/* DEMO 10.57: home + lesson + result polish */
+body{background:linear-gradient(180deg,#ecf6f0 0%,#f7fbf8 100%)}
+.phone{padding:16px 16px max(32px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#fffefb 0%,#f9fffb 100%)}
+.app-brand{margin-bottom:14px}
+.brand-main{font-size:27px;letter-spacing:.01em}
+.brand-note{font-size:12px}
+.brand-copy{border-radius:18px;padding:11px 13px;background:linear-gradient(180deg,#fffdf7,#fff)}
+.brand-version{background:#eff8ef;color:#31745d}
+.home-card{padding:14px 14px 12px;border-radius:32px;background:linear-gradient(180deg,#edf8ff 0%,#f8fff4 55%,#fffdf8 100%);box-shadow:0 14px 30px rgba(111,149,126,.13)}
+.home-toprow{margin-bottom:4px}
+.home-logo{font-size:25px;letter-spacing:.02em}
+.home-streak-pill{padding:9px 10px 8px;border-radius:19px;box-shadow:0 5px 0 #efe1b0}
+.home-hero{grid-template-columns:130px 1fr;gap:10px;margin-top:4px;margin-bottom:8px}
+.home-panda-wrap{width:126px;height:136px;border-radius:30px;background:radial-gradient(circle at 50% 28%,#fff 0,#ffffff 44%,#eef8f4 72%,#ddefe8 100%);box-shadow:inset 0 0 0 1px rgba(190,222,208,.8),0 8px 16px rgba(97,135,112,.12)}
+.home-panda-img{width:136px;height:142px;object-position:center 53%;filter:drop-shadow(0 11px 12px rgba(75,111,83,.16))}
+.home-speech{max-width:none;margin-left:0;padding:14px 14px 13px;border-radius:22px;border:2px solid #bfe8ff;background:linear-gradient(180deg,#ffffff,#f9fdff);color:#2b83c7;font-size:14px;line-height:1.45;font-weight:950;box-shadow:0 5px 0 #e4f3fb}
+.home-speech::before{left:-7px;top:27px;width:12px;height:12px}
+.mood-strip{margin:4px 0 10px;padding:6px 7px;border-radius:20px;background:rgba(255,255,255,.84)}
+.mood-strip img{width:44px;height:42px;border-radius:13px}
+.home-menu{gap:11px}
+.home-menu-card{min-height:78px;padding:12px 13px;border-radius:22px;box-shadow:0 10px 18px rgba(87,120,158,.08),0 3px 0 rgba(228,236,238,.9)}
+.menu-icon{width:50px;height:50px;border-radius:17px;font-size:26px}
+.menu-copy strong{font-size:20px;line-height:1.1}
+.menu-copy small{font-size:12px;margin-top:5px}
+.menu-arrow{font-size:29px}
+.home-footnote{padding:12px 4px 4px}
+.progress-summary{padding-left:4px}
+.daily-goal{border-radius:18px}
+.bottom-nav{margin-top:8px;padding-top:9px}
+.bottom-nav span{padding-top:6px;padding-bottom:1px;border-radius:16px;transition:background .18s ease,color .18s ease}
+.bottom-nav span.active{background:#eff9f2;color:#2f8c68}
+.section-head{margin:24px 2px 12px}
+.section-head h2{font-size:18px;color:#286d58}
+.section-head span{font-weight:800;color:#7c9188}
+.flow{padding:16px 15px 18px;border-radius:28px;background:linear-gradient(180deg,#fffefa 0%,#fff 100%);box-shadow:0 9px 0 #deefe4,0 18px 26px rgba(86,131,110,.09)}
+.flow-top{margin-bottom:4px}
+.tag{padding:8px 11px;border-radius:13px;background:#e6fbef;color:#1f8a68;box-shadow:inset 0 0 0 1px rgba(113,214,173,.45)}
+.progress{font-size:16px;color:#43b99b;letter-spacing:2px}
+.lesson-track{height:10px;border-radius:999px;background:#e8f1eb;margin:12px 0 8px}
+.lesson-track span{background:linear-gradient(90deg,#42c89e 0%,#86d86e 100%)}
+.lesson-mascot{grid-template-columns:116px 1fr;gap:10px;padding:4px 2px 2px;margin-bottom:10px}
+.lesson-mascot img{width:116px;height:108px;border-radius:26px;filter:drop-shadow(0 8px 10px rgba(75,111,83,.15))}
+.lesson-mascot span{padding:11px 13px;border-radius:20px;font-size:14px;line-height:1.42}
+.lesson-mascot span::before{top:30px}
+.stage{font-size:19px;line-height:1.45;color:#285a4c;margin:16px 0 5px}
+.sub{font-size:12px;color:#789188;margin-bottom:14px}
+.play,.next-primary{min-height:54px;border-radius:999px;font-size:16px}
+.listen,.record{min-height:50px;border-radius:18px;font-size:14px;font-weight:850}
+.listen{background:#edf8ff;color:#238bcf;box-shadow:0 4px 0 #d4e9f5}
+.record{background:linear-gradient(180deg,#ff90a2,#ff6f89);box-shadow:0 5px 0 #dc5971}
+.record.recording{background:linear-gradient(180deg,#ff7388,#f44f69)}
+.choice{min-height:96px;border-radius:18px;padding:15px 10px}
+.reveal,.tip,.status,.feedback{border-radius:18px}
+.reveal{padding:15px 14px;background:linear-gradient(180deg,#fffaf0,#fffef8)}
+.big-cn{font-size:44px}
+.example{border-radius:18px;background:linear-gradient(180deg,#fffefb,#fff);box-shadow:0 5px 0 #edf1ef}
+.example-buttons{gap:8px}
+.small-btn{min-height:42px;border-radius:12px;font-size:12px}
+.example-practice{border-radius:16px;background:linear-gradient(180deg,#f7fff8,#fcfffd);border:1px solid #d9ece2;box-shadow:0 4px 0 #ebf4ee}
+.example-practice h3{font-size:15px}
+.mouth-pop{border-radius:21px;background:linear-gradient(180deg,#f8fff9,#f5fffb);padding:11px 12px 12px}
+.result-toolbar{padding:max(10px,env(safe-area-inset-top)) 16px 10px;background:#fffdf8f2}
+.result-screen .score{padding:18px 12px 14px;max-width:430px}
+.score h2{letter-spacing:.01em}
+.result-ribbon{box-shadow:0 3px 0 #dbf0df}
+.result-panda-wrap{width:178px;height:178px;margin-top:10px;box-shadow:0 7px 0 #d9efe0}
+.result-panda-img{border-radius:32px;object-position:center 44%}
+.result-encouragement{max-width:295px;font-size:14px}
+.result-advice{border-radius:16px}
+.result-sounds{border-radius:17px}
+.score .secondary{border-radius:999px;min-height:50px}
+@media (max-width:390px){
+  .home-hero{grid-template-columns:116px 1fr}
+  .home-panda-wrap{width:114px;height:126px}
+  .home-panda-img{width:124px;height:132px}
+  .home-speech{font-size:13px;padding:12px}
+  .menu-copy strong{font-size:18px}
+  .lesson-mascot{grid-template-columns:102px 1fr}
+  .lesson-mascot img{width:102px;height:97px}
+  .result-panda-wrap{width:168px;height:168px}
+}
+@media (max-width:350px){
+  .phone{padding-left:10px;padding-right:10px}
+  .home-card{padding:12px}
+  .home-hero{grid-template-columns:104px 1fr;gap:8px}
+  .home-panda-wrap{width:102px;height:114px}
+  .home-panda-img{width:112px;height:120px}
+  .home-menu-card{min-height:72px;padding:10px 11px}
+  .menu-icon{width:44px;height:44px;font-size:23px}
+  .lesson-mascot{grid-template-columns:94px 1fr}
+  .lesson-mascot img{width:94px;height:90px}
+  .stage{font-size:18px}
+}

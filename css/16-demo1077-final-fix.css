@@ -1,0 +1,18 @@
+/* DEMO 10.77 final override for chat mouth + tap */
+.chat-bubble,.chat-bubble *{pointer-events:auto}
+.chat-bubble button[data-chat-speak],
+.chat-bubble .chat-hear-button{
+  position:relative !important;
+  z-index:40 !important;
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+#popFace .cartoon-face.panda-face{
+  margin:0 auto;
+  width:86px;
+  height:86px;
+}
+#popFace .panda-face .cartoon-mouth{top:46px !important; left:10px !important; width:65px !important; height:30px !important;}
+#popFace .panda-face .cartoon-cheek{top:48px !important; left:10px !important; box-shadow:46px 0 #ffb8ae !important;}
+@media(max-width:390px){#popFace .cartoon-face.panda-face{width:80px;height:80px}}
