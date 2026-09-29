@@ -1,6 +1,6 @@
 {
-  "version": "10.107",
-  "base": "10.106.2 AnswerAutoVoice Full",
+  "version": "10.107.1",
+  "base": "10.107 HomeRefresh Full",
   "stable_baseline": "10.105",
   "changes": [
     "answer selection auto-plays target pronunciation with inline mouth guide",
@@ -9,7 +9,8 @@
   ],
   "files": [
     "css/27-demo10107-home-refresh.css",
-    "js/03-demo10107-home-refresh.js"
+    "js/03-demo10107-home-refresh.js",
+    "css/28-demo101071-home-layout-fix.css"
   ],
-  "change": "Homepage visual refresh; live streak badge; cache-busting query versions"
+  "change": "iPhone/Safari homepage lesson-card layout repair; preserves 10.107 branding/background/streak visuals"
 }

@@ -1,5 +1,5 @@
-Koepanda DEMO 10.107
-Base: DEMO 10.106.2 AnswerAutoVoice Full
-Change: homepage visual refresh + live streak badge + cache-busting query versions
+Koepanda DEMO 10.107.1
+Base: DEMO 10.107 HomeRefresh Full
+Change: iPhone/Safari homepage lesson-card layout repair; keeps 10.107 branding/background/streak visuals
 Safety: no audio / recording / mouth-sync / quiz / navigation logic changes
 Stable baseline DEMO 10.105 remains preserved
