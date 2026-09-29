@@ -1,0 +1,71 @@
+(function(){
+  const AREA_BY_HASH={
+    '#listeningGame':'listen',
+    '#pandaChat':'chat',
+    '#examplePractice':'repeat'
+  };
+
+  function setBodyMode(area){
+    document.body.classList.remove('app-home-mode','app-function-mode','app-area-listen','app-area-chat','app-area-repeat');
+    if(!area){
+      document.body.classList.add('app-home-mode');
+      return;
+    }
+    document.body.classList.add('app-function-mode','app-area-'+area);
+  }
+
+  function areaTarget(area){
+    if(area==='listen') return document.getElementById('listeningGame');
+    if(area==='chat') return document.getElementById('pandaChat');
+    if(area==='repeat') return document.getElementById('examplePractice');
+    return null;
+  }
+
+  window.openHomeArea=function(area){
+    setBodyMode(area);
+    const target=areaTarget(area);
+    requestAnimationFrame(function(){
+      if(target) target.scrollIntoView({block:'start',behavior:'auto'});
+    });
+  };
+
+  window.returnToAppHome=function(){
+    setBodyMode(null);
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+    requestAnimationFrame(function(){ window.scrollTo({top:0,left:0,behavior:'auto'}); });
+  };
+
+  function bindHomeNavigation(){
+    document.querySelectorAll('.lesson-steps a[href]').forEach(function(link){
+      const hash=link.getAttribute('href');
+      const area=AREA_BY_HASH[hash];
+      if(!area) return;
+      link.addEventListener('click',function(e){
+        e.preventDefault();
+        try{ history.replaceState(null,'',hash); }catch(err){}
+        window.openHomeArea(area);
+      });
+    });
+
+    const home=document.querySelector('.floating-home');
+    if(home){
+      home.addEventListener('click',function(e){
+        e.preventDefault();
+        window.returnToAppHome();
+      });
+    }
+
+    const initialArea=AREA_BY_HASH[location.hash];
+    if(initialArea){
+      window.openHomeArea(initialArea);
+    }else{
+      setBodyMode(null);
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',bindHomeNavigation,{once:true});
+  }else{
+    bindHomeNavigation();
+  }
+})();
