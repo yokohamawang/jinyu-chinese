@@ -1,0 +1,75 @@
+/* DEMO 10.100
+   Base: DEMO 10.99 home-navigation-clean
+   Scope: STEP 2 / STEP 3 section headers only. */
+
+/* STEP 3 — example practice:
+   remove the stray "自由練習" chip and match STEP 2's title-left / step-right layout. */
+.section-head#examplePractice{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  min-height:54px!important;
+  margin-top:12px!important;
+  margin-bottom:12px!important;
+  padding-right:78px!important;
+}
+.section-head#examplePractice > span{
+  display:none!important;
+}
+.section-head#examplePractice::before{
+  content:"STEP 3"!important;
+  position:absolute!important;
+  right:14px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  margin:0!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  padding:7px 11px!important;
+  border-radius:999px!important;
+  background:#fff0c9!important;
+  color:#9b742f!important;
+  font-size:11px!important;
+  font-weight:950!important;
+  line-height:1!important;
+}
+.section-head#examplePractice h2{
+  margin:0!important;
+}
+
+/* STEP 2 — free practice:
+   preserve the current 10.99 structure, only normalize vertical alignment. */
+.chat-card#pandaChat{
+  position:relative!important;
+}
+.chat-card#pandaChat::before{
+  content:"STEP 2"!important;
+  right:15px!important;
+  top:18px!important;
+  background:#e8faef!important;
+  color:#28745d!important;
+}
+.chat-title-row{
+  min-height:48px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  padding-right:76px!important;
+}
+.chat-title-row h2{
+  margin:0!important;
+}
+
+/* Keep both anchor targets from landing with an exaggerated blank gap on iPhone Safari. */
+#pandaChat,
+#examplePractice{
+  scroll-margin-top:16px!important;
+}
+
+@media(max-width:390px){
+  .section-head#examplePractice{padding-right:72px!important}
+  .section-head#examplePractice::before{right:10px!important;padding:6px 9px!important;font-size:10px!important}
+  .chat-title-row{padding-right:70px!important}
+  .chat-card#pandaChat::before{right:10px!important}
+}

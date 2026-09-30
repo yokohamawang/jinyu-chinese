@@ -1,0 +1,94 @@
+/* DEMO 10.107.4 — faithful homepage rendering based on the approved effect image.
+   Homepage visual layer only; existing audio/recording/mouth/quiz logic remains untouched. */
+body.app-home-mode{
+  background:#eef8d9!important;
+}
+body.app-home-mode .phone{
+  width:min(100%,520px)!important;
+  max-width:520px!important;
+  margin:0 auto!important;
+  padding:0 0 max(28px,env(safe-area-inset-bottom))!important;
+  background:#f2f9dc!important;
+  overflow:visible!important;
+}
+body.app-home-mode .brand-effect-header,
+body.app-home-mode .home-card-1060,
+body.app-home-mode .home-free-preview,
+body.app-home-mode .learning-path-image{
+  display:none!important;
+}
+body.app-home-mode .home-effect-live{
+  position:relative;
+  width:100%;
+  margin:0;
+  overflow:hidden;
+  background:#eaf6d1;
+  line-height:0;
+}
+body.app-home-mode .home-effect-reference{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+body.app-home-mode .home-effect-hotspot{
+  position:absolute;
+  z-index:4;
+  display:block;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:22px;
+  background:transparent;
+  color:transparent;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+body.app-home-mode .home-effect-hotspot:active{
+  background:rgba(255,255,255,.12);
+  transform:scale(.985);
+}
+/* Coordinates are percentages of the approved 864×1536 effect image. */
+body.app-home-mode .hs-hear{left:2.5%;top:39.6%;width:31.4%;height:21.9%}
+body.app-home-mode .hs-talk{left:35.4%;top:39.6%;width:31.4%;height:21.9%}
+body.app-home-mode .hs-repeat{left:67.1%;top:39.6%;width:30.6%;height:21.9%}
+body.app-home-mode .hs-sentence-audio{left:81.1%;top:72.2%;width:12.2%;height:8.1%;border-radius:50%}
+body.app-home-mode .hs-level{left:5.5%;top:84.2%;width:21.6%;height:10.5%}
+body.app-home-mode .hs-reward{left:28.0%;top:84.2%;width:21.3%;height:10.5%}
+body.app-home-mode .hs-history{left:50.1%;top:84.2%;width:21.3%;height:10.5%}
+body.app-home-mode .hs-settings{left:72.2%;top:84.2%;width:22.3%;height:10.5%}
+/* Replace the fixed sample streak in the artwork with the real local streak value. */
+body.app-home-mode .home-effect-streak{
+  position:absolute;
+  z-index:6;
+  top:64.55%;
+  right:5.15%;
+  width:27.8%;
+  height:4.15%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.24em;
+  box-sizing:border-box;
+  padding:0 .42em;
+  border:1px solid rgba(233,192,93,.35);
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,248,222,.98));
+  box-shadow:0 2px 6px rgba(121,92,39,.08);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  line-height:1;
+  white-space:nowrap;
+  pointer-events:none;
+}
+body.app-home-mode .home-effect-streak span{font-size:clamp(13px,3.9vw,22px)}
+body.app-home-mode .home-effect-streak b{font-size:clamp(11px,3.4vw,19px);font-weight:900;color:#e86a10;letter-spacing:-.02em}
+body.app-home-mode .home-effect-streak i{font-style:normal;font-size:clamp(15px,4vw,22px);font-weight:900;color:#ef831b;margin-left:.08em}
+/* The exercise area below the image keeps its existing layout and logic. */
+body.app-home-mode #listeningGame{margin-top:14px!important}
+@media (max-width:390px){
+  body.app-home-mode .home-effect-streak{right:4.9%;width:28.4%}
+}
