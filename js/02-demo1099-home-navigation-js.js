@@ -1,5 +1,5 @@
-/* DEMO 10.107.5 — navigation binding fix for the effect-image homepage.
-   Visual homepage only: feature internals are unchanged. */
+/* DEMO 10.107.32 — refresh/startup returns to the homepage.
+   Navigation only: feature internals, audio, mouth timing, recording and scoring are unchanged. */
 (function(){
   const AREA_BY_HASH={
     '#listeningGame':'listen',
@@ -68,12 +68,9 @@
       });
     }
 
-    const initialArea=AREA_BY_HASH[location.hash];
-    if(initialArea){
-      window.openHomeArea(initialArea);
-    }else{
-      setBodyMode(null);
-    }
+    /* A fresh page load / browser refresh must always start from the homepage.
+       The feature buttons still switch to their target area during the current session. */
+    window.returnToAppHome();
   }
 
   if(document.readyState==='loading'){
