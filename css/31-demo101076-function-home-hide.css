@@ -1,0 +1,6 @@
+/* DEMO 10.107.6 — minimal navigation transition fix.
+   When a home hotspot opens a feature, remove the full effect-image homepage
+   from layout so the selected feature is immediately visible. */
+body.app-function-mode .home-effect-live{
+  display:none!important;
+}
