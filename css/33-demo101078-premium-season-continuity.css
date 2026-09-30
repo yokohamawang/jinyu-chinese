@@ -1,0 +1,158 @@
+/* DEMO 10.107.8 — premium visual continuity + seasonal framework.
+   Visual-only layer. Existing navigation/audio/recording/mouth/scoring logic remains unchanged. */
+
+:root{
+  --kp-bg-top:#eff8df;
+  --kp-bg-mid:#f7fbef;
+  --kp-bg-bottom:#fffdf7;
+  --kp-card:rgba(255,255,255,.92);
+  --kp-ink:#375040;
+  --kp-line:rgba(106,145,94,.18);
+  --kp-shadow:0 14px 38px rgba(71,108,73,.12);
+  --kp-radius:28px;
+}
+
+/* Seasonal palette hook. Artwork files can later be swapped without changing layout/logic. */
+html[data-kp-season="spring"]{--kp-bg-top:#f7f5e7;--kp-bg-mid:#f8fbef;--kp-bg-bottom:#fff8f4}
+html[data-kp-season="summer"]{--kp-bg-top:#e9f8e7;--kp-bg-mid:#eefaf5;--kp-bg-bottom:#fffdf5}
+html[data-kp-season="autumn"]{--kp-bg-top:#f4f3df;--kp-bg-mid:#f8f7e8;--kp-bg-bottom:#fff8ed}
+html[data-kp-season="winter"]{--kp-bg-top:#eef7f4;--kp-bg-mid:#f3f8f7;--kp-bg-bottom:#fbfbf7}
+
+/* Real mobile viewport: no desktop-style frame peeking out at the sides. */
+html,body{max-width:100%;overflow-x:hidden}
+body.app-home-mode,
+body.app-function-mode{
+  min-height:100vh;
+  min-height:100dvh;
+  margin:0!important;
+  background:
+    radial-gradient(circle at 12% 5%,rgba(255,255,255,.86),transparent 28%),
+    linear-gradient(180deg,var(--kp-bg-top) 0%,var(--kp-bg-mid) 54%,var(--kp-bg-bottom) 100%)!important;
+}
+body.app-home-mode .phone,
+body.app-function-mode .phone{
+  width:100%!important;
+  max-width:520px!important;
+  min-height:100dvh;
+  margin:0 auto!important;
+  box-sizing:border-box;
+  background:transparent!important;
+}
+
+/* Homepage artwork blends into the phone edges instead of looking pasted-on. */
+body.app-home-mode .home-effect-live{
+  width:100%!important;
+  max-width:520px!important;
+  margin:0 auto 14px!important;
+  border-radius:0!important;
+  overflow:hidden!important;
+  background:var(--kp-bg-top)!important;
+  box-shadow:none!important;
+  position:relative;
+}
+body.app-home-mode .home-effect-live::before,
+body.app-home-mode .home-effect-live::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;
+  z-index:2;
+  pointer-events:none;
+}
+body.app-home-mode .home-effect-live::before{
+  top:0;height:max(16px,env(safe-area-inset-top));
+  background:linear-gradient(180deg,var(--kp-bg-top),rgba(239,248,223,0));
+}
+body.app-home-mode .home-effect-live::after{
+  bottom:-1px;height:34px;
+  background:linear-gradient(180deg,rgba(255,255,255,0),var(--kp-bg-mid));
+}
+body.app-home-mode .home-effect-reference{
+  width:100%!important;
+  height:auto!important;
+  display:block!important;
+  border-radius:0!important;
+  object-fit:cover;
+}
+
+/* Keep all touch targets above the visual blending layers. */
+body.app-home-mode .home-effect-hotspot,
+body.app-home-mode .home-effect-streak{z-index:5!important}
+
+/* Function pages continue the same visual world as the homepage. */
+body.app-function-mode .phone{
+  padding:
+    max(12px,env(safe-area-inset-top))
+    clamp(10px,3vw,18px)
+    max(30px,env(safe-area-inset-bottom))!important;
+}
+body.app-function-mode .phone::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 88% 7%,rgba(123,174,104,.15),transparent 22%),
+    radial-gradient(circle at 8% 20%,rgba(255,255,255,.72),transparent 28%),
+    linear-gradient(180deg,var(--kp-bg-top),var(--kp-bg-mid) 58%,var(--kp-bg-bottom));
+}
+
+/* Upgrade existing exercise surfaces without changing their structure. */
+body.app-function-mode .flow,
+body.app-function-mode .chat-card,
+body.app-function-mode .examples,
+body.app-function-mode .feedback-box{
+  background:var(--kp-card)!important;
+  border:1px solid var(--kp-line)!important;
+  border-radius:var(--kp-radius)!important;
+  box-shadow:var(--kp-shadow)!important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+body.app-function-mode .section-head{
+  margin-top:12px!important;
+  border-radius:22px!important;
+  background:rgba(255,255,255,.72)!important;
+  border:1px solid rgba(106,145,94,.12)!important;
+  box-shadow:0 8px 22px rgba(71,108,73,.08)!important;
+}
+body.app-function-mode .section-head h2,
+body.app-function-mode .chat-card h2{
+  color:var(--kp-ink)!important;
+  letter-spacing:.01em;
+}
+body.app-function-mode button,
+body.app-function-mode .floating-home{
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Home button becomes a soft floating glass button and stays clear of content. */
+body.app-function-mode .floating-home{
+  right:max(12px,env(safe-area-inset-right))!important;
+  bottom:max(16px,calc(env(safe-area-inset-bottom) + 8px))!important;
+  border:1px solid rgba(255,255,255,.75)!important;
+  box-shadow:0 10px 26px rgba(52,91,59,.18)!important;
+}
+
+/* Narrow phones: preserve full width and avoid hard card edges touching the glass. */
+@media (max-width:390px){
+  body.app-function-mode .phone{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  body.app-function-mode .flow,
+  body.app-function-mode .chat-card,
+  body.app-function-mode .examples,
+  body.app-function-mode .feedback-box{
+    border-radius:23px!important;
+  }
+}
+
+/* Wider phones/tablets: keep a calm centered composition. */
+@media (min-width:521px){
+  body.app-home-mode .home-effect-live,
+  body.app-home-mode .phone,
+  body.app-function-mode .phone{
+    max-width:520px!important;
+  }
+}
