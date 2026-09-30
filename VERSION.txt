@@ -1,6 +1,6 @@
-DEMO 10.107.28
-Base: DEMO 10.107.27
-Fix: text/pinyin highlight advances one syllable relative to the mouth-shape index.
-Reason: in phrases such as 我想吃饺子, audio had reached 饺 while 吃 was still highlighted.
-Mouth timing and 0.88x example playback speed are unchanged from 10.107.27.
+DEMO 10.107.29
+Base: DEMO 10.107.28
+Fix: example text/pinyin highlight advances two syllable slots relative to the mouth-shape index.
+Reason: on 我想吃饺子, audio had already reached 饺子 while 吃 remained highlighted.
+Mouth timing and 0.88x playback speed unchanged.
 Homepage, hotspots, recording and scoring unchanged.
