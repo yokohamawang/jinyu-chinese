@@ -1,12 +1,8 @@
 /* DEMO 10.107.9 — head-only Xiaoyin for pronunciation focus.
    Visual-only. Existing audio timing and live mouth animation remain unchanged. */
 
-/* Replace every pronunciation Xiaoyin image with the approved head-only artwork.
-   CSS content replacement avoids touching the stable mouth-animation JS. */
-.new-xiaoyin-face .xiaoyin-face-img,
-#mouthPop .mouth-title-icon{
-  content:url("../assets/mouth/xiaoyin-head-focus.webp")!important;
-}
+/* Pronunciation Xiaoyin now uses a direct <img src> path in index.html / JS.
+   This avoids Safari/WebKit inconsistencies with CSS content:url() on <img>. */
 
 /* Pronunciation guide: the face is the focal point, not character gestures. */
 .new-xiaoyin-face{
