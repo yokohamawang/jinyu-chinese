@@ -1,8 +1,8 @@
 {
-  "version": "10.107.15",
-  "base": "10.107.14",
+  "version": "10.107.16",
+  "base": "10.107.15",
   "stable_baseline": "10.105",
-  "scope": "final mouth layout CSS order correction",
+  "scope": "restore natural mouth avatar scale and crop",
   "changed": [
     "index.html",
     "VERSION.txt",
@@ -17,5 +17,5 @@
     "navigation behavior",
     "homepage layout"
   ],
-  "notes": "Final override is after css/34 and before </body>, so it wins the cascade."
+  "notes": "Reverts only the over-small/over-cropped mouth-avatar presentation introduced in 10.107.15."
 }

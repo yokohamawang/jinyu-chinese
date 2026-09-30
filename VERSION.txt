@@ -1,11 +1,12 @@
-Koepanda DEMO 10.107.15
-Based on DEMO 10.107.14. Stable baseline DEMO 10.105 remains untouched.
+Koepanda DEMO 10.107.16
+Based on DEMO 10.107.15. Stable baseline DEMO 10.105 remains untouched.
 
 Fix in this build:
-- Corrected the 10.107.14 CSS ordering mistake.
-- The mouth-layout override is now physically placed AFTER css/34-demo101079-mouth-focus-head.css, immediately before </body>.
-- Uses stronger selectors so older !important rules cannot win.
-- Moves live pronunciation avatar to the right, removes heavy ring/shadow, crops artwork tighter, and lowers/sizes the animated lips to cover the original mouth.
+- Restored the mouth avatar to a natural, larger scale.
+- Reverted the aggressive 140% crop from 10.107.15 to the gentler 118% crop.
+- Detailed articulation avatar restored to 174px (158px on narrow phones).
+- Speaking popup avatar restored to 108px (98px on narrow phones).
+- Mouth overlay alignment returned to the pre-10.107.15 geometry.
 - Existing audio, mouth timing, recording, scoring, lesson data, navigation and homepage layout are unchanged.
 
 Only index.html needs to be uploaded for this test.
