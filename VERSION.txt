@@ -1,3 +1,2 @@
-DEMO 10.107.3
-Home dashboard checked build
-Stable baseline: DEMO 10.105 (untouched)
+DEMO 10.107.4
+Faithful effect-image homepage; stable DEMO 10.105 baseline untouched.

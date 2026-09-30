@@ -1,5 +1,5 @@
 {
-  "version": "10.107.3.2",
+  "version": "10.107.4",
   "base": "10.107.3 HomeRefresh Full",
   "stable_baseline": "10.105",
   "changes": [
@@ -12,5 +12,8 @@
     "js/03-demo10107-home-refresh.js",
     "css/28-demo101071-home-layout-fix.css"
   ],
-  "change": "iPhone/Safari homepage lesson-card layout repair; preserves 10.107.3 branding/background/streak visuals"
+  "change": "iPhone/Safari homepage lesson-card layout repair; preserves 10.107.3 branding/background/streak visuals",
+  "build": "home-effect-faithful",
+  "baseline": "10.105",
+  "notes": "Homepage visual layer replaced with approved effect-image layout. Existing audio/recording/mouth/quiz logic unchanged."
 }
