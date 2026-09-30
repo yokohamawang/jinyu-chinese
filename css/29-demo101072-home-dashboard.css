@@ -1,0 +1,155 @@
+/* DEMO 10.107.3 — horizontal home entrances + learning growth dashboard.
+   Visual/homepage only. Audio/recording/mouth/quiz/navigation logic untouched. */
+body.app-home-mode .home-card-1060{padding-bottom:16px!important}
+body.app-home-mode .lesson-heading{
+  grid-template-columns:44px minmax(0,1fr)!important;
+  margin-bottom:14px!important;
+}
+body.app-home-mode .lesson-heading-copy{min-width:0!important}
+body.app-home-mode .lesson-heading h1{white-space:nowrap!important}
+body.app-home-mode .home-streak-live{display:block!important}
+
+/* Three primary entrances: always one horizontal row on phone-sized screens. */
+body.app-home-mode .lesson-steps{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+  width:100%!important;
+  margin:0!important;
+}
+body.app-home-mode .lesson-step{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:5px!important;
+  min-width:0!important;
+  min-height:126px!important;
+  padding:12px 5px 10px!important;
+  border-radius:22px!important;
+  text-align:center!important;
+  overflow:hidden!important;
+}
+body.app-home-mode .lesson-step:not(:last-child)::after{display:none!important}
+body.app-home-mode .step-number{
+  position:absolute!important;
+  top:7px!important;
+  left:7px!important;
+  width:22px!important;height:22px!important;
+  font-size:11px!important;
+  background:rgba(255,255,255,.9)!important;
+  color:currentColor!important;
+  border:1px solid currentColor!important;
+}
+body.app-home-mode .step-number::before{content:none!important}
+body.app-home-mode .step-icon{
+  width:52px!important;height:52px!important;flex:0 0 52px!important;
+  margin:2px 0 0!important;
+  border:0!important;border-radius:50%!important;
+  background:rgba(255,255,255,.93)!important;
+  font-size:27px!important;
+  box-shadow:0 5px 12px rgba(45,77,61,.10)!important;
+}
+body.app-home-mode .step-short{display:none!important}
+body.app-home-mode .step-copy{display:block!important;width:100%!important;min-width:0!important}
+body.app-home-mode .step-copy strong{
+  display:block!important;
+  font-size:17px!important;line-height:1.12!important;font-weight:950!important;
+  white-space:nowrap!important;
+}
+body.app-home-mode .step-copy small{
+  display:block!important;
+  margin-top:3px!important;
+  font-size:10.5px!important;line-height:1.25!important;font-weight:750!important;
+  color:#687a72!important;
+  white-space:normal!important;
+}
+body.app-home-mode .step-arrow{display:none!important}
+
+/* Growth / reward area under the 3 entrances. */
+body.app-home-mode .home-growth{
+  margin-top:14px;
+  padding:13px;
+  border:1.5px solid #d8eadc;
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(247,255,248,.94));
+  box-shadow:0 6px 0 rgba(214,233,216,.62);
+}
+body.app-home-mode .growth-title{
+  display:grid;
+  grid-template-columns:32px minmax(0,1fr);
+  grid-template-rows:auto auto;
+  column-gap:7px;
+  align-items:center;
+  margin-bottom:10px;
+}
+body.app-home-mode .growth-title>span{grid-row:1/3;font-size:25px}
+body.app-home-mode .growth-title strong{font-size:16px;line-height:1.15;color:#216e55}
+body.app-home-mode .growth-title small{font-size:10.5px;line-height:1.3;color:#718077}
+body.app-home-mode .growth-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+}
+body.app-home-mode .growth-stat{
+  min-width:0;
+  padding:9px 4px 8px;
+  border-radius:17px;
+  text-align:center;
+  background:#fff;
+  box-shadow:0 3px 10px rgba(61,93,74,.07);
+}
+body.app-home-mode .growth-stat.streak{background:#fff6ee}
+body.app-home-mode .growth-stat.days{background:#eef8ff}
+body.app-home-mode .growth-stat.best{background:#fff8e8}
+body.app-home-mode .growth-emoji{display:block;font-size:20px;line-height:1;margin-bottom:3px}
+body.app-home-mode .growth-stat b{display:block;font-size:17px;line-height:1.2;color:#31483d;white-space:nowrap}
+body.app-home-mode .growth-stat small{display:block;margin-top:2px;font-size:9.5px;line-height:1.2;color:#748078;white-space:nowrap}
+body.app-home-mode .reward-strip{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:6px 8px;
+  align-items:center;
+  margin-top:10px;
+  padding:9px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,.8);
+  border:1px dashed #d8e6d8;
+}
+body.app-home-mode .reward-label{font-size:11px;font-weight:850;color:#52685c;white-space:nowrap}
+body.app-home-mode .reward-slots{display:flex;justify-content:flex-end;gap:4px;min-width:0}
+body.app-home-mode .reward-slots i{
+  display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
+  font-style:normal;font-size:15px;background:#fff;box-shadow:0 2px 7px rgba(58,91,72,.08);
+  opacity:.42;filter:grayscale(.2);
+}
+body.app-home-mode .reward-note{grid-column:1/-1;font-size:9.5px;color:#89958e}
+
+/* Bottom safe area for Safari toolbar / home indicator. */
+body.app-home-mode .phone{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
+
+@media(max-width:390px){
+  body.app-home-mode .lesson-heading{grid-template-columns:40px minmax(0,1fr)!important}
+  body.app-home-mode .lesson-steps{gap:6px!important}
+  body.app-home-mode .lesson-step{min-height:120px!important;padding:11px 3px 9px!important;border-radius:20px!important}
+  body.app-home-mode .step-icon{width:47px!important;height:47px!important;flex-basis:47px!important;font-size:24px!important}
+  body.app-home-mode .step-copy strong{font-size:16px!important}
+  body.app-home-mode .step-copy small{font-size:9.7px!important}
+  body.app-home-mode .growth-stat{padding-left:2px;padding-right:2px}
+  body.app-home-mode .growth-stat b{font-size:16px}
+  body.app-home-mode .growth-stat small{font-size:9px}
+}
+@media(max-width:350px){
+  body.app-home-mode .lesson-steps{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}
+  body.app-home-mode .lesson-step{min-height:112px!important;padding:10px 2px 8px!important}
+  body.app-home-mode .step-number{width:20px!important;height:20px!important;top:6px!important;left:6px!important;font-size:10px!important}
+  body.app-home-mode .step-icon{width:43px!important;height:43px!important;flex-basis:43px!important;font-size:22px!important}
+  body.app-home-mode .step-copy strong{font-size:15px!important}
+  body.app-home-mode .step-copy small{font-size:9px!important}
+  body.app-home-mode .home-growth{padding:10px}
+  body.app-home-mode .growth-stats{gap:5px}
+  body.app-home-mode .growth-stat b{font-size:14px}
+  body.app-home-mode .growth-stat small{font-size:8.5px}
+  body.app-home-mode .reward-slots i{width:23px;height:23px;font-size:13px}
+}
