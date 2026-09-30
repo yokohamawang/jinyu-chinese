@@ -213,9 +213,17 @@ function startMouthPop(text,audio,token){if(token!==mouthToken||activeAudio===au
       : (activeMouthExample>=0
           ? Math.min(.30,Math.max(.22,(duration/Math.max(1,chars.length))*.52))
           : Math.min(.12,Math.max(.09,duration*.08)));const fraction=Math.min(.999,Math.max(0,(audio.currentTime+lead)/duration));const ci=Math.min(chars.length-1,Math.floor(fraction*chars.length));
+// Text highlighting uses a speech-window timeline rather than the full audio file.
+// TTS files contain a little leading/trailing padding; using full duration makes
+// the highlighted syllable visibly lag behind the spoken syllable.
 const highlightCi=single
   ? ci
-  : Math.min(chars.length-1,ci+2);
+  : (()=>{const headPad=Math.min(.10,duration*.035);
+          const tailPad=Math.min(.46,duration*.16);
+          const speechDuration=Math.max(.45,duration-headPad-tailPad);
+          const highlightLead=Math.min(.12,speechDuration*.055);
+          const hf=Math.max(0,Math.min(.999,(audio.currentTime+highlightLead-headPad)/speechDuration));
+          return Math.min(chars.length-1,Math.floor(hf*chars.length));})();
 const char=chars[Math.max(0,ci)]||text;const stages=stagesFor(char);const local=(fraction*chars.length)-ci;const si=stageAtProgress(stages,Math.max(0,local));const key=ci+':'+si+':'+highlightCi;if(key!==lastKey){lastKey=key;if(activeChatPinyin){activeChatPinyin.querySelectorAll('.chat-pinyin-syllable').forEach((span,j)=>span.classList.toggle('speaking',j===highlightCi))}paintFace(face,stages[si]);const word=getEl('popWord');word.replaceChildren();if(single){word.textContent=(!answered&&round[idx]&&text===round[idx].cn)?'発音を聞こう':char+'  '+(PINYIN_HINT[char]||'')}else{
   const line=document.createElement('span');
   line.className='playback-syllable-line';
