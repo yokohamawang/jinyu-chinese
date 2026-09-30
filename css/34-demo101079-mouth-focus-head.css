@@ -120,3 +120,90 @@
   animation:none!important;
   transform:none!important;
 }
+
+/* DEMO 10.107.13 — pronunciation panel visual refinement.
+   Scope: visual only. No audio / timing / scoring / recording logic changes. */
+
+/* Remove the heavy double-ring feeling and crop away the source artwork's
+   decorative top/bottom edges. Keep only a very soft depth cue. */
+.new-xiaoyin-face{
+  border-radius:34px!important;
+  background:transparent!important;
+  box-shadow:0 8px 22px rgba(58,104,93,.10)!important;
+  overflow:hidden!important;
+}
+.new-xiaoyin-face .xiaoyin-face-img{
+  width:118%!important;
+  height:118%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center 52%!important;
+  margin:-9% 0 0 -9%!important;
+  border-radius:0!important;
+}
+
+/* The title already has a small Xiaoyin icon, so the live mouth face sits on
+   the right and the explanatory text gets the wider left column. */
+#mouthPop .mouth-pop-main{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 112px!important;
+  gap:10px!important;
+  align-items:center!important;
+}
+#mouthPop .mouth-pop-info{
+  order:1!important;
+  min-width:0!important;
+}
+#mouthPop #popFace{
+  order:2!important;
+  min-width:0!important;
+  width:112px!important;
+  justify-self:end!important;
+}
+#mouthPop #popFace .new-xiaoyin-face{
+  width:108px!important;
+  height:108px!important;
+  border-radius:30px!important;
+}
+
+/* Move the animated lips down to cover the artwork's own mouth instead of
+   floating over the nose. Slightly reduce the overlay for a more natural fit. */
+.new-xiaoyin-face .mouth-mask{
+  top:73%!important;
+  width:54px!important;
+  height:38px!important;
+}
+.new-xiaoyin-face .cartoon-mouth{
+  top:73%!important;
+  width:58px!important;
+  height:41px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face .mouth-mask{
+  top:73.5%!important;
+  width:57px!important;
+  height:40px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face .cartoon-mouth{
+  top:73.5%!important;
+  width:61px!important;
+  height:43px!important;
+}
+#popFace .new-xiaoyin-face .mouth-mask{
+  top:72.5%!important;
+  width:37px!important;
+  height:26px!important;
+}
+#popFace .new-xiaoyin-face .cartoon-mouth{
+  top:72.5%!important;
+  width:40px!important;
+  height:29px!important;
+}
+
+@media(max-width:390px){
+  #mouthPop .mouth-pop-main{
+    grid-template-columns:minmax(0,1fr) 98px!important;
+    gap:7px!important;
+  }
+  #mouthPop #popFace{width:98px!important}
+  #mouthPop #popFace .new-xiaoyin-face{width:94px!important;height:94px!important}
+}
