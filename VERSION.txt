@@ -1,6 +1,6 @@
-DEMO 10.107.23
-Base: DEMO 10.107.22
-Homepage artwork is now a formal external asset:
-  assets/home/koepanda-home-official-v10723.png
-Transparent hotspot navigation from 10.107.21 retained.
-Mouth/audio/recording logic unchanged.
+DEMO 10.107.24
+Base: DEMO 10.107.23
+Fix: reuse the established homepage asset path:
+  assets/home/koepanda-home-effect.webp
+The new no-status-bar homepage artwork replaces that existing file.
+Transparent hotspot navigation retained; mouth/audio/recording unchanged.
