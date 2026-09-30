@@ -1,6 +1,6 @@
-DEMO 10.107.29
-Base: DEMO 10.107.28
-Fix: example text/pinyin highlight advances two syllable slots relative to the mouth-shape index.
-Reason: on 我想吃饺子, audio had already reached 饺子 while 吃 remained highlighted.
-Mouth timing and 0.88x playback speed unchanged.
+DEMO 10.107.30
+Base: DEMO 10.107.29
+Fix: text/pinyin highlight now maps against the estimated spoken portion of the TTS audio,
+      excluding leading/trailing padding, instead of blindly adding 1–2 character slots.
+Mouth timing and 0.88x example playback remain unchanged from 10.107.27.
 Homepage, hotspots, recording and scoring unchanged.
