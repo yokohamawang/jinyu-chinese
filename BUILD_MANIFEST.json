@@ -1,11 +1,10 @@
 {
-  "version": "10.107.13",
-  "base": "10.107.12",
+  "version": "10.107.15",
+  "base": "10.107.14",
   "stable_baseline": "10.105",
-  "scope": "Pronunciation avatar layout and mouth alignment visual refinement",
+  "scope": "final mouth layout CSS order correction",
   "changed": [
     "index.html",
-    "css/34-demo101079-mouth-focus-head.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
@@ -18,5 +17,5 @@
     "navigation behavior",
     "homepage layout"
   ],
-  "notes": "Large avatar moves to the right, heavy ring removed, source-art background cropped, and lip overlay moved down to cover the original mouth."
+  "notes": "Final override is after css/34 and before </body>, so it wins the cascade."
 }

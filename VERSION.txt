@@ -1,15 +1,11 @@
-Koepanda DEMO 10.107.13
-Based on DEMO 10.107.12. Stable baseline DEMO 10.105 remains untouched.
+Koepanda DEMO 10.107.15
+Based on DEMO 10.107.14. Stable baseline DEMO 10.105 remains untouched.
 
-Visual refinement in this build:
-- Moves the large live mouth avatar to the right side of the pronunciation popup; the small title avatar stays top-left.
-- Removes the heavy outer ring/double-circle feel around the large avatar.
-- Crops/zooms the avatar artwork to hide the extra source-image background at the top/bottom.
-- Moves the animated lip overlay downward and slightly reduces it so it covers Xiaoyin's original mouth instead of floating over the nose.
+Fix in this build:
+- Corrected the 10.107.14 CSS ordering mistake.
+- The mouth-layout override is now physically placed AFTER css/34-demo101079-mouth-focus-head.css, immediately before </body>.
+- Uses stronger selectors so older !important rules cannot win.
+- Moves live pronunciation avatar to the right, removes heavy ring/shadow, crops artwork tighter, and lowers/sizes the animated lips to cover the original mouth.
 - Existing audio, mouth timing, recording, scoring, lesson data, navigation and homepage layout are unchanged.
 
-Implementation:
-- index.html (version/cache-bust only)
-- css/34-demo101079-mouth-focus-head.css
-- VERSION.txt
-- BUILD_MANIFEST.json
+Only index.html needs to be uploaded for this test.
