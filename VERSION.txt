@@ -1,10 +1,13 @@
-Koepanda DEMO 10.107.8
-Based on DEMO 10.107.7. Stable baseline DEMO 10.105 remains untouched.
+Koepanda DEMO 10.107.9
+Based on DEMO 10.107.8. Stable baseline DEMO 10.105 remains untouched.
 
-Changes:
-- Replaced homepage artwork with the newly approved premium Xiaoyin visual.
-- Full-width mobile viewport integration; removed visible pasted-on outer frame.
-- Soft edge blending for top/bottom transitions and safe-area handling.
-- Function pages now share the same calm premium visual language.
-- Added seasonal palette framework and season asset slots.
-- No changes to audio, recording, mouth animation, scoring, lesson logic or navigation behavior.
+Change in this build:
+- Pronunciation / mouth-guide Xiaoyin is now head-only.
+- Removed hand/body distraction from pronunciation visuals.
+- Enlarged the face and mouth area so learners can focus on lip shape.
+- Uses the approved fluffy, bright-eyed Xiaoyin style.
+- Existing audio timing, mouth-shape animation, navigation, recording and scoring logic are unchanged.
+
+Implementation:
+- assets/mouth/xiaoyin-head-focus.webp
+- css/34-demo101079-mouth-focus-head.css

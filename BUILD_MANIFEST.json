@@ -1,8 +1,8 @@
 {
-  "version": "10.107.8",
-  "base": "10.107.7",
+  "version": "10.107.9",
+  "base": "10.107.8",
   "stable_baseline": "10.105",
-  "scope": "visual-only",
+  "scope": "visual-only mouth-focus avatar",
   "changed": [
     "assets/home/koepanda-home-effect.webp",
     "css/33-demo101078-premium-season-continuity.css",
@@ -14,9 +14,13 @@
   "untouched_logic": [
     "audio",
     "recording",
-    "mouth",
+    "mouth timing",
     "scoring",
     "lesson data",
     "navigation behavior"
+  ],
+  "added": [
+    "assets/mouth/xiaoyin-head-focus.webp",
+    "css/34-demo101079-mouth-focus-head.css"
   ]
 }
