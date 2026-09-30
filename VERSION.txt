@@ -1,5 +1,6 @@
-DEMO 10.107.27
-Base: DEMO 10.107.26
-Change: example mouth timing rebalanced between 10.107.25 (too slow) and 10.107.26 (about one character too fast).
-Example playback remains at 0.88x.
+DEMO 10.107.28
+Base: DEMO 10.107.27
+Fix: text/pinyin highlight advances one syllable relative to the mouth-shape index.
+Reason: in phrases such as 我想吃饺子, audio had reached 饺 while 吃 was still highlighted.
+Mouth timing and 0.88x example playback speed are unchanged from 10.107.27.
 Homepage, hotspots, recording and scoring unchanged.
