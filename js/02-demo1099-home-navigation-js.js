@@ -1,4 +1,4 @@
-/* DEMO 10.107.32 — refresh/startup returns to the homepage.
+/* DEMO 10.107.33 — robust startup/refresh home reset for Safari/iOS.
    Navigation only: feature internals, audio, mouth timing, recording and scoring are unchanged. */
 (function(){
   const AREA_BY_HASH={
@@ -55,6 +55,21 @@
     });
   }
 
+  function forceStartupHome(){
+    try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
+    setBodyMode(null);
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+    try{ window.scrollTo(0,0); }catch(e){}
+    requestAnimationFrame(function(){
+      try{ window.scrollTo(0,0); }catch(e){}
+      requestAnimationFrame(function(){ try{ window.scrollTo(0,0); }catch(e){} });
+    });
+    setTimeout(function(){
+      setBodyMode(null);
+      try{ window.scrollTo(0,0); }catch(e){}
+    },80);
+  }
+
   function bindHomeNavigation(){
     /* Old card navigation + new image-home transparent hotspots. */
     document.querySelectorAll('.lesson-steps a[href], .home-effect-live a.home-effect-hotspot[href]').forEach(bindAreaLink);
@@ -68,9 +83,9 @@
       });
     }
 
-    /* A fresh page load / browser refresh must always start from the homepage.
-       The feature buttons still switch to their target area during the current session. */
-    window.returnToAppHome();
+    /* Every real page load/refresh starts at the homepage.
+       In-page feature navigation still works normally after startup. */
+    forceStartupHome();
   }
 
   if(document.readyState==='loading'){
@@ -78,4 +93,10 @@
   }else{
     bindHomeNavigation();
   }
+
+  /* Safari/iOS can restore the old scroll position after DOMContentLoaded.
+     pageshow runs after that restoration, so reset once more on an actual load/restore. */
+  window.addEventListener('pageshow',function(){
+    forceStartupHome();
+  });
 })();
