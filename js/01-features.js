@@ -211,7 +211,7 @@ function startMouthPop(text,audio,token){if(token!==mouthToken||activeAudio===au
  const frame=()=>{if(token!==mouthToken||audio!==activeAudio||audio.paused||audio.ended)return;const duration=Number.isFinite(audio.duration)&&audio.duration>0?audio.duration:Math.max(.7,chars.length*.45);const lead=single
       ? Math.min(.07,duration*.07)
       : (activeMouthExample>=0
-          ? Math.min(.42,Math.max(.20,(duration/Math.max(1,chars.length))*.72))
+          ? Math.min(.30,Math.max(.22,(duration/Math.max(1,chars.length))*.52))
           : Math.min(.12,Math.max(.09,duration*.08)));const fraction=Math.min(.999,Math.max(0,(audio.currentTime+lead)/duration));const ci=Math.min(chars.length-1,Math.floor(fraction*chars.length));const char=chars[Math.max(0,ci)]||text;const stages=stagesFor(char);const local=(fraction*chars.length)-ci;const si=stageAtProgress(stages,Math.max(0,local));const key=ci+':'+si;if(key!==lastKey){lastKey=key;if(activeChatPinyin){activeChatPinyin.querySelectorAll('.chat-pinyin-syllable').forEach((span,j)=>span.classList.toggle('speaking',j===ci))}paintFace(face,stages[si]);const word=getEl('popWord');word.replaceChildren();if(single){word.textContent=(!answered&&round[idx]&&text===round[idx].cn)?'発音を聞こう':char+'  '+(PINYIN_HINT[char]||'')}else{
   const line=document.createElement('span');
   line.className='playback-syllable-line';
