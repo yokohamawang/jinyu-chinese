@@ -1,13 +1,13 @@
 {
-  "version": "10.107.34",
+  "version": "10.107.35",
   "type": "FULL",
-  "base": "10.107.33 FULL",
-  "theme": "Kids first lesson entry: 四声感觉 + a/o/e",
+  "base": "10.107.34 FULL",
+  "theme": "はじめの一歩 entry moved directly under the three main learning buttons",
   "files": [
     {
       "path": "VERSION.txt",
-      "size": 71,
-      "sha256": "e37a81b5b6ff63e177ff97c26ab137d88f3b6770d33efb96989819bf40fe7dd1"
+      "size": 83,
+      "sha256": "ed92321978cd1d824f70044af458a708d108ac155fb745a6a65fe1e2e5754614"
     },
     {
       "path": "assets/audio/README.txt",
@@ -26,8 +26,8 @@
     },
     {
       "path": "assets/home/koepanda-home-effect.webp",
-      "size": 156920,
-      "sha256": "4cf2311c1b400ebffe05ca53a9aaffb6de1b4f82ca4e2332112004d4166a6022"
+      "size": 168116,
+      "sha256": "1357e28733b18fb209c91fa40884d058aa7e06efb76f9537ac03072d064ae7dd"
     },
     {
       "path": "assets/icons/README.txt",
@@ -230,6 +230,11 @@
       "sha256": "9cd340aa0a0df41c2997dcefca84ef602de7fc38f049fc08a8cd121b16e19799"
     },
     {
+      "path": "css/36-demo1010735-first-step-home.css",
+      "size": 2498,
+      "sha256": "29aed3d99ebb88a9785e44a649101111eca861ce963e05073c42afdfe6d0256f"
+    },
+    {
       "path": "data/README.txt",
       "size": 182,
       "sha256": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b"
@@ -241,8 +246,8 @@
     },
     {
       "path": "index.html",
-      "size": 172393,
-      "sha256": "66856ecb02d678e5ab9def58471a4084dddf6b7464341de2f640f45d13964d41"
+      "size": 172412,
+      "sha256": "61b64135dc28e66ffdb50ee5cf379bc22c84264af99b6971920ac1ae4cfcc3ad"
     },
     {
       "path": "js/00-core.js",
