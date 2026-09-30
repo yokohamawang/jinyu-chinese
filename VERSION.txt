@@ -1,5 +1,7 @@
-DEMO 10.107.25
-Base: DEMO 10.107.24
-Fix: example-sentence mouth animation is advanced ~140–180 ms so the lip shape leads the audio slightly.
-Single-word tone practice keeps the smaller lead to avoid changing already-stable behavior.
-Homepage asset/hotspots, recording, scoring and lesson layout unchanged.
+DEMO 10.107.26
+Base: DEMO 10.107.25
+Changes:
+- Example-sentence standard audio playback slowed to 0.88x for easier listening.
+- Example mouth animation lead is now dynamic (~one syllable ahead, capped at 420 ms).
+- Single-word/listening-game playback speed and timing remain unchanged.
+- Homepage, hotspots, recording and scoring unchanged.
