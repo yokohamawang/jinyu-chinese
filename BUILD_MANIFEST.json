@@ -1,6 +1,6 @@
 {
-  "version": "10.107.1",
-  "base": "10.107 HomeRefresh Full",
+  "version": "10.107.3.2",
+  "base": "10.107.3 HomeRefresh Full",
   "stable_baseline": "10.105",
   "changes": [
     "answer selection auto-plays target pronunciation with inline mouth guide",
@@ -12,5 +12,5 @@
     "js/03-demo10107-home-refresh.js",
     "css/28-demo101071-home-layout-fix.css"
   ],
-  "change": "iPhone/Safari homepage lesson-card layout repair; preserves 10.107 branding/background/streak visuals"
+  "change": "iPhone/Safari homepage lesson-card layout repair; preserves 10.107.3 branding/background/streak visuals"
 }
