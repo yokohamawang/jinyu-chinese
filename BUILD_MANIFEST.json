@@ -1,20 +1,12 @@
 {
-  "version": "10.107.6",
-  "base": "10.107.5 ButtonNavigationFix Full",
-  "stable_baseline": "10.105",
-  "changes": [
-    "answer selection auto-plays target pronunciation with inline mouth guide",
-    "slow standard audio mouth-synced",
-    "contrast audio mouth-synced"
-  ],
+  "version": "DEMO 10.107.7",
+  "base": "DEMO 10.107.6",
+  "change": "Homepage mobile viewport fit and rounded effect-image frame only",
+  "stable_baseline_untouched": "DEMO 10.105",
   "files": [
     "index.html",
-    "css/31-demo101076-function-home-hide.css",
+    "css/32-demo101077-mobile-fit-rounded.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
-  ],
-  "change": "Hide effect-image homepage immediately after entering a feature so hotspot navigation reveals the selected function; no feature internals changed.",
-  "build": "function-home-hide-fix",
-  "baseline": "10.105",
-  "notes": "Minimal CSS transition fix only. Stable baseline DEMO 10.105 untouched. Audio/recording/mouth/quiz logic unchanged."
+  ]
 }
