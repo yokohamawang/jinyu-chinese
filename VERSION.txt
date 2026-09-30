@@ -1,7 +1,3 @@
-DEMO 10.107.32
-Base: DEMO 10.107.31
-Fix: page refresh / fresh load now starts on the Koepanda homepage.
-- Clears the retained function-area hash on startup.
-- Resets the page to home mode and scrolls to the top.
-- Home buttons still open 聞く / 話す / まねる normally after startup.
-- Audio, mouth animation/highlight timing, recording and scoring are unchanged.
+DEMO 10.107.33
+Full build based on 10.107.31.
+Fix: refresh/reopen always starts at homepage, including Safari/iOS scroll restoration.

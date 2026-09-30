@@ -1,15 +1,18 @@
 {
-  "version": "10.107.23",
-  "base": "10.107.16",
+  "version": "10.107.33",
+  "base": "10.107.31",
   "stable_baseline": "10.105",
-  "scope": "selected spring homepage concept test",
+  "package_type": "FULL",
+  "scope": "Safari/iOS refresh/reopen starts at homepage",
   "changed": [
     "index.html",
     "VERSION.txt",
-    "BUILD_MANIFEST.json"
+    "BUILD_MANIFEST.json",
+    "js/02-demo1099-home-navigation-js.js"
   ],
   "retained": [
-    "10.107.16 mouth avatar restoration"
+    "10.107.31 unified mouth/highlight sync",
+    "10.107.30 full project structure"
   ],
   "untouched_logic": [
     "audio",
@@ -19,6 +22,5 @@
     "lesson data",
     "exercise content"
   ],
-  "notes": "Official homepage asset; hotspot navigation retained.",
-  "homepage_asset": "assets/home/koepanda-home-official-v10723.png"
+  "notes": "Full package. Forces homepage mode and top scroll on startup/pageshow; disables Safari scroll restoration during load."
 }
