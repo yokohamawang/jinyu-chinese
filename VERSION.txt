@@ -1,6 +1,5 @@
-DEMO 10.107.24
-Base: DEMO 10.107.23
-Fix: reuse the established homepage asset path:
-  assets/home/koepanda-home-effect.webp
-The new no-status-bar homepage artwork replaces that existing file.
-Transparent hotspot navigation retained; mouth/audio/recording unchanged.
+DEMO 10.107.25
+Base: DEMO 10.107.24
+Fix: example-sentence mouth animation is advanced ~140–180 ms so the lip shape leads the audio slightly.
+Single-word tone practice keeps the smaller lead to avoid changing already-stable behavior.
+Homepage asset/hotspots, recording, scoring and lesson layout unchanged.
