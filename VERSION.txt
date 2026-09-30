@@ -1,16 +1,15 @@
-Koepanda DEMO 10.107.12
-Based on DEMO 10.107.9. Stable baseline DEMO 10.105 remains untouched.
+Koepanda DEMO 10.107.13
+Based on DEMO 10.107.12. Stable baseline DEMO 10.105 remains untouched.
 
-Fix in this build:
-- Fixed pronunciation Xiaoyin head image not appearing on iPhone Safari.
-- Directly references ./assets/mouth/xiaoyin-head-focus.webp instead of relying on CSS content:url().
-- Fixed both the small mouth-panel title avatar and the main animated mouth face.
-- Existing audio timing, mouth-shape animation, navigation, recording, scoring and homepage layout are unchanged.
+Visual refinement in this build:
+- Moves the large live mouth avatar to the right side of the pronunciation popup; the small title avatar stays top-left.
+- Removes the heavy outer ring/double-circle feel around the large avatar.
+- Crops/zooms the avatar artwork to hide the extra source-image background at the top/bottom.
+- Moves the animated lip overlay downward and slightly reduces it so it covers Xiaoyin's original mouth instead of floating over the nose.
+- Existing audio, mouth timing, recording, scoring, lesson data, navigation and homepage layout are unchanged.
 
 Implementation:
-- index.html
-- js/01-features.js
+- index.html (version/cache-bust only)
 - css/34-demo101079-mouth-focus-head.css
-- assets/mouth/xiaoyin-head-focus.webp (unchanged)
-
-10.107.12: embedded xiaoyin mouth-focus image as data URI to avoid GitHub Pages/Safari asset path/decode deployment mismatch.
+- VERSION.txt
+- BUILD_MANIFEST.json
