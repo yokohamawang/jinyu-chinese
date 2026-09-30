@@ -1,6 +1,9 @@
-DEMO 10.107.30
-Base: DEMO 10.107.29
-Fix: text/pinyin highlight now maps against the estimated spoken portion of the TTS audio,
-      excluding leading/trailing padding, instead of blindly adding 1–2 character slots.
-Mouth timing and 0.88x example playback remain unchanged from 10.107.27.
+DEMO 10.107.31
+Base: DEMO 10.107.30
+Fix: mouth animation and text/pinyin highlighting now share one timeline.
+- Removes the separate speech-window/highlight clock from 10.107.30.
+- Prevents the first characters from being skipped.
+- Prevents highlighting from continuing after the mouth sequence has effectively finished.
+- Keeps a small 0.28-syllable visual lead for readability.
+- Example playback remains 0.88x.
 Homepage, hotspots, recording and scoring unchanged.
