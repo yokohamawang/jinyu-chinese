@@ -1,12 +1,6 @@
-Koepanda DEMO 10.107.16
-Based on DEMO 10.107.15. Stable baseline DEMO 10.105 remains untouched.
-
-Fix in this build:
-- Restored the mouth avatar to a natural, larger scale.
-- Reverted the aggressive 140% crop from 10.107.15 to the gentler 118% crop.
-- Detailed articulation avatar restored to 174px (158px on narrow phones).
-- Speaking popup avatar restored to 108px (98px on narrow phones).
-- Mouth overlay alignment returned to the pre-10.107.15 geometry.
-- Existing audio, mouth timing, recording, scoring, lesson data, navigation and homepage layout are unchanged.
-
-Only index.html needs to be uploaded for this test.
+DEMO 10.107.23
+Base: DEMO 10.107.22
+Homepage artwork is now a formal external asset:
+  assets/home/koepanda-home-official-v10723.png
+Transparent hotspot navigation from 10.107.21 retained.
+Mouth/audio/recording logic unchanged.

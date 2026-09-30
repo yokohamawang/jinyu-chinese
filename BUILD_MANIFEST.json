@@ -1,12 +1,15 @@
 {
-  "version": "10.107.16",
-  "base": "10.107.15",
+  "version": "10.107.23",
+  "base": "10.107.16",
   "stable_baseline": "10.105",
-  "scope": "restore natural mouth avatar scale and crop",
+  "scope": "selected spring homepage concept test",
   "changed": [
     "index.html",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
+  ],
+  "retained": [
+    "10.107.16 mouth avatar restoration"
   ],
   "untouched_logic": [
     "audio",
@@ -14,8 +17,8 @@
     "mouth timing",
     "scoring",
     "lesson data",
-    "navigation behavior",
-    "homepage layout"
+    "exercise content"
   ],
-  "notes": "Reverts only the over-small/over-cropped mouth-avatar presentation introduced in 10.107.15."
+  "notes": "Official homepage asset; hotspot navigation retained.",
+  "homepage_asset": "assets/home/koepanda-home-official-v10723.png"
 }
