@@ -1,12 +1,22 @@
 {
-  "version": "DEMO 10.107.7",
-  "base": "DEMO 10.107.6",
-  "change": "Homepage mobile viewport fit and rounded effect-image frame only",
-  "stable_baseline_untouched": "DEMO 10.105",
-  "files": [
+  "version": "10.107.8",
+  "base": "10.107.7",
+  "stable_baseline": "10.105",
+  "scope": "visual-only",
+  "changed": [
+    "assets/home/koepanda-home-effect.webp",
+    "css/33-demo101078-premium-season-continuity.css",
+    "js/04-demo101078-season-theme.js",
+    "assets/backgrounds/seasons/README.txt",
     "index.html",
-    "css/32-demo101077-mobile-fit-rounded.css",
-    "VERSION.txt",
-    "BUILD_MANIFEST.json"
+    "VERSION.txt"
+  ],
+  "untouched_logic": [
+    "audio",
+    "recording",
+    "mouth",
+    "scoring",
+    "lesson data",
+    "navigation behavior"
   ]
 }

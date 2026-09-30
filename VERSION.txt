@@ -1,1 +1,10 @@
-DEMO 10.107.7
+Koepanda DEMO 10.107.8
+Based on DEMO 10.107.7. Stable baseline DEMO 10.105 remains untouched.
+
+Changes:
+- Replaced homepage artwork with the newly approved premium Xiaoyin visual.
+- Full-width mobile viewport integration; removed visible pasted-on outer frame.
+- Soft edge blending for top/bottom transitions and safe-area handling.
+- Function pages now share the same calm premium visual language.
+- Added seasonal palette framework and season asset slots.
+- No changes to audio, recording, mouth animation, scoring, lesson logic or navigation behavior.
