@@ -1,7 +1,5 @@
-DEMO 10.107.26
-Base: DEMO 10.107.25
-Changes:
-- Example-sentence standard audio playback slowed to 0.88x for easier listening.
-- Example mouth animation lead is now dynamic (~one syllable ahead, capped at 420 ms).
-- Single-word/listening-game playback speed and timing remain unchanged.
-- Homepage, hotspots, recording and scoring unchanged.
+DEMO 10.107.27
+Base: DEMO 10.107.26
+Change: example mouth timing rebalanced between 10.107.25 (too slow) and 10.107.26 (about one character too fast).
+Example playback remains at 0.88x.
+Homepage, hotspots, recording and scoring unchanged.
