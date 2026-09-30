@@ -1,5 +1,5 @@
 {
-  "version": "10.107.11",
+  "version": "10.107.12",
   "base": "10.107.9",
   "stable_baseline": "10.105",
   "scope": "Safari mouth-focus image loading fix",
