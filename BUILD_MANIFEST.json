@@ -1,26 +1,278 @@
 {
-  "version": "10.107.33",
-  "base": "10.107.31",
-  "stable_baseline": "10.105",
-  "package_type": "FULL",
-  "scope": "Safari/iOS refresh/reopen starts at homepage",
-  "changed": [
-    "index.html",
-    "VERSION.txt",
-    "BUILD_MANIFEST.json",
-    "js/02-demo1099-home-navigation-js.js"
-  ],
-  "retained": [
-    "10.107.31 unified mouth/highlight sync",
-    "10.107.30 full project structure"
-  ],
-  "untouched_logic": [
-    "audio",
-    "recording",
-    "mouth timing",
-    "scoring",
-    "lesson data",
-    "exercise content"
-  ],
-  "notes": "Full package. Forces homepage mode and top scroll on startup/pageshow; disables Safari scroll restoration during load."
+  "version": "10.107.34",
+  "type": "FULL",
+  "base": "10.107.33 FULL",
+  "theme": "Kids first lesson entry: 四声感觉 + a/o/e",
+  "files": [
+    {
+      "path": "VERSION.txt",
+      "size": 71,
+      "sha256": "e37a81b5b6ff63e177ff97c26ab137d88f3b6770d33efb96989819bf40fe7dd1"
+    },
+    {
+      "path": "assets/audio/README.txt",
+      "size": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/backgrounds/README.txt",
+      "size": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/backgrounds/seasons/README.txt",
+      "size": 360,
+      "sha256": "3771e6582915bb8d362639b7a6c39f8ad08d223dff3d1052d1b98bbb67814926"
+    },
+    {
+      "path": "assets/home/koepanda-home-effect.webp",
+      "size": 156920,
+      "sha256": "4cf2311c1b400ebffe05ca53a9aaffb6de1b4f82ca4e2332112004d4166a6022"
+    },
+    {
+      "path": "assets/icons/README.txt",
+      "size": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/mouth/README.txt",
+      "size": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/mouth/xiaoyin-head-focus.webp",
+      "size": 47408,
+      "sha256": "0a3949bb8043150dc5be116e39805ecc874d5b8e874e92c75a6bd3c43c773153"
+    },
+    {
+      "path": "assets/panda/README.txt",
+      "size": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "css/00-base.css",
+      "size": 84419,
+      "sha256": "90368d3f5f4090e85bbb094a6a1832434cbf83c8586fbbcc5e376724509e8621"
+    },
+    {
+      "path": "css/01-ui54-fix.css",
+      "size": 10501,
+      "sha256": "597c9e3533fa924f64fa79d90fde884b07c00c5d52408be365199cd144c4b6b9"
+    },
+    {
+      "path": "css/02-ui55-home-fix.css",
+      "size": 6115,
+      "sha256": "c640e9671668a6eb03b1cf8acfdf9b3b0107d247bff5a609dcaa34007890ae1c"
+    },
+    {
+      "path": "css/03-ui56-character-assets.css",
+      "size": 3411,
+      "sha256": "66c81e7b9ab78357745bdff9cc2b594fde7be09a9a55287dcc2b7358a281a10f"
+    },
+    {
+      "path": "css/04-demo1057-polish.css",
+      "size": 6047,
+      "sha256": "73c28e9db57935b40614833724b25c5fbc4619b8f51a8d6c2e81631e4a5305f9"
+    },
+    {
+      "path": "css/05-demo1058-path.css",
+      "size": 3643,
+      "sha256": "5fc902425c526f8a72afd1f9b07f25888be931bdd24e33a5c0b0c1fedfd2dea8"
+    },
+    {
+      "path": "css/06-demo1059-ui-polish.css",
+      "size": 6404,
+      "sha256": "82673aff894325eb30e58db6ca08fe614b84349074e97b20138548d437f47d7d"
+    },
+    {
+      "path": "css/07-demo1070-brand-effect-match.css",
+      "size": 397,
+      "sha256": "5e808d533840cc90e0495d727b0bab262871dc01b876264410945f7cc3ba885c"
+    },
+    {
+      "path": "css/08-demo1071-freepreview-fix.css",
+      "size": 869,
+      "sha256": "17b79cd3e4e42c9315d8cc6d5111459333c25416e11a5690daf2049f829773c7"
+    },
+    {
+      "path": "css/09-demo1072-stepbuttons-fix.css",
+      "size": 3355,
+      "sha256": "de14bad1accb33c3c36ca35d27b08f25ed023ad1a407c76af2afa2fc016989de"
+    },
+    {
+      "path": "css/10-demo1073-step-image-buttons.css",
+      "size": 884,
+      "sha256": "019f691a185794b78e38083b80b9ca0613078545ebe79cdc6f3d23f35dff5ec1"
+    },
+    {
+      "path": "css/11-demo1074-audio-mouth-fix.css",
+      "size": 1831,
+      "sha256": "df1de4cf95e1923a9558bb2cef7e1409933bd7f1219a7b332f370528d781dd44"
+    },
+    {
+      "path": "css/12-demo1087-small-fixes.css",
+      "size": 589,
+      "sha256": "72772827ec7b001893f838653fce1753ff8f2b50ce6853e174a1bb64ae4190a3"
+    },
+    {
+      "path": "css/13-demo1088-quiz-dots-mascot-fix.css",
+      "size": 860,
+      "sha256": "41ced63bb0958fa1b600e512c2bf7fbbd6b4086b42775de7e36021ef2914c9bf"
+    },
+    {
+      "path": "css/14-demo1099-home-navigation-clean.css",
+      "size": 1333,
+      "sha256": "2c5b06987b2815ab9794f1578cc1387f34de287197193318c5964247cc32e384"
+    },
+    {
+      "path": "css/15-demo10105-recording-state-restored.css",
+      "size": 1629,
+      "sha256": "f79e6032ff5cfa7232138ee76600d8f0d097b5b287fe5bf26921654e56bce014"
+    },
+    {
+      "path": "css/16-demo1077-final-fix.css",
+      "size": 770,
+      "sha256": "6524c1b5548a020eb2a6b3dce4ac43fe6fda1d80ebda1a7397b46d7999334702"
+    },
+    {
+      "path": "css/17-demo1078-step1-visual-only.css",
+      "size": 518,
+      "sha256": "733b4de8dde8d6f8ce50e96f9bde59a444d6a1d7bf97a9ccd8a22808abdb9c92"
+    },
+    {
+      "path": "css/18-demo1086-ui-detail-fix.css",
+      "size": 5464,
+      "sha256": "45df213b23adef11f3b827d3822f27739854023622bc84c5efffd208c30d0970"
+    },
+    {
+      "path": "css/19-demo1092-dynamic-mouth-new-xiaoyin.css",
+      "size": 2742,
+      "sha256": "f0c515a91bb6f3a1d9fa184282b62a9a3c9add95f9c59c1281172d8c8619d62a"
+    },
+    {
+      "path": "css/20-demo1093-pinyin-left-edge-fix.css",
+      "size": 1513,
+      "sha256": "06559553418f84244bc924787112c4b2321ff126bfd714e3b22e0d81dca75f9c"
+    },
+    {
+      "path": "css/21-demo1096-pinyin-readable-playback.css",
+      "size": 1309,
+      "sha256": "2341a02f6ba6c852fccec3f17683b7310572ac97129e7ab4c83e7b382ae879b2"
+    },
+    {
+      "path": "css/22-demo1098-no-fast-letter-switch.css",
+      "size": 186,
+      "sha256": "6e4b01a1b63d9a296b672ac76bb606c539b6ed3886062b1973718b68ff6aacd3"
+    },
+    {
+      "path": "css/23-demo10100-step23-header-align-fix.css",
+      "size": 2141,
+      "sha256": "5e208d152c357b23651878223cf492e474718f16e22145b026fbeaf5ada58d44"
+    },
+    {
+      "path": "css/24-demo10101-unified-step-headers.css",
+      "size": 4408,
+      "sha256": "18799c94e2a4da48df2abf6202a975b116a5383673cd689f68b7efdd2a980946"
+    },
+    {
+      "path": "css/25-demo10103-result-mascot-restored.css",
+      "size": 1481,
+      "sha256": "84fb411d17b4b4ce00a0cf7a9f480e35fd4c1cebc99a5e50718f9bcc73dd1950"
+    },
+    {
+      "path": "css/26-demo10104-result-celebration.css",
+      "size": 4232,
+      "sha256": "8f66587e7e0e067db1d9e0d012dd0879faf0053b98cfa2e465f3f2e17cb7570b"
+    },
+    {
+      "path": "css/27-demo10107-home-refresh.css",
+      "size": 8488,
+      "sha256": "bdb659b7277bf942d38bb18add540d2fa2e7a45a8e377658b6384d0ffb56f6f6"
+    },
+    {
+      "path": "css/28-demo101071-home-layout-fix.css",
+      "size": 5661,
+      "sha256": "75593adebaf39827704c85214d023b4e4fedc37e8a7410eb64f051e342403062"
+    },
+    {
+      "path": "css/29-demo101072-home-dashboard.css",
+      "size": 6669,
+      "sha256": "ed0ebad2dd558c2da98e9be3216e58e793296bbe20781d934000e59975bfc1cc"
+    },
+    {
+      "path": "css/30-demo101074-home-effect-faithful.css",
+      "size": 3364,
+      "sha256": "5b84515ef9e49c9cb4b2950004ff254f5e884c80c2e7c47ae18de7af8e7e4221"
+    },
+    {
+      "path": "css/31-demo101076-function-home-hide.css",
+      "size": 270,
+      "sha256": "d4070cebec21e667fd7b52a3607619cc0d4578bbe7e9a4c6135900191f230e95"
+    },
+    {
+      "path": "css/32-demo101077-mobile-fit-rounded.css",
+      "size": 1533,
+      "sha256": "d372d40f26fad18b92183c60ca967363279ffab0fbbf2822c65692ac781c2eb4"
+    },
+    {
+      "path": "css/33-demo101078-premium-season-continuity.css",
+      "size": 5274,
+      "sha256": "67a3993c36215be1d84ffb1a1ee07ccb337bf7e084c6aead0ad61d68a045bddb"
+    },
+    {
+      "path": "css/34-demo101079-mouth-focus-head.css",
+      "size": 6008,
+      "sha256": "b5323ca3bc232a53b43608631e32f8a05babb02e0639ed7708953896a420abe3"
+    },
+    {
+      "path": "css/35-demo1010734-kids-first-lesson.css",
+      "size": 6342,
+      "sha256": "9cd340aa0a0df41c2997dcefca84ef602de7fc38f049fc08a8cd121b16e19799"
+    },
+    {
+      "path": "data/README.txt",
+      "size": 182,
+      "sha256": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b"
+    },
+    {
+      "path": "data/kids-pinyin.js",
+      "size": 904,
+      "sha256": "72f83d81fc84ab4108ff5720607531b9fd5b8bcba4e401f3fb57f5effc58be8f"
+    },
+    {
+      "path": "index.html",
+      "size": 172393,
+      "sha256": "66856ecb02d678e5ab9def58471a4084dddf6b7464341de2f640f45d13964d41"
+    },
+    {
+      "path": "js/00-core.js",
+      "size": 347147,
+      "sha256": "c0aec897ada82e5f0762bc394ea66ebb400e2c60df7e08cf0a803c5cf2a2c2c0"
+    },
+    {
+      "path": "js/01-features.js",
+      "size": 637015,
+      "sha256": "94616fffaf89dbb80aae23c126b5977f26fda6f96a16289ed8a63c3817ef788d"
+    },
+    {
+      "path": "js/02-demo1099-home-navigation-js.js",
+      "size": 3552,
+      "sha256": "36b01609b88e0d87115abb76ce148c4e5c35109d4921ca324b59d7c42d77330a"
+    },
+    {
+      "path": "js/03-demo10107-home-refresh.js",
+      "size": 2258,
+      "sha256": "78af41549d71d4c8036e85d5df60a4410a2e9fc617eb062c4459f58dab2fe40b"
+    },
+    {
+      "path": "js/04-demo101078-season-theme.js",
+      "size": 466,
+      "sha256": "b32fc40b4b266179c1c336af68967e409b4aa67ee169b2879b4a5a3e64520526"
+    },
+    {
+      "path": "js/05-demo1010734-kids-first-lesson.js",
+      "size": 3861,
+      "sha256": "3df359b7b027ec75af1d73ed5bc1bd809350d3ed4dca7f74a8c4c58a03227a3e"
+    }
+  ]
 }

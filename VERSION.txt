@@ -1,3 +1,1 @@
-DEMO 10.107.33
-Full build based on 10.107.31.
-Fix: refresh/reopen always starts at homepage, including Safari/iOS scroll restoration.
+DEMO 10.107.34 FULL — Kids first lesson entry (四声感觉 + a/o/e)
