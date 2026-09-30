@@ -1,4 +1,4 @@
-Koepanda DEMO 10.107.10
+Koepanda DEMO 10.107.11
 Based on DEMO 10.107.9. Stable baseline DEMO 10.105 remains untouched.
 
 Fix in this build:
@@ -12,3 +12,5 @@ Implementation:
 - js/01-features.js
 - css/34-demo101079-mouth-focus-head.css
 - assets/mouth/xiaoyin-head-focus.webp (unchanged)
+
+10.107.11: embedded xiaoyin mouth-focus image as data URI to avoid GitHub Pages/Safari asset path/decode deployment mismatch.

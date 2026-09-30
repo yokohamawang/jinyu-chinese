@@ -1,5 +1,5 @@
 {
-  "version": "10.107.10",
+  "version": "10.107.11",
   "base": "10.107.9",
   "stable_baseline": "10.105",
   "scope": "Safari mouth-focus image loading fix",
@@ -19,5 +19,6 @@
     "navigation behavior",
     "homepage layout"
   ],
-  "added": []
+  "added": [],
+  "notes": "Embed mouth focus head image directly in index.html and js/01-features.js so Safari does not depend on external asset loading."
 }
