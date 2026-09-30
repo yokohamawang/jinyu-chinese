@@ -1,0 +1,65 @@
+/* DEMO 10.107.35 — beginner-friendly "はじめの一歩" entry.
+   The learning entry now sits directly below the three primary learning buttons,
+   before records/rewards. Existing lesson/audio/recording logic is untouched. */
+
+/* The 10.107.35 homepage artwork has a 230px visual gap inserted after the
+   three learning cards. Position the real interactive course entry in that gap. */
+html body.app-home-mode #homeEffect > .kids-entry-card{
+  display:block!important;
+  position:absolute!important;
+  z-index:40!important;
+  left:5.2%!important;
+  top:55.45%!important;
+  width:89.6%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:normal!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-button{
+  min-height:82px!important;
+  border-radius:24px!important;
+  padding:11px 17px!important;
+  grid-template-columns:56px 1fr 26px!important;
+  box-shadow:0 8px 20px rgba(50,99,67,.10)!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-icon{
+  width:52px!important;
+  height:52px!important;
+  border-radius:17px!important;
+  font-size:30px!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy strong{
+  font-size:20px!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy small{
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+
+/* Recalculate the three transparent button hit areas against the taller artwork.
+   Their pixel rectangles stay exactly where they were in 10.107.34. */
+html body.app-home-mode #homeEffect > a.hs-listen,
+html body.app-home-mode #homeEffect > a.hs-talk,
+html body.app-home-mode #homeEffect > a.hs-repeat{
+  top:29.46%!important;
+  height:20.56%!important;
+}
+
+@media(max-width:390px){
+  html body.app-home-mode #homeEffect > .kids-entry-card{
+    left:4.8%!important;
+    width:90.4%!important;
+  }
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-button{
+    min-height:76px!important;
+    padding:9px 14px!important;
+    grid-template-columns:50px 1fr 22px!important;
+    gap:8px!important;
+  }
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-icon{
+    width:48px!important;height:48px!important;font-size:27px!important;
+  }
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy strong{font-size:18px!important}
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy small{font-size:11px!important}
+}
