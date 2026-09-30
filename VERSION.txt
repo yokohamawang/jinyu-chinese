@@ -1,2 +1,1 @@
-DEMO 10.107.4
-Faithful effect-image homepage; stable DEMO 10.105 baseline untouched.
+DEMO 10.107.5
