@@ -1,0 +1,126 @@
+/* DEMO 10.107.9 — head-only Xiaoyin for pronunciation focus.
+   Visual-only. Existing audio timing and live mouth animation remain unchanged. */
+
+/* Replace every pronunciation Xiaoyin image with the approved head-only artwork.
+   CSS content replacement avoids touching the stable mouth-animation JS. */
+.new-xiaoyin-face .xiaoyin-face-img,
+#mouthPop .mouth-title-icon{
+  content:url("../assets/mouth/xiaoyin-head-focus.webp")!important;
+}
+
+/* Pronunciation guide: the face is the focal point, not character gestures. */
+.new-xiaoyin-face{
+  width:166px!important;
+  height:166px!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+  background:#eefaff!important;
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.92),
+    0 0 0 7px rgba(119,205,220,.24),
+    0 12px 30px rgba(66,115,103,.14)!important;
+}
+.new-xiaoyin-face .xiaoyin-face-img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  border-radius:50%!important;
+  filter:saturate(.98) contrast(1.01)!important;
+}
+
+/* Keep the live mouth exactly over the photographed/illustrated mouth area.
+   Only the lips animate; eyes/head remain calm. */
+.new-xiaoyin-face .mouth-mask{
+  top:64%!important;
+  width:58px!important;
+  height:34px!important;
+  background:
+    radial-gradient(ellipse at 50% 42%,rgba(255,248,242,.99) 0 58%,rgba(249,238,231,.98) 100%)!important;
+  filter:blur(.15px);
+}
+.new-xiaoyin-face .cartoon-mouth{
+  top:64%!important;
+  width:64px!important;
+  height:45px!important;
+}
+
+/* Main articulation panel: larger face, less surrounding visual noise. */
+.mouth-animation #guideFace{
+  min-height:184px!important;
+  padding-top:8px!important;
+  align-items:center!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face{
+  width:174px!important;
+  height:174px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face .mouth-mask{
+  top:64%!important;
+  width:61px!important;
+  height:35px!important;
+}
+.mouth-animation #guideFace .new-xiaoyin-face .cartoon-mouth{
+  top:64%!important;
+  width:67px!important;
+  height:47px!important;
+}
+
+/* Small speaking popup: still large enough to see lip shape clearly. */
+#popFace .new-xiaoyin-face{
+  width:106px!important;
+  height:106px!important;
+}
+#popFace .new-xiaoyin-face .mouth-mask{
+  top:64%!important;
+  width:38px!important;
+  height:22px!important;
+}
+#popFace .new-xiaoyin-face .cartoon-mouth{
+  top:64%!important;
+  width:43px!important;
+  height:31px!important;
+}
+
+/* Tiny title avatar stays quiet and secondary. */
+#mouthPop .mouth-title-icon{
+  width:34px!important;
+  height:34px!important;
+  border-radius:50%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  box-shadow:0 2px 8px rgba(65,110,94,.16)!important;
+}
+
+/* Keep the popup compact enough for phones despite the larger mouth-focused avatar. */
+#mouthPop .mouth-pop-main{
+  align-items:center!important;
+}
+@media(max-width:390px){
+  .mouth-animation #guideFace{
+    min-height:168px!important;
+  }
+  .mouth-animation #guideFace .new-xiaoyin-face{
+    width:158px!important;
+    height:158px!important;
+  }
+  .mouth-animation #guideFace .new-xiaoyin-face .mouth-mask{
+    width:56px!important;height:32px!important;
+  }
+  .mouth-animation #guideFace .new-xiaoyin-face .cartoon-mouth{
+    width:62px!important;height:43px!important;
+  }
+  #popFace .new-xiaoyin-face{
+    width:98px!important;height:98px!important;
+  }
+}
+
+/* No decorative body/hand motion in pronunciation mode. */
+.new-xiaoyin-face{
+  animation:none!important;
+  transform:none!important;
+}
+.new-xiaoyin-face .xiaoyin-face-img{
+  animation:none!important;
+  transform:none!important;
+}
