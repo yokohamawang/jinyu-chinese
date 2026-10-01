@@ -1,9 +1,9 @@
-/* Koepanda Pinyin Course Roadmap — DEMO 10.107.43
+/* Koepanda Pinyin Course Roadmap — DEMO 10.107.44
    Course -> Stage -> Unit -> Lesson -> Activity
    Tone learning is woven through every pronunciation lesson from the beginning. */
 window.KOEPANDA_PINYIN_COURSE = {
   id: 'pinyin-main-course',
-  version: '10.107.43',
+  version: '10.107.44',
   title: '音からはじめる中国語',
   principles: {
     toneFromFirstLesson: true,

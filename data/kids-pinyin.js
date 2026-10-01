@@ -1,4 +1,4 @@
-/* Koepanda kids course data — DEMO 10.107.43
+/* Koepanda kids course data — DEMO 10.107.44
    P0/P1 starter content. Tone is present from lesson one.
    Single-vowel cards begin visualized learning with scene associations.
    Chinese sound is primary; Japanese explanation is supportive. */
@@ -6,14 +6,16 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
   id: 'kids-001-tone-vowels',
   title: '四声の感じ + a / o / e / i / u / ü',
   tones: [
-    { tone: 1, mark: 'ā', label: '1声', jp: '高く平ら', sample: '妈', audioText: '妈' },
-    { tone: 2, mark: 'á', label: '2声', jp: '上へ上がる', sample: '麻', audioText: '麻' },
-    { tone: 3, mark: 'ǎ', label: '3声', jp: '下がって上がる', sample: '马', audioText: '马' },
-    { tone: 4, mark: 'à', label: '4声', jp: 'ストンと下がる', sample: '骂', audioText: '骂' }
+    { tone: 1, mark: 'ā', label: '1声', jp: '高く平ら', audioFile: './assets/audio/pinyin/a1.wav', example: '妈' },
+    { tone: 2, mark: 'á', label: '2声', jp: '上へ上がる', audioFile: './assets/audio/pinyin/a2.wav', example: '麻' },
+    { tone: 3, mark: 'ǎ', label: '3声', jp: '下がって上がる', audioFile: './assets/audio/pinyin/a3.wav', example: '马' },
+    { tone: 4, mark: 'à', label: '4声', jp: 'ストンと下がる', audioFile: './assets/audio/pinyin/a4.wav', example: '骂' }
   ],
   vowels: [
     {
       letter: 'a',
+      image: './assets/pinyin/a.svg',
+      audioFile: './assets/audio/pinyin/a1.wav',
       audioText: '啊',
       readAs: 'a は「啊（あー）」みたいな音',
       buttonHint: 'あっ！',
@@ -26,6 +28,8 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'o',
+      image: './assets/pinyin/o.svg',
+      audioFile: './assets/audio/pinyin/o1.wav',
       audioText: '喔',
       readAs: 'o は「喔（おー）」みたいな音',
       buttonHint: 'にわとり',
@@ -38,6 +42,8 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'e',
+      image: './assets/pinyin/e.svg',
+      audioFile: './assets/audio/pinyin/e1.wav',
       audioText: '鹅',
       readAs: 'e は「鹅（がちょう）」の最初の音',
       buttonHint: 'がちょう',
@@ -50,6 +56,8 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'i',
+      image: './assets/pinyin/i.svg',
+      audioFile: './assets/audio/pinyin/i1.wav',
       audioText: '衣',
       readAs: 'i は「衣（yī）」の音をイメージ',
       buttonHint: 'ふく',
@@ -62,6 +70,8 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'u',
+      image: './assets/pinyin/u.svg',
+      audioFile: './assets/audio/pinyin/u1.wav',
       audioText: '乌',
       readAs: 'u は「乌（wū）」の音をイメージ',
       buttonHint: 'からす',
@@ -74,6 +84,8 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'ü',
+      image: './assets/pinyin/v.svg',
+      audioFile: './assets/audio/pinyin/v1.wav',
       audioText: '鱼',
       readAs: 'ü は「鱼（yú）」の音をイメージ',
       buttonHint: 'さかな',
