@@ -1,4 +1,3 @@
-DEMO 10.107.44
-PinyinVisualAudioFix
-Based on DEMO 10.107.43 FULL_SixVowelsFramework
-Fixes the first pinyin tone lesson so tone cards and mini-game use local pure-vowel a tone audio rather than example characters like 马. Adds large visual image assets for a/o/e/i/u/ü and aligns the beginner-course palette more closely with the homepage. Existing main homepage, recording and adult practice logic remains isolated.
+Koepanda DEMO 10.107.49
+Base: 10.107.48
+Changes: fixed pinyin starter playback uses bundled WAV only; u/ü listen-and-compare controls; rooster mouth visual refinement; no network TTS in fixed pinyin lesson.
