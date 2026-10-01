@@ -1,3 +1,4 @@
-DEMO 10.107.38
-HomeEntryBalance
-Based on DEMO 10.107.37 FULL_FirstStepFlowFix
+DEMO 10.107.39
+MainEntryBreathing
+Based on DEMO 10.107.38 FULL_HomeEntryBalance
+Homepage-only visual refinement: three main entry cards are slightly smaller with wider gutters and more breathing room. No lesson/audio/mouth/recording logic changes.

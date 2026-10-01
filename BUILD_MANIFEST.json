@@ -1,13 +1,13 @@
 {
-  "version": "10.107.37",
+  "version": "10.107.39",
   "type": "FULL",
-  "base": "10.107.36 FULL",
-  "theme": "はじめの一歩 moved into responsive normal flow between split homepage artwork sections; no absolute Y positioning",
+  "base": "10.107.38 FULL_HomeEntryBalance",
+  "theme": "Homepage main entry cards get more breathing room; all functional logic preserved",
   "files": [
     {
       "path": "VERSION.txt",
-      "size": 111,
-      "sha256": "5ef25773f838673b9dcfbb79543be8021205af7530681513fc49f8acf2aa1610"
+      "size": 248,
+      "sha256": "860fe1191f0ef3f9eca0bd842492d4905630d4b777f1946034a2fcc3895aa7c0"
     },
     {
       "path": "assets/audio/README.txt",
@@ -43,6 +43,11 @@
       "path": "assets/home/koepanda-home-top-10737.webp",
       "size": 93556,
       "sha256": "5544edcda1bcf552ae2778fcc9253d7ffdb04b6f7d5ab917f7c2fdcbb5202d18"
+    },
+    {
+      "path": "assets/home/koepanda-home-top-10739.webp",
+      "size": 90992,
+      "sha256": "f7f5941b4d04566bf7b56dd79f7fb072328efbf3b0b7248a79969e7f77ae0684"
     },
     {
       "path": "assets/icons/README.txt",
@@ -255,6 +260,11 @@
       "sha256": "43b1a034696760fea3082b5c9bf003f3077c254d4f479fb73e3ee113a053d91c"
     },
     {
+      "path": "css/38-demo1010738-home-entry-balance.css",
+      "size": 676,
+      "sha256": "62a136334ca1d3a808a0f218642c3d9a760034e2d9e7d414fb857a46df37e0ae"
+    },
+    {
       "path": "data/README.txt",
       "size": 182,
       "sha256": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b"
@@ -266,8 +276,8 @@
     },
     {
       "path": "index.html",
-      "size": 172792,
-      "sha256": "cad6d655c34947618ca00cbb76fffbd57861058cce454ac2f23906e2366125b9"
+      "size": 172991,
+      "sha256": "ea624d1633060df2e678ff174cc029ee417fc0f2be302aa1027bea613b59ad8c"
     },
     {
       "path": "js/00-core.js",
