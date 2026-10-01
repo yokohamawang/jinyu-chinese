@@ -1,12 +1,10 @@
 {
-  "version": "10.107.49",
-  "base": "10.107.47",
-  "name": "Koepanda_DEMO_10_107_48_FULL_NativePinyinAudio_UmlautFix",
+  "version": "10.107.50",
+  "base": "10.107.49",
+  "name": "Koepanda_DEMO_10_107_50_FULL_PinyinButtonFix",
   "changes": [
-    "a visual: larger open mouth",
-    "o visual: rooster with open beak; o wording corrected to 喔, not 欧",
-    "u association: house 屋 instead of crow 乌",
-    "lesson local audio made fuller/louder",
-    "homepage/function behavior otherwise preserved"
+    "restore pinyin entry/button event initialization",
+    "retain local WAV playback for fixed pinyin sounds",
+    "retain u/ü compare controls and visual fixes"
   ]
 }
