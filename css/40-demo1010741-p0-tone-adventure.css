@@ -1,4 +1,4 @@
-/* DEMO 10.107.41 — P0 tone adventure. Isolated to the beginner course. */
+/* DEMO 10.107.43 — P0 tone adventure. Isolated to the beginner course. */
 .p0-tone-adventure{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf7 0%,#f4fbef 100%)}
 .p0-scene{position:relative;height:92px;margin:10px 0 12px;border-radius:22px;background:linear-gradient(180deg,#dff3ff 0%,#f6fbf0 70%,#e9f4d8 100%);overflow:hidden}
 .p0-cloud{position:absolute;font-size:26px;opacity:.8;filter:drop-shadow(0 2px 2px rgba(0,0,0,.05))}.p0-cloud-a{left:11%;top:12px}.p0-cloud-b{right:12%;top:19px;font-size:21px}
