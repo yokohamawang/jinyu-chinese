@@ -1,0 +1,95 @@
+/* DEMO 10.107.37 — stable flow layout for the beginner entry.
+   The homepage artwork is split into TOP (hero + 3 main buttons) and BOTTOM
+   (learning record + stamps + footer). The real "はじめの一歩" card sits
+   between them in normal document flow, so it cannot overlap the three buttons
+   when the viewport width changes. Audio / mouth / recording logic untouched. */
+
+body.app-home-mode #homeEffect{
+  display:block!important;
+  line-height:0!important;
+}
+
+body.app-home-mode #homeEffect > .home-effect-top{
+  position:relative!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:0!important;
+}
+
+body.app-home-mode #homeEffect .home-effect-top-image,
+body.app-home-mode #homeEffect > .home-effect-bottom-image{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  margin:0!important;
+  border-radius:0!important;
+}
+
+/* Override 10.107.36 absolute positioning: this is deliberately normal flow. */
+html body.app-home-mode #homeEffect > .kids-entry-card{
+  display:block!important;
+  position:relative!important;
+  inset:auto!important;
+  z-index:8!important;
+  box-sizing:border-box!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:10px 5.2% 14px!important;
+  padding:0!important;
+  line-height:normal!important;
+}
+
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-button{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:76px!important;
+  border-radius:24px!important;
+  padding:9px 15px!important;
+  grid-template-columns:50px 1fr 24px!important;
+  gap:10px!important;
+  box-shadow:0 8px 20px rgba(50,99,67,.10)!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-icon{
+  width:48px!important;
+  height:48px!important;
+  border-radius:15px!important;
+  font-size:28px!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy strong{
+  font-size:19px!important;
+  line-height:1.2!important;
+}
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy small{
+  font-size:11px!important;
+  line-height:1.45!important;
+}
+
+/* The hotspots keep the exact pixel rectangles used in 10.107.36, but their
+   percentage Y values are recalculated against the 1040px-tall TOP slice. */
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen,
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-talk,
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-repeat{
+  top:53.86%!important;
+  height:37.63%!important;
+}
+
+@media(max-width:390px){
+  html body.app-home-mode #homeEffect > .kids-entry-card{
+    margin:8px 4.8% 12px!important;
+  }
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-button{
+    min-height:72px!important;
+    padding:8px 13px!important;
+    grid-template-columns:46px 1fr 20px!important;
+    gap:8px!important;
+  }
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-icon{
+    width:44px!important;
+    height:44px!important;
+    font-size:26px!important;
+  }
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy strong{font-size:17px!important}
+  html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-copy small{font-size:10.5px!important}
+}
