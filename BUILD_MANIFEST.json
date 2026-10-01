@@ -1,13 +1,11 @@
 {
-  "version": "10.107.39",
-  "type": "FULL",
-  "base": "10.107.38 FULL_HomeEntryBalance",
-  "theme": "Homepage main entry cards get more breathing room; all functional logic preserved",
+  "version": "10.107.41",
+  "base": "10.107.40 FULL_PinyinRoadmapSkeleton",
   "files": [
     {
       "path": "VERSION.txt",
-      "size": 248,
-      "sha256": "860fe1191f0ef3f9eca0bd842492d4905630d4b777f1946034a2fcc3895aa7c0"
+      "size": 390,
+      "sha256": "d9858dc9d5dac79e37b7d3163285fe0405d868c12f72d98ecd8fef2bc8526e4a"
     },
     {
       "path": "assets/audio/README.txt",
@@ -265,6 +263,16 @@
       "sha256": "62a136334ca1d3a808a0f218642c3d9a760034e2d9e7d414fb857a46df37e0ae"
     },
     {
+      "path": "css/39-demo1010740-pinyin-roadmap.css",
+      "size": 2743,
+      "sha256": "030ff4361fdbb2d254c03de10d32c07b7909e1544b391c7b10240f31a62dd134"
+    },
+    {
+      "path": "css/40-demo1010741-p0-tone-adventure.css",
+      "size": 4009,
+      "sha256": "b96b1d57aef769c51b74e3f65a40679d731982eabb6108500e093a98f5bf6be0"
+    },
+    {
       "path": "data/README.txt",
       "size": 182,
       "sha256": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b"
@@ -275,9 +283,14 @@
       "sha256": "72f83d81fc84ab4108ff5720607531b9fd5b8bcba4e401f3fb57f5effc58be8f"
     },
     {
+      "path": "data/pinyin-course.js",
+      "size": 3158,
+      "sha256": "6d211239555b246b091a2cabbaa9edef3d845f39cdb5ef08354466f664aba778"
+    },
+    {
       "path": "index.html",
-      "size": 172991,
-      "sha256": "ea624d1633060df2e678ff174cc029ee417fc0f2be302aa1027bea613b59ad8c"
+      "size": 175146,
+      "sha256": "060d416e982d8415523d64dea2e6aee037e32e99de0464df3361216059b39e97"
     },
     {
       "path": "js/00-core.js",
@@ -308,6 +321,16 @@
       "path": "js/05-demo1010734-kids-first-lesson.js",
       "size": 3861,
       "sha256": "3df359b7b027ec75af1d73ed5bc1bd809350d3ed4dca7f74a8c4c58a03227a3e"
+    },
+    {
+      "path": "js/06-demo1010740-pinyin-roadmap.js",
+      "size": 2408,
+      "sha256": "4b53a4b451fb104dc8a9fd06f10de56a61de8c2f4d9f322b824a025c1c88b1bd"
+    },
+    {
+      "path": "js/07-demo1010741-p0-tone-adventure.js",
+      "size": 1845,
+      "sha256": "edcc3a8a38ca0ea3164027d277cfcde0d83ec33c78c941d1e4b1cfc050520ee8"
     }
   ]
 }

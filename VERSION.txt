@@ -1,4 +1,4 @@
-DEMO 10.107.39
-MainEntryBreathing
-Based on DEMO 10.107.38 FULL_HomeEntryBalance
-Homepage-only visual refinement: three main entry cards are slightly smaller with wider gutters and more breathing room. No lesson/audio/mouth/recording logic changes.
+DEMO 10.107.41
+P0ToneAdventure
+Based on DEMO 10.107.40 FULL_PinyinRoadmapSkeleton
+Implements the first P0 beginner experience as a low-pressure tone adventure: four-tone visual motion, existing standard audio, a two-choice listening mini-game, and reassuring guidance. Tone remains woven through the course from the first lesson. Existing homepage/audio/mouth/recording logic is unchanged.
