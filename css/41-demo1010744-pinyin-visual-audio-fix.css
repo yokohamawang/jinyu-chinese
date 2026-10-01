@@ -17,3 +17,9 @@ body.app-kids-mode .phone{background:transparent!important}
 .kids-vowel-readas{background:#fff!important;border:1px solid rgba(83,127,94,.08)}
 .kids-practice-box{background:linear-gradient(145deg,#eff8ea,#fbfcf8)!important}.kids-practice-actions button{background:#5ba886!important}.kids-practice-actions button+button{background:#edf3e8!important;color:#45685d!important}
 @media(max-width:370px){.kids-vowel-button{min-height:134px!important}.kids-vowel-button img{height:76px}.kids-vowel-scene-image{max-height:210px}}
+
+/* DEMO 10.107.49 pronunciation clarity */
+.kids-tone-card.tone-2 .mark{display:inline-block;transform:rotate(-7deg) scaleY(1.05)}
+.kids-tone-card.tone-2{background-image:linear-gradient(155deg,rgba(255,255,255,.0) 54%,rgba(73,170,111,.12) 55%,rgba(73,170,111,.12) 60%,rgba(255,255,255,0) 61%)}
+.kids-jqx-rule{margin-top:11px;padding:10px 11px;border-radius:14px;background:#fff;border:1px dashed rgba(61,125,98,.28);display:flex;flex-direction:column;gap:4px;text-align:left}
+.kids-jqx-rule b{font-size:12px;color:#2f6d5a}.kids-jqx-rule span{font-size:11px;line-height:1.55;color:#4e6f64;font-weight:760}.kids-jqx-rule small{font-size:10px;line-height:1.55;color:#71837a;font-weight:700}

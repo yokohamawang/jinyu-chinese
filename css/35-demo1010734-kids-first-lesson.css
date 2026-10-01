@@ -41,3 +41,13 @@ body.app-kids-mode .kids-course{display:block!important;padding:calc(14px + env(
 .kids-practice-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.kids-practice-actions button{border:0;border-radius:16px;min-height:47px;font-size:14px;font-weight:900;background:#5ba886;color:#fff}.kids-practice-actions button+button{background:#eef3e8;color:#45685d}
 .kids-finish{width:100%;border:0;border-radius:20px;min-height:56px;background:#54aa7e;color:#fff;font-size:16px;font-weight:950;box-shadow:0 7px 15px rgba(54,119,82,.18);padding:8px 12px}.kids-finish-note{min-height:34px;padding:10px 5px 0;text-align:center;color:#4d7464;font-size:13px;font-weight:800;line-height:1.45}
 @media(max-width:370px){.kids-tone-grid{gap:5px}.kids-tone-card{min-height:96px}.kids-entry-copy strong{font-size:18px}.kids-course-head h1{font-size:24px}.kids-vowel-scene{grid-template-columns:64px 1fr;padding:11px}.kids-vowel-scene-emoji{width:64px;height:64px;font-size:38px}}
+
+/* DEMO 10.107.49 — explicit u / ü teaching point */
+.kids-u-umlaut-lesson{margin:0 0 13px;padding:13px;border-radius:20px;background:linear-gradient(145deg,#fffaf0,#f3f8ee);box-shadow:inset 0 0 0 1px rgba(112,126,87,.10)}
+.kids-u-umlaut-head{display:flex;gap:9px;align-items:flex-start}.kids-u-umlaut-head>span{font-size:23px;line-height:1.1}.kids-u-umlaut-head div{display:flex;flex-direction:column;gap:3px}.kids-u-umlaut-head b{font-size:14px;color:#355f55}.kids-u-umlaut-head small{font-size:11px;line-height:1.5;color:#687b72;font-weight:750}.kids-u-umlaut-head strong{color:#2f6d5a}
+.kids-u-umlaut-compare{display:grid;grid-template-columns:1fr 28px 1fr;align-items:stretch;gap:6px;margin-top:10px}.kids-u-umlaut-item{min-width:0;border-radius:15px;background:rgba(255,255,255,.88);padding:9px 7px;text-align:center;display:flex;flex-direction:column;gap:3px}.kids-u-umlaut-item strong{font-family:Georgia,serif;font-size:30px;line-height:1;color:#2f6656}.kids-u-umlaut-item span{font-size:12px;font-weight:950;color:#4f6f64}.kids-u-umlaut-item small{font-size:9px;line-height:1.45;color:#77877f;font-weight:750}.kids-u-umlaut-arrow{display:grid;place-items:center;font-size:22px;font-weight:950;color:#7a8d82}.kids-u-umlaut-lesson p{margin:9px 2px 0;font-size:10.5px;line-height:1.5;color:#667b72;font-weight:750}
+
+/* 10.107.49 local WAV + u/ü compare controls */
+.kids-compare-listen{margin-top:7px;border:0;border-radius:999px;padding:7px 10px;background:#edf7f2;color:#2f6656;font-size:10px;font-weight:900;box-shadow:inset 0 0 0 1px rgba(47,102,86,.12)}
+.kids-compare-listen:active{transform:translateY(1px)}
+.kids-audio-local-note{margin-top:9px;border-radius:13px;padding:8px 10px;background:rgba(235,246,242,.92);color:#55756a;font-size:9.5px;font-weight:800;line-height:1.45}
