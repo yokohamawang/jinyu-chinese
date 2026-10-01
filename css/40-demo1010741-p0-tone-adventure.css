@@ -1,0 +1,22 @@
+/* DEMO 10.107.41 — P0 tone adventure. Isolated to the beginner course. */
+.p0-tone-adventure{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf7 0%,#f4fbef 100%)}
+.p0-scene{position:relative;height:92px;margin:10px 0 12px;border-radius:22px;background:linear-gradient(180deg,#dff3ff 0%,#f6fbf0 70%,#e9f4d8 100%);overflow:hidden}
+.p0-cloud{position:absolute;font-size:26px;opacity:.8;filter:drop-shadow(0 2px 2px rgba(0,0,0,.05))}.p0-cloud-a{left:11%;top:12px}.p0-cloud-b{right:12%;top:19px;font-size:21px}
+.p0-panda{position:absolute;left:16px;bottom:8px;font-size:48px;transform:rotate(-3deg);animation:p0PandaFloat 2.8s ease-in-out infinite}
+.p0-speech{position:absolute;left:82px;bottom:18px;background:#fff;border-radius:18px 18px 18px 7px;padding:8px 12px;color:#376456;font-size:12px;line-height:1.35;font-weight:900;box-shadow:0 5px 14px rgba(70,110,85,.12)}
+@keyframes p0PandaFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-4px) rotate(2deg)}}
+.p0-tone-adventure .kids-tone-card{position:relative;overflow:hidden;min-height:118px;padding-top:10px}
+.p0-tone-adventure .kids-tone-card .mark{font-size:34px;line-height:1;margin-bottom:4px}
+.p0-tone-adventure .kids-tone-card::after{content:"";display:block;width:54px;height:20px;margin:7px auto 0;background-repeat:no-repeat;background-size:54px 20px;opacity:.9}
+.p0-tone-adventure .kids-tone-card:nth-child(1)::after{background-image:linear-gradient(#77aa87,#77aa87);background-size:50px 3px;background-position:center 8px}
+.p0-tone-adventure .kids-tone-card:nth-child(2)::after{background-image:linear-gradient(155deg,transparent 46%,#77aa87 47%,#77aa87 53%,transparent 54%)}
+.p0-tone-adventure .kids-tone-card:nth-child(3)::after{background-image:linear-gradient(25deg,transparent 46%,#77aa87 47%,#77aa87 53%,transparent 54%),linear-gradient(155deg,transparent 46%,#77aa87 47%,#77aa87 53%,transparent 54%);background-size:28px 20px,28px 20px;background-position:left top,right top}
+.p0-tone-adventure .kids-tone-card:nth-child(4)::after{background-image:linear-gradient(25deg,transparent 46%,#77aa87 47%,#77aa87 53%,transparent 54%)}
+.p0-mini-game{margin-top:14px;padding:14px;border-radius:22px;background:rgba(255,255,255,.92);box-shadow:inset 0 0 0 1px rgba(71,112,85,.08)}
+.p0-game-head{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-bottom:10px}.p0-game-head b{font-size:15px;color:#355f54}.p0-game-head small{font-size:10px;color:#839087;font-weight:800}
+.p0-game-listen,.p0-game-next{width:100%;border:0;border-radius:15px;padding:12px 10px;font-weight:900;font-size:14px;touch-action:manipulation}.p0-game-listen{background:#f2c96b;color:#5b4720}.p0-game-next{margin-top:9px;background:#dff1d7;color:#376456}
+.p0-game-choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.p0-game-choice{border:0;border-radius:18px;background:#f5f7ed;padding:12px 8px;color:#355f54;font-weight:900;box-shadow:inset 0 0 0 1px rgba(70,110,85,.08)}.p0-game-choice strong{display:block;font-size:27px;line-height:1.1}.p0-game-choice small{display:block;margin-top:4px;font-size:10px;color:#7e8d84}.p0-game-choice.is-good{background:#e5f5dc;box-shadow:inset 0 0 0 2px rgba(96,169,105,.42)}
+.p0-game-feedback{min-height:26px;padding-top:8px;text-align:center;font-size:12px;font-weight:900;color:#688075}.p0-game-feedback.is-good{color:#3f7c55}
+.p0-soft-finish{display:flex;gap:10px;align-items:center;margin-top:12px;padding:12px 14px;border-radius:18px;background:linear-gradient(135deg,#fff4d5,#eef7e8);color:#526c61}.p0-soft-finish>span{font-size:27px}.p0-soft-finish b{display:block;font-size:13px}.p0-soft-finish small{display:block;margin-top:2px;font-size:10px;line-height:1.45;font-weight:700;color:#7a8b82}
+@media(max-width:370px){.p0-scene{height:84px}.p0-panda{font-size:43px}.p0-speech{left:72px}.p0-game-head{display:block}.p0-game-head small{display:block;margin-top:2px}}
+@media(prefers-reduced-motion:reduce){.p0-panda{animation:none}}

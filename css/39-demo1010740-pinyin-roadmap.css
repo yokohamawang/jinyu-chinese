@@ -1,0 +1,16 @@
+/* DEMO 10.107.40 — Pinyin roadmap skeleton. Isolated under .pinyin-roadmap-* */
+.pinyin-roadmap{margin:18px 0 16px;display:grid;gap:16px}
+.pinyin-roadmap-intro{background:linear-gradient(145deg,#fffdf6,#eef8e4);border:1px solid rgba(54,106,77,.11);border-radius:24px;padding:17px 16px;box-shadow:0 8px 22px rgba(61,100,72,.08)}
+.pinyin-roadmap-intro strong{display:block;color:#2f6657;font-size:18px;margin-bottom:5px}.pinyin-roadmap-intro p{margin:0;color:#70847b;font-weight:700;font-size:12px;line-height:1.55}
+.pinyin-world{position:relative;border-radius:28px;padding:16px 14px 18px;background:rgba(255,255,255,.91);border:1px solid rgba(70,111,83,.1);box-shadow:0 10px 24px rgba(64,100,72,.07);overflow:hidden}
+.pinyin-world::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-38px;top:-35px;background:rgba(191,226,166,.16);pointer-events:none}
+.pinyin-world.is-locked{opacity:.7;filter:saturate(.82)}
+.pinyin-world-head{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.pinyin-world-head span{display:block;font-size:12px;font-weight:900;color:#668169;margin-bottom:2px}.pinyin-world-head strong{display:block;font-size:19px;color:#2f6255}.pinyin-world-head small{display:block;color:#7b8c84;font-weight:700;font-size:11px;line-height:1.45;margin-top:3px}.pinyin-world-lock{font-size:20px;opacity:.65}
+.pinyin-path{display:grid;gap:10px;padding:3px 1px}
+.pinyin-node{display:grid;grid-template-columns:54px 1fr 28px;align-items:center;gap:10px;width:100%;border:0;border-radius:20px;background:#f5f7eb;padding:10px 12px;text-align:left;color:#365f55;box-shadow:inset 0 0 0 1px rgba(91,123,91,.07);touch-action:manipulation}
+.pinyin-node:nth-child(even){margin-left:7%;width:93%}.pinyin-node:nth-child(odd){margin-right:7%;width:93%}
+.pinyin-node.is-current{background:linear-gradient(135deg,#ddf3cd,#fff7dd);box-shadow:inset 0 0 0 2px rgba(86,169,112,.42),0 6px 15px rgba(67,119,78,.1)}
+.pinyin-node.is-locked{opacity:.58}.pinyin-node-icon{width:52px;height:52px;border-radius:17px;background:#fff;display:grid;place-items:center;font-size:25px;box-shadow:0 4px 10px rgba(63,103,72,.08)}
+.pinyin-node-copy b{display:block;font-size:15px}.pinyin-node-copy small{display:block;margin-top:2px;color:#7a8c83;font-size:11px;font-weight:700}.pinyin-node-go{font-size:26px;color:#72a283;font-weight:800}
+.pinyin-roadmap-note{text-align:center;color:#75887f;font-size:11px;font-weight:800;padding:0 8px 6px;line-height:1.45}
+@media(max-width:370px){.pinyin-world{padding-left:11px;padding-right:11px}.pinyin-node{grid-template-columns:48px 1fr 24px}.pinyin-node-icon{width:46px;height:46px}.pinyin-world-head strong{font-size:17px}}
