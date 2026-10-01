@@ -1,4 +1,4 @@
-DEMO 10.107.43
-SixVowelsFramework
-Based on DEMO 10.107.42 FULL_PinyinVisualStart
-Expands the starter pinyin framework from a/o/e to all six single vowels a/o/e/i/u/ü. Keeps Chinese sound as the main anchor and Japanese explanation as support. Enlarges the vowel card visuals, aligns the beginner palette more closely with the homepage style, and preserves the low-pressure tone adventure and stable homepage/audio/recording logic.
+DEMO 10.107.44
+PinyinVisualAudioFix
+Based on DEMO 10.107.43 FULL_SixVowelsFramework
+Fixes the first pinyin tone lesson so tone cards and mini-game use local pure-vowel a tone audio rather than example characters like 马. Adds large visual image assets for a/o/e/i/u/ü and aligns the beginner-course palette more closely with the homepage. Existing main homepage, recording and adult practice logic remains isolated.
