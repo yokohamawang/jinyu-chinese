@@ -1,1 +1,1 @@
-DEMO 10.107.35 FULL — はじめの一歩 entry under 聞く・話す・まねる
+DEMO 10.107.37 FULL — はじめの一歩 stable normal-flow layout between main buttons and learning records

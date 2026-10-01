@@ -1,13 +1,13 @@
 {
-  "version": "10.107.35",
+  "version": "10.107.37",
   "type": "FULL",
-  "base": "10.107.34 FULL",
-  "theme": "はじめの一歩 entry moved directly under the three main learning buttons",
+  "base": "10.107.36 FULL",
+  "theme": "はじめの一歩 moved into responsive normal flow between split homepage artwork sections; no absolute Y positioning",
   "files": [
     {
       "path": "VERSION.txt",
-      "size": 83,
-      "sha256": "ed92321978cd1d824f70044af458a708d108ac155fb745a6a65fe1e2e5754614"
+      "size": 111,
+      "sha256": "5ef25773f838673b9dcfbb79543be8021205af7530681513fc49f8acf2aa1610"
     },
     {
       "path": "assets/audio/README.txt",
@@ -25,9 +25,24 @@
       "sha256": "3771e6582915bb8d362639b7a6c39f8ad08d223dff3d1052d1b98bbb67814926"
     },
     {
+      "path": "assets/home/koepanda-home-bottom-10737.webp",
+      "size": 54012,
+      "sha256": "20c84558da7e864f15c7331745acffb2b167ad3726d609e2974e9efd6ba156d1"
+    },
+    {
+      "path": "assets/home/koepanda-home-effect-10736.webp",
+      "size": 168116,
+      "sha256": "1357e28733b18fb209c91fa40884d058aa7e06efb76f9537ac03072d064ae7dd"
+    },
+    {
       "path": "assets/home/koepanda-home-effect.webp",
       "size": 168116,
       "sha256": "1357e28733b18fb209c91fa40884d058aa7e06efb76f9537ac03072d064ae7dd"
+    },
+    {
+      "path": "assets/home/koepanda-home-top-10737.webp",
+      "size": 93556,
+      "sha256": "5544edcda1bcf552ae2778fcc9253d7ffdb04b6f7d5ab917f7c2fdcbb5202d18"
     },
     {
       "path": "assets/icons/README.txt",
@@ -231,8 +246,13 @@
     },
     {
       "path": "css/36-demo1010735-first-step-home.css",
-      "size": 2498,
-      "sha256": "29aed3d99ebb88a9785e44a649101111eca861ce963e05073c42afdfe6d0256f"
+      "size": 2497,
+      "sha256": "666fefda4c080f64204b977ed1cd007ed300c0fedb2856883d573c922eda9495"
+    },
+    {
+      "path": "css/37-demo1010737-first-step-flow.css",
+      "size": 3296,
+      "sha256": "43b1a034696760fea3082b5c9bf003f3077c254d4f479fb73e3ee113a053d91c"
     },
     {
       "path": "data/README.txt",
@@ -246,8 +266,8 @@
     },
     {
       "path": "index.html",
-      "size": 172412,
-      "sha256": "61b64135dc28e66ffdb50ee5cf379bc22c84264af99b6971920ac1ae4cfcc3ad"
+      "size": 172792,
+      "sha256": "cad6d655c34947618ca00cbb76fffbd57861058cce454ac2f23906e2366125b9"
     },
     {
       "path": "js/00-core.js",
