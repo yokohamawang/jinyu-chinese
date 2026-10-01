@@ -1,1 +1,3 @@
-DEMO 10.107.37 FULL — はじめの一歩 stable normal-flow layout between main buttons and learning records
+DEMO 10.107.38
+HomeEntryBalance
+Based on DEMO 10.107.37 FULL_FirstStepFlowFix
