@@ -1,0 +1,19 @@
+/* DEMO 10.107.38 — homepage micro-balance only.
+   - Keep 10.107.37 structure and all lesson/audio/mouth/recording logic intact.
+   - Make the "はじめの一歩" / beginner-Pinyin entry a touch wider so it aligns
+     visually with the surrounding homepage cards.
+   - Add a small amount of vertical breathing room without changing the hero art.
+*/
+html body.app-home-mode #homeEffect > .kids-entry-card{
+  margin:12px 4.2% 16px!important;
+}
+
+html body.app-home-mode #homeEffect > .kids-entry-card .kids-entry-button{
+  width:100%!important;
+}
+
+@media(max-width:390px){
+  html body.app-home-mode #homeEffect > .kids-entry-card{
+    margin:10px 4.0% 14px!important;
+  }
+}
