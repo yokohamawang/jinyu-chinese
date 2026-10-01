@@ -1,4 +1,4 @@
-/* Koepanda kids course data — DEMO 10.107.44
+/* Koepanda kids course data — DEMO 10.107.49
    P0/P1 starter content. Tone is present from lesson one.
    Single-vowel cards begin visualized learning with scene associations.
    Chinese sound is primary; Japanese explanation is supportive. */
@@ -6,10 +6,10 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
   id: 'kids-001-tone-vowels',
   title: '四声の感じ + a / o / e / i / u / ü',
   tones: [
-    { tone: 1, mark: 'ā', label: '1声', jp: '高く平ら', audioFile: './assets/audio/pinyin/a1.wav', example: '妈' },
-    { tone: 2, mark: 'á', label: '2声', jp: '上へ上がる', audioFile: './assets/audio/pinyin/a2.wav', example: '麻' },
-    { tone: 3, mark: 'ǎ', label: '3声', jp: '下がって上がる', audioFile: './assets/audio/pinyin/a3.wav', example: '马' },
-    { tone: 4, mark: 'à', label: '4声', jp: 'ストンと下がる', audioFile: './assets/audio/pinyin/a4.wav', example: '骂' }
+    { tone: 1, mark: 'ā', label: '1声', jp: '高く平ら', audioText: '妈', audioFile: './assets/audio/pinyin/a1.wav', example: '妈' },
+    { tone: 2, mark: 'á', label: '2声', jp: '低めから一気に上へ', audioText: '麻', audioFile: './assets/audio/pinyin/a2.wav', example: '麻' },
+    { tone: 3, mark: 'ǎ', label: '3声', jp: '低く下げてから上がる', audioText: '马', audioFile: './assets/audio/pinyin/a3.wav', example: '马' },
+    { tone: 4, mark: 'à', label: '4声', jp: '高い所から一気に下げる', audioText: '骂', audioFile: './assets/audio/pinyin/a4.wav', example: '骂' }
   ],
   vowels: [
     {
@@ -17,27 +17,27 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
       image: './assets/pinyin/a.svg',
       audioFile: './assets/audio/pinyin/a1.wav',
       audioText: '啊',
-      readAs: 'a は「啊（あー）」みたいな音',
+      readAs: 'a は口を大きく開けて、はっきり「a」',
       buttonHint: 'あっ！',
       tip: '口を大きく開けよう',
-      note: 'びっくりした時の「あ！」の感じで、明るく出そう。',
+      note: '口をしっかり大きく開けて、声を前に出す感じで明るく「a」。',
       mouth: '大きく開く',
       sceneEmoji: '😮',
-      sceneTitle: 'びっくりして「あ！」',
-      sceneText: 'a は口を大きく開けて出す音。まずは「あ！」の気持ちでまねしてみよう。'
+      sceneTitle: '大きく口を開けて「a！」',
+      sceneText: 'a は口を大きく開けるのがポイント。小さく開けず、はっきり声を出してみよう。'
     },
     {
       letter: 'o',
       image: './assets/pinyin/o.svg',
       audioFile: './assets/audio/pinyin/o1.wav',
       audioText: '喔',
-      readAs: 'o は「喔（おー）」みたいな音',
+      readAs: 'o は「欧」ではなく、丸い口で出す「喔」の音',
       buttonHint: 'にわとり',
       tip: '唇を丸くしよう',
-      note: 'にわとりの「喔〜」をイメージして、くちびるをまるく。',
+      note: '口を開けて鳴くにわとりの「喔〜」をイメージ。日本語の「オウ」にしない。',
       mouth: '丸くする',
       sceneEmoji: '🐔',
-      sceneTitle: 'にわとりが「喔〜」',
+      sceneTitle: '口を開けたにわとりが「喔〜」',
       sceneText: 'o は「欧」ではなく、丸いくちで出す「喔」の感じ。朝のにわとりを思い浮かべよう。'
     },
     {
@@ -72,25 +72,25 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
       letter: 'u',
       image: './assets/pinyin/u.svg',
       audioFile: './assets/audio/pinyin/u1.wav',
-      audioText: '乌',
-      readAs: 'u は「乌（wū）」の音をイメージ',
-      buttonHint: 'からす',
+      audioText: '屋',
+      readAs: 'u は「屋（wū）」の「u」をイメージ',
+      buttonHint: 'いえ',
       tip: 'くちびるを前に丸くつき出そう',
-      note: 'からす「乌」を思い浮かべながら、前に集める u の音を出そう。',
+      note: '「屋（wū）」を合図に、くちびるを前へ丸く集めて「u」。',
       mouth: '前に丸く',
-      sceneEmoji: '🐦',
-      sceneTitle: 'からす「乌」',
-      sceneText: 'u は日本語の「う」に近いけれど、くちびるをもっと前に集めて出す音。黒い鳥「乌」で覚えよう。'
+      sceneEmoji: '🏠',
+      sceneTitle: 'おうち「屋（wū）」',
+      sceneText: 'u は日本語の「う」より、くちびるを前にしっかり丸める。おうち「屋（wū）」で覚えよう。'
     },
     {
       letter: 'ü',
-      image: './assets/pinyin/v.svg',
-      audioFile: './assets/audio/pinyin/v1.wav',
+      image: './assets/pinyin/u-umlaut.svg',
+      audioFile: './assets/audio/pinyin/yu1.wav',
       audioText: '鱼',
-      readAs: 'ü は「鱼（yú）」の音をイメージ',
+      readAs: 'ü（u の上に点が2つ）は「鱼（yú）」の音',
       buttonHint: 'さかな',
       tip: '「イ」の口で、くちびるだけ丸くしよう',
-      note: '小さな魚「鱼」を見ながら、ü の特別なくちの形をまねしよう。',
+      note: 'ü は u とは別の母音。u の上に2つの点を書き、「鱼（yú）」の音で覚えよう。',
       mouth: 'イの口＋丸い唇',
       sceneEmoji: '🐟',
       sceneTitle: '小さな魚「鱼」',
