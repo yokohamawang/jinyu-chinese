@@ -1,8 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF1D6"/><stop offset="1" stop-color="#E4F4E8"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity=".10"/></filter></defs>
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF0D2"/><stop offset="1" stop-color="#E6F5E8"/></linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity=".11"/></filter>
+</defs>
 <rect width="360" height="240" rx="42" fill="url(#g)"/>
 <circle cx="55" cy="48" r="26" fill="#fff" opacity=".55"/><circle cx="309" cy="46" r="20" fill="#fff" opacity=".40"/>
 <path d="M20 200 C90 150 135 235 210 190 S320 155 355 188 V240 H0Z" fill="#fff" opacity=".44"/>
-<g filter="url(#s)"><circle cx="180" cy="125" r="82" fill="#fff" opacity=".88"/></g>
-<text x="180" y="162" text-anchor="middle" font-size="112" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">🐔</text>
+<g filter="url(#s)"><circle cx="180" cy="125" r="82" fill="#fff" opacity=".93"/></g>
+<!-- unmistakable rooster: tall comb, white head, red wattle, big open beak -->
+<ellipse cx="196" cy="130" rx="53" ry="57" fill="#F5F0EA"/>
+<path d="M176 83 C173 69 184 62 191 75 C194 58 208 58 210 75 C218 62 231 68 226 85 Z" fill="#D8423B"/>
+<path d="M217 166 C229 174 225 190 214 192 C206 184 207 174 217 166 Z" fill="#D8423B"/>
+<circle cx="179" cy="112" r="13" fill="#fff"/><circle cx="182" cy="113" r="5.5" fill="#222"/><circle cx="184" cy="110" r="1.7" fill="#fff"/>
+<!-- wide-open crowing beak -->
+<path d="M157 117 C141 103 121 96 98 102 C113 113 128 121 149 125 Z" fill="#F7B63D" stroke="#B96E1E" stroke-width="2.5"/>
+<path d="M157 132 C140 145 120 154 97 150 C112 136 128 128 150 124 Z" fill="#E98B2E" stroke="#A9571B" stroke-width="2.5"/>
+<ellipse cx="132" cy="126" rx="20" ry="11" fill="#6C3325" opacity=".96"/>
+<ellipse cx="132" cy="127" rx="12" ry="6" fill="#B9483F" opacity=".88"/>
+<!-- neck feathers -->
+<path d="M213 145 Q243 152 226 171 Q244 174 222 187 Q207 178 202 161 Z" fill="#D7CFC6"/>
+<!-- sound lines -->
+<path d="M91 93 Q72 82 60 69" stroke="#E0A23A" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M82 120 Q58 119 43 119" stroke="#E0A23A" stroke-width="5" fill="none" stroke-linecap="round"/>
 </svg>
