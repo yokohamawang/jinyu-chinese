@@ -1,6 +1,7 @@
-/* DEMO 10.107.63 — tone intro/audio button fix.
-   Removes the synthetic bundled vowel WAVs from lesson playback.
-   Uses the device's zh-CN Mandarin voice with real Chinese example characters/words. */
+/* DEMO 10.107.64 — native-vowel fallback fix.
+   Dedicated local Azure WAVs remain the first choice.
+   When they are not present, NEVER send Latin pinyin marks (á / ǒ / ü...) to TTS.
+   Instead request native Mandarin seed syllables and trim consonant onsets in WebAudio. */
 (function(){
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, heard={}, completed={}, activeLetters=null, activeGroupTitle='';
@@ -12,53 +13,88 @@
   function leaveKids(){document.body.classList.remove('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','true');if(typeof window.returnToAppHome==='function')window.returnToAppHome();else{document.body.classList.add('app-home-mode');window.scrollTo(0,0)}}
   function stopAudio(){
     try{if(localAudio){localAudio.pause();localAudio.currentTime=0}}catch(e){}
+    localAudio=null;
+    try{if(pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}
     try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
   }
-  function speakMandarin(text,rate){
-    stopAudio();
-    if(typeof window.playMachine==='function')return window.playMachine(text,null,false);
-    if(typeof playMachine==='function')return playMachine(text,null,false);
-    return Promise.reject(new Error('home TTS player unavailable'));
-  }
   /*
-     Fixed pinyin audio contract:
-     - Prefer one dedicated local file per vowel + tone.
-     - All 24 buttons are playable; never silently turn tones 2/3/4 into dead buttons.
-     - P0 four-tone introduction uses a1/a2/a3/a4, not ma1/ma2/ma3/ma4.
-     - If the local file has not been uploaded yet, fall back to the visible pinyin mark
-       rather than substituting a different syllable such as 妈/麻/马/骂.
+     Pinyin audio contract (10.107.64):
+     1) Prefer a dedicated local WAV for each vowel + tone.
+     2) If a WAV is absent, DO NOT pass Latin pinyin to TTS: Azure/browser voices can
+        interpret it as English/foreign text (the source of “打/嗷”-like playback).
+     3) Fallback uses a real Mandarin seed syllable and removes a short consonant onset
+        with WebAudio. The learner therefore hears the Mandarin vowel/tone, not the seed word.
   */
   var PINYIN_AUDIO_BASE='./assets/audio/pinyin/azure/';
+  var PINYIN_TTS_API='https://worker-xiaoshuang.wangjinyu00.workers.dev';
+  var pinyinBufferCache=new Map(), pinyinAudioContext=null, pinyinSource=null;
+  var NATIVE_SEEDS={
+    a:[{text:'阿',trim:0},{text:'达',trim:.095},{text:'打',trim:.095},{text:'大',trim:.085}],
+    o:[{text:'窝',trim:.055},{text:'哦',trim:0},{text:'我',trim:.055},{text:'卧',trim:.055}],
+    e:[{text:'喝',trim:.115},{text:'鹅',trim:0},{text:'可',trim:.115},{text:'饿',trim:0}],
+    i:[{text:'衣',trim:0},{text:'姨',trim:0},{text:'椅',trim:0},{text:'意',trim:0}],
+    u:[{text:'屋',trim:0},{text:'无',trim:0},{text:'五',trim:0},{text:'物',trim:0}],
+    'ü':[{text:'迂',trim:0},{text:'鱼',trim:0},{text:'雨',trim:0},{text:'玉',trim:0}]
+  };
   function audioKey(letter,tone){return (letter==='ü'?'yu':letter)+tone}
-  function playLocalPinyin(letter,tone,fallbackText){
-    stopAudio();
+  function getPinyinAudioContext(){
+    var Ctx=window.AudioContext||window.webkitAudioContext;
+    if(!Ctx)throw new Error('AudioContext unsupported');
+    if(!pinyinAudioContext)pinyinAudioContext=new Ctx();
+    if(pinyinAudioContext.state==='suspended')pinyinAudioContext.resume().catch(function(){});
+    return pinyinAudioContext;
+  }
+  function stopPinyinSource(){
+    try{if(pinyinSource){pinyinSource.stop();pinyinSource.disconnect()}}catch(e){}
+    pinyinSource=null;
+  }
+  async function fetchNativeSeedBuffer(letter,tone){
+    var key=audioKey(letter,tone);
+    if(pinyinBufferCache.has(key))return pinyinBufferCache.get(key);
+    var seed=(NATIVE_SEEDS[letter]||[])[tone-1];
+    if(!seed)throw new Error('missing native seed '+key);
+    var r=await fetch(PINYIN_TTS_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:seed.text})});
+    if(!r.ok)throw new Error('pinyin TTS '+r.status);
+    var raw=await r.arrayBuffer();
+    var ctx=getPinyinAudioContext();
+    var decoded=await ctx.decodeAudioData(raw.slice(0));
+    var value={buffer:decoded,trim:seed.trim||0};
+    pinyinBufferCache.set(key,value);
+    return value;
+  }
+  async function playNativeSeed(letter,tone){
+    stopAudio();stopPinyinSource();
+    var data=await fetchNativeSeedBuffer(letter,tone);
+    var ctx=getPinyinAudioContext();
+    if(ctx.state==='suspended')await ctx.resume();
+    var src=ctx.createBufferSource();pinyinSource=src;src.buffer=data.buffer;src.connect(ctx.destination);
+    src.onended=function(){if(pinyinSource===src)pinyinSource=null};
+    var offset=Math.min(data.trim,Math.max(0,data.buffer.duration-.16));
+    src.start(0,offset);
+    return src;
+  }
+  function playLocalPinyin(letter,tone){
+    stopAudio();stopPinyinSource();
     var src=PINYIN_AUDIO_BASE+audioKey(letter,tone)+'.wav';
     return new Promise(function(resolve){
       var a=new Audio(src);localAudio=a;a.preload='auto';a.playsInline=true;
-      var settled=false;
+      var finished=false;
       function fallback(){
-        if(settled)return;settled=true;
+        if(finished)return;finished=true;
         try{a.pause();a.currentTime=0}catch(e){}
-        localAudio=null;
-        /* Keep lexical identity: no ma/yi/wu/yu substitution for the displayed vowel card. */
-        speakMandarin(fallbackText,0.68).then(resolve).catch(function(){resolve(null)});
+        if(localAudio===a)localAudio=null;
+        playNativeSeed(letter,tone).then(resolve).catch(function(err){console.error('Pinyin native fallback failed',err);resolve(null)});
       }
       a.addEventListener('canplaythrough',function(){
-        if(settled)return;settled=true;
-        a.play().then(function(){resolve(a)}).catch(function(){settled=false;fallback()});
+        if(finished)return;finished=true;
+        a.play().then(function(){resolve(a)}).catch(function(){finished=false;fallback()});
       },{once:true});
       a.addEventListener('error',fallback,{once:true});
       try{a.load()}catch(e){fallback()}
     });
   }
-  function playToneExample(tone){
-    var marks=['ā','á','ǎ','à'];
-    return playLocalPinyin('a',tone,marks[tone-1]||'a');
-  }
-  function playVowelExample(v,tone){
-    var marks=toneMarks(v.letter);
-    return playLocalPinyin(v.letter,tone,marks[tone-1]||v.letter);
-  }
+  function playToneExample(tone){return playLocalPinyin('a',tone)}
+  function playVowelExample(v,tone){return playLocalPinyin(v.letter,tone)}
   window.koepandaPlayToneIntro=playToneExample;
   function toneMarks(letter){
     var m={a:['ā','á','ǎ','à'],o:['ō','ó','ǒ','ò'],e:['ē','é','ě','è'],i:['ī','í','ǐ','ì'],u:['ū','ú','ǔ','ù'],'ü':['ǖ','ǘ','ǚ','ǜ']};
