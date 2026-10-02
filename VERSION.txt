@@ -1,9 +1,10 @@
-Koepanda DEMO 10.107.56 FULL — Compact Roadmap Navigation Check Fix
+Koepanda DEMO 10.107.58 FULL — Visible Back Navigation
 
-Base: 10.107.55 FULL CompactRoadmapNavigation.
+Base: 10.107.57 FULL LessonDetailNavigation.
 
 Changes:
-- Verified all JavaScript parses successfully.
-- Verified every local index/CSS asset reference exists.
-- Preserved compact chapter navigation and six-vowel drills.
-- Fixed one edge case: Back now restores the chapter at the true previous viewport offset even if it was slightly above the top edge when opened.
+- Back navigation is now a prominent fixed pill at the lower-left of the screen on chapter, lesson, and vowel-detail views.
+- Users no longer need to scroll to the top to find Back.
+- Labels now explicitly say “← 戻る　学習ロード / レッスン一覧 / 母音一覧”.
+- Added bottom spacing so the persistent Back control does not cover lesson content.
+- Existing roadmap, six-vowel drills, local WAV playback, tone activities, and scroll-position restoration are preserved.

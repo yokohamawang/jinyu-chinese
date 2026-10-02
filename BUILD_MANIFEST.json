@@ -1,15 +1,17 @@
 {
-  "version": "10.107.56",
-  "base": "10.107.55",
+  "version": "10.107.58",
+  "base": "10.107.57",
   "changes": [
-    "Code-check build based on 10.107.55.",
-    "Fixed exact chapter return-position restoration for partially scrolled chapter cards.",
-    "Verified JS syntax and local asset references; no missing local files detected.",
-    "Preserved compact roadmap, six-vowel four-tone drills, local WAV playback, and completion-gated praise."
+    "Make Back navigation persistent and visually prominent on long mobile lesson views.",
+    "Use explicit Back labels for roadmap, lesson list, and vowel list.",
+    "Reserve safe bottom spacing so the fixed Back control does not cover content.",
+    "Preserve existing lesson navigation and scroll-position restoration."
   ],
   "changed_files": [
     "index.html",
     "js/06-demo1010740-pinyin-roadmap.js",
+    "js/05-demo1010734-kids-first-lesson.js",
+    "css/44-demo1010758-visible-back-navigation.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]
