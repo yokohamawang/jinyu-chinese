@@ -1,6 +1,6 @@
-/* DEMO 10.107.65 — verified pinyin audio only.
-   Incorrect seed-word trimming and Latin-letter TTS fallbacks have been removed.
-   Pinyin lesson playback now accepts only dedicated verified Mandarin WAV files. */
+/* DEMO 10.107.66 — dedicated Mandarin pinyin audio.
+   No Latin-letter TTS and no trimmed seed-word approximations.
+   Uses the MIT-licensed Yanyu pinyin-syllables audio library as the online source. */
 (function(){
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, heard={}, completed={}, activeLetters=null, activeGroupTitle='';
@@ -17,40 +17,47 @@
     try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
   }
   /*
-     Pinyin audio contract (10.107.65):
-     - Teaching audio must never be guessed from Latin text or approximated by trimming
-       consonants from Chinese words. Those approaches produced incorrect sounds such
-       as 达/打 for a and 喝/可 for e.
-     - Only dedicated, individually verified Mandarin vowel-tone WAV files are allowed.
-     - Expected files: a1..a4, o1..o4, e1..e4, i1..i4, u1..u4, yu1..yu4.
+     Pinyin audio contract (10.107.66):
+     - Never send isolated Latin pinyin to browser TTS.
+     - Never trim consonants from Chinese seed words.
+     - Use dedicated Mandarin pinyin syllable recordings only.
+     - a/o/e use their own syllable recordings; i/u/ü use yi/wu/yu, whose y/w
+       are zero-initial orthographic spellings in Hanyu Pinyin.
+     - Source: byhow/yanyu pinyin-syllables (MIT).
   */
-  var PINYIN_AUDIO_BASE='./assets/audio/pinyin/azure/';
-  function audioKey(letter,tone){return (letter==='ü'?'yu':letter)+tone}
+  var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
+  function audioKey(letter,tone){
+    var base=letter==='i'?'yi':(letter==='u'?'wu':(letter==='ü'?'yu':letter));
+    return base+tone;
+  }
   function showAudioMissing(letter,tone){
-    var msg='标准音频尚未配置：'+letter+' '+tone+'声。为了避免教错发音，本版不会使用近似音代替。';
-    console.error(msg);
+    var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';
+    console.error(msg,letter,tone);
     var hint=el('kidsToneHint');
     if(hint)hint.textContent='⚠ '+msg;
   }
   function playLocalPinyin(letter,tone){
     stopAudio();
-    var src=PINYIN_AUDIO_BASE+audioKey(letter,tone)+'.wav';
+    var src=PINYIN_AUDIO_BASE+audioKey(letter,tone)+'.mp3';
     return new Promise(function(resolve){
-      var a=new Audio(src);localAudio=a;a.preload='auto';a.playsInline=true;
-      var done=false;
-      function missing(){
-        if(done)return;done=true;
+      var a=new Audio();localAudio=a;a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';
+      var settled=false;
+      function fail(){
+        if(settled)return;settled=true;
         try{a.pause();a.currentTime=0}catch(e){}
         if(localAudio===a)localAudio=null;
         showAudioMissing(letter,tone);
         resolve(null);
       }
-      a.addEventListener('canplaythrough',function(){
-        if(done)return;done=true;
-        a.play().then(function(){resolve(a)}).catch(function(){done=false;missing()});
-      },{once:true});
-      a.addEventListener('error',missing,{once:true});
-      try{a.load()}catch(e){missing()}
+      a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});
+      a.addEventListener('error',fail,{once:true});
+      a.src=src;
+      try{
+        var pr=a.play();
+        if(pr&&typeof pr.then==='function'){
+          pr.then(function(){settled=true;resolve(a)}).catch(fail);
+        }else{settled=true;resolve(a)}
+      }catch(e){fail()}
     });
   }
   function playToneExample(tone){return playLocalPinyin('a',tone)}
