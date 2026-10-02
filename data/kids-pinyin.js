@@ -1,4 +1,4 @@
-/* Koepanda kids course data — DEMO 10.107.51
+/* Koepanda kids course data — DEMO 10.107.53
    P0/P1 starter content. Tone is present from lesson one.
    Single-vowel cards begin visualized learning with scene associations.
    Chinese sound is primary; Japanese explanation is supportive. */
@@ -14,7 +14,7 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
   vowels: [
     {
       letter: 'a',
-      image: './assets/pinyin/a.svg',
+      image: './assets/pinyin/a.png',
       audioFile: './assets/audio/pinyin/a1.wav',
       audioText: '啊',
       readAs: 'a は口を大きく開けて、はっきり「a」',
@@ -28,7 +28,7 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'o',
-      image: './assets/pinyin/o.svg',
+      image: './assets/pinyin/o.png',
       audioFile: './assets/audio/pinyin/o1.wav',
       audioText: '喔',
       readAs: 'o は「欧」ではなく、丸い口で出す「喔」の音',
@@ -42,7 +42,7 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'e',
-      image: './assets/pinyin/e.svg',
+      image: './assets/pinyin/e.png',
       audioFile: './assets/audio/pinyin/e1.wav',
       audioText: '鹅',
       readAs: 'e は「鹅（がちょう）」の最初の音',
@@ -56,7 +56,7 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'i',
-      image: './assets/pinyin/i.svg',
+      image: './assets/pinyin/i.png',
       audioFile: './assets/audio/pinyin/i1.wav',
       audioText: '衣',
       readAs: 'i は「衣（yī）」の音をイメージ',
@@ -70,7 +70,7 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'u',
-      image: './assets/pinyin/u.svg',
+      image: './assets/pinyin/u.png',
       audioFile: './assets/audio/pinyin/u1.wav',
       audioText: '屋',
       readAs: 'u は「屋（wū）」の「u」をイメージ',
@@ -84,7 +84,7 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
     },
     {
       letter: 'ü',
-      image: './assets/pinyin/u-umlaut.svg',
+      image: './assets/pinyin/u-umlaut.png',
       audioFile: './assets/audio/pinyin/yu1.wav',
       audioText: '鱼',
       readAs: 'ü（u の上に点が2つ）は「鱼（yú）」の音',
