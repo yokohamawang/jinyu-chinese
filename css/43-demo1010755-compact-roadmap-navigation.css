@@ -1,0 +1,22 @@
+/* DEMO 10.107.55 — compact roadmap: chapters first, unit buttons only after opening a chapter. */
+.pinyin-world-compact{padding:0;overflow:hidden}
+.pinyin-world-compact::after{pointer-events:none}
+.pinyin-world-open{position:relative;z-index:1;width:100%;border:0;background:transparent;padding:17px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.pinyin-world-open:active{transform:scale(.995)}
+.pinyin-world-copy{min-width:0;display:block}
+.pinyin-world-copy>span{display:block;font-size:12px;font-weight:900;color:#668169;margin-bottom:2px}
+.pinyin-world-copy>strong{display:block;font-size:21px;line-height:1.25;color:#2f6255}
+.pinyin-world-copy>small{display:block;color:#7b8c84;font-weight:700;font-size:11px;line-height:1.5;margin-top:4px}
+.pinyin-world-open-state{flex:0 0 auto;display:flex;align-items:center;gap:8px;color:#72a283}
+.pinyin-world-open-state b{font-size:28px;line-height:1}
+.pinyin-world-unit-count{font-size:10px;font-weight:850;color:#809087;background:#f4f7ee;border-radius:999px;padding:6px 8px;white-space:nowrap}
+.pinyin-world-compact.is-locked{opacity:.73}
+.pinyin-world-compact.is-locked .pinyin-world-open{cursor:pointer}
+.pinyin-world[hidden],.pinyin-stage-detail[hidden]{display:none!important}
+.pinyin-stage-detail{scroll-margin-top:8px;border-radius:28px;padding:15px 14px 17px;background:rgba(255,255,255,.94);border:1px solid rgba(70,111,83,.1);box-shadow:0 10px 24px rgba(64,100,72,.08)}
+.pinyin-stage-detail-head{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:11px;margin-bottom:12px}
+.pinyin-stage-back{border:0;border-radius:14px;background:#f1f6ec;color:#46675d;padding:10px 11px;font-size:12px;font-weight:900;white-space:nowrap;touch-action:manipulation}
+.pinyin-stage-detail-copy{min-width:0}.pinyin-stage-detail-copy>span{display:block;font-size:11px;font-weight:900;color:#668169}.pinyin-stage-detail-copy>strong{display:block;font-size:20px;color:#2f6255;line-height:1.25}.pinyin-stage-detail-copy>small{display:block;margin-top:2px;color:#7b8c84;font-size:10px;line-height:1.45;font-weight:700}
+.pinyin-stage-detail-path{padding-top:2px}
+.pinyin-stage-locked-note{margin-top:11px;padding:11px 12px;border-radius:15px;background:#f5f6ef;color:#78857e;text-align:center;font-size:11px;font-weight:800}
+@media(max-width:370px){.pinyin-world-open{padding:15px 13px}.pinyin-world-copy>strong{font-size:19px}.pinyin-world-unit-count{display:none}.pinyin-stage-detail{padding-left:11px;padding-right:11px}.pinyin-stage-detail-head{grid-template-columns:1fr}.pinyin-stage-back{justify-self:start}}
