@@ -1,4 +1,4 @@
-/* DEMO 10.107.59 — true layered lesson navigation.
+/* DEMO 10.107.63 — direct P0 entry + layered lesson navigation.
    Chapter list, unit list, and lesson body never remain visually stacked.
    Vowel units open only their own 3-vowel group. Back controls are compact and non-obstructive. */
 (function(){
@@ -142,8 +142,15 @@
     world.dataset.stageId=stage.id;
     var open=document.createElement('button'); open.type='button'; open.className='pinyin-world-open';
     open.setAttribute('aria-label',stage.title+' を開く');
-    open.innerHTML='<span class="pinyin-world-copy"><span>'+stage.world+'</span><strong>'+stage.title+'</strong><small>'+stage.subtitle+'</small></span><span class="pinyin-world-open-state"><span class="pinyin-world-unit-count">'+stage.units.length+' レッスン</span><b>'+(stage.status==='locked'?'🔒':'›')+'</b></span>';
-    open.addEventListener('click',function(){openStage(stage,world)});
+    open.innerHTML='<span class="pinyin-world-copy"><span>'+stage.world+'</span><strong>'+stage.title+'</strong><small>'+stage.subtitle+'</small></span><span class="pinyin-world-open-state"><span class="pinyin-world-unit-count">'+(stage.id==='P0'?'すぐ体験':stage.units.length+' レッスン')+'</span><b>'+(stage.status==='locked'?'🔒':'›')+'</b></span>';
+    open.addEventListener('click',function(){
+      /* P0 is only an introduction to the four tones, so avoid a redundant one-item unit screen. */
+      if(stage.id==='P0' && stage.units && stage.units.length===1){
+        openLesson(stage.units[0],open);
+        return;
+      }
+      openStage(stage,world);
+    });
     world.appendChild(open);
     return world;
   }

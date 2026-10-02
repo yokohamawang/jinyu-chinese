@@ -1,4 +1,4 @@
-/* DEMO 10.107.60 — accuracy-first Mandarin playback.
+/* DEMO 10.107.63 — tone intro/audio button fix.
    Removes the synthetic bundled vowel WAVs from lesson playback.
    Uses the device's zh-CN Mandarin voice with real Chinese example characters/words. */
 (function(){
@@ -20,22 +20,46 @@
     if(typeof playMachine==='function')return playMachine(text,null,false);
     return Promise.reject(new Error('home TTS player unavailable'));
   }
-  /* Real Mandarin lexical examples. For i/u/ü, standalone spelling is yi/wu/yu in Pinyin. */
-  var VOWEL_EXAMPLES={
-    a:{1:'阿'},
-    o:{1:'喔'},
-    e:{2:'鹅'},
-    i:{1:'衣',2:'姨',3:'椅',4:'意'},
-    u:{1:'屋',2:'无',3:'五',4:'物'},
-    'ü':{1:'迂',2:'鱼',3:'雨',4:'玉'}
-  };
-  var TONE_EXAMPLES={1:'妈',2:'麻',3:'马',4:'骂'};
-  function playToneExample(tone){return speakMandarin(TONE_EXAMPLES[tone]||'妈',0.70)}
-  function playVowelExample(v,tone){
-    var map=VOWEL_EXAMPLES[v.letter]||{};
-    var txt=map[tone]||map[1]||v.audioText||v.letter;
-    return speakMandarin(txt,0.68);
+  /*
+     Fixed pinyin audio contract:
+     - Prefer one dedicated local file per vowel + tone.
+     - All 24 buttons are playable; never silently turn tones 2/3/4 into dead buttons.
+     - P0 four-tone introduction uses a1/a2/a3/a4, not ma1/ma2/ma3/ma4.
+     - If the local file has not been uploaded yet, fall back to the visible pinyin mark
+       rather than substituting a different syllable such as 妈/麻/马/骂.
+  */
+  var PINYIN_AUDIO_BASE='./assets/audio/pinyin/azure/';
+  function audioKey(letter,tone){return (letter==='ü'?'yu':letter)+tone}
+  function playLocalPinyin(letter,tone,fallbackText){
+    stopAudio();
+    var src=PINYIN_AUDIO_BASE+audioKey(letter,tone)+'.wav';
+    return new Promise(function(resolve){
+      var a=new Audio(src);localAudio=a;a.preload='auto';a.playsInline=true;
+      var settled=false;
+      function fallback(){
+        if(settled)return;settled=true;
+        try{a.pause();a.currentTime=0}catch(e){}
+        localAudio=null;
+        /* Keep lexical identity: no ma/yi/wu/yu substitution for the displayed vowel card. */
+        speakMandarin(fallbackText,0.68).then(resolve).catch(function(){resolve(null)});
+      }
+      a.addEventListener('canplaythrough',function(){
+        if(settled)return;settled=true;
+        a.play().then(function(){resolve(a)}).catch(function(){settled=false;fallback()});
+      },{once:true});
+      a.addEventListener('error',fallback,{once:true});
+      try{a.load()}catch(e){fallback()}
+    });
   }
+  function playToneExample(tone){
+    var marks=['ā','á','ǎ','à'];
+    return playLocalPinyin('a',tone,marks[tone-1]||'a');
+  }
+  function playVowelExample(v,tone){
+    var marks=toneMarks(v.letter);
+    return playLocalPinyin(v.letter,tone,marks[tone-1]||v.letter);
+  }
+  window.koepandaPlayToneIntro=playToneExample;
   function toneMarks(letter){
     var m={a:['ā','á','ǎ','à'],o:['ō','ó','ǒ','ò'],e:['ē','é','ě','è'],i:['ī','í','ǐ','ì'],u:['ū','ú','ǔ','ù'],'ü':['ǖ','ǘ','ǚ','ǜ']};
     return m[letter]||[letter,letter,letter,letter];
@@ -67,7 +91,7 @@
     vowelIndex=i;heard={};var v=data.vowels[i],d=ensureDrill();if(!d)return;
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
-    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';var exact=!!((VOWEL_EXAMPLES[v.letter]||{})[tone]);b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+(exact?labels[k]:'声調の形を確認')+'</small>';if(!exact){b.classList.add('is-reference-only');b.setAttribute('aria-label',mark+' '+tone+'声（音声は準備中）');}b.addEventListener('click',function(){if(exact){heard[tone]=true;b.classList.add('is-heard');playVowelExample(v,tone)}else{var hint=el('kidsToneHint');if(hint)hint.textContent=v.letter+' の '+tone+'声は、不正確な合成音を使わず、母語話者音声に差し替える予定です。';}});g.appendChild(b)});
+    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;b.classList.add('is-heard');playVowelExample(v,tone)});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
     el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;requestAnimationFrame(function(){d.scrollIntoView({block:'start',behavior:'auto'})});
