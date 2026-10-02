@@ -1,3 +1,2 @@
-Koepanda DEMO 10.107.63
-Based on 10.107.62
-Changes: direct P0 tone-intro entry; removed redundant one-item navigation layer; P0 uses a-tone identity instead of ma examples; all 24 vowel-tone buttons have playback handlers with local WAV-first fallback.
+DEMO 10.107.64
+Native Mandarin vowel fallback; no Latin-pinyin TTS.
