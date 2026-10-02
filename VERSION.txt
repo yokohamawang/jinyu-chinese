@@ -1,4 +1,9 @@
-Koepanda DEMO 10.107.52 FULL — Pinyin Entry Race Fix
+Koepanda DEMO 10.107.56 FULL — Compact Roadmap Navigation Check Fix
 
-Fix: prevents the Safari/iOS startup-home reset timer from re-adding app-home-mode after the user has entered the pinyin course.
-Base: 10.107.51.
+Base: 10.107.55 FULL CompactRoadmapNavigation.
+
+Changes:
+- Verified all JavaScript parses successfully.
+- Verified every local index/CSS asset reference exists.
+- Preserved compact chapter navigation and six-vowel drills.
+- Fixed one edge case: Back now restores the chapter at the true previous viewport offset even if it was slightly above the top edge when opened.

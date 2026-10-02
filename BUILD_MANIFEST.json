@@ -1,11 +1,16 @@
 {
-  "version": "10.107.54",
-  "base": "10.107.53",
+  "version": "10.107.56",
+  "base": "10.107.55",
   "changes": [
-    "Six vowel cards now open a dedicated per-vowel four-tone drill instead of expanding a long page.",
-    "Back returns directly to the six-vowel grid.",
-    "Each vowel drill provides local-WAV tone playback plus tone-mark reading/writing trace cards.",
-    "u/ü and j-q-x spelling explanation appears inside the ü drill.",
-    "Completion praise is hidden until all six vowel drills are actually marked complete."
+    "Code-check build based on 10.107.55.",
+    "Fixed exact chapter return-position restoration for partially scrolled chapter cards.",
+    "Verified JS syntax and local asset references; no missing local files detected.",
+    "Preserved compact roadmap, six-vowel four-tone drills, local WAV playback, and completion-gated praise."
+  ],
+  "changed_files": [
+    "index.html",
+    "js/06-demo1010740-pinyin-roadmap.js",
+    "VERSION.txt",
+    "BUILD_MANIFEST.json"
   ]
 }
