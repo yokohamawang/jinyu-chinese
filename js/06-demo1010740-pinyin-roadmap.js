@@ -1,10 +1,12 @@
-/* DEMO 10.107.56 — compact chapter roadmap + dedicated chapter detail view.
-   Unit buttons are no longer laid out permanently on the main roadmap.
-   Open a chapter to reveal its units; Back restores the exact chapter position. */
+/* DEMO 10.107.58 — compact roadmap + chapter detail + highly visible persistent Back navigation.
+   Main learning road shows chapter cards only. Chapter units appear after opening a chapter.
+   The large lesson body appears only after opening a unit, and Back restores the exact prior position. */
 (function(){
   var course=window.KOEPANDA_PINYIN_COURSE;
   if(!course)return;
-  var root=null, detail=null, lastStageId=null, lastStageTop=0;
+  var root=null, detail=null;
+  var lastStageId=null, lastStageTop=0;
+  var lessonState=null;
 
   function iconFor(id){
     if(id==='P0-U1')return '🎵'; if(id==='P1')return '🌼'; if(id==='P2')return '🐟';
@@ -21,10 +23,61 @@
     return null;
   }
 
-  function openLesson(unit){
+  function courseChrome(){
+    return {
+      map: document.querySelector('.kids-map'),
+      intro: document.querySelector('.pinyin-roadmap-intro'),
+      note: document.querySelector('.pinyin-roadmap-note'),
+      finish: document.getElementById('kidsFinishLesson'),
+      finishNote: document.getElementById('kidsFinishNote')
+    };
+  }
+
+  function allLessonCards(){
+    return Array.prototype.slice.call(document.querySelectorAll('#kidsCourse > .kids-lesson-card'));
+  }
+
+  function setLessonBodiesHidden(){
+    allLessonCards().forEach(function(card){ card.hidden=true; card.classList.remove('is-roadmap-lesson-active'); });
+    var c=courseChrome();
+    if(c.finish)c.finish.hidden=true;
+    if(c.finishNote)c.finishNote.hidden=true;
+  }
+
+  function showRoadmapChrome(show){
+    var c=courseChrome();
+    [c.map,c.intro,root,c.note].forEach(function(el){ if(el)el.hidden=!show; });
+  }
+
+  function closeLesson(){
+    if(!lessonState)return;
+    var target=lessonState.target;
+    if(target){ target.hidden=true; target.classList.remove('is-roadmap-lesson-active'); }
+    var lessonBack=document.getElementById('pinyinLessonBack');
+    if(lessonBack)lessonBack.remove();
+    showRoadmapChrome(true);
+    var y=lessonState.returnY;
+    lessonState=null;
+    requestAnimationFrame(function(){ window.scrollTo({top:Math.max(0,y),left:0,behavior:'auto'}); });
+  }
+
+  function openLesson(unit,button){
     var target=targetForUnit(unit.id);
     if(!target)return;
-    requestAnimationFrame(function(){target.scrollIntoView({behavior:'smooth',block:'start'})});
+    var rect=(button||detail).getBoundingClientRect();
+    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top};
+    showRoadmapChrome(false);
+    setLessonBodiesHidden();
+    target.hidden=false;
+    target.classList.add('is-roadmap-lesson-active');
+
+    var existing=document.getElementById('pinyinLessonBack');
+    if(existing)existing.remove();
+    var back=document.createElement('button');
+    back.type='button'; back.id='pinyinLessonBack'; back.className='pinyin-lesson-back';
+    back.textContent='← 戻る　レッスン一覧'; back.addEventListener('click',closeLesson);
+    target.parentNode.insertBefore(back,target);
+    requestAnimationFrame(function(){ back.scrollIntoView({block:'start',behavior:'auto'}); });
   }
 
   function unitButton(unit,stageStatus){
@@ -34,7 +87,7 @@
     if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked');
     b.disabled=locked;
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習')+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':'›')+'</span>';
-    if(!locked)b.addEventListener('click',function(){openLesson(unit)});
+    if(!locked)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
   }
 
@@ -59,7 +112,7 @@
     detail.hidden=false;
 
     var head=document.createElement('div'); head.className='pinyin-stage-detail-head';
-    var back=document.createElement('button'); back.type='button'; back.className='pinyin-stage-back'; back.textContent='← 学習ロード'; back.addEventListener('click',restoreRoadmap);
+    var back=document.createElement('button'); back.type='button'; back.className='pinyin-stage-back'; back.textContent='← 戻る　学習ロード'; back.addEventListener('click',restoreRoadmap);
     var copy=document.createElement('div'); copy.className='pinyin-stage-detail-copy';
     copy.innerHTML='<span>'+stage.world+'</span><strong>'+stage.title+'</strong><small>'+stage.subtitle+'</small>';
     head.appendChild(back); head.appendChild(copy);
@@ -90,6 +143,7 @@
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage){root.appendChild(stageCard(stage))});
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
+    setLessonBodiesHidden();
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true}); else render();
