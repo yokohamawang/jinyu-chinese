@@ -1,2 +1,2 @@
-DEMO 10.107.64
-Native Mandarin vowel fallback; no Latin-pinyin TTS.
+DEMO 10.107.65
+Verified Pinyin Audio Only
