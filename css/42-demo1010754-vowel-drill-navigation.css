@@ -1,0 +1,25 @@
+/* DEMO 10.107.54 — short vowel overview + dedicated per-vowel four-tone drill. */
+.kids-vowel-overview-progress{margin:10px 2px 0;padding:9px 12px;border-radius:14px;background:#f3f8ef;color:#577168;font-size:12px;font-weight:800;text-align:center}
+/* The long inline detail blocks from 10.107.53 are replaced by the dedicated drill view. */
+.kids-lesson-card:has(#kidsVowelGrid)>.kids-u-umlaut-lesson,
+.kids-lesson-card:has(#kidsVowelGrid)>.kids-vowel-scene,
+.kids-lesson-card:has(#kidsVowelGrid)>.kids-practice-box{display:none!important}
+.kids-vowel-button.is-complete{position:relative}
+.kids-vowel-button.is-complete:after{content:'✓';position:absolute;right:8px;top:8px;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#61ad86;color:#fff;font-weight:900;box-shadow:0 3px 8px rgba(42,95,68,.18)}
+.kids-vowel-drill[hidden]{display:none!important}
+.kids-vowel-drill{margin-top:12px;border-radius:25px;background:linear-gradient(145deg,#fbfdf9,#eef7e9);border:1px solid rgba(75,117,87,.10);padding:13px;box-shadow:0 8px 20px rgba(72,107,78,.07)}
+.kids-vowel-drill-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.kids-vowel-drill-back{flex:0 0 auto;border:0;border-radius:13px;background:#fff;color:#46675d;padding:9px 11px;font-weight:850;box-shadow:0 3px 9px rgba(69,105,78,.10)}
+.kids-vowel-drill-title{min-width:0;flex:1}.kids-vowel-drill-title b{display:block;font-size:20px;color:#2d6757}.kids-vowel-drill-title small{display:block;margin-top:2px;font-size:11px;color:#75857d;font-weight:700}
+.kids-vowel-drill-hero{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:center;padding:10px;border-radius:19px;background:#fff}
+.kids-vowel-drill-hero img{width:112px;height:82px;object-fit:cover;border-radius:15px}.kids-vowel-drill-letter{font-size:45px;font-weight:950;color:#286052;line-height:1}.kids-vowel-drill-tip{margin-top:5px;font-size:12px;line-height:1.5;color:#60776e;font-weight:750}
+.kids-vowel-tone-title{margin:14px 2px 8px;font-size:13px;color:#456a5e;font-weight:900}
+.kids-vowel-tone-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.kids-vowel-tone-btn{border:0;border-radius:18px;background:#fff;padding:11px 8px;min-height:92px;color:#42685c;box-shadow:0 4px 10px rgba(67,106,78,.08)}
+.kids-vowel-tone-btn .tone-mark{display:block;font-size:31px;font-weight:950;color:#2b6656;line-height:1.1}.kids-vowel-tone-btn b{display:block;font-size:12px;margin-top:4px}.kids-vowel-tone-btn small{display:block;margin-top:2px;font-size:10px;color:#7a8982;font-weight:700}
+.kids-vowel-tone-btn.is-heard{background:#eaf6e4;box-shadow:inset 0 0 0 2px #6daf8b}
+.kids-vowel-write{margin-top:12px;padding:11px;border-radius:18px;background:#fff}.kids-vowel-write b{font-size:12px;color:#456a5e}.kids-vowel-trace-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}.kids-vowel-trace{height:58px;border:1.5px dashed #bfd2c5;border-radius:13px;display:grid;place-items:center;font-size:28px;font-weight:900;color:#aec7b7;background:linear-gradient(90deg,transparent 49%,#edf2ee 50%,transparent 51%),linear-gradient(transparent 49%,#edf2ee 50%,transparent 51%)}
+.kids-vowel-special-note{margin-top:11px;padding:10px 11px;border-radius:15px;background:#fff9e9;color:#6a654c;font-size:11px;line-height:1.55;font-weight:750}.kids-vowel-special-note strong{color:#3e6c5e}
+.kids-vowel-drill-actions{display:flex;gap:9px;margin-top:12px}.kids-vowel-drill-actions button{flex:1;border:0;border-radius:15px;padding:12px 8px;font-weight:900}.kids-vowel-complete{background:#5ca985;color:#fff}.kids-vowel-back-bottom{background:#edf3e9;color:#4f6e63}
+#kidsFinishLesson{display:none!important}#kidsFinishNote:empty{display:none}.kids-finish-note.is-visible{display:block!important;margin:14px 0 4px;padding:13px;border-radius:17px;background:#eef8e8;color:#456b5d;font-weight:850;text-align:center}
+@media(max-width:370px){.kids-vowel-drill-hero{grid-template-columns:96px 1fr}.kids-vowel-drill-hero img{width:96px;height:74px}.kids-vowel-tone-btn{min-height:86px}.kids-vowel-drill-letter{font-size:40px}}
