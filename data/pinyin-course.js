@@ -1,9 +1,9 @@
-/* Koepanda Pinyin Course Roadmap — DEMO 10.107.51
+/* Koepanda Pinyin Course Roadmap — DEMO 10.107.63
    Course -> Stage -> Unit -> Lesson -> Activity
    Tone learning is woven through every pronunciation lesson from the beginning. */
 window.KOEPANDA_PINYIN_COURSE = {
   id: 'pinyin-main-course',
-  version: '10.107.51',
+  version: '10.107.63',
   title: '音からはじめる中国語',
   principles: {
     toneFromFirstLesson: true,
@@ -13,7 +13,7 @@ window.KOEPANDA_PINYIN_COURSE = {
     {
       id:'P0', world:'🌱 はじめの島', title:'音のぼうけん', subtitle:'中国語の音と四声に出会おう', status:'current',
       units:[
-        {id:'P0-U1', title:'声の高さを感じよう', short:'四声の感じ', lessons:['tone-feel'], reward:'はじめの一歩'}
+        {id:'P0-U1', title:'四声を聞いてみよう', short:'四声の感じ', lessons:['tone-feel'], reward:'はじめの一歩'}
       ]
     },
     {

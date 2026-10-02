@@ -1,4 +1,4 @@
-/* Koepanda kids course data — DEMO 10.107.61
+/* Koepanda kids course data — DEMO 10.107.63
    P0/P1 starter content. Tone is present from lesson one.
    Single-vowel cards begin visualized learning with scene associations.
    Chinese sound is primary; Japanese explanation is supportive. */
@@ -6,10 +6,10 @@ window.KOEPANDA_KIDS_FIRST_LESSON = {
   id: 'kids-001-tone-vowels',
   title: '四声の感じ + a / o / e / i / u / ü',
   tones: [
-    { tone: 1, mark: 'ā', label: '1声', jp: '高く平ら', audioText: '妈', example: '妈' },
-    { tone: 2, mark: 'á', label: '2声', jp: '低めから一気に上へ', audioText: '麻', example: '麻' },
-    { tone: 3, mark: 'ǎ', label: '3声', jp: '低く下げてから上がる', audioText: '马', example: '马' },
-    { tone: 4, mark: 'à', label: '4声', jp: '高い所から一気に下げる', audioText: '骂', example: '骂' }
+    { tone: 1, mark: 'ā', label: '1声', jp: '高く平ら', audioText: 'ā', example: 'a' },
+    { tone: 2, mark: 'á', label: '2声', jp: '低めから一気に上へ', audioText: 'á', example: 'a' },
+    { tone: 3, mark: 'ǎ', label: '3声', jp: '低く下げてから上がる', audioText: 'ǎ', example: 'a' },
+    { tone: 4, mark: 'à', label: '4声', jp: '高い所から一気に下げる', audioText: 'à', example: 'a' }
   ],
   vowels: [
     {
