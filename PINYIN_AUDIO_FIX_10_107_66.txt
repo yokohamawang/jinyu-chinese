@@ -1,0 +1,11 @@
+Koepanda 10.107.66
+
+修正：
+- 10.107.65 因项目中没有实际 WAV 文件，导致拼音按钮全部无声；这是上一版打包错误。
+- 本版不再等待缺失 WAV，也不恢复错误的浏览器 TTS/汉字裁切方案。
+- 拼音区直接使用专门的普通话拼音音频：byhow/yanyu 的 pinyin-syllables（MIT License）。
+- a/o/e -> a/o/e；i/u/ü -> yi/wu/yu（汉语拼音零声母规范写法），每个四声独立 MP3。
+- 播放失败时只提示网络加载失败，不会切回错误近似音。
+
+来源： https://github.com/byhow/yanyu
+License: MIT
