@@ -1,10 +1,1 @@
-Koepanda DEMO 10.107.58 FULL — Visible Back Navigation
-
-Base: 10.107.57 FULL LessonDetailNavigation.
-
-Changes:
-- Back navigation is now a prominent fixed pill at the lower-left of the screen on chapter, lesson, and vowel-detail views.
-- Users no longer need to scroll to the top to find Back.
-- Labels now explicitly say “← 戻る　学習ロード / レッスン一覧 / 母音一覧”.
-- Added bottom spacing so the persistent Back control does not cover lesson content.
-- Existing roadmap, six-vowel drills, local WAV playback, tone activities, and scroll-position restoration are preserved.
+10.107.60
