@@ -1,4 +1,4 @@
-/* DEMO 10.107.51 — fixed pinyin teaching sounds use bundled WAV files only.
+/* DEMO 10.107.53 — fixed pinyin teaching sounds use bundled WAV files only.
    No network TTS is used for the six vowels or the four-tone starter lesson. */
 (function(){
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
