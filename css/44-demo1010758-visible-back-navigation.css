@@ -1,0 +1,61 @@
+/* DEMO 10.107.58 — Persistent, unmistakable Back navigation for long mobile lessons.
+   The Back action stays visible at the lower-left while the learner scrolls. */
+.pinyin-stage-back,
+.pinyin-lesson-back,
+.kids-vowel-drill-back{
+  position:fixed!important;
+  left:max(14px,calc((100vw - 430px)/2 + 14px))!important;
+  bottom:max(18px,calc(env(safe-area-inset-bottom) + 14px))!important;
+  z-index:1200!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:52px!important;
+  max-width:calc(100vw - 96px)!important;
+  margin:0!important;
+  padding:0 18px!important;
+  border:2px solid rgba(255,255,255,.92)!important;
+  border-radius:999px!important;
+  background:#356f5e!important;
+  color:#fff!important;
+  font-size:14px!important;
+  line-height:1.15!important;
+  font-weight:950!important;
+  letter-spacing:.01em!important;
+  white-space:nowrap!important;
+  box-shadow:0 10px 24px rgba(39,91,73,.28),0 2px 5px rgba(39,91,73,.16)!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+.pinyin-stage-back:active,
+.pinyin-lesson-back:active,
+.kids-vowel-drill-back:active{
+  transform:translateY(1px) scale(.98)!important;
+  box-shadow:0 5px 13px rgba(39,91,73,.24)!important;
+}
+.pinyin-stage-back:focus-visible,
+.pinyin-lesson-back:focus-visible,
+.kids-vowel-drill-back:focus-visible{
+  outline:3px solid rgba(255,217,112,.95)!important;
+  outline-offset:2px!important;
+}
+/* Keep content reachable above the persistent button on detail screens. */
+.pinyin-stage-detail,
+#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active,
+.kids-vowel-drill{
+  padding-bottom:max(76px,calc(env(safe-area-inset-bottom) + 72px))!important;
+}
+/* The original bottom button remains as a second exit at the end of a vowel drill. */
+.kids-vowel-back-bottom{
+  min-height:48px!important;
+  font-size:14px!important;
+  font-weight:900!important;
+}
+@media(max-width:360px){
+  .pinyin-stage-back,.pinyin-lesson-back,.kids-vowel-drill-back{
+    left:10px!important;
+    min-height:50px!important;
+    padding:0 14px!important;
+    font-size:13px!important;
+  }
+}
