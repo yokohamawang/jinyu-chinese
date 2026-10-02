@@ -1,0 +1,6 @@
+/* DEMO 10.107.59 — only the active lesson layer is visible; vowel group uses three cards. */
+#kidsCourse > .kids-course-head[hidden]{display:none!important}
+#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active{margin-top:0!important}
+#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active .kids-vowel-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active .kids-vowel-button{min-width:0!important}
+@media(max-width:360px){#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active .kids-vowel-grid{gap:7px!important}}

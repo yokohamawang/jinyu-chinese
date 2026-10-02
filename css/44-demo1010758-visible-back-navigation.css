@@ -1,61 +1,37 @@
-/* DEMO 10.107.58 — Persistent, unmistakable Back navigation for long mobile lessons.
-   The Back action stays visible at the lower-left while the learner scrolls. */
+/* DEMO 10.107.59 — compact, non-obstructive Back navigation.
+   Back stays reachable near the top without covering lesson content. */
 .pinyin-stage-back,
 .pinyin-lesson-back,
 .kids-vowel-drill-back{
-  position:fixed!important;
-  left:max(14px,calc((100vw - 430px)/2 + 14px))!important;
-  bottom:max(18px,calc(env(safe-area-inset-bottom) + 14px))!important;
-  z-index:1200!important;
-  display:flex!important;
+  position:sticky!important;
+  top:max(8px,calc(env(safe-area-inset-top) + 6px))!important;
+  z-index:80!important;
+  display:inline-flex!important;
   align-items:center!important;
   justify-content:center!important;
-  min-height:52px!important;
-  max-width:calc(100vw - 96px)!important;
-  margin:0!important;
-  padding:0 18px!important;
-  border:2px solid rgba(255,255,255,.92)!important;
-  border-radius:999px!important;
-  background:#356f5e!important;
-  color:#fff!important;
-  font-size:14px!important;
-  line-height:1.15!important;
-  font-weight:950!important;
-  letter-spacing:.01em!important;
+  width:auto!important;
+  min-height:38px!important;
+  max-width:78vw!important;
+  margin:0 0 10px!important;
+  padding:0 12px!important;
+  border:1px solid rgba(62,103,89,.16)!important;
+  border-radius:13px!important;
+  background:rgba(245,249,242,.96)!important;
+  color:#3f6759!important;
+  font-size:12px!important;
+  line-height:1.1!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
   white-space:nowrap!important;
-  box-shadow:0 10px 24px rgba(39,91,73,.28),0 2px 5px rgba(39,91,73,.16)!important;
+  box-shadow:0 4px 12px rgba(49,91,73,.10)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
   touch-action:manipulation!important;
   -webkit-tap-highlight-color:transparent!important;
 }
-.pinyin-stage-back:active,
-.pinyin-lesson-back:active,
-.kids-vowel-drill-back:active{
-  transform:translateY(1px) scale(.98)!important;
-  box-shadow:0 5px 13px rgba(39,91,73,.24)!important;
-}
-.pinyin-stage-back:focus-visible,
-.pinyin-lesson-back:focus-visible,
-.kids-vowel-drill-back:focus-visible{
-  outline:3px solid rgba(255,217,112,.95)!important;
-  outline-offset:2px!important;
-}
-/* Keep content reachable above the persistent button on detail screens. */
-.pinyin-stage-detail,
-#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active,
-.kids-vowel-drill{
-  padding-bottom:max(76px,calc(env(safe-area-inset-bottom) + 72px))!important;
-}
-/* The original bottom button remains as a second exit at the end of a vowel drill. */
-.kids-vowel-back-bottom{
-  min-height:48px!important;
-  font-size:14px!important;
-  font-weight:900!important;
-}
-@media(max-width:360px){
-  .pinyin-stage-back,.pinyin-lesson-back,.kids-vowel-drill-back{
-    left:10px!important;
-    min-height:50px!important;
-    padding:0 14px!important;
-    font-size:13px!important;
-  }
-}
+.pinyin-stage-back:active,.pinyin-lesson-back:active,.kids-vowel-drill-back:active{transform:scale(.98)!important}
+.pinyin-stage-back:focus-visible,.pinyin-lesson-back:focus-visible,.kids-vowel-drill-back:focus-visible{outline:3px solid rgba(255,217,112,.9)!important;outline-offset:2px!important}
+/* No artificial bottom gap is needed now that Back no longer floats over content. */
+.pinyin-stage-detail,#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active,.kids-vowel-drill{padding-bottom:16px!important}
+.kids-vowel-back-bottom{min-height:44px!important;font-size:13px!important;font-weight:900!important}
+@media(max-width:360px){.pinyin-stage-back,.pinyin-lesson-back,.kids-vowel-drill-back{min-height:36px!important;padding:0 10px!important;font-size:11px!important}}
