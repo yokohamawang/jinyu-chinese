@@ -1,4 +1,4 @@
-/* Koepanda kids course data — DEMO 10.107.53
+/* Koepanda kids course data — DEMO 10.107.54
    P0/P1 starter content. Tone is present from lesson one.
    Single-vowel cards begin visualized learning with scene associations.
    Chinese sound is primary; Japanese explanation is supportive. */
