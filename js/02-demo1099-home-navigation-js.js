@@ -1,4 +1,5 @@
-/* DEMO 10.107.33 — robust startup/refresh home reset for Safari/iOS.
+/* DEMO 10.107.52 — robust startup/refresh home reset for Safari/iOS.
+   Guarded so the delayed startup reset cannot race with the pinyin-course entry.
    Navigation only: feature internals, audio, mouth timing, recording and scoring are unchanged. */
 (function(){
   const AREA_BY_HASH={
@@ -56,6 +57,9 @@
   }
 
   function forceStartupHome(){
+    /* If the learner has already entered the pinyin course, never let a delayed
+       startup/pageshow reset put app-home-mode back on the body. */
+    if(document.body.classList.contains('app-kids-mode')) return;
     try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
     setBodyMode(null);
     try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
@@ -65,6 +69,7 @@
       requestAnimationFrame(function(){ try{ window.scrollTo(0,0); }catch(e){} });
     });
     setTimeout(function(){
+      if(document.body.classList.contains('app-kids-mode')) return;
       setBodyMode(null);
       try{ window.scrollTo(0,0); }catch(e){}
     },80);

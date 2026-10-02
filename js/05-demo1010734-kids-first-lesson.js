@@ -1,8 +1,13 @@
-/* DEMO 10.107.49 — fixed pinyin teaching sounds use bundled WAV files only.
+/* DEMO 10.107.51 — fixed pinyin teaching sounds use bundled WAV files only.
    No network TTS is used for the six vowels or the four-tone starter lesson. */
 (function(){
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null;
+  function el(id){return document.getElementById(id)}
+  function enterKids(ev){if(typeof window.koepandaEnterKidsCourse==='function')return window.koepandaEnterKidsCourse(ev);document.body.classList.remove('app-home-mode','app-function-mode','app-area-listen','app-area-chat','app-area-repeat','app-area-settings');document.body.classList.add('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','false');try{history.replaceState(null,'',location.pathname+location.search+'#kidsCourse')}catch(e){}requestAnimationFrame(function(){window.scrollTo({top:0,left:0,behavior:'auto'})})}
+  function leaveKids(){document.body.classList.remove('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','true');if(typeof window.returnToAppHome==='function')window.returnToAppHome();else{document.body.classList.add('app-home-mode');window.scrollTo(0,0)}}
+  function stopAudio(){try{if(localAudio){localAudio.pause();localAudio.currentTime=0}}catch(e){}}
+  function playFile(src){stopAudio();localAudio=new Audio(src);localAudio.preload='auto';localAudio.playsInline=true;localAudio.volume=1;return localAudio.play().catch(function(e){console.warn('local pinyin audio failed',e)})}
   function playLessonAudio(src){
     if(!src)return Promise.resolve();
     return playFile(src);
