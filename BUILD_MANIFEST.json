@@ -1,9 +1,16 @@
 {
-  "version": "10.107.52",
-  "base": "10.107.51",
-  "name": "PinyinEntryRaceFix",
-  "changes": [
-    "Guard delayed startup-home reset while app-kids-mode is active",
-    "Keep pinyin entry and local WAV changes from 10.107.51"
+  "version": "10.107.53",
+  "base": "10.107.52",
+  "change": "Applied the approved effect-image artwork directly to the six pinyin vowel cards; no generated approximation SVGs.",
+  "changed": [
+    "assets/pinyin/a.png",
+    "assets/pinyin/o.png",
+    "assets/pinyin/e.png",
+    "assets/pinyin/i.png",
+    "assets/pinyin/u.png",
+    "assets/pinyin/u-umlaut.png",
+    "data/kids-pinyin.js",
+    "index.html",
+    "js/05-demo1010734-kids-first-lesson.js"
   ]
 }
