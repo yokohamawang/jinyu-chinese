@@ -1,4 +1,4 @@
-/* DEMO 10.107.63 — direct P0 entry + layered lesson navigation.
+/* DEMO 10.107.65 — direct P0 entry + layered lesson navigation.
    Chapter list, unit list, and lesson body never remain visually stacked.
    Vowel units open only their own 3-vowel group. Back controls are compact and non-obstructive. */
 (function(){

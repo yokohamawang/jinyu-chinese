@@ -1,7 +1,6 @@
-/* DEMO 10.107.64 — native-vowel fallback fix.
-   Dedicated local Azure WAVs remain the first choice.
-   When they are not present, NEVER send Latin pinyin marks (á / ǒ / ü...) to TTS.
-   Instead request native Mandarin seed syllables and trim consonant onsets in WebAudio. */
+/* DEMO 10.107.65 — verified pinyin audio only.
+   Incorrect seed-word trimming and Latin-letter TTS fallbacks have been removed.
+   Pinyin lesson playback now accepts only dedicated verified Mandarin WAV files. */
 (function(){
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, heard={}, completed={}, activeLetters=null, activeGroupTitle='';
@@ -18,79 +17,40 @@
     try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
   }
   /*
-     Pinyin audio contract (10.107.64):
-     1) Prefer a dedicated local WAV for each vowel + tone.
-     2) If a WAV is absent, DO NOT pass Latin pinyin to TTS: Azure/browser voices can
-        interpret it as English/foreign text (the source of “打/嗷”-like playback).
-     3) Fallback uses a real Mandarin seed syllable and removes a short consonant onset
-        with WebAudio. The learner therefore hears the Mandarin vowel/tone, not the seed word.
+     Pinyin audio contract (10.107.65):
+     - Teaching audio must never be guessed from Latin text or approximated by trimming
+       consonants from Chinese words. Those approaches produced incorrect sounds such
+       as 达/打 for a and 喝/可 for e.
+     - Only dedicated, individually verified Mandarin vowel-tone WAV files are allowed.
+     - Expected files: a1..a4, o1..o4, e1..e4, i1..i4, u1..u4, yu1..yu4.
   */
   var PINYIN_AUDIO_BASE='./assets/audio/pinyin/azure/';
-  var PINYIN_TTS_API='https://worker-xiaoshuang.wangjinyu00.workers.dev';
-  var pinyinBufferCache=new Map(), pinyinAudioContext=null, pinyinSource=null;
-  var NATIVE_SEEDS={
-    a:[{text:'阿',trim:0},{text:'达',trim:.095},{text:'打',trim:.095},{text:'大',trim:.085}],
-    o:[{text:'窝',trim:.055},{text:'哦',trim:0},{text:'我',trim:.055},{text:'卧',trim:.055}],
-    e:[{text:'喝',trim:.115},{text:'鹅',trim:0},{text:'可',trim:.115},{text:'饿',trim:0}],
-    i:[{text:'衣',trim:0},{text:'姨',trim:0},{text:'椅',trim:0},{text:'意',trim:0}],
-    u:[{text:'屋',trim:0},{text:'无',trim:0},{text:'五',trim:0},{text:'物',trim:0}],
-    'ü':[{text:'迂',trim:0},{text:'鱼',trim:0},{text:'雨',trim:0},{text:'玉',trim:0}]
-  };
   function audioKey(letter,tone){return (letter==='ü'?'yu':letter)+tone}
-  function getPinyinAudioContext(){
-    var Ctx=window.AudioContext||window.webkitAudioContext;
-    if(!Ctx)throw new Error('AudioContext unsupported');
-    if(!pinyinAudioContext)pinyinAudioContext=new Ctx();
-    if(pinyinAudioContext.state==='suspended')pinyinAudioContext.resume().catch(function(){});
-    return pinyinAudioContext;
-  }
-  function stopPinyinSource(){
-    try{if(pinyinSource){pinyinSource.stop();pinyinSource.disconnect()}}catch(e){}
-    pinyinSource=null;
-  }
-  async function fetchNativeSeedBuffer(letter,tone){
-    var key=audioKey(letter,tone);
-    if(pinyinBufferCache.has(key))return pinyinBufferCache.get(key);
-    var seed=(NATIVE_SEEDS[letter]||[])[tone-1];
-    if(!seed)throw new Error('missing native seed '+key);
-    var r=await fetch(PINYIN_TTS_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:seed.text})});
-    if(!r.ok)throw new Error('pinyin TTS '+r.status);
-    var raw=await r.arrayBuffer();
-    var ctx=getPinyinAudioContext();
-    var decoded=await ctx.decodeAudioData(raw.slice(0));
-    var value={buffer:decoded,trim:seed.trim||0};
-    pinyinBufferCache.set(key,value);
-    return value;
-  }
-  async function playNativeSeed(letter,tone){
-    stopAudio();stopPinyinSource();
-    var data=await fetchNativeSeedBuffer(letter,tone);
-    var ctx=getPinyinAudioContext();
-    if(ctx.state==='suspended')await ctx.resume();
-    var src=ctx.createBufferSource();pinyinSource=src;src.buffer=data.buffer;src.connect(ctx.destination);
-    src.onended=function(){if(pinyinSource===src)pinyinSource=null};
-    var offset=Math.min(data.trim,Math.max(0,data.buffer.duration-.16));
-    src.start(0,offset);
-    return src;
+  function showAudioMissing(letter,tone){
+    var msg='标准音频尚未配置：'+letter+' '+tone+'声。为了避免教错发音，本版不会使用近似音代替。';
+    console.error(msg);
+    var hint=el('kidsToneHint');
+    if(hint)hint.textContent='⚠ '+msg;
   }
   function playLocalPinyin(letter,tone){
-    stopAudio();stopPinyinSource();
+    stopAudio();
     var src=PINYIN_AUDIO_BASE+audioKey(letter,tone)+'.wav';
     return new Promise(function(resolve){
       var a=new Audio(src);localAudio=a;a.preload='auto';a.playsInline=true;
-      var finished=false;
-      function fallback(){
-        if(finished)return;finished=true;
+      var done=false;
+      function missing(){
+        if(done)return;done=true;
         try{a.pause();a.currentTime=0}catch(e){}
         if(localAudio===a)localAudio=null;
-        playNativeSeed(letter,tone).then(resolve).catch(function(err){console.error('Pinyin native fallback failed',err);resolve(null)});
+        showAudioMissing(letter,tone);
+        resolve(null);
       }
       a.addEventListener('canplaythrough',function(){
-        if(finished)return;finished=true;
-        a.play().then(function(){resolve(a)}).catch(function(){finished=false;fallback()});
+        if(done)return;done=true;
+        a.play().then(function(){resolve(a)}).catch(function(){done=false;missing()});
       },{once:true});
-      a.addEventListener('error',fallback,{once:true});
-      try{a.load()}catch(e){fallback()}
+      a.addEventListener('error',missing,{once:true});
+      try{a.load()}catch(e){missing()}
     });
   }
   function playToneExample(tone){return playLocalPinyin('a',tone)}
