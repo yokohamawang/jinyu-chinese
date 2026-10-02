@@ -1,6 +1,6 @@
-/* DEMO 10.107.58 — compact roadmap + chapter detail + highly visible persistent Back navigation.
-   Main learning road shows chapter cards only. Chapter units appear after opening a chapter.
-   The large lesson body appears only after opening a unit, and Back restores the exact prior position. */
+/* DEMO 10.107.59 — true layered lesson navigation.
+   Chapter list, unit list, and lesson body never remain visually stacked.
+   Vowel units open only their own 3-vowel group. Back controls are compact and non-obstructive. */
 (function(){
   var course=window.KOEPANDA_PINYIN_COURSE;
   if(!course)return;
@@ -29,7 +29,8 @@
       intro: document.querySelector('.pinyin-roadmap-intro'),
       note: document.querySelector('.pinyin-roadmap-note'),
       finish: document.getElementById('kidsFinishLesson'),
-      finishNote: document.getElementById('kidsFinishNote')
+      finishNote: document.getElementById('kidsFinishNote'),
+      head: document.querySelector('.kids-course-head')
     };
   }
 
@@ -46,7 +47,7 @@
 
   function showRoadmapChrome(show){
     var c=courseChrome();
-    [c.map,c.intro,root,c.note].forEach(function(el){ if(el)el.hidden=!show; });
+    [c.head,c.map,c.intro,root,c.note].forEach(function(el){ if(el)el.hidden=!show; });
   }
 
   function closeLesson(){
@@ -55,6 +56,7 @@
     if(target){ target.hidden=true; target.classList.remove('is-roadmap-lesson-active'); }
     var lessonBack=document.getElementById('pinyinLessonBack');
     if(lessonBack)lessonBack.remove();
+    if(typeof window.koepandaResetVowelGroup==='function')window.koepandaResetVowelGroup();
     showRoadmapChrome(true);
     var y=lessonState.returnY;
     lessonState=null;
@@ -70,6 +72,13 @@
     setLessonBodiesHidden();
     target.hidden=false;
     target.classList.add('is-roadmap-lesson-active');
+    if(unit.id==='P1'||unit.id==='P2'){
+      if(typeof window.koepandaOpenVowelGroup==='function'){
+        window.koepandaOpenVowelGroup(unit.lessons||[],unit.title);
+      }
+    }else if(typeof window.koepandaResetVowelGroup==='function'){
+      window.koepandaResetVowelGroup();
+    }
 
     var existing=document.getElementById('pinyinLessonBack');
     if(existing)existing.remove();
