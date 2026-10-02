@@ -1,16 +1,11 @@
 {
-  "version": "10.107.53",
-  "base": "10.107.52",
-  "change": "Applied the approved effect-image artwork directly to the six pinyin vowel cards; no generated approximation SVGs.",
-  "changed": [
-    "assets/pinyin/a.png",
-    "assets/pinyin/o.png",
-    "assets/pinyin/e.png",
-    "assets/pinyin/i.png",
-    "assets/pinyin/u.png",
-    "assets/pinyin/u-umlaut.png",
-    "data/kids-pinyin.js",
-    "index.html",
-    "js/05-demo1010734-kids-first-lesson.js"
+  "version": "10.107.54",
+  "base": "10.107.53",
+  "changes": [
+    "Six vowel cards now open a dedicated per-vowel four-tone drill instead of expanding a long page.",
+    "Back returns directly to the six-vowel grid.",
+    "Each vowel drill provides local-WAV tone playback plus tone-mark reading/writing trace cards.",
+    "u/ü and j-q-x spelling explanation appears inside the ü drill.",
+    "Completion praise is hidden until all six vowel drills are actually marked complete."
   ]
 }
