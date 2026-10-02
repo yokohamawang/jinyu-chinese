@@ -1,10 +1,9 @@
 {
-  "version": "10.107.50",
-  "base": "10.107.49",
-  "name": "Koepanda_DEMO_10_107_50_FULL_PinyinButtonFix",
+  "version": "10.107.52",
+  "base": "10.107.51",
+  "name": "PinyinEntryRaceFix",
   "changes": [
-    "restore pinyin entry/button event initialization",
-    "retain local WAV playback for fixed pinyin sounds",
-    "retain u/ü compare controls and visual fixes"
+    "Guard delayed startup-home reset while app-kids-mode is active",
+    "Keep pinyin entry and local WAV changes from 10.107.51"
   ]
 }

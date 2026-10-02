@@ -1,3 +1,4 @@
-Koepanda DEMO 10.107.50 FULL_PinyinButtonFix
-Base: 10.107.49
-Changes: restore pinyin lesson helper functions accidentally dropped in 10.107.49; keep local WAV playback and u/ü compare controls.
+Koepanda DEMO 10.107.52 FULL — Pinyin Entry Race Fix
+
+Fix: prevents the Safari/iOS startup-home reset timer from re-adding app-home-mode after the user has entered the pinyin course.
+Base: 10.107.51.
