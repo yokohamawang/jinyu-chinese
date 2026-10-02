@@ -1,0 +1,15 @@
+/* DEMO 10.107.62 — keep nested lesson back controls compact and non-obstructive. */
+.kids-vowel-drill-back,
+#kidsVowelDrillBack{
+  position:static !important;
+  width:auto !important;
+  min-width:0 !important;
+  min-height:36px !important;
+  padding:7px 11px !important;
+  margin:0 0 8px 0 !important;
+  border-radius:12px !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  box-shadow:none !important;
+  z-index:auto !important;
+}
