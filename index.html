@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="DEMO 10.107.72 tone-road-effect-match">
+<meta name="koepanda-build" content="DEMO 10.107.74 tone-road-character-polish">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -58,6 +58,7 @@
 <link rel="stylesheet" href="./css/49-demo1010771-premium-tone-road-a.css?v=10.107.72" id="demo1010771-premium-tone-road-a">
 <link rel="stylesheet" href="./css/50-demo1010772-tone-road-effect-match.css?v=10.107.72" id="demo1010772-tone-road-effect-match">
 <link rel="stylesheet" href="./css/51-demo1010773-tone-road-scene-polish.css?v=10.107.73" id="demo1010773-tone-road-scene-polish">
+<link rel="stylesheet" href="./css/52-demo1010774-tone-road-character-polish.css?v=10.107.74" id="demo1010774-tone-road-character-polish">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -138,7 +139,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <button type="button" class="p0-road-card tone-road-1" data-tone="1" aria-label="一声 ā を聞く">
           <span class="p0-road-number">1声</span><span class="p0-road-mark">ā</span>
           <span class="p0-road-art" aria-hidden="true">
-            <svg viewBox="0 0 360 150" focusable="false"><defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff3fb"/><stop offset="1" stop-color="#fff7db"/></linearGradient><linearGradient id="road1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ead8ab"/><stop offset=".52" stop-color="#d8bd83"/><stop offset="1" stop-color="#efd9a4"/></linearGradient><filter id="shadow1" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#5c7568" flood-opacity=".18"/></filter></defs><rect width="360" height="150" rx="24" fill="url(#sky1)"/><circle cx="300" cy="36" r="17" fill="#fff0aa" opacity=".88"/><g fill="#fff" opacity=".78"><ellipse cx="72" cy="31" rx="24" ry="8"/><ellipse cx="91" cy="31" rx="15" ry="7"/></g><path d="M0 111 Q70 84 140 108 T280 104 T360 98 V150 H0Z" fill="#b7d995"/><path d="M0 129 Q80 106 154 124 T300 116 T360 112 V150 H0Z" fill="#8fbe77" opacity=".85"/><path d="M38 94 C112 94 248 94 322 94" fill="none" stroke="url(#road1)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow1)"/><path d="M38 94 C112 94 248 94 322 94" fill="none" stroke="#fff7dc" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="15 14"/><g class="road-panda" transform="translate(84 75) scale(0.72)">
+            <svg viewBox="0 0 360 150" focusable="false"><defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff3fb"/><stop offset="1" stop-color="#fff7db"/></linearGradient><linearGradient id="road1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ead8ab"/><stop offset=".52" stop-color="#d8bd83"/><stop offset="1" stop-color="#efd9a4"/></linearGradient><filter id="shadow1" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#5c7568" flood-opacity=".18"/></filter></defs><rect width="360" height="150" rx="24" fill="url(#sky1)"/><circle cx="300" cy="36" r="17" fill="#fff0aa" opacity=".88"/><g fill="#fff" opacity=".78"><ellipse cx="72" cy="31" rx="24" ry="8"/><ellipse cx="91" cy="31" rx="15" ry="7"/></g><path d="M0 111 Q70 84 140 108 T280 104 T360 98 V150 H0Z" fill="#b7d995"/><path d="M0 129 Q80 106 154 124 T300 116 T360 112 V150 H0Z" fill="#8fbe77" opacity=".85"/><path data-main-road d="M34 92 C112 92 248 92 326 92" fill="none" stroke="url(#road1)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow1)"/><path data-center-line d="M34 92 C112 92 248 92 326 92" fill="none" stroke="#fff7dc" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="16 13"/><g class="road-panda" transform="translate(84 75) scale(0.72)">
 <ellipse cx="0" cy="20" rx="13" ry="16" fill="#fbfdf9"/><circle cx="0" cy="0" r="16" fill="#fbfdf9"/>
 <circle cx="-11" cy="-11" r="6" fill="#315f51"/><circle cx="11" cy="-11" r="6" fill="#315f51"/>
 <ellipse cx="-6" cy="0" rx="4" ry="5" fill="#315f51" transform="rotate(20 -6 0)"/><ellipse cx="6" cy="0" rx="4" ry="5" fill="#315f51" transform="rotate(-20 6 0)"/>
@@ -548,6 +549,22 @@ body.app-home-mode #homeEffect > a.hs-repeat{
   function render(){var el=document.getElementById('homeEffectWeek');if(el)el.textContent=countLast7()+' / 7日';}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true});else render();
   window.addEventListener('pageshow',render);document.addEventListener('visibilitychange',function(){if(!document.hidden)render();});
+})();
+</script>
+
+<script id="demo1010774-tone-road-character-polish">
+(function(){
+  function addToneRoadCharacters(){
+    document.querySelectorAll('.p0-road-card .p0-road-art').forEach(function(art){
+      if(art.querySelector('.road-xiaoyin')) return;
+      var img=document.createElement('img');
+      img.className='road-xiaoyin';
+      img.src='./assets/mouth/xiaoyin-head-focus.webp';
+      img.alt=''; img.setAttribute('aria-hidden','true');
+      art.appendChild(img);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',addToneRoadCharacters); else addToneRoadCharacters();
 })();
 </script>
 </body></html>

@@ -1,0 +1,4 @@
+10.107.74 visual-only tone-road polish:
+- restores a clearly visible, thicker straight road for tone 1
+- replaces tiny schematic panda icons with the official Xiaoyin head asset in all four scenes
+- keeps tone audio, click handlers, lesson flow and pinyin audio logic unchanged

@@ -1,5 +1,5 @@
 {
-  "version": "10.107.73",
+  "version": "10.107.74",
   "base": "10.107.72",
   "changes": [
     "Rebuild all four tone illustrations as cohesive scenic road cards with softer landscape depth.",
@@ -15,5 +15,6 @@
     "BUILD_MANIFEST.json"
   ],
   "build": "tone-road-scene-polish",
-  "notes": "Visual-only four-tone road scene upgrade; no audio or JS behavior changes."
+  "notes": "Visual-only: clearer tone-1 road and official Xiaoyin character in all four tone scenes. Audio/lesson logic unchanged.",
+  "name": "ToneRoad CharacterPolish"
 }
