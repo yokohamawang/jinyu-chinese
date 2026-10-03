@@ -1,0 +1,12 @@
+/* DEMO 10.107.77 — full-body XiaoYin in tone-road scenes. Visual only. */
+.road-xiaoyin{display:none!important}
+.p0-road-art .road-panda-full{filter:drop-shadow(0 4px 5px rgba(48,82,63,.18));transform-box:fill-box;transform-origin:center}
+.tone-road-1 .road-panda-full{animation:xyToneFlat 2.2s ease-in-out infinite}
+.tone-road-2 .road-panda-full{animation:xyToneUp 2.0s ease-in-out infinite}
+.tone-road-3 .road-panda-full{animation:xyToneDip 2.5s ease-in-out infinite}
+.tone-road-4 .road-panda-full{animation:xyToneDown 1.8s ease-in-out infinite}
+@keyframes xyToneFlat{0%,100%{translate:0 0}50%{translate:4px 0}}
+@keyframes xyToneUp{0%,100%{translate:0 0}50%{translate:4px -3px}}
+@keyframes xyToneDip{0%,100%{translate:0 0}50%{translate:4px 2px}}
+@keyframes xyToneDown{0%,100%{translate:0 0}50%{translate:5px 3px}}
+@media (prefers-reduced-motion:reduce){.p0-road-art .road-panda-full{animation:none!important}}
