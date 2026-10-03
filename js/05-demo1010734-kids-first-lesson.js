@@ -2,7 +2,7 @@
    Audio remains exactly on the verified 10.107.68 path. */
 (function(){
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
-  var vowelIndex=0, localAudio=null, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
+  var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var STORE='koepandaVowelProgress54', MASTERY_STORE='koepandaVowelMastery69';
   var aFlow=null;
   function el(id){return document.getElementById(id)}
@@ -17,18 +17,25 @@
   }
   function enterKids(ev){if(typeof window.koepandaEnterKidsCourse==='function')return window.koepandaEnterKidsCourse(ev);document.body.classList.remove('app-home-mode','app-function-mode','app-area-listen','app-area-chat','app-area-repeat','app-area-settings');document.body.classList.add('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','false');try{history.replaceState(null,'',location.pathname+location.search+'#kidsCourse')}catch(e){}requestAnimationFrame(function(){window.scrollTo({top:0,left:0,behavior:'auto'})})}
   function leaveKids(){document.body.classList.remove('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','true');if(typeof window.returnToAppHome==='function')window.returnToAppHome();else{document.body.classList.add('app-home-mode');window.scrollTo(0,0)}}
-  function stopAudio(){try{if(localAudio){localAudio.pause();localAudio.currentTime=0}}catch(e){}localAudio=null;try{if(typeof pinyinSource!=='undefined'&&pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
+  function stopAudio(){audioRequestId++;var oldAudio=localAudio;localAudio=null;try{if(oldAudio){oldAudio.pause();oldAudio.currentTime=0}}catch(e){}try{if(typeof pinyinSource!=='undefined'&&pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
 
-  /* Verified 10.107.68 pronunciation path — do not alter without re-listening all six vowels. */
+  /* Verified 10.107.68 pronunciation source. 10.107.92 keeps the same MP3s but reuses one preloaded Audio element per syllable/tone on iPhone Safari. */
   var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
   function audioKey(letter,tone){var base=letter==='i'?'yi':(letter==='u'?'wu':(letter==='ü'?'yu':letter));return base+tone}
+  function audioInfo(letter,tone){var isO=letter==='o',key=isO?('wo'+tone):audioKey(letter,tone),src=PINYIN_AUDIO_BASE+key+'.mp3';return {isO:isO,key:key,src:src}}
+  function getPinyinAudio(letter,tone){var info=audioInfo(letter,tone),a=audioPool[info.key];if(!a){a=new Audio();a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';a.src=info.src;audioPool[info.key]=a;try{a.load()}catch(e){}}return {audio:a,info:info}}
+  function warmPinyin(letter){for(var t=1;t<=4;t++)getPinyinAudio(letter,t)}
   function showAudioMissing(letter,tone){var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';console.error(msg,letter,tone);var hint=el('kidsToneHint');if(hint)hint.textContent='⚠ '+msg}
   function playLocalPinyin(letter,tone){
-    stopAudio();var isO=letter==='o';var key=isO?('wo'+tone):audioKey(letter,tone);var src=PINYIN_AUDIO_BASE+key+'.mp3';
-    return new Promise(function(resolve){var a=new Audio();localAudio=a;a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';var settled=false,started=false;
-      function fail(){if(settled)return;settled=true;try{a.pause();a.currentTime=0}catch(e){}if(localAudio===a)localAudio=null;showAudioMissing(letter,tone);resolve(null)}
-      function start(){if(started)return;started=true;try{if(isO&&a.duration>0.16)a.currentTime=Math.min(0.09,a.duration*0.18)}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){settled=true;resolve(a)}).catch(fail);else{settled=true;resolve(a)}}catch(e){fail()}}
-      a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});a.addEventListener('error',fail,{once:true});a.addEventListener('loadedmetadata',start,{once:true});a.src=src;try{a.load()}catch(e){start()}
+    stopAudio();var requestId=audioRequestId,p=getPinyinAudio(letter,tone),a=p.audio,isO=p.info.isO;localAudio=a;
+    return new Promise(function(resolve){var settled=false,started=false;
+      function isCurrent(){return requestId===audioRequestId&&localAudio===a}
+      function cleanup(){try{a.removeEventListener('canplay',start);a.removeEventListener('error',fail)}catch(e){}}
+      function finish(value){if(settled)return;settled=true;cleanup();resolve(value)}
+      function fail(){if(settled)return;if(!isCurrent()){finish(null);return}try{a.pause();a.currentTime=0}catch(e){}if(localAudio===a)localAudio=null;showAudioMissing(letter,tone);finish(null)}
+      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.pause();a.currentTime=0;if(isO&&a.duration>0.16)a.currentTime=Math.min(0.09,a.duration*0.18)}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else{try{a.pause();a.currentTime=0}catch(e){}finish(null)}}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
+      a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});a.addEventListener('error',fail,{once:true});
+      if(a.readyState>=2)start();else{a.addEventListener('canplay',start,{once:true});try{a.load()}catch(e){start()}}
     })
   }
   function playToneExample(tone){return playLocalPinyin('a',tone)}
@@ -94,7 +101,7 @@
     if(listenDone&&!aFlow.earDone&&ear&&!ear.dataset.autoPlayed){ear.dataset.autoPlayed='1';setTimeout(function(){playLocalPinyin('a',aFlow.earTone)},180)}
   }
   function buildToneChoices(containerId,handler){var box=el(containerId);if(!box)return;box.replaceChildren();toneMarks('a').forEach(function(mark,k){var b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice';b.innerHTML='<strong>'+mark+'</strong><small>'+(k+1)+'声</small>';b.addEventListener('click',function(){handler(k+1,b)});box.appendChild(b)})}
-  function renderAEarChoices(){buildToneChoices('kidsAEarChoices',function(tone,b){if(!aFlow||aFlow.earDone)return;var fb=el('kidsAEarFeedback');if(tone===aFlow.earTone){aFlow.earDone=true;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！ 音の上がり下がりが聞こえたね';fb.className='kids-a-feedback is-good'};markAProgress();setTimeout(function(){playLocalPinyin('a',2)},260)}else{b.classList.add('is-try');if(fb){fb.textContent='もう一度聞いてみよう。まちがえても大丈夫 👂';fb.className='kids-a-feedback'};setTimeout(function(){b.classList.remove('is-try');playLocalPinyin('a',aFlow.earTone)},180)}})}
+  function renderAEarChoices(){buildToneChoices('kidsAEarChoices',function(tone,b){if(!aFlow||aFlow.earDone)return;var fb=el('kidsAEarFeedback');if(tone===aFlow.earTone){aFlow.earDone=true;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！ 音の上がり下がりが聞こえたね。次は「お手本を聞く」へ';fb.className='kids-a-feedback is-good'};markAProgress()}else{b.classList.add('is-try');if(fb){fb.textContent='もう一度聞いてみよう。まちがえても大丈夫 👂';fb.className='kids-a-feedback'};setTimeout(function(){b.classList.remove('is-try');playLocalPinyin('a',aFlow.earTone)},180)}})}
   function completeImitate(){if(!aFlow||aFlow.imitateDone)return;aFlow.imitateDone=true;var fb=el('kidsAImitateFeedback');if(fb){fb.textContent='いいね！ 次は4問だけチェックしよう';fb.className='kids-a-feedback is-good'};el('kidsAImitateDone').classList.add('is-done');markAProgress();renderQuizQuestion();setTimeout(playCurrentQuizTone,220)}
   function playCurrentQuizTone(){if(!aFlow||aFlow.quizDone)return;playLocalPinyin('a',aFlow.quizOrder[aFlow.quizIndex])}
   function renderQuizQuestion(){
@@ -109,7 +116,7 @@
   }
 
   function renderDrill(i){
-    vowelIndex=i;heard={};var v=data.vowels[i],d=ensureDrill();if(!d)return;var isA=v.letter==='a';
+    vowelIndex=i;heard={};var v=data.vowels[i],d=ensureDrill();if(!d)return;warmPinyin(v.letter);var isA=v.letter==='a';
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent=isA?'きく → ききわけ → まねる → ミニチェック':'きく → よむ → なぞって形を覚える';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
     var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),reward=el('kidsAReward');if(p)p.hidden=!isA;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
