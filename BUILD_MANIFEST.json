@@ -1,5 +1,5 @@
 {
-  "version": "10.107.71",
+  "version": "10.107.72",
   "base": "10.107.69",
   "changes": [
     "Make 音のぼうけん open as a foreground lesson at the top of the course instead of appearing lower in the page flow.",
@@ -14,6 +14,6 @@
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
-  "build": "DEMO 10.107.71 premium-tone-road-a",
+  "build": "tone-road-effect-match",
   "notes": "Premium four-tone road story + a lesson visual polish; audio path unchanged."
 }

@@ -1,0 +1,6 @@
+DEMO 10.107.72
+- Reworked the four-tone road cards to match the approved premium effect direction.
+- One-column immersive road scenes on mobile, with stronger terrain silhouettes, depth and direction cues.
+- Embedded Xiaoyin head image in index.html so the guide portrait cannot break when only changed files are uploaded.
+- Tone cards remain direct audio controls and keep the verified pronunciation path unchanged.
+- Added only visual CSS/markup changes; existing course/navigation/audio logic is preserved.
