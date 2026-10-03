@@ -1,0 +1,6 @@
+DEMO 10.107.77
+- Tone-road cards now use inline full-body XiaoYin SVG characters with visible feet.
+- Removed cloned circular head sticker from road cards.
+- Added tone-specific body orientation/micro-motion.
+- Top guide avatar is unchanged.
+- Audio, pinyin, lesson flow and click behavior are unchanged.
