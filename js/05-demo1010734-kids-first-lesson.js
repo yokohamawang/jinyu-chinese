@@ -1,4 +1,4 @@
-/* DEMO 10.107.67 — dedicated Mandarin pinyin audio.
+/* DEMO 10.107.68 — dedicated Mandarin pinyin audio.
    No Latin-letter TTS and no trimmed seed-word approximations.
    Uses the MIT-licensed Yanyu pinyin-syllables audio library as the online source. */
 (function(){
@@ -26,7 +26,6 @@
      - Source: byhow/yanyu pinyin-syllables (MIT).
   */
   var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
-  var PINYIN_O_AUDIO_BASE='https://raw.githubusercontent.com/cmguo/PinYinSound/master/';
   function audioKey(letter,tone){
     var base=letter==='i'?'yi':(letter==='u'?'wu':(letter==='ü'?'yu':letter));
     return base+tone;
@@ -39,13 +38,16 @@
   }
   function playLocalPinyin(letter,tone){
     stopAudio();
-    /* 10.107.67: keep the five accepted vowel groups unchanged.
-       Only o1-o4 use one alternate recording set, so the four tones stay
-       one-speaker/one-recording-condition as a group. */
-    var src=(letter==='o'?PINYIN_O_AUDIO_BASE:PINYIN_AUDIO_BASE)+audioKey(letter,tone)+'.mp3';
+    /* 10.107.68: keep all six vowel groups on the same Yanyu male speaker.
+       The library's standalone o recording did not match the desired vowel quality,
+       so o uses the same speaker's wo-tone recording with the very short initial glide
+       skipped at playback start. This preserves speaker identity across a/e/i/u/ü/o. */
+    var isO=letter==='o';
+    var key=isO?('wo'+tone):audioKey(letter,tone);
+    var src=PINYIN_AUDIO_BASE+key+'.mp3';
     return new Promise(function(resolve){
       var a=new Audio();localAudio=a;a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';
-      var settled=false;
+      var settled=false,started=false;
       function fail(){
         if(settled)return;settled=true;
         try{a.pause();a.currentTime=0}catch(e){}
@@ -53,15 +55,20 @@
         showAudioMissing(letter,tone);
         resolve(null);
       }
+      function start(){
+        if(started)return;started=true;
+        try{if(isO&&a.duration>0.16)a.currentTime=Math.min(0.09,a.duration*0.18)}catch(e){}
+        try{
+          var pr=a.play();
+          if(pr&&typeof pr.then==='function')pr.then(function(){settled=true;resolve(a)}).catch(fail);
+          else{settled=true;resolve(a)}
+        }catch(e){fail()}
+      }
       a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});
       a.addEventListener('error',fail,{once:true});
+      a.addEventListener('loadedmetadata',start,{once:true});
       a.src=src;
-      try{
-        var pr=a.play();
-        if(pr&&typeof pr.then==='function'){
-          pr.then(function(){settled=true;resolve(a)}).catch(fail);
-        }else{settled=true;resolve(a)}
-      }catch(e){fail()}
+      try{a.load()}catch(e){start()}
     });
   }
   function playToneExample(tone){return playLocalPinyin('a',tone)}
