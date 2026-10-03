@@ -1,0 +1,7 @@
+Koepanda DEMO 10.107.90
+
+Fix:
+- Opening 「音のぼうけん」 now behaves as a true foreground lesson screen.
+- The course header/map/roadmap cards/note are forcibly removed from layout while the lesson is open, including iPhone Safari.
+- Returning from the lesson restores the roadmap as before.
+- No tone-road artwork/audio/content logic changed.

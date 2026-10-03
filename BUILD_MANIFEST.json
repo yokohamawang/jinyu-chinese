@@ -1,26 +1,24 @@
 {
-  "version": "10.107.90",
-  "base": "10.107.88",
-  "name": "ToneRoadPolish",
-  "build": "tone-road-polish",
+  "version": "10.107.91",
+  "base": "10.107.90",
+  "name": "AudioRaceFix",
+  "build": "audio-race-fix",
   "changes": [
-    "lesson foreground layer fix",
-    "explicit Safari-safe hidden rules for roadmap chrome"
+    "fix first-pass tone playback race on iPhone/Safari",
+    "invalidate delayed callbacks from older Audio objects"
   ],
   "unchanged": [
     "Home page and Home artwork",
-    "10.107.88 Pinyin top avatar",
-    "Tone-road base illustrations and road geometry",
-    "Audio and lesson logic",
-    "Navigation behavior"
+    "Pinyin lesson UI and navigation",
+    "Tone-road illustrations and geometry",
+    "Pronunciation source URLs and tone mapping"
   ],
   "changed_files": [
-    "index.html",
-    "css/63-demo1010789-tone-road-polish.css",
+    "js/05-demo1010734-kids-first-lesson.js",
     "VERSION.txt",
     "BUILD_MANIFEST.json",
-    "TONE_ROAD_POLISH_10_107_89.txt"
+    "AUDIO_RACE_FIX_10_107_91.txt"
   ],
-  "build_name": "FULL_LessonLayerFix",
-  "base_version": "10.107.89"
+  "build_name": "FULL_AudioRaceFix",
+  "base_version": "10.107.90"
 }

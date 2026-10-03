@@ -1,0 +1,15 @@
+Koepanda DEMO 10.107.91 — first-play audio race fix
+Base: 10.107.90 FULL_LessonLayerFix
+
+Problem fixed:
+- On the first pass through a1 -> a2 -> a3 -> a4, a delayed loadedmetadata event from an older Audio object could start after a newer button press.
+- This could make the fourth press audibly replay an earlier tone even though the button mapping was correct.
+
+Fix:
+- Added monotonic audioRequestId cancellation token.
+- Old Audio elements are paused, detached from src, and invalidated before a new tone starts.
+- loadedmetadata/play promise callbacks verify they still belong to the latest request before playback/resolution.
+- No pronunciation source, UI, lesson order, tone mapping, or artwork changed.
+
+Long-term production recommendation:
+- Bundle one professionally recorded local WAV per syllable/tone. That removes network timing/caching dependence and locks pronunciation quality.
