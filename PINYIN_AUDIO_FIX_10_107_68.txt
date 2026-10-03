@@ -1,0 +1,7 @@
+Koepanda 10.107.68
+
+- Keep a/e/i/u/ü unchanged.
+- Change only o playback.
+- o1-o4 now use the same Yanyu male-speaker source family as the other vowel groups.
+- Playback starts just after the short w glide in wo1-wo4 so the audible target is o while preserving speaker identity.
+- No browser TTS fallback.
