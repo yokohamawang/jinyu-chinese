@@ -1,0 +1,12 @@
+/* DEMO 10.107.82 — Home Listen icon final fix.
+   The approved home artwork now contains the Listen headphones directly,
+   using the same single-circle treatment as Talk/Repeat.
+   Disable all later pseudo-element overlays so no second ring can appear.
+   No navigation/audio/lesson logic changed. */
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::before,
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  box-shadow:none!important;
+}
