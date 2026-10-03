@@ -1,1 +1,6 @@
-10.107.82
+DEMO 10.107.85 FULL_CleanRelease
+Base: DEMO 10.107.84 FULL_HomeEffectSwap
+Changes:
+- Removed old duplicate visual assets and intermediate CSS patches.
+- Kept only final approved Home top image, Home bottom image, P0 mascot image, and four tone-road scene images.
+- Consolidated visual overrides into one clean stylesheet.

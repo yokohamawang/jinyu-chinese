@@ -1,0 +1,1 @@
+Applied requested swap to the Home top image using the newly approved effect render, and updated the P0 mascot icon so the background/crop matches better in code rendering.

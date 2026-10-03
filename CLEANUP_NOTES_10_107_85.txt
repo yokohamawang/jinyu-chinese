@@ -1,0 +1,1 @@
+This package is a cleaned release. Unused duplicate files were removed from assets/icons, assets/home, assets/mouth, assets/tone-road, and CSS. Active final files now use canonical names ending in -final.
