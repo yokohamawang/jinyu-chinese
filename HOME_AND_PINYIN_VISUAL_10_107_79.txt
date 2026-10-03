@@ -1,0 +1,5 @@
+10.107.79
+- Keeps the existing home background, mascot position, shape and expression unchanged.
+- Keeps the 10.107.78 pink headphone icon for the first home navigation card.
+- Replaces the simplified SVG artwork inside the four-tone pinyin lesson with the approved polished full-body XiaoYin road scenes.
+- Tone labels, Japanese text, tap targets and audio/lesson logic remain real HTML/JS and are not baked into the artwork.

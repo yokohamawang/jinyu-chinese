@@ -1,0 +1,3 @@
+10.107.78
+Home first navigation card: replaced the old speaker symbol with a dedicated pink 3D headphone icon.
+No navigation target, audio logic, or other lesson behavior changed.
