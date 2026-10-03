@@ -1,18 +1,15 @@
 {
-  "version": "10.107.60",
-  "base": "10.107.58",
+  "version": "10.107.67",
+  "base": "10.107.66",
   "changes": [
-    "Split the six-vowel overview into the P1 a/o/e group and P2 i/u/ü group.",
-    "Hide the previous lesson layer while a unit is open.",
-    "Replace oversized fixed Back buttons with compact sticky top Back controls.",
-    "Keep per-vowel drill, local WAV playback, progress storage, and scroll restoration intact."
+    "Keep a/e/i/u/ü audio source and behavior unchanged.",
+    "Replace only o1/o2/o3/o4 with one consistent four-tone recording set.",
+    "Do not mix speakers inside the o four-tone group.",
+    "Preserve the current lesson structure, navigation, visuals, and progress logic."
   ],
   "changed_files": [
     "index.html",
-    "js/06-demo1010740-pinyin-roadmap.js",
     "js/05-demo1010734-kids-first-lesson.js",
-    "css/44-demo1010758-visible-back-navigation.css",
-    "css/45-demo1010759-grouped-lesson-navigation.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]
