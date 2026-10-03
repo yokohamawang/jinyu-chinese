@@ -1,0 +1,9 @@
+Koepanda 10.107.71
+
+- Replaced formal text-only four-tone explanation with a designed, interactive road/terrain metaphor.
+- 1st tone: straight flat road. 2nd: uphill to the right. 3rd: down into a valley then back up. 4th: downhill to the right.
+- Added Xiaoyin mascot-led introduction and a concise note that tone matters from the beginning.
+- The four road cards are now tappable and play the corresponding a-tone examples.
+- Hid the duplicate legacy tone grid in P0 to avoid stacked/redundant UI.
+- Polished the a sample lesson visual hierarchy while preserving its existing logic.
+- Verified 10.107.68 pronunciation path was not changed.

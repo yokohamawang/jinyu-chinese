@@ -1,20 +1,19 @@
 {
-  "version": "10.107.69",
-  "base": "10.107.68",
+  "version": "10.107.71",
+  "base": "10.107.69",
   "changes": [
-    "Keep the verified 10.107.68 six-vowel pronunciation path unchanged.",
-    "Turn a into the first complete sample lesson: listen all four tones, one listening discrimination, one imitation step, then a four-question mini check.",
-    "Require 3/4 (75%) on the mini check before a is completed and o is unlocked.",
-    "Give a compact reward badge after passing and unlock the next vowel without punitive failure states.",
-    "Add sequential lock styling inside vowel groups so the next vowel opens only after the previous lesson is completed.",
-    "Keep i・u・ü (P2) locked until a・o・e (P1) are completed."
+    "Make 音のぼうけん open as a foreground lesson at the top of the course instead of appearing lower in the page flow.",
+    "Restore the lesson to its original DOM position when Back is pressed, preserving existing lesson behavior.",
+    "Add a concise beginner-friendly explanation of the four Mandarin tones before the listening cards.",
+    "Keep the verified 10.107.68/69 vowel pronunciation audio untouched."
   ],
   "changed_files": [
     "index.html",
-    "js/05-demo1010734-kids-first-lesson.js",
     "js/06-demo1010740-pinyin-roadmap.js",
-    "css/47-demo1010769-a-sample-unlock.css",
+    "css/48-demo1010770-tone-layer-guide.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
-  ]
+  ],
+  "build": "DEMO 10.107.71 premium-tone-road-a",
+  "notes": "Premium four-tone road story + a lesson visual polish; audio path unchanged."
 }

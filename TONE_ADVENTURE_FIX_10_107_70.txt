@@ -1,0 +1,5 @@
+DEMO 10.107.70
+
+- 音のぼうけん now opens as a single lesson screen at the front of the course instead of expanding behind the roadmap.
+- Added a short four-tone explanation: 1st level, 2nd rising, 3rd dip-and-rise, 4th falling.
+- No vowel audio files or pronunciation mappings were changed.
