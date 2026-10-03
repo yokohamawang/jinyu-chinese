@@ -1,0 +1,31 @@
+/* DEMO 10.107.86 — pinyin large avatar visual fix only.
+   Keep the approved home untouched. Make XiaoYin's pinyin avatar a true circle,
+   remove the flattened/rounded-square frame feeling, and keep the face centered. */
+.p0-road-mascot-wrap{
+  aspect-ratio:1/1!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle at 50% 42%,#f8fff7 0 66%,#eaf5e7 67% 100%)!important;
+  border:2px solid rgba(112,157,119,.16)!important;
+  box-shadow:0 9px 22px rgba(60,96,70,.12)!important;
+  overflow:hidden!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.p0-road-mascot{
+  display:block!important;
+  width:112%!important;
+  height:112%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:50% 48%!important;
+  border-radius:50%!important;
+  transform:none!important;
+  clip-path:circle(50% at 50% 50%)!important;
+}
+@media(max-width:430px){
+  .p0-road-mascot-wrap{width:72px!important;height:72px!important;border-radius:50%!important}
+  .p0-road-mascot{width:112%!important;height:112%!important}
+}
+@media(max-width:360px){
+  .p0-road-mascot-wrap{width:64px!important;height:64px!important}
+}

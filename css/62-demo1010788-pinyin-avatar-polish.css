@@ -1,0 +1,37 @@
+/* DEMO 10.107.88 — Pinyin top XiaoYin avatar only.
+   Goal: no broken-image/question-mark state; cleaner circular presentation.
+   Home and the four tone-road scene images are intentionally untouched. */
+.p0-road-mascot-wrap{
+  width:78px!important;
+  height:78px!important;
+  aspect-ratio:1/1!important;
+  border-radius:50%!important;
+  padding:3px!important;
+  box-sizing:border-box!important;
+  background:linear-gradient(145deg,#ffffff 0%,#f4fbf0 58%,#e7f3e4 100%)!important;
+  border:1px solid rgba(78,126,91,.12)!important;
+  box-shadow:0 10px 24px rgba(53,88,65,.13),inset 0 1px 0 rgba(255,255,255,.85)!important;
+  overflow:hidden!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.p0-road-mascot{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  border-radius:50%!important;
+  clip-path:circle(50% at 50% 50%)!important;
+  transform:none!important;
+  background:#eef8ec!important;
+}
+@media(max-width:430px){
+  .p0-road-hero{grid-template-columns:76px minmax(0,1fr)!important;gap:13px!important}
+  .p0-road-mascot-wrap{width:76px!important;height:76px!important}
+}
+@media(max-width:360px){
+  .p0-road-hero{grid-template-columns:68px minmax(0,1fr)!important;gap:11px!important}
+  .p0-road-mascot-wrap{width:68px!important;height:68px!important}
+}
