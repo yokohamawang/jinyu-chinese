@@ -1,0 +1,47 @@
+/* DEMO 10.107.81 — direct visual correction after iPhone check.
+   Home: use one complete headphone sticker only; remove the extra CSS circle.
+   Pinyin: use uncropped scene artwork with full sun/edge details visible.
+   Functional logic unchanged. */
+
+/* HOME — one sticker, no second circle layer. */
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::before{
+  content:none!important;
+  display:none!important;
+}
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::after{
+  content:""!important;
+  position:absolute!important;
+  z-index:8!important;
+  left:17.5%!important;
+  top:1.8%!important;
+  width:65%!important;
+  aspect-ratio:1/1!important;
+  border-radius:50%!important;
+  background:url('../assets/icons/home-listen-headphones-10781.png?v=10.107.81') center/cover no-repeat!important;
+  box-shadow:none!important;
+  pointer-events:none!important;
+}
+
+/* PINYIN — new source artwork already includes safe margins/full sun. Do not use cover. */
+.p0-road-art{
+  aspect-ratio:625/159!important;
+  min-height:0!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  background-color:transparent!important;
+  overflow:hidden!important;
+}
+.tone-road-1 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-1-10781.webp?v=10.107.81')!important}
+.tone-road-2 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-2-10781.webp?v=10.107.81')!important}
+.tone-road-3 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-3-10781.webp?v=10.107.81')!important}
+.tone-road-4 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-4-10781.webp?v=10.107.81')!important}
+
+@media(max-width:430px){
+  html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::after{
+    left:17.5%!important;
+    top:1.8%!important;
+    width:65%!important;
+  }
+  .p0-road-art{aspect-ratio:625/159!important;background-size:100% 100%!important}
+}
