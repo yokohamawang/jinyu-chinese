@@ -1,19 +1,19 @@
 {
-  "version": "10.107.72",
-  "base": "10.107.69",
+  "version": "10.107.73",
+  "base": "10.107.72",
   "changes": [
-    "Make 音のぼうけん open as a foreground lesson at the top of the course instead of appearing lower in the page flow.",
-    "Restore the lesson to its original DOM position when Back is pressed, preserving existing lesson behavior.",
-    "Add a concise beginner-friendly explanation of the four Mandarin tones before the listening cards.",
-    "Keep the verified 10.107.68/69 vowel pronunciation audio untouched."
+    "Rebuild all four tone illustrations as cohesive scenic road cards with softer landscape depth.",
+    "Remove the third-tone self-intersecting filled road shape that could render as a black wedge on Safari.",
+    "Turn Xiaoyin from a tiny face icon into a small full character traveling on each road.",
+    "Integrate tone marks and listening hints into a more compact mobile card layout.",
+    "Keep verified pronunciation audio and all lesson interaction logic unchanged."
   ],
   "changed_files": [
     "index.html",
-    "js/06-demo1010740-pinyin-roadmap.js",
-    "css/48-demo1010770-tone-layer-guide.css",
+    "css/51-demo1010773-tone-road-scene-polish.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
-  "build": "tone-road-effect-match",
-  "notes": "Premium four-tone road story + a lesson visual polish; audio path unchanged."
+  "build": "tone-road-scene-polish",
+  "notes": "Visual-only four-tone road scene upgrade; no audio or JS behavior changes."
 }

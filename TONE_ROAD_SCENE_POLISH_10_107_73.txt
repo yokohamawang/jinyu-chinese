@@ -1,0 +1,6 @@
+DEMO 10.107.73
+- Four scenic tone-road illustrations rebuilt.
+- Third tone black wedge removed by using stroked Bezier road geometry.
+- Xiaoyin shown as a small traveling character.
+- More compact mobile card composition.
+- Audio and lesson JS untouched.
