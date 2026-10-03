@@ -1,0 +1,7 @@
+Koepanda 10.107.82
+
+Home visual fix only:
+- Keep the existing approved home background, panda, logo, layout, Talk and Repeat cards unchanged.
+- Listen card now has one clean pink circle, matching the single-circle treatment of the other two icons.
+- Removed CSS pseudo-element headphone overlays that caused the visible second ring.
+- Pinyin four-tone artwork remains unchanged from 10.107.81.
