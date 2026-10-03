@@ -1,0 +1,22 @@
+/* DEMO 10.107.90 — lesson foreground layer fix.
+   When a roadmap lesson opens, roadmap chrome must be genuinely removed from layout
+   (Safari included) instead of remaining underneath the active lesson. */
+#kidsCourse > .kids-course-head[hidden],
+#kidsCourse > .kids-map[hidden],
+#kidsCourse > .pinyin-roadmap-intro[hidden],
+#kidsCourse > .pinyin-roadmap[hidden],
+#kidsCourse > .pinyin-roadmap-note[hidden],
+#kidsCourse > #kidsFinishLesson[hidden],
+#kidsCourse > #kidsFinishNote[hidden]{
+  display:none!important;
+}
+
+/* Keep the active lesson as the only foreground content below its Back control. */
+#kidsCourse > .kids-lesson-card.is-roadmap-lesson-active{
+  position:relative;
+  z-index:2;
+}
+#kidsCourse > .pinyin-lesson-back{
+  position:relative;
+  z-index:3;
+}
