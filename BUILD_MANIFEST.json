@@ -1,21 +1,26 @@
 {
-  "version": "10.107.80",
-  "base": "10.107.79",
+  "version": "10.107.90",
+  "base": "10.107.88",
+  "name": "ToneRoadPolish",
+  "build": "tone-road-polish",
   "changes": [
-    "Keep the approved current home background and Xiaoyin unchanged.",
-    "Remove the redundant double-circle look behind the Listen headphones using a single clean pink circle.",
-    "Slightly reduce and center all four pinyin tone-road scene images to avoid edge cropping.",
-    "Keep pronunciation audio and all lesson interaction logic unchanged."
+    "lesson foreground layer fix",
+    "explicit Safari-safe hidden rules for roadmap chrome"
+  ],
+  "unchanged": [
+    "Home page and Home artwork",
+    "10.107.88 Pinyin top avatar",
+    "Tone-road base illustrations and road geometry",
+    "Audio and lesson logic",
+    "Navigation behavior"
   ],
   "changed_files": [
     "index.html",
-    "css/55-demo1010780-visual-trim.css",
-    "assets/icons/home-listen-headphones-10780.png",
+    "css/63-demo1010789-tone-road-polish.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json",
-    "VISUAL_TRIM_10_107_80.txt"
+    "TONE_ROAD_POLISH_10_107_89.txt"
   ],
-  "build": "visual-trim",
-  "notes": "Visual-only: single-circle Listen headphones and slightly smaller centered tone-road artwork. Functional logic unchanged.",
-  "name": "HomeListenSingleCircle_PinyinSceneFit"
+  "build_name": "FULL_LessonLayerFix",
+  "base_version": "10.107.89"
 }

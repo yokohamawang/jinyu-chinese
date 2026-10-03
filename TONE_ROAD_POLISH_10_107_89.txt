@@ -1,0 +1,17 @@
+DEMO 10.107.89 — Tone Road polish
+
+Base: 10.107.88 FULL_PinyinAvatarPolish
+
+Changes are visual only:
+- Slightly tightened the four tone cards so the white space is less loose.
+- Unified 1声/2声/3声/4声 labels and ā/á/ǎ/à positions.
+- Improved caption hierarchy and spacing.
+- Integrated the green direction arrows more naturally into each scene.
+- Kept the 4th tone as a clear right-downhill road.
+
+Intentionally unchanged:
+- Home page and Home artwork
+- Top Pinyin avatar from 10.107.88
+- Four tone-road base illustrations / road geometry
+- Pronunciation audio
+- Lesson interactions and navigation

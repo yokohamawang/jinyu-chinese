@@ -1,0 +1,1 @@
+Only the upper Pinyin XiaoYin avatar was changed. The image is embedded into index.html to prevent broken-image/question-mark rendering. Home and all four tone-road scenes are unchanged.
