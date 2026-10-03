@@ -1,0 +1,5 @@
+Koepanda DEMO 10.107.76
+Tone-road character clone fix
+- Fixes iPhone Safari blue question-mark placeholder in 1st–4th tone cards.
+- Reuses/clones the already-loaded top Xiaoyin mascot image instead of assigning a large data URI dynamically.
+- Keeps current road scenes, audio, click behavior, pinyin logic, and lesson flow unchanged.

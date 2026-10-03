@@ -1,0 +1,4 @@
+10.107.75 visual-only fix:
+- Embedded the tone-road Xiaoyin character image directly in index.html to eliminate GitHub Pages relative-path/cache loading failures.
+- Kept tone-road layout, audio, click handlers, pinyin logic, and course flow unchanged.
+- Source asset remains at assets/mouth/xiaoyin-head-focus.webp.

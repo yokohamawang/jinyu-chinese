@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="DEMO 10.107.74 tone-road-character-polish">
+<meta name="koepanda-build" content="DEMO 10.107.75 tone-road-character-embed-fix">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -58,7 +58,7 @@
 <link rel="stylesheet" href="./css/49-demo1010771-premium-tone-road-a.css?v=10.107.72" id="demo1010771-premium-tone-road-a">
 <link rel="stylesheet" href="./css/50-demo1010772-tone-road-effect-match.css?v=10.107.72" id="demo1010772-tone-road-effect-match">
 <link rel="stylesheet" href="./css/51-demo1010773-tone-road-scene-polish.css?v=10.107.73" id="demo1010773-tone-road-scene-polish">
-<link rel="stylesheet" href="./css/52-demo1010774-tone-road-character-polish.css?v=10.107.74" id="demo1010774-tone-road-character-polish">
+<link rel="stylesheet" href="./css/52-demo1010774-tone-road-character-polish.css?v=10.107.75" id="demo1010775-tone-road-character-embed-fix">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -552,19 +552,30 @@ body.app-home-mode #homeEffect > a.hs-repeat{
 })();
 </script>
 
-<script id="demo1010774-tone-road-character-polish">
+<script id="demo1010776-tone-road-character-clone-fix">
 (function(){
   function addToneRoadCharacters(){
+    var source=document.querySelector('.p0-road-mascot');
+    if(!source) return;
     document.querySelectorAll('.p0-road-card .p0-road-art').forEach(function(art){
-      if(art.querySelector('.road-xiaoyin')) return;
-      var img=document.createElement('img');
+      var old=art.querySelector('.road-xiaoyin');
+      if(old) old.remove();
+      var img=source.cloneNode(true);
       img.className='road-xiaoyin';
-      img.src='./assets/mouth/xiaoyin-head-focus.webp';
-      img.alt=''; img.setAttribute('aria-hidden','true');
+      img.removeAttribute('id');
+      img.alt='';
+      img.setAttribute('aria-hidden','true');
       art.appendChild(img);
     });
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',addToneRoadCharacters); else addToneRoadCharacters();
+  function boot(){
+    var source=document.querySelector('.p0-road-mascot');
+    if(source && source.complete){ addToneRoadCharacters(); return; }
+    if(source){ source.addEventListener('load',addToneRoadCharacters,{once:true}); }
+    addToneRoadCharacters();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+  window.addEventListener('pageshow',addToneRoadCharacters);
 })();
 </script>
 </body></html>
