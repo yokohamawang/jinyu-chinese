@@ -1,0 +1,53 @@
+/* DEMO 10.107.80 — approved visual trim only.
+   1) Home: keep the existing hero/panda/background unchanged; clean the Listen icon to one circle.
+   2) Pinyin tone road: slightly reduce scene artwork so edge elements (especially the sun) are not clipped.
+   No audio, navigation, recording, lesson or scoring logic changed. */
+
+/* HOME / Listen icon — cover the baked double-circle treatment with one clean circle,
+   then place the same pink headphone artwork on top. The hotspot remains the real button. */
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen{
+  overflow:visible!important;
+}
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::before{
+  content:"";
+  position:absolute;
+  z-index:7;
+  left:18.5%;
+  top:2.5%;
+  width:63%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:linear-gradient(145deg,#f9dfe6 0%,#f7d4df 58%,#fbe9ed 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.78);
+  pointer-events:none;
+}
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::after{
+  content:"";
+  position:absolute;
+  z-index:8;
+  left:23.5%;
+  top:7.3%;
+  width:53%;
+  aspect-ratio:246/164;
+  background:url('../assets/icons/home-listen-headphones-10780.png?v=10.107.80') center/contain no-repeat;
+  pointer-events:none;
+}
+
+/* PINYIN / four tone scenes — keep the approved artwork, just give it breathing room. */
+.p0-road-art{
+  background-size:94% auto!important;
+  background-position:center center!important;
+  background-color:#eef8f4!important;
+}
+
+@media(max-width:430px){
+  html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::before{
+    left:18%;
+    width:64%;
+  }
+  html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::after{
+    left:23%;
+    width:54%;
+  }
+  .p0-road-art{background-size:93.5% auto!important}
+}
