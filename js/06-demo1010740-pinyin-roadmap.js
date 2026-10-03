@@ -1,4 +1,4 @@
-/* DEMO 10.107.65 — direct P0 entry + layered lesson navigation.
+/* DEMO 10.107.69 — direct P0 entry + layered lesson navigation + lesson unlocks.
    Chapter list, unit list, and lesson body never remain visually stacked.
    Vowel units open only their own 3-vowel group. Back controls are compact and non-obstructive. */
 (function(){
@@ -89,13 +89,19 @@
     requestAnimationFrame(function(){ back.scrollIntoView({block:'start',behavior:'auto'}); });
   }
 
+  function unitLocked(unit,stageStatus){
+    if(stageStatus==='locked')return true;
+    if(unit.id==='P2'&&typeof window.koepandaIsUnitComplete==='function')return !window.koepandaIsUnitComplete('P1');
+    return false;
+  }
+
   function unitButton(unit,stageStatus){
-    var b=document.createElement('button'); b.type='button'; b.className='pinyin-node';
+    var b=document.createElement('button'); b.type='button'; b.className='pinyin-node'; b.dataset.unitId=unit.id; b.dataset.stageStatus=stageStatus||'';
     var isCurrent=(unit.id==='P0-U1'||unit.id==='P1'||unit.id==='P2');
-    var locked=(stageStatus==='locked');
+    var locked=unitLocked(unit,stageStatus);
     if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked');
     b.disabled=locked;
-    b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習')+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':'›')+'</span>';
+    b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+(locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習'))+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':'›')+'</span>';
     if(!locked)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
   }
@@ -161,6 +167,19 @@
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
     setLessonBodiesHidden();
   }
+
+
+  window.addEventListener('koepandaVowelProgressChanged',function(){
+    if(!detail||detail.hidden)return;
+    var p2=detail.querySelector('.pinyin-node[data-unit-id="P2"]');
+    if(!p2)return;
+    var locked=!(typeof window.koepandaIsUnitComplete==='function'&&window.koepandaIsUnitComplete('P1'));
+    p2.disabled=locked;p2.classList.toggle('is-locked',locked);
+    var small=p2.querySelector('.pinyin-node-copy small'),go=p2.querySelector('.pinyin-node-go');
+    if(small)small.textContent=locked?'a・o・e をクリアすると開く':'クリアで「単韻母クリア」';
+    if(go)go.textContent=locked?'🔒':'›';
+    if(!locked&&!p2.dataset.bound){p2.dataset.bound='1';var unit=null;course.stages.forEach(function(stage){stage.units.forEach(function(u){if(u.id==='P2')unit=u})});if(unit)p2.addEventListener('click',function(){openLesson(unit,p2)})}
+  });
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true}); else render();
 })();
