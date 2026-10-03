@@ -1,0 +1,13 @@
+Koepanda DEMO 10.107.92 — iPhone first-play audio pool + ear-flow fix
+
+Base: 10.107.91 FULL_AudioRaceFix
+
+Changes only in the pinyin vowel lesson audio/ear-training flow:
+1. Keeps the verified 10.107.68 pronunciation source URLs unchanged.
+2. Preloads/reuses one Audio element per tone instead of creating/removing a new Audio source on every tap.
+   This targets the iPhone Safari cold-cache first-round race where a later tone could replay a stale previous tone.
+3. The ear-training answer no longer auto-plays a2 after selecting the correct a3 answer.
+   The next imitation section is revealed, and audio only plays when the user presses 「お手本を聞く」.
+4. 「もう一度聞く」 continues to replay the same locked ear-training target tone (a3).
+
+No home/avatar/tone-road visual changes.
