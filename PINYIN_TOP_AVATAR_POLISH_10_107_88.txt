@@ -1,0 +1,6 @@
+DEMO 10.107.88
+- Main fix: upper Pinyin XiaoYin avatar no longer depends on an external image path.
+- Embedded as PNG data in index.html for robust Safari display.
+- Avatar crop cleaned and circular presentation refined.
+- Home is unchanged.
+- Four tone-road scene cards are unchanged.
