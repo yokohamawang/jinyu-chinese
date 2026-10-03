@@ -1,0 +1,4 @@
+Koepanda 10.107.81 visual correction
+- Home Listen icon: removes the extra CSS pink circle and uses one complete circular headphone sticker.
+- Pinyin four-tone road: replaces the previous already-cropped sources with uncropped mockup-derived scenes where the yellow sun and edge elements are fully visible.
+- Audio, navigation, recording, lesson and scoring logic unchanged.
