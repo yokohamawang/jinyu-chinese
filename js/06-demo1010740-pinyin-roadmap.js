@@ -1,4 +1,4 @@
-/* DEMO 10.107.69 — direct P0 entry + layered lesson navigation + lesson unlocks.
+/* DEMO 10.107.71 — direct P0 entry + true layered lesson navigation + lesson unlocks.
    Chapter list, unit list, and lesson body never remain visually stacked.
    Vowel units open only their own 3-vowel group. Back controls are compact and non-obstructive. */
 (function(){
@@ -7,6 +7,7 @@
   var root=null, detail=null;
   var lastStageId=null, lastStageTop=0;
   var lessonState=null;
+  var lessonMarker=null;
 
   function iconFor(id){
     if(id==='P0-U1')return '🎵'; if(id==='P1')return '🌼'; if(id==='P2')return '🐟';
@@ -53,7 +54,11 @@
   function closeLesson(){
     if(!lessonState)return;
     var target=lessonState.target;
-    if(target){ target.hidden=true; target.classList.remove('is-roadmap-lesson-active'); }
+    if(target){
+      target.hidden=true; target.classList.remove('is-roadmap-lesson-active');
+      if(lessonMarker&&lessonMarker.parentNode){ lessonMarker.parentNode.insertBefore(target,lessonMarker); lessonMarker.remove(); }
+    }
+    lessonMarker=null;
     var lessonBack=document.getElementById('pinyinLessonBack');
     if(lessonBack)lessonBack.remove();
     if(typeof window.koepandaResetVowelGroup==='function')window.koepandaResetVowelGroup();
@@ -70,6 +75,20 @@
     lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top};
     showRoadmapChrome(false);
     setLessonBodiesHidden();
+
+    /* Put the active lesson at the front of the course instead of leaving it
+       at its original lower-page position. This makes the transition feel
+       like opening one lesson screen, not expanding content behind the map. */
+    if(!lessonMarker){
+      lessonMarker=document.createComment('koepanda-lesson-origin');
+      target.parentNode.insertBefore(lessonMarker,target);
+    }
+    var courseRoot=document.getElementById('kidsCourse');
+    var head=document.querySelector('#kidsCourse > .kids-course-head');
+    if(courseRoot){
+      if(head&&head.nextSibling)courseRoot.insertBefore(target,head.nextSibling);
+      else courseRoot.insertBefore(target,courseRoot.firstChild);
+    }
     target.hidden=false;
     target.classList.add('is-roadmap-lesson-active');
     if(unit.id==='P1'||unit.id==='P2'){
