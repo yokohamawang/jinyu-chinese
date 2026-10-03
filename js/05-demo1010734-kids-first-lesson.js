@@ -1,4 +1,4 @@
-/* DEMO 10.107.66 — dedicated Mandarin pinyin audio.
+/* DEMO 10.107.67 — dedicated Mandarin pinyin audio.
    No Latin-letter TTS and no trimmed seed-word approximations.
    Uses the MIT-licensed Yanyu pinyin-syllables audio library as the online source. */
 (function(){
@@ -26,6 +26,7 @@
      - Source: byhow/yanyu pinyin-syllables (MIT).
   */
   var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
+  var PINYIN_O_AUDIO_BASE='https://raw.githubusercontent.com/cmguo/PinYinSound/master/';
   function audioKey(letter,tone){
     var base=letter==='i'?'yi':(letter==='u'?'wu':(letter==='ü'?'yu':letter));
     return base+tone;
@@ -38,7 +39,10 @@
   }
   function playLocalPinyin(letter,tone){
     stopAudio();
-    var src=PINYIN_AUDIO_BASE+audioKey(letter,tone)+'.mp3';
+    /* 10.107.67: keep the five accepted vowel groups unchanged.
+       Only o1-o4 use one alternate recording set, so the four tones stay
+       one-speaker/one-recording-condition as a group. */
+    var src=(letter==='o'?PINYIN_O_AUDIO_BASE:PINYIN_AUDIO_BASE)+audioKey(letter,tone)+'.mp3';
     return new Promise(function(resolve){
       var a=new Audio();localAudio=a;a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';
       var settled=false;
