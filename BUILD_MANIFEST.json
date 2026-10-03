@@ -1,15 +1,19 @@
 {
-  "version": "10.107.68",
-  "base": "10.107.66",
+  "version": "10.107.69",
+  "base": "10.107.68",
   "changes": [
-    "Keep a/e/i/u/ü audio source and behavior unchanged.",
-    "Replace only o1/o2/o3/o4 with one consistent four-tone recording set.",
-    "Do not mix speakers inside the o four-tone group.",
-    "Preserve the current lesson structure, navigation, visuals, and progress logic."
+    "Keep the verified 10.107.68 six-vowel pronunciation path unchanged.",
+    "Turn a into the first complete sample lesson: listen all four tones, one listening discrimination, one imitation step, then a four-question mini check.",
+    "Require 3/4 (75%) on the mini check before a is completed and o is unlocked.",
+    "Give a compact reward badge after passing and unlock the next vowel without punitive failure states.",
+    "Add sequential lock styling inside vowel groups so the next vowel opens only after the previous lesson is completed.",
+    "Keep i・u・ü (P2) locked until a・o・e (P1) are completed."
   ],
   "changed_files": [
     "index.html",
     "js/05-demo1010734-kids-first-lesson.js",
+    "js/06-demo1010740-pinyin-roadmap.js",
+    "css/47-demo1010769-a-sample-unlock.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]

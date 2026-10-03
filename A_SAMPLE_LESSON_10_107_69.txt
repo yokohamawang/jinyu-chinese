@@ -1,0 +1,21 @@
+Koepanda DEMO 10.107.69 — a sample lesson + unlock flow
+
+Base: 10.107.68 (verified six-vowel pronunciation)
+Audio: unchanged from 10.107.68.
+
+Sample lesson a flow:
+1. Listen to all four tones.
+2. Complete one listening-discrimination activity.
+3. Listen and imitate once.
+4. Complete a 4-question mini check.
+5. Score 3/4 or 4/4 to pass (75% threshold).
+6. Receive the "はじめての音" badge and unlock o.
+
+Unlock behavior:
+- Inside a・o・e: a starts open; o opens after a passes; e opens after o is completed.
+- i・u・ü unit remains locked until a・o・e are completed.
+- A failed mini check can be retried immediately without resetting earlier steps.
+
+Visual scope:
+- Adds polished progress chips, activity cards, answer states, and reward card.
+- This is an interaction-quality pass, not the final whole-course visual redesign.
