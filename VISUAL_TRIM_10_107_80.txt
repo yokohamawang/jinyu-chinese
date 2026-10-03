@@ -1,0 +1,7 @@
+Koepanda DEMO 10.107.80 — Visual Trim
+
+Visual-only update from 10.107.79:
+1. Home 「聞く」: remove the redundant double-circle look; keep one soft pink circular background and the approved 3D pink headphones.
+2. Keep the existing home background, Xiaoyin position/shape/expression, logo and layout unchanged.
+3. Pinyin four-tone artwork: display scenes slightly smaller and centered so the sun/arrows/edge details are less likely to be clipped.
+4. Audio, pronunciation, navigation, recording, lesson state and scoring logic are unchanged.

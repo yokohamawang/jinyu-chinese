@@ -1,20 +1,21 @@
 {
-  "version": "10.107.78",
-  "base": "10.107.72",
+  "version": "10.107.80",
+  "base": "10.107.79",
   "changes": [
-    "Rebuild all four tone illustrations as cohesive scenic road cards with softer landscape depth.",
-    "Remove the third-tone self-intersecting filled road shape that could render as a black wedge on Safari.",
-    "Turn Xiaoyin from a tiny face icon into a small full character traveling on each road.",
-    "Integrate tone marks and listening hints into a more compact mobile card layout.",
-    "Keep verified pronunciation audio and all lesson interaction logic unchanged."
+    "Keep the approved current home background and Xiaoyin unchanged.",
+    "Remove the redundant double-circle look behind the Listen headphones using a single clean pink circle.",
+    "Slightly reduce and center all four pinyin tone-road scene images to avoid edge cropping.",
+    "Keep pronunciation audio and all lesson interaction logic unchanged."
   ],
   "changed_files": [
     "index.html",
-    "css/51-demo1010773-tone-road-scene-polish.css",
+    "css/55-demo1010780-visual-trim.css",
+    "assets/icons/home-listen-headphones-10780.png",
     "VERSION.txt",
-    "BUILD_MANIFEST.json"
+    "BUILD_MANIFEST.json",
+    "VISUAL_TRIM_10_107_80.txt"
   ],
-  "build": "tone-road-scene-polish",
-  "notes": "Visual-only: clearer tone-1 road and official Xiaoyin character in all four tone scenes. Audio/lesson logic unchanged.",
-  "name": "ToneRoad CharacterEmbedFix"
+  "build": "visual-trim",
+  "notes": "Visual-only: single-circle Listen headphones and slightly smaller centered tone-road artwork. Functional logic unchanged.",
+  "name": "HomeListenSingleCircle_PinyinSceneFit"
 }
