@@ -1,0 +1,44 @@
+/* DEMO 10.107.85 — clean release.
+   Removed old duplicated asset references and keep only the final approved visuals.
+   Home: top illustration already contains the approved single-circle headphones; no pseudo overlays.
+   Pinyin: use the final four tone-road scene images and the final centered mascot icon. */
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::before,
+html body.app-home-mode #homeEffect .home-effect-top > a.hs-listen::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+.p0-road-art{
+  position:relative!important;
+  display:block!important;
+  aspect-ratio:625/159!important;
+  min-height:0!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:100% 100%!important;
+  background-color:transparent!important;
+  overflow:hidden!important;
+}
+.p0-road-art>svg{display:none!important}
+.tone-road-1 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-1-final.webp?v=10.107.85')!important}
+.tone-road-2 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-2-final.webp?v=10.107.85')!important}
+.tone-road-3 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-3-final.webp?v=10.107.85')!important}
+.tone-road-4 .p0-road-art{background-image:url('../assets/tone-road/tone-road-scene-4-final.webp?v=10.107.85')!important}
+.p0-road-number,.p0-road-mark,.p0-road-caption{z-index:5!important}
+.p0-road-mascot-wrap{
+  background:linear-gradient(145deg,#fffefb,#f1f7ea)!important;
+  border:1px solid rgba(83,122,92,.08)!important;
+  box-shadow:0 10px 22px rgba(61,92,71,.10)!important;
+  overflow:hidden!important;
+}
+.p0-road-mascot{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  transform:none!important;
+}
+@media(max-width:430px){
+  .p0-road-art{aspect-ratio:625/159!important;background-size:100% 100%!important}
+}
