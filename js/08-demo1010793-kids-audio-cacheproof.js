@@ -1,4 +1,4 @@
-/* DEMO 10.107.96 — serialized tone playback for iPhone Safari.
+/* DEMO 10.107.99 — serialized tone playback for iPhone Safari.
    Keeps the known-working lesson UI and prevents a previous tone from racing/bleeding into the next one. */
 (function(){
   window.KOEPANDA_PINYIN_BUILD="10.107.96";
@@ -35,7 +35,7 @@
       function cleanup(){try{a.removeEventListener('canplay',start);a.removeEventListener('error',fail)}catch(e){}}
       function finish(value){if(settled)return;settled=true;cleanup();resolve(value)}
       function fail(){if(settled)return;if(!isCurrent()){finish(null);return}try{a.pause();a.currentTime=0}catch(e){}if(localAudio===a)localAudio=null;showAudioMissing(letter,tone);finish(null)}
-      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.pause();a.currentTime=0;if(isO&&a.duration>0.16)a.currentTime=Math.min(0.09,a.duration*0.18)}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else{try{a.pause();a.currentTime=0}catch(e){}finish(null)}}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
+      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.pause();a.currentTime=0;a.playbackRate=1;a.volume=1;if(isO&&a.duration>0.16){var oTrim=(tone===2||tone===4)?0.035:0.075;a.currentTime=Math.min(oTrim,a.duration*((tone===2||tone===4)?0.08:0.15));if(tone===2||tone===4)a.playbackRate=0.94}}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else{try{a.pause();a.currentTime=0}catch(e){}finish(null)}}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
       a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});a.addEventListener('error',fail,{once:true});
       if(a.readyState>=2)start();else{a.addEventListener('canplay',start,{once:true});try{a.load()}catch(e){start()}}
     })
