@@ -1,20 +1,21 @@
 {
-  "version": "10.108.01",
-  "base": "10.107.99",
-  "name": "VowelFull4StepFlow",
-  "build_name": "FULL_VowelFull4StepFlow",
+  "version": "10.108.02",
+  "base": "10.108.01",
+  "name": "VowelAudioCalibration",
+  "build_name": "FULL_VowelAudioCalibration",
   "changes": [
-    "make steps 1-4 mandatory for every vowel a/o/e/i/u/ü",
-    "use active vowel audio and tone marks in ear training, imitation and mini-check",
-    "require 3/4 mini-check pass before unlocking/advancing",
-    "migrate old non-quiz completion flags so o/e/i/u/ü cannot stay falsely unlocked",
-    "keep serialized iPhone Safari tone playback and 10.107.99 audio balancing"
+    "calibrate playback tempo for all 24 single-vowel tone samples a/o/e/i/u/ü",
+    "lengthen tone 1 and tone 3 slightly so contour is easier to hear",
+    "keep tone 2 and tone 4 clear while avoiding overly short playback",
+    "reduce o onset trim substantially and slow o tones, especially ō, ó and ò",
+    "preserve pitch while using slower playbackRate where browser supports it",
+    "retain 10.108.01 roadmap, imitation-recording and celebration fixes"
   ],
   "changed_files": [
     "index.html",
     "js/08-demo1010793-kids-audio-cacheproof.js",
     "VERSION.txt",
-    "VOWEL_FULL_4STEP_FLOW_10_108_00.txt",
+    "VOWEL_AUDIO_CALIBRATION_10_108_02.txt",
     "BUILD_MANIFEST.json"
   ]
 }
