@@ -1,7 +1,7 @@
-/* DEMO 10.107.93 — cache-proof pinyin lesson audio/ear-flow fix.
-   Based on 10.107.92; new filename forces iPhone Safari/GitHub Pages to load this build. */
+/* DEMO 10.107.95 — safe tone-flow fix based on the known-working 10.107.93 lesson build.
+   Keep the same lesson script filename; only remove the automatic tone-3 takeover after tone 4. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.107.93";
+  window.KOEPANDA_PINYIN_BUILD="10.107.95";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var STORE='koepandaVowelProgress54', MASTERY_STORE='koepandaVowelMastery69';
@@ -99,7 +99,7 @@
     p.querySelectorAll('span').forEach(function(s){s.classList.toggle('is-done',!!states[s.dataset.step])});
     var ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage');
     if(ear)ear.hidden=!listenDone;if(imit)imit.hidden=!aFlow.earDone;if(quiz)quiz.hidden=!aFlow.imitateDone;
-    if(listenDone&&!aFlow.earDone&&ear&&!ear.dataset.autoPlayed){ear.dataset.autoPlayed='1';setTimeout(function(){playLocalPinyin('a',aFlow.earTone)},180)}
+    if(listenDone&&ear){/* 10.107.95: reveal the ear-training stage silently. Do not auto-play tone 3 here, because it can interrupt the tail of tone 4 on iPhone Safari. */ear.dataset.autoPlayed='manual';}
   }
   function buildToneChoices(containerId,handler){var box=el(containerId);if(!box)return;box.replaceChildren();toneMarks('a').forEach(function(mark,k){var b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice';b.innerHTML='<strong>'+mark+'</strong><small>'+(k+1)+'声</small>';b.addEventListener('click',function(){handler(k+1,b)});box.appendChild(b)})}
   function renderAEarChoices(){buildToneChoices('kidsAEarChoices',function(tone,b){if(!aFlow||aFlow.earDone)return;var fb=el('kidsAEarFeedback');if(tone===aFlow.earTone){aFlow.earDone=true;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！ 音の上がり下がりが聞こえたね。次は「お手本を聞く」へ';fb.className='kids-a-feedback is-good'};markAProgress()}else{b.classList.add('is-try');if(fb){fb.textContent='もう一度聞いてみよう。まちがえても大丈夫 👂';fb.className='kids-a-feedback'};setTimeout(function(){b.classList.remove('is-try');playLocalPinyin('a',aFlow.earTone)},180)}})}
