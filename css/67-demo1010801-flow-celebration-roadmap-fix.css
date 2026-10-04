@@ -43,3 +43,12 @@ body.app-kids-mode .kids-back-home svg{width:22px!important;height:22px!importan
 @keyframes kpMascotBounce{0%{transform:translateY(16px) scale(.72)}55%{transform:translateY(-9px) scale(1.1)}100%{transform:translateY(0) scale(1)}}
 
 @media(max-width:360px){.kids-a-record-row{grid-template-columns:1fr}.kids-vowel-celebration-card{width:min(280px,88vw)}}
+
+/* 10.108.03 — free imitation tone choice + stronger tactile feedback */
+.kids-a-imitate-prompt{margin:2px 0 7px;text-align:center;font-size:11px;font-weight:900;color:#58776b}
+.kids-a-imitate-choices{margin-top:0;margin-bottom:10px}
+.kids-a-imitate-choices .kids-a-tone-choice.is-selected{background:#e2f5e7;box-shadow:inset 0 0 0 2px #7fbc92,0 4px 10px rgba(60,112,79,.08)}
+.kids-a-listen-button,.kids-a-record-button,.kids-a-playback-button,.kids-a-confirm-button,.kids-a-tone-choice{transition:transform .10s ease,box-shadow .10s ease,filter .10s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.kids-a-listen-button:active:not(:disabled),.kids-a-record-button:active:not(:disabled),.kids-a-playback-button:active:not(:disabled),.kids-a-confirm-button:active:not(:disabled),.kids-a-tone-choice:active:not(:disabled),
+.kids-a-listen-button.is-pressed,.kids-a-record-button.is-pressed,.kids-a-playback-button.is-pressed,.kids-a-confirm-button.is-pressed,.kids-a-tone-choice.is-pressed{transform:translateY(2px) scale(.98);filter:brightness(.96);box-shadow:inset 0 2px 5px rgba(54,82,64,.12)}
+.kids-a-playback-button.is-playing{background:#dff1e5;color:#2f6954;box-shadow:inset 0 0 0 2px rgba(94,166,121,.35)}
