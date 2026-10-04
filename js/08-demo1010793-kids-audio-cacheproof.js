@@ -1,9 +1,10 @@
-/* DEMO 10.107.95 — safe tone-flow fix based on the known-working 10.107.93 lesson build.
-   Keep the same lesson script filename; only remove the automatic tone-3 takeover after tone 4. */
+/* DEMO 10.107.96 — serialized tone playback for iPhone Safari.
+   Keeps the known-working lesson UI and prevents a previous tone from racing/bleeding into the next one. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.107.95";
+  window.KOEPANDA_PINYIN_BUILD="10.107.96";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
+  var introToneBusy=false, introTonePending=null, introToneLastEnd=0, introToneGuardMs=180;
   var STORE='koepandaVowelProgress54', MASTERY_STORE='koepandaVowelMastery69';
   var aFlow=null;
   function el(id){return document.getElementById(id)}
@@ -41,6 +42,29 @@
   }
   function playToneExample(tone){return playLocalPinyin('a',tone)}
   function playVowelExample(v,tone){return playLocalPinyin(v.letter,tone)}
+  function playIntroToneSerialized(v,tone){
+    introTonePending={v:v,tone:tone};
+    if(introToneBusy)return;
+    function launch(){
+      if(!introTonePending){introToneBusy=false;return}
+      var job=introTonePending;introTonePending=null;introToneBusy=true;
+      var wait=Math.max(0,introToneGuardMs-(Date.now()-introToneLastEnd));
+      setTimeout(function(){
+        playVowelExample(job.v,job.tone).then(function(a){
+          if(!a){introToneBusy=false;launch();return}
+          var done=false;
+          function finish(){
+            if(done)return;done=true;introToneLastEnd=Date.now();introToneBusy=false;
+            setTimeout(launch,introToneGuardMs);
+          }
+          if(a.ended||a.paused){finish();return}
+          a.addEventListener('ended',finish,{once:true});
+          a.addEventListener('pause',function(){if(a.currentTime>0&&!a.ended)finish()},{once:true});
+        }).catch(function(){introToneBusy=false;launch()});
+      },wait);
+    }
+    launch();
+  }
   window.koepandaPlayToneIntro=playToneExample;
   function toneMarks(letter){var m={a:['ā','á','ǎ','à'],o:['ō','ó','ǒ','ò'],e:['ē','é','ě','è'],i:['ī','í','ǐ','ì'],u:['ū','ú','ǔ','ù'],'ü':['ǖ','ǘ','ǚ','ǜ']};return m[letter]||[letter,letter,letter,letter]}
   function toneLabels(){return ['高く平ら','低めから一気に上へ','低く下げてから上がる','高い所から一気に下へ']}
@@ -117,17 +141,17 @@
   }
 
   function renderDrill(i){
-    vowelIndex=i;heard={};var v=data.vowels[i],d=ensureDrill();if(!d)return;warmPinyin(v.letter);var isA=v.letter==='a';
+    vowelIndex=i;heard={};introToneBusy=false;introTonePending=null;introToneLastEnd=0;var v=data.vowels[i],d=ensureDrill();if(!d)return;warmPinyin(v.letter);var isA=v.letter==='a';
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent=isA?'きく → ききわけ → まねる → ミニチェック':'きく → よむ → なぞって形を覚える';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
     var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),reward=el('kidsAReward');if(p)p.hidden=!isA;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
-    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;b.classList.add('is-heard');playVowelExample(v,tone);if(isA)markAProgress()});g.appendChild(b)});
+    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;b.classList.add('is-heard');playIntroToneSerialized(v,tone);if(isA)markAProgress()});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
     var complete=el('kidsVowelComplete');if(isA){resetAFlow();renderAEarChoices();complete.disabled=true;complete.textContent='4つのステップでクリア'}else{complete.disabled=false;complete.textContent='この母音、できた！'}
     el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;requestAnimationFrame(function(){d.scrollIntoView({block:'start',behavior:'auto'})})
   }
-  function closeDrill(){stopAudio();var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels();requestAnimationFrame(function(){grid.scrollIntoView({block:'start',behavior:'auto'})})}
+  function closeDrill(){introTonePending=null;introToneBusy=false;stopAudio();var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels();requestAnimationFrame(function(){grid.scrollIntoView({block:'start',behavior:'auto'})})}
   function completeCurrent(){var v=data.vowels[vowelIndex];if(v.letter==='a'){if(!(aFlow&&aFlow.passed))return;closeDrill();var oIndex=data.vowels.findIndex(function(x){return x.letter==='o'});if(oIndex>=0)setTimeout(function(){renderDrill(oIndex)},40);return}completed[v.letter]=true;saveProgress();updateProgress();closeDrill()}
   function setVowelCardTitle(){var card=el('kidsVowelGrid');card=card?card.closest('.kids-lesson-card'):null;if(!card)return;var strong=card.querySelector('.kids-lesson-title strong'),small=card.querySelector('.kids-lesson-title small');if(strong)strong.textContent=activeGroupTitle?(activeGroupTitle+' の音あそび'):'6つの母音の音あそび';if(small)small.textContent='音・口の形・イメージをいっしょに覚えよう'}
   function renderVowels(){
