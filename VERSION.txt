@@ -1,7 +1,6 @@
-Koepanda DEMO 10.107.99 FULL — LessonOverlay_AudioBalance
-
-Base: 10.107.98 SimpleLearningPath
-Changes:
-- Fix: the learning-path vertical connector no longer remains visible over the vowel lesson page.
-- Tune: o tone 2 and tone 4 are less clipped at the start and play slightly slower, so they sound fuller and longer.
-- Preserve: route design, four-tone serialization fix, homepage, lesson structure, and existing unlock logic.
+Koepanda DEMO 10.108.00
+Full build based on 10.107.99.
+Fix: every single-vowel lesson (a/o/e/i/u/ü) now requires the full 4-step flow:
+1 きく → 2 ききわけ → 3 まねる → 4 ミニチェック.
+A vowel cannot advance to the next vowel before passing the 4-question mini-check (3/4 or better).
+Serialized iPhone Safari tone playback from 10.107.99 is retained.

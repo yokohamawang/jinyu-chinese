@@ -1,0 +1,8 @@
+DEMO 10.108.00
+- Fixed o/e/i/u/ü skipping steps 2–4.
+- All vowels now show the same four-step progress bar.
+- Tone-choice buttons use the active vowel's tone marks.
+- Ear training, imitation sample, and quiz audio use the active vowel's audio.
+- Mini-check requires 3/4 to pass and unlock/advance.
+- Reward/next-step text updates dynamically for the active vowel.
+- Kept existing serialized tone playback guard for iPhone Safari.

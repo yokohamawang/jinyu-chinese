@@ -1,26 +1,20 @@
 {
-  "version": "10.107.99",
-  "base": "10.107.98",
-  "name": "LessonOverlay_AudioBalance",
-  "build_name": "FULL_LessonOverlay_AudioBalance",
+  "version": "10.108.00",
+  "base": "10.107.99",
+  "name": "VowelFull4StepFlow",
+  "build_name": "FULL_VowelFull4StepFlow",
   "changes": [
-    "hide roadmap pseudo-element while lesson page is open",
-    "reduce o2/o4 start trim",
-    "slightly lengthen o2/o4 playback"
-  ],
-  "unchanged": [
-    "learning-path layout",
-    "tone serialization/race fix",
-    "home screen",
-    "lesson unlock logic",
-    "other vowel/tone audio behavior"
+    "make steps 1-4 mandatory for every vowel a/o/e/i/u/ü",
+    "use active vowel audio and tone marks in ear training, imitation and mini-check",
+    "require 3/4 mini-check pass before unlocking/advancing",
+    "migrate old non-quiz completion flags so o/e/i/u/ü cannot stay falsely unlocked",
+    "keep serialized iPhone Safari tone playback and 10.107.99 audio balancing"
   ],
   "changed_files": [
     "index.html",
-    "css/66-demo1010798-simple-learning-path.css",
     "js/08-demo1010793-kids-audio-cacheproof.js",
     "VERSION.txt",
-    "LESSON_OVERLAY_AUDIO_BALANCE_10_107_99.txt",
+    "VOWEL_FULL_4STEP_FLOW_10_108_00.txt",
     "BUILD_MANIFEST.json"
   ]
 }
