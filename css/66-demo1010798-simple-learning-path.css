@@ -1,0 +1,45 @@
+/* DEMO 10.107.98 — simple, game-like learning path.
+   Goal: one glance = current chapter, current lesson, next lesson. */
+#kidsCourse > .kids-map[hidden]{display:none!important}
+#kidsCourse .pinyin-roadmap-intro{
+  margin:18px 0 10px!important;
+  padding:15px 16px!important;
+  border-radius:22px!important;
+  background:rgba(255,255,255,.94)!important;
+  box-shadow:0 8px 22px rgba(63,101,73,.07)!important;
+}
+#kidsCourse .pinyin-roadmap-intro strong{font-size:18px!important;margin-bottom:3px!important}
+#kidsCourse .pinyin-roadmap-intro p{font-size:12px!important;line-height:1.5!important}
+#kidsCourse .pinyin-roadmap{position:relative;display:grid!important;gap:0!important;margin:8px 0 14px!important;padding:4px 10px 8px!important}
+#kidsCourse .pinyin-roadmap:before{
+  content:"";position:absolute;left:50%;top:44px;bottom:46px;width:7px;transform:translateX(-50%);
+  border-radius:999px;background:linear-gradient(#b9dfbd,#dbe9d6);opacity:.85;z-index:0
+}
+#kidsCourse .pinyin-world{position:relative!important;z-index:1!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important;overflow:visible!important}
+#kidsCourse .pinyin-world::after{display:none!important}
+#kidsCourse .pinyin-world-open{
+  position:relative;display:grid!important;grid-template-columns:1fr 82px 1fr!important;align-items:center!important;
+  width:100%!important;min-height:112px!important;padding:8px 0!important;border:0!important;background:transparent!important;text-align:left!important;color:#315f51!important
+}
+#kidsCourse .pinyin-world:nth-of-type(odd) .pinyin-world-open .pinyin-route-copy{grid-column:1;justify-self:end;text-align:right;padding-right:14px}
+#kidsCourse .pinyin-world:nth-of-type(even) .pinyin-world-open .pinyin-route-copy{grid-column:3;justify-self:start;text-align:left;padding-left:14px}
+#kidsCourse .pinyin-route-node{grid-column:2;grid-row:1;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;justify-self:center;position:relative;background:#fff;box-shadow:0 9px 20px rgba(60,103,73,.11),inset 0 0 0 5px #dbead7;color:#4b7b64;font-weight:950;font-size:24px}
+#kidsCourse .pinyin-world.is-current-route .pinyin-route-node{background:linear-gradient(145deg,#65bf91,#48a97b);color:#fff;box-shadow:0 10px 24px rgba(65,154,106,.22),inset 0 0 0 5px rgba(255,255,255,.30)}
+#kidsCourse .pinyin-world.is-next-route .pinyin-route-node{background:#fffef8;box-shadow:0 9px 20px rgba(60,103,73,.10),inset 0 0 0 5px #bfe2c1}
+#kidsCourse .pinyin-world.is-locked{opacity:.58!important;filter:none!important}
+#kidsCourse .pinyin-world.is-locked .pinyin-route-node{font-size:21px;background:#f7f8f5;color:#87948d;box-shadow:0 6px 14px rgba(70,95,80,.06),inset 0 0 0 4px #e1e8df}
+#kidsCourse .pinyin-route-copy{grid-row:1;max-width:145px;display:flex;flex-direction:column;gap:2px}
+#kidsCourse .pinyin-route-copy span{font-size:10px;font-weight:950;letter-spacing:.08em;color:#84a08d}
+#kidsCourse .pinyin-route-copy strong{font-size:17px;line-height:1.22;color:#315f51}
+#kidsCourse .pinyin-route-copy small{font-size:10.5px;line-height:1.45;color:#7b8d84;font-weight:750}
+#kidsCourse .pinyin-world.is-current-route .pinyin-route-copy span{color:#58aa7b}
+#kidsCourse .pinyin-route-reward{display:inline-flex;align-items:center;gap:3px;margin-top:4px;font-size:9.5px!important;color:#839389!important}
+#kidsCourse .pinyin-roadmap-note{padding-top:7px!important;font-size:10.5px!important;color:#84958d!important}
+#kidsCourse .pinyin-world-open:active .pinyin-route-node{transform:scale(.97)}
+@media(max-width:380px){
+  #kidsCourse .pinyin-world-open{grid-template-columns:1fr 72px 1fr!important;min-height:104px!important}
+  #kidsCourse .pinyin-route-node{width:70px;height:70px;font-size:22px}
+  #kidsCourse .pinyin-route-copy{max-width:128px}
+  #kidsCourse .pinyin-route-copy strong{font-size:15px}
+  #kidsCourse .pinyin-route-copy small{font-size:9.6px}
+}
