@@ -1,6 +1,11 @@
-/* DEMO 10.107.98 — simple, game-like learning path.
+/* DEMO 10.107.99 — simple, game-like learning path.
    Goal: one glance = current chapter, current lesson, next lesson. */
 #kidsCourse > .kids-map[hidden]{display:none!important}
+
+/* 10.107.99: when a lesson is opened, hide the roadmap itself including its
+   vertical ::before connector. The explicit rule is needed because this
+   stylesheet otherwise forces the roadmap to display:grid!important. */
+#kidsCourse .pinyin-roadmap[hidden]{display:none!important}
 #kidsCourse .pinyin-roadmap-intro{
   margin:18px 0 10px!important;
   padding:15px 16px!important;
