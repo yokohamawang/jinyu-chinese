@@ -1,7 +1,7 @@
-/* DEMO 10.108.00 — complete four-step flow for every single vowel.
-   Keeps serialized iPhone Safari tone playback and requires listen → ear training → imitate → mini-check before advancing. */
+/* DEMO 10.108.02 — complete four-step flow + six-vowel tone-duration calibration.
+   Keeps serialized iPhone Safari playback and gives all 24 vowel/tone samples a clearer teaching tempo. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.108.00";
+  window.KOEPANDA_PINYIN_BUILD="10.108.02";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var introToneBusy=false, introTonePending=null, introToneLastEnd=0, introToneGuardMs=180;
@@ -27,7 +27,18 @@
   /* Verified 10.107.68 pronunciation source. 10.107.92 keeps the same MP3s but reuses one preloaded Audio element per syllable/tone on iPhone Safari. */
   var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
   function audioKey(letter,tone){var base=letter==='i'?'yi':(letter==='u'?'wu':(letter==='ü'?'yu':letter));return base+tone}
-  function audioInfo(letter,tone){var isO=letter==='o',key=isO?('wo'+tone):audioKey(letter,tone),src=PINYIN_AUDIO_BASE+key+'.mp3';return {isO:isO,key:key,src:src}}
+  /* 10.108.02 teaching-tempo calibration.
+     Tone 1/3 need enough duration to hear the contour; tone 2/4 stay crisp but are no longer clipped.
+     o uses wo*.mp3, so only a very small onset trim is kept to reduce the initial w without cutting the vowel body. */
+  var PINYIN_PLAYBACK_PROFILE={
+    a:{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}},
+    o:{1:{rate:.86,start:.025},2:{rate:.89,start:.015},3:{rate:.88,start:.025},4:{rate:.89,start:.015}},
+    e:{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}},
+    i:{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}},
+    u:{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}},
+    'ü':{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}}
+  };
+  function audioInfo(letter,tone){var isO=letter==='o',key=isO?('wo'+tone):audioKey(letter,tone),src=PINYIN_AUDIO_BASE+key+'.mp3';return {isO:isO,key:key,src:src,profile:(PINYIN_PLAYBACK_PROFILE[letter]&&PINYIN_PLAYBACK_PROFILE[letter][tone])||{rate:1,start:0}}}
   function getPinyinAudio(letter,tone){var info=audioInfo(letter,tone),a=audioPool[info.key];if(!a){a=new Audio();a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';a.src=info.src;audioPool[info.key]=a;try{a.load()}catch(e){}}return {audio:a,info:info}}
   function warmPinyin(letter){for(var t=1;t<=4;t++)getPinyinAudio(letter,t)}
   function showAudioMissing(letter,tone){var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';console.error(msg,letter,tone);var hint=el('kidsToneHint');if(hint)hint.textContent='⚠ '+msg}
@@ -38,7 +49,7 @@
       function cleanup(){try{a.removeEventListener('canplay',start);a.removeEventListener('error',fail)}catch(e){}}
       function finish(value){if(settled)return;settled=true;cleanup();resolve(value)}
       function fail(){if(settled)return;if(!isCurrent()){finish(null);return}try{a.pause();a.currentTime=0}catch(e){}if(localAudio===a)localAudio=null;showAudioMissing(letter,tone);finish(null)}
-      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.pause();a.currentTime=0;a.playbackRate=1;a.volume=1;if(isO&&a.duration>0.16){var oTrim=(tone===2||tone===4)?0.035:0.075;a.currentTime=Math.min(oTrim,a.duration*((tone===2||tone===4)?0.08:0.15));if(tone===2||tone===4)a.playbackRate=0.94}}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else{try{a.pause();a.currentTime=0}catch(e){}finish(null)}}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
+      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.pause();a.currentTime=0;var profile=p.info.profile||{rate:1,start:0};a.playbackRate=profile.rate||1;try{a.preservesPitch=true;a.mozPreservesPitch=true;a.webkitPreservesPitch=true}catch(_e){}a.volume=1;if(profile.start&&a.duration>0.12)a.currentTime=Math.min(profile.start,a.duration*0.06)}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else{try{a.pause();a.currentTime=0}catch(e){}finish(null)}}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
       a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});a.addEventListener('error',fail,{once:true});
       if(a.readyState>=2)start();else{a.addEventListener('canplay',start,{once:true});try{a.load()}catch(e){start()}}
     })
