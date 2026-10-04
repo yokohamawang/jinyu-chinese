@@ -1,0 +1,6 @@
+DEMO 10.108.04
+
+- Restored ü (yu1–yu4) to the same Yanyu Mandarin speaker source used by the verified 10.107.68 build.
+- Removed the temporary bundled yu1.wav–yu4.wav override introduced for 10.108.03.
+- Kept all 10.108.03 interaction and lesson-flow changes unchanged.
+- Cache-bumped the lesson audio script to v=10.108.04.
