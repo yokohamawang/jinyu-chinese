@@ -1,6 +1,1 @@
-Koepanda DEMO 10.108.00
-Full build based on 10.107.99.
-Fix: every single-vowel lesson (a/o/e/i/u/ü) now requires the full 4-step flow:
-1 きく → 2 ききわけ → 3 まねる → 4 ミニチェック.
-A vowel cannot advance to the next vowel before passing the 4-question mini-check (3/4 or better).
-Serialized iPhone Safari tone playback from 10.107.99 is retained.
+10.108.01
