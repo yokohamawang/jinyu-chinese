@@ -1,27 +1,26 @@
 {
-  "version": "10.107.98",
-  "base": "10.107.97",
-  "name": "SimpleLearningPath",
-  "build_name": "FULL_SimpleLearningPath",
+  "version": "10.107.99",
+  "base": "10.107.98",
+  "name": "LessonOverlay_AudioBalance",
+  "build_name": "FULL_LessonOverlay_AudioBalance",
   "changes": [
-    "simplify course hierarchy",
-    "replace repeated large stage cards with connected round lesson nodes",
-    "hide duplicate mini progress strip",
-    "rename first visible lesson to 四声 and second to 単母音"
+    "hide roadmap pseudo-element while lesson page is open",
+    "reduce o2/o4 start trim",
+    "slightly lengthen o2/o4 playback"
   ],
   "unchanged": [
-    "tone playback logic",
-    "audio files",
+    "learning-path layout",
+    "tone serialization/race fix",
     "home screen",
-    "lesson activity bodies"
+    "lesson unlock logic",
+    "other vowel/tone audio behavior"
   ],
   "changed_files": [
     "index.html",
-    "data/pinyin-course.js",
-    "js/06-demo1010740-pinyin-roadmap.js",
     "css/66-demo1010798-simple-learning-path.css",
+    "js/08-demo1010793-kids-audio-cacheproof.js",
     "VERSION.txt",
-    "SIMPLE_LEARNING_PATH_10_107_98.txt",
+    "LESSON_OVERLAY_AUDIO_BALANCE_10_107_99.txt",
     "BUILD_MANIFEST.json"
   ]
 }

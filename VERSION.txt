@@ -1,10 +1,7 @@
-Koepanda DEMO 10.107.98 FULL — SimpleLearningPath
+Koepanda DEMO 10.107.99 FULL — LessonOverlay_AudioBalance
 
-Base: 10.107.97 UnifiedKidsHomeBack
-Change: simplified the pinyin course screen into a Duolingo/HelloChinese-inspired learning path.
-- Removed the duplicate mini progress strip.
-- Kept the chapter header: はじめの島 / 音のぼうけん.
-- Learning road now uses connected round lesson nodes.
-- First lesson = 四声, second lesson = 単母音.
-- Future lessons are shown as simple locked nodes.
-- Audio/tone playback logic unchanged from 10.107.97.
+Base: 10.107.98 SimpleLearningPath
+Changes:
+- Fix: the learning-path vertical connector no longer remains visible over the vowel lesson page.
+- Tune: o tone 2 and tone 4 are less clipped at the start and play slightly slower, so they sound fuller and longer.
+- Preserve: route design, four-tone serialization fix, homepage, lesson structure, and existing unlock logic.

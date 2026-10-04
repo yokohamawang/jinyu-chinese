@@ -1,0 +1,7 @@
+DEMO 10.107.99
+
+1. Vowel lesson overlay fix
+   Added an explicit .pinyin-roadmap[hidden]{display:none!important} rule so the route's vertical ::before line cannot remain visible while a lesson body is open.
+
+2. o tone 2 / tone 4 audio balance
+   The source remains the same native-speaker audio. For o2/o4, the previous start trim was reduced and playbackRate set to 0.94, avoiding the clipped/too-short impression without changing the other vowels or tones.
