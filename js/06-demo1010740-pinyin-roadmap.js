@@ -161,15 +161,31 @@
     requestAnimationFrame(function(){detail.scrollIntoView({block:'start',behavior:'auto'})});
   }
 
-  function stageCard(stage){
+  function stageCard(stage,index){
     var world=document.createElement('section');
-    world.className='pinyin-world pinyin-world-compact'+(stage.status==='locked'?' is-locked':'');
+    world.className='pinyin-world'+(stage.status==='locked'?' is-locked':'');
+    if(index===0)world.classList.add('is-current-route');
+    else if(index===1)world.classList.add('is-next-route');
     world.dataset.stageId=stage.id;
+
     var open=document.createElement('button'); open.type='button'; open.className='pinyin-world-open';
     open.setAttribute('aria-label',stage.title+' を開く');
-    open.innerHTML='<span class="pinyin-world-copy"><span>'+stage.world+'</span><strong>'+stage.title+'</strong><small>'+stage.subtitle+'</small></span><span class="pinyin-world-open-state"><span class="pinyin-world-unit-count">'+(stage.id==='P0'?'すぐ体験':stage.units.length+' レッスン')+'</span><b>'+(stage.status==='locked'?'🔒':'›')+'</b></span>';
+
+    var node=document.createElement('span'); node.className='pinyin-route-node';
+    node.textContent=stage.status==='locked'?'🔒':String(index+1);
+
+    var copy=document.createElement('span'); copy.className='pinyin-route-copy';
+    var label=document.createElement('span'); label.textContent='LESSON '+(index+1);
+    var title=document.createElement('strong'); title.textContent=stage.title;
+    var sub=document.createElement('small'); sub.textContent=stage.subtitle;
+    copy.appendChild(label); copy.appendChild(title); copy.appendChild(sub);
+    if(stage.status==='locked'){
+      var reward=document.createElement('span'); reward.className='pinyin-route-reward'; reward.textContent='🔒 前のレッスンをクリアすると開く'; copy.appendChild(reward);
+    }
+
+    open.appendChild(copy); open.appendChild(node);
     open.addEventListener('click',function(){
-      /* P0 is only an introduction to the four tones, so avoid a redundant one-item unit screen. */
+      if(stage.status==='locked')return;
       if(stage.id==='P0' && stage.units && stage.units.length===1){
         openLesson(stage.units[0],open);
         return;
@@ -182,7 +198,7 @@
 
   function render(){
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
-    course.stages.forEach(function(stage){root.appendChild(stageCard(stage))});
+    course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
     setLessonBodiesHidden();
   }
