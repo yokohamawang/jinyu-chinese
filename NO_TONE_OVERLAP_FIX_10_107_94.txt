@@ -1,0 +1,14 @@
+DEMO 10.107.94
+
+Fixed root cause of intermittent 4th-tone playback being cut off by 3rd tone.
+
+Cause:
+- After the fourth tone card was tapped, markAProgress() detected all four tones as heard.
+- It scheduled the ear-training target (tone 3) after 180 ms.
+- Tone 4 was still playing, so playLocalPinyin(tone 3) stopped tone 4 and replaced it.
+
+Fix:
+- Removed the automatic 180 ms ear-training playback completely.
+- Ear-training stage is revealed silently.
+- Tone 3 plays only when the learner explicitly presses the listen button.
+- New JS filename + v=10.107.94 avoids stale Safari/GitHub Pages cache.
