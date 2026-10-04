@@ -1,0 +1,7 @@
+DEMO 10.107.97
+
+- Based on 10.107.96.
+- Replaced the large white top-left kids-course Back circle with the same green floating Home style used inside the three main home navigation destinations.
+- The course header now uses the full card width, reducing duplicated/competing navigation cues.
+- Return behavior is unchanged: tapping the green Home control returns to the app homepage.
+- No changes to tone audio, vowel audio, scoring, mouth animation, or lesson logic.

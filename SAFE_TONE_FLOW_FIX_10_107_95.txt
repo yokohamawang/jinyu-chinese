@@ -1,0 +1,6 @@
+10.107.95
+- Based directly on 10.107.93, where lesson pages render correctly.
+- Keeps the existing js/08-demo1010793-kids-audio-cacheproof.js filename.
+- Removes only the automatic tone-3 playback after the four-tone row is completed.
+- Ear-training stage appears silently; user starts audio explicitly.
+- Visible audio diagnostic version updated from stale 10.107.56 to 10.107.95.

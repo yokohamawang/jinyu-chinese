@@ -1,1 +1,5 @@
-Koepanda DEMO 10.107.96 FULL — SerializedTonePlayback
+Koepanda DEMO 10.107.97 FULL — UnifiedKidsHomeBack
+
+Base: 10.107.96 SerializedTonePlayback
+Change: kids course Home/Back control now matches the floating Home control used by the three main navigation areas.
+Audio/tone playback logic unchanged.

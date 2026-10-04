@@ -1,0 +1,6 @@
+10.107.96
+- Based on 10.107.95 / known-working lesson UI.
+- The four top tone buttons no longer hard-switch audio mid-playback.
+- If another tone is tapped while one is still active, only the latest requested tone is queued.
+- The next tone starts only after the previous audio really ends, plus a 180 ms iPhone Safari decoder guard.
+- This specifically targets the first-run tone-4 being contaminated by the preceding tone-3.
