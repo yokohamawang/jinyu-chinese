@@ -1,5 +1,10 @@
-Koepanda DEMO 10.107.97 FULL — UnifiedKidsHomeBack
+Koepanda DEMO 10.107.98 FULL — SimpleLearningPath
 
-Base: 10.107.96 SerializedTonePlayback
-Change: kids course Home/Back control now matches the floating Home control used by the three main navigation areas.
-Audio/tone playback logic unchanged.
+Base: 10.107.97 UnifiedKidsHomeBack
+Change: simplified the pinyin course screen into a Duolingo/HelloChinese-inspired learning path.
+- Removed the duplicate mini progress strip.
+- Kept the chapter header: はじめの島 / 音のぼうけん.
+- Learning road now uses connected round lesson nodes.
+- First lesson = 四声, second lesson = 単母音.
+- Future lessons are shown as simple locked nodes.
+- Audio/tone playback logic unchanged from 10.107.97.

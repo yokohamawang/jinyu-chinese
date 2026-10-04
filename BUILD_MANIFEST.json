@@ -1,24 +1,27 @@
 {
-  "version": "10.107.92",
-  "base": "10.107.90",
-  "name": "AudioPoolEarFlowFix",
-  "build": "audio-race-fix",
+  "version": "10.107.98",
+  "base": "10.107.97",
+  "name": "SimpleLearningPath",
+  "build_name": "FULL_SimpleLearningPath",
   "changes": [
-    "fix first-pass tone playback race on iPhone/Safari",
-    "invalidate delayed callbacks from older Audio objects"
+    "simplify course hierarchy",
+    "replace repeated large stage cards with connected round lesson nodes",
+    "hide duplicate mini progress strip",
+    "rename first visible lesson to 四声 and second to 単母音"
   ],
   "unchanged": [
-    "Home page and Home artwork",
-    "Pinyin lesson UI and navigation",
-    "Tone-road illustrations and geometry",
-    "Pronunciation source URLs and tone mapping"
+    "tone playback logic",
+    "audio files",
+    "home screen",
+    "lesson activity bodies"
   ],
   "changed_files": [
-    "js/05-demo1010734-kids-first-lesson.js",
+    "index.html",
+    "data/pinyin-course.js",
+    "js/06-demo1010740-pinyin-roadmap.js",
+    "css/66-demo1010798-simple-learning-path.css",
     "VERSION.txt",
-    "BUILD_MANIFEST.json",
-    "AUDIO_RACE_FIX_10_107_91.txt"
-  ],
-  "build_name": "FULL_AudioPoolEarFlowFix",
-  "base_version": "10.107.90"
+    "SIMPLE_LEARNING_PATH_10_107_98.txt",
+    "BUILD_MANIFEST.json"
+  ]
 }

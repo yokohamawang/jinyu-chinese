@@ -1,0 +1,21 @@
+DEMO 10.107.98
+Learning-road visual cleanup.
+
+Goal:
+- Make the page understandable at a glance.
+- Separate chapter name from lesson names.
+- Use a connected, game-like path rather than repeated large cards.
+
+Changed:
+- index.html
+- data/pinyin-course.js
+- js/06-demo1010740-pinyin-roadmap.js
+- css/66-demo1010798-simple-learning-path.css
+- VERSION.txt
+- BUILD_MANIFEST.json
+
+Unchanged:
+- Four-tone playback and serialization logic
+- WAV/audio files
+- Home screen
+- Existing lesson activity contents
