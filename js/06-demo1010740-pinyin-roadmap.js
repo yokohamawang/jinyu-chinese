@@ -127,6 +127,7 @@
 
   function restoreRoadmap(){
     if(!root)return;
+    root.classList.remove('is-stage-detail-open');
     detail.hidden=true;
     root.querySelectorAll('.pinyin-world').forEach(function(w){w.hidden=false});
     var target=lastStageId?document.querySelector('.pinyin-world[data-stage-id="'+lastStageId+'"]'):null;
@@ -140,6 +141,7 @@
 
   function openStage(stage,world){
     lastStageId=stage.id;
+    if(root)root.classList.add('is-stage-detail-open');
     lastStageTop=world.getBoundingClientRect().top;
     root.querySelectorAll('.pinyin-world').forEach(function(w){w.hidden=true});
     detail.replaceChildren();
