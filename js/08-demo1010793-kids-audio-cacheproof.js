@@ -1,8 +1,8 @@
-/* DEMO 10.108.04 — restore ü to the verified same-speaker Yanyu source.
+/* DEMO 10.108.06 — restore ü to the verified same-speaker Yanyu source.
    Ear replay follows the last tone heard above, imitation is free-choice 1–4 tones,
    playback buttons have tactile feedback, and all six vowel groups use one speaker. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.108.04";
+  window.KOEPANDA_PINYIN_BUILD="10.108.06";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var introToneBusy=false, introTonePending=null, introToneLastEnd=0, introToneGuardMs=180;
@@ -222,7 +222,7 @@
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent='きく → ききわけ → まねる → ミニチェック';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
     var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),reward=el('kidsAReward');if(p)p.hidden=false;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
-    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;if(aFlow)aFlow.earTone=tone;b.classList.add('is-heard');playIntroToneSerialized(v,tone);markAProgress()});g.appendChild(b)});
+    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;if(aFlow){var toneChanged=aFlow.earTone!==tone;aFlow.earTone=tone;if(toneChanged&&aFlow.earDone){aFlow.earDone=false;var fb=el('kidsAEarFeedback');if(fb){fb.textContent='';fb.className='kids-a-feedback'}renderAEarChoices()}}b.classList.add('is-heard');playIntroToneSerialized(v,tone);markAProgress()});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
     var complete=el('kidsVowelComplete');resetAFlow(v.letter);var idone=el('kidsAImitateDone');if(idone){idone.disabled=true;idone.classList.remove('is-done')}renderAEarChoices();renderImitateChoices();if(complete){complete.disabled=true;complete.textContent='4つのステップでクリア'};markAProgress()

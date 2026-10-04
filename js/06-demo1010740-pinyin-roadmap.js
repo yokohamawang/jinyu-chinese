@@ -1,4 +1,6 @@
-/* DEMO 10.107.71 — direct P0 entry + true layered lesson navigation + lesson unlocks.
+/* DEMO 10.108.06 — dynamic roadmap unlock after all six single vowels are mastered.
+   Keeps later lesson content honest: the next stage opens on the roadmap, while not-yet-built unit bodies are marked as next lessons.
+   Based on the layered navigation from 10.107.71.
    Chapter list, unit list, and lesson body never remain visually stacked.
    Vowel units open only their own 3-vowel group. Back controls are compact and non-obstructive. */
 (function(){
@@ -8,6 +10,17 @@
   var lastStageId=null, lastStageTop=0;
   var lessonState=null;
   var lessonMarker=null;
+
+
+  function allSingleVowelsComplete(){
+    return typeof window.koepandaIsUnitComplete==='function' &&
+      window.koepandaIsUnitComplete('P1') && window.koepandaIsUnitComplete('P2');
+  }
+
+  function effectiveStageStatus(stage){
+    if(stage && stage.id==='P3-P8' && allSingleVowelsComplete())return 'next';
+    return stage ? stage.status : 'locked';
+  }
 
   function iconFor(id){
     if(id==='P0-U1')return '🎵'; if(id==='P1')return '🌼'; if(id==='P2')return '🐟';
@@ -117,11 +130,12 @@
   function unitButton(unit,stageStatus){
     var b=document.createElement('button'); b.type='button'; b.className='pinyin-node'; b.dataset.unitId=unit.id; b.dataset.stageStatus=stageStatus||'';
     var isCurrent=(unit.id==='P0-U1'||unit.id==='P1'||unit.id==='P2');
-    var locked=unitLocked(unit,stageStatus);
-    if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked');
-    b.disabled=locked;
-    b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+(locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習'))+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':'›')+'</span>';
-    if(!locked)b.addEventListener('click',function(){openLesson(unit,b)});
+    var locked=unitLocked(unit,stageStatus),hasBody=!!targetForUnit(unit.id);
+    if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked'); if(!locked&&!hasBody)b.classList.add('is-upcoming');
+    b.disabled=locked||(!hasBody&&!isCurrent);
+    var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習'));
+    b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
+    if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
   }
 
@@ -139,7 +153,7 @@
     });
   }
 
-  function openStage(stage,world){
+  function openStage(stage,world,stageStatus){
     lastStageId=stage.id;
     if(root)root.classList.add('is-stage-detail-open');
     lastStageTop=world.getBoundingClientRect().top;
@@ -154,18 +168,20 @@
     head.appendChild(back); head.appendChild(copy);
 
     var path=document.createElement('div'); path.className='pinyin-path pinyin-stage-detail-path';
-    stage.units.forEach(function(unit){path.appendChild(unitButton(unit,stage.status))});
+    stageStatus=stageStatus||effectiveStageStatus(stage);
+    stage.units.forEach(function(unit){path.appendChild(unitButton(unit,stageStatus))});
     detail.appendChild(head); detail.appendChild(path);
 
-    if(stage.status==='locked'){
+    if(stageStatus==='locked'){
       var note=document.createElement('div'); note.className='pinyin-stage-locked-note'; note.textContent='🔒 ここは前のステージを進めると開くよ。'; detail.appendChild(note);
     }
     requestAnimationFrame(function(){detail.scrollIntoView({block:'start',behavior:'auto'})});
   }
 
   function stageCard(stage,index){
+    var stageStatus=effectiveStageStatus(stage);
     var world=document.createElement('section');
-    world.className='pinyin-world'+(stage.status==='locked'?' is-locked':'');
+    world.className='pinyin-world'+(stageStatus==='locked'?' is-locked':'');
     if(index===0)world.classList.add('is-current-route');
     else if(index===1)world.classList.add('is-next-route');
     world.dataset.stageId=stage.id;
@@ -174,25 +190,26 @@
     open.setAttribute('aria-label',stage.title+' を開く');
 
     var node=document.createElement('span'); node.className='pinyin-route-node';
-    node.textContent=stage.status==='locked'?'🔒':String(index+1);
+    node.textContent=stageStatus==='locked'?'🔒':String(index+1);
 
     var copy=document.createElement('span'); copy.className='pinyin-route-copy';
     var label=document.createElement('span'); label.textContent='LESSON '+(index+1);
     var title=document.createElement('strong'); title.textContent=stage.title;
     var sub=document.createElement('small'); sub.textContent=stage.subtitle;
     copy.appendChild(label); copy.appendChild(title); copy.appendChild(sub);
-    if(stage.status==='locked'){
+    if(stageStatus==='locked'){
       var reward=document.createElement('span'); reward.className='pinyin-route-reward'; reward.textContent='🔒 前のレッスンをクリアすると開く'; copy.appendChild(reward);
     }
 
     open.appendChild(copy); open.appendChild(node);
     open.addEventListener('click',function(){
-      if(stage.status==='locked')return;
+      var liveStatus=effectiveStageStatus(stage);
+      if(liveStatus==='locked')return;
       if(stage.id==='P0' && stage.units && stage.units.length===1){
         openLesson(stage.units[0],open);
         return;
       }
-      openStage(stage,world);
+      openStage(stage,world,liveStatus);
     });
     world.appendChild(open);
     return world;
@@ -206,7 +223,21 @@
   }
 
 
+  function refreshRoadmapLocks(){
+    if(!root)return;
+    course.stages.forEach(function(stage,index){
+      var world=root.querySelector('.pinyin-world[data-stage-id="'+stage.id+'"]');if(!world)return;
+      var status=effectiveStageStatus(stage),locked=status==='locked';
+      world.classList.toggle('is-locked',locked);
+      var node=world.querySelector('.pinyin-route-node');if(node)node.textContent=locked?'🔒':String(index+1);
+      var reward=world.querySelector('.pinyin-route-reward');
+      if(locked&&!reward){reward=document.createElement('span');reward.className='pinyin-route-reward';reward.textContent='🔒 前のレッスンをクリアすると開く';var copy=world.querySelector('.pinyin-route-copy');if(copy)copy.appendChild(reward)}
+      if(!locked&&reward)reward.remove();
+    });
+  }
+
   window.addEventListener('koepandaVowelProgressChanged',function(){
+    refreshRoadmapLocks();
     if(!detail||detail.hidden)return;
     var p2=detail.querySelector('.pinyin-node[data-unit-id="P2"]');
     if(!p2)return;
