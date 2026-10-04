@@ -1,4 +1,4 @@
-/* DEMO 10.108.06 — dynamic roadmap unlock after all six single vowels are mastered.
+/* DEMO 10.108.08 — dynamic roadmap unlock after all six single vowels are mastered.
    Keeps later lesson content honest: the next stage opens on the roadmap, while not-yet-built unit bodies are marked as next lessons.
    Based on the layered navigation from 10.107.71.
    Chapter list, unit list, and lesson body never remain visually stacked.
@@ -34,6 +34,7 @@
       var grid=document.getElementById('kidsVowelGrid');
       return grid?grid.closest('.kids-lesson-card'):null;
     }
+    if(id==='P3')return document.getElementById('kidsInitialsLesson');
     return null;
   }
 
