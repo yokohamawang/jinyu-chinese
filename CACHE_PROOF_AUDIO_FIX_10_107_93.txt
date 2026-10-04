@@ -1,0 +1,18 @@
+Koepanda DEMO 10.107.93 — cache-proof pinyin audio fix
+
+Base: 10.107.92 FULL_AudioPoolEarFlowFix
+
+Root cause found after 10.107.92 showed no behavior change on iPhone:
+- index.html was still loading the pinyin lesson JS with the old URL query ?v=10.107.72.
+- Safari/GitHub Pages could therefore keep serving the cached pre-fix JavaScript even after newer files were uploaded.
+
+Fix:
+1. Replaced the pinyin lesson script reference with a brand-new filename:
+   js/08-demo1010793-kids-audio-cacheproof.js?v=10.107.93
+2. Removed the old js/05-demo1010734-kids-first-lesson.js from this package so there is no ambiguity about which script is live.
+3. Kept the 10.107.92 audio-pool and ear-flow corrections unchanged:
+   - ear target stays a3
+   - correct a3 selection does not auto-play a2
+   - choices are not affected by a hidden delayed a2 playback
+   - tone audio elements are preloaded/reused
+4. Added window.KOEPANDA_PINYIN_BUILD = "10.107.93" for live-build verification.
