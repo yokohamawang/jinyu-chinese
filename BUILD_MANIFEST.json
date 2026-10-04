@@ -1,21 +1,21 @@
 {
-  "version": "10.108.02",
-  "base": "10.108.01",
-  "name": "VowelAudioCalibration",
-  "build_name": "FULL_VowelAudioCalibration",
+  "version": "10.108.07",
+  "base": "10.108.06",
+  "name": "HomeEscapeFix",
+  "build_name": "FULL_HomeEscapeFix",
   "changes": [
-    "calibrate playback tempo for all 24 single-vowel tone samples a/o/e/i/u/ü",
-    "lengthen tone 1 and tone 3 slightly so contour is easier to hear",
-    "keep tone 2 and tone 4 clear while avoiding overly short playback",
-    "reduce o onset trim substantially and slow o tones, especially ō, ó and ò",
-    "preserve pitch while using slower playbackRate where browser supports it",
-    "retain 10.108.01 roadmap, imitation-recording and celebration fixes"
+    "fix floating Home button on pinyin learning-road screen not leaving the course",
+    "remove app-kids-mode before canonical homepage reset",
+    "bind Home handler in capture phase to avoid listener conflicts",
+    "reset iOS Safari scroll state after returning Home",
+    "preserve 10.108.06 roadmap unlock and all lesson/audio behavior"
   ],
   "changed_files": [
     "index.html",
+    "js/09-demo1010807-home-escape-fix.js",
     "js/08-demo1010793-kids-audio-cacheproof.js",
     "VERSION.txt",
-    "VOWEL_AUDIO_CALIBRATION_10_108_02.txt",
+    "HOME_ESCAPE_FIX_10_108_07.txt",
     "BUILD_MANIFEST.json"
   ]
 }

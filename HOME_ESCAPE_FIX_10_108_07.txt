@@ -1,0 +1,14 @@
+Koepanda 10.108.07
+
+Fix:
+- The floating Home button on the pinyin learning-road screen now always returns to the real app Home screen.
+- The fix explicitly closes app-kids-mode before calling the canonical homepage reset.
+- A capture-phase click handler avoids conflicts with older navigation listeners.
+- iPhone Safari scroll/BFCache restoration is reset after returning Home.
+
+Unchanged:
+- lesson content
+- audio files/playback rules
+- tone-choice logic
+- progress/mastery storage
+- roadmap unlock logic from 10.108.06
