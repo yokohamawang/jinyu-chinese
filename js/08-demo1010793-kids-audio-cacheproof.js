@@ -1,8 +1,8 @@
-/* DEMO 10.108.03 — vowel practice interaction + ü audio reliability fix.
+/* DEMO 10.108.04 — restore ü to the verified same-speaker Yanyu source.
    Ear replay follows the last tone heard above, imitation is free-choice 1–4 tones,
-   playback buttons have tactile feedback, and ü uses bundled local WAV files. */
+   playback buttons have tactile feedback, and all six vowel groups use one speaker. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.108.03";
+  window.KOEPANDA_PINYIN_BUILD="10.108.04";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var introToneBusy=false, introTonePending=null, introToneLastEnd=0, introToneGuardMs=180;
@@ -39,7 +39,7 @@
     u:{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}},
     'ü':{1:{rate:.90,start:0},2:{rate:.92,start:0},3:{rate:.90,start:0},4:{rate:.94,start:0}}
   };
-  function audioInfo(letter,tone){var isO=letter==='o',isUmlaut=letter==='ü',key=isUmlaut?('local-yu'+tone):(isO?('wo'+tone):audioKey(letter,tone)),src=isUmlaut?('./assets/audio/pinyin/yu'+tone+'.wav'):(PINYIN_AUDIO_BASE+(isO?('wo'+tone):audioKey(letter,tone))+'.mp3');return {isO:isO,key:key,src:src,profile:(PINYIN_PLAYBACK_PROFILE[letter]&&PINYIN_PLAYBACK_PROFILE[letter][tone])||{rate:1,start:0}}}
+  function audioInfo(letter,tone){var isO=letter==='o',key=isO?('wo'+tone):audioKey(letter,tone),src=PINYIN_AUDIO_BASE+key+'.mp3';return {isO:isO,key:key,src:src,profile:(PINYIN_PLAYBACK_PROFILE[letter]&&PINYIN_PLAYBACK_PROFILE[letter][tone])||{rate:1,start:0}}}
   function getPinyinAudio(letter,tone){var info=audioInfo(letter,tone),a=audioPool[info.key];if(!a){a=new Audio();a.preload='auto';a.playsInline=true;a.crossOrigin='anonymous';a.src=info.src;audioPool[info.key]=a;try{a.load()}catch(e){}}return {audio:a,info:info}}
   function warmPinyin(letter){for(var t=1;t<=4;t++)getPinyinAudio(letter,t)}
   function showAudioMissing(letter,tone){var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';console.error(msg,letter,tone);var hint=el('kidsToneHint');if(hint)hint.textContent='⚠ '+msg}
