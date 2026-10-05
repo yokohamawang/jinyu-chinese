@@ -67,7 +67,7 @@
 <link rel="stylesheet" href="./css/65-demo1010797-kids-home-back-unified.css?v=10.107.97" id="demo1010797-kids-home-back-unified">
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.107.99" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
-<link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.08" id="demo1010808-initials-forest">
+<link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.11" id="demo1010808-initials-forest">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -320,7 +320,7 @@ window.koepandaEnterKidsCourse=function(ev){
       <div class="initials-forest-copy">
         <span class="initials-kicker">LESSON 3 · 声母の森</span>
         <h2>b・p・m・f の森へ</h2>
-        <p>同じ「あ」の音につないで、<strong>くちびると息の違い</strong>を感じよう。</p>
+        <p>声母<strong>そのものの音</strong>を聞いて、くちびると息の違いを感じよう。</p>
       </div>
       <div class="initials-forest-art" aria-hidden="true">
         <span class="tree tree-a">♣</span><span class="tree tree-b">♣</span>
@@ -336,10 +336,11 @@ window.koepandaEnterKidsCourse=function(ev){
     </div>
 
     <section class="initials-panel initials-sound-panel">
-      <div class="initials-panel-head"><span>👂</span><div><b>まず、4つの音に会おう</b><small>声母だけを無理に伸ばさず、「a」とつないで聞くよ</small></div></div>
+      <div class="initials-panel-head"><span>👂</span><div><b>まず、4つの音に会おう</b><small>母音を足さず、b・p・m・f の音そのものを聞いてみよう</small></div></div>
+      <div class="initials-source-note"><span>🎙️</span><div><b>単声母のお手本（試作音）</b><small>この版は「母音を足さない声母」を確認するための試作音です。正式版は中国語母語話者の収録音声に差し替えます。</small></div></div>
       <div class="initials-letter-grid" id="initialsLetterGrid"></div>
       <div class="initials-tone-ribbon" id="initialsToneRibbon" aria-live="polite">
-        <div><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">bā</strong><small id="initialsFocusTip">くちびるを閉じて、そっと開く</small></div>
+        <div><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">[p] · 短い音</strong><small id="initialsFocusTip">くちびるを閉じる → 一瞬だけ開く。母音を足さない</small></div>
         <div class="initials-tone-buttons" id="initialsToneButtons"></div>
       </div>
     </section>
@@ -347,9 +348,9 @@ window.koepandaEnterKidsCourse=function(ev){
     <section class="initials-panel initials-air-panel" id="initialsAirPanel">
       <div class="initials-panel-head"><span>🌬️</span><div><b>b と p、違いは「息」</b><small>口の形は似ている。手のひらを口の前に置いて比べよう</small></div></div>
       <div class="air-compare">
-        <button type="button" class="air-card" data-air="b"><span class="air-letter">b</span><span class="lip-icon"><i></i></span><b>bā</b><small>息は弱め</small><em>タップして聞く</em></button>
+        <button type="button" class="air-card" data-air="b"><span class="air-letter">b</span><span class="lip-icon"><i></i></span><b>b</b><small>無気音 · 息は弱め</small><em>タップして聞く</em></button>
         <div class="air-stream" aria-hidden="true"><i></i><i></i><i></i></div>
-        <button type="button" class="air-card is-strong" data-air="p"><span class="air-letter">p</span><span class="lip-icon"><i></i></span><b>pā</b><small>息を強く出す</small><em>タップして聞く</em></button>
+        <button type="button" class="air-card is-strong" data-air="p"><span class="air-letter">p</span><span class="lip-icon"><i></i></span><b>p</b><small>有気音 · 息を強く出す</small><em>タップして聞く</em></button>
       </div>
       <div class="air-paper"><span>▱</span><div><b>紙きれテスト</b><small>p のときだけ、紙が大きく揺れるイメージ。</small></div></div>
     </section>
@@ -357,8 +358,8 @@ window.koepandaEnterKidsCourse=function(ev){
     <section class="initials-panel initials-mouth-panel">
       <div class="initials-panel-head"><span>👄</span><div><b>m と f は口の使い方が違う</b><small>見た目でも分かるように、口のポイントを覚えよう</small></div></div>
       <div class="mouth-compare-grid">
-        <button type="button" class="mouth-sound-card" data-mouth="m"><span class="mouth-sketch mouth-m"><i></i></span><strong>mā</strong><b>両くちびるを閉じる</b><small>鼻に響かせてから「a」へ</small></button>
-        <button type="button" class="mouth-sound-card" data-mouth="f"><span class="mouth-sketch mouth-f"><i></i></span><strong>fā</strong><b>上の歯＋下くちびる</b><small>すき間から息を出して「a」へ</small></button>
+        <button type="button" class="mouth-sound-card" data-mouth="m"><span class="mouth-sketch mouth-m"><i></i></span><strong>m</strong><b>両くちびるを閉じる</b><small>母音を足さず、鼻に短く響かせる</small></button>
+        <button type="button" class="mouth-sound-card" data-mouth="f"><span class="mouth-sketch mouth-f"><i></i></span><strong>f</strong><b>上の歯＋下くちびる</b><small>母音を足さず、すき間から細く息を流す</small></button>
       </div>
     </section>
 
@@ -448,9 +449,9 @@ SOFTWARE.
 <script src="./data/kids-pinyin.js?v=10.107.72"></script>
 <script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.05"></script>
 <script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.107.72"></script>
-<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.08"></script>
+<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.11"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
-<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.08"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.11"></script>
 
 
 <link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107.72" id="demo10100-step23-header-align-fix">

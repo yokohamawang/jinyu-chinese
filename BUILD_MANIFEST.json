@@ -1,21 +1,21 @@
 {
-  "version": "10.108.08",
-  "base": "10.108.06",
-  "name": "HomeEscapeFix",
-  "build_name": "FULL_HomeEscapeFix",
+  "version": "10.108.11",
+  "base": "10.108.10",
+  "name": "InitialLessonPolish",
+  "build_name": "FULL_InitialLessonPolish",
   "changes": [
-    "fix floating Home button on pinyin learning-road screen not leaving the course",
-    "remove app-kids-mode before canonical homepage reset",
-    "bind Home handler in capture phase to avoid listener conflicts",
-    "reset iOS Safari scroll state after returning Home",
-    "preserve 10.108.06 roadmap unlock and all lesson/audio behavior"
+    "remove misleading bō/pō/mō/fó labels from the isolated-initial lesson",
+    "clarify b/p as unaspirated vs aspirated and m/f as vowel-free initial sounds",
+    "make the single-initial listen action full-width for mobile usability",
+    "label current audio honestly as prototype and reserve native-speaker local WAV for formal release",
+    "preserve full b/p/m/f listen-airflow-mouth-imitation-recording-quiz flow"
   ],
   "changed_files": [
     "index.html",
-    "js/09-demo1010807-home-escape-fix.js",
-    "js/08-demo1010793-kids-audio-cacheproof.js",
+    "css/68-demo1010808-initials-forest.css",
+    "js/10-demo1010808-initials-forest.js",
     "VERSION.txt",
-    "HOME_ESCAPE_FIX_10_108_07.txt",
+    "INITIAL_LESSON_POLISH_10_108_11.txt",
     "BUILD_MANIFEST.json"
   ]
 }
