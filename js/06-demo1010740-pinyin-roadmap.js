@@ -1,4 +1,4 @@
-/* DEMO 10.108.08 — dynamic roadmap unlock after all six single vowels are mastered.
+/* DEMO 10.108.10 — dynamic roadmap unlock after all six single vowels are mastered.
    Keeps later lesson content honest: the next stage opens on the roadmap, while not-yet-built unit bodies are marked as next lessons.
    Based on the layered navigation from 10.107.71.
    Chapter list, unit list, and lesson body never remain visually stacked.
@@ -12,12 +12,17 @@
   var lessonMarker=null;
 
 
+  function devUnlockEnabled(){
+    try{return typeof window.koepandaDevUnlockEnabled==='function' && window.koepandaDevUnlockEnabled();}catch(e){return false}
+  }
+
   function allSingleVowelsComplete(){
     return typeof window.koepandaIsUnitComplete==='function' &&
       window.koepandaIsUnitComplete('P1') && window.koepandaIsUnitComplete('P2');
   }
 
   function effectiveStageStatus(stage){
+    if(devUnlockEnabled())return 'next';
     if(stage && stage.id==='P3-P8' && allSingleVowelsComplete())return 'next';
     return stage ? stage.status : 'locked';
   }
@@ -123,6 +128,7 @@
   }
 
   function unitLocked(unit,stageStatus){
+    if(devUnlockEnabled())return false;
     if(stageStatus==='locked')return true;
     if(unit.id==='P2'&&typeof window.koepandaIsUnitComplete==='function')return !window.koepandaIsUnitComplete('P1');
     return false;
@@ -236,6 +242,11 @@
       if(!locked&&reward)reward.remove();
     });
   }
+
+  window.addEventListener('koepandaDevModeChanged',function(){
+    if(lessonState)return;
+    render();
+  });
 
   window.addEventListener('koepandaVowelProgressChanged',function(){
     refreshRoadmapLocks();
