@@ -1,4 +1,4 @@
-Koepanda DEMO 10.108.08 — 声母の森 b・p・m・f 第一完整样板课
+Koepanda DEMO 10.108.10 — 声母の森 b・p・m・f 第一完整样板课
 
 基于 10.108.07 FULL HomeEscapeFix。
 新增：
