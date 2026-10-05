@@ -1,0 +1,14 @@
+Koepanda 10.108.13 — Initial Audio + Mouth Diagram Fix
+
+Base: 10.108.12 FULL_DevTestMode
+
+Changes
+- b / p / m / f isolated-initial playback now uses local WAV first, avoiding iPhone Safari Private-mode Web Audio resume issues.
+- Web Audio prototype remains as fallback only.
+- Added assets/audio/initials/b.wav, p.wav, m.wav, f.wav.
+- Improved m/f mouth illustrations so closed lips vs upper-teeth + lower-lip contact are visually distinct.
+- Added mobile overflow/crop protection and cache-busting for the initials CSS/JS.
+- Developer TEST mode from 10.108.12 is preserved.
+
+Note
+The four WAV files are still prototype isolated consonant cues. Final teaching audio should be replaced by recordings from one Mandarin native speaker.

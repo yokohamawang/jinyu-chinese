@@ -1,21 +1,24 @@
 {
-  "version": "10.108.11",
-  "base": "10.108.10",
-  "name": "InitialLessonPolish",
-  "build_name": "FULL_InitialLessonPolish",
+  "version": "10.108.13",
+  "base": "10.108.12",
+  "name": "InitialAudioMouthFix",
+  "build_name": "FULL_InitialAudioMouthFix",
   "changes": [
-    "remove misleading bō/pō/mō/fó labels from the isolated-initial lesson",
-    "clarify b/p as unaspirated vs aspirated and m/f as vowel-free initial sounds",
-    "make the single-initial listen action full-width for mobile usability",
-    "label current audio honestly as prototype and reserve native-speaker local WAV for formal release",
-    "preserve full b/p/m/f listen-airflow-mouth-imitation-recording-quiz flow"
+    "fix b p m f playback on iPhone Safari/Private mode by using local WAV as primary audio",
+    "keep Web Audio synthesis only as fallback",
+    "improve m/f mouth diagrams and prevent mobile clipping",
+    "cache-bust initials lesson JS/CSS while preserving 10.108.12 developer TEST mode"
   ],
   "changed_files": [
     "index.html",
     "css/68-demo1010808-initials-forest.css",
     "js/10-demo1010808-initials-forest.js",
+    "assets/audio/initials/b.wav",
+    "assets/audio/initials/p.wav",
+    "assets/audio/initials/m.wav",
+    "assets/audio/initials/f.wav",
     "VERSION.txt",
-    "INITIAL_LESSON_POLISH_10_108_11.txt",
+    "INITIAL_AUDIO_MOUTH_FIX_10_108_13.txt",
     "BUILD_MANIFEST.json"
   ]
 }
