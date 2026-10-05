@@ -1,6 +1,7 @@
-/* DEMO 10.108.11 — isolated initial-sound lesson polish for b p m f.
-   Important: these are vowel-free articulation previews generated with Web Audio,
-   used to test the learning experience before final native-speaker WAV replacement. */
+/* DEMO 10.108.13 — Safari-safe isolated initial-sound playback for b p m f.
+   Local WAV is the primary path so iPhone Safari/Private mode can play on the first tap.
+   Web Audio remains only as a fallback. These are vowel-free prototype sounds;
+   the final course should still replace them with one native Mandarin speaker. */
 (function(){
   var letters=['b','p','m','f'];
   var sounds={
@@ -15,7 +16,13 @@
     m:'くちびるを閉じたまま、鼻から「んー」と響かせる',
     f:'上の歯＋下くちびる。細い息だけを流す'
   };
-  var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null;
+  var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null, modelAudio=null;
+  var soundFiles={
+    b:'./assets/audio/initials/b.wav?v=10.108.13',
+    p:'./assets/audio/initials/p.wav?v=10.108.13',
+    m:'./assets/audio/initials/m.wav?v=10.108.13',
+    f:'./assets/audio/initials/f.wav?v=10.108.13'
+  };
   var quizOrder=['p','m','b','f'], quizIndex=0, quizAnswered=false, quizScore=0;
 
   function el(id){return document.getElementById(id)}
@@ -72,14 +79,28 @@
     src.connect(bp).connect(g).connect(c.destination);
     src.start(now); src.stop(now+.4); activeNodes.push(src);
   }
-  function play(letter){
+  function playSynthetic(letter){
     stopAudio();
-    var c=audioCtx(); if(!c)return;
+    var c=audioCtx(); if(!c)return false;
     var now=c.currentTime+.025;
     if(letter==='b') burst(c,now,false);
     else if(letter==='p') burst(c,now,true);
     else if(letter==='m') hum(c,now);
     else if(letter==='f') fricative(c,now);
+    return true;
+  }
+  function play(letter){
+    stopAudio();
+    try{
+      if(modelAudio){modelAudio.pause();modelAudio.currentTime=0}
+      modelAudio=new Audio(soundFiles[letter]);
+      modelAudio.preload='auto';
+      modelAudio.volume=1;
+      var p=modelAudio.play();
+      if(p&&typeof p.catch==='function'){p.catch(function(){playSynthetic(letter)})}
+      return;
+    }catch(e){}
+    playSynthetic(letter);
   }
   function setStep(n){
     document.querySelectorAll('.initials-progress span').forEach(function(x){
