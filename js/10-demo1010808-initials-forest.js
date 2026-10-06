@@ -1,4 +1,4 @@
-/* DEMO 10.108.16 — readable initial models + explicit tone-placement rule.
+/* DEMO 10.108.17 — visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
    
@@ -183,7 +183,7 @@
       b.innerHTML='<span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span><span class="initial-articulation">'+icon+'<em>'+cue.label+'</em></span>';
       b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
       var c=document.createElement('button'); c.type='button'; c.dataset.letter=letter;
-      c.textContent=letter+' '+sounds[letter].mark;
+      c.innerHTML='<span class="free-letter">'+letter+'</span><span class="free-ipa">'+sounds[letter].mark+'</span>';
       c.addEventListener('click',function(){select(letter)}); free.appendChild(c)
     });
     select('b')
