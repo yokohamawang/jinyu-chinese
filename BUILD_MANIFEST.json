@@ -1,23 +1,22 @@
 {
-  "version": "10.108.20",
-  "base": "10.108.19",
-  "name": "DTNLFirstLesson",
-  "build_name": "FULL_DTNLFirstLesson",
+  "version": "10.108.21",
+  "base": "10.108.20",
+  "name": "DTNLAuditFix",
+  "build_name": "FULL_DTNLAuditFix",
   "changes": [
-    "add P4 d/t/n/l first lesson and unlock it after P3 completion",
-    "add tongue-tip articulation visual system for d/t/n/l",
-    "add guide listening, articulation contrast, free practice and 4-question mini-check",
-    "persist P4 completion after passing at least 3 of 4 questions",
-    "keep P5-P8 locked until their lesson bodies are implemented"
+    "audit P4 against P3 interaction and layout bugs",
+    "stabilize P4 copy/feedback heights and lock visual containers against wobble",
+    "stop overlapping synthetic/TTS audio before new playback",
+    "refresh P3-P8 stage detail when P3 completion changes so P4 unlock state updates",
+    "show a specific b/p/m/f completion hint for locked P4"
   ],
   "changed_files": [
     "index.html",
     "css/70-demo1010820-dtnl-first-lesson.css",
     "js/12-demo1010820-dtnl-first-lesson.js",
     "js/06-demo1010740-pinyin-roadmap.js",
-    "js/11-demo1010812-dev-test-mode.js",
     "VERSION.txt",
-    "DTNL_FIRST_LESSON_10_108_20.txt",
+    "DTNL_AUDIT_FIX_10_108_21.txt",
     "BUILD_MANIFEST.json"
   ]
 }

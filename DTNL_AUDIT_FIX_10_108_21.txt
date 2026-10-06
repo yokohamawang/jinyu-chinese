@@ -1,0 +1,11 @@
+DEMO 10.108.21 — d/t/n/l audit fix
+
+Checked the new P4 lesson against the issues previously found in b/p/m/f.
+- keep focus copy and feedback areas at stable heights to avoid vertical jumping
+- lock P4 visual containers so only tongue/air parts animate
+- stop previous synthetic/TTS audio before starting another guide sound
+- refresh P3-P8 stage detail when P3 completion changes so P4 unlock is immediately reflected
+- show a specific P4 unlock hint: b・p・m・f をクリアすると開く
+- retain explicit score/result flow and choice reset behavior
+
+Remaining content-quality note: P4 uses browser/native guide playback rather than a dedicated same-speaker local WAV set. Replace with native-speaker local WAVs when that recording set is ready.
