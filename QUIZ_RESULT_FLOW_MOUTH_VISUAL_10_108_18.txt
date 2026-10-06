@@ -1,0 +1,15 @@
+Koepanda DEMO 10.108.18 FULL — QuizResultFlowMouthVisual
+Base: 10.108.17 FULL_InitialVisualMouthPolish
+
+Changes:
+1. Fix initials reward visibility: hidden reward/result/quiz panels now truly use display:none.
+2. Mini-check now shows an explicit result card with score (x/4), pass/fail state, and next action.
+3. P3 completion is saved only when the learner passes (3/4 or 4/4). Failed attempts no longer mark b/p/m/f complete.
+4. Passing shows the b/p/m/f clear card and a button that returns to the 声母の森 roadmap and focuses P4 d/t/n/l.
+5. Failed attempts show a retry button and restart the 4-question mini-check cleanly.
+6. b/p/m/f focus descriptions keep a fixed two-line height to prevent vertical jumping when switching letters.
+7. Replace the long bottom tone sentence in the focus ribbon with a linked mouth/airflow visual for b/p/m/f plus the compact note “声調は韻母につくよ”.
+8. Cache-bust initials CSS/JS references to v=10.108.18.
+
+Note:
+P4 d/t/n/l lesson body is not yet implemented in this package. The next-action therefore returns to the roadmap and highlights P4 rather than opening nonexistent lesson content.

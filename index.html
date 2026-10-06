@@ -67,7 +67,7 @@
 <link rel="stylesheet" href="./css/65-demo1010797-kids-home-back-unified.css?v=10.107.97" id="demo1010797-kids-home-back-unified">
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.107.99" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
-<link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.17" id="demo1010808-initials-forest">
+<link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.18" id="demo1010808-initials-forest">
 <link rel="stylesheet" href="./css/69-demo1010812-dev-test-mode.css?v=10.108.12" id="demo1010812-dev-test-mode">
 </head><body class="app-home-mode">
 
@@ -353,8 +353,10 @@ window.koepandaEnterKidsCourse=function(ev){
       <div class="initials-source-note"><span>🎙️</span><div><b>お手本は「呼読音」＋「声母の本音」</b><small>波 bō・泼 pō・摸 mō・佛 fó のような呼読音は、声母を聞き取りやすくするための補助です。声母そのものには四声はつきません。</small></div></div>
       <div class="initials-letter-grid" id="initialsLetterGrid"></div>
       <div class="initials-tone-ribbon" id="initialsToneRibbon" aria-live="polite">
-        <div><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">[p] · 短い音</strong><small id="initialsFocusTip">くちびるを閉じる → 一瞬だけ開く。母音を足さない</small></div>
+        <div class="initials-focus-copy"><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">[p] · 短い音</strong><small id="initialsFocusTip">くちびるを閉じる → 一瞬だけ開く。母音を足さない</small></div>
         <div class="initials-tone-buttons" id="initialsToneButtons"></div>
+        <div class="initials-focus-visual" id="initialsFocusVisual" aria-label="口の形と息の流れ"></div>
+        <div class="initials-tone-mini-note">♪ 声調は韻母につくよ</div>
       </div>
     </section>
 
@@ -397,8 +399,18 @@ window.koepandaEnterKidsCourse=function(ev){
       <button type="button" class="initials-quiz-next" id="initialsQuizNext" hidden>次の問題へ →</button>
     </section>
 
+    <section class="initials-result" id="initialsResult" hidden aria-live="polite">
+      <div class="initials-result-badge" id="initialsResultBadge">✓</div>
+      <div class="initials-result-copy">
+        <strong id="initialsResultTitle">ミニチェック結果</strong>
+        <span id="initialsResultScore">4問中 0問正解</span>
+        <small id="initialsResultMessage"></small>
+      </div>
+      <button type="button" class="initials-result-action" id="initialsResultAction"></button>
+    </section>
+
     <section class="initials-reward" id="initialsReward" hidden>
-      <div class="initials-reward-medal">🌲</div><div><strong>b・p・m・f クリア！</strong><span>声母の森、最初の道を進めたよ</span><small>次は d・t・n・l へ</small></div>
+      <div class="initials-reward-medal">🌲</div><div><strong>b・p・m・f クリア！</strong><span>声母の森の最初のステップをクリアしたよ</span><small>次は d・t・n・l へ進もう！</small></div>
     </section>
   </article>
 
@@ -465,7 +477,7 @@ SOFTWARE.
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.12"></script>
 <script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.12"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
-<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.17"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.18"></script>
 
 
 <link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107.72" id="demo10100-step23-header-align-fix">
