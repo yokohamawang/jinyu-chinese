@@ -40,6 +40,7 @@
       return grid?grid.closest('.kids-lesson-card'):null;
     }
     if(id==='P3')return document.getElementById('kidsInitialsLesson');
+    if(id==='P4')return document.getElementById('kidsInitialsDTNLLesson');
     return null;
   }
 
@@ -131,6 +132,10 @@
     if(devUnlockEnabled())return false;
     if(stageStatus==='locked')return true;
     if(unit.id==='P2'&&typeof window.koepandaIsUnitComplete==='function')return !window.koepandaIsUnitComplete('P1');
+    if(unit.id==='P4'){
+      try{return localStorage.getItem('koepandaInitialP3Complete')!=='1'}catch(e){return true}
+    }
+    if(/^P[5-8]$/.test(unit.id))return true;
     return false;
   }
 

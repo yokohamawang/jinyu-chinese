@@ -21,7 +21,7 @@
   function resetProgress(){
     if(!confirm('学习进度会被清空，但测试模式设置会保留。确定重置吗？'))return;
     try{
-      ['koepandaVowelProgress54','koepandaVowelMastery69','koepandaInitialP3Complete'].forEach(function(k){localStorage.removeItem(k)});
+      ['koepandaVowelProgress54','koepandaVowelMastery69','koepandaInitialP3Complete','koepandaInitialP4Complete'].forEach(function(k){localStorage.removeItem(k)});
       Object.keys(localStorage).forEach(function(k){if(/^koepanda.*(Progress|Mastery|Learning|Daily)/i.test(k)&&k!==KEY)localStorage.removeItem(k)});
     }catch(e){}
     location.reload();
