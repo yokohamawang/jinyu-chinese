@@ -1,4 +1,5 @@
-/* DEMO 10.108.17 — visual/mouth polish + readable initial models + explicit tone-placement rule.
+/* DEMO 10.108.18 — quiz result flow + stable two-line descriptions + linked mouth/airflow visual.
+   Builds on 10.108.17 visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
    
@@ -24,6 +25,12 @@
     p:'b と同じ口 → 開く瞬間に強く息を出す（有気音）',
     m:'くちびるを閉じたまま、鼻から「んー」と響かせる',
     f:'上の歯＋下くちびる。細い息だけを流す'
+  };
+  var focusVisuals={
+    b:{title:'両くちびるを閉じる',sub:'開く瞬間は、息を弱く',kind:'b',air:'弱い息'},
+    p:{title:'両くちびるを閉じる',sub:'開く瞬間に、息を強く',kind:'p',air:'強い息'},
+    m:{title:'くちびるは閉じたまま',sub:'音は鼻へ響かせる',kind:'m',air:'鼻に響く'},
+    f:{title:'上の歯を下くちびるへ',sub:'すき間から細い息を長く',kind:'f',air:'細い息'}
   };
   var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null, modelAudio=null;
   var soundFiles={
@@ -145,6 +152,19 @@
       x.classList.toggle('is-done',k<n)
     })
   }
+  function renderFocusVisual(letter){
+    var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
+    var art='';
+    if(letter==='m'){
+      art='<span class="focus-mouth focus-mouth-m" aria-hidden="true"><i class="focus-face"></i><i class="focus-lips"></i><i class="focus-nose-wave w1"></i><i class="focus-nose-wave w2"></i></span>';
+    }else if(letter==='f'){
+      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true"><i class="focus-teeth"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i></span>';
+    }else{
+      art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true"><i class="focus-lips"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+    }
+    box.className='initials-focus-visual is-'+letter;
+    box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
+  }
   function select(letter){
     selected=letter;
     document.querySelectorAll('.initials-letter-card,.initials-free-choice button').forEach(function(b){
@@ -154,6 +174,7 @@
     if(f)f.textContent=letter;
     if(s)s.textContent=guide[letter].hanzi+' '+guide[letter].pinyin+' · '+sounds[letter].mark;
     if(t)t.textContent=tips[letter];
+    renderFocusVisual(letter);
     renderToneButtons()
   }
   function renderToneButtons(){
@@ -219,12 +240,49 @@
     if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz();playQuiz();return}
     finishQuiz()
   }
+  function goBackToInitialRoad(){
+    var back=document.getElementById('pinyinLessonBack');
+    if(back)back.click();
+    window.setTimeout(function(){
+      var world=document.querySelector('.pinyin-world[data-stage-id="P3-P8"]');
+      var open=world&&world.querySelector('.pinyin-world-open');
+      if(open)open.click();
+      window.setTimeout(function(){
+        var p4=document.querySelector('.pinyin-node[data-unit-id="P4"]');
+        if(p4){p4.classList.add('is-next-focus');p4.scrollIntoView({block:'center',behavior:'smooth'})}
+      },90);
+    },90);
+  }
+  function retryQuiz(){
+    var panel=el('initialsQuizPanel'),result=el('initialsResult'),reward=el('initialsReward');
+    if(result)result.hidden=true;if(reward)reward.hidden=true;if(panel)panel.hidden=false;
+    quizIndex=0;quizScore=0;renderQuiz();setStep(4);
+    requestAnimationFrame(function(){if(panel)panel.scrollIntoView({block:'start',behavior:'smooth'})});
+  }
   function finishQuiz(){
-    var panel=el('initialsQuizPanel'),reward=el('initialsReward');
-    if(panel)panel.hidden=true; if(reward)reward.hidden=false; setStep(4);
-    try{localStorage.setItem('koepandaInitialP3Complete','1');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:true}}))}catch(e){}
-    var small=reward&&reward.querySelector('small');
-    if(small)small.textContent=quizScore>=3?'単音を聞き分けた！ 次は声母＋韻母へ':'まずはクリア！ 苦手な音はいつでも戻って練習できるよ'
+    var panel=el('initialsQuizPanel'),result=el('initialsResult'),reward=el('initialsReward');
+    var passed=quizScore>=3,total=quizOrder.length;
+    if(panel)panel.hidden=true;
+    if(result)result.hidden=false;
+    if(reward)reward.hidden=!passed;
+    setStep(4);
+
+    var badge=el('initialsResultBadge'),title=el('initialsResultTitle'),score=el('initialsResultScore'),msg=el('initialsResultMessage'),action=el('initialsResultAction');
+    if(badge){badge.textContent=passed?'✓':'↻';badge.className='initials-result-badge '+(passed?'is-pass':'is-retry')}
+    if(title)title.textContent=passed?'ミニチェック合格！':'あと一歩！';
+    if(score)score.textContent=total+'問中 '+quizScore+'問正解';
+    if(msg)msg.textContent=passed?'b・p・m・f の違いを聞き分けられたよ。':'3問以上でクリア。苦手な音をもう一度聞いて挑戦しよう。';
+    if(action){
+      action.textContent=passed?'声母の森へ戻る →':'もう一度やってみる';
+      action.onclick=passed?goBackToInitialRoad:retryQuiz;
+    }
+
+    if(passed){
+      try{localStorage.setItem('koepandaInitialP3Complete','1');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:true}}))}catch(e){}
+    }else{
+      try{localStorage.removeItem('koepandaInitialP3Complete');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:false}}))}catch(e){}
+    }
+    requestAnimationFrame(function(){if(result)result.scrollIntoView({block:'center',behavior:'smooth'})});
   }
   function mimeType(){
     if(typeof MediaRecorder==='undefined')return '';
@@ -261,6 +319,9 @@
   }
   function init(){
     if(!el('kidsInitialsLesson'))return;
+    var initialReward=el('initialsReward'),initialResult=el('initialsResult');
+    if(initialReward)initialReward.hidden=true;
+    if(initialResult)initialResult.hidden=true;
     renderLetters();
     document.querySelectorAll('.air-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.air)})});
     document.querySelectorAll('.mouth-sound-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.mouth)})});
