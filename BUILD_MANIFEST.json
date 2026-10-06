@@ -1,21 +1,21 @@
 {
-  "version": "10.108.22",
-  "base": "10.108.21",
-  "name": "DTNLTonguePositionFix",
-  "build_name": "FULL_DTNLTonguePositionFix",
+  "version": "10.108.23",
+  "base": "10.108.22",
+  "name": "DTNLStyleRecordingFlow",
+  "build_name": "FULL_DTNLStyleRecordingFlow",
   "changes": [
-    "change P4 hero tongue badge into neutral lesson-marker decoration",
-    "mark the alveolar ridge behind the upper front teeth in the teaching diagram",
-    "align d/t/n/l tongue-tip animation to the marked alveolar ridge",
-    "preserve d/t airflow, n nasal resonance and l lateral airflow differences",
-    "cache-bust P3/P4 lesson CSS and JS to 10.108.22"
+    "replace P4 hero number badge with upper-right music-note gem matching P3 visual language",
+    "restore recording and own-voice playback to P4 practice flow",
+    "disable mini-check until recording completes successfully",
+    "hide P4 practice panel when mini-check starts, matching P3 flow",
+    "cache-bust P4 and initials assets to 10.108.23"
   ],
   "changed_files": [
     "index.html",
     "css/70-demo1010820-dtnl-first-lesson.css",
     "js/12-demo1010820-dtnl-first-lesson.js",
     "VERSION.txt",
-    "DTNL_TONGUE_POSITION_FIX_10_108_22.txt",
+    "DTNL_STYLE_RECORDING_FLOW_10_108_23.txt",
     "BUILD_MANIFEST.json"
   ]
 }

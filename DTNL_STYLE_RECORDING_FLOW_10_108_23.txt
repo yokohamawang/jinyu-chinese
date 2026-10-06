@@ -1,0 +1,8 @@
+DEMO 10.108.23 — P4 style + recording flow alignment
+
+- Replaced ambiguous large “4” hero circle with the same music-note gem language used in b/p/m/f.
+- Moved the music-note gem into the upper-right decorative area so it does not compete with the lesson title/copy.
+- Restored the practice flow used in b/p/m/f: choose → model listen → record → play own voice → mini-check.
+- Mini-check remains disabled until a recording is successfully completed.
+- Added MediaRecorder handling, playback, feedback state, microphone-permission messaging, and repeat recording.
+- Hide the practice panel after entering the mini-check, matching the preceding lesson's flow.
