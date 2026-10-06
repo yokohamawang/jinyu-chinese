@@ -145,7 +145,7 @@
     var locked=unitLocked(unit,stageStatus),hasBody=!!targetForUnit(unit.id);
     if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked'); if(!locked&&!hasBody)b.classList.add('is-upcoming');
     b.disabled=locked||(!hasBody&&!isCurrent);
-    var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習'));
+    var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(locked&&unit.id==='P4'?'b・p・m・f をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習')));
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
     if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
@@ -251,6 +251,16 @@
   window.addEventListener('koepandaDevModeChanged',function(){
     if(lessonState)return;
     render();
+  });
+
+
+  window.addEventListener('koepandaInitialProgressChanged',function(){
+    if(!root)return;
+    var world=document.querySelector('.pinyin-world[data-stage-id="P3-P8"]');
+    if(detail && !detail.hidden && lastStageId==='P3-P8' && world){
+      var stage=course.stages.find(function(x){return x.id==='P3-P8'});
+      if(stage)openStage(stage,world,effectiveStageStatus(stage));
+    }
   });
 
   window.addEventListener('koepandaVowelProgressChanged',function(){
