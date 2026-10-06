@@ -1,21 +1,23 @@
 {
-  "version": "10.108.19",
-  "base": "10.108.18",
-  "name": "StableMouthMotion",
-  "build_name": "FULL_StableMouthMotion",
+  "version": "10.108.20",
+  "base": "10.108.19",
+  "name": "DTNLFirstLesson",
+  "build_name": "FULL_DTNLFirstLesson",
   "changes": [
-    "move b/p/m/f focus visual to stable CSS micro-animation with no left-right wobble",
-    "animate only lips, jaw, airflow and nasal resonance while keeping the panel fixed",
-    "shorten and soften b/p airflow, keep m ending slightly open",
-    "refine f motion to start with upper teeth on lower lip, slight mouth-corner tension, then open down/back with thin airflow",
-    "cache-bust initials CSS and JS to 10.108.19"
+    "add P4 d/t/n/l first lesson and unlock it after P3 completion",
+    "add tongue-tip articulation visual system for d/t/n/l",
+    "add guide listening, articulation contrast, free practice and 4-question mini-check",
+    "persist P4 completion after passing at least 3 of 4 questions",
+    "keep P5-P8 locked until their lesson bodies are implemented"
   ],
   "changed_files": [
     "index.html",
-    "css/68-demo1010808-initials-forest.css",
-    "js/10-demo1010808-initials-forest.js",
+    "css/70-demo1010820-dtnl-first-lesson.css",
+    "js/12-demo1010820-dtnl-first-lesson.js",
+    "js/06-demo1010740-pinyin-roadmap.js",
+    "js/11-demo1010812-dev-test-mode.js",
     "VERSION.txt",
-    "STABLE_MOUTH_MOTION_10_108_19.txt",
+    "DTNL_FIRST_LESSON_10_108_20.txt",
     "BUILD_MANIFEST.json"
   ]
 }

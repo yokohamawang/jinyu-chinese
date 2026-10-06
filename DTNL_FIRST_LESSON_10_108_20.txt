@@ -1,0 +1,8 @@
+DEMO 10.108.20 — d/t/n/l first lesson
+
+- Added P4 d・t・n・l as the next playable lesson after b・p・m・f
+- Unlocks P4 only after P3 is passed
+- Added tongue-tip focused visual system for d/t/n/l
+- Added guide listening, articulation contrast, free practice and 4-question mini-check
+- P4 pass threshold is 3/4 and is saved as koepandaInitialP4Complete
+- Kept tone placement note: tones belong on finals, not initials
