@@ -133,23 +133,65 @@
 .initials-focus-copy{align-self:stretch}
 .initials-tone-ribbon #initialsFocusTip{display:block;min-height:2.8em;line-height:1.4}
 .initials-tone-ribbon:after{content:none!important;display:none!important}
+
 .initials-focus-visual{grid-column:1/-1;display:grid;grid-template-columns:104px 1fr;align-items:center;gap:12px;min-height:92px;padding:10px 12px;border-radius:17px;background:rgba(255,255,255,.70);border:1px solid rgba(54,123,99,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
 .initials-focus-visual>div b{display:block;font-size:12px;line-height:1.4;color:#315f52}.initials-focus-visual>div small{display:block;margin-top:2px;font-size:10px;line-height:1.45;color:#7b8f87;font-weight:800}.initials-focus-visual>div em{display:inline-flex;margin-top:6px;padding:3px 8px;border-radius:99px;background:#e8f5ef;color:#3f806b;font-size:9px;font-style:normal;font-weight:950}
 .initials-tone-mini-note{grid-column:1/-1;text-align:center;padding-top:7px;border-top:1px dashed rgba(47,122,100,.14);font-size:9.5px;font-weight:900;color:#729087}
-.focus-mouth{position:relative;display:block;width:100px;height:72px;border-radius:21px;background:linear-gradient(180deg,#fffdfb,#fff1eb);box-shadow:inset 0 0 0 1px rgba(197,124,111,.12),0 5px 12px rgba(81,63,56,.05)}
-.focus-lips{position:absolute;left:20px;top:31px;width:55px;height:18px;border-radius:50%;background:#ec8b82;box-shadow:inset 0 -5px 0 #cf716b}
-.focus-air-line{position:absolute;left:76px;height:2px;border-radius:8px;background:#66aa94;transform-origin:left center}
-.focus-air-line.l1{top:28px}.focus-air-line.l2{top:36px}.focus-air-line.l3{top:44px}
-.focus-mouth-b .focus-air-line{width:12px;opacity:.55}.focus-mouth-b .l1,.focus-mouth-b .l3{width:8px}
-.focus-mouth-p .focus-air-line{width:25px;height:3px}.focus-mouth-p .l1{transform:rotate(-9deg)}.focus-mouth-p .l3{transform:rotate(9deg)}
-.focus-mouth-m .focus-lips{left:22px;top:37px;width:56px;height:15px}
-.focus-nose-wave{position:absolute;width:15px;height:9px;border:3px solid #66aa94;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;transform:rotate(-45deg)}
-.focus-mouth-m .w1{left:34px;top:15px}.focus-mouth-m .w2{left:53px;top:11px}
-.focus-teeth{position:absolute;left:22px;top:25px;width:54px;height:13px;border-radius:4px 4px 2px 2px;background:repeating-linear-gradient(90deg,#fff 0 10px,#e4ddd8 10px 11px);box-shadow:inset 0 0 0 1px #ddd2cc}
-.focus-lower-lip{position:absolute;left:24px;top:40px;width:52px;height:14px;border-radius:50%;background:#e9827a}
-.focus-mouth-f .focus-air-line{left:75px;width:22px;height:2px}.focus-mouth-f .l1{top:40px;transform:rotate(-8deg)}.focus-mouth-f .l2{top:48px;transform:rotate(7deg)}
+.focus-mouth{position:relative;display:block;width:100px;height:72px;overflow:hidden;border-radius:21px;background:linear-gradient(180deg,#fffdfb,#fff1eb);box-shadow:inset 0 0 0 1px rgba(197,124,111,.12),0 5px 12px rgba(81,63,56,.05)}
+.focus-nose{position:absolute;left:34px;top:12px;width:32px;height:15px;border-bottom:3px solid rgba(174,120,106,.38);border-radius:0 0 18px 18px;opacity:.88}
+.focus-nose:before,.focus-nose:after{content:"";position:absolute;bottom:-3px;width:8px;height:6px;border-radius:50%;background:rgba(174,120,106,.14)}
+.focus-nose:before{left:5px}.focus-nose:after{right:5px}
+.focus-upper-lip{position:absolute;left:23px;top:34px;width:54px;height:10px;border-radius:999px 999px 12px 12px;background:linear-gradient(180deg,#f4a099,#ea8981);box-shadow:inset 0 -1px 0 rgba(204,102,98,.28)}
+.focus-mouth-gap{position:absolute;left:28px;top:41px;width:44px;height:3px;border-radius:0 0 12px 12px;background:rgba(124,54,56,.72);opacity:0;transform-origin:center top}
+.focus-lower-lip{position:absolute;left:22px;top:41px;width:56px;height:16px;border-radius:40% 40% 55% 55%/45% 45% 70% 70%;background:linear-gradient(180deg,#ef8b83,#dd746e);box-shadow:inset 0 -3px 0 rgba(193,94,91,.26)}
+.focus-air-line{position:absolute;left:78px;height:2px;border-radius:8px;background:#62b19b;opacity:0;transform-origin:left center}
+.focus-air-line.l1{top:30px}.focus-air-line.l2{top:38px}.focus-air-line.l3{top:46px}
+
+.focus-mouth-b .focus-lower-lip{animation:focusBLower 3.2s ease-in-out infinite}
+.focus-mouth-b .focus-mouth-gap{animation:focusBGap 3.2s ease-in-out infinite}
+.focus-mouth-b .focus-air-line{width:10px;opacity:0;background:rgba(98,177,155,.62);animation:focusBAir 3.2s ease-in-out infinite}
+.focus-mouth-b .l1,.focus-mouth-b .l3{width:6px}
+.focus-mouth-b .l1{transform:rotate(-6deg)}.focus-mouth-b .l3{transform:rotate(6deg)}
+
+.focus-mouth-p .focus-lower-lip{animation:focusPLower 3.2s ease-in-out infinite}
+.focus-mouth-p .focus-mouth-gap{animation:focusPGap 3.2s ease-in-out infinite}
+.focus-mouth-p .focus-air-line{width:20px;height:3px;background:rgba(79,169,145,.78);animation:focusPAir 3.2s ease-in-out infinite}
+.focus-mouth-p .l1{transform:rotate(-12deg)}.focus-mouth-p .l3{transform:rotate(12deg)}
+
+.focus-mouth-m .focus-upper-lip{top:35px}
+.focus-mouth-m .focus-lower-lip{top:42px;animation:focusMLower 3.2s ease-in-out infinite}
+.focus-mouth-m .focus-mouth-gap{animation:focusMGap 3.2s ease-in-out infinite}
+.focus-nose-wave{position:absolute;width:14px;height:8px;border:2.5px solid #66aa94;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;transform:rotate(-45deg);opacity:.28}
+.focus-mouth-m .w1{left:33px;top:16px;animation:focusMWave 3.2s ease-in-out infinite}.focus-mouth-m .w2{left:52px;top:12px;animation:focusMWave 3.2s ease-in-out infinite .12s}
+
+.focus-mouth-f .focus-mouth-gap{left:33px;top:39px;width:34px;height:6px;border-radius:0 0 14px 14px;opacity:.45;animation:focusFGap 3.2s ease-in-out infinite}
+.focus-teeth{position:absolute;left:30px;top:31px;width:40px;height:12px;border-radius:0 0 10px 10px;background:linear-gradient(180deg,#fff,#f4efeb);box-shadow:inset 0 0 0 1px rgba(221,210,204,.95);overflow:hidden}
+.focus-teeth:after{content:"";position:absolute;inset:2px 4px auto 4px;height:8px;background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 8px,rgba(226,217,211,.92) 8px 9px)}
+.focus-mouth-f .focus-teeth{animation:focusFTeeth 3.2s ease-in-out infinite}
+.focus-mouth-f .focus-lower-lip{left:29px;top:39px;width:42px;height:14px;border-radius:45% 45% 60% 60%/40% 40% 70% 70%;animation:focusFLower 3.2s ease-in-out infinite}
+.focus-corner{position:absolute;top:41px;width:8px;height:6px;border-top:2px solid rgba(202,108,106,.68);border-radius:50%}
+.focus-corner.left{left:26px;transform:rotate(-12deg);animation:focusFCornerLeft 3.2s ease-in-out infinite}
+.focus-corner.right{left:68px;transform:rotate(12deg);animation:focusFCornerRight 3.2s ease-in-out infinite}
+.focus-mouth-f .focus-air-line{left:72px;width:16px;height:2px;background:rgba(84,177,150,.74);animation:focusFAir 3.2s ease-in-out infinite}
+.focus-mouth-f .l1{top:39px;transform:rotate(-7deg)}.focus-mouth-f .l2{top:45px}.focus-mouth-f .l3{top:51px;transform:rotate(7deg);width:12px}
+
 .initials-focus-visual.is-p>div em{background:#fff0e8;color:#b8644f}.initials-focus-visual.is-f>div em{background:#fff0e8;color:#b8644f}
 
+@keyframes focusBLower{0%,32%,100%{transform:translateY(0) scaleX(1)}42%,56%{transform:translateY(4px) scaleX(.98)}}
+@keyframes focusBGap{0%,33%,100%{opacity:0;height:2px}42%,56%{opacity:.55;height:6px}}
+@keyframes focusBAir{0%,39%,100%{opacity:0;transform:scaleX(.5)}43%,50%{opacity:.52;transform:scaleX(1)}54%,100%{opacity:0;transform:scaleX(.8)}}
+@keyframes focusPLower{0%,28%,100%{transform:translateY(0) scaleX(1)}40%,58%{transform:translateY(6px) scaleX(.97)}}
+@keyframes focusPGap{0%,30%,100%{opacity:0;height:2px}40%,58%{opacity:.75;height:8px}}
+@keyframes focusPAir{0%,38%,100%{opacity:0;transform:scaleX(.6)}42%,56%{opacity:.9;transform:scaleX(1)}60%,100%{opacity:0;transform:scaleX(.82)}}
+@keyframes focusMLower{0%,58%{transform:translateY(0)}72%,100%{transform:translateY(4px) scaleX(.99)}}
+@keyframes focusMGap{0%,63%{opacity:0;height:2px}76%,100%{opacity:.42;height:5px}}
+@keyframes focusMWave{0%,56%,100%{opacity:.22;transform:rotate(-45deg) scale(.78)}18%,46%{opacity:.98;transform:rotate(-45deg) scale(1)}}
+@keyframes focusFTeeth{0%,38%{transform:translateY(0)}56%,100%{transform:translateY(-1px)}}
+@keyframes focusFLower{0%,34%{transform:translateY(0) scaleX(.92)}52%,100%{transform:translateY(8px) scaleX(1)}}
+@keyframes focusFGap{0%,32%{opacity:.3;height:4px;width:30px}52%,100%{opacity:.76;height:10px;width:38px}}
+@keyframes focusFCornerLeft{0%,34%{transform:rotate(-16deg) translateX(2px)}52%,100%{transform:rotate(-6deg) translateX(0)}}
+@keyframes focusFCornerRight{0%,34%{transform:rotate(16deg) translateX(-2px)}52%,100%{transform:rotate(6deg) translateX(0)}}
+@keyframes focusFAir{0%,10%,100%{opacity:0;transform:scaleX(.7)}18%,54%{opacity:.78;transform:scaleX(1)}64%,100%{opacity:0;transform:scaleX(.85)}}
 .initials-result{margin:16px;padding:17px;display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:center;border-radius:23px;background:linear-gradient(135deg,#f0f8f2,#fff9e7);border:1px solid rgba(75,149,101,.14);box-shadow:0 10px 24px rgba(54,101,75,.08)}
 .initials-result-badge{width:54px;height:54px;display:grid;place-items:center;border-radius:18px;background:#43ad7e;color:#fff;font-size:27px;font-weight:950;box-shadow:0 7px 16px rgba(75,112,82,.13)}
 .initials-result-badge.is-retry{background:#f0a15f}
@@ -158,4 +200,4 @@
 .initials-result-action:active{transform:scale(.985)}
 .pinyin-node.is-next-focus{animation:initialNextFocus 1.5s ease 2;box-shadow:0 0 0 4px rgba(68,174,126,.13),0 10px 24px rgba(55,112,88,.14)!important}
 @keyframes initialNextFocus{50%{transform:translateY(-2px);box-shadow:0 0 0 7px rgba(68,174,126,.12),0 12px 28px rgba(55,112,88,.16)}}
-@media(max-width:390px){.initials-focus-visual{grid-template-columns:88px 1fr;gap:9px;padding:9px}.focus-mouth{width:86px;height:66px}.focus-lips{left:16px;width:50px}.focus-mouth-m .focus-lips{left:18px;width:50px}.focus-teeth{left:18px;width:49px}.focus-lower-lip{left:20px;width:47px}.focus-air-line{left:67px}.focus-mouth-f .focus-air-line{left:66px}.initials-result{grid-template-columns:48px 1fr;padding:15px}.initials-result-badge{width:48px;height:48px}}
+@media(max-width:390px){.initials-focus-visual{grid-template-columns:88px 1fr;gap:9px;padding:9px}.focus-mouth{width:86px;height:66px}.focus-nose{left:28px;top:11px;width:29px}.focus-upper-lip{left:18px;top:31px;width:49px}.focus-mouth-gap{left:22px;width:40px}.focus-lower-lip{left:18px;top:38px;width:49px}.focus-air-line{left:66px}.focus-mouth-f .focus-mouth-gap{left:27px;width:30px}.focus-teeth{left:25px;width:34px}.focus-mouth-f .focus-lower-lip{left:24px;width:36px}.focus-corner.left{left:21px}.focus-corner.right{left:58px}.focus-mouth-f .focus-air-line{left:61px}.focus-mouth-f .l3{width:10px}.initials-result{grid-template-columns:48px 1fr;padding:15px}.initials-result-badge{width:48px;height:48px}}
