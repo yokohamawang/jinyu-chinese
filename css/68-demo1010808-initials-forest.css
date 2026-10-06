@@ -19,4 +19,40 @@
 .initials-source-note{display:flex;align-items:center;gap:9px;margin:10px 0 2px;padding:10px 11px;border-radius:15px;background:#fffaf0;border:1px solid rgba(218,173,83,.2)}
 .initials-source-note>span{font-size:22px}.initials-source-note b{display:block;font-size:11px;color:#7f6a3a}.initials-source-note small{display:block;margin-top:2px;font-size:9.5px;line-height:1.45;color:#8c826c;font-weight:700}
 .initials-tone-buttons button{width:100%;font-size:14px;letter-spacing:.01em}
-\n\n/* DEMO 10.108.13 — mouth diagram clarity + mobile crop protection */\n.initials-mouth-panel{overflow:visible}\n.mouth-compare-grid{align-items:stretch}\n.mouth-sound-card{overflow:visible;min-width:0;padding-top:14px}\n.mouth-sketch{position:relative;overflow:hidden;width:84px;height:64px;border-radius:25px;background:radial-gradient(circle at 50% 28%,#fffdfb 0 42%,#fff1ea 43% 100%);box-shadow:inset 0 0 0 1px rgba(206,129,118,.10),0 4px 10px rgba(90,65,55,.05)}\n.mouth-sketch:before{content:"";position:absolute;left:50%;top:7px;width:32px;height:13px;transform:translateX(-50%);border-radius:50% 50% 42% 42%;background:#f5c6ba;opacity:.58}\n.mouth-sketch i{position:absolute;left:50%;top:33px;transform:translate(-50%,-50%);margin:0;background:transparent;box-shadow:none}\n.mouth-m i{width:58px;height:25px}\n.mouth-m i:before,.mouth-m i:after{content:"";position:absolute;left:3px;right:3px;height:12px;background:linear-gradient(180deg,#f49b91,#e97f78);box-shadow:inset 0 -2px 0 rgba(173,84,79,.16)}\n.mouth-m i:before{top:1px;border-radius:70% 70% 28% 28%;transform:rotate(-1deg)}\n.mouth-m i:after{bottom:1px;border-radius:28% 28% 70% 70%;transform:rotate(1deg)}\n.mouth-m{box-shadow:inset 0 0 0 1px rgba(206,129,118,.10),0 4px 10px rgba(90,65,55,.05),0 0 0 0 transparent}\n.mouth-m:after{content:"鼻に響く";position:absolute;left:50%;bottom:3px;transform:translateX(-50%);font-size:7px;font-weight:900;color:#9a756b;white-space:nowrap}\n.mouth-f i{width:59px;height:25px;background:linear-gradient(180deg,#ef8c83,#df756f);border-radius:20% 20% 70% 70%;box-shadow:inset 0 -3px 0 rgba(159,76,71,.14)}\n.mouth-f i:before{content:"";position:absolute;z-index:2;left:5px;right:5px;top:-7px;height:12px;background:repeating-linear-gradient(90deg,#fff 0 8px,#e7ddd5 8px 9px);border-radius:8px 8px 3px 3px;box-shadow:0 1px 0 rgba(130,95,83,.13)}\n.mouth-f i:after{content:"";position:absolute;z-index:3;right:-11px;top:6px;width:17px;height:7px;border-top:2px solid #8fcbb5;border-radius:50%;transform:rotate(-8deg)}\n.mouth-f:after{content:"細い息 →";position:absolute;right:2px;bottom:3px;font-size:7px;font-weight:900;color:#699a89;white-space:nowrap}\n.mouth-sound-card b{font-size:11px;line-height:1.45;word-break:auto}\n@media(max-width:390px){.mouth-sketch{width:78px;height:61px}.mouth-sound-card{padding-left:6px;padding-right:6px}.mouth-sound-card b{font-size:10.5px}.mouth-sound-card small{font-size:9px}}\n
+
+
+/* DEMO 10.108.14 — clear mouth diagrams (real SVG, no blob-like placeholders) */
+.initials-mouth-panel{overflow:visible}
+.mouth-compare-grid{align-items:stretch}
+.mouth-sound-card{overflow:visible;min-width:0;padding:14px 8px 13px}
+.mouth-sketch{display:block;position:relative;overflow:hidden;width:96px;height:72px;margin:0 auto 6px;border-radius:24px;background:linear-gradient(180deg,#fffdfb,#fff0e9);box-shadow:inset 0 0 0 1px rgba(197,124,111,.12),0 5px 12px rgba(81,63,56,.06)}
+.mouth-sketch svg{display:block;width:100%;height:100%}
+.mouth-sketch .face-line{fill:none;stroke:#f1c7bc;stroke-width:8;stroke-linecap:round;opacity:.7}
+.mouth-m .lip{fill:#eb8179}.mouth-m .upper{fill:#ef948b}.mouth-m .lower{fill:#e57872}.mouth-m .nose-wave{fill:none;stroke:#75aa99;stroke-width:3;stroke-linecap:round;opacity:.8}
+.mouth-f .teeth{fill:#fff;stroke:#d8cec8;stroke-width:1.5}.mouth-f .tooth-lines{fill:none;stroke:#e5ddd8;stroke-width:1.3}.mouth-f .lower-lip{fill:#e9827a}.mouth-f .air-arrow,.mouth-f .air-head{fill:none;stroke:#72ad99;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.mouth-sound-card strong{display:block;font-size:24px;color:#e8736d}.mouth-sound-card b{display:block;font-size:11px;line-height:1.45}.mouth-sound-card small{display:block;margin-top:3px;font-size:9.5px;line-height:1.45;color:#81918c;font-weight:700}
+@media(max-width:390px){.mouth-sketch{width:88px;height:68px}.mouth-sound-card{padding-left:6px;padding-right:6px}.mouth-sound-card b{font-size:10.5px}.mouth-sound-card small{font-size:9px}}
+
+
+/* DEMO 10.108.15 — premium initial cards: IPA is secondary, airflow/articulation is visible */
+.initials-letter-grid{align-items:stretch}
+.initials-letter-card{min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:13px 4px 11px;overflow:hidden}
+.initials-letter-card .big{font-size:35px;line-height:1;font-weight:950;letter-spacing:.01em}
+.initials-letter-card .initial-ipa{display:block;min-height:19px;margin-top:5px;font-size:13px;line-height:19px;font-weight:850;color:#708b82;white-space:nowrap}
+.initials-letter-card .initial-articulation{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;min-height:40px;margin-top:5px}
+.initials-letter-card .initial-articulation em{font-style:normal;font-size:9.5px;line-height:1.15;font-weight:900;color:#6f8980;white-space:nowrap}
+.initials-letter-card.is-active .initial-ipa,.initials-letter-card.is-active .initial-articulation em{color:#effff6}
+.initial-cue-icon{position:relative;display:block;width:40px;height:21px}
+.initial-cue-icon.air:before{content:"";position:absolute;left:3px;top:8px;width:8px;height:5px;border-radius:7px 2px 2px 7px;background:#ef8b7d;box-shadow:0 0 0 2px rgba(255,255,255,.45)}
+.initial-cue-icon.air i{position:absolute;left:14px;height:2px;border-radius:9px;background:#67a895;transform-origin:left center}
+.initial-cue-icon.air i:nth-child(1){top:5px}.initial-cue-icon.air i:nth-child(2){top:10px}.initial-cue-icon.air i:nth-child(3){top:15px}
+.initial-cue-icon.air-soft i{width:10px;opacity:.55}.initial-cue-icon.air-soft i:nth-child(1),.initial-cue-icon.air-soft i:nth-child(3){width:7px}
+.initial-cue-icon.air-strong i{width:23px;height:2.5px;opacity:.95}.initial-cue-icon.air-strong i:nth-child(1){transform:rotate(-8deg)}.initial-cue-icon.air-strong i:nth-child(3){transform:rotate(8deg)}
+.initial-cue-icon.air-thin i{width:19px;height:1.5px;opacity:.78}.initial-cue-icon.air-thin i:nth-child(1){top:7px;width:16px}.initial-cue-icon.air-thin i:nth-child(2){top:10px;width:21px}.initial-cue-icon.air-thin i:nth-child(3){top:13px;width:16px}
+.initial-cue-icon.nose:before{content:"";position:absolute;left:6px;bottom:2px;width:27px;height:7px;border-bottom:5px solid #ef8b7d;border-radius:0 0 50% 50%}
+.initial-cue-icon.nose i{position:absolute;width:7px;height:7px;border:2px solid #67a895;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;transform:rotate(-45deg);opacity:.8}
+.initial-cue-icon.nose i:nth-child(1){left:8px;top:1px}.initial-cue-icon.nose i:nth-child(2){left:17px;top:-2px}.initial-cue-icon.nose i:nth-child(3){left:26px;top:1px}
+.initials-letter-card.is-active .initial-cue-icon.air i,.initials-letter-card.is-active .initial-cue-icon.nose i{background:rgba(255,255,255,.95);border-color:rgba(255,255,255,.95);border-left-color:transparent;border-bottom-color:transparent}
+.initials-letter-card.is-active .initial-cue-icon.air:before,.initials-letter-card.is-active .initial-cue-icon.nose:before{background:#ffd7cf;border-bottom-color:#ffd7cf}
+.initials-tone-ribbon:after{content:"声母の形をつかんだら、次は母音と四声につなげよう";grid-column:1/-1;margin-top:2px;padding-top:8px;border-top:1px dashed rgba(47,122,100,.16);font-size:9.5px;line-height:1.45;text-align:center;color:#729087;font-weight:850;letter-spacing:.01em}
+@media(max-width:390px){.initials-letter-card{min-height:126px;padding-left:2px;padding-right:2px}.initials-letter-card .big{font-size:32px}.initials-letter-card .initial-ipa{font-size:12px}.initials-letter-card .initial-articulation em{font-size:8.8px}.initial-cue-icon{transform:scale(.92)}}
