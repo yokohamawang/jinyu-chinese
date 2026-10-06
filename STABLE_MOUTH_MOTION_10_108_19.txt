@@ -1,0 +1,7 @@
+DEMO 10.108.19 — stable mouth motion in code
+
+- moved b / p / m / f focus visual into CSS-based micro animation so the panel no longer shakes left/right
+- kept the card and camera completely fixed; only lips, jaw, airflow and nasal resonance animate
+- softened b / p airflow, shortened display time, and kept m ending slightly open
+- refined f to start with upper teeth on lower lip, slight mouth-corner tension, then open with the jaw dropping back/down while preserving thin airflow
+- cache-busted initials forest CSS/JS to 10.108.19

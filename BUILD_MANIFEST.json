@@ -1,23 +1,21 @@
 {
-  "version": "10.108.18",
-  "base": "10.108.17",
-  "name": "QuizResultFlowMouthVisual",
-  "build_name": "FULL_QuizResultFlowMouthVisual",
+  "version": "10.108.19",
+  "base": "10.108.18",
+  "name": "StableMouthMotion",
+  "build_name": "FULL_StableMouthMotion",
   "changes": [
-    "show explicit mini-check score and pass/fail result",
-    "only persist P3 completion after passing at least 3 of 4 questions",
-    "fix hidden reward/result panel display behavior",
-    "return to initials roadmap and focus P4 after passing",
-    "keep b/p/m/f focus description at stable two-line height",
-    "add letter-linked mouth and airflow visual and compact tone note",
-    "cache-bust initials CSS and JS to 10.108.18"
+    "move b/p/m/f focus visual to stable CSS micro-animation with no left-right wobble",
+    "animate only lips, jaw, airflow and nasal resonance while keeping the panel fixed",
+    "shorten and soften b/p airflow, keep m ending slightly open",
+    "refine f motion to start with upper teeth on lower lip, slight mouth-corner tension, then open down/back with thin airflow",
+    "cache-bust initials CSS and JS to 10.108.19"
   ],
   "changed_files": [
     "index.html",
     "css/68-demo1010808-initials-forest.css",
     "js/10-demo1010808-initials-forest.js",
     "VERSION.txt",
-    "QUIZ_RESULT_FLOW_MOUTH_VISUAL_10_108_18.txt",
+    "STABLE_MOUTH_MOTION_10_108_19.txt",
     "BUILD_MANIFEST.json"
   ]
 }
