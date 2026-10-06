@@ -127,3 +127,35 @@
   .mouth-sketch{width:94px;height:72px}.mouth-sound-card b{font-size:10.3px}.mouth-sound-card small{font-size:8.9px}
   .air-card small{font-size:9.2px}.air-word{font-size:8.5px}.lip-icon{transform:scale(.92)}
 }
+
+/* DEMO 10.108.18 — stable focus height, linked mouth/airflow visual, quiz result flow */
+.initials-reward[hidden],.initials-result[hidden],.initials-quiz-panel[hidden]{display:none!important}
+.initials-focus-copy{align-self:stretch}
+.initials-tone-ribbon #initialsFocusTip{display:block;min-height:2.8em;line-height:1.4}
+.initials-tone-ribbon:after{content:none!important;display:none!important}
+.initials-focus-visual{grid-column:1/-1;display:grid;grid-template-columns:104px 1fr;align-items:center;gap:12px;min-height:92px;padding:10px 12px;border-radius:17px;background:rgba(255,255,255,.70);border:1px solid rgba(54,123,99,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.initials-focus-visual>div b{display:block;font-size:12px;line-height:1.4;color:#315f52}.initials-focus-visual>div small{display:block;margin-top:2px;font-size:10px;line-height:1.45;color:#7b8f87;font-weight:800}.initials-focus-visual>div em{display:inline-flex;margin-top:6px;padding:3px 8px;border-radius:99px;background:#e8f5ef;color:#3f806b;font-size:9px;font-style:normal;font-weight:950}
+.initials-tone-mini-note{grid-column:1/-1;text-align:center;padding-top:7px;border-top:1px dashed rgba(47,122,100,.14);font-size:9.5px;font-weight:900;color:#729087}
+.focus-mouth{position:relative;display:block;width:100px;height:72px;border-radius:21px;background:linear-gradient(180deg,#fffdfb,#fff1eb);box-shadow:inset 0 0 0 1px rgba(197,124,111,.12),0 5px 12px rgba(81,63,56,.05)}
+.focus-lips{position:absolute;left:20px;top:31px;width:55px;height:18px;border-radius:50%;background:#ec8b82;box-shadow:inset 0 -5px 0 #cf716b}
+.focus-air-line{position:absolute;left:76px;height:2px;border-radius:8px;background:#66aa94;transform-origin:left center}
+.focus-air-line.l1{top:28px}.focus-air-line.l2{top:36px}.focus-air-line.l3{top:44px}
+.focus-mouth-b .focus-air-line{width:12px;opacity:.55}.focus-mouth-b .l1,.focus-mouth-b .l3{width:8px}
+.focus-mouth-p .focus-air-line{width:25px;height:3px}.focus-mouth-p .l1{transform:rotate(-9deg)}.focus-mouth-p .l3{transform:rotate(9deg)}
+.focus-mouth-m .focus-lips{left:22px;top:37px;width:56px;height:15px}
+.focus-nose-wave{position:absolute;width:15px;height:9px;border:3px solid #66aa94;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;transform:rotate(-45deg)}
+.focus-mouth-m .w1{left:34px;top:15px}.focus-mouth-m .w2{left:53px;top:11px}
+.focus-teeth{position:absolute;left:22px;top:25px;width:54px;height:13px;border-radius:4px 4px 2px 2px;background:repeating-linear-gradient(90deg,#fff 0 10px,#e4ddd8 10px 11px);box-shadow:inset 0 0 0 1px #ddd2cc}
+.focus-lower-lip{position:absolute;left:24px;top:40px;width:52px;height:14px;border-radius:50%;background:#e9827a}
+.focus-mouth-f .focus-air-line{left:75px;width:22px;height:2px}.focus-mouth-f .l1{top:40px;transform:rotate(-8deg)}.focus-mouth-f .l2{top:48px;transform:rotate(7deg)}
+.initials-focus-visual.is-p>div em{background:#fff0e8;color:#b8644f}.initials-focus-visual.is-f>div em{background:#fff0e8;color:#b8644f}
+
+.initials-result{margin:16px;padding:17px;display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:center;border-radius:23px;background:linear-gradient(135deg,#f0f8f2,#fff9e7);border:1px solid rgba(75,149,101,.14);box-shadow:0 10px 24px rgba(54,101,75,.08)}
+.initials-result-badge{width:54px;height:54px;display:grid;place-items:center;border-radius:18px;background:#43ad7e;color:#fff;font-size:27px;font-weight:950;box-shadow:0 7px 16px rgba(75,112,82,.13)}
+.initials-result-badge.is-retry{background:#f0a15f}
+.initials-result-copy strong{display:block;color:#276e57;font-size:16px}.initials-result-copy span{display:block;margin-top:2px;color:#405f55;font-size:13px;font-weight:950}.initials-result-copy small{display:block;margin-top:3px;color:#768981;font-size:10px;line-height:1.45;font-weight:800}
+.initials-result-action{grid-column:1/-1;width:100%;min-height:48px;border:0;border-radius:16px;background:#2f7a64;color:#fff;font-weight:950;font-size:13px;box-shadow:0 7px 16px rgba(47,122,100,.18)}
+.initials-result-action:active{transform:scale(.985)}
+.pinyin-node.is-next-focus{animation:initialNextFocus 1.5s ease 2;box-shadow:0 0 0 4px rgba(68,174,126,.13),0 10px 24px rgba(55,112,88,.14)!important}
+@keyframes initialNextFocus{50%{transform:translateY(-2px);box-shadow:0 0 0 7px rgba(68,174,126,.12),0 12px 28px rgba(55,112,88,.16)}}
+@media(max-width:390px){.initials-focus-visual{grid-template-columns:88px 1fr;gap:9px;padding:9px}.focus-mouth{width:86px;height:66px}.focus-lips{left:16px;width:50px}.focus-mouth-m .focus-lips{left:18px;width:50px}.focus-teeth{left:18px;width:49px}.focus-lower-lip{left:20px;width:47px}.focus-air-line{left:67px}.focus-mouth-f .focus-air-line{left:66px}.initials-result{grid-template-columns:48px 1fr;padding:15px}.initials-result-badge{width:48px;height:48px}}
