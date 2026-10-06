@@ -1,24 +1,21 @@
 {
-  "version": "10.108.15",
-  "base": "10.108.12",
-  "name": "InitialAudioMouthFix",
-  "build_name": "FULL_InitialAudioMouthFix",
+  "version": "10.108.16",
+  "base": "10.108.15",
+  "name": "InitialReadingToneRule",
+  "build_name": "FULL_InitialReadingToneRule",
   "changes": [
-    "fix b p m f playback on iPhone Safari/Private mode by using local WAV as primary audio",
-    "keep Web Audio synthesis only as fallback",
-    "improve m/f mouth diagrams and prevent mobile clipping",
-    "cache-bust initials lesson JS/CSS while preserving 10.108.12 developer TEST mode"
+    "use native-style helper syllables for primary b/p/m/f listening instead of airflow-only prototype audio",
+    "retain pure consonant/airflow sound as a secondary articulation comparison",
+    "add an explicit premium visual rule card: consonants carry no tone; tone is realized on the final/vowel in the syllable",
+    "reinforce the same rule in the initial focus ribbon and keep IPA/airflow visual hierarchy",
+    "preserve developer TEST mode and previous full package structure"
   ],
   "changed_files": [
     "index.html",
     "css/68-demo1010808-initials-forest.css",
     "js/10-demo1010808-initials-forest.js",
-    "assets/audio/initials/b.wav",
-    "assets/audio/initials/p.wav",
-    "assets/audio/initials/m.wav",
-    "assets/audio/initials/f.wav",
     "VERSION.txt",
-    "INITIAL_AUDIO_MOUTH_FIX_10_108_13.txt",
+    "INITIAL_READING_TONE_RULE_10_108_16.txt",
     "BUILD_MANIFEST.json"
   ]
 }

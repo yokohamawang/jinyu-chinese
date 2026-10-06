@@ -1,0 +1,6 @@
+Koepanda DEMO 10.108.16
+
+- b/p/m/f primary model playback now uses helper syllables for audibility: 波 bō / 泼 pō / 摸 mō / 佛 fó.
+- Pure consonant/airflow prototype audio remains available as a secondary articulation comparison.
+- Added visual bridge: 声母には声調なし / 韻母に四声 / b + ā → bā.
+- This is a pedagogical distinction: 呼読音 is a listening aid, not the literal tone-bearing form of the consonant itself.
