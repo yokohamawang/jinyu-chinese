@@ -1,0 +1,12 @@
+Koepanda 10.108.15 — Initial Card Visual System
+
+- Based on 10.108.14; full package preserved.
+- b/p/m/f cards use one fixed vertical hierarchy: letter → IPA → articulation/airflow cue.
+- b [p]: short/weak airflow cue.
+- p [pʰ]: longer/strong airflow cue; superscript h remains IPA aspiration marker.
+- m [m]: closed-lip/nasal resonance cue.
+- f [f]: narrow continuous airflow cue.
+- All four cards are forced into the same line structure; f no longer appears on one line.
+- IPA is visually secondary so beginners focus first on the sound and mouth/airflow behavior.
+- A subtle bridge to the app's tone identity is added: after learning the initial, connect it to finals + four tones.
+- Existing 10.108.14 audio behavior is retained unchanged.
