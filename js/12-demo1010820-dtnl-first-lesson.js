@@ -2,7 +2,7 @@
 (function(){
   var letters=['d','t','n','l'];
   var guide={d:{hanzi:'得',pinyin:'dé',ipa:'[t]',cue:'弱い息',tip:'舌先を上の歯ぐきへ。開く瞬間の息は弱く。',title:'舌先を歯ぐきへ',sub:'触れてから、軽く離す'},t:{hanzi:'特',pinyin:'tè',ipa:'[tʰ]',cue:'強い息',tip:'d と同じ場所。舌先を離す瞬間に息を強く出す。',title:'舌先は d と同じ',sub:'離す瞬間に息を強く'},n:{hanzi:'讷',pinyin:'nè',ipa:'[n]',cue:'鼻に響く',tip:'舌先を上の歯ぐきにつけたまま、音を鼻へ通す。',title:'舌先はつけたまま',sub:'音は鼻へ抜ける'},l:{hanzi:'勒',pinyin:'lè',ipa:'[l]',cue:'左右に流す',tip:'舌先は歯ぐきへ。息と声を舌の左右から通す。',title:'舌先は歯ぐきへ',sub:'舌の左右から音を流す'}};
-  var selected='d',quizOrder=['d','t','n','l'],quizIndex=0,quizScore=0,quizAnswered=false,audioCtxRef=null,nodes=[];
+  var selected='d',quizOrder=['d','t','n','l'],quizIndex=0,quizScore=0,quizAnswered=false,audioCtxRef=null,nodes=[],recorder=null,stream=null,chunks=[],recordingUrl='',playback=null;
   function el(id){return document.getElementById(id)}
   function stopSynthetic(){nodes.forEach(function(n){try{n.stop(0)}catch(e){}});nodes=[]}
   function ctx(){try{audioCtxRef=audioCtxRef||new (window.AudioContext||window.webkitAudioContext)();if(audioCtxRef.state==='suspended')audioCtxRef.resume();return audioCtxRef}catch(e){return null}}
@@ -18,10 +18,63 @@
   function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};var b=document.createElement('button');b.type='button';b.className='dtnl-raw-btn';b.textContent='舌・息だけ';b.onclick=function(){playRaw(selected)};act.append(a,b);el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>'}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,false)};free.appendChild(f)});select('d',false)}
+  function mimeType(){
+    if(typeof MediaRecorder==='undefined')return '';
+    var arr=['audio/mp4','audio/webm;codecs=opus','audio/webm'];
+    for(var i=0;i<arr.length;i++){try{if(MediaRecorder.isTypeSupported(arr[i]))return arr[i]}catch(e){}}
+    return ''
+  }
+  function stopPracticeAudio(){
+    stopSynthetic();
+    try{if('speechSynthesis' in window)speechSynthesis.cancel()}catch(e){}
+    try{if(playback){playback.pause();playback.currentTime=0}}catch(e2){}
+  }
+  async function toggleRecord(){
+    var btn=el('dtnlRecord'),fb=el('dtnlPracticeFeedback');
+    if(recorder&&recorder.state==='recording'){try{recorder.stop()}catch(e){}return}
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){
+      if(fb){fb.textContent='このブラウザでは録音が使えません。';fb.className='dtnl-feedback is-bad'}return
+    }
+    try{
+      stopPracticeAudio();chunks=[];stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      var mt=mimeType();recorder=new MediaRecorder(stream,mt?{mimeType:mt}:undefined);
+      recorder.ondataavailable=function(e){if(e.data&&e.data.size)chunks.push(e.data)};
+      recorder.onstop=function(){
+        var blob=new Blob(chunks,{type:recorder.mimeType||mt||'audio/mp4'});
+        if(recordingUrl)URL.revokeObjectURL(recordingUrl);recordingUrl=URL.createObjectURL(blob);
+        if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}
+        btn.textContent='↻ もう一度録音';btn.classList.remove('is-recording');
+        el('dtnlPlayback').disabled=false;el('dtnlToQuiz').disabled=false;
+        if(fb){fb.textContent='録音できたよ。お手本と聞きくらべてみよう 👂';fb.className='dtnl-feedback is-good'}
+        setStep(3)
+      };
+      recorder.start();btn.textContent='■ 録音を止める';btn.classList.add('is-recording');
+      if(fb){fb.textContent='録音中… '+selected+' の舌先と息の出し方を意識してまねしよう';fb.className='dtnl-feedback'}
+    }catch(e){if(fb){fb.textContent='マイクの許可を確認してね。';fb.className='dtnl-feedback is-bad'}}
+  }
+  function playRecording(){
+    if(!recordingUrl)return;
+    try{if(playback)playback.pause();playback=new Audio(recordingUrl);var p=playback.play();if(p&&p.catch)p.catch(function(){})}catch(e){}
+  }
   function renderQuiz(){var box=el('dtnlQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.onclick=function(){answer(letter,b)};box.appendChild(b)});el('dtnlQuizCount').textContent=(quizIndex+1)+' / '+quizOrder.length;el('dtnlQuizFeedback').textContent='';el('dtnlQuizFeedback').className='dtnl-feedback';el('dtnlQuizNext').hidden=true;quizAnswered=false}
   function answer(letter,button){if(quizAnswered)return;quizAnswered=true;var right=quizOrder[quizIndex],fb=el('dtnlQuizFeedback');if(letter===right){quizScore++;button.classList.add('is-correct');fb.textContent='いい耳！ '+right+' だよ ✓';fb.className='dtnl-feedback is-good'}else{button.classList.add('is-wrong');Array.from(el('dtnlQuizChoices').children).forEach(function(x){if(x.textContent===right)x.classList.add('is-correct')});fb.textContent='今回は '+right+'。舌先と息の違いをもう一度見よう';fb.className='dtnl-feedback is-bad'}var next=el('dtnlQuizNext');next.hidden=false;next.textContent=quizIndex===quizOrder.length-1?'結果を見る':'次の問題へ →'}
   function nextQuiz(){if(!quizAnswered)return;if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz();playGuide(quizOrder[quizIndex]);return}finish()}
   function finish(){var pass=quizScore>=3,res=el('dtnlResult');el('dtnlQuizPanel').hidden=true;res.hidden=false;var badge=el('dtnlResultBadge');badge.textContent=pass?'✓':'↻';badge.className='dtnl-result-badge '+(pass?'':'is-retry');el('dtnlResultScore').textContent='4問中 '+quizScore+'問正解';el('dtnlResultMessage').textContent=pass?'舌先の場所と、息・鼻・左右の通り道をつかめたよ。':'もう一度ゆっくり聞き比べよう。';var a=el('dtnlResultAction');a.textContent=pass?'レッスン一覧へ戻る':'もう一度チェックする';a.onclick=pass?function(){try{localStorage.setItem('koepandaInitialP4Complete','1');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P4:true}}))}catch(e){}var back=document.getElementById('pinyinLessonBack');if(back)back.click()}:function(){quizIndex=0;quizScore=0;res.hidden=true;el('dtnlQuizPanel').hidden=false;renderQuiz();setStep(4)}}
-  function init(){if(!el('kidsInitialsDTNLLesson'))return;renderLetters();el('dtnlModelListen').onclick=function(){setStep(3);playGuide(selected)};el('dtnlToQuiz').onclick=function(){setStep(4);quizIndex=0;quizScore=0;el('dtnlQuizPanel').hidden=false;renderQuiz();requestAnimationFrame(function(){el('dtnlQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})};el('dtnlQuizListen').onclick=function(){playGuide(quizOrder[quizIndex])};el('dtnlQuizNext').onclick=nextQuiz}
+  function init(){
+    if(!el('kidsInitialsDTNLLesson'))return;
+    renderLetters();
+    var practice=document.querySelector('#kidsInitialsDTNLLesson .dtnl-practice-panel');
+    if(practice)practice.hidden=false;
+    el('dtnlQuizPanel').hidden=true;el('dtnlResult').hidden=true;
+    el('dtnlPlayback').disabled=true;el('dtnlToQuiz').disabled=true;
+    el('dtnlModelListen').onclick=function(){setStep(3);playGuide(selected)};
+    el('dtnlRecord').onclick=toggleRecord;
+    el('dtnlPlayback').onclick=playRecording;
+    el('dtnlToQuiz').onclick=function(){
+      setStep(4);quizIndex=0;quizScore=0;if(practice)practice.hidden=true;el('dtnlQuizPanel').hidden=false;renderQuiz();
+      requestAnimationFrame(function(){el('dtnlQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})
+    };
+    el('dtnlQuizListen').onclick=function(){playGuide(quizOrder[quizIndex])};el('dtnlQuizNext').onclick=nextQuiz
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
