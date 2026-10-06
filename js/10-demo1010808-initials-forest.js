@@ -1,5 +1,5 @@
-/* DEMO 10.108.15 — initial-card visual language: IPA + airflow/articulation cues + tone identity.
-   Audio logic from 10.108.14 is preserved.
+/* DEMO 10.108.16 — readable initial models + explicit tone-placement rule.
+   Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
    
    Local WAV is the primary path so iPhone Safari/Private mode can play on the first tap.
@@ -12,6 +12,12 @@
     p:{mark:'[pʰ]',label:'有気音',desc:'母音を足さず、同じ口の形で開く瞬間に強く息を出す'},
     m:{mark:'[m]',label:'鼻音',desc:'母音を足さず、くちびるを閉じたまま鼻に短く響かせる'},
     f:{mark:'[f]',label:'摩擦音',desc:'母音を足さず、上の歯を下くちびるに軽く当てて細く息を流す'}
+  };
+  var guide={
+    b:{hanzi:'波',pinyin:'bō'},
+    p:{hanzi:'泼',pinyin:'pō'},
+    m:{hanzi:'摸',pinyin:'mō'},
+    f:{hanzi:'佛',pinyin:'fó'}
   };
   var tips={
     b:'くちびるを閉じる → 一瞬だけ開く。母音を足さない（無気音）',
@@ -111,6 +117,27 @@
       return playSynthetic(letter);
     }
   }
+  function playGuide(letter){
+    stopAudio();
+    var item=guide[letter];
+    if(!item)return play(letter);
+    try{
+      if(typeof window.playMachine==='function'){
+        var r=window.playMachine(item.hanzi,null,false);
+        if(r&&typeof r.catch==='function')r.catch(function(){play(letter)});
+        return true;
+      }
+    }catch(e){}
+    try{
+      if('speechSynthesis' in window){
+        window.speechSynthesis.cancel();
+        var u=new SpeechSynthesisUtterance(item.hanzi); u.lang='zh-CN'; u.rate=.78; u.pitch=1;
+        u.onerror=function(){play(letter)};
+        window.speechSynthesis.speak(u); return true;
+      }
+    }catch(e2){}
+    return play(letter);
+  }
   function setStep(n){
     document.querySelectorAll('.initials-progress span').forEach(function(x){
       var k=Number(x.dataset.initialStep);
@@ -125,7 +152,7 @@
     });
     var f=el('initialsFocusLetter'),s=el('initialsFocusSyllable'),t=el('initialsFocusTip');
     if(f)f.textContent=letter;
-    if(s)s.textContent=sounds[letter].mark+' · '+sounds[letter].label;
+    if(s)s.textContent=guide[letter].hanzi+' '+guide[letter].pinyin+' · '+sounds[letter].mark;
     if(t)t.textContent=tips[letter];
     renderToneButtons()
   }
@@ -133,9 +160,11 @@
     var box=el('initialsToneButtons'); if(!box)return;
     box.replaceChildren();
     var b=document.createElement('button');
-    b.type='button'; b.textContent='▶ '+selected+' の単音を聞く';
-    b.addEventListener('click',function(){play(selected)});
-    box.appendChild(b)
+    b.type='button'; b.className='initial-guide-button'; b.textContent='▶ '+selected+' のお手本を聞く（'+guide[selected].hanzi+'）';
+    b.addEventListener('click',function(){playGuide(selected)});
+    box.appendChild(b);
+    var raw=document.createElement('button'); raw.type='button'; raw.className='initial-raw-button';
+    raw.textContent='息・口の動きだけを聞く'; raw.addEventListener('click',function(){play(selected)}); box.appendChild(raw)
   }
   function renderLetters(){
     var g=el('initialsLetterGrid'),free=el('initialsFreeChoice'); if(!g||!free)return;
@@ -152,7 +181,7 @@
         ? '<span class="initial-cue-icon '+cue.kind+'" aria-hidden="true"><i></i><i></i><i></i></span>'
         : '<span class="initial-cue-icon '+cue.kind+'" aria-hidden="true"><i></i><i></i><i></i></span>';
       b.innerHTML='<span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span><span class="initial-articulation">'+icon+'<em>'+cue.label+'</em></span>';
-      b.addEventListener('click',function(){select(letter);play(letter)}); g.appendChild(b);
+      b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
       var c=document.createElement('button'); c.type='button'; c.dataset.letter=letter;
       c.textContent=letter+' '+sounds[letter].mark;
       c.addEventListener('click',function(){select(letter)}); free.appendChild(c)
@@ -169,18 +198,18 @@
     var fb=el('initialsQuizFeedback'); if(fb){fb.textContent='';fb.className='initials-feedback'}
     var next=el('initialsQuizNext'); if(next)next.hidden=true; quizAnswered=false
   }
-  function playQuiz(){play(quizOrder[quizIndex])}
+  function playQuiz(){playGuide(quizOrder[quizIndex])}
   function answerQuiz(letter,button){
     if(quizAnswered)return; quizAnswered=true;
     var right=quizOrder[quizIndex],fb=el('initialsQuizFeedback');
     if(letter===right){
       quizScore++; button.classList.add('is-correct');
-      if(fb){fb.textContent='いい耳！ '+right+' の単音だよ ✓';fb.className='initials-feedback is-good'}
+      if(fb){fb.textContent='いい耳！ '+right+' のお手本だよ ✓';fb.className='initials-feedback is-good'}
     }else{
       button.classList.add('is-wrong');
       var rb=Array.prototype.find.call(el('initialsQuizChoices').children,function(x){return x.textContent===right});
       if(rb)rb.classList.add('is-correct');
-      if(fb){fb.textContent='今回は '+right+'。母音を足さず、息と口の動きを聞こう';fb.className='initials-feedback is-bad'}
+      if(fb){fb.textContent='今回は '+right+'。呼読音の最初の音と、息の出方をもう一度比べよう';fb.className='initials-feedback is-bad'}
     }
     var next=el('initialsQuizNext');
     if(next){next.hidden=false;next.textContent=quizIndex===quizOrder.length-1?'結果を見る':'次の問題へ →'}
@@ -223,7 +252,7 @@
         setStep(3)
       };
       recorder.start(); btn.textContent='■ 録音を止める'; btn.classList.add('is-recording');
-      if(fb){fb.textContent='録音中… '+selected+' の単音だけをまねしてみよう';fb.className='initials-feedback'}
+      if(fb){fb.textContent='録音中… '+selected+' のお手本の最初の音を意識してまねしよう';fb.className='initials-feedback'}
     }catch(e){if(fb)fb.textContent='マイクの許可を確認してね。'}
   }
   function playRecording(){
@@ -235,7 +264,7 @@
     renderLetters();
     document.querySelectorAll('.air-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.air)})});
     document.querySelectorAll('.mouth-sound-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.mouth)})});
-    el('initialsModelListen').addEventListener('click',function(){setStep(3);play(selected)});
+    el('initialsModelListen').addEventListener('click',function(){setStep(3);playGuide(selected)});
     el('initialsRecord').addEventListener('click',toggleRecord);
     el('initialsPlayback').addEventListener('click',playRecording);
     el('initialsToQuiz').addEventListener('click',function(){
