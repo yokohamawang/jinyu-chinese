@@ -67,7 +67,7 @@
 <link rel="stylesheet" href="./css/65-demo1010797-kids-home-back-unified.css?v=10.107.97" id="demo1010797-kids-home-back-unified">
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.107.99" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
-<link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.16" id="demo1010808-initials-forest">
+<link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.17" id="demo1010808-initials-forest">
 <link rel="stylesheet" href="./css/69-demo1010812-dev-test-mode.css?v=10.108.12" id="demo1010812-dev-test-mode">
 </head><body class="app-home-mode">
 
@@ -325,7 +325,7 @@ window.koepandaEnterKidsCourse=function(ev){
       </div>
       <div class="initials-forest-art" aria-hidden="true">
         <span class="tree tree-a">♣</span><span class="tree tree-b">♣</span>
-        <span class="forest-path"></span><span class="forest-gem">♪</span>
+        <span class="forest-path"></span><span class="forest-gem" aria-label="音のしるし"><i aria-hidden="true">♪</i></span>
       </div>
     </div>
 
@@ -359,20 +359,20 @@ window.koepandaEnterKidsCourse=function(ev){
     </section>
 
     <section class="initials-panel initials-air-panel" id="initialsAirPanel">
-      <div class="initials-panel-head"><span>🌬️</span><div><b>b と p、違いは「息」</b><small>口の形は似ている。手のひらを口の前に置いて比べよう</small></div></div>
+      <div class="initials-panel-head"><span>🌬️</span><div><b>b と p、違いは「息」</b><small>同じ「両くちびる」でも、開く瞬間の息の強さがちがう</small></div></div>
       <div class="air-compare">
-        <button type="button" class="air-card" data-air="b"><span class="air-letter">b</span><span class="lip-icon"><i></i></span><b>b</b><small>無気音 · 息は弱め</small><em>タップして聞く</em></button>
+        <button type="button" class="air-card" data-air="b"><span class="air-letter">b</span><span class="lip-icon lip-b"><i></i><u></u></span><b>b</b><small>くちびるを閉じる → すぐ開く</small><em><span class="air-word">息よわい</span> タップして聞く</em></button>
         <div class="air-stream" aria-hidden="true"><i></i><i></i><i></i></div>
-        <button type="button" class="air-card is-strong" data-air="p"><span class="air-letter">p</span><span class="lip-icon"><i></i></span><b>p</b><small>有気音 · 息を強く出す</small><em>タップして聞く</em></button>
+        <button type="button" class="air-card is-strong" data-air="p"><span class="air-letter">p</span><span class="lip-icon lip-p"><i></i><u></u></span><b>p</b><small>くちびるを閉じる → 強い息で開く</small><em><span class="air-word">息つよい</span> タップして聞く</em></button>
       </div>
-      <div class="air-paper"><span>▱</span><div><b>紙きれテスト</b><small>p のときだけ、紙が大きく揺れるイメージ。</small></div></div>
+      <div class="air-paper"><span class="paper-sheet" aria-hidden="true"></span><div><b>手のひら / 紙きれで確認</b><small>b はほとんど動かない。p は息で大きく動く。</small></div></div>
     </section>
 
     <section class="initials-panel initials-mouth-panel">
-      <div class="initials-panel-head"><span>👄</span><div><b>m と f は口の使い方が違う</b><small>見た目でも分かるように、口のポイントを覚えよう</small></div></div>
+      <div class="initials-panel-head"><span>👄</span><div><b>m と f は「出口」が違う</b><small>m は鼻へ、f は歯とくちびるのすき間へ。音の出口を見て覚えよう</small></div></div>
       <div class="mouth-compare-grid">
-        <button type="button" class="mouth-sound-card" data-mouth="m"><span class="mouth-sketch mouth-m" aria-hidden="true"><svg viewBox="0 0 120 86" role="img"><path class="face-line" d="M21 19 Q60 2 99 19"/><path class="lip upper" d="M22 47 Q60 27 98 47 Q60 52 22 47Z"/><path class="lip lower" d="M22 48 Q60 65 98 48 Q60 44 22 48Z"/><path class="nose-wave" d="M49 22 q11 -12 22 0 M44 16 q16 -18 32 0"/></svg></span><strong>m</strong><b>両くちびるを閉じる</b><small>母音を足さず、鼻に短く響かせる</small></button>
-        <button type="button" class="mouth-sound-card" data-mouth="f"><span class="mouth-sketch mouth-f" aria-hidden="true"><svg viewBox="0 0 120 86" role="img"><path class="face-line" d="M21 18 Q60 2 99 18"/><path class="teeth" d="M27 35 H93 V49 H27 Z"/><path class="tooth-lines" d="M40 35V49 M53 35V49 M66 35V49 M79 35V49"/><path class="lower-lip" d="M26 54 Q60 71 94 54 Q60 46 26 54Z"/><path class="air-arrow" d="M91 57 C102 56 108 52 113 47"/><path class="air-head" d="M108 44 L115 46 L111 52"/></svg></span><strong>f</strong><b>上の歯＋下くちびる</b><small>上の歯を下くちびるに軽く当て、すき間から細く息を流す</small></button>
+        <button type="button" class="mouth-sound-card" data-mouth="m"><span class="mouth-sketch mouth-m" aria-hidden="true"><svg viewBox="0 0 120 86" role="img"><path class="face-line" d="M21 19 Q60 2 99 19"/><path class="nose" d="M54 22 Q60 29 66 22"/><path class="lip upper" d="M22 47 Q60 27 98 47 Q60 52 22 47Z"/><path class="lip lower" d="M22 48 Q60 65 98 48 Q60 44 22 48Z"/><path class="nose-wave" d="M49 18 q11 -12 22 0 M44 11 q16 -18 32 0"/></svg></span><strong>m</strong><b>くちびるは閉じたまま</b><small><span class="mouth-key">鼻にひびく</span>　声の出口は鼻</small></button>
+        <button type="button" class="mouth-sound-card" data-mouth="f"><span class="mouth-sketch mouth-f" aria-hidden="true"><svg viewBox="0 0 120 86" role="img"><path class="face-line" d="M21 18 Q60 2 99 18"/><path class="teeth" d="M27 35 H93 V49 H27 Z"/><path class="tooth-lines" d="M40 35V49 M53 35V49 M66 35V49 M79 35V49"/><path class="contact-dot" d="M65 50 a4 4 0 1 0 0.1 0"/><path class="lower-lip" d="M26 54 Q60 71 94 54 Q60 46 26 54Z"/><path class="air-arrow" d="M91 57 C102 56 108 52 113 47"/><path class="air-arrow air-arrow-2" d="M88 63 C101 64 108 61 115 57"/><path class="air-head" d="M108 44 L115 46 L111 52"/></svg></span><strong>f</strong><b>上の歯を下くちびるへ</b><small><span class="mouth-key">細い息</span>　すき間から長く流す</small></button>
       </div>
     </section>
 
@@ -465,7 +465,7 @@ SOFTWARE.
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.12"></script>
 <script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.12"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
-<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.16"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.17"></script>
 
 
 <link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107.72" id="demo10100-step23-header-align-fix">

@@ -1,0 +1,8 @@
+Koepanda DEMO 10.108.17 — Initial Visual / Mouth Polish
+
+- Fixed Lesson 3 hero music-note badge: glow and badge now share the same center.
+- Forced b / p / m / f free-practice choices to a consistent two-line layout (letter over IPA), including f.
+- Refined b / p airflow visuals: weak vs strong breath is visible without reading the text.
+- Refined m / f mouth diagrams: m emphasizes nasal resonance; f emphasizes upper-teeth/lower-lip contact and thin continuous airflow.
+- Shortened and action-oriented Japanese explanations for mobile readability.
+- Preserved 10.108.16 pronunciation and tone-placement logic.
