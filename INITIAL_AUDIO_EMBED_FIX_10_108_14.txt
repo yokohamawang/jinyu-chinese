@@ -1,0 +1,6 @@
+Koepanda 10.108.14
+- b/p/m/f WAV data embedded directly in initials JS; no nested audio path/404 dependency.
+- Increased prototype sound level.
+- iPhone Safari/Private-mode playback now starts from a direct tap using HTMLAudioElement.
+- m/f mouth diagrams replaced by inline SVG for clear lip/teeth/airflow display.
+- Based on 10.108.13; full package preserved.

@@ -1,0 +1,7 @@
+DEMO 10.108.22 — d/t/n/l tongue-position clarification
+
+- Hero art no longer uses a standalone “舌” badge that could be mistaken for an anatomical position cue.
+- The real teaching diagram now explicitly marks the upper alveolar ridge behind the front teeth.
+- Tongue-tip animation reaches that marked position for d/t/n/l.
+- d/t keep release-air contrast; n keeps nasal path; l keeps lateral path.
+- Cache-busted P3/P4 CSS and JS to 10.108.22.
