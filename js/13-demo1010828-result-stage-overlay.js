@@ -1,6 +1,6 @@
 /* Koepanda 10.108.28 — unified automatic result-stage celebration */
 (function(){
-  var lastConfig=null;
+  var lastConfig=null,autoTimer=null;
   function removeOld(){var x=document.getElementById('koepandaResultStage');if(x)x.remove()}
   function level(score,total){if(score===total)return'perfect';if(score>=Math.max(1,total-1))return'near';return'retry'}
   function defaults(cfg){
@@ -23,6 +23,10 @@
     stage.addEventListener('click',function(e){if(e.target===stage)done()});
     document.body.appendChild(stage);requestAnimationFrame(function(){stage.classList.add('is-show')});
     return stage
+  };
+  window.koepandaQueueResultCelebration=function(cfg,delay){
+    if(autoTimer)clearTimeout(autoTimer);
+    autoTimer=setTimeout(function(){autoTimer=null;window.koepandaShowResultCelebration(cfg)},typeof delay==='number'?delay:90);
   };
   window.koepandaReplayLastResult=function(){if(lastConfig)window.koepandaShowResultCelebration(lastConfig)};
   window.koepandaAttachResultReplay=function(container,cfg){

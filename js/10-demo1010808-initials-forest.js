@@ -287,7 +287,8 @@
     }
     var celebration={score:quizScore,total:total,passed:passed,title:passed?'ミニチェック合格！':'あと一歩！',message:passed?(quizScore===total?'b・p・m・f、4問ぜんぶ正解！ 音の違いをばっちり聞き分けられたよ。':'b・p・m・f の違いを聞き分けられたよ。あと1問で満点！'):'苦手な音をもう一度確認して、再チャレンジしよう。'};
     if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
-    requestAnimationFrame(function(){if(result)result.scrollIntoView({block:'center',behavior:'smooth'});if(window.koepandaShowResultCelebration)window.koepandaShowResultCelebration(celebration)});
+    if(window.koepandaQueueResultCelebration)window.koepandaQueueResultCelebration(celebration,90);
+    else if(window.koepandaShowResultCelebration)window.setTimeout(function(){window.koepandaShowResultCelebration(celebration)},90);
   }
   function mimeType(){
     if(typeof MediaRecorder==='undefined')return '';
