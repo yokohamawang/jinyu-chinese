@@ -187,3 +187,8 @@
   .vowel-practice-console .kids-a-record-button,
   .vowel-practice-console .kids-a-playback-button{font-size:10.8px!important;padding-left:5px!important;padding-right:5px!important}
 }
+
+/* 10.108.25: stronger own-voice touch/playback feedback + blind ear-check state */
+.initials-practice-console .initials-playback.is-pressed,.dtnl-practice-console .dtnl-playback.is-pressed,.vowel-practice-console .kids-a-playback-button.is-pressed{transform:translateY(2px) scale(.975)!important;filter:brightness(.94)!important;box-shadow:inset 0 3px 7px rgba(62,82,72,.18)!important}
+.initials-practice-console .initials-playback.is-playing,.dtnl-practice-console .dtnl-playback.is-playing,.vowel-practice-console .kids-a-playback-button.is-playing{background:linear-gradient(180deg,#e4ebff,#dce5fa)!important;box-shadow:inset 0 0 0 2px rgba(82,102,143,.22),0 3px 8px rgba(75,92,128,.08)!important}
+.kids-a-choice-row .kids-a-tone-choice:disabled{opacity:.44;filter:saturate(.65);cursor:default}
