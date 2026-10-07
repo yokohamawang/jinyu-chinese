@@ -205,7 +205,7 @@
       b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
       var c=document.createElement('button'); c.type='button'; c.dataset.letter=letter;
       c.innerHTML='<span class="free-letter">'+letter+'</span><span class="free-ipa">'+sounds[letter].mark+'</span>';
-      c.addEventListener('click',function(){select(letter)}); free.appendChild(c)
+      c.addEventListener('click',function(){setStep(3);select(letter);playGuide(letter)}); free.appendChild(c)
     });
     select('b')
   }
@@ -333,7 +333,6 @@
     document.querySelectorAll('.air-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.air)})});
     document.querySelectorAll('.mouth-sound-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.mouth)})});
     el('initialsToQuiz').disabled=false;
-    el('initialsModelListen').addEventListener('click',function(){setStep(3);playGuide(selected)});
     el('initialsRecord').addEventListener('click',toggleRecord);
     el('initialsPlayback').addEventListener('click',playRecording);
     el('initialsToQuiz').addEventListener('click',function(){
