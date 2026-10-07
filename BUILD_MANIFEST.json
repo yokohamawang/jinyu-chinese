@@ -1,23 +1,18 @@
 {
-  "version": "10.108.36",
-  "base": "Koepanda_10_108_35_FULL_DirectMiniCheckFlow.zip",
-  "name": "DirectMiniCheckFlow",
-  "build_name": "FULL_DirectMiniCheckFlow",
+  "version": "10.108.41",
+  "base": "Koepanda_10_108_40_FULL_RoadmapCleanLayoutFix.zip",
+  "name": "RoadmapOldCleanWrapRestore",
+  "build_name": "FULL_RoadmapOldCleanWrapRestore",
   "changes": [
-    "keep roadmap lesson titles as intact phrases without orphaned kana",
-    "slightly reduce long roadmap title typography on narrow screens",
-    "refresh cache-busting tags to 10.108.36"
+    "restore roadmap layout rules from the last clean pre-no-wrap version",
+    "allow lesson titles to wrap naturally instead of forcing one-line compression",
+    "keep all 10.108.40 functionality and JavaScript unchanged",
+    "refresh roadmap CSS cache-busting tag to 10.108.41"
   ],
   "changed_files": [
-    "js/08-demo1010793-kids-audio-cacheproof.js",
-    "index.html",
-    "VERSION.txt",
-    "BUILD_MANIFEST.json",
-    "CODE_AUDIT_10_108_35.txt"
-  ],
-  "files": [
     "css/66-demo1010798-simple-learning-path.css",
     "index.html",
-    "CODE_AUDIT_10_108_36.txt"
+    "VERSION.txt",
+    "BUILD_MANIFEST.json"
   ]
 }
