@@ -1,0 +1,6 @@
+Koepanda 10.108.27
+- Teaching / free practice / mini-check zones are visually separated with restrained hierarchy.
+- Free practice remains prominent but optional.
+- b/p/m/f and d/t/n/l mini-checks no longer require recording first.
+- Vowel mini-check becomes available after the ear step; recording/free practice can be skipped.
+- Existing recording, playback and randomized vowel quiz behavior retained.
