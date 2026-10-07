@@ -1,0 +1,62 @@
+/* 10.108.32 — simplify free-practice flow and keep text readable for older learners */
+.practice-tap-hint{
+  margin:10px 0 4px;
+  text-align:center;
+  font-size:17px;
+  line-height:1.45;
+  font-weight:900;
+  color:#426f61;
+}
+.kids-a-imitate-prompt{
+  font-size:19px!important;
+  line-height:1.4!important;
+  font-weight:950!important;
+}
+.kids-a-stage-head b,.initials-panel-head b,.dtnl-panel-head b{
+  font-size:20px!important;
+  line-height:1.35!important;
+}
+.kids-a-stage-head small,.initials-panel-head small,.dtnl-panel-head small{
+  font-size:16px!important;
+  line-height:1.55!important;
+  color:#5e766e!important;
+  font-weight:800!important;
+}
+.practice-console-top{gap:10px!important;flex-wrap:wrap!important}
+.practice-console-top span{font-size:18px!important;line-height:1.3!important}
+.practice-console-top small{font-size:16px!important;line-height:1.45!important;color:#607b71!important;font-weight:800!important}
+.kids-a-imitate-choices .kids-a-tone-choice strong{font-size:35px!important;line-height:1!important}
+.kids-a-imitate-choices .kids-a-tone-choice small{font-size:16px!important;font-weight:900!important}
+.kids-a-imitate-choices .kids-a-tone-choice{min-height:88px!important}
+.vowel-practice-console .kids-a-record-row,
+.initials-practice-console .initials-record-row,
+.dtnl-practice-console .dtnl-record-row{gap:10px!important;margin-top:12px!important}
+.vowel-practice-console .kids-a-record-button,
+.vowel-practice-console .kids-a-playback-button,
+.initials-practice-console .initials-record,
+.initials-practice-console .initials-playback,
+.dtnl-practice-console .dtnl-record,
+.dtnl-practice-console .dtnl-playback{
+  min-height:60px!important;
+  font-size:17px!important;
+  line-height:1.25!important;
+  font-weight:950!important;
+  padding:12px 8px!important;
+}
+.practice-next-label span{font-size:16px!important;line-height:1.45!important;font-weight:850!important}
+.kids-a-confirm-button,.initials-to-quiz,.dtnl-to-quiz{font-size:17px!important;min-height:56px!important}
+.kids-a-feedback,.initials-feedback,.dtnl-feedback{font-size:16px!important;line-height:1.5!important}
+.initials-free-choice button,.dtnl-free-choice button{min-height:62px!important;font-size:24px!important}
+@media(max-width:390px){
+  .practice-tap-hint{font-size:16px}
+  .kids-a-stage-head b,.initials-panel-head b,.dtnl-panel-head b{font-size:19px!important}
+  .kids-a-stage-head small,.initials-panel-head small,.dtnl-panel-head small{font-size:15px!important}
+  .practice-console-top span{font-size:17px!important}
+  .practice-console-top small{font-size:15px!important}
+  .vowel-practice-console .kids-a-record-button,
+  .vowel-practice-console .kids-a-playback-button,
+  .initials-practice-console .initials-record,
+  .initials-practice-console .initials-playback,
+  .dtnl-practice-console .dtnl-record,
+  .dtnl-practice-console .dtnl-playback{font-size:16px!important}
+}
