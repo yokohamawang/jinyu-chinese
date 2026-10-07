@@ -1,0 +1,6 @@
+Koepanda 10.108.29
+- Fix automatic result popup on iPhone/Safari by separating modal trigger from smooth-scroll/requestAnimationFrame.
+- Add queued result-stage trigger used by vowel, b/p/m/f and d/t/n/l mini checks.
+- Fix 「結果を見る」 being squeezed into the left grid column; it is now a full-width secondary action.
+- Add safe-area and small-screen modal sizing polish.
+- Full package based on 10.108.28, no overwrite of prior versions.

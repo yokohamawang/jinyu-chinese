@@ -1,14 +1,14 @@
 {
-  "version": "10.108.28",
-  "base": "10.108.27",
-  "name": "ResultStageOverlay",
-  "build_name": "FULL_ResultStageOverlay",
+  "version": "10.108.29",
+  "base": "10.108.28",
+  "name": "AutoResultPopupLayoutFix",
+  "build_name": "FULL_AutoResultPopupLayoutFix",
   "changes": [
-    "automatically show result celebration after the final mini-check answer",
-    "add distinct perfect, near-perfect, and retry result-stage presentations",
-    "keep the inline result after closing the overlay",
-    "add a replayable 結果を見る entry after completion",
-    "apply the unified result flow to vowels, b/p/m/f, and d/t/n/l"
+    "make automatic result popup independent from smooth scroll/requestAnimationFrame so it reliably appears on iPhone Safari",
+    "queue the result-stage popup for vowel, b/p/m/f, and d/t/n/l mini checks",
+    "fix 結果を見る button layout inside grid result cards so it stays full width",
+    "add safe-area and small-screen modal sizing polish",
+    "retain inline result and replay entry after closing the popup"
   ],
   "changed_files": [
     "index.html",
@@ -18,7 +18,7 @@
     "js/10-demo1010808-initials-forest.js",
     "js/12-demo1010820-dtnl-first-lesson.js",
     "VERSION.txt",
-    "RESULT_STAGE_OVERLAY_10_108_28.txt",
+    "RESULT_POPUP_LAYOUT_FIX_10_108_29.txt",
     "BUILD_MANIFEST.json"
   ]
 }
