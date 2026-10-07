@@ -192,3 +192,67 @@
 .initials-practice-console .initials-playback.is-pressed,.dtnl-practice-console .dtnl-playback.is-pressed,.vowel-practice-console .kids-a-playback-button.is-pressed{transform:translateY(2px) scale(.975)!important;filter:brightness(.94)!important;box-shadow:inset 0 3px 7px rgba(62,82,72,.18)!important}
 .initials-practice-console .initials-playback.is-playing,.dtnl-practice-console .dtnl-playback.is-playing,.vowel-practice-console .kids-a-playback-button.is-playing{background:linear-gradient(180deg,#e4ebff,#dce5fa)!important;box-shadow:inset 0 0 0 2px rgba(82,102,143,.22),0 3px 8px rgba(75,92,128,.08)!important}
 .kids-a-choice-row .kids-a-tone-choice:disabled{opacity:.44;filter:saturate(.65);cursor:default}
+
+
+/* 10.108.27 — clearer lesson zones without adding visual noise. */
+.initials-panel,.dtnl-panel,.kids-a-stage{
+  position:relative;
+  margin-top:16px!important;
+  border-radius:22px!important;
+  border:1px solid rgba(57,111,91,.10)!important;
+  box-shadow:0 8px 22px rgba(45,82,67,.055)!important;
+  overflow:hidden;
+}
+.initials-panel:before,.dtnl-panel:before,.kids-a-stage:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,rgba(74,154,121,.58),rgba(74,154,121,.10));
+}
+.initials-panel-head,.dtnl-panel-head,.kids-a-stage-head{
+  padding-top:2px;
+}
+.initials-panel-head>span,.dtnl-panel-head>span,.kids-a-stage-head>span{
+  width:34px;height:34px;display:grid;place-items:center;border-radius:12px;
+  background:rgba(237,247,241,.92);font-size:17px;
+}
+.initials-panel-head b,.dtnl-panel-head b,.kids-a-stage-head b{font-size:14px!important;letter-spacing:.01em}
+.initials-panel-head small,.dtnl-panel-head small,.kids-a-stage-head small{line-height:1.55!important}
+
+/* Practice = a calm green studio; clearly optional and repeatable. */
+.initials-imitate-panel,.dtnl-practice-panel,.kids-a-imitate-stage{
+  background:linear-gradient(180deg,#fbfefc,#f3faf5)!important;
+  border-color:rgba(49,132,96,.16)!important;
+}
+.initials-imitate-panel:before,.dtnl-practice-panel:before,.kids-a-imitate-stage:before{
+  background:linear-gradient(90deg,#55ae84,rgba(85,174,132,.16));
+}
+.practice-console{margin-top:14px;padding-top:15px}
+.practice-console-top span{
+  min-height:25px;padding:0 11px;background:#dff2e7;color:#2d7359;font-size:10px;letter-spacing:.04em;
+}
+.practice-console-top small{font-size:10px;color:#718b81}
+.practice-next-label{margin:15px 2px 9px;font-size:9.5px;color:#738b82}
+.practice-next-label span{white-space:normal;text-align:center}
+.initials-to-quiz,.dtnl-to-quiz,.kids-a-confirm-button{
+  background:linear-gradient(180deg,#fffdf3,#fff6d9)!important;
+  color:#705b22!important;
+  border:1px solid rgba(197,156,55,.18)!important;
+  box-shadow:0 7px 15px rgba(133,108,43,.09)!important;
+}
+.initials-to-quiz:active,.dtnl-to-quiz:active,.kids-a-confirm-button:active{transform:translateY(2px) scale(.985)}
+
+/* Quiz = a separate challenge card, not just the next row. */
+.initials-quiz-panel,.dtnl-quiz-panel,#kidsAQuizStage{
+  background:linear-gradient(180deg,#fffdf8,#fff9e9)!important;
+  border-color:rgba(197,157,55,.18)!important;
+  box-shadow:0 10px 24px rgba(123,97,35,.07)!important;
+}
+.initials-quiz-panel:before,.dtnl-quiz-panel:before,#kidsAQuizStage:before{
+  background:linear-gradient(90deg,#e5bd52,rgba(229,189,82,.14));
+}
+.initials-quiz-panel .initials-panel-head>span,.dtnl-quiz-panel .dtnl-panel-head>span,#kidsAQuizStage .kids-a-stage-head>span{
+  background:#fff2c9;
+}
+@media(max-width:390px){
+  .initials-panel,.dtnl-panel,.kids-a-stage{margin-top:14px!important;border-radius:20px!important}
+  .initials-panel-head b,.dtnl-panel-head b,.kids-a-stage-head b{font-size:13px!important}
+}
