@@ -1,0 +1,11 @@
+DEMO 10.108.25 — blind ear-check + playback touch feedback
+
+Base: 10.108.24 FULL_UnifiedFreePracticePolish
+
+- Changed the vowel ear check into an independent blind question.
+- The four visible tone cards no longer set/reveal the ear-check answer.
+- A hidden random tone (1–4) is selected when the lesson flow starts.
+- First button label is “問題の音を聞く”; after first playback it becomes “もう一度聞く”.
+- Answer choices remain disabled until the question sound has been played once.
+- “もう一度聞く” replays the same hidden target until the learner answers.
+- Added stronger press and playback-state feedback to “自分の声を聞く” for b/p/m/f and d/t/n/l, matching the vowel practice behavior.

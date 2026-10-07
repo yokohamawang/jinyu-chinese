@@ -1,0 +1,7 @@
+DEMO 10.108.26 — vowel mini-quiz random order
+
+- The four tone questions in every vowel mini-quiz are now shuffled for each attempt.
+- Removed the fixed 1声 → 3声 → 2声 → 4声 pattern.
+- Each four-question attempt still contains 1声, 2声, 3声, 4声 exactly once.
+- Retrying the quiz reshuffles the order again.
+- Immediate repetition of the exact same four-tone order is avoided within the current session.

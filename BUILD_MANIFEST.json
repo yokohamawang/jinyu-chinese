@@ -1,22 +1,23 @@
 {
-  "version": "10.108.24",
-  "base": "10.108.23",
-  "name": "UnifiedFreePracticePolish",
-  "build_name": "FULL_UnifiedFreePracticePolish",
+  "version": "10.108.26",
+  "base": "10.108.24",
+  "name": "EarBlindCheckPressFeedback",
+  "build_name": "FULL_EarBlindCheckPressFeedback",
   "changes": [
-    "unify vowel, bpmf and dtnl free-practice visual structure",
-    "upgrade recording/playback area into a consistent Koepanda practice console",
-    "separate free practice visually from the following mini-check",
-    "align dtnl music-note gem with bpmf hero position and proportions",
-    "preserve existing MediaRecorder and quiz event IDs/logic",
+    "make vowel ear discrimination an independent blind random-tone question",
+    "keep replay locked to the same hidden target until answer",
+    "disable tone-answer choices until the question sound is first played",
+    "add stronger pressed and playing feedback to own-voice playback buttons for bpmf and dtnl",
     "cache-bust affected lesson assets"
   ],
   "changed_files": [
     "index.html",
     "css/71-demo1010824-free-practice-polish.css",
     "js/08-demo1010793-kids-audio-cacheproof.js",
+    "js/10-demo1010808-initials-forest.js",
+    "js/12-demo1010820-dtnl-first-lesson.js",
     "VERSION.txt",
-    "FREE_PRACTICE_UNIFIED_10_108_24.txt",
+    "EAR_BLIND_CHECK_PRESS_FEEDBACK_10_108_25.txt",
     "BUILD_MANIFEST.json"
   ]
 }
