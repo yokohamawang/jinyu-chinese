@@ -305,7 +305,7 @@
         if(recordingUrl)URL.revokeObjectURL(recordingUrl); recordingUrl=URL.createObjectURL(blob);
         if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}
         btn.textContent='↻ もう一度録音'; btn.classList.remove('is-recording');
-        el('initialsPlayback').disabled=false; el('initialsToQuiz').disabled=false;
+        el('initialsPlayback').disabled=false;
         if(fb){fb.textContent='録音できたよ。お手本と聞きくらべてみよう 👂';fb.className='initials-feedback is-good'}
         setStep(3)
       };
@@ -326,6 +326,7 @@
     renderLetters();
     document.querySelectorAll('.air-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.air)})});
     document.querySelectorAll('.mouth-sound-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.mouth)})});
+    el('initialsToQuiz').disabled=false;
     el('initialsModelListen').addEventListener('click',function(){setStep(3);playGuide(selected)});
     el('initialsRecord').addEventListener('click',toggleRecord);
     el('initialsPlayback').addEventListener('click',playRecording);

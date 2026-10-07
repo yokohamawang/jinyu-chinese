@@ -44,7 +44,7 @@
         if(recordingUrl)URL.revokeObjectURL(recordingUrl);recordingUrl=URL.createObjectURL(blob);
         if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}
         btn.textContent='↻ もう一度録音';btn.classList.remove('is-recording');
-        el('dtnlPlayback').disabled=false;el('dtnlToQuiz').disabled=false;
+        el('dtnlPlayback').disabled=false;
         if(fb){fb.textContent='録音できたよ。お手本と聞きくらべてみよう 👂';fb.className='dtnl-feedback is-good'}
         setStep(3)
       };
@@ -67,7 +67,7 @@
     var practice=document.querySelector('#kidsInitialsDTNLLesson .dtnl-practice-panel');
     if(practice)practice.hidden=false;
     el('dtnlQuizPanel').hidden=true;el('dtnlResult').hidden=true;
-    el('dtnlPlayback').disabled=true;el('dtnlToQuiz').disabled=true;
+    el('dtnlPlayback').disabled=true;el('dtnlToQuiz').disabled=false;
     el('dtnlModelListen').onclick=function(){setStep(3);playGuide(selected)};
     el('dtnlRecord').onclick=toggleRecord;
     el('dtnlPlayback').onclick=playRecording;
