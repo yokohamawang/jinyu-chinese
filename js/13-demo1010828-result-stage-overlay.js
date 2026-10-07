@@ -1,4 +1,4 @@
-/* Koepanda 10.108.28 — unified automatic result-stage celebration */
+/* Koepanda 10.108.30 — unified automatic result-stage celebration */
 (function(){
   var lastConfig=null,autoTimer=null;
   function removeOld(){var x=document.getElementById('koepandaResultStage');if(x)x.remove()}
@@ -17,7 +17,7 @@
   window.koepandaShowResultCelebration=function(cfg){
     cfg=Object.assign({},cfg||{});lastConfig=cfg;removeOld();
     var d=defaults(cfg),stage=document.createElement('div');stage.id='koepandaResultStage';stage.className='koepanda-result-stage is-'+d.level;stage.setAttribute('role','dialog');stage.setAttribute('aria-modal','true');stage.setAttribute('aria-label',d.title);
-    stage.innerHTML='<div class="koepanda-result-stage-card"><div class="koepanda-result-stage-burst" aria-hidden="true"><i>★</i><i>✦</i><i>●</i><i>✧</i><i>★</i><i>✦</i><i>●</i><i>✧</i><i>★</i><i>✦</i></div><button type="button" class="koepanda-result-stage-close" aria-label="閉じる">×</button><div class="koepanda-result-stage-mascot">'+d.mascot+'</div><b class="koepanda-result-stage-kicker">'+d.kicker+'</b><strong class="koepanda-result-stage-title">'+d.title+'</strong><span class="koepanda-result-stage-score">'+cfg.score+' / '+cfg.total+'</span><span class="koepanda-result-stage-message">'+d.message+'</span><button type="button" class="koepanda-result-stage-ok">結果を確認する</button></div>';
+    stage.innerHTML='<div class="koepanda-result-stage-card"><div class="koepanda-result-stage-burst" aria-hidden="true"><i>★</i><i>✦</i><i>●</i><i>◆</i><i>★</i><i>✦</i><i>●</i><i>◆</i><i>★</i><i>✦</i><i>●</i><i>◆</i><i>★</i><i>✦</i><i>●</i><i>◆</i><i>★</i><i>✦</i><i>●</i><i>◆</i></div><button type="button" class="koepanda-result-stage-close" aria-label="閉じる">×</button><div class="koepanda-result-stage-mascot">'+d.mascot+'</div><b class="koepanda-result-stage-kicker">'+d.kicker+'</b><strong class="koepanda-result-stage-title">'+d.title+'</strong><span class="koepanda-result-stage-score">'+cfg.score+' / '+cfg.total+'</span><span class="koepanda-result-stage-message">'+d.message+'</span><button type="button" class="koepanda-result-stage-ok">閉じる</button></div>';
     function done(){close(stage);if(typeof cfg.onClose==='function')cfg.onClose()}
     stage.querySelector('.koepanda-result-stage-close').onclick=done;stage.querySelector('.koepanda-result-stage-ok').onclick=done;
     stage.addEventListener('click',function(e){if(e.target===stage)done()});
