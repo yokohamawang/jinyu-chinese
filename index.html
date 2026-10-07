@@ -70,7 +70,8 @@
 <link rel="stylesheet" href="./css/68-demo1010808-initials-forest.css?v=10.108.24" id="demo1010808-initials-forest">
 <link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.24" id="demo1010820-dtnl-first-lesson">
 <link rel="stylesheet" href="./css/71-demo1010824-free-practice-polish.css?v=10.108.27" id="demo1010824-free-practice-polish">
-<link rel="stylesheet" href="./css/72-demo1010828-result-stage-overlay.css?v=10.108.30" id="demo1010828-result-stage-overlay">
+<link rel="stylesheet" href="./css/73-demo1010832-practice-simple-large.css?v=10.108.33" id="demo1010832-practice-simple-large">
+<link rel="stylesheet" href="./css/72-demo1010828-result-stage-overlay.css?v=10.108.33" id="demo1010828-result-stage-overlay">
 <link rel="stylesheet" href="./css/69-demo1010812-dev-test-mode.css?v=10.108.12" id="demo1010812-dev-test-mode">
 </head><body class="app-home-mode">
 
@@ -382,11 +383,11 @@ window.koepandaEnterKidsCourse=function(ev){
     </section>
 
     <section class="initials-panel initials-imitate-panel">
-      <div class="initials-panel-head"><span>🗣️</span><div><b>小音といっしょにまねよう</b><small>好きな音を選んで、お手本 → 自分の声の順で練習</small></div></div>
+      <div class="initials-panel-head"><span>🗣️</span><div><b>小音といっしょにまねよう</b><small>好きな音をタップして、何度でも自由に練習できます</small></div></div>
       <div class="initials-free-choice" id="initialsFreeChoice"></div>
       <div class="practice-console initials-practice-console">
         <div class="practice-console-top"><span>自由練習</span><small>好きな音を何度でも練習</small></div>
-        <button type="button" class="initials-big-listen" id="initialsModelListen">▶ お手本を聞く</button>
+        <div class="practice-tap-hint">音をタップするとお手本が聞けます</div>
         <div class="initials-record-row">
           <button type="button" class="initials-record" id="initialsRecord">● 録音する</button>
           <button type="button" class="initials-playback" id="initialsPlayback" disabled>▶ 自分の声を聞く</button>
@@ -439,7 +440,7 @@ window.koepandaEnterKidsCourse=function(ev){
       <div class="dtnl-focus-card" id="dtnlFocusCard"><div class="dtnl-focus-copy"><span id="dtnlFocusLetter">d</span><div><strong id="dtnlFocusGuide">得 dé · [t]</strong><small id="dtnlFocusTip">舌先を上の歯ぐきへ。開く瞬間の息は弱く。</small></div></div><div class="dtnl-actions" id="dtnlActions"></div><div class="dtnl-articulation" id="dtnlArticulation" aria-label="舌先と息の動き"></div></div>
     </section>
     <section class="dtnl-panel dtnl-compare-panel"><div class="dtnl-panel-head"><span>👅</span><div><b>同じ場所、違う出口</b><small>d / t は息、n / l は音の通り道がポイント</small></div></div><div class="dtnl-compare-grid"><div><strong>d ↔ t</strong><span>舌先の場所は同じ</span><small>d は弱い息 / t は強い息</small></div><div><strong>n ↔ l</strong><span>舌先は歯ぐきへ</span><small>n は鼻 / l は舌の左右から</small></div></div></section>
-    <section class="dtnl-panel dtnl-practice-panel"><div class="dtnl-panel-head"><span>🗣️</span><div><b>好きな音をまねよう</b><small>選ぶ → お手本 → 録音 → 自分の声を聞く。好きな音を何度でも自由練習</small></div></div><div class="dtnl-free-choice" id="dtnlFreeChoice"></div><div class="practice-console dtnl-practice-console"><div class="practice-console-top"><span>自由練習</span><small>好きな音を何度でも練習</small></div><button type="button" class="dtnl-main-button" id="dtnlModelListen">▶ お手本を聞く</button><div class="dtnl-record-row"><button type="button" class="dtnl-record" id="dtnlRecord">● 録音する</button><button type="button" class="dtnl-playback" id="dtnlPlayback" disabled>▶ 自分の声を聞く</button></div><div class="dtnl-feedback" id="dtnlPracticeFeedback"></div></div><div class="practice-next-label"><span>練習は自由 · 自信があればそのまま挑戦</span></div><button type="button" class="dtnl-to-quiz" id="dtnlToQuiz">⭐ ミニチェックへ →</button></section>
+    <section class="dtnl-panel dtnl-practice-panel"><div class="dtnl-panel-head"><span>🗣️</span><div><b>好きな音をまねよう</b><small>好きな音をタップして、何度でも自由に練習できます</small></div></div><div class="dtnl-free-choice" id="dtnlFreeChoice"></div><div class="practice-tap-hint">音をタップするとお手本が聞けます</div><div class="practice-console dtnl-practice-console"><div class="practice-console-top"><span>自由練習</span><small>選んだ音を録音して、聞きくらべよう</small></div><div class="dtnl-record-row"><button type="button" class="dtnl-record" id="dtnlRecord">● 録音する</button><button type="button" class="dtnl-playback" id="dtnlPlayback" disabled>▶ 自分の声を聞く</button></div><div class="dtnl-feedback" id="dtnlPracticeFeedback"></div></div><div class="practice-next-label"><span>練習は自由 · 自信があればそのまま挑戦</span></div><button type="button" class="dtnl-to-quiz" id="dtnlToQuiz">⭐ ミニチェックへ →</button></section>
     <section class="dtnl-panel dtnl-quiz-panel" id="dtnlQuizPanel" hidden><div class="dtnl-panel-head"><span>⭐</span><div><b>舌先のミニチェック</b><small>音を聞いて d・t・n・l から選ぼう</small></div></div><div class="dtnl-quiz-count" id="dtnlQuizCount">1 / 4</div><button type="button" class="dtnl-main-button" id="dtnlQuizListen">▶ 音を聞く</button><div class="dtnl-quiz-choices" id="dtnlQuizChoices"></div><div class="dtnl-feedback" id="dtnlQuizFeedback"></div><button type="button" class="dtnl-quiz-next" id="dtnlQuizNext" hidden>次の問題へ →</button></section>
     <section class="dtnl-result" id="dtnlResult" hidden aria-live="polite"><div class="dtnl-result-badge" id="dtnlResultBadge">✓</div><div><strong id="dtnlResultTitle">ミニチェック結果</strong><span id="dtnlResultScore">4問中 0問正解</span><small id="dtnlResultMessage"></small></div><button type="button" class="dtnl-result-action" id="dtnlResultAction"></button></section>
   </article>
@@ -507,7 +508,7 @@ SOFTWARE.
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.12"></script>
 <script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.12"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
-<script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.30"></script>
+<script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.33"></script>
 <script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.29"></script>
 <script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.29"></script>
 

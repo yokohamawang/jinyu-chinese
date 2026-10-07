@@ -1,0 +1,18 @@
+Koepanda 10.108.33 FULL — Free Practice Audit Fix
+
+Base: Koepanda_10_108_32_FULL_SimpleLargeFreePractice.zip
+
+Audit / fixes:
+- Checked all bundled JavaScript with node --check: no syntax errors.
+- Parsed index.html successfully and confirmed there are no duplicate HTML ids.
+- Confirmed every local src/href referenced by index.html exists in the package.
+- Confirmed ZIP integrity.
+- Vowel free practice: tapping ā/á/ǎ/à selects the tone and calls playLocalPinyin; recording and playback handlers remain bound.
+- b/p/m/f free practice: tapping a sound selects it and calls playGuide; recording and playback handlers remain bound.
+- d/t/n/l free practice: tapping a sound selects it and calls playGuide; recording and playback handlers remain bound.
+- The redundant large model-listen button is absent from all three free-practice consoles.
+- Large-text/readability CSS remains active.
+- Fixed stale 10.108.31 metadata accidentally carried into 10.108.32.
+- Cache-busting query strings advanced to 10.108.33 for the latest practice/result assets.
+
+No lesson logic, audio source, quiz order, scoring threshold, or result-stage behavior was otherwise changed.

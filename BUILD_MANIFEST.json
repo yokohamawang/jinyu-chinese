@@ -1,20 +1,20 @@
 {
-  "version": "10.108.30",
-  "base": "10.108.29",
-  "name": "ResultStageCloseVividConfetti",
-  "build_name": "FULL_ResultStageCloseVividConfetti",
+  "version": "10.108.33",
+  "base": "10.108.32",
+  "name": "FreePracticeAuditFix",
+  "build_name": "FULL_FreePracticeAuditFix",
   "changes": [
-    "change result-stage primary action to 閉じる",
-    "keep upper-right × and inline 結果を見る replay entry",
-    "increase confetti brightness, color saturation, quantity and spread",
-    "keep celebration intensity tiered: perfect > near-perfect > retry"
+    "audit simplified free-practice flow across vowel, b/p/m/f and d/t/n/l sections",
+    "verify tone/sound cards themselves play the model audio and no duplicate model-listen button remains in free practice",
+    "verify record and playback controls keep their existing handlers and disabled/enabled states",
+    "preserve large readable text and large tap targets for older learners",
+    "correct stale VERSION.txt and BUILD_MANIFEST metadata left at 10.108.31 in the 10.108.32 package",
+    "refresh cache-busting tags for the latest practice/result styles and result script"
   ],
   "changed_files": [
     "index.html",
-    "css/72-demo1010828-result-stage-overlay.css",
-    "js/13-demo1010828-result-stage-overlay.js",
     "VERSION.txt",
-    "RESULT_STAGE_CLOSE_VIVID_CONFETTI_10_108_30.txt",
-    "BUILD_MANIFEST.json"
+    "BUILD_MANIFEST.json",
+    "CODE_AUDIT_10_108_33.txt"
   ]
 }

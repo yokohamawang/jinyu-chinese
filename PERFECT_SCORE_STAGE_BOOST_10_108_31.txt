@@ -1,0 +1,11 @@
+Koepanda 10.108.31 — Perfect Score Stage Boost
+
+Base: 10.108.30 FULL_ResultStageCloseVividConfetti
+
+Changes:
+- Make all-correct results visually distinct from near-perfect results.
+- Perfect state now gets a gold crown, radial stage rays, brighter card border/glow and a larger mascot entrance.
+- PERFECT headline and score badge are larger and more celebratory.
+- Perfect-only confetti is larger, lasts longer and spreads with a stronger second-stage feel.
+- Keep 3/4 near-perfect celebration lively but clearly one level below full marks.
+- Keep 閉じる action, upper-right × and 結果を見る replay behavior unchanged.
