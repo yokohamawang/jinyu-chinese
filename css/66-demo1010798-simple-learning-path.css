@@ -35,7 +35,7 @@
 #kidsCourse .pinyin-world.is-locked .pinyin-route-node{font-size:21px;background:#f7f8f5;color:#87948d;box-shadow:0 6px 14px rgba(70,95,80,.06),inset 0 0 0 4px #e1e8df}
 #kidsCourse .pinyin-route-copy{grid-row:1;max-width:145px;display:flex;flex-direction:column;gap:2px}
 #kidsCourse .pinyin-route-copy span{font-size:10px;font-weight:950;letter-spacing:.08em;color:#84a08d}
-#kidsCourse .pinyin-route-copy strong{font-size:17px;line-height:1.22;color:#315f51}
+#kidsCourse .pinyin-route-copy strong{font-size:clamp(14px,4vw,16px);line-height:1.22;color:#315f51;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;letter-spacing:-.02em}
 #kidsCourse .pinyin-route-copy small{font-size:10.5px;line-height:1.45;color:#7b8d84;font-weight:750}
 #kidsCourse .pinyin-world.is-current-route .pinyin-route-copy span{color:#58aa7b}
 #kidsCourse .pinyin-route-reward{display:inline-flex;align-items:center;gap:3px;margin-top:4px;font-size:9.5px!important;color:#839389!important}
@@ -45,6 +45,39 @@
   #kidsCourse .pinyin-world-open{grid-template-columns:1fr 72px 1fr!important;min-height:104px!important}
   #kidsCourse .pinyin-route-node{width:70px;height:70px;font-size:22px}
   #kidsCourse .pinyin-route-copy{max-width:128px}
-  #kidsCourse .pinyin-route-copy strong{font-size:15px}
+  #kidsCourse .pinyin-route-copy strong{font-size:14px;letter-spacing:-.03em}
   #kidsCourse .pinyin-route-copy small{font-size:9.6px}
+}
+
+/* DEMO 10.108.37 — hard stop for Safari Japanese title splitting.
+   Force roadmap title itself to keep its intrinsic one-line width rather than
+   inheriting the narrow side-column width. Short lesson names stay intact. */
+#kidsCourse .pinyin-route-copy{
+  max-width:none!important;
+  width:max-content!important;
+  min-width:max-content!important;
+}
+#kidsCourse .pinyin-route-copy strong{
+  display:block!important;
+  width:max-content!important;
+  min-width:max-content!important;
+  max-width:none!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  -webkit-hyphens:none!important;
+  hyphens:none!important;
+}
+@media(max-width:380px){
+  #kidsCourse .pinyin-route-copy{
+    max-width:none!important;
+    width:max-content!important;
+    min-width:max-content!important;
+  }
+  #kidsCourse .pinyin-route-copy strong{
+    font-size:14px!important;
+    width:max-content!important;
+    min-width:max-content!important;
+    white-space:nowrap!important;
+  }
 }
