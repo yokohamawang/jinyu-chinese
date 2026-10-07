@@ -206,7 +206,7 @@
 
     var copy=document.createElement('span'); copy.className='pinyin-route-copy';
     var label=document.createElement('span'); label.textContent='LESSON '+(index+1);
-    var title=document.createElement('strong'); title.textContent=stage.title;
+    var title=document.createElement('strong'); title.textContent=(index===0?String(stage.title).split('').join('\u2060'):stage.title);
     var sub=document.createElement('small'); sub.textContent=stage.subtitle;
     copy.appendChild(label); copy.appendChild(title); copy.appendChild(sub);
     if(stageStatus==='locked'){
