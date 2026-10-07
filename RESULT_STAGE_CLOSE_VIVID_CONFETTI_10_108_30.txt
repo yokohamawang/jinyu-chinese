@@ -1,0 +1,13 @@
+Koepanda 10.108.30 FULL — ResultStageCloseVividConfetti
+
+Base: Koepanda_10_108_29_FULL_AutoResultPopupLayoutFix(2).zip
+
+Changes:
+- Result-stage primary button changed from 「結果を確認する」 to 「閉じる」.
+- Upper-right × remains available as a second close action.
+- Inline 「結果を見る」 replay entry remains after closing.
+- Celebration palette made brighter and more festive (pink / yellow / cyan / violet / green).
+- Confetti/particle count increased and spread widened.
+- Near-perfect (3/4 etc.) uses a lively but lower-intensity celebration than perfect.
+- Perfect keeps the strongest particle density and slightly larger/longer animation.
+- Retry celebration remains intentionally restrained.

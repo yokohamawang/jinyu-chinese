@@ -1,24 +1,20 @@
 {
-  "version": "10.108.29",
-  "base": "10.108.28",
-  "name": "AutoResultPopupLayoutFix",
-  "build_name": "FULL_AutoResultPopupLayoutFix",
+  "version": "10.108.30",
+  "base": "10.108.29",
+  "name": "ResultStageCloseVividConfetti",
+  "build_name": "FULL_ResultStageCloseVividConfetti",
   "changes": [
-    "make automatic result popup independent from smooth scroll/requestAnimationFrame so it reliably appears on iPhone Safari",
-    "queue the result-stage popup for vowel, b/p/m/f, and d/t/n/l mini checks",
-    "fix 結果を見る button layout inside grid result cards so it stays full width",
-    "add safe-area and small-screen modal sizing polish",
-    "retain inline result and replay entry after closing the popup"
+    "change result-stage primary action to 閉じる",
+    "keep upper-right × and inline 結果を見る replay entry",
+    "increase confetti brightness, color saturation, quantity and spread",
+    "keep celebration intensity tiered: perfect > near-perfect > retry"
   ],
   "changed_files": [
     "index.html",
     "css/72-demo1010828-result-stage-overlay.css",
     "js/13-demo1010828-result-stage-overlay.js",
-    "js/08-demo1010793-kids-audio-cacheproof.js",
-    "js/10-demo1010808-initials-forest.js",
-    "js/12-demo1010820-dtnl-first-lesson.js",
     "VERSION.txt",
-    "RESULT_POPUP_LAYOUT_FIX_10_108_29.txt",
+    "RESULT_STAGE_CLOSE_VIVID_CONFETTI_10_108_30.txt",
     "BUILD_MANIFEST.json"
   ]
 }

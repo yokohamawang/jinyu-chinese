@@ -1,1 +1,1 @@
-Koepanda 10.108.29 FULL — AutoResultPopupLayoutFix
+Koepanda 10.108.30 FULL — ResultStageCloseVividConfetti
