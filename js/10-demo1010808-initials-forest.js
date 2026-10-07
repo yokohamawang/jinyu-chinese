@@ -315,7 +315,8 @@
   }
   function playRecording(){
     if(!recordingUrl)return;
-    try{if(playback)playback.pause();playback=new Audio(recordingUrl);playback.play()}catch(e){}
+    var btn=el('initialsPlayback');if(btn){btn.classList.remove('is-pressed');void btn.offsetWidth;btn.classList.add('is-pressed');setTimeout(function(){btn.classList.remove('is-pressed')},180)}
+    try{if(playback)playback.pause();playback=new Audio(recordingUrl);if(btn)btn.classList.add('is-playing');playback.addEventListener('ended',function(){if(btn)btn.classList.remove('is-playing')},{once:true});var pr=playback.play();if(pr&&pr.catch)pr.catch(function(){if(btn)btn.classList.remove('is-playing')})}catch(e){if(btn)btn.classList.remove('is-playing')}
   }
   function init(){
     if(!el('kidsInitialsLesson'))return;

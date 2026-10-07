@@ -122,7 +122,7 @@
       +'<div class="kids-vowel-drill-actions"><button type="button" class="kids-vowel-complete" id="kidsVowelComplete">この母音、できた！</button><button type="button" class="kids-vowel-back-bottom" id="kidsVowelBackBottom">戻る</button></div>';
     progress.insertAdjacentElement('afterend',d);
     el('kidsVowelDrillBack').addEventListener('click',closeDrill);el('kidsVowelBackBottom').addEventListener('click',closeDrill);el('kidsVowelComplete').addEventListener('click',completeCurrent);
-    el('kidsAEarListen').addEventListener('click',function(){if(aFlow)playLocalPinyin(aFlow.letter,aFlow.earTone)});
+    el('kidsAEarListen').addEventListener('click',function(){if(!aFlow)return;var btn=this;pulseButton(btn);aFlow.earPlayed=true;btn.textContent='▶ もう一度聞く';setEarChoicesEnabled(true);playLocalPinyin(aFlow.letter,aFlow.earTone)});
     el('kidsAImitateListen').addEventListener('click',function(){if(aFlow){pulseButton(this);playLocalPinyin(aFlow.letter,aFlow.imitateTone)}});
     el('kidsAImitateRecord').addEventListener('click',toggleImitateRecording);
     el('kidsAImitatePlayback').addEventListener('click',playImitateRecording);
@@ -173,14 +173,25 @@
   function toggleImitateRecording(){if(imitateRecorder&&imitateRecorder.state==='recording')stopImitateRecording();else startImitateRecording()}
   function pulseButton(btn){if(!btn)return;btn.classList.remove('is-pressed');void btn.offsetWidth;btn.classList.add('is-pressed');setTimeout(function(){btn.classList.remove('is-pressed')},180)}
   function playImitateRecording(){if(!imitateAudioUrl)return;var btn=el('kidsAImitatePlayback');pulseButton(btn);try{if(imitateAudio)imitateAudio.pause();imitateAudio=new Audio(imitateAudioUrl);if(btn)btn.classList.add('is-playing');imitateAudio.addEventListener('ended',function(){if(btn)btn.classList.remove('is-playing')},{once:true});var pr=imitateAudio.play();if(pr&&pr.catch)pr.catch(function(){if(btn)btn.classList.remove('is-playing')})}catch(e){if(btn)btn.classList.remove('is-playing')}}
-  function resetAFlow(letter){clearImitateRecording();aFlow={letter:letter||'a',earTone:1,imitateTone:1,earDone:false,imitateDone:false,quizOrder:[1,3,2,4],quizIndex:0,quizCorrect:0,quizAnswered:false,quizDone:false,passed:false}}
+  function randomEarTone(){return 1+Math.floor(Math.random()*4)}
+  var lastQuizOrder='';
+  function randomQuizOrder(){
+    var arr=[1,2,3,4],i,j,t;
+    do{
+      for(i=arr.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=arr[i];arr[i]=arr[j];arr[j]=t}
+    }while(arr.join(',')===lastQuizOrder);
+    lastQuizOrder=arr.join(',');
+    return arr.slice();
+  }
+  function setEarChoicesEnabled(enabled){var box=el('kidsAEarChoices');if(!box)return;box.querySelectorAll('button').forEach(function(b){b.disabled=!enabled})}
+  function resetAFlow(letter){clearImitateRecording();aFlow={letter:letter||'a',earTone:randomEarTone(),earPlayed:false,imitateTone:1,earDone:false,imitateDone:false,quizOrder:randomQuizOrder(),quizIndex:0,quizCorrect:0,quizAnswered:false,quizDone:false,passed:false}}
   function markAProgress(){
     var p=el('kidsAProgress');if(!p||!aFlow)return;var listenDone=Object.keys(heard).length===4;
     var states={listen:listenDone,ear:aFlow.earDone,imitate:aFlow.imitateDone,quiz:aFlow.passed};
     p.querySelectorAll('span').forEach(function(s){s.classList.toggle('is-done',!!states[s.dataset.step])});
     var ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage');
     if(ear)ear.hidden=!listenDone;if(imit)imit.hidden=!aFlow.earDone;if(quiz)quiz.hidden=!aFlow.imitateDone;
-    if(listenDone&&ear){/* 10.107.95: reveal the ear-training stage silently. Do not auto-play tone 3 here, because it can interrupt the tail of tone 4 on iPhone Safari. */ear.dataset.autoPlayed='manual';}
+    if(listenDone&&ear){/* Ear check is independent from the visible tone cards: keep one hidden random target and do not reveal it. */ear.dataset.autoPlayed='manual';var earBtn=el('kidsAEarListen');if(earBtn&&!aFlow.earPlayed)earBtn.textContent='▶ 問題の音を聞く';setEarChoicesEnabled(!!aFlow.earPlayed);}
   }
   function buildToneChoices(containerId,handler){var box=el(containerId);if(!box)return;box.replaceChildren();toneMarks(aFlow&&aFlow.letter?aFlow.letter:'a').forEach(function(mark,k){var b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice';b.innerHTML='<strong>'+mark+'</strong><small>'+(k+1)+'声</small>';b.addEventListener('click',function(){handler(k+1,b)});box.appendChild(b)})}
 
@@ -188,7 +199,7 @@
     var box=el('kidsAImitateChoices');if(!box||!aFlow)return;box.replaceChildren();
     toneMarks(aFlow.letter).forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice'+(tone===aFlow.imitateTone?' is-selected':'');b.innerHTML='<strong>'+mark+'</strong><small>'+tone+'声</small>';b.addEventListener('click',function(){if(!aFlow)return;if(aFlow.imitateTone!==tone){aFlow.imitateTone=tone;aFlow.imitateDone=false;clearImitateRecording();var done=el('kidsAImitateDone');if(done){done.disabled=true;done.classList.remove('is-done')}}box.querySelectorAll('.kids-a-tone-choice').forEach(function(x){x.classList.remove('is-selected')});b.classList.add('is-selected');pulseButton(b);playLocalPinyin(aFlow.letter,tone)});box.appendChild(b)});
   }
-  function renderAEarChoices(){buildToneChoices('kidsAEarChoices',function(tone,b){if(!aFlow||aFlow.earDone)return;var fb=el('kidsAEarFeedback');if(tone===aFlow.earTone){aFlow.earDone=true;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！ 音の上がり下がりが聞こえたね。次は「お手本を聞く」へ';fb.className='kids-a-feedback is-good'};markAProgress()}else{b.classList.add('is-try');if(fb){fb.textContent='もう一度聞いてみよう。まちがえても大丈夫 👂';fb.className='kids-a-feedback'};setTimeout(function(){b.classList.remove('is-try');playLocalPinyin(aFlow.letter,aFlow.earTone)},180)}})}
+  function renderAEarChoices(){buildToneChoices('kidsAEarChoices',function(tone,b){if(!aFlow||aFlow.earDone||!aFlow.earPlayed)return;var fb=el('kidsAEarFeedback');if(tone===aFlow.earTone){aFlow.earDone=true;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！ 音の上がり下がりが聞こえたね。次は「お手本を聞く」へ';fb.className='kids-a-feedback is-good'};markAProgress()}else{b.classList.add('is-try');if(fb){fb.textContent='もう一度聞いてみよう。まちがえても大丈夫 👂';fb.className='kids-a-feedback'};setTimeout(function(){b.classList.remove('is-try');playLocalPinyin(aFlow.letter,aFlow.earTone)},180)}});setEarChoicesEnabled(!!(aFlow&&aFlow.earPlayed))}
   function completeImitate(){if(!aFlow||aFlow.imitateDone||!imitateAudioUrl)return;aFlow.imitateDone=true;var fb=el('kidsAImitateFeedback');if(fb){fb.textContent='いいね！ 自分の声まで確認できたね。次は4問チェック！';fb.className='kids-a-feedback is-good'};el('kidsAImitateDone').classList.add('is-done');markAProgress();renderQuizQuestion();setTimeout(playCurrentQuizTone,220)}
   function playCurrentQuizTone(){if(!aFlow||aFlow.quizDone)return;playLocalPinyin(aFlow.letter,aFlow.quizOrder[aFlow.quizIndex])}
   function renderQuizQuestion(){
@@ -214,7 +225,7 @@
       showVowelCelebration(letter,aFlow.quizCorrect);
       var complete=el('kidsVowelComplete');if(complete){complete.disabled=false;complete.textContent=nextVowel?('次へ：'+nextVowel.letter+' を見てみる'):'母音一覧へ戻る'};markAProgress();updateProgress()
     }
-    else{if(fb){fb.textContent=aFlow.quizCorrect+' / 4。あと少し！ もう一度だけやってみよう';fb.className='kids-a-feedback'};var q=el('kidsAQuizStage'),retry=document.createElement('button');retry.type='button';retry.className='kids-a-retry';retry.textContent='もう一度チャレンジ';retry.addEventListener('click',function(){aFlow.quizIndex=0;aFlow.quizCorrect=0;aFlow.quizAnswered=false;aFlow.quizDone=false;aFlow.passed=false;retry.remove();renderQuizQuestion();setTimeout(playCurrentQuizTone,180)});q.appendChild(retry)}
+    else{if(fb){fb.textContent=aFlow.quizCorrect+' / 4。あと少し！ もう一度だけやってみよう';fb.className='kids-a-feedback'};var q=el('kidsAQuizStage'),retry=document.createElement('button');retry.type='button';retry.className='kids-a-retry';retry.textContent='もう一度チャレンジ';retry.addEventListener('click',function(){aFlow.quizOrder=randomQuizOrder();aFlow.quizIndex=0;aFlow.quizCorrect=0;aFlow.quizAnswered=false;aFlow.quizDone=false;aFlow.passed=false;retry.remove();renderQuizQuestion();setTimeout(playCurrentQuizTone,180)});q.appendChild(retry)}
   }
 
   function renderDrill(i){
@@ -222,7 +233,7 @@
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent='きく → ききわけ → まねる → ミニチェック';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
     var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),reward=el('kidsAReward');if(p)p.hidden=false;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
-    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;if(aFlow){var toneChanged=aFlow.earTone!==tone;aFlow.earTone=tone;if(toneChanged&&aFlow.earDone){aFlow.earDone=false;var fb=el('kidsAEarFeedback');if(fb){fb.textContent='';fb.className='kids-a-feedback'}renderAEarChoices()}}b.classList.add('is-heard');playIntroToneSerialized(v,tone);markAProgress()});g.appendChild(b)});
+    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;b.classList.add('is-heard');playIntroToneSerialized(v,tone);markAProgress()});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
     var complete=el('kidsVowelComplete');resetAFlow(v.letter);var idone=el('kidsAImitateDone');if(idone){idone.disabled=true;idone.classList.remove('is-done')}renderAEarChoices();renderImitateChoices();if(complete){complete.disabled=true;complete.textContent='4つのステップでクリア'};markAProgress()
