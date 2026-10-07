@@ -1,0 +1,11 @@
+DEMO 10.108.24 — unified free-practice polish
+
+Base: 10.108.23 FULL_DTNLStyleRecordingFlow
+
+- Unified the vowel, b/p/m/f, and d/t/n/l imitation sections as the same “free practice → mini-check” interaction pattern.
+- Rebuilt the recording area as a dedicated Koepanda free-practice console with clearer spacing, stronger touch targets, consistent rounded styling, and visible recording/playback hierarchy.
+- Kept model listening as the primary action; recording and own-voice playback are secondary practice tools.
+- Added a visual divider before the independent mini-check entry so practice and testing no longer look like one forced button chain.
+- Preserved current recording/test logic and IDs so existing MediaRecorder and quiz behavior remain intact.
+- Aligned the d/t/n/l upper-right music-note gem to the same anchor, size, and halo proportions as b/p/m/f.
+- Cache-busted the affected vowel/initial lesson assets to 10.108.24.

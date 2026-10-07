@@ -1,21 +1,22 @@
 {
-  "version": "10.108.23",
-  "base": "10.108.22",
-  "name": "DTNLStyleRecordingFlow",
-  "build_name": "FULL_DTNLStyleRecordingFlow",
+  "version": "10.108.24",
+  "base": "10.108.23",
+  "name": "UnifiedFreePracticePolish",
+  "build_name": "FULL_UnifiedFreePracticePolish",
   "changes": [
-    "replace P4 hero number badge with upper-right music-note gem matching P3 visual language",
-    "restore recording and own-voice playback to P4 practice flow",
-    "disable mini-check until recording completes successfully",
-    "hide P4 practice panel when mini-check starts, matching P3 flow",
-    "cache-bust P4 and initials assets to 10.108.23"
+    "unify vowel, bpmf and dtnl free-practice visual structure",
+    "upgrade recording/playback area into a consistent Koepanda practice console",
+    "separate free practice visually from the following mini-check",
+    "align dtnl music-note gem with bpmf hero position and proportions",
+    "preserve existing MediaRecorder and quiz event IDs/logic",
+    "cache-bust affected lesson assets"
   ],
   "changed_files": [
     "index.html",
-    "css/70-demo1010820-dtnl-first-lesson.css",
-    "js/12-demo1010820-dtnl-first-lesson.js",
+    "css/71-demo1010824-free-practice-polish.css",
+    "js/08-demo1010793-kids-audio-cacheproof.js",
     "VERSION.txt",
-    "DTNL_STYLE_RECORDING_FLOW_10_108_23.txt",
+    "FREE_PRACTICE_UNIFIED_10_108_24.txt",
     "BUILD_MANIFEST.json"
   ]
 }
