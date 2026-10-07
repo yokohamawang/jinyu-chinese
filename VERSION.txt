@@ -1,3 +1,3 @@
-Koepanda 10.108.27 FULL
-Clear lesson zones + optional free practice + direct mini-check access
-Base: 10.108.26 FULL VowelQuizRandomOrder
+Koepanda 10.108.28 FULL
+Automatic result celebration overlay + replayable result entry
+Base: 10.108.27 FULL ClearZonesOptionalPractice

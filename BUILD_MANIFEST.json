@@ -1,23 +1,24 @@
 {
-  "version": "10.108.26",
-  "base": "10.108.24",
-  "name": "EarBlindCheckPressFeedback",
-  "build_name": "FULL_EarBlindCheckPressFeedback",
+  "version": "10.108.28",
+  "base": "10.108.27",
+  "name": "ResultStageOverlay",
+  "build_name": "FULL_ResultStageOverlay",
   "changes": [
-    "make vowel ear discrimination an independent blind random-tone question",
-    "keep replay locked to the same hidden target until answer",
-    "disable tone-answer choices until the question sound is first played",
-    "add stronger pressed and playing feedback to own-voice playback buttons for bpmf and dtnl",
-    "cache-bust affected lesson assets"
+    "automatically show result celebration after the final mini-check answer",
+    "add distinct perfect, near-perfect, and retry result-stage presentations",
+    "keep the inline result after closing the overlay",
+    "add a replayable 結果を見る entry after completion",
+    "apply the unified result flow to vowels, b/p/m/f, and d/t/n/l"
   ],
   "changed_files": [
     "index.html",
-    "css/71-demo1010824-free-practice-polish.css",
+    "css/72-demo1010828-result-stage-overlay.css",
+    "js/13-demo1010828-result-stage-overlay.js",
     "js/08-demo1010793-kids-audio-cacheproof.js",
     "js/10-demo1010808-initials-forest.js",
     "js/12-demo1010820-dtnl-first-lesson.js",
     "VERSION.txt",
-    "EAR_BLIND_CHECK_PRESS_FEEDBACK_10_108_25.txt",
+    "RESULT_STAGE_OVERLAY_10_108_28.txt",
     "BUILD_MANIFEST.json"
   ]
 }

@@ -1,0 +1,10 @@
+Koepanda 10.108.28
+
+Unified quiz-completion experience:
+- Final answer automatically opens the result stage; no extra "結果を見る" tap is required.
+- 4/4: stronger PERFECT celebration.
+- 3/4: "あと1問！おしい！" near-perfect stage with celebratory feedback.
+- Below pass mark: retry-focused stage.
+- After closing the stage, the normal result card remains on the page.
+- A "結果を見る" button is added so the result stage can be reopened.
+- Applied to b/p/m/f, d/t/n/l, and vowel mini-checks.
