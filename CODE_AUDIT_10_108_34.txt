@@ -1,0 +1,11 @@
+Koepanda 10.108.34 FULL — Inline Mini Check Flow
+
+Base: 10.108.33 FULL_FreePracticeAuditFix
+
+Changes
+- Removed the redundant “⭐ ミニチェックへ →” button from the vowel free-practice area.
+- The mini-check remains directly visible below once the ear-check is cleared, so there is no extra navigation tap.
+- Replaced the old “自信があれば…” prompt with “できそう？ 下のミニチェックで試してみよう！”
+- Successful recording now marks the optional free-practice step complete automatically.
+- Existing mini-check random order, scoring, result popup, reward flow, audio, record and playback logic are preserved.
+- Cache-busting advanced to 10.108.34.

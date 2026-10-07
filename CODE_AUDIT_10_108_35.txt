@@ -1,0 +1,10 @@
+Koepanda 10.108.35 FULL — Direct Mini Check Flow
+
+Base: 10.108.34 FULL_InlineMiniCheckFlow
+
+Changes
+- Removed the remaining “できそう？ 下のミニチェックで試してみよう！” transition line.
+- The free-practice section now flows directly into the already-visible mini-check card.
+- Ear-check correct feedback is simplified to “✨ 正解！” so it does not repeat navigation instructions.
+- Recording, playback, randomized mini-check order, scoring, result popup and reward logic are preserved.
+- Cache-busting advanced to 10.108.35.

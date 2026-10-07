@@ -1,20 +1,20 @@
 {
-  "version": "10.108.33",
-  "base": "10.108.32",
-  "name": "FreePracticeAuditFix",
-  "build_name": "FULL_FreePracticeAuditFix",
+  "version": "10.108.35",
+  "base": "10.108.34",
+  "name": "DirectMiniCheckFlow",
+  "build_name": "FULL_DirectMiniCheckFlow",
   "changes": [
-    "audit simplified free-practice flow across vowel, b/p/m/f and d/t/n/l sections",
-    "verify tone/sound cards themselves play the model audio and no duplicate model-listen button remains in free practice",
-    "verify record and playback controls keep their existing handlers and disabled/enabled states",
-    "preserve large readable text and large tap targets for older learners",
-    "correct stale VERSION.txt and BUILD_MANIFEST metadata left at 10.108.31 in the 10.108.32 package",
-    "refresh cache-busting tags for the latest practice/result styles and result script"
+    "remove the remaining transition prompt above the already-visible vowel mini-check",
+    "shorten the ear-check correct feedback to a simple success message without another mini-check instruction",
+    "keep the mini-check directly visible below the free-practice section with no redundant navigation layer",
+    "preserve recording, playback, randomized quiz, scoring and result popup logic",
+    "refresh cache-busting tags to 10.108.35"
   ],
   "changed_files": [
+    "js/08-demo1010793-kids-audio-cacheproof.js",
     "index.html",
     "VERSION.txt",
     "BUILD_MANIFEST.json",
-    "CODE_AUDIT_10_108_33.txt"
+    "CODE_AUDIT_10_108_35.txt"
   ]
 }
