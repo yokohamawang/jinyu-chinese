@@ -19,3 +19,10 @@
 @keyframes kpResultBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(0)}18%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.2) rotate(180deg)}}
 @media(max-width:390px){.koepanda-result-stage-card{padding:27px 18px 19px;border-radius:28px}.koepanda-result-stage-mascot{font-size:64px}.koepanda-result-stage-kicker{font-size:23px}.koepanda-result-stage-title{font-size:20px}}
 @media(prefers-reduced-motion:reduce){.koepanda-result-stage,.koepanda-result-stage-card,.koepanda-result-stage-mascot,.koepanda-result-stage-burst i{animation:none!important;transition:none!important}}
+
+/* Koepanda 10.108.29 — iPhone auto-popup + result-card layout fix */
+.initials-result>.koepanda-result-reopen,.dtnl-result>.koepanda-result-reopen{grid-column:1/-1!important;width:100%!important;min-height:48px!important;margin:0!important;white-space:nowrap!important;border-radius:16px!important;font-size:13px!important}
+.initials-result>.koepanda-result-reopen{margin-top:-2px!important}
+.koepanda-result-stage{padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));}
+.koepanda-result-stage-card{max-height:calc(100dvh - 42px);overflow:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:390px){.koepanda-result-reopen{font-size:13px!important}.koepanda-result-stage-card{width:min(350px,92vw)}}
