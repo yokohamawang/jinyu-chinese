@@ -1,0 +1,189 @@
+/* DEMO 10.108.24 — unified free-practice console polish
+   Applies the same visual language to vowels, b/p/m/f and d/t/n/l. */
+
+/* Keep the d/t/n/l music mark in the same visual anchor as b/p/m/f. */
+.dtnl-hero{min-height:194px;padding:26px 22px 24px}
+.dtnl-hero-art{right:-8px;top:0;bottom:0;width:43%;height:100%}
+.dtnl-music-gem{right:43px;top:27px;width:48px;height:48px}
+.dtnl-music-gem:before{width:72px;height:72px;box-shadow:0 0 0 10px rgba(255,255,255,.14)}
+.dtnl-music-gem:after{width:58px;height:58px}
+.dtnl-leaf.l1{right:86px;top:51px;transform:rotate(-28deg)}
+.dtnl-leaf.l2{right:3px;top:66px;transform:rotate(32deg)}
+
+/* The free-practice area is a reusable Koepanda component, not a row of generic form buttons. */
+.practice-console{
+  position:relative;
+  margin-top:12px;
+  padding:14px 12px 12px;
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(247,252,248,.98),rgba(255,250,241,.98));
+  border:1px solid rgba(52,126,99,.11);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 7px 18px rgba(49,91,75,.065);
+}
+.practice-console:before{
+  content:"";
+  position:absolute;
+  left:14px;right:14px;top:40px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(58,126,101,.11),transparent);
+}
+.practice-console-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  min-height:20px;
+  margin-bottom:11px;
+}
+.practice-console-top span{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  padding:0 9px;
+  border-radius:999px;
+  background:#e8f5ec;
+  color:#36745f;
+  font-size:9px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.09em;
+}
+.practice-console-top small{
+  color:#83968f;
+  font-size:9.5px;
+  font-weight:850;
+  white-space:nowrap;
+}
+
+/* Shared button weight / spacing. */
+.initials-practice-console .initials-big-listen,
+.dtnl-practice-console .dtnl-main-button,
+.vowel-practice-console .kids-a-listen-button{
+  margin-top:2px!important;
+  min-height:54px!important;
+  border-radius:17px!important;
+  font-size:13px!important;
+  letter-spacing:.01em;
+  box-shadow:0 9px 18px rgba(48,153,111,.18),inset 0 1px 0 rgba(255,255,255,.2)!important;
+}
+.initials-practice-console .initials-record-row,
+.dtnl-practice-console .dtnl-record-row,
+.vowel-practice-console .kids-a-record-row{
+  gap:10px!important;
+  margin-top:11px!important;
+}
+.initials-practice-console .initials-record,
+.initials-practice-console .initials-playback,
+.dtnl-practice-console .dtnl-record,
+.dtnl-practice-console .dtnl-playback,
+.vowel-practice-console .kids-a-record-button,
+.vowel-practice-console .kids-a-playback-button{
+  min-height:52px!important;
+  padding:10px 8px!important;
+  border-radius:17px!important;
+  font-size:11.5px!important;
+  line-height:1.2;
+  font-weight:950!important;
+  border:1px solid transparent!important;
+  transition:transform .1s ease,box-shadow .1s ease,filter .1s ease,opacity .15s ease;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.initials-practice-console .initials-record,
+.dtnl-practice-console .dtnl-record,
+.vowel-practice-console .kids-a-record-button{
+  background:linear-gradient(180deg,#fff6f3,#ffebe7)!important;
+  color:#c9615b!important;
+  border-color:rgba(213,101,93,.10)!important;
+  box-shadow:0 6px 13px rgba(154,84,76,.08),inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+.initials-practice-console .initials-playback,
+.dtnl-practice-console .dtnl-playback,
+.vowel-practice-console .kids-a-playback-button{
+  background:linear-gradient(180deg,#f5f8ff,#ebf0fb)!important;
+  color:#52668f!important;
+  border-color:rgba(81,103,146,.09)!important;
+  box-shadow:0 6px 13px rgba(75,92,128,.07),inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+.initials-practice-console .initials-playback:disabled,
+.dtnl-practice-console .dtnl-playback:disabled,
+.vowel-practice-console .kids-a-playback-button:disabled{
+  opacity:.5!important;
+  filter:saturate(.72);
+  box-shadow:none!important;
+}
+.initials-practice-console .initials-record:active:not(:disabled),
+.initials-practice-console .initials-playback:active:not(:disabled),
+.dtnl-practice-console .dtnl-record:active:not(:disabled),
+.dtnl-practice-console .dtnl-playback:active:not(:disabled),
+.vowel-practice-console .kids-a-record-button:active:not(:disabled),
+.vowel-practice-console .kids-a-playback-button:active:not(:disabled){
+  transform:translateY(2px) scale(.985);
+  filter:brightness(.97);
+  box-shadow:inset 0 2px 5px rgba(62,82,72,.11)!important;
+}
+.initials-practice-console .initials-record.is-recording,
+.dtnl-practice-console .dtnl-record.is-recording,
+.vowel-practice-console .kids-a-record-button.is-recording{
+  color:#fff!important;
+  border-color:transparent!important;
+  background:linear-gradient(180deg,#ef837a,#df675f)!important;
+  box-shadow:0 7px 16px rgba(210,95,87,.21)!important;
+}
+.initials-practice-console .initials-feedback,
+.dtnl-practice-console .dtnl-feedback,
+.vowel-practice-console .kids-a-feedback{
+  min-height:18px!important;
+  margin-top:8px!important;
+  padding:0 4px;
+  line-height:1.45;
+}
+
+/* Visually separate optional/repeatable practice from the following check. */
+.practice-next-label{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:13px 2px 8px;
+  color:#8a9b94;
+  font-size:9.5px;
+  font-weight:900;
+}
+.practice-next-label:before,.practice-next-label:after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(73,119,101,.16));
+}
+.practice-next-label:after{background:linear-gradient(90deg,rgba(73,119,101,.16),transparent)}
+.practice-next-label span{white-space:nowrap}
+.initials-to-quiz,.dtnl-to-quiz,.kids-a-confirm-button{
+  min-height:51px!important;
+  border-radius:17px!important;
+  font-size:12px!important;
+  box-shadow:0 7px 15px rgba(47,122,100,.13)!important;
+}
+.initials-to-quiz:disabled,.dtnl-to-quiz:disabled,.kids-a-confirm-button:disabled{
+  opacity:.42!important;
+  box-shadow:none!important;
+}
+
+/* Vowel drill: match the same vertical rhythm used in the consonant lessons. */
+.kids-a-imitate-stage .kids-a-stage-head{align-items:flex-start!important;margin-bottom:13px!important}
+.kids-a-imitate-stage .kids-a-imitate-prompt{margin-top:2px!important}
+.vowel-practice-console{margin-top:12px}
+
+@media(max-width:390px){
+  .dtnl-hero-copy{width:70%}
+  .practice-console{padding:13px 10px 11px}
+  .practice-console-top small{font-size:9px}
+  .initials-practice-console .initials-record-row,
+  .dtnl-practice-console .dtnl-record-row,
+  .vowel-practice-console .kids-a-record-row{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .initials-practice-console .initials-record,
+  .initials-practice-console .initials-playback,
+  .dtnl-practice-console .dtnl-record,
+  .dtnl-practice-console .dtnl-playback,
+  .vowel-practice-console .kids-a-record-button,
+  .vowel-practice-console .kids-a-playback-button{font-size:10.8px!important;padding-left:5px!important;padding-right:5px!important}
+}
