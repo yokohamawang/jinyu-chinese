@@ -49,35 +49,35 @@
   #kidsCourse .pinyin-route-copy small{font-size:9.6px}
 }
 
-/* DEMO 10.108.37 — hard stop for Safari Japanese title splitting.
-   Force roadmap title itself to keep its intrinsic one-line width rather than
-   inheriting the narrow side-column width. Short lesson names stay intact. */
+
+/* DEMO 10.108.40 — restore the original clean roadmap wrapping.
+   Keep the narrow alternating columns; only Lesson 1 title stays on one line. */
+#kidsCourse .pinyin-roadmap{
+  -webkit-text-size-adjust:100%!important;
+  text-size-adjust:100%!important;
+}
 #kidsCourse .pinyin-route-copy{
-  max-width:none!important;
-  width:max-content!important;
-  min-width:max-content!important;
+  min-width:0!important;
 }
 #kidsCourse .pinyin-route-copy strong{
-  display:block!important;
-  width:max-content!important;
-  min-width:max-content!important;
-  max-width:none!important;
-  white-space:nowrap!important;
+  white-space:normal!important;
   word-break:keep-all!important;
   overflow-wrap:normal!important;
-  -webkit-hyphens:none!important;
-  hyphens:none!important;
+}
+#kidsCourse .pinyin-route-copy small,
+#kidsCourse .pinyin-route-reward{
+  white-space:normal!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere!important;
+}
+#kidsCourse .pinyin-world:first-of-type .pinyin-route-copy strong{
+  white-space:nowrap!important;
+  font-size:15px!important;
+  letter-spacing:-.04em!important;
 }
 @media(max-width:380px){
-  #kidsCourse .pinyin-route-copy{
-    max-width:none!important;
-    width:max-content!important;
-    min-width:max-content!important;
-  }
-  #kidsCourse .pinyin-route-copy strong{
-    font-size:14px!important;
-    width:max-content!important;
-    min-width:max-content!important;
-    white-space:nowrap!important;
+  #kidsCourse .pinyin-world:first-of-type .pinyin-route-copy strong{
+    font-size:13.5px!important;
+    letter-spacing:-.045em!important;
   }
 }
