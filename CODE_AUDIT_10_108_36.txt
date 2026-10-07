@@ -1,0 +1,8 @@
+Koepanda 10.108.36 FULL — Roadmap Title Wrap Fix
+
+Changes:
+- Prevent roadmap lesson titles from splitting a single Japanese word/phrase across lines.
+- Keep titles such as 「音のぼうけん」 and 「音をつなげよう」 on one line.
+- Slightly scale roadmap title typography on narrow screens while preserving readability.
+- No lesson flow, audio, recording, quiz, unlock, score, or result logic changed.
+- Cache-busting advanced to 10.108.36.

@@ -1,14 +1,12 @@
 {
-  "version": "10.108.35",
-  "base": "10.108.34",
+  "version": "10.108.36",
+  "base": "Koepanda_10_108_35_FULL_DirectMiniCheckFlow.zip",
   "name": "DirectMiniCheckFlow",
   "build_name": "FULL_DirectMiniCheckFlow",
   "changes": [
-    "remove the remaining transition prompt above the already-visible vowel mini-check",
-    "shorten the ear-check correct feedback to a simple success message without another mini-check instruction",
-    "keep the mini-check directly visible below the free-practice section with no redundant navigation layer",
-    "preserve recording, playback, randomized quiz, scoring and result popup logic",
-    "refresh cache-busting tags to 10.108.35"
+    "keep roadmap lesson titles as intact phrases without orphaned kana",
+    "slightly reduce long roadmap title typography on narrow screens",
+    "refresh cache-busting tags to 10.108.36"
   ],
   "changed_files": [
     "js/08-demo1010793-kids-audio-cacheproof.js",
@@ -16,5 +14,10 @@
     "VERSION.txt",
     "BUILD_MANIFEST.json",
     "CODE_AUDIT_10_108_35.txt"
+  ],
+  "files": [
+    "css/66-demo1010798-simple-learning-path.css",
+    "index.html",
+    "CODE_AUDIT_10_108_36.txt"
   ]
 }
