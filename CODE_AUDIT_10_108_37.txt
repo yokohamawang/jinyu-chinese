@@ -1,0 +1,7 @@
+Koepanda 10.108.37 FULL — Roadmap Title No-Break Hard Fix
+
+Changes:
+- Force roadmap lesson titles to keep intrinsic one-line width on iPhone Safari.
+- Prevent 「音のぼうけん」 from splitting before the final 「ん」.
+- CSS-only roadmap layout correction; no lesson/audio/recording/quiz/unlock/result logic changed.
+- Cache-busting advanced to 10.108.37.
