@@ -233,7 +233,10 @@
       if(fb){fb.textContent='今回は '+right+'。呼読音の最初の音と、息の出方をもう一度比べよう';fb.className='initials-feedback is-bad'}
     }
     var next=el('initialsQuizNext');
-    if(next){next.hidden=false;next.textContent=quizIndex===quizOrder.length-1?'結果を見る':'次の問題へ →'}
+    if(quizIndex===quizOrder.length-1){
+      if(next)next.hidden=true;
+      window.setTimeout(function(){if(quizAnswered)finishQuiz()},650)
+    }else if(next){next.hidden=false;next.textContent='次の問題へ →'}
   }
   function nextQuiz(){
     if(!quizAnswered)return;
@@ -282,7 +285,9 @@
     }else{
       try{localStorage.removeItem('koepandaInitialP3Complete');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:false}}))}catch(e){}
     }
-    requestAnimationFrame(function(){if(result)result.scrollIntoView({block:'center',behavior:'smooth'})});
+    var celebration={score:quizScore,total:total,passed:passed,title:passed?'ミニチェック合格！':'あと一歩！',message:passed?(quizScore===total?'b・p・m・f、4問ぜんぶ正解！ 音の違いをばっちり聞き分けられたよ。':'b・p・m・f の違いを聞き分けられたよ。あと1問で満点！'):'苦手な音をもう一度確認して、再チャレンジしよう。'};
+    if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
+    requestAnimationFrame(function(){if(result)result.scrollIntoView({block:'center',behavior:'smooth'});if(window.koepandaShowResultCelebration)window.koepandaShowResultCelebration(celebration)});
   }
   function mimeType(){
     if(typeof MediaRecorder==='undefined')return '';
