@@ -1,0 +1,15 @@
+
+/* 10.108.53: mobile-safe controls; artwork self contained in lesson JS. */
+.initials-focus-visual.art-player{box-sizing:border-box;width:100%;max-width:100%;min-width:0;overflow:hidden}
+.initials-focus-visual.art-player .art-player-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%;min-width:0}
+.initials-focus-visual.art-player .art-play-main{width:100%;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;padding:8px 5px;font-size:clamp(11px,3.1vw,15px);line-height:1.25;text-align:center}
+.initials-focus-visual.art-player .art-play-main span{flex:0 0 25px;margin:0}
+.initials-focus-visual.art-player .art-speed{width:100%;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.initials-focus-visual.art-player .art-speed button{min-width:0!important;width:100%;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;font-size:clamp(10px,2.8vw,13px);padding:4px 2px;line-height:1.3}
+.initials-focus-visual.art-player .art-view-tabs{width:100%;min-width:0;box-sizing:border-box}
+.initials-focus-visual.art-player .art-player-stage{min-width:0;max-width:100%;box-sizing:border-box}
+.initials-focus-visual.art-player.is-f .art-child-portrait{width:100%;height:auto!important;aspect-ratio:363 / 448;max-height:270px;overflow:hidden;position:relative}
+.initials-focus-visual.art-player.is-f .art-child-side{aspect-ratio:312 / 374}
+.initials-focus-visual.art-player.is-f .art-child-portrait img{object-fit:contain;width:100%;height:100%;display:block}
+.initials-focus-visual.art-player.is-f .art-view{min-width:0;overflow:hidden;align-content:start}
+@media(max-width:390px){.initials-focus-visual.art-player .art-player-controls{gap:5px}.initials-focus-visual.art-player .art-play-main{font-size:11px}.initials-focus-visual.art-player .art-speed button{font-size:10px}}
