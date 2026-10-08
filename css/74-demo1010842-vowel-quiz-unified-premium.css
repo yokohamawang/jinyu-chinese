@@ -1,0 +1,22 @@
+/* DEMO 10.108.42 — vowel/consonant mini-check unified premium result flow. */
+.kids-a-reward[hidden],.kids-a-result[hidden],#kidsAQuizStage[hidden]{display:none!important}
+#kidsAQuizStage{padding:17px!important}
+#kidsAQuizStage .kids-a-stage-head{margin-bottom:14px!important}
+#kidsAQuizStage .kids-a-quiz-count{text-align:center!important;font-size:12px!important;font-weight:950!important;color:#759188!important;margin:0 0 9px!important;letter-spacing:.035em}
+#kidsAQuizStage .kids-a-listen-button{width:100%!important;min-height:52px!important;border:0!important;border-radius:17px!important;background:linear-gradient(180deg,#3fb483,#319a70)!important;color:#fff!important;font-weight:950!important;box-shadow:0 8px 18px rgba(48,153,111,.22)!important}
+#kidsAQuizStage .kids-a-choice-row{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:7px!important;margin-top:10px!important}
+#kidsAQuizStage .kids-a-tone-choice{min-height:62px!important;border:0!important;border-radius:16px!important;background:#eff7f1!important;color:#33705d!important;box-shadow:none!important}
+#kidsAQuizStage .kids-a-tone-choice strong{font-size:25px!important}
+#kidsAQuizStage .kids-a-tone-choice small{font-size:10px!important}
+#kidsAQuizStage .kids-a-tone-choice.is-good{background:#41ae7e!important;color:#fff!important;box-shadow:0 6px 14px rgba(65,174,126,.18)!important}
+#kidsAQuizStage .kids-a-tone-choice.is-good small{color:#fff!important;opacity:.9}
+#kidsAQuizStage .kids-a-tone-choice.is-wrong{background:#ef8980!important;color:#fff!important;box-shadow:0 6px 14px rgba(239,137,128,.16)!important}
+#kidsAQuizStage .kids-a-next-question{width:100%!important;min-height:48px!important;margin-top:9px!important;border:0!important;border-radius:16px!important;background:#2f7a64!important;color:#fff!important;font-weight:950!important}
+.kids-a-result{margin:16px 0;padding:17px;display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:center;border-radius:23px;background:linear-gradient(135deg,#f0f8f2,#fff9e7);border:1px solid rgba(75,149,101,.14);box-shadow:0 10px 24px rgba(54,101,75,.08)}
+.kids-a-result-badge{width:54px;height:54px;display:grid;place-items:center;border-radius:18px;background:#43ad7e;color:#fff;font-size:27px;font-weight:950;box-shadow:0 7px 16px rgba(75,112,82,.13)}
+.kids-a-result-badge.is-retry{background:#f0a15f}
+.kids-a-result-copy strong{display:block;color:#276e57;font-size:16px}.kids-a-result-copy span{display:block;margin-top:2px;color:#405f55;font-size:13px;font-weight:950}.kids-a-result-copy small{display:block;margin-top:3px;color:#768981;font-size:10px;line-height:1.45;font-weight:800}
+.kids-a-result-action{grid-column:1/-1;width:100%;min-height:48px;border:0;border-radius:16px;background:#2f7a64;color:#fff;font-weight:950;font-size:13px;box-shadow:0 7px 16px rgba(47,122,100,.18)}
+.kids-a-result-action:active{transform:translateY(2px) scale(.985)}
+.kids-a-reward{margin-top:12px!important}
+@media(max-width:390px){.kids-a-result{grid-template-columns:48px 1fr;padding:15px}.kids-a-result-badge{width:48px;height:48px}.kids-a-result-copy strong{font-size:15px}}
