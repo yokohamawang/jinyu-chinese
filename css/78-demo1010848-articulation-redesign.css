@@ -1,0 +1,31 @@
+/* 10.108.48 — compact balanced nose, legible continuous side profile */
+.art-player .art-front-face{max-width:184px;height:130px;overflow:hidden}
+.art-player .af-bridge{top:19px;width:23px;height:24px;border-left:2.5px solid rgba(184,120,107,.24);border-right:2.5px solid rgba(184,120,107,.24);background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent)}
+.art-player .af-nose{top:40px;width:48px;height:25px;border-radius:46% 46% 52% 52%/44% 44% 66% 66%;background:radial-gradient(ellipse at 49% 20%,#fff5ee 0%,#f4ccbd 76%,#e9b19f 100%);box-shadow:0 3px 7px rgba(155,83,73,.09),inset 0 -2px 0 rgba(166,88,81,.12)}
+.art-player .af-ala{width:16px;height:10px;bottom:0;border-bottom:2.5px solid rgba(150,78,71,.43)}
+.art-player .af-nostril{bottom:4px;width:8px;height:4px;background:#93625a}
+.art-player .af-nostril.left{left:8px}.art-player .af-nostril.right{right:8px}
+.art-player .af-upper-lip{top:77px;width:81px}.art-player .af-lower-lip{top:85px;width:85px}.art-player .af-mouth-gap{top:86px;width:67px}
+.art-player .art-front-face.is-m .af-upper-lip{top:77px}.art-player .art-front-face.is-m .af-lower-lip{top:85px}
+.art-player .art-front-face.is-f .af-teeth{top:76px;width:68px;height:15px;border-radius:4px 4px 8px 8px}
+.art-player .art-front-face.is-f .af-lower-lip{top:88px;width:67px;height:17px}
+.art-player .art-front-face.is-f .af-mouth-gap{top:86px;width:50px}
+.art-player .art-front-face.is-f .af-corner{top:90px}
+.art-player .art-front-face.is-f .af-corner.left{left:37px}.art-player .art-front-face.is-f .af-corner.right{right:37px}
+.art-player .af-resonance.r1{left:16px;top:44px}.art-player .af-resonance.r2{left:9px;top:37px}.art-player .af-resonance.r3{right:16px;top:44px}.art-player .af-resonance.r4{right:9px;top:37px}
+.art-player .art-side-head{width:100%;max-width:184px;height:130px!important;display:grid;place-items:center;border-radius:24px!important;background:radial-gradient(ellipse at 40% 28%,#fffaf6,#fbeddf)!important}
+.art-player .art-side-head svg{display:block;width:100%;height:100%;overflow:hidden}
+.art-player .as-face-new{stroke:#dca497;stroke-width:2;stroke-linejoin:round}
+.art-player .as-profile-new{fill:none;stroke:#c7897c;stroke-width:3.7;stroke-linecap:round;stroke-linejoin:round}
+.art-player .as-nostril-new{fill:#93645c}
+.art-player .as-upper-teeth-new{fill:#fffefa;stroke:#c9a7a0;stroke-width:1.5;stroke-linejoin:round}
+.art-player .as-f-lower-lip-new{fill:#e9918a;stroke:#cc7b79;stroke-width:2.1;stroke-linejoin:round;transform-origin:130px 97px}
+.art-player.is-playing .as-f-lower-lip-new{animation:asFLipMotion var(--art-cycle) ease-in-out infinite}
+.art-player .as-closed-lips-new{fill:none;stroke:#ba7972;stroke-width:3;stroke-linecap:round}
+.art-player .as-chin-new{fill:none;stroke:#cb9387;stroke-width:2.7;stroke-linecap:round}
+.art-player .as-nasal-shine{fill:none;stroke:rgba(63,171,128,.32);stroke-width:8;stroke-linecap:round}
+.art-player .as-air{stroke:#75b8ca;stroke-width:3;stroke-dasharray:5 7;opacity:.18}
+.art-player.is-playing .as-air{opacity:.9}
+@keyframes asFLipMotion{0%,35%,100%{transform:translateY(0)}48%,79%{transform:translateY(-3px)}}
+@media(max-width:390px){.art-player .art-front-face{height:116px}.art-player .art-side-head{height:116px!important}.art-player .af-bridge{top:13px}.art-player .af-nose{top:34px}.art-player .af-upper-lip{top:72px}.art-player .af-lower-lip{top:80px}.art-player .af-mouth-gap{top:81px}.art-player .art-front-face.is-m .af-upper-lip{top:72px}.art-player .art-front-face.is-m .af-lower-lip{top:80px}.art-player .art-front-face.is-f .af-teeth{top:71px}.art-player .art-front-face.is-f .af-lower-lip{top:83px}.art-player .art-front-face.is-f .af-mouth-gap{top:81px}.art-player .art-front-face.is-f .af-corner{top:85px}}
+@media(prefers-reduced-motion:reduce){.art-player .as-f-lower-lip-new{animation:none!important}}
