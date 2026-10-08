@@ -1,0 +1,6 @@
+10.108.47 full package
+Based on uploaded 10.108.46, not on an older version.
+Renamed k45 to k47.
+Changed: index.html; js/10-demo1010808-initials-forest.js; added css/78-demo1010847-articulation-nose-fix.css.
+Improved frontal nasal bridge/alar contours/nostrils and side nose silhouette; hid animation timeline; kept existing audio and lesson structure.
+Browser/audio verification on deployed iPhone has NOT been performed.

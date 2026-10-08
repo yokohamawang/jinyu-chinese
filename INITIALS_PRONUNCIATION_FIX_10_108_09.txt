@@ -1,0 +1,4 @@
+Koepanda DEMO 10.108.09
+Fix: b/p/m/f no longer use ba/pa/ma/fa.
+Teaching read-alouds: bō(波), pō(坡), mō(摸), fó(佛).
+Initials themselves are not presented as four-tone syllables.

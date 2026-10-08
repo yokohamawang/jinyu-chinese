@@ -1,0 +1,8 @@
+Koepanda 10.108.12 — Developer Test Mode
+
+- Base: 10.108.11 FULL_InitialLessonPolish
+- Open developer panel: enter はじめの一歩, then tap 「音のぼうけん」 title 5 times quickly.
+- 全部解锁 / 恢复正常锁定: bypasses roadmap lesson locks only. It does NOT mark lessons completed.
+- When unlock is ON, a small TEST floating button appears for quick re-entry.
+- 重置学习进度: clears learning progress keys while preserving the developer unlock preference.
+- Unimplemented future lesson bodies remain unavailable, so the test mode does not pretend unfinished content exists.

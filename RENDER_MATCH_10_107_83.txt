@@ -1,0 +1,3 @@
+Home: single pink circle matching the other two icon circles; no CSS overlay.
+Pinyin intro avatar: dedicated centered crop, no background offset.
+Tone-road scenes unchanged from 10.107.81/82.
