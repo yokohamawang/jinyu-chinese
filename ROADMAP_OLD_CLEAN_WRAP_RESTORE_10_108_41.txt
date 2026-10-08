@@ -1,0 +1,14 @@
+Koepanda 10.108.41
+
+Base: 10.108.40 FULL
+
+Purpose:
+- Restore the roadmap typography/layout behavior from 10.108.35, before the forced no-wrap experiments.
+- Titles may wrap naturally when space is insufficient.
+- No JavaScript or lesson logic changed.
+
+Changed files:
+- css/66-demo1010798-simple-learning-path.css
+- index.html (cache tag only)
+- VERSION.txt
+- BUILD_MANIFEST.json
