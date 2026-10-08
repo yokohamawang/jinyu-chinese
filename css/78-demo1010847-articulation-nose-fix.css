@@ -1,0 +1,27 @@
+/* 10.108.47: matched frontal and profile nasal anatomy; no scrubber. */
+.art-player .art-timeline,.art-player .art-timeline *{display:none!important}
+.art-player .art-view-front{overflow:hidden}
+.art-player .art-front-face{height:130px!important;max-width:184px!important;overflow:hidden!important}
+.art-player .af-bridge,.art-player .af-nose{display:none!important}
+.art-player .af-nose-illustration{position:absolute;top:0;left:50%;width:112px;height:87px;transform:translateX(-50%);overflow:visible;pointer-events:none}
+.art-player .af-nose-bridge{fill:none;stroke:#dfa697;stroke-width:2.7;stroke-linecap:round;opacity:.59}
+.art-player .af-nose-contour{fill:url(#artNoseShade);stroke:#dba091;stroke-width:2.1;stroke-linejoin:round;filter:drop-shadow(0px 3px 2px rgba(153,89,79,.13))}
+.art-player .af-nose-base{fill:none;stroke:#c38275;stroke-width:2;stroke-linecap:round;opacity:.72}
+.art-player .af-nostril-svg{fill:#98635c;opacity:.9}
+.art-player .af-nose-tip{fill:none;stroke:#fff7f1;stroke-width:2.2;stroke-linecap:round;opacity:.95}
+.art-player .af-upper-lip{top:87px!important;width:72px!important;height:15px!important}
+.art-player .af-lower-lip{top:97px!important;width:75px!important;height:14px!important}
+.art-player .af-mouth-gap{top:98px!important;width:56px!important}
+.art-player .art-front-face.is-m .af-upper-lip{top:88px!important}
+.art-player .art-front-face.is-m .af-lower-lip{top:96px!important;height:12px!important}
+.art-player .art-front-face.is-m .af-mouth-gap{top:97px!important;height:2px!important;opacity:.06!important}
+.art-player .art-front-face.is-f .af-teeth{top:84px!important}
+.art-player .art-front-face.is-f .af-lower-lip{top:94px!important}
+.art-player .art-front-face.is-f .af-mouth-gap{top:93px!important}
+.art-player .art-front-face.is-f .af-corner{top:95px!important}
+.art-player .art-side-head svg{overflow:hidden!important}
+.art-player .as-nose-shape{stroke:#b87569!important;stroke-width:3.8!important;stroke-linejoin:round;stroke-linecap:round}
+.art-player .as-nostril{fill:#86534d!important}
+.art-player .art-front-face.is-m .af-resonance{animation-play-state:paused}
+.art-player.is-playing .art-front-face.is-m .af-resonance{animation-play-state:running}
+@media(max-width:390px){.art-player .art-front-face{height:122px!important}.art-player .af-nose-illustration{width:103px;height:80px}.art-player .af-upper-lip{top:80px!important}.art-player .af-lower-lip{top:89px!important}.art-player .af-mouth-gap{top:90px!important}.art-player .art-front-face.is-m .af-upper-lip{top:81px!important}.art-player .art-front-face.is-m .af-lower-lip{top:89px!important}.art-player .art-front-face.is-m .af-mouth-gap{top:90px!important}.art-player .art-front-face.is-f .af-teeth{top:77px!important}.art-player .art-front-face.is-f .af-lower-lip{top:87px!important}.art-player .art-front-face.is-f .af-mouth-gap{top:86px!important}.art-player .art-front-face.is-f .af-corner{top:88px!important}}
