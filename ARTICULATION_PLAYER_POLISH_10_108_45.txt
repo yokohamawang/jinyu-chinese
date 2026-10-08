@@ -1,0 +1,12 @@
+Koepanda 10.108.45 FULL — Articulation Player Polish
+
+Base: 10.108.44 FULL
+
+Changes:
+- Rebuilt the b/p/m/f articulation block as a real interactive player instead of a static explanation card.
+- Added working model-audio button, speed UI, front/side/both view tabs, playback state and timeline animation.
+- m: clearer front-view nose with nostrils/alae + nasal resonance pulses; side view uses an animated nasal-cavity path.
+- f: clearer upper-teeth/lower-lip contact, subtle inward mouth-corner tension, animated narrow airflow; side view shows the lip/teeth airflow path.
+- b/p: keep front-focused animation; unnecessary side view controls are disabled.
+- d/t/n/l: front nose made more immediately recognizable; side tongue diagram retains the front-teeth / upper-palate target and gains a clearer profile nose; n adds nasal resonance cue.
+- Existing audio, recording, free-practice, quiz and result logic retained.
