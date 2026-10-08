@@ -1,0 +1,18 @@
+/* 10.108.50 — one illustration system, isolated from historic div-based mouth drawings */
+#dtnlArticulation.dtnl-articulation{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:12px;row-gap:12px;align-items:stretch;padding:15px;border-radius:25px}
+#dtnlArticulation .dtnl-stage-head{grid-column:1/-1;min-width:0}
+#dtnlArticulation .dtnl-stage-head span{font-size:clamp(15px,3.8vw,21px)}
+#dtnlArticulation .dtnl-front-view,#dtnlArticulation .dtnl-side-view{min-width:0;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;box-sizing:border-box;padding:38px 8px 12px;border-radius:21px;border:1px solid #e3ede8;background:linear-gradient(160deg,#fff,#fff9f5)}
+#dtnlArticulation .dtnl-view-label{font-size:11px;top:11px;left:11px;padding:4px 11px}
+#dtnlArticulation .kp50-figure{display:block;position:static;flex:none;width:100%;max-width:235px;height:auto;min-height:0;overflow:visible;box-sizing:border-box}
+#dtnlArticulation .kp50-profile{max-width:255px}
+#dtnlArticulation .kp50-breathe{fill:none;stroke:#53ae93;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;animation:kp50Flow 2.5s ease-in-out infinite;transform-origin:center;stroke-dasharray:none}
+#dtnlArticulation .kp50-tongue{animation:kp50Tongue 2.5s ease-in-out infinite;transform-origin:122px 69px}
+#dtnlArticulation .dtnl-art-copy{grid-column:1/-1;min-width:0;padding:3px 0 0}
+#dtnlArticulation .dtnl-art-copy b{font-size:clamp(15px,4vw,20px);line-height:1.4}
+#dtnlArticulation .dtnl-art-copy small{font-size:clamp(11px,3vw,14px);line-height:1.5}
+#dtnlArticulation .dtnl-art-copy em{font-size:11px}
+@keyframes kp50Flow{0%,20%,90%,100%{opacity:.22}45%,72%{opacity:1}}
+@keyframes kp50Tongue{0%,35%,100%{transform:translateY(0)}56%,75%{transform:translateY(3px)}}
+@media(max-width:390px){#dtnlArticulation.dtnl-articulation{gap:8px;padding:10px}#dtnlArticulation .dtnl-front-view,#dtnlArticulation .dtnl-side-view{padding:32px 5px 9px;border-radius:18px}#dtnlArticulation .dtnl-view-label{font-size:10px;top:8px;left:8px;padding:3px 9px}}
+@media(prefers-reduced-motion:reduce){#dtnlArticulation .kp50-breathe,#dtnlArticulation .kp50-tongue{animation:none!important}}
