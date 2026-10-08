@@ -116,7 +116,8 @@
       +'<div class="kids-vowel-tone-title">🔊 4つの声調を順番に聞いてみよう</div><div class="kids-vowel-tone-grid" id="kidsVowelToneGrid"></div>'
       +'<section class="kids-a-stage" id="kidsAEarStage" hidden><div class="kids-a-stage-head"><span>👂</span><div><b>耳でえらんでみよう</b><small>音を1回聞いて、どの声調か選ぼう</small></div></div><button type="button" class="kids-a-listen-button" id="kidsAEarListen">▶ もう一度聞く</button><div class="kids-a-choice-row" id="kidsAEarChoices"></div><div class="kids-a-feedback" id="kidsAEarFeedback"></div></section>'
       +'<section class="kids-a-stage kids-a-imitate-stage" id="kidsAImitateStage" hidden><div class="kids-a-stage-head"><span>🗣️</span><div><b>小音といっしょにまねよう</b><small>好きな声調をえらんで、何度でも自由に練習できます</small></div></div><div class="kids-a-imitate-prompt">練習したい声調をタップ</div><div class="kids-a-choice-row kids-a-imitate-choices" id="kidsAImitateChoices"></div><div class="practice-tap-hint">タップするとお手本が聞けます</div><div class="practice-console vowel-practice-console"><div class="practice-console-top"><span>自由練習</span><small>選んだ声調を録音して、聞きくらべよう</small></div><div class="kids-a-record-row"><button type="button" class="kids-a-record-button" id="kidsAImitateRecord">● 録音する</button><button type="button" class="kids-a-playback-button" id="kidsAImitatePlayback" disabled>▶ 自分の声を聞く</button></div><div class="kids-a-feedback" id="kidsAImitateFeedback"></div></div></section>'
-      +'<section class="kids-a-stage" id="kidsAQuizStage" hidden><div class="kids-a-stage-head"><span>⭐</span><div><b>ミニチェック</b><small>4問中3問できたら次へ進めるよ</small></div></div><div class="kids-a-quiz-count" id="kidsAQuizCount">1 / 4</div><button type="button" class="kids-a-listen-button" id="kidsAQuizListen">▶ 音を聞く</button><div class="kids-a-choice-row" id="kidsAQuizChoices"></div><div class="kids-a-feedback" id="kidsAQuizFeedback"></div><button type="button" class="kids-a-next-question" id="kidsAQuizNext" hidden>次の問題へ</button></section>'
+      +'<section class="kids-a-stage" id="kidsAQuizStage" hidden><div class="kids-a-stage-head"><span>⭐</span><div><b>声調のミニチェック</b><small>音を聞いて、4つの声調から選ぼう</small></div></div><div class="kids-a-quiz-count" id="kidsAQuizCount">1 / 4</div><button type="button" class="kids-a-listen-button" id="kidsAQuizListen">▶ 音を聞く</button><div class="kids-a-choice-row" id="kidsAQuizChoices"></div><div class="kids-a-feedback" id="kidsAQuizFeedback"></div><button type="button" class="kids-a-next-question" id="kidsAQuizNext" hidden>次の問題へ →</button></section>'
+      +'<section class="kids-a-result" id="kidsAResult" hidden aria-live="polite"><div class="kids-a-result-badge" id="kidsAResultBadge">✓</div><div class="kids-a-result-copy"><strong id="kidsAResultTitle">ミニチェック結果</strong><span id="kidsAResultScore">4問中 0問正解</span><small id="kidsAResultMessage"></small></div><button type="button" class="kids-a-result-action" id="kidsAResultAction"></button></section>'
       +'<section class="kids-a-reward" id="kidsAReward" hidden><div class="kids-a-reward-icon">🌱</div><div><strong>a クリア！</strong><span>「はじめての音」バッジをゲット</span><small>o のレッスンが開いたよ</small></div></section>'
       +'<div class="kids-vowel-write"><b>✍️ 声調記号もいっしょに覚えよう</b><div class="kids-vowel-trace-row" id="kidsVowelTraceRow"></div></div><div class="kids-vowel-special-note" id="kidsVowelSpecialNote" hidden></div>'
       +'<div class="kids-vowel-drill-actions"><button type="button" class="kids-vowel-complete" id="kidsVowelComplete">この母音、できた！</button><button type="button" class="kids-vowel-back-bottom" id="kidsVowelBackBottom">戻る</button></div>';
@@ -212,26 +213,44 @@
     document.body.appendChild(wrap);requestAnimationFrame(function(){wrap.classList.add('is-show')});
     setTimeout(function(){wrap.classList.add('is-leaving');setTimeout(function(){if(wrap.parentNode)wrap.remove()},420)},perfect?2100:1700);
   }
+  function retryAQuiz(){
+    if(!aFlow)return;
+    var quiz=el('kidsAQuizStage'),result=el('kidsAResult'),reward=el('kidsAReward');
+    if(result)result.hidden=true;if(reward)reward.hidden=true;if(quiz)quiz.hidden=false;
+    aFlow.quizOrder=randomQuizOrder();aFlow.quizIndex=0;aFlow.quizCorrect=0;aFlow.quizAnswered=false;aFlow.quizDone=false;aFlow.passed=false;
+    renderQuizQuestion();setTimeout(playCurrentQuizTone,180);
+    requestAnimationFrame(function(){if(quiz)quiz.scrollIntoView({block:'start',behavior:'smooth'})});
+  }
   function finishAQuiz(){
-    aFlow.quizDone=true;var passed=aFlow.quizCorrect>=3;aFlow.passed=passed;var fb=el('kidsAQuizFeedback'),next=el('kidsAQuizNext');if(next)next.hidden=true;
+    aFlow.quizDone=true;var passed=aFlow.quizCorrect>=3;aFlow.passed=passed;
+    var quiz=el('kidsAQuizStage'),result=el('kidsAResult'),reward=el('kidsAReward');
+    if(quiz)quiz.hidden=true;if(result)result.hidden=false;if(reward)reward.hidden=!passed;
+    var letter=aFlow.letter,total=4,badge=el('kidsAResultBadge'),title=el('kidsAResultTitle'),score=el('kidsAResultScore'),msg=el('kidsAResultMessage'),action=el('kidsAResultAction');
+    if(badge){badge.textContent=passed?'✓':'↻';badge.className='kids-a-result-badge '+(passed?'is-pass':'is-retry')}
+    if(title)title.textContent=passed?'ミニチェック合格！':'あと一歩！';
+    if(score)score.textContent=total+'問中 '+aFlow.quizCorrect+'問正解';
+    if(msg)msg.textContent=passed?'4つの声調を聞き分けられたよ。':'3問以上でクリア。苦手な声調をもう一度聞いて挑戦しよう。';
+    var list=visibleVowels(),pos=list.findIndex(function(v){return v.letter===letter}),nextVowel=(pos>=0&&pos+1<list.length)?list[pos+1]:null;
+    if(action){
+      action.textContent=passed?(nextVowel?('次へ：'+nextVowel.letter+' →'):'母音一覧へ戻る →'):'もう一度やってみる';
+      action.onclick=passed?function(){completeCurrent()}:retryAQuiz;
+    }
     if(passed){
-      var letter=aFlow.letter;if(fb){fb.textContent='🎉 '+aFlow.quizCorrect+' / 4！ '+letter+' クリア！';fb.className='kids-a-feedback is-good'};
       mastery[letter]={passed:true,score:aFlow.quizCorrect,total:4,updatedAt:Date.now()};completed[letter]=true;saveProgress();
-      var reward=el('kidsAReward'),rewardStrong=reward?reward.querySelector('strong'):null,rewardSpan=reward?reward.querySelector('span'):null,rewardSmall=reward?reward.querySelector('small'):null;
-      var list=visibleVowels(),pos=list.findIndex(function(v){return v.letter===letter}),nextVowel=(pos>=0&&pos+1<list.length)?list[pos+1]:null;
-      if(reward){reward.hidden=false;if(rewardStrong)rewardStrong.textContent=letter+' クリア！';if(rewardSpan)rewardSpan.textContent=letter==='a'?'「はじめての音」バッジをゲット':'4つの声調チェック、よくできた！';if(rewardSmall)rewardSmall.textContent=nextVowel?(nextVowel.letter+' のレッスンが開いたよ'):(activeGroupTitle?activeGroupTitle+' クリア！':'母音レッスン、ここまでクリア！')}
-      var celebration={score:aFlow.quizCorrect,total:4,passed:true,title:letter+' のミニチェック合格！',message:aFlow.quizCorrect===4?'4つの声調をぜんぶ聞き分けられたね！':'4つの声調を聞き分けられたよ。あと1問で満点！'};
-      if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(reward,celebration);
-      if(window.koepandaQueueResultCelebration)window.koepandaQueueResultCelebration(celebration,90);else if(window.koepandaShowResultCelebration)window.setTimeout(function(){window.koepandaShowResultCelebration(celebration)},90);else showVowelCelebration(letter,aFlow.quizCorrect);
+      var rewardStrong=reward?reward.querySelector('strong'):null,rewardSpan=reward?reward.querySelector('span'):null,rewardSmall=reward?reward.querySelector('small'):null;
+      if(reward){if(rewardStrong)rewardStrong.textContent=letter+' クリア！';if(rewardSpan)rewardSpan.textContent=letter==='a'?'「はじめての音」バッジをゲット':'4つの声調チェック、よくできた！';if(rewardSmall)rewardSmall.textContent=nextVowel?(nextVowel.letter+' のレッスンが開いたよ'):(activeGroupTitle?activeGroupTitle+' クリア！':'母音レッスン、ここまでクリア！')}
       var complete=el('kidsVowelComplete');if(complete){complete.disabled=false;complete.textContent=nextVowel?('次へ：'+nextVowel.letter+' を見てみる'):'母音一覧へ戻る'};markAProgress();updateProgress()
     }
-    else{if(fb){fb.textContent=aFlow.quizCorrect+' / 4。あと少し！ もう一度だけやってみよう';fb.className='kids-a-feedback'};var q=el('kidsAQuizStage'),retry=document.createElement('button');retry.type='button';retry.className='kids-a-retry';retry.textContent='もう一度チャレンジ';retry.addEventListener('click',function(){aFlow.quizOrder=randomQuizOrder();aFlow.quizIndex=0;aFlow.quizCorrect=0;aFlow.quizAnswered=false;aFlow.quizDone=false;aFlow.passed=false;retry.remove();var rbtn=q.querySelector('.koepanda-result-reopen');if(rbtn)rbtn.remove();renderQuizQuestion();setTimeout(playCurrentQuizTone,180)});q.appendChild(retry);var celebration={score:aFlow.quizCorrect,total:4,passed:false,title:'あと一歩！',message:'苦手な声調だけ確認して、もう一度挑戦しよう。'};if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(q,celebration);if(window.koepandaQueueResultCelebration)window.koepandaQueueResultCelebration(celebration,90);else if(window.koepandaShowResultCelebration)window.setTimeout(function(){window.koepandaShowResultCelebration(celebration)},90)}
+    var celebration={score:aFlow.quizCorrect,total:4,passed:passed,title:passed?(letter+' のミニチェック合格！'):'あと一歩！',message:passed?(aFlow.quizCorrect===4?'4つの声調をぜんぶ聞き分けられたね！':'4つの声調を聞き分けられたよ。あと1問で満点！'):'苦手な声調だけ確認して、もう一度挑戦しよう。'};
+    if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
+    if(window.koepandaQueueResultCelebration)window.koepandaQueueResultCelebration(celebration,90);else if(window.koepandaShowResultCelebration)window.setTimeout(function(){window.koepandaShowResultCelebration(celebration)},90);else if(passed)showVowelCelebration(letter,aFlow.quizCorrect);
+    requestAnimationFrame(function(){if(result)result.scrollIntoView({block:'center',behavior:'smooth'})});
   }
 
   function renderDrill(i){
     vowelIndex=i;heard={};introToneBusy=false;introTonePending=null;introToneLastEnd=0;var v=data.vowels[i],d=ensureDrill();if(!d)return;warmPinyin(v.letter);
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent='きく → ききわけ → まねる → ミニチェック';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
-    var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),reward=el('kidsAReward');if(p)p.hidden=false;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(reward)reward.hidden=true;
+    var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),result=el('kidsAResult'),reward=el('kidsAReward');if(p)p.hidden=false;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(result)result.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
     marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;b.classList.add('is-heard');playIntroToneSerialized(v,tone);markAProgress()});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
