@@ -1,1 +1,3 @@
-Koepanda DEMO 10.108.48 FULL — Articulation Profile Redesign
+Koepanda DEMO 10.108.51 FULL — Child-face f artwork integration (static visual trial)
+Based on 10.108.48. f front+side artwork embedded directly; other lessons unchanged.
+The f reference images are static; independent mouth/tongue animation is NOT implemented in this trial.

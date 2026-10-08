@@ -1,0 +1,1 @@
+Static fidelity test of f child-face reference. A faithful static raster crop is used instead of re-drawing the face with SVG/CSS. Existing play and view tabs retained. Mouth/teeth movement remains to be authored with additional animation layers.
