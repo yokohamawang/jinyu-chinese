@@ -132,6 +132,13 @@
     var d=duration||Math.round((articulationSpeed<.7?4300:3200));
     articulationTimer=setTimeout(function(){if(box)box.classList.remove('is-playing')},d);
   }
+  function replayArtSilent(letter){
+    // Playback of the instructional motion is intentionally silent.
+    // The 51 artwork is a static image: animate the airflow guide, not fabricated lip motion.
+    stopAudio();
+    try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
+    setArtPlaying(letter);
+  }
   function playGuide(letter){
     stopAudio();
     var item=guide[letter];
@@ -163,6 +170,7 @@
     })
   }
   function articulationSide(letter){
+    if(letter==='f')return '<span class="art-child-portrait art-child-side" role="img" aria-label="小孩侧脸：上齿轻触略微内收的下唇，细气流向前"><img src="./assets/articulation/f-child-side.png" alt="横から見た f の発音。上歯と下くちびるの接触"></span>';
     if(letter!=='m'&&letter!=='f')return '';
     var nasal=letter==='m';
     return '<span class="art-side-head is-'+letter+'" aria-hidden="true"><svg viewBox="0 0 180 150" role="img">'+
@@ -177,6 +185,7 @@
       '</svg></span>';
   }
   function frontArt(letter){
+    if(letter==='f')return '<span class="art-child-portrait art-child-front" role="img" aria-label="小孩正面：上齿与内收的下唇"><img src="./assets/articulation/f-child-front.png" alt="正面から見た f の口の形"></span>';
     var extra='';
     if(letter==='m')extra='<i class="af-resonance r1"></i><i class="af-resonance r2"></i><i class="af-resonance r3"></i><i class="af-resonance r4"></i>';
     if(letter==='b'||letter==='p'||letter==='f')extra+='<i class="af-air a1"></i><i class="af-air a2"></i><i class="af-air a3"></i>';
@@ -190,7 +199,14 @@
   }
   function wireArtControls(letter,needSide){
     var box=el('initialsFocusVisual');if(!box)return;
-    var playBtn=box.querySelector('[data-art-play]');if(playBtn)playBtn.onclick=function(){playGuide(letter)};
+    var playBtn=box.querySelector('[data-art-play]');
+    if(playBtn)playBtn.onclick=function(){replayArtSilent(letter)};
+    box.querySelectorAll('.art-view-front,.art-view-side').forEach(function(card){
+      card.setAttribute('role','button');card.setAttribute('tabindex','0');
+      card.setAttribute('aria-label','口の動きをもう一度見る（音声なし）');
+      card.onclick=function(){replayArtSilent(letter)};
+      card.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();replayArtSilent(letter)}};
+    });
     box.querySelectorAll('[data-art-speed]').forEach(function(b){b.onclick=function(){articulationSpeed=b.dataset.artSpeed==='slow'?.62:.78;box.style.setProperty('--art-cycle',articulationSpeed<.7?'4.3s':'3.2s');box.querySelectorAll('[data-art-speed]').forEach(function(x){x.classList.toggle('is-active',x===b)})}});
     box.querySelectorAll('[data-art-view]').forEach(function(b){b.onclick=function(){if(b.disabled)return;articulationView=b.dataset.artView;applyArtView(box)}});
     if(!needSide){articulationView='front';box.querySelectorAll('[data-art-view="side"],[data-art-view="both"]').forEach(function(b){b.disabled=true})}
@@ -199,15 +215,16 @@
   }
   function renderFocusVisual(letter){
     var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
+    if(articulationTimer){clearTimeout(articulationTimer);articulationTimer=null;}
     var needSide=(letter==='m'||letter==='f');
     box.className='initials-focus-visual articulation-stage art-player is-'+letter+(needSide?' has-side':'');
     var side=needSide?('<div class="art-view art-view-side"><span class="art-view-label">横から</span>'+articulationSide(letter)+'<small class="art-side-note">'+(letter==='m'?'鼻腔へひびく':'歯とくちびるのすき間')+'</small></div>'):'';
     box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>'+(needSide?'正面で口の形、横から音の通り道':'口の形と息の動きを見てまねよう')+'</small></div>'+
-      '<div class="art-player-controls"><button type="button" class="art-play-main" data-art-play><span>▶</span> お手本を聞く</button><div class="art-speed" aria-label="再生スピード"><button type="button" data-art-speed="slow" class="is-active">ゆっくり</button><button type="button" data-art-speed="normal">ふつう</button></div></div>'+
+      '<div class="art-player-controls"><button type="button" class="art-play-main" data-art-play><span>▶</span> 動きを見る</button><div class="art-speed" aria-label="再生スピード"><button type="button" data-art-speed="slow" class="is-active">ゆっくり</button><button type="button" data-art-speed="normal">ふつう</button></div></div>'+
       '<div class="art-view-tabs" aria-label="見方"><button type="button" data-art-view="front">正面</button><button type="button" data-art-view="side">横から</button><button type="button" data-art-view="both">いっしょに見る</button></div>'+
       '<div class="art-player-stage"><div class="art-view art-view-front"><span class="art-view-label">正面</span><span class="art-playing-badge">▶ 再生中</span>'+frontArt(letter)+'</div>'+side+'</div>'+
       '<div class="art-stage-copy"><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
-    box.style.setProperty('--art-cycle','4.3s');
+    box.style.setProperty('--art-cycle',articulationSpeed<.7?'4.3s':'3.2s');
     wireArtControls(letter,needSide);
   }
   function select(letter){
@@ -230,7 +247,7 @@
     b.addEventListener('click',function(){playGuide(selected)});
     box.appendChild(b);
     var raw=document.createElement('button'); raw.type='button'; raw.className='initial-raw-button';
-    raw.textContent='息・口の動きだけを聞く'; raw.addEventListener('click',function(){play(selected)}); box.appendChild(raw)
+    raw.textContent='息・口の動きだけを聞く'; raw.addEventListener('click',function(){setArtPlaying(selected);play(selected)}); box.appendChild(raw)
   }
   function renderLetters(){
     var g=el('initialsLetterGrid'),free=el('initialsFreeChoice'); if(!g||!free)return;
