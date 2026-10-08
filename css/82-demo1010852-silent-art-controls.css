@@ -1,0 +1,10 @@
+/* 10.108.52 – independent silent articulation preview, preserving 51 artwork */
+.art-player .art-view[role="button"]{cursor:pointer;touch-action:manipulation;}
+.art-player .art-view[role="button"]:focus-visible{outline:3px solid #35ac80;outline-offset:2px;}
+.art-player .art-play-main{font-size:clamp(12px,3.3vw,16px);white-space:nowrap;}
+.art-player.is-f .art-view-side{overflow:hidden;}
+/* The source child-face photo stays perfectly static; only the explanatory air stream moves. */
+.art-player.is-f .art-child-side:after{content:"";position:absolute;right:0;top:65%;width:29%;height:18%;pointer-events:none;opacity:0;background:repeating-linear-gradient(0deg,transparent 0 7px,rgba(37,159,220,.85) 7px 9px,transparent 9px 14px);clip-path:polygon(0 38%,100% 0,100% 100%,0 68%);transform:translateX(-8px);}
+.art-player.is-f.is-playing .art-child-side:after{animation:k52Air var(--art-cycle,4.3s) ease-in-out 1 both;}
+@keyframes k52Air{0%,9%{opacity:0;transform:translateX(-8px)}24%,75%{opacity:.85;transform:translateX(0)}100%{opacity:0;transform:translateX(8px)}}
+@media(prefers-reduced-motion:reduce){.art-player.is-f.is-playing .art-child-side:after{animation:none;opacity:.6;transform:none}}

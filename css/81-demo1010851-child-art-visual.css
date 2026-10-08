@@ -1,0 +1,10 @@
+/* 10.108.51: f child portrait derived directly from the agreed artwork. */
+.initials-focus-visual.art-player.is-f .art-player-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}
+.initials-focus-visual.art-player.is-f .art-view{min-width:0;overflow:hidden;align-content:start;justify-items:center;padding:26px 5px 11px}
+.initials-focus-visual.art-player.is-f .art-view-front,.initials-focus-visual.art-player.is-f .art-view-side{min-height:210px}
+.initials-focus-visual.art-player.is-f .art-child-portrait{display:block;position:relative;width:100%;max-width:230px;height:185px;overflow:hidden;border-radius:13px;background:#fff5ed;}
+.initials-focus-visual.art-player.is-f .art-child-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;}
+.initials-focus-visual.art-player.is-f .art-side-note{max-width:100%;font-size:10px;line-height:1.35;padding:2px 1px;white-space:normal}
+.initials-focus-visual.art-player.is-f.view-front .art-player-stage,.initials-focus-visual.art-player.is-f.view-side .art-player-stage{grid-template-columns:1fr}
+.initials-focus-visual.art-player.is-f.view-front .art-child-portrait,.initials-focus-visual.art-player.is-f.view-side .art-child-portrait{max-width:280px;height:265px}
+@media(max-width:390px){.initials-focus-visual.art-player.is-f .art-player-stage{gap:6px}.initials-focus-visual.art-player.is-f .art-child-portrait{height:156px}.initials-focus-visual.art-player.is-f .art-view-front,.initials-focus-visual.art-player.is-f .art-view-side{min-height:190px}}
