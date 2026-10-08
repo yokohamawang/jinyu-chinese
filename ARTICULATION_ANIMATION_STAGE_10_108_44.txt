@@ -1,0 +1,9 @@
+DEMO 10.108.44
+- Based on 10.108.42 FULL.
+- b/p: front-view animation remains primary; no unnecessary side-view panel.
+- m/f: front-view mouth + side-view articulation mechanism shown together.
+- m: nasal resonance path emphasized; no mouth-blowing cue.
+- f: upper teeth / lower lip contact, slight inward mouth-corner tension, thin airflow path.
+- d/t/n/l: front context + enlarged side-view tongue-position mechanism.
+- Replaced ambiguous 歯ぐき wording with 上の前歯のすぐ後ろの上あご / 前歯のすぐ後ろ.
+- UI remains soft/premium; teaching visuals are more explicit and instructional.
