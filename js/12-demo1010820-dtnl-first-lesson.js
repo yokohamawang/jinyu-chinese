@@ -14,44 +14,38 @@
   function playRaw(letter){if(letter==='d')burst(false);else if(letter==='t')burst(true);else if(letter==='n')nasal();else lateral()}
   function playGuide(letter){var it=guide[letter];if(!it)return;stopSynthetic();try{if('speechSynthesis' in window)speechSynthesis.cancel()}catch(e0){}try{if(typeof window.playMachine==='function'){var r=window.playMachine(it.hanzi,null,false);if(r&&typeof r.catch==='function')r.catch(function(){playRaw(letter)});return}}catch(e){}try{if('speechSynthesis'in window){speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(it.hanzi);u.lang='zh-CN';u.rate=.78;u.pitch=1;u.onerror=function(){playRaw(letter)};speechSynthesis.speak(u);return}}catch(e2){}playRaw(letter)}
   function setStep(n){document.querySelectorAll('.dtnl-progress span').forEach(function(x){var k=Number(x.dataset.dtnlStep);x.classList.toggle('is-current',k===n);x.classList.toggle('is-done',k<n)})}
-  function diagram(letter){
-    var t=letter==='t',n=letter==='n',l=letter==='l';
-    var motion=letter==='d'?'short':t?'strong':n?'nasal':'lateral';
-    return '<div class="kp49-diagram kp49-'+letter+'" role="img" aria-label="'+letter+' の側面：舌先は上の前歯のすぐ後ろ、'+guide[letter].cue+'">'+
-    '<svg viewBox="0 0 230 166" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
-    '<defs><linearGradient id="kp49skin" x2="0" y2="1"><stop stop-color="#fffdfb"/><stop offset="1" stop-color="#ffece4"/></linearGradient></defs>'+
-    '<path d="M181 15 Q207 22 204 45 Q203 57 217 66 Q220 72 208 76 L200 80 Q201 87 213 91 Q216 98 203 103 Q202 127 184 143 Q146 157 84 145 L45 136 Q34 95 55 54 Q89 10 181 15Z" fill="url(#kp49skin)" stroke="#cd998d" stroke-width="2.8"/>'+
-    '<path d="M70 57 Q115 25 176 49 Q194 56 195 66" fill="none" stroke="#dec2b2" stroke-width="8" stroke-linecap="round"/>'+
-    '<path d="M184 51 Q199 55 197 72" fill="none" stroke="#f3dfce" stroke-width="8" stroke-linecap="round"/>'+
-    '<path d="M185 76 L199 78 L196 94 L182 94 Q175 89 182 80Z" fill="#fff" stroke="#d8b9ad" stroke-width="2"/>'+
-    '<path d="M177 78 Q171 72 162 76" fill="none" stroke="#d39e8d" stroke-width="4" stroke-linecap="round"/>'+
-    '<path class="kp49-ridge" d="M177 79 Q172 76 167 79" fill="none" stroke="#f0ad76" stroke-width="7" stroke-linecap="round"/>'+
-    '<path class="kp49-tongue" d="M60 119 Q98 96 135 93 Q162 83 174 81 Q181 83 176 90 Q162 97 153 104 Q120 135 69 133Z" fill="#ee8c8a" stroke="#d46c71" stroke-width="2.8"/>'+
-    '<path d="M75 129 Q130 143 176 112" fill="none" stroke="#b77d74" stroke-width="2" opacity=".45"/>'+
-    '<path class="kp49-nosepath" d="M172 48 Q184 35 190 45" fill="none" stroke="#53a98b" stroke-width="5" stroke-linecap="round"/>'+
-    '<path class="kp49-flow kp49-flow1" d="M203 90 Q216 87 223 81" fill="none" stroke="#42b999" stroke-width="3.5" stroke-linecap="round"/>'+
-    '<path class="kp49-flow kp49-flow2" d="M203 96 Q220 96 225 99" fill="none" stroke="#42b999" stroke-width="3" stroke-linecap="round"/>'+
-    '<path class="kp49-sideflow" d="M110 120 Q137 133 171 111" fill="none" stroke="#42b999" stroke-width="3.5" stroke-linecap="round"/>'+
-    '<circle class="kp49-contact" cx="175" cy="82" r="7" fill="none" stroke="#edaa65" stroke-width="2.5"/>'+
-    '</svg><span class="kp49-side-caption">'+(n?'鼻へ声が抜ける':l?'舌の左右から声が通る':t?'舌を離して息を強く':'舌を軽く離す')+'</span></div>'
+  /* 10.108.50: coherent anatomical illustrations, viewBox-scaled (no absolute-position fragments). */
+  function artFront(letter){
+    var nasal=letter==='n',lateral=letter==='l',strong=letter==='t';
+    var mouth = nasal ? '<path d="M47 114 Q80 107 113 114" fill="none" stroke="#bc746f" stroke-width="4" stroke-linecap="round"/>' :
+      '<path d="M43 108 Q80 94 117 108 Q105 124 80 124 Q54 124 43 108Z" fill="#b96463" stroke="#ba7272" stroke-width="2"/><path d="M49 108 Q80 101 111 108 L107 113 Q80 116 53 113Z" fill="#fff9f4"/>';
+    var paths=nasal?'<path d="M35 64 Q23 54 32 42 M125 64 Q137 54 128 42" stroke="#54aa90" stroke-width="3.5" stroke-linecap="round" fill="none" class="kp50-breathe"/>':
+      lateral?'<path d="M38 111 Q19 104 17 91 M122 111 Q141 104 143 91" stroke="#54aa90" stroke-width="4" stroke-linecap="round" fill="none" class="kp50-breathe"/>':
+      '<path d="M122 106 Q139 100 150 102 M122 114 Q140 113 151 117" stroke="#54aa90" stroke-width="'+(strong?4:2.4)+'" stroke-linecap="round" fill="none" class="kp50-breathe"/>';
+    return '<svg class="kp50-figure kp50-front" viewBox="0 0 160 148" role="img" aria-label="'+letter+' の正面の口と鼻">'+
+      '<defs><linearGradient id="kp50skin" x2="0" y2="1"><stop stop-color="#fff6f0"/><stop offset="1" stop-color="#ffede4"/></linearGradient></defs>'+
+      '<path d="M31 23 Q80 5 129 23 Q142 50 137 84 Q134 132 80 139 Q26 132 23 84 Q18 50 31 23Z" fill="url(#kp50skin)" stroke="#e9c6ba" stroke-width="2"/>'+
+      '<path d="M72 29 Q67 48 61 62 Q59 77 80 80 Q101 77 99 62 Q93 48 88 29" fill="#f6d9cd" opacity=".5"/>'+
+      '<path d="M55 68 Q55 83 80 85 Q105 83 105 68 Q102 77 95 78 Q80 84 65 78 Q58 77 55 68Z" fill="#efc6b8" stroke="#cf968c" stroke-width="1.6"/>'+
+      '<ellipse cx="67" cy="77" rx="5.8" ry="3" fill="#93645e"/><ellipse cx="93" cy="77" rx="5.8" ry="3" fill="#93645e"/>'+
+      '<path d="M44 105 Q60 96 80 99 Q100 96 116 105" fill="none" stroke="#e9a09c" stroke-width="2.5"/>'+mouth+paths+'</svg>';
   }
-  function front(letter){
-    var n=letter==='n',l=letter==='l';
-    return '<div class="kp49-face kp49-'+letter+'" role="img" aria-label="'+letter+' の正面。歯と舌の動き">'+
-    '<svg viewBox="0 0 180 166" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
-    '<path d="M38 12 Q90 -1 142 12 Q164 43 158 109 Q144 152 90 157 Q36 152 22 109 Q16 43 38 12Z" fill="#fff2ea" stroke="#e6c7bb" stroke-width="2"/>'+
-    '<path d="M73 26 Q67 43 72 54 M107 26 Q113 43 108 54" fill="none" stroke="#dbb5a8" stroke-width="3.5" stroke-linecap="round"/>'+
-    '<path d="M61 57 Q70 68 90 68 Q110 68 119 57 Q109 81 90 80 Q71 81 61 57Z" fill="#f4c9b8" stroke="#dba99d" stroke-width="2"/>'+
-    '<ellipse cx="77" cy="70" rx="7" ry="3.3" fill="#ae7971"/><ellipse cx="103" cy="70" rx="7" ry="3.3" fill="#ae7971"/>'+
-    '<path d="M41 110 Q90 92 139 110 Q133 143 90 146 Q47 143 41 110Z" fill="#c96e74" stroke="#bd7573" stroke-width="2"/>'+
-    '<path d="M48 110 Q90 99 132 110 L128 121 Q91 130 52 121Z" fill="#fffaf5" stroke="#e5c6bd" stroke-width="2"/>'+
-    '<path d="M60 110 V124 M75 105 V127 M90 104 V129 M105 105 V127 M120 110 V124" stroke="#e9d7cf" stroke-width="1.5"/>'+
-    '<path class="kp49-front-tongue" d="M57 135 Q76 115 90 112 Q104 115 123 135 Q95 151 57 135Z" fill="#ee8f8c" stroke="#d66f77" stroke-width="2"/>'+
-    '<path class="kp49-front-nasal" d="M57 59 Q39 42 44 29 M123 59 Q141 42 136 29" stroke="#50ae8b" stroke-width="4" fill="none" stroke-linecap="round"/>'+
-    '<path class="kp49-front-air" d="M129 126 Q147 118 158 113 M51 126 Q32 118 22 113" stroke="#50b996" stroke-width="3" fill="none" stroke-linecap="round"/>'+
-    '</svg></div>'
+  function artSide(letter){
+    var nasal=letter==='n', lateral=letter==='l', strong=letter==='t';
+    var arrow=nasal?'<path class="kp50-breathe" stroke="#53ae93" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M130 50 Q146 35 156 43 M140 42 L154 43 L150 56"/>': lateral?'<path class="kp50-breathe" stroke="#53ae93" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M91 109 Q119 114 145 105 M138 99 L147 105 L136 111"/>':'<path class="kp50-breathe" stroke="#53ae93" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M149 79 Q164 74 178 79 M170 72 L180 79 L169 85" stroke-width="'+(strong?4.5:2.6)+'"/>';
+    return '<svg class="kp50-figure kp50-profile" viewBox="0 0 190 148" role="img" aria-label="'+letter+' の舌先と上の歯ぐきの位置">'+
+      '<path d="M25 25 Q60 7 113 18 Q136 17 142 35 Q139 44 149 54 L163 67 Q169 72 156 78 L150 82 Q159 88 151 95 L144 98 Q149 109 138 119 Q127 133 96 135 Q50 133 25 119Z" fill="#fff2ec" stroke="#cf998c" stroke-width="2.8" stroke-linejoin="round"/>'+
+      '<path d="M40 45 Q80 30 121 45 Q134 48 139 58" fill="none" stroke="#e4bfb1" stroke-width="6" stroke-linecap="round"/>'+
+      '<path d="M43 110 Q87 117 127 99" fill="none" stroke="#e4bfb1" stroke-width="5" stroke-linecap="round"/>'+
+      '<path d="M130 62 Q143 62 149 68 L148 80 L135 79Z" fill="#fffdfa" stroke="#d6bbb1" stroke-width="2"/>'+
+      '<circle cx="125" cy="64" r="7" fill="#f5c29d" opacity=".55"/><circle cx="125" cy="64" r="3.2" fill="#dc9b76"/>'+
+      '<path class="kp50-tongue" d="M44 107 Q67 105 84 96 Q110 84 124 65 Q125 61 130 65 Q131 71 125 78 Q105 105 75 115 Q56 121 44 115Z" fill="#e98683" stroke="#cd706f" stroke-width="2.2" stroke-linejoin="round"/>'+
+      '<path d="M48 109 Q75 113 102 91" fill="none" stroke="#f6b4a9" stroke-width="2.4" stroke-linecap="round"/>'+
+      (nasal?'<path class="kp50-breathe" stroke="#53ae93" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M116 54 Q116 42 126 41 Q136 40 140 47"/>':'')+arrow+'</svg>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};var b=document.createElement('button');b.type='button';b.className='dtnl-raw-btn';b.textContent='舌・息だけ';b.onclick=function(){playRaw(selected)};act.append(a,b);el('dtnlArticulation').innerHTML='<div class="dtnl-stage-head"><span>口の動きアニメーション</span><small>正面で口の形、横から舌先の位置</small></div>'+'<div class="dtnl-front-view"><span class="dtnl-view-label">正面</span>'+front(selected)+'</div><div class="dtnl-side-view"><span class="dtnl-view-label">横から</span>'+diagram(selected)+'</div><div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>'}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};var b=document.createElement('button');b.type='button';b.className='dtnl-raw-btn';b.textContent='舌・息だけ';b.onclick=function(){playRaw(selected)};act.append(a,b);
+    el('dtnlArticulation').innerHTML='<div class="dtnl-stage-head"><span>口の動きアニメーション</span></div><div class="dtnl-front-view"><span class="dtnl-view-label">正面</span>'+artFront(selected)+'</div><div class="dtnl-side-view"><span class="dtnl-view-label">横から</span>'+artSide(selected)+'</div><div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';
+  }
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){
