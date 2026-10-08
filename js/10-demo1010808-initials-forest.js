@@ -24,13 +24,13 @@
     b:'くちびるを閉じる → 一瞬だけ開く。母音を足さない（無気音）',
     p:'b と同じ口 → 開く瞬間に強く息を出す（有気音）',
     m:'くちびるを閉じたまま、鼻から「んー」と響かせる',
-    f:'上の歯で下くちびるに軽くふれ、口角を少し引いて細い息を流す'
+    f:'上の歯を下くちびるに軽く当て、口角は大きく横に引かず、細い息を流す'
   };
   var focusVisuals={
     b:{title:'両くちびるを閉じる',sub:'開く瞬間は、息を弱く',kind:'b',air:'弱い息'},
     p:{title:'両くちびるを閉じる',sub:'開く瞬間に、息を強く',kind:'p',air:'強い息'},
     m:{title:'くちびるは閉じたまま',sub:'音は鼻へ響かせる',kind:'m',air:'鼻に響く'},
-    f:{title:'上の歯を下くちびるへ',sub:'口角を少し引き、細い息を流す',kind:'f',air:'細い息'}
+    f:{title:'上の歯を下くちびるへ',sub:'口角は少しだけ内側へ。細い息を流す',kind:'f',air:'細い息'}
   };
   var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null, modelAudio=null;
   var soundFiles={
@@ -152,18 +152,25 @@
       x.classList.toggle('is-done',k<n)
     })
   }
+  function articulationSide(letter){
+    if(letter==='m')return '<span class="art-side-head is-m" aria-hidden="true"><i class="ash-face"></i><i class="ash-nose"></i><i class="ash-mouth"></i><i class="ash-throat"></i><i class="ash-path p1"></i><i class="ash-path p2"></i><i class="ash-path p3"></i></span>';
+    if(letter==='f')return '<span class="art-side-head is-f" aria-hidden="true"><i class="ash-face"></i><i class="ash-nose"></i><i class="ash-teeth"></i><i class="ash-lip"></i><i class="ash-throat"></i><i class="ash-air a1"></i><i class="ash-air a2"></i></span>';
+    return '';
+  }
   function renderFocusVisual(letter){
     var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
-    var art='';
+    var front='';
     if(letter==='m'){
-      art='<span class="focus-mouth focus-mouth-m" aria-hidden="true"><i class="focus-nose"></i><i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-nose-wave w1"></i><i class="focus-nose-wave w2"></i></span>';
+      front='<span class="focus-mouth focus-mouth-m" aria-hidden="true"><i class="focus-nose"></i><i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-nose-wave w1"></i><i class="focus-nose-wave w2"></i></span>';
     }else if(letter==='f'){
-      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true"><i class="focus-nose"></i><i class="focus-mouth-gap"></i><i class="focus-teeth"></i><i class="focus-lower-lip"></i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      front='<span class="focus-mouth focus-mouth-f" aria-hidden="true"><i class="focus-nose"></i><i class="focus-mouth-gap"></i><i class="focus-teeth"></i><i class="focus-lower-lip"></i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }else{
-      art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true"><i class="focus-nose"></i><i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      front='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true"><i class="focus-nose"></i><i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
-    box.className='initials-focus-visual is-'+letter;
-    box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
+    var needSide=(letter==='m'||letter==='f');
+    box.className='initials-focus-visual articulation-stage is-'+letter+(needSide?' has-side':'');
+    var side=needSide?('<div class="art-view art-view-side"><span class="art-view-label">横から</span>'+articulationSide(letter)+'<small class="art-side-note">'+(letter==='m'?'鼻にひびく':'細い息の通り道')+'</small></div>'):'';
+    box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>'+(needSide?'正面で口の形、横から音の通り道':'正面でくちびると息の動きを見る')+'</small></div><div class="art-view art-view-front"><span class="art-view-label">正面</span>'+front+'</div>'+side+'<div class="art-stage-copy"><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
     selected=letter;
