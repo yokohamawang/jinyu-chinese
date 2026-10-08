@@ -163,15 +163,24 @@
     })
   }
   function articulationSide(letter){
-    if(letter==='m')return '<span class="art-side-head is-m" aria-hidden="true"><svg viewBox="0 0 160 112"><path class="as-profile" d="M30 19 Q52 8 82 16 Q102 20 113 34 Q121 45 117 56 Q113 64 124 70 Q130 76 122 82 L113 85 Q111 101 91 104 L49 103 Q35 93 31 73 Q27 50 30 19Z"/><path class="as-nose-shape" d="M101 24 Q110 31 112 41 Q114 45 120 47 L131 54 Q136 59 129 63 Q124 66 115 63"/><ellipse class="as-nostril" cx="124" cy="61" rx="4" ry="2.3"/><path class="as-mouth" d="M108 70 Q115 72 121 70"/><path class="as-palate" d="M58 54 Q82 44 108 55"/><path class="as-tongue" d="M54 77 Q79 62 107 74 Q86 88 57 88Z"/><path class="as-nasal-cavity" d="M60 31 Q85 25 106 41 Q94 52 67 55 Q57 46 60 31Z"/><path class="as-flow p1" d="M76 54 Q78 43 88 36"/><path class="as-flow p2" d="M89 46 Q96 37 103 33"/><path class="as-flow p3" d="M99 47 Q108 41 113 36"/></svg></span>';
-    if(letter==='f')return '<span class="art-side-head is-f" aria-hidden="true"><svg viewBox="0 0 160 112"><path class="as-profile" d="M30 19 Q52 8 82 16 Q102 20 113 34 Q121 45 117 56 Q113 64 124 70 Q130 76 122 82 L113 85 Q111 101 91 104 L49 103 Q35 93 31 73 Q27 50 30 19Z"/><path class="as-nose-shape" d="M101 24 Q110 31 112 41 Q114 45 120 47 L131 54 Q136 59 129 63 Q124 66 115 63"/><ellipse class="as-nostril" cx="124" cy="61" rx="4" ry="2.3"/><path class="as-palate" d="M58 54 Q82 44 108 55"/><path class="as-tongue" d="M54 78 Q80 66 106 75 Q84 88 58 89Z"/><rect class="as-teeth" x="103" y="66" width="15" height="7" rx="2"/><path class="as-lip" d="M106 76 Q114 78 121 75"/><path class="as-air f1" d="M118 70 Q133 67 147 62"/><path class="as-air f2" d="M119 75 Q135 75 149 74"/></svg></span>';
-    return '';
+    if(letter!=='m'&&letter!=='f')return '';
+    var nasal=letter==='m';
+    return '<span class="art-side-head is-'+letter+'" aria-hidden="true"><svg viewBox="0 0 180 150" role="img">'+
+      '<defs><linearGradient id="artCheek-'+letter+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff8f2"/><stop offset="1" stop-color="#f7ded6"/></linearGradient></defs>'+
+      '<path class="as-face-new" fill="url(#artCheek-'+letter+')" d="M21 19 Q48 5 90 17 Q109 21 121 37 Q128 47 130 54 Q135 59 143 66 Q150 72 143 77 Q136 80 128 79 Q127 87 135 91 Q143 96 138 103 Q132 109 123 108 Q118 126 100 133 Q67 143 36 121 Q14 99 16 64 Q16 35 21 19Z"/>'+
+      '<path class="as-profile-new" d="M107 22 Q121 33 126 49 Q127 56 140 66 Q148 72 141 76 Q136 79 128 78 Q126 85 132 89"/>'+
+      '<ellipse class="as-nostril-new" cx="133" cy="74" rx="4.2" ry="2.2"/>'+
+      (nasal?'':'<path class="as-upper-teeth-new" d="M124 88 Q133 89 140 87 L139 94 Q133 98 124 95 Z"/>')+
+      (nasal?'<path class="as-closed-lips-new" d="M127 98 Q132 100 139 97"/>':'<path class="as-f-lower-lip-new" d="M126 98 Q132 94 139 96 Q142 100 136 104 Q131 105 125 103"/>')+
+      '<path class="as-chin-new" d="M136 105 Q132 120 115 128"/>'+
+      (nasal?'<path class="as-nasal-shine" d="M65 45 Q96 24 120 54"/><path class="as-flow p1" d="M90 61 Q109 51 115 39"/><path class="as-flow p2" d="M98 71 Q120 58 121 46"/>':'<path class="as-air f1" d="M140 96 Q155 91 173 91"/><path class="as-air f2" d="M142 102 Q158 105 174 103"/>')+
+      '</svg></span>';
   }
   function frontArt(letter){
     var extra='';
     if(letter==='m')extra='<i class="af-resonance r1"></i><i class="af-resonance r2"></i><i class="af-resonance r3"></i><i class="af-resonance r4"></i>';
     if(letter==='b'||letter==='p'||letter==='f')extra+='<i class="af-air a1"></i><i class="af-air a2"></i><i class="af-air a3"></i>';
-    return '<span class="art-front-face is-'+letter+'" aria-hidden="true"><svg class="af-nose-illustration" viewBox="0 0 110 91" aria-hidden="true"><defs><linearGradient id="artNoseShade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff6f0"/><stop offset=".55" stop-color="#f8d7c8"/><stop offset="1" stop-color="#e8ad9c"/></linearGradient></defs><path class="af-nose-bridge" d="M45 5 Q40 22 41 33 Q42 41 32 49"/><path class="af-nose-bridge af-right-bridge" d="M65 5 Q70 22 69 33 Q68 41 78 49"/><path class="af-nose-contour" d="M43 30 Q44 45 29 49 Q19 53 24 64 Q29 72 42 69 Q55 77 68 69 Q81 72 86 64 Q91 53 81 49 Q66 45 67 30"/><path class="af-nose-base" d="M28 62 Q39 68 48 66 Q55 70 62 66 Q72 68 82 62"/><ellipse class="af-nostril-svg" cx="37" cy="62" rx="7" ry="3.6" transform="rotate(12 37 62)"/><ellipse class="af-nostril-svg" cx="73" cy="62" rx="7" ry="3.6" transform="rotate(-12 73 62)"/><path class="af-nose-tip" d="M46 60 Q55 65 64 60"/></svg><i class="af-upper-lip"></i><i class="af-mouth-gap"></i><i class="af-lower-lip"></i><i class="af-teeth"></i><i class="af-corner left"></i><i class="af-corner right"></i>'+extra+'</span>';
+    return '<span class="art-front-face is-'+letter+'" aria-hidden="true"><i class="af-bridge"></i><i class="af-nose"><u class="af-ala left"></u><u class="af-ala right"></u><b class="af-nostril left"></b><b class="af-nostril right"></b></i><i class="af-upper-lip"></i><i class="af-mouth-gap"></i><i class="af-lower-lip"></i><i class="af-teeth"></i><i class="af-corner left"></i><i class="af-corner right"></i>'+extra+'</span>';
   }
   function applyArtView(box){
     if(!box)return;
