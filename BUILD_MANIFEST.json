@@ -1,18 +1,23 @@
 {
-  "version": "10.108.41",
-  "base": "Koepanda_10_108_40_FULL_RoadmapCleanLayoutFix.zip",
-  "name": "RoadmapOldCleanWrapRestore",
-  "build_name": "FULL_RoadmapOldCleanWrapRestore",
+  "version": "10.108.43",
+  "base": "Koepanda_10_108_42_FULL_VowelQuizUnifiedPremium.zip",
+  "name": "FrontSideArticulationPrototype",
+  "build_name": "FULL_FrontSideArticulationPrototype",
   "changes": [
-    "restore roadmap layout rules from the last clean pre-no-wrap version",
-    "allow lesson titles to wrap naturally instead of forcing one-line compression",
-    "keep all 10.108.40 functionality and JavaScript unchanged",
-    "refresh roadmap CSS cache-busting tag to 10.108.41"
+    "add paired front + side articulation views for m/f",
+    "make m nasal resonance route explicit and avoid mouth-exhalation impression",
+    "add paired front + side tongue-position views for d/t/n/l",
+    "replace lesson wording based on 歯ぐき with 上の前歯のすぐ後ろの上あご",
+    "keep audio, recording, free-practice and mini-check logic unchanged"
   ],
   "changed_files": [
-    "css/66-demo1010798-simple-learning-path.css",
     "index.html",
+    "js/01-features.js",
+    "js/12-demo1010820-dtnl-first-lesson.js",
+    "css/68-demo1010808-initials-forest.css",
+    "css/70-demo1010820-dtnl-first-lesson.css",
     "VERSION.txt",
-    "BUILD_MANIFEST.json"
+    "BUILD_MANIFEST.json",
+    "FRONT_SIDE_ARTICULATION_10_108_43.txt"
   ]
 }
