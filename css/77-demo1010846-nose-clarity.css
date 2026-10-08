@@ -1,0 +1,20 @@
+/* 10.108.46 — nose readability and play-triggered animation; no video timeline */
+.art-player .art-timeline{display:none!important}
+.art-player .art-view{padding-bottom:11px}
+.art-player .art-front-face{max-width:184px;height:130px;border-radius:27px;background:radial-gradient(ellipse at 50% 35%,#fffcfa 0%,#fff2e9 72%,#f7ded4 100%)}
+.art-player .af-bridge{top:11px;width:27px;height:41px;border-left:3px solid rgba(190,120,102,.2);border-right:3px solid rgba(190,120,102,.2);background:linear-gradient(90deg,transparent,rgba(255,255,255,.38) 45%,transparent)}
+.art-player .af-nose{top:33px;width:63px;height:38px;border-radius:40% 40% 53% 53%/37% 37% 60% 60%;background:radial-gradient(ellipse at 50% 18%,#fff5ed 0%,#f6cfbf 73%,#e9ad9d 100%);box-shadow:0 5px 9px rgba(155,83,73,.13),inset 0 -3px 0 rgba(166,88,81,.16)}
+.art-player .af-ala{width:22px;height:13px;bottom:0;border-bottom:3px solid rgba(150,78,71,.43)}
+.art-player .af-nostril{bottom:5px;width:10px;height:5px;background:#93625a;box-shadow:0 1px 2px rgba(100,60,57,.16)}
+.art-player .af-nostril.left{left:10px}.art-player .af-nostril.right{right:10px}
+.art-player .af-upper-lip{top:86px;width:79px}.art-player .af-lower-lip{top:94px;width:81px}.art-player .af-mouth-gap{top:95px;width:64px}
+.art-player .art-front-face.is-m .af-upper-lip{top:86px}.art-player .art-front-face.is-m .af-lower-lip{top:94px}
+.art-player .art-front-face.is-f .af-teeth{top:84px}.art-player .art-front-face.is-f .af-lower-lip{top:93px}.art-player .art-front-face.is-f .af-mouth-gap{top:91px}.art-player .art-front-face.is-f .af-corner{top:94px}
+.art-player .af-resonance.r1{left:18px;top:45px}.art-player .af-resonance.r2{left:10px;top:39px}.art-player .af-resonance.r3{right:18px;top:45px}.art-player .af-resonance.r4{right:10px;top:39px}
+.art-player .art-side-head{height:130px!important;max-width:184px;border-radius:22px!important}.art-player .art-side-head svg{overflow:hidden}
+.art-player .as-nose-shape{stroke:#bf8172;stroke-width:3.6;stroke-linejoin:round}.art-player .as-nostril{fill:#88534d}
+/* Motion runs only after tapping the example button */
+.art-player:not(.is-playing) .art-front-face *,.art-player:not(.is-playing) .art-side-head *{animation-play-state:paused!important}
+.art-player:not(.is-playing) .af-resonance,.art-player:not(.is-playing) .af-air{opacity:0!important}
+.art-player:not(.is-playing) .as-flow,.art-player:not(.is-playing) .as-air{opacity:.2}
+@media(max-width:390px){.art-player .art-front-face{height:116px}.art-player .art-side-head{height:116px!important}.art-player .af-upper-lip{top:78px}.art-player .af-lower-lip{top:86px}.art-player .af-mouth-gap{top:87px}.art-player .art-front-face.is-m .af-upper-lip{top:78px}.art-player .art-front-face.is-m .af-lower-lip{top:86px}.art-player .art-front-face.is-f .af-teeth{top:76px}.art-player .art-front-face.is-f .af-lower-lip{top:85px}.art-player .art-front-face.is-f .af-mouth-gap{top:83px}.art-player .art-front-face.is-f .af-corner{top:86px}}
