@@ -1,0 +1,1 @@
+Unified vowel mini-check visual/result flow with consonant lessons; completion reward is now strictly post-pass and hidden by default.
