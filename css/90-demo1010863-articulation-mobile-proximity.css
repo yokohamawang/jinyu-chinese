@@ -1,0 +1,38 @@
+/* 10.108.64 — bring the selected initial and its mouth demonstration together
+   on phones. Keep the pronunciation and playback controls available below. */
+@media (max-width: 700px) {
+  .initials-tone-ribbon {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .initials-tone-ribbon .initials-focus-copy { order: 0; }
+  .initials-tone-ribbon .initials-focus-visual {
+    order: 1;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100%;
+    margin: 0 !important;
+  }
+  .initials-tone-ribbon .initials-tone-buttons { order: 2; width: 100%; }
+  .initials-tone-ribbon .initials-tone-mini-note { order: 3; width: 100%; }
+
+  /* Put the actual front/profile drawings directly after the animation label.
+     Playback speed and view selectors follow the artwork instead of pushing
+     the mouth below several rows of controls. */
+  .initials-focus-visual.art-player {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .initials-focus-visual.art-player .art-stage-head { order: 0; }
+  .initials-focus-visual.art-player .art-player-stage { order: 1; }
+  .initials-focus-visual.art-player .art-player-controls { order: 2; }
+  .initials-focus-visual.art-player .art-view-tabs { order: 3; }
+  .initials-focus-visual.art-player .art-stage-copy { order: 4; }
+}
