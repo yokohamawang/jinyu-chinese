@@ -80,9 +80,9 @@
 <link rel="stylesheet" href="./css/78-demo1010848-articulation-redesign.css?v=10.108.52">
 <link rel="stylesheet" href="./css/81-demo1010851-child-art-visual.css?v=10.108.52">
 <link rel="stylesheet" href="./css/82-demo1010852-silent-art-controls.css?v=1010852">
-<link rel="stylesheet" href="./css/83-demo1010853-artwork-controls-safe.css?v=10.108.54">
+<link rel="stylesheet" href="./css/83-demo1010853-artwork-controls-safe.css?v=10.108.55">
 <style>
-/* 10.108.54: mobile-safe controls; artwork self contained in lesson JS. */
+/* 10.108.55: mobile-safe controls; artwork self contained in lesson JS. */
 .initials-focus-visual.art-player{box-sizing:border-box;width:100%;max-width:100%;min-width:0;overflow:hidden}
 .initials-focus-visual.art-player .art-player-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%;min-width:0}
 .initials-focus-visual.art-player .art-play-main{width:100%;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;padding:8px 5px;font-size:clamp(11px,3.1vw,15px);line-height:1.25;text-align:center}
@@ -97,7 +97,26 @@
 .initials-focus-visual.art-player.is-f .art-view{min-width:0;overflow:hidden;align-content:start}
 @media(max-width:390px){.initials-focus-visual.art-player .art-player-controls{gap:5px}.initials-focus-visual.art-player .art-play-main{font-size:11px}.initials-focus-visual.art-player .art-speed button{font-size:10px}}
 </style>
-<link rel="stylesheet" href="./css/84-demo1010854-articulation-motion.css?v=10.108.54">
+<link rel="stylesheet" href="./css/84-demo1010854-articulation-motion.css?v=10.108.55">
+<style id="koe55-embedded-art-styles">
+/* 10.108.54: matched child portraits and distinct live articulation frames. */
+.initials-focus-visual.art-player.is-m .art-child-portrait,
+.initials-focus-visual.art-player.is-f .art-child-portrait{display:block;width:100%;height:auto!important;aspect-ratio:363/448;max-height:270px;overflow:hidden;position:relative;border-radius:18px;background:#fff8f4}
+.initials-focus-visual.art-player .art-child-side{aspect-ratio:312/374!important}
+.initials-focus-visual.art-player .art-child-portrait img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+.initials-focus-visual.art-player .art-child-portrait .art-motion-frame{opacity:0;pointer-events:none}
+.initials-focus-visual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:koe54-artframes var(--art-cycle,3.2s) ease-in-out both}
+@keyframes koe54-artframes{0%,9%,90%,100%{opacity:0}17%,31%,44%,57%,70%,82%{opacity:1}24%,38%,50%,64%,76%{opacity:0}}
+.initials-focus-visual.art-player .art-player-stage{display:grid;gap:12px;min-width:0;align-items:stretch}
+.initials-focus-visual.art-player.has-side.view-both .art-player-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.initials-focus-visual.art-player .art-view{min-width:0;overflow:hidden;box-sizing:border-box}
+.initials-focus-visual.art-player .art-view-label{z-index:4}
+.initials-focus-visual.art-player .art-view .art-child-portrait{margin-inline:auto}
+.initials-focus-visual.art-player .art-side-note{min-height:2.8em;display:block;text-align:center}
+@media(max-width:420px){.initials-focus-visual.art-player .art-player-stage{gap:8px}.initials-focus-visual.art-player .art-view{padding:8px!important}.initials-focus-visual.art-player .art-player-controls{gap:7px}}
+@media(prefers-reduced-motion:reduce){.initials-focus-visual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:none;opacity:1}}
+
+</style>
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -534,7 +553,7 @@ SOFTWARE.
 <script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.12"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
 <script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.36"></script>
-<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.54"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.55"></script>
 <script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.45"></script>
 
 
