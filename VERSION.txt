@@ -1,2 +1,1 @@
-Koepanda DEMO 10.108.59 FULL – Large unified articulation illustrations
-Base: 10.108.58 FULL. Four consonants share the same front illustration; side diagrams enlarged with corrected tooth / tongue geometry.
+Koepanda DEMO 10.108.60 FULL – Mobile front/side articulation repair
