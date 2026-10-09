@@ -1,0 +1,1 @@
+10.108.64: Mobile layout places the selected initial and its mouth illustration next to each other. The mouth stage now appears before playback speed, view selectors, and sample audio controls. Desktop ordering is unchanged.

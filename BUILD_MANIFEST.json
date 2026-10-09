@@ -1,17 +1,14 @@
 {
-  "version": "10.108.63",
-  "base": "10.108.61 FULL REVIEW",
+  "version": "10.108.64",
+  "base": "10.108.63 FULL Articulation effect match",
   "changes": [
-    "b/p/m resting mouth is visibly closed before playback",
-    "resolved legacy animation style conflicts",
-    "slow articulation cycle begins with closure then release",
-    "clearer frontal nose shape",
-    "stacked, larger illustrations on phones; paired layout on desktop"
+    "On phones, show the selected initial summary immediately followed by the mouth animation",
+    "Move mouth illustrations above playback and view controls on mobile",
+    "Retain all playback, speed, view, and audio controls below the artwork"
   ],
   "changed_files": [
     "index.html",
-    "js/10-demo1010808-initials-forest.js",
-    "css/89-demo1010862-articulation-effect-match.css",
+    "css/90-demo1010863-articulation-mobile-proximity.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]
