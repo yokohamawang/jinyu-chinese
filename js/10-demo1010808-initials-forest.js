@@ -1,4 +1,4 @@
-/* DEMO 10.108.18 — quiz result flow + stable two-line descriptions + linked mouth/airflow visual.
+/* DEMO 10.108.62 — preserve the version 42 animated front mouth and add a static side articulation guide.
    Builds on 10.108.17 visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
@@ -163,7 +163,30 @@
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true"><i class="focus-nose"></i><i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual is-'+letter;
-    box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
+    box.innerHTML='<div class="initial-art-pair">'+
+      '<div class="initial-art-view initial-art-front"><span class="initial-art-label">正面・動き</span>'+art+'</div>'+
+      '<div class="initial-art-view initial-art-side"><span class="initial-art-label">横から・口の中</span>'+sideArt(letter)+'</div></div>'+
+      '<div class="initial-art-caption"><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
+  }
+  function sideArt(letter){
+    var details={
+      b:{lip:'M49 76 Q57 70 66 76 Q58 81 49 76Z',tongue:'M68 94 Q91 91 119 98 Q132 102 127 108 Q103 105 78 106 Q69 104 68 94Z',air:'<path class="sa-air weak" d="M42 75l-8-2"/><path class="sa-air weak" d="M41 79l-7 1"/>',contact:'',note:'両くちびるを閉じて、弱い息で開く'},
+      p:{lip:'M49 76 Q58 67 68 76 Q60 82 49 76Z',tongue:'M68 94 Q91 91 119 98 Q132 102 127 108 Q103 105 78 106 Q69 104 68 94Z',air:'<path class="sa-air strong" d="M43 72l-15-5"/><path class="sa-air strong" d="M42 77l-18 0"/><path class="sa-air strong" d="M43 82l-15 5"/>',contact:'',note:'同じくちびるを閉じ、開く瞬間に強く息を出す'},
+      m:{lip:'M49 76 Q58 71 67 76 Q58 81 49 76Z',tongue:'M68 94 Q91 91 119 98 Q132 102 127 108 Q103 105 78 106 Q69 104 68 94Z',air:'<path class="sa-nasal" d="M74 43q-8-7 0-13"/><path class="sa-nasal" d="M85 39q-8-7 0-13"/>',contact:'',note:'くちびるを閉じたまま、音を鼻へ響かせる'},
+      f:{lip:'M48 77 Q57 69 67 74 Q62 80 51 80Z',tongue:'M70 96 Q91 93 116 99 Q129 103 124 108 Q101 106 79 107 Q71 104 70 96Z',air:'<path class="sa-air thin" d="M43 76l-12-2"/><path class="sa-air thin" d="M43 80l-12 1"/>',contact:'<circle class="sa-contact" cx="66" cy="78" r="2.5"/>',note:'上の歯を下くちびるに当て、細い息を流す'}
+    }[letter];
+    return '<svg class="side-anatomy" viewBox="0 0 180 126" role="img" aria-label="'+letter+' の歯・くちびる・舌の横からの図">'+
+      '<defs><linearGradient id="sa-skin-'+letter+'" x2="0" y2="1"><stop stop-color="#fff0e6"/><stop offset="1" stop-color="#f7c8b8"/></linearGradient></defs>'+
+      '<path class="sa-head" d="M124 13C95 9 71 20 64 43L53 63Q45 67 44 74Q44 79 52 81L55 91Q59 111 79 117Q110 124 145 115Q161 107 162 91L160 61Q155 28 124 13Z"/>'+
+      '<path class="sa-nasal-cavity" d="M61 62Q68 50 82 51Q91 53 99 60L83 68Q72 70 61 67Z"/>'+
+      '<path class="sa-mouth" d="M55 73Q72 67 88 72Q112 77 139 91Q126 99 101 101L69 94Q58 88 55 81Z"/>'+
+      '<path class="sa-palate" d="M63 72Q88 68 111 80Q127 86 138 91"/>'+
+      '<path class="sa-tooth" d="M60 73Q67 70 72 74L72 84Q67 87 62 83Z"/><path class="sa-tooth" d="M72 75Q78 73 82 77L81 86L72 85Z"/>'+
+      '<path class="sa-tongue" d="'+details.tongue+'"/>'+
+      '<path class="sa-lip" d="'+details.lip+'"/>'+details.contact+
+      '<path class="sa-throat" d="M139 91Q145 96 141 103"/>'+
+      '<path class="sa-nostril" d="M48 66q5-4 10 0"/>'+details.air+'</svg>'+
+      '<small class="initial-art-note">'+details.note+'</small>';
   }
   function select(letter){
     selected=letter;
