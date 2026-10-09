@@ -1,16 +1,129 @@
-/* 10.108.54: matched child portraits and distinct live articulation frames. */
+/* 10.108.57: stable articulated side-view teaching panel with teeth / tongue / lips. */
+.initials-focus-visual.art-player{--art-cycle:3.2s}
+.initials-focus-visual.art-player .art-player-stage{display:grid;gap:10px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.initials-focus-visual.art-player .art-view{min-width:0;overflow:hidden;box-sizing:border-box}
+.initials-focus-visual.art-player .art-view-front,
+.initials-focus-visual.art-player .art-view-side{min-height:192px;display:grid;grid-template-rows:1fr auto;align-items:center}
+.initials-focus-visual.art-player .art-view-side{padding-bottom:10px!important}
+.initials-focus-visual.art-player .art-view-label{z-index:4}
+.initials-focus-visual.art-player .art-side-note{display:block;margin-top:6px;min-height:3.1em;text-align:center;font-size:11px;color:#587166;font-weight:900;line-height:1.4}
+.initials-focus-visual.art-player.view-front .art-player-stage{grid-template-columns:1fr}
+.initials-focus-visual.art-player.view-front .art-view-side{display:none}
+.initials-focus-visual.art-player.view-side .art-player-stage{grid-template-columns:1fr}
+.initials-focus-visual.art-player.view-side .art-view-front{display:none}
+.initials-focus-visual.art-player.view-side .art-view-side{display:grid}
+.initials-focus-visual.art-player.view-both .art-view-front,
+.initials-focus-visual.art-player.view-both .art-view-side{display:grid}
+/* Portrait cards for m/f keep stable sizing */
 .initials-focus-visual.art-player.is-m .art-child-portrait,
 .initials-focus-visual.art-player.is-f .art-child-portrait{display:block;width:100%;height:auto!important;aspect-ratio:363/448;max-height:270px;overflow:hidden;position:relative;border-radius:18px;background:#fff8f4}
-.initials-focus-visual.art-player .art-child-side{aspect-ratio:312/374!important}
 .initials-focus-visual.art-player .art-child-portrait img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
-.initials-focus-visual.art-player .art-child-portrait .art-motion-frame{opacity:0;pointer-events:none}
-.initials-focus-visual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:koe54-artframes var(--art-cycle,3.2s) ease-in-out both}
-@keyframes koe54-artframes{0%,9%,90%,100%{opacity:0}17%,31%,44%,57%,70%,82%{opacity:1}24%,38%,50%,64%,76%{opacity:0}}
-.initials-focus-visual.art-player .art-player-stage{display:grid;gap:12px;min-width:0;align-items:stretch}
-.initials-focus-visual.art-player.has-side.view-both .art-player-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.initials-focus-visual.art-player .art-view{min-width:0;overflow:hidden;box-sizing:border-box}
-.initials-focus-visual.art-player .art-view-label{z-index:4}
+.initials-focus-visual.art-player .art-child-portrait .art-motion-frame{opacity:0;pointer-events:none;transition:opacity .18s ease}
+.initials-focus-visual.art-player[data-art-step="1"] .art-child-portrait .art-motion-frame,
+.initials-focus-visual.art-player[data-art-step="2"] .art-child-portrait .art-motion-frame{opacity:1}
 .initials-focus-visual.art-player .art-view .art-child-portrait{margin-inline:auto}
-.initials-focus-visual.art-player .art-side-note{min-height:2.8em;display:block;text-align:center}
-@media(max-width:420px){.initials-focus-visual.art-player .art-player-stage{gap:8px}.initials-focus-visual.art-player .art-view{padding:8px!important}.initials-focus-visual.art-player .art-player-controls{gap:7px}}
-@media(prefers-reduced-motion:reduce){.initials-focus-visual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:none;opacity:1}}
+/* front vector motion for b/p */
+.initials-focus-visual.art-player .art-front-face{transition:transform .18s ease}
+.initials-focus-visual.art-player .af-upper-lip,
+.initials-focus-visual.art-player .af-lower-lip,
+.initials-focus-visual.art-player .af-mouth-gap,
+.initials-focus-visual.art-player .af-teeth,
+.initials-focus-visual.art-player .af-air{transition:all .18s ease}
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .af-upper-lip,
+.initials-focus-visual.art-player.is-p[data-art-step="1"] .af-upper-lip{transform:translateY(-1px)}
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .af-lower-lip,
+.initials-focus-visual.art-player.is-p[data-art-step="1"] .af-lower-lip{transform:translateY(3px)}
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .af-mouth-gap,
+.initials-focus-visual.art-player.is-p[data-art-step="1"] .af-mouth-gap{height:7px;opacity:.95}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .af-upper-lip,
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .af-upper-lip{transform:translateY(-2px)}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .af-lower-lip,
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .af-lower-lip{transform:translateY(6px)}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .af-mouth-gap,
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .af-mouth-gap{height:11px;opacity:1}
+.initials-focus-visual.art-player.is-b .af-air,.initials-focus-visual.art-player.is-p .af-air{opacity:.15}
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .af-air{opacity:.45}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .af-air{opacity:.62;transform:translateX(3px)}
+.initials-focus-visual.art-player.is-p[data-art-step="1"] .af-air{opacity:.7}
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .af-air{opacity:1;transform:translateX(7px) scaleX(1.18)}
+/* side view teaching SVG */
+.initials-focus-visual.art-player .art-side-demo{display:block;width:100%;max-width:188px;aspect-ratio:188/136;margin:0 auto;border-radius:22px;background:radial-gradient(ellipse at 38% 25%,#fffdf9 0%,#fff4ec 50%,#fdeedf 100%);box-shadow:inset 0 0 0 1px rgba(205,149,130,.22)}
+.initials-focus-visual.art-player .art-side-demo svg{display:block;width:100%;height:100%}
+.initials-focus-visual.art-player .asd-face{fill:#fde7dc;stroke:#cf9a8c;stroke-width:2.2;stroke-linejoin:round}
+.initials-focus-visual.art-player .asd-palate{fill:none;stroke:#c28f81;stroke-width:2.4;stroke-linecap:round}
+.initials-focus-visual.art-player .asd-throat{fill:none;stroke:#d5a091;stroke-width:2.4;stroke-linecap:round}
+.initials-focus-visual.art-player .asd-upperlip,
+.initials-focus-visual.art-player .asd-lowerlip,
+.initials-focus-visual.art-player .asd-lips-closed,
+.initials-focus-visual.art-player .asd-opening,
+.initials-focus-visual.art-player .asd-teeth,
+.initials-focus-visual.art-player .asd-lowerlip-f,
+.initials-focus-visual.art-player .asd-tongue,
+.initials-focus-visual.art-player .asd-tongue-tip,
+.initials-focus-visual.art-player .asd-nasal-path,
+.initials-focus-visual.art-player .asd-air,
+.initials-focus-visual.art-player .asd-nasal{transition:all .18s ease}
+.initials-focus-visual.art-player .asd-upperlip{fill:none;stroke:#c17e76;stroke-width:3.4;stroke-linecap:round}
+.initials-focus-visual.art-player .asd-lowerlip{fill:none;stroke:#d98682;stroke-width:3.4;stroke-linecap:round}
+.initials-focus-visual.art-player .asd-lips-closed{fill:none;stroke:#ae6d67;stroke-width:2.8;stroke-linecap:round;opacity:.95}
+.initials-focus-visual.art-player .asd-opening{fill:#7a4c47;opacity:0}
+.initials-focus-visual.art-player .asd-teeth{fill:#fffefa;stroke:#c8a49b;stroke-width:1.2;opacity:.15}
+.initials-focus-visual.art-player .asd-lowerlip-f{fill:#ec9a8f;stroke:#cc7d78;stroke-width:1.8;opacity:0}
+.initials-focus-visual.art-player .asd-tongue{fill:#ee9bab;stroke:#d56f87;stroke-width:1.6;opacity:.85}
+.initials-focus-visual.art-player .asd-tongue-tip{fill:none;stroke:#d56f87;stroke-width:2;stroke-linecap:round;opacity:.65}
+.initials-focus-visual.art-player .asd-nasal-path{fill:none;stroke:rgba(73,156,120,.26);stroke-width:8;stroke-linecap:round;opacity:.22}
+.initials-focus-visual.art-player .asd-air{fill:none;stroke:#76b7d0;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:6 7;opacity:.08}
+.initials-focus-visual.art-player .asd-nasal{fill:none;stroke:#54b184;stroke-width:3.1;stroke-linecap:round;stroke-dasharray:4 6;opacity:0}
+.initials-focus-visual.art-player .asd-label{font-size:10px;font-weight:900;fill:#587267}
+.initials-focus-visual.art-player .asd-label-dot{fill:#fff;stroke:#8fb4a3;stroke-width:2}
+/* default visibility per letter */
+.initials-focus-visual.art-player.is-b .asd-nasal,
+.initials-focus-visual.art-player.is-p .asd-nasal,
+.initials-focus-visual.art-player.is-f .asd-nasal,
+.initials-focus-visual.art-player.is-b .asd-nasal-path,
+.initials-focus-visual.art-player.is-p .asd-nasal-path,
+.initials-focus-visual.art-player.is-f .asd-nasal-path{opacity:0}
+.initials-focus-visual.art-player.is-b .asd-teeth,
+.initials-focus-visual.art-player.is-p .asd-teeth{opacity:.08}
+.initials-focus-visual.art-player.is-m .asd-teeth{opacity:.08}
+.initials-focus-visual.art-player.is-f .asd-teeth{opacity:1}
+.initials-focus-visual.art-player.is-f .asd-lips-closed{opacity:0}
+.initials-focus-visual.art-player.is-f .asd-lowerlip{opacity:0}
+.initials-focus-visual.art-player.is-f .asd-lowerlip-f{opacity:1}
+.initials-focus-visual.art-player.is-b .asd-tongue,.initials-focus-visual.art-player.is-p .asd-tongue{opacity:.68}
+.initials-focus-visual.art-player.is-f .asd-tongue{opacity:.55}
+/* animated states */
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .asd-opening{opacity:.35}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .asd-opening{opacity:.72}
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .asd-lips-closed{transform:translateX(-1px)}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .asd-lips-closed{opacity:.15}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .asd-air{opacity:.55;transform:translateX(5px)}
+.initials-focus-visual.art-player.is-b[data-art-step="1"] .asd-air{opacity:.3;transform:translateX(2px)}
+.initials-focus-visual.art-player.is-p[data-art-step="1"] .asd-opening{opacity:.55}
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .asd-opening{opacity:.98;transform:scale(1.08)}
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .asd-air{opacity:1;transform:translateX(10px)}
+.initials-focus-visual.art-player.is-p[data-art-step="1"] .asd-air{opacity:.6;transform:translateX(4px)}
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .asd-lips-closed{opacity:.05}
+.initials-focus-visual.art-player.is-m[data-art-step="1"] .asd-nasal-path,
+.initials-focus-visual.art-player.is-m[data-art-step="1"] .asd-nasal,
+.initials-focus-visual.art-player.is-m[data-art-step="2"] .asd-nasal-path,
+.initials-focus-visual.art-player.is-m[data-art-step="2"] .asd-nasal{opacity:1}
+.initials-focus-visual.art-player.is-m[data-art-step="1"] .asd-nasal{transform:translateY(-2px)}
+.initials-focus-visual.art-player.is-m[data-art-step="2"] .asd-nasal{transform:translateY(-5px)}
+.initials-focus-visual.art-player.is-m .asd-air{opacity:0}
+.initials-focus-visual.art-player.is-f[data-art-step="1"] .asd-air{opacity:.52;transform:translateX(4px)}
+.initials-focus-visual.art-player.is-f[data-art-step="2"] .asd-air{opacity:.95;transform:translateX(8px)}
+.initials-focus-visual.art-player.is-f[data-art-step="1"] .asd-lowerlip-f{transform:translateX(1px) translateY(-1px)}
+.initials-focus-visual.art-player.is-f[data-art-step="2"] .asd-lowerlip-f{transform:translateX(2px) translateY(-2px)}
+.initials-focus-visual.art-player.is-f[data-art-step="1"] .asd-teeth,
+.initials-focus-visual.art-player.is-f[data-art-step="2"] .asd-teeth{filter:drop-shadow(0 1px 0 rgba(0,0,0,.03))}
+@media(max-width:420px){
+  .initials-focus-visual.art-player .art-player-stage{gap:8px}
+  .initials-focus-visual.art-player .art-view-front,
+  .initials-focus-visual.art-player .art-view-side{min-height:174px}
+  .initials-focus-visual.art-player .art-side-demo{max-width:170px}
+  .initials-focus-visual.art-player .art-side-note{font-size:10.2px;min-height:3.4em}
+}
+@media(prefers-reduced-motion:reduce){
+  .initials-focus-visual.art-player .art-child-portrait .art-motion-frame{transition:none}
+}
