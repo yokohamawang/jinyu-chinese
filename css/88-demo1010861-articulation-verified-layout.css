@@ -1,0 +1,25 @@
+/* 10.108.61 unified artwork stage: layout and svg geometry explicitly bounded. */
+.initials-focus-visual.art-player.has-side.view-both .art-player-stage{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:start!important;min-height:0!important}
+.initials-focus-visual.art-player .art-player-stage .art-view{height:auto!important;min-height:0!important;max-height:none!important;padding:30px 6px 12px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;overflow:visible!important}
+.initials-focus-visual.art-player .art-view-front .k59-front,.initials-focus-visual.art-player .art-view-side .k58-side{position:relative!important;box-sizing:border-box!important;display:block!important;width:100%!important;max-width:100%!important;height:auto!important;min-height:1px!important;overflow:hidden!important;flex:0 0 auto!important;visibility:visible!important;opacity:1!important}
+.initials-focus-visual.art-player .art-view-front .k59-front{aspect-ratio:320/220!important}
+.initials-focus-visual.art-player .art-view-side .k58-side{aspect-ratio:220/176!important}
+.initials-focus-visual.art-player .art-view-front .k59-front>svg,.initials-focus-visual.art-player .art-view-side .k58-side>svg{position:static!important;inset:auto!important;display:block!important;width:100%!important;height:auto!important;max-width:100%!important;aspect-ratio:auto!important;visibility:visible!important;opacity:1!important}
+.initials-focus-visual.art-player .art-view .art-side-note{margin:8px auto 0!important;min-height:0!important;max-height:none!important;line-height:1.45!important;font-size:11px!important;overflow:visible!important}
+.initials-focus-visual.art-player.view-front .art-player-stage,.initials-focus-visual.art-player.view-side .art-player-stage{grid-template-columns:minmax(0,1fr)!important}
+.initials-focus-visual.art-player.view-front .art-view-side,.initials-focus-visual.art-player.view-side .art-view-front{display:none!important}
+.initials-focus-visual.art-player.view-front .art-view-front,.initials-focus-visual.art-player.view-side .art-view-side{max-width:360px!important;margin:0 auto!important;width:100%!important}
+/* Tongue is level with the lower incisors at rest; the small front incisors remain inside the lips. */
+.initials-focus-visual.art-player .k58-side .k58-tongue{transform:none!important}
+.initials-focus-visual.art-player .k58-side .k58-upper-tooth{transform:none!important}
+.initials-focus-visual.art-player .k58-side .k58-cavity{transform:none!important}
+.initials-focus-visual.art-player.is-f .k58-upper-tooth{transform:translate(-2px,4px)!important}
+.initials-focus-visual.art-player.is-f .k58-lower-lip{transform:translate(0px,-6px)!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p,.is-m) .k58-opening{opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k58-opening{opacity:1!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k58-opening{opacity:0!important}
+/* b/p begin in lip closure, then open and release. m remains sealed while resonance is nasal. */
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-closed,.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-gap{opacity:1!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-open,.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-lowerlip{opacity:0!important}
+.initials-focus-visual.art-player.is-f .k59-mouth-open{opacity:.65!important}
+@media(max-width:420px){.initials-focus-visual.art-player.has-side.view-both .art-player-stage{gap:8px!important}.initials-focus-visual.art-player .art-player-stage .art-view{padding:27px 5px 10px!important}.initials-focus-visual.art-player .art-view .art-side-note{font-size:10px!important}}

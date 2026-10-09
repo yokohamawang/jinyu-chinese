@@ -1,0 +1,52 @@
+/* 10.108.60: iPhone-safe compact dual illustration; overrides legacy fixed-height rules. */
+.initials-focus-visual.art-player.has-side.view-both .art-player-stage,
+.initials-focus-visual.art-player:is(.is-m,.is-f).view-both .art-player-stage{
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ gap:10px!important;min-height:0!important;align-items:start!important;
+}
+.initials-focus-visual.art-player .art-view,
+.initials-focus-visual.art-player .art-view-front,
+.initials-focus-visual.art-player .art-view-side{
+ height:auto!important;min-height:0!important;max-height:none!important;
+ padding:30px 7px 12px!important;align-items:center!important;
+ justify-content:flex-start!important;box-sizing:border-box!important;
+}
+.initials-focus-visual.art-player .art-view-front .k59-front,
+.initials-focus-visual.art-player .art-view-side .k58-side{
+ display:block!important;visibility:visible!important;opacity:1!important;
+ width:100%!important;max-width:100%!important;height:auto!important;
+ min-height:0!important;flex:none!important;position:relative!important;
+ overflow:hidden!important;border-radius:15px!important;aspect-ratio: 220/176!important;
+}
+.initials-focus-visual.art-player .art-view-front .k59-front{aspect-ratio:320/220!important}
+.initials-focus-visual.art-player .k59-front svg,
+.initials-focus-visual.art-player .k58-side svg{
+ display:block!important;visibility:visible!important;opacity:1!important;
+ width:100%!important;height:100%!important;max-width:none!important;
+ position:absolute!important;inset:0!important;
+}
+.initials-focus-visual.art-player .art-side-note{
+ min-height:0!important;max-height:none!important;overflow:visible!important;
+ font-size:11px!important;line-height:1.45!important;margin:9px 0 0!important;
+ overflow-wrap:anywhere!important;
+}
+.initials-focus-visual.art-player .art-stage-copy{min-height:0!important;padding:16px 5px 4px!important}
+.initials-focus-visual.art-player.view-front .art-player-stage,
+.initials-focus-visual.art-player.view-side .art-player-stage{
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;min-height:0!important;
+}
+.initials-focus-visual.art-player.view-front .art-view-front,
+.initials-focus-visual.art-player.view-side .art-view-side{width:100%!important}
+.initials-focus-visual.art-player.view-front .k59-front,
+.initials-focus-visual.art-player.view-side .k58-side{max-width:290px!important}
+/* The sagittal lips must start sealed on b/p/m; only a brief release creates an opening. */
+.initials-focus-visual.art-player:is(.is-b,.is-p,.is-m) .k58-side .k58-opening{opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k58-opening,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k58-opening{opacity:1!important}
+.initials-focus-visual.art-player .k58-side .k58-cavity{transition:transform .2s;transform-origin:80px 105px;transform:scaleY(.75)}
+.initials-focus-visual.art-player .k58-side .k58-tongue{transform:none!important}
+@media(max-width:420px){
+ .initials-focus-visual.art-player .art-player-stage{gap:8px!important}
+ .initials-focus-visual.art-player .art-view{padding:28px 5px 11px!important}
+ .initials-focus-visual.art-player .art-side-note{font-size:10px!important}
+}
