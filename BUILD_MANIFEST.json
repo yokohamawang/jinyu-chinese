@@ -1,15 +1,17 @@
 {
-  "version": "10.108.69",
-  "base": "10.108.68 FULL Restored anime motion and static f explainer",
+  "version": "10.108.41",
+  "base": "Koepanda_10_108_40_FULL_RoadmapCleanLayoutFix.zip",
+  "name": "RoadmapOldCleanWrapRestore",
+  "build_name": "FULL_RoadmapOldCleanWrapRestore",
   "changes": [
-    "Corrected the animation restoration to the original front-only anime-style character motion; removed the animated side portrait and side/both view selector",
-    "Kept the f static explainer as the separate view for the side cutaway showing teeth, lower lip, tongue, oral cavity, and airflow",
-    "Kept the animation and static explainer as mutually exclusive views to preserve mobile screen space"
+    "restore roadmap layout rules from the last clean pre-no-wrap version",
+    "allow lesson titles to wrap naturally instead of forcing one-line compression",
+    "keep all 10.108.40 functionality and JavaScript unchanged",
+    "refresh roadmap CSS cache-busting tag to 10.108.41"
   ],
   "changed_files": [
+    "css/66-demo1010798-simple-learning-path.css",
     "index.html",
-    "js/10-demo1010808-initials-forest.js",
-    "css/94-demo1010869-front-only-motion.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]

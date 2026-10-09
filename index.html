@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="DEMO 10.108.69 restored-front-only-character-motion">
+<meta name="koepanda-build" content="DEMO 10.107.99 lesson-overlay-audio-balance">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -72,62 +72,8 @@
 <link rel="stylesheet" href="./css/71-demo1010824-free-practice-polish.css?v=10.108.27" id="demo1010824-free-practice-polish">
 <link rel="stylesheet" href="./css/73-demo1010832-practice-simple-large.css?v=10.108.36" id="demo1010832-practice-simple-large">
 <link rel="stylesheet" href="./css/74-demo1010842-vowel-quiz-unified-premium.css?v=10.108.42" id="demo1010842-vowel-quiz-unified-premium">
-<link rel="stylesheet" href="./css/75-demo1010844-articulation-animation-stage.css?v=10.108.44" id="demo1010844-articulation-animation-stage">
-<link rel="stylesheet" href="./css/76-demo1010845-articulation-player-polish.css?v=10.108.52" id="demo1010845-articulation-player-polish">
 <link rel="stylesheet" href="./css/72-demo1010828-result-stage-overlay.css?v=10.108.36" id="demo1010828-result-stage-overlay">
 <link rel="stylesheet" href="./css/69-demo1010812-dev-test-mode.css?v=10.108.12" id="demo1010812-dev-test-mode">
-<link rel="stylesheet" href="./css/77-demo1010846-nose-clarity.css?v=10.108.52">
-<link rel="stylesheet" href="./css/78-demo1010848-articulation-redesign.css?v=10.108.52">
-<link rel="stylesheet" href="./css/81-demo1010851-child-art-visual.css?v=10.108.52">
-<link rel="stylesheet" href="./css/82-demo1010852-silent-art-controls.css?v=1010852">
-<link rel="stylesheet" href="./css/83-demo1010853-artwork-controls-safe.css?v=10.108.56">
-<style>
-/* 10.108.56: mobile-safe controls; artwork self contained in lesson JS. */
-.initials-focus-visual.art-player{box-sizing:border-box;width:100%;max-width:100%;min-width:0;overflow:hidden}
-.initials-focus-visual.art-player .art-player-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%;min-width:0}
-.initials-focus-visual.art-player .art-play-main{width:100%;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;padding:8px 5px;font-size:clamp(11px,3.1vw,15px);line-height:1.25;text-align:center}
-.initials-focus-visual.art-player .art-play-main span{flex:0 0 25px;margin:0}
-.initials-focus-visual.art-player .art-speed{width:100%;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
-.initials-focus-visual.art-player .art-speed button{min-width:0!important;width:100%;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;font-size:clamp(10px,2.8vw,13px);padding:4px 2px;line-height:1.3}
-.initials-focus-visual.art-player .art-view-tabs{width:100%;min-width:0;box-sizing:border-box}
-.initials-focus-visual.art-player .art-player-stage{min-width:0;max-width:100%;box-sizing:border-box}
-.initials-focus-visual.art-player.is-f .art-child-portrait{width:100%;height:auto!important;aspect-ratio:363 / 448;max-height:270px;overflow:hidden;position:relative}
-.initials-focus-visual.art-player.is-f .art-child-side{aspect-ratio:312 / 374}
-.initials-focus-visual.art-player.is-f .art-child-portrait img{object-fit:contain;width:100%;height:100%;display:block}
-.initials-focus-visual.art-player.is-f .art-view{min-width:0;overflow:hidden;align-content:start}
-@media(max-width:390px){.initials-focus-visual.art-player .art-player-controls{gap:5px}.initials-focus-visual.art-player .art-play-main{font-size:11px}.initials-focus-visual.art-player .art-speed button{font-size:10px}}
-</style>
-<link rel="stylesheet" href="./css/84-demo1010854-articulation-motion.css?v=10.108.57">
-<style id="koe55-embedded-art-styles">
-/* 10.108.54: matched child portraits and distinct live articulation frames. */
-.initials-focus-visual.art-player.is-m .art-child-portrait,
-.initials-focus-visual.art-player.is-f .art-child-portrait{display:block;width:100%;height:auto!important;aspect-ratio:363/448;max-height:270px;overflow:hidden;position:relative;border-radius:18px;background:#fff8f4}
-.initials-focus-visual.art-player .art-child-side{aspect-ratio:312/374!important}
-.initials-focus-visual.art-player .art-child-portrait img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
-.initials-focus-visual.art-player .art-child-portrait .art-motion-frame{opacity:0;pointer-events:none}
-.initials-focus-visual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:koe54-artframes var(--art-cycle,3.2s) ease-in-out both}
-@keyframes koe54-artframes{0%,9%,90%,100%{opacity:0}17%,31%,44%,57%,70%,82%{opacity:1}24%,38%,50%,64%,76%{opacity:0}}
-.initials-focus-visual.art-player .art-player-stage{display:grid;gap:12px;min-width:0;align-items:stretch}
-.initials-focus-visual.art-player.has-side.view-both .art-player-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.initials-focus-visual.art-player .art-view{min-width:0;overflow:hidden;box-sizing:border-box}
-.initials-focus-visual.art-player .art-view-label{z-index:4}
-.initials-focus-visual.art-player .art-view .art-child-portrait{margin-inline:auto}
-.initials-focus-visual.art-player .art-side-note{min-height:2.8em;display:block;text-align:center}
-@media(max-width:420px){.initials-focus-visual.art-player .art-player-stage{gap:8px}.initials-focus-visual.art-player .art-view{padding:8px!important}.initials-focus-visual.art-player .art-player-controls{gap:7px}}
-@media(prefers-reduced-motion:reduce){.initials-focus-visual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:none;opacity:1}}
-
-</style>
-<link rel="stylesheet" href="./css/85-demo1010856-unified-artwork-layout.css?v=10.108.56">
-<link rel="stylesheet" href="./css/85-demo1010858-articulation-anatomy.css?v=10.108.58">
-<link rel="stylesheet" href="./css/86-demo1010859-articulation-refinement.css?v=10.108.59">
-<link rel="stylesheet" href="./css/87-demo1010860-articulation-mobile-repair.css?v=10.108.60">
-<link rel="stylesheet" href="./css/88-demo1010861-articulation-verified-layout.css?v=10.108.61">
-<link rel="stylesheet" href="./css/89-demo1010862-articulation-effect-match.css?v=10.108.63">
-<link rel="stylesheet" href="./css/90-demo1010863-articulation-mobile-proximity.css?v=10.108.64">
-<link rel="stylesheet" href="./css/91-demo1010865-articulation-compact-dual-view.css?v=10.108.65">
-<link rel="stylesheet" href="./css/92-demo1010866-articulation-specificity-fix.css?v=10.108.66">
-<link rel="stylesheet" href="./css/93-demo1010868-character-motion-static-explainer.css?v=10.108.68">
-<link rel="stylesheet" href="./css/94-demo1010869-front-only-motion.css?v=10.108.69">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -482,7 +428,7 @@ window.koepandaEnterKidsCourse=function(ev){
       <div class="dtnl-hero-copy">
         <span class="dtnl-kicker">LESSON 4 · 舌先の小径</span>
         <h2>d・t・n・l</h2>
-        <p>今度の主役は「舌先」。上の前歯のすぐ後ろの上あごに舌先を軽くつける場所は同じでも、息と音の通り道が変わるよ。</p>
+        <p>今度の主役は「舌先」。上の歯ぐきに軽く触れる場所は同じでも、息と音の出口が変わるよ。</p>
       </div>
       <div class="dtnl-hero-art" aria-hidden="true"><span class="dtnl-leaf l1">🍃</span><span class="dtnl-leaf l2">🍃</span><span class="dtnl-music-gem" aria-label="音のしるし"><i aria-hidden="true">♪</i></span></div>
     </div>
@@ -492,9 +438,9 @@ window.koepandaEnterKidsCourse=function(ev){
       <div class="dtnl-panel-head"><span>👂</span><div><b>まず4つの音を比べよう</b><small>呼読音で聞いて、舌先・息・鼻への響きを見比べる</small></div></div>
       <div class="dtnl-source-note"><span>🎙️</span><div><b>お手本は「呼読音」＋「声母の本音」</b><small>得 dé・特 tè・讷 nè・勒 lè のような補助音で聞き取りやすくします。</small></div></div>
       <div class="dtnl-letter-grid" id="dtnlLetterGrid"></div>
-      <div class="dtnl-focus-card" id="dtnlFocusCard"><div class="dtnl-focus-copy"><span id="dtnlFocusLetter">d</span><div><strong id="dtnlFocusGuide">得 dé · [t]</strong><small id="dtnlFocusTip">舌先を、上の前歯のすぐ後ろの上あごへ。離す瞬間の息は弱く。</small></div></div><div class="dtnl-actions" id="dtnlActions"></div><div class="dtnl-articulation" id="dtnlArticulation" aria-label="舌先と息の動き"></div></div>
+      <div class="dtnl-focus-card" id="dtnlFocusCard"><div class="dtnl-focus-copy"><span id="dtnlFocusLetter">d</span><div><strong id="dtnlFocusGuide">得 dé · [t]</strong><small id="dtnlFocusTip">舌先を上の歯ぐきへ。開く瞬間の息は弱く。</small></div></div><div class="dtnl-actions" id="dtnlActions"></div><div class="dtnl-articulation" id="dtnlArticulation" aria-label="舌先と息の動き"></div></div>
     </section>
-    <section class="dtnl-panel dtnl-compare-panel"><div class="dtnl-panel-head"><span>👅</span><div><b>同じ場所、違う出口</b><small>d / t は息、n / l は音の通り道がポイント</small></div></div><div class="dtnl-compare-grid"><div><strong>d ↔ t</strong><span>舌先の場所は同じ</span><small>d は弱い息 / t は強い息</small></div><div><strong>n ↔ l</strong><span>舌先は前歯のすぐ後ろへ</span><small>n は鼻 / l は舌の左右から</small></div></div></section>
+    <section class="dtnl-panel dtnl-compare-panel"><div class="dtnl-panel-head"><span>👅</span><div><b>同じ場所、違う出口</b><small>d / t は息、n / l は音の通り道がポイント</small></div></div><div class="dtnl-compare-grid"><div><strong>d ↔ t</strong><span>舌先の場所は同じ</span><small>d は弱い息 / t は強い息</small></div><div><strong>n ↔ l</strong><span>舌先は歯ぐきへ</span><small>n は鼻 / l は舌の左右から</small></div></div></section>
     <section class="dtnl-panel dtnl-practice-panel"><div class="dtnl-panel-head"><span>🗣️</span><div><b>好きな音をまねよう</b><small>好きな音をタップして、何度でも自由に練習できます</small></div></div><div class="dtnl-free-choice" id="dtnlFreeChoice"></div><div class="practice-tap-hint">音をタップするとお手本が聞けます</div><div class="practice-console dtnl-practice-console"><div class="practice-console-top"><span>自由練習</span><small>選んだ音を録音して、聞きくらべよう</small></div><div class="dtnl-record-row"><button type="button" class="dtnl-record" id="dtnlRecord">● 録音する</button><button type="button" class="dtnl-playback" id="dtnlPlayback" disabled>▶ 自分の声を聞く</button></div><div class="dtnl-feedback" id="dtnlPracticeFeedback"></div></div><div class="practice-next-label"><span>練習は自由 · 自信があればそのまま挑戦</span></div><button type="button" class="dtnl-to-quiz" id="dtnlToQuiz">⭐ ミニチェックへ →</button></section>
     <section class="dtnl-panel dtnl-quiz-panel" id="dtnlQuizPanel" hidden><div class="dtnl-panel-head"><span>⭐</span><div><b>舌先のミニチェック</b><small>音を聞いて d・t・n・l から選ぼう</small></div></div><div class="dtnl-quiz-count" id="dtnlQuizCount">1 / 4</div><button type="button" class="dtnl-main-button" id="dtnlQuizListen">▶ 音を聞く</button><div class="dtnl-quiz-choices" id="dtnlQuizChoices"></div><div class="dtnl-feedback" id="dtnlQuizFeedback"></div><button type="button" class="dtnl-quiz-next" id="dtnlQuizNext" hidden>次の問題へ →</button></section>
     <section class="dtnl-result" id="dtnlResult" hidden aria-live="polite"><div class="dtnl-result-badge" id="dtnlResultBadge">✓</div><div><strong id="dtnlResultTitle">ミニチェック結果</strong><span id="dtnlResultScore">4問中 0問正解</span><small id="dtnlResultMessage"></small></div><button type="button" class="dtnl-result-action" id="dtnlResultAction"></button></section>
@@ -564,8 +510,8 @@ SOFTWARE.
 <script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.12"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
 <script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.36"></script>
-<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.69"></script>
-<script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.45"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010808-initials-forest.js?v=10.108.29"></script>
+<script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.29"></script>
 
 
 <link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107.72" id="demo10100-step23-header-align-fix">
