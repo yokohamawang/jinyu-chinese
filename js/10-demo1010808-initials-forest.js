@@ -296,6 +296,18 @@
     });
     box.querySelectorAll('[data-art-speed]').forEach(function(b){b.onclick=function(){articulationSpeed=b.dataset.artSpeed==='slow'?.62:.78;box.style.setProperty('--art-cycle',articulationSpeed<.7?'4.3s':'3.2s');box.querySelectorAll('[data-art-speed]').forEach(function(x){x.classList.toggle('is-active',x===b)})}});
     box.querySelectorAll('[data-art-view]').forEach(function(b){b.onclick=function(){if(b.disabled)return;articulationView=b.dataset.artView;applyArtView(box)}});
+    box.querySelectorAll('[data-art-mode]').forEach(function(b){b.onclick=function(){
+      if(b.disabled)return;
+      var mode=b.dataset.artMode==='static'?'static':'motion';
+      if(articulationTimer){clearTimeout(articulationTimer);articulationTimer=null;}
+      if(articulationFrameTimer){clearInterval(articulationFrameTimer);articulationFrameTimer=null;}
+      box.classList.toggle('mode-static',mode==='static');box.classList.toggle('mode-motion',mode==='motion');
+      box.classList.remove('is-playing','art-frame-on');box.dataset.artStep='0';
+      box.querySelectorAll('.art-motion-frame').forEach(function(pic){pic.style.opacity='0'});
+      var animation=box.querySelector('.art-animation-mode'),staticView=box.querySelector('.art-static-mode');
+      if(animation)animation.hidden=mode==='static';if(staticView)staticView.hidden=mode!=='static';
+      box.querySelectorAll('[data-art-mode]').forEach(function(x){var active=x===b;x.classList.toggle('is-active',active);x.setAttribute('aria-selected',active?'true':'false')});
+    }});
     if(!needSide){articulationView='front';box.querySelectorAll('[data-art-view="side"],[data-art-view="both"]').forEach(function(b){b.disabled=true})}
     else if(articulationView==='front')articulationView='both';
     applyArtView(box);
@@ -304,15 +316,18 @@
     var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
     if(articulationTimer){clearTimeout(articulationTimer);articulationTimer=null;}
     if(articulationFrameTimer){clearInterval(articulationFrameTimer);articulationFrameTimer=null;}
-    var needSide=true;
-    box.className='initials-focus-visual articulation-stage art-player is-'+letter+(needSide?' has-side':'');
+    var needSide=false;
+    box.className='initials-focus-visual articulation-stage art-player is-'+letter+' front-only mode-motion';
     box.dataset.artStep='0';
-    var side=needSide?('<div class="art-view art-view-side"><span class="art-view-label">横から</span>'+articulationSide(letter)+'</div>'):'';
-    box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>'+(needSide?'正面で口の形、横から歯・舌・唇の動き':'正面で口の形、横から歯・舌・唇の動き')+'</small></div>'+
-      '<div class="art-player-controls"><button type="button" class="art-play-main" data-art-play><span>▶</span> 動きを見る</button><div class="art-speed" aria-label="再生スピード"><button type="button" data-art-speed="slow" class="is-active">ゆっくり</button><button type="button" data-art-speed="normal">ふつう</button></div></div>'+
-      '<div class="art-view-tabs" aria-label="見方"><button type="button" data-art-view="front">正面</button><button type="button" data-art-view="side">横から</button><button type="button" data-art-view="both">いっしょに見る</button></div>'+
-      '<div class="art-player-stage"><div class="art-view art-view-front"><span class="art-view-label">正面</span><span class="art-playing-badge">▶ 再生中</span>'+frontArt(letter)+'</div>'+side+'</div>'+
-      '<div class="art-stage-copy"><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
+    articulationView='front';
+    var hasStatic=(letter==='f');
+    var staticMode=hasStatic?('<section class="art-static-mode" hidden><figure class="art-static-figure"><img src="./assets/articulation/f-static-explainer-10-108-68.png" alt="正面口型与侧面口腔剖面：上の歯を下唇に軽く当て、細い息を外へ流す"></figure><p class="art-static-caption">上の歯を下くちびるに軽く当て、すき間から細い息を流す</p></section>'):'';
+    var modeTabs='<div class="art-mode-tabs" role="group" aria-label="口の説明方法"><button type="button" class="is-active" data-art-mode="motion" aria-pressed="true">動きを見る</button>'+(hasStatic?'<button type="button" data-art-mode="static" aria-pressed="false">しくみを見る</button>':'')+'</div>';
+    var front=artPortrait(letter,'front');
+    box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>正面から、口の形の変化を見よう</small></div>'+modeTabs+
+      '<div class="art-animation-mode"><div class="art-player-controls"><button type="button" class="art-play-main" data-art-play><span>▶</span> 動きを見る</button><div class="art-speed" aria-label="再生スピード"><button type="button" data-art-speed="slow" class="is-active">ゆっくり</button><button type="button" data-art-speed="normal">ふつう</button></div></div>'+ 
+      '<div class="art-player-stage"><div class="art-view art-view-front"><span class="art-view-label">正面</span><span class="art-playing-badge">▶ 再生中</span>'+front+'</div></div>'+ 
+      '<div class="art-stage-copy"><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div></div>'+staticMode;
     box.style.setProperty('--art-cycle',articulationSpeed<.7?'4.3s':'3.2s');
     wireArtControls(letter,needSide);
   }
