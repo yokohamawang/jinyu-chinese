@@ -1,14 +1,16 @@
 {
-  "version": "10.108.64",
-  "base": "10.108.63 FULL Articulation effect match",
+  "version": "10.108.66",
+  "base": "10.108.65 FULL Articulation compact dual view",
   "changes": [
-    "On phones, show the selected initial summary immediately followed by the mouth animation",
-    "Move mouth illustrations above playback and view controls on mobile",
-    "Retain all playback, speed, view, and audio controls below the artwork"
+    "Fixed mobile two-column rule precedence using a uniquely stronger selector",
+    "Redrew profile silhouette with a distinct nose bridge, projecting nose tip, lips, chin, and jaw",
+    "Adjusted frontal nose and lip proportions toward the reference illustration",
+    "Kept the front/profile pair compact on phones"
   ],
   "changed_files": [
     "index.html",
-    "css/90-demo1010863-articulation-mobile-proximity.css",
+    "js/10-demo1010808-initials-forest.js",
+    "css/92-demo1010866-articulation-specificity-fix.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]
