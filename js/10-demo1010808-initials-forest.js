@@ -233,49 +233,49 @@
   // 10.108.58: a shared, anatomically structured sagittal diagram. Left = lips/front.
   // Tongue remains low at the lower-tooth level for these labial consonants.
   function articulationSide(letter){
-    var notes={b:'くちびるを閉じ、短く開く',p:'閉じたくちびるを開いて息を出す',m:'くちびるを閉じて鼻へ響かせる',f:'上の歯を下くちびるに軽く当てる'};
-    var path='<defs><linearGradient id="k65SideSkin" x2="0" y2="1"><stop stop-color="#fff1e7"/><stop offset="1" stop-color="#f5c8b8"/></linearGradient></defs>'+
+    var notes={b:'両くちびるを閉じ、短く開く',p:'閉じたくちびるを開いて息を出す',m:'くちびるを閉じて鼻へ響かせる',f:'上の歯を下くちびるに軽く当てる'};
+    var path='<defs><linearGradient id="k66SideSkin" x2="0" y2="1"><stop stop-color="#fff1e7"/><stop offset="1" stop-color="#f4c6b6"/></linearGradient></defs>'+
       '<rect width="320" height="220" rx="22" fill="#fff7f1"/>'+
-      '<path class="k58-head" d="M128 15 C185 6 235 29 263 72 C282 102 286 149 277 188 C252 204 211 210 169 204 C141 200 124 181 116 157 L107 143 Q96 139 83 134 Q72 130 76 122 Q80 115 91 106 C102 94 107 78 109 62 C111 40 118 23 128 15Z"/>'+
-      '<path class="k58-nose" d="M126 31 C119 49 115 69 105 86 C97 100 87 111 78 120 Q73 126 84 130 Q95 134 106 127"/>'+
-      '<path class="k58-nostril" d="M81 123 Q88 118 96 123"/>'+
-      '<path class="k58-nose-channel" d="M105 119 C120 111 128 98 134 82 C140 67 150 54 163 49"/>'+
-      '<path class="k58-palate" d="M103 128 C130 115 166 118 196 134 C211 142 225 151 237 160"/>'+
-      '<path class="k58-cavity" d="M101 133 C128 126 160 129 190 140 C208 147 222 156 233 164 C204 168 169 164 141 157 C121 152 108 144 101 133Z"/>'+
-      '<path class="k58-upper-tooth" d="M99 130 Q109 125 120 130 L123 143 Q112 146 102 141Z"/>'+
-      '<path class="k58-lower-tooth" d="M101 148 Q112 145 122 150 L123 159 Q113 163 104 158Z"/>'+
-      '<path class="k58-tongue" d="M107 154 C132 151 160 155 184 160 Q207 164 226 164 C206 174 178 176 151 170 C132 166 117 162 107 159Z"/>'+
-      '<path class="k58-tongue-line" d="M117 158 Q153 158 190 166"/>'+
-      '<path class="k58-upper-lip" d="M78 127 Q89 121 101 128"/>'+
-      '<path class="k58-lower-lip" d="M79 133 Q90 139 102 133"/>'+
-      '<path class="k58-lip-join" d="M79 130 Q89 130 101 131"/>'+
-      '<path class="k58-opening" d="M79 127 Q90 124 101 129 L101 134 Q90 138 79 133Z"/>'+
-      '<path class="k58-nasal-air" d="M91 117 Q78 101 65 94"/>'+
-      '<path class="k58-flow f1" d="M76 130 L49 130"/><path class="k58-flow f2" d="M76 130 L48 123"/><path class="k58-flow f3" d="M76 130 L48 137"/>';
+      '<path class="k58-head" d="M111 17 C168 5 225 25 253 65 C273 94 278 135 270 174 C236 194 197 201 159 194 C134 191 119 178 109 160 L101 146 Q96 140 86 138 L75 136 Q68 134 72 129 L84 125 Q75 122 67 118 Q61 115 67 109 L84 95 Q95 81 98 66 C100 44 104 27 111 17Z"/>'+
+      '<path class="k58-nose" d="M112 31 Q104 48 99 67 Q95 82 84 95 L68 109 Q62 115 68 118 Q78 122 88 116"/>'+
+      '<path class="k58-nostril" d="M67 115 Q74 111 81 115"/>'+
+      '<path class="k58-nose-channel" d="M93 117 Q109 107 118 89 Q128 69 149 57"/>'+
+      '<path class="k58-palate" d="M91 125 Q129 111 163 121 Q195 130 222 151"/>'+
+      '<path class="k58-cavity" d="M91 129 Q126 120 160 130 Q193 139 224 153 Q207 164 172 162 Q133 159 108 148 Q96 141 91 129Z"/>'+
+      '<path class="k58-upper-tooth" d="M88 124 Q98 120 108 125 L111 138 Q101 141 91 136Z"/>'+
+      '<path class="k58-lower-tooth" d="M91 142 Q101 139 111 144 L113 153 Q102 157 94 151Z"/>'+
+      '<path class="k58-tongue" d="M101 149 Q132 145 161 151 Q191 157 217 155 Q201 169 169 168 Q131 164 106 157Z"/>'+
+      '<path class="k58-tongue-line" d="M111 153 Q153 153 188 160"/>'+
+      '<path class="k58-upper-lip" d="M69 119 Q79 116 91 125"/>'+
+      '<path class="k58-lower-lip" d="M72 130 Q81 136 94 134"/>'+
+      '<path class="k58-lip-join" d="M70 124 Q80 124 91 129"/>'+
+      '<path class="k58-opening" d="M70 120 Q81 118 92 126 L93 132 Q81 135 72 130Z"/>'+
+      '<path class="k58-nasal-air" d="M74 109 Q65 96 55 91"/>'+
+      '<path class="k58-flow f1" d="M68 124 L43 124"/><path class="k58-flow f2" d="M68 124 L43 118"/><path class="k58-flow f3" d="M68 124 L43 130"/>';
     return '<span class="k58-side is-'+letter+'" role="img" aria-label="'+letter+' の横からの発音図。鼻、歯、舌、唇と息の通り道">'+
-      '<svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg"><style>.k58-head{fill:url(#k65SideSkin);stroke:#d99d8c;stroke-width:2.2;stroke-linejoin:round}.k58-nose,.k58-nostril{fill:none;stroke:#c58d80;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.k58-nostril{stroke:#a8756d;stroke-width:2}.k58-palate{fill:none;stroke:#c99483;stroke-width:6;stroke-linecap:round}.k58-cavity{fill:#b96f72;stroke:#a95e63;stroke-width:1.2}.k58-upper-tooth,.k58-lower-tooth{fill:#fffdf8;stroke:#d7b4a8;stroke-width:1.5}.k58-tongue{fill:#ed9d9e;stroke:#d47f86;stroke-width:1.8}.k58-tongue-line{fill:none;stroke:#ffd0c5;stroke-width:2.4;stroke-linecap:round}.k58-upper-lip,.k58-lower-lip{fill:none;stroke:#d78680;stroke-width:6;stroke-linecap:round}.k58-lip-join{fill:none;stroke:#995e5e;stroke-width:2.5;stroke-linecap:round}.k58-opening{fill:#72484c;opacity:0}.k58-nose-channel{fill:none;stroke:#63b698;stroke-width:5;stroke-linecap:round;opacity:0}.k58-nasal-air,.k58-flow{fill:none;stroke:#63b4d0;stroke-width:3;stroke-linecap:round;stroke-dasharray:5 5;opacity:0}</style>'+path+'</svg></span>'+
+      '<svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg"><style>.k58-head{fill:url(#k66SideSkin);stroke:#d99d8c;stroke-width:2.2;stroke-linejoin:round}.k58-nose,.k58-nostril{fill:none;stroke:#c58d80;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.k58-nostril{stroke:#a8756d;stroke-width:2}.k58-palate{fill:none;stroke:#c99483;stroke-width:5;stroke-linecap:round}.k58-cavity{fill:#b96f72;stroke:#a95e63;stroke-width:1.2}.k58-upper-tooth,.k58-lower-tooth{fill:#fffdf8;stroke:#d7b4a8;stroke-width:1.4}.k58-tongue{fill:#ed9d9e;stroke:#d47f86;stroke-width:1.8}.k58-tongue-line{fill:none;stroke:#ffd0c5;stroke-width:2.2;stroke-linecap:round}.k58-upper-lip,.k58-lower-lip{fill:none;stroke:#d78680;stroke-width:5;stroke-linecap:round}.k58-lip-join{fill:none;stroke:#995e5e;stroke-width:2;stroke-linecap:round}.k58-opening{fill:#72484c;opacity:0}.k58-nose-channel{fill:none;stroke:#63b698;stroke-width:4;stroke-linecap:round;opacity:0}.k58-nasal-air,.k58-flow{fill:none;stroke:#63b4d0;stroke-width:3;stroke-linecap:round;stroke-dasharray:5 5;opacity:0}</style>'+path+'</svg></span>'+
       '<small class="art-side-note">'+notes[letter]+'</small>';
   }
   function frontArt(letter){
-    // Close-up lower face with a readable nose and natural lip shapes.
+    // Nose and lips remain the focus; keep the lower-face crop clear and gentle.
     return '<span class="k59-front is-'+letter+'" role="img" aria-label="'+letter+' の正面口型">'+
       '<svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">'+
-      '<defs><linearGradient id="k59Skin" x2="0" y2="1"><stop stop-color="#fff3e9"/><stop offset=".62" stop-color="#ffddce"/><stop offset="1" stop-color="#f2bfad"/></linearGradient><linearGradient id="k59Lip" x2="0" y2="1"><stop stop-color="#f2aaa2"/><stop offset="1" stop-color="#d77978"/></linearGradient><linearGradient id="k65Nose" x2="0" y2="1"><stop stop-color="#f5cabb"/><stop offset="1" stop-color="#e8ad9e"/></linearGradient></defs>'+
+      '<defs><linearGradient id="k59Skin" x2="0" y2="1"><stop stop-color="#fff3e9"/><stop offset=".62" stop-color="#ffddce"/><stop offset="1" stop-color="#f2bfad"/></linearGradient><linearGradient id="k59Lip" x2="0" y2="1"><stop stop-color="#f2aaa2"/><stop offset="1" stop-color="#d77978"/></linearGradient><linearGradient id="k66Nose" x2="0" y2="1"><stop stop-color="#f5cabb"/><stop offset="1" stop-color="#e8ad9e"/></linearGradient></defs>'+
       '<rect width="320" height="220" rx="22" fill="#fff7f1"/>'+
       '<path d="M24 25 Q158 -12 296 25 Q313 65 301 165 Q254 211 160 214 Q67 211 19 168 Q7 76 24 25Z" fill="url(#k59Skin)"/>'+
-      '<path d="M146 42 Q159 35 173 42 C171 55 174 66 184 77 Q191 84 183 90 Q174 98 160 98 Q145 98 136 90 Q129 84 137 77 C146 66 148 55 146 42Z" fill="url(#k65Nose)"/>'+
-      '<path d="M126 77 Q130 91 145 94 M175 94 Q190 91 194 77" fill="none" stroke="#d99c8e" stroke-width="3" stroke-linecap="round"/>'+
-      '<ellipse cx="145" cy="91" rx="7" ry="3.5" fill="#98645f"/><ellipse cx="176" cy="91" rx="7" ry="3.5" fill="#98645f"/>'+
-      '<path d="M160 96 L160 108" stroke="#e5aa9b" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>'+
-      '<path class="k59-mouth-closed" d="M101 148 C115 139 132 136 146 140 Q160 145 174 140 C190 135 207 138 222 147 Q202 155 181 158 Q160 161 140 158 Q118 155 101 148Z" fill="url(#k59Lip)" stroke="#ca7b78" stroke-width="1.6"/>'+
-      '<path class="k59-lip-seam" d="M109 147 Q132 143 147 146 Q160 149 174 146 Q195 142 214 147" fill="none" stroke="#98595b" stroke-width="3" stroke-linecap="round"/>'+
-      '<path class="k59-mouth-gap" d="M107 147 Q133 140 158 145 Q187 140 216 147 Q188 152 160 152 Q132 152 107 147Z" fill="#824c50"/>'+
-      '<path class="k59-mouth-open" opacity="0" d="M108 145 Q130 132 158 138 Q188 131 215 145 Q214 169 161 174 Q111 170 108 145Z" fill="#75464a" stroke="#b66b6b" stroke-width="2"/>'+
-      '<path class="k59-lowerlip" opacity="0" d="M120 170 Q160 184 202 170" fill="none" stroke="url(#k59Lip)" stroke-width="10" stroke-linecap="round"/>'+
-      '<path class="k59-upper-teeth" opacity="0" d="M124 137 Q158 130 195 138 L194 145 Q160 148 124 144Z" fill="#fffbf4" stroke="#dfb5a9" stroke-width="1.3"/>'+
-      '<path class="k59-f-lower" opacity="0" d="M125 155 Q160 162 196 155" fill="none" stroke="#e18b89" stroke-width="12" stroke-linecap="round"/>'+
-      '<g class="k59-nasal-cue" opacity="0" fill="none" stroke="#54b895" stroke-width="4.5" stroke-linecap="round"><path d="M112 104 Q104 96 100 87"/><path d="M208 104 Q216 96 220 87"/></g>'+
-      '<g class="k59-breath" opacity="0" fill="none" stroke="#75b9d8" stroke-width="3.5" stroke-linecap="round"><path d="M230 146 L263 137"/><path d="M232 152 L270 152"/><path d="M230 158 L263 168"/></g>'+
+      '<path d="M140 65 Q160 54 180 65 L190 83 Q193 91 183 96 Q173 101 160 101 Q147 101 137 96 Q127 91 130 83Z" fill="url(#k66Nose)"/>'+
+      '<path d="M124 84 Q128 95 140 98 M180 98 Q192 95 196 84" fill="none" stroke="#d99c8e" stroke-width="2.5" stroke-linecap="round"/>'+
+      '<ellipse cx="145" cy="94" rx="6.5" ry="3" fill="#98645f"/><ellipse cx="175" cy="94" rx="6.5" ry="3" fill="#98645f"/>'+
+      '<path d="M160 100 L160 111" stroke="#e5aa9b" stroke-width="2.2" stroke-linecap="round" opacity=".45"/>'+
+      '<path class="k59-mouth-closed" d="M104 149 Q123 139 143 142 Q153 144 160 147 Q168 144 179 142 Q199 139 216 149 Q197 156 179 159 Q160 162 141 159 Q121 156 104 149Z" fill="url(#k59Lip)" stroke="#ca7b78" stroke-width="1.5"/>'+
+      '<path class="k59-lip-seam" d="M111 148 Q132 144 145 147 Q153 149 160 150 Q168 149 177 147 Q194 144 209 148" fill="none" stroke="#98595b" stroke-width="2.5" stroke-linecap="round"/>'+
+      '<path class="k59-mouth-gap" d="M110 149 Q135 143 158 147 Q184 143 210 149 Q185 153 160 153 Q134 153 110 149Z" fill="#824c50"/>'+
+      '<path class="k59-mouth-open" opacity="0" d="M110 147 Q132 135 158 140 Q185 134 210 147 Q209 169 161 174 Q113 170 110 147Z" fill="#75464a" stroke="#b66b6b" stroke-width="2"/>'+
+      '<path class="k59-lowerlip" opacity="0" d="M121 170 Q160 183 199 170" fill="none" stroke="url(#k59Lip)" stroke-width="9" stroke-linecap="round"/>'+
+      '<path class="k59-upper-teeth" opacity="0" d="M127 139 Q160 133 193 140 L192 146 Q160 149 128 145Z" fill="#fffbf4" stroke="#dfb5a9" stroke-width="1.2"/>'+
+      '<path class="k59-f-lower" opacity="0" d="M128 156 Q160 162 192 156" fill="none" stroke="#e18b89" stroke-width="11" stroke-linecap="round"/>'+
+      '<g class="k59-nasal-cue" opacity="0" fill="none" stroke="#54b895" stroke-width="4" stroke-linecap="round"><path d="M112 108 Q104 100 100 92"/><path d="M208 108 Q216 100 220 92"/></g>'+
+      '<g class="k59-breath" opacity="0" fill="none" stroke="#75b9d8" stroke-width="3.5" stroke-linecap="round"><path d="M226 147 L260 138"/><path d="M229 153 L267 153"/><path d="M226 159 L260 168"/></g>'+
       '</svg></span>';
   }
   function applyArtView(box){
