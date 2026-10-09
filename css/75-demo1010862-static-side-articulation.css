@@ -1,0 +1,72 @@
+/* 10.108.62 — version 42 front animation + compact static side anatomy. */
+.initials-tone-ribbon{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-areas:"focus" "visual" "actions" "note";
+  gap:7px!important;
+  margin-top:9px!important;
+  padding:10px!important;
+}
+.initials-tone-ribbon .initials-focus-copy{grid-area:focus;min-height:0!important}
+.initials-tone-ribbon #initialsFocusVisual{grid-area:visual}
+.initials-tone-ribbon #initialsToneButtons{grid-area:actions}
+.initials-tone-ribbon .initials-tone-mini-note{grid-area:note;margin:0;padding-top:5px}
+.initials-tone-ribbon #initialsFocusLetter{font-size:30px!important;line-height:1}
+.initials-tone-ribbon strong{font-size:16px!important;line-height:1.15}
+.initials-tone-ribbon #initialsFocusTip{min-height:0!important;font-size:10px!important;line-height:1.3!important}
+.initials-focus-visual{
+  display:block!important;
+  min-height:0!important;
+  padding:8px!important;
+  border-radius:18px!important;
+}
+.initial-art-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:stretch}
+.initial-art-view{
+  position:relative;min-width:0;height:126px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:15px;background:linear-gradient(155deg,#fffdfa,#fff2ec);
+  border:1px solid rgba(197,124,111,.13);
+}
+.initial-art-label{
+  position:absolute;z-index:2;left:7px;top:6px;
+  padding:3px 7px;border-radius:999px;background:#e8f5ef;
+  color:#397c66;font-size:9px;line-height:1.2;font-weight:950;white-space:nowrap;
+}
+.initial-art-front .focus-mouth{
+  width:100px;height:72px;flex:none;margin-top:13px;
+  border-radius:18px;box-shadow:none;
+}
+.initial-art-front .focus-air-line{filter:drop-shadow(0 1px 2px rgba(62,148,125,.15))}
+.side-anatomy{display:block;width:100%;height:106px;margin-top:13px;overflow:visible}
+.sa-head{fill:#ffe8dd;stroke:#d99a88;stroke-width:2.4;stroke-linejoin:round}
+.initials-focus-visual.is-p .sa-head,.initials-focus-visual.is-m .sa-head,.initials-focus-visual.is-f .sa-head{fill:#ffe0d4}
+.sa-nasal-cavity{fill:#f4b7a7;stroke:#d79584;stroke-width:1.6;stroke-linejoin:round}
+.sa-mouth{fill:#985c62;stroke:#d48f86;stroke-width:1.4;stroke-linejoin:round}
+.sa-palate{fill:none;stroke:#e7b4a6;stroke-width:3.2;stroke-linecap:round}
+.sa-tooth{fill:#fffdf5;stroke:#d8c9b7;stroke-width:1.3;stroke-linejoin:round}
+.sa-tongue{fill:#ed8e8a;stroke:#cb6f70;stroke-width:1.5;stroke-linejoin:round}
+.sa-lip{fill:#d97979;stroke:#bd626b;stroke-width:1.4;stroke-linejoin:round}
+.sa-throat{fill:none;stroke:#d5a095;stroke-width:2;stroke-linecap:round}
+.sa-nostril{fill:none;stroke:#98675e;stroke-width:2.2;stroke-linecap:round}
+.sa-contact{fill:#f0ad4e;stroke:#fff8e7;stroke-width:1.2}
+.sa-air{fill:none;stroke:#45a6d8;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sa-air.weak{stroke-width:1.5;opacity:.65}
+.sa-air.strong{stroke-width:2.6}
+.sa-air.thin{stroke-width:1.3;opacity:.85}
+.sa-nasal{fill:none;stroke:#59a990;stroke-width:2;stroke-linecap:round}
+.initial-art-view .initial-art-note{position:absolute;left:5px;right:5px;bottom:5px;display:block;margin:0!important;text-align:center;color:#557b70;font-size:8px!important;line-height:1.15;font-weight:850}
+.initial-art-caption{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;column-gap:7px;row-gap:2px;padding:6px 3px 1px;text-align:center}
+.initial-art-caption b{display:block!important;width:100%;font-size:12px!important;line-height:1.2!important;color:#315f52}
+.initial-art-caption small{display:block;margin:0!important;font-size:9px!important;line-height:1.25!important;color:#778a84;font-weight:800}
+.initial-art-caption em{display:inline-flex;margin:0!important;padding:2px 7px!important;border-radius:99px;background:#e8f5ef;color:#3f806b;font-size:8px!important;line-height:1.2;font-style:normal;font-weight:950}
+.initials-focus-visual.is-p .initial-art-caption em,.initials-focus-visual.is-f .initial-art-caption em{background:#fff0e8;color:#b8644f}
+@media(max-width:390px){
+  .initial-art-pair{gap:6px}
+  .initial-art-view{height:116px;border-radius:13px}
+  .initial-art-front .focus-mouth{transform:scale(.9)}
+  .side-anatomy{height:98px}
+  .initial-art-label{left:5px;top:5px;padding:3px 6px;font-size:8px}
+  .initial-art-view .initial-art-note{font-size:7.3px!important}
+  .initials-tone-ribbon{padding:8px!important;gap:6px!important}
+}
+@media(prefers-reduced-motion:reduce){.initials-focus-visual .focus-mouth i{animation-duration:8s!important}}
