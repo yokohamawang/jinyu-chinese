@@ -1,16 +1,17 @@
 {
-  "version": "10.108.59",
-  "base": "10.108.58 FULL",
+  "version": "10.108.63",
+  "base": "10.108.61 FULL REVIEW",
   "changes": [
-    "unified large front mouth illustrations for b/p/m/f",
-    "large side diagrams",
-    "corrected tongue and tooth placement",
-    "animation CSS and cache-busting"
+    "b/p/m resting mouth is visibly closed before playback",
+    "resolved legacy animation style conflicts",
+    "slow articulation cycle begins with closure then release",
+    "clearer frontal nose shape",
+    "stacked, larger illustrations on phones; paired layout on desktop"
   ],
   "changed_files": [
     "index.html",
     "js/10-demo1010808-initials-forest.js",
-    "css/86-demo1010859-articulation-refinement.css",
+    "css/89-demo1010862-articulation-effect-match.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]
