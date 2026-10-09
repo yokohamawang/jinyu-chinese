@@ -1,3 +1,4 @@
-Koepanda DEMO 10.108.51 FULL — Child-face f artwork integration (static visual trial)
-Based on 10.108.48. f front+side artwork embedded directly; other lessons unchanged.
-The f reference images are static; independent mouth/tongue animation is NOT implemented in this trial.
+Koepanda DEMO 10.108.57 FULL — Side articulation teaching view unified
+Based on 10.108.56.
+Added stable side-view SVG teaching diagrams for b/p/m/f with teeth, tongue, lips, airflow, and nasal resonance cues.
+Unified articulation panel layout to reduce jumpiness across letters; updated articulation player timing and step states.
