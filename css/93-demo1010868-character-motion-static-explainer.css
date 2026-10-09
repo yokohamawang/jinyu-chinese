@@ -1,0 +1,27 @@
+/* 10.108.68 — restore the illustrated character animation; keep the f anatomy explainer in a separate view. */
+#initialsFocusVisual.art-player .art-mode-tabs{display:flex;gap:6px;padding:4px;border-radius:999px;background:#edf5f1;}
+#initialsFocusVisual.art-player .art-mode-tabs button{flex:1;min-height:34px;border:0;border-radius:999px;background:transparent;color:#607c72;font-family:inherit;font-size:12px;font-weight:700;line-height:1.2;cursor:pointer;}
+#initialsFocusVisual.art-player .art-mode-tabs button.is-active{background:#2ba77c;color:white;box-shadow:0 2px 7px #164d3a26;}
+#initialsFocusVisual.art-player .art-animation-mode[hidden],#initialsFocusVisual.art-player .art-static-mode[hidden]{display:none!important;}
+#initialsFocusVisual.art-player .art-animation-mode{display:grid;gap:7px;}
+#initialsFocusVisual.art-player .art-player-stage{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;min-height:0!important;align-items:stretch;}
+#initialsFocusVisual.art-player .art-view{box-sizing:border-box!important;width:100%!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;padding:20px 5px 6px!important;overflow:hidden!important;}
+#initialsFocusVisual.art-player .art-child-portrait{position:relative!important;display:block!important;width:100%!important;max-width:190px!important;height:auto!important;min-height:0!important;max-height:184px!important;aspect-ratio:363/448!important;overflow:hidden!important;margin:0 auto!important;border-radius:13px!important;background:#fff8f4!important;}
+#initialsFocusVisual.art-player .art-child-portrait.art-child-side{aspect-ratio:312/374!important;}
+#initialsFocusVisual.art-player .art-child-portrait img{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;}
+#initialsFocusVisual.art-player .art-child-portrait .art-motion-frame{opacity:0;pointer-events:none;transition:opacity .18s ease;}
+#initialsFocusVisual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:koe54-artframes var(--art-cycle,3.2s) ease-in-out both;}
+#initialsFocusVisual.art-player .art-static-figure{margin:0;width:100%;overflow:hidden;border:1px solid #dcebe4;border-radius:17px;background:#fffdf9;}
+#initialsFocusVisual.art-player .art-static-figure img{display:block;width:100%;height:auto;max-height:250px;object-fit:contain;}
+#initialsFocusVisual.art-player .art-static-caption{margin:7px 2px 0;text-align:center;color:#356d5b;font-size:clamp(12px,3.5vw,15px);font-weight:750;line-height:1.5;}
+@media(max-width:700px){
+ #initialsFocusVisual.art-player .art-mode-tabs button{min-height:32px;font-size:11px;}
+ #initialsFocusVisual.art-player .art-player-stage{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;}
+ #initialsFocusVisual.art-player .art-view{padding:18px 3px 5px!important;border-radius:13px!important;}
+ #initialsFocusVisual.art-player .art-child-portrait{max-height:164px!important;}
+ #initialsFocusVisual.art-player .art-static-figure img{max-height:230px;}
+ #initialsFocusVisual.art-player .art-side-note,#initialsFocusVisual.art-player .art-stage-copy small{display:none!important;}
+}
+@media(prefers-reduced-motion:reduce){#initialsFocusVisual.art-player.is-playing .art-child-portrait .art-motion-frame{animation:none;opacity:1;}}
+
+#initialsFocusVisual.art-player .art-child-side:after{content:none!important;display:none!important;}
