@@ -1,4 +1,4 @@
-/* Koepanda 10.108.61: corrected compact mouth cross-section and robust front illustration. */
+/* Koepanda 10.108.63: closed resting lips, readable release animation, and mobile composition. */
 /* DEMO 10.108.18 — quiz result flow + stable two-line descriptions + linked mouth/airflow visual.
    Builds on 10.108.17 visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
@@ -137,11 +137,14 @@
     var d=duration||Math.round((articulationSpeed<.7?4300:3200));
     var started=Date.now(), frame=0;
     var pictures=box.querySelectorAll('.art-child-portrait .art-motion-frame');
+    // Step 0 is the resting, closed-lip position for bilabials. Start each
+    // replay with a visible closure, then release, so the still frame never
+    // looks like an already-open vowel.
     var sequences={
-      b:[0,1,2,1],
-      p:[0,1,2,1],
-      m:[0,1,0,1],
-      f:[0,1,2,1]
+      b:[1,1,2,0],
+      p:[1,1,2,0],
+      m:[1,2,1,0],
+      f:[1,2,1,0]
     };
     var seq=sequences[letter]||[0,1];
     var pace=articulationSpeed<.7?560:380;
@@ -259,9 +262,9 @@
       '<defs><linearGradient id="k59Skin" x2="0" y2="1"><stop stop-color="#fff4e9"/><stop offset=".6" stop-color="#ffddcd"/><stop offset="1" stop-color="#f4c2b0"/></linearGradient><linearGradient id="k59Lip" x2="0" y2="1"><stop stop-color="#f5b0a7"/><stop offset="1" stop-color="#d77978"/></linearGradient></defs>'+
       '<rect width="320" height="220" rx="27" fill="#fff7f1"/>'+
       '<path d="M29 22 Q158 -18 292 23 Q313 58 301 167 Q252 213 158 213 Q65 211 18 170 Q7 78 29 22Z" fill="url(#k59Skin)"/>'+
-      '<path d="M119 48 Q133 32 158 34 Q185 34 199 50 Q203 68 189 79 Q176 85 159 83 Q141 85 127 80 Q113 69 119 48Z" fill="#f1bfad" opacity=".8"/>'+
-      '<path d="M116 65 Q124 82 144 79" stroke="#dba491" stroke-width="3" opacity=".5" fill="none"/>'+
-      '<path d="M175 79 Q194 80 202 65" stroke="#dba491" stroke-width="3" opacity=".5" fill="none"/>'+
+      '<path d="M148 39 Q158 35 168 39 Q166 54 174 65 Q183 70 181 76 Q176 84 158 84 Q140 84 135 76 Q134 70 143 65 Q150 53 148 39Z" fill="#f1bfad" opacity=".82"/>'+
+      '<path d="M117 66 Q125 80 141 79" stroke="#d99d8c" stroke-width="2.7" opacity=".72" fill="none"/>'+
+      '<path d="M175 79 Q192 80 200 66" stroke="#d99d8c" stroke-width="2.7" opacity=".72" fill="none"/>'+
       '<ellipse cx="142" cy="77" rx="8" ry="3.1" fill="#9f6b62"/><ellipse cx="177" cy="77" rx="8" ry="3.1" fill="#9f6b62"/>'+
       '<path d="M158 84 L158 101" stroke="#e7ab9e" stroke-width="2.3" stroke-linecap="round" opacity=".45"/>'+
       '<path class="k59-mouth-closed" d="M94 147 Q123 137 145 141 Q159 147 174 141 Q199 137 225 147 Q196 157 158 158 Q117 157 94 147Z" fill="url(#k59Lip)" stroke="#ce817d" stroke-width="1.5"/>'+
@@ -302,6 +305,7 @@
     if(articulationFrameTimer){clearInterval(articulationFrameTimer);articulationFrameTimer=null;}
     var needSide=true;
     box.className='initials-focus-visual articulation-stage art-player is-'+letter+(needSide?' has-side':'');
+    box.dataset.artStep='0';
     var side=needSide?('<div class="art-view art-view-side"><span class="art-view-label">横から</span>'+articulationSide(letter)+'</div>'):'';
     box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>'+(needSide?'正面で口の形、横から歯・舌・唇の動き':'正面で口の形、横から歯・舌・唇の動き')+'</small></div>'+
       '<div class="art-player-controls"><button type="button" class="art-play-main" data-art-play><span>▶</span> 動きを見る</button><div class="art-speed" aria-label="再生スピード"><button type="button" data-art-speed="slow" class="is-active">ゆっくり</button><button type="button" data-art-speed="normal">ふつう</button></div></div>'+
