@@ -226,45 +226,48 @@
       '<img class="art-motion-frame" src="'+embeddedArtFrames[name+'-motion']+'" alt="" aria-hidden="true">'+
       '<i class="art-dynamic-hint" aria-hidden="true"></i></span>';
   }
+  // 10.108.58: a shared, anatomically structured sagittal diagram. Left = lips/front.
+  // Tongue remains low at the lower-tooth level for these labial consonants.
   function articulationSide(letter){
-    var copy={
-      b:'くちびるを閉じてから開く。舌は奥で休み、息は弱く出る',
-      p:'くちびるを閉じてから開く。舌は奥で休み、息は強く前へ出る',
-      m:'くちびるは閉じたまま。舌は静かに保ち、音は鼻へ抜ける',
-      f:'上の歯を下くちびるへ軽く当てる。舌は奥で休み、細い息を流す'
-    };
-    return '<span class="art-side-demo is-'+letter+'" aria-hidden="true">'+
-      '<svg viewBox="0 0 220 160" role="img" aria-label="横から見た口の動き">'+
-      '<path class="asd-face" d="M63 16 Q92 12 120 22 Q150 34 166 60 Q177 79 177 102 Q176 126 160 140 Q145 154 120 156 L111 138 Q132 135 143 122 Q153 110 153 96 Q153 84 146 74 Q139 64 126 57 Q119 53 112 52 Q105 51 98 56 Q93 59 89 64 Q83 73 80 86 L80 111 Q80 129 71 142 L53 142 Q63 128 63 112 Z"/>'+
-      '<path class="asd-palate" d="M86 66 Q113 54 140 58"/>'+
-      '<path class="asd-throat" d="M147 60 Q160 69 166 84"/>'+
-      '<path class="asd-upperlip" d="M84 89 Q96 82 107 85 Q114 87 118 91"/>'+
-      '<path class="asd-lowerlip" d="M84 96 Q96 102 109 100 Q116 99 121 95"/>'+
-      '<path class="asd-lips-closed" d="M84 93 Q102 91 119 93"/>'+
-      '<path class="asd-opening" d="M92 91 Q105 87 116 91 Q105 99 92 96 Z"/>'+
-      '<path class="asd-teeth" d="M95 86 L116 88 L113 96 L94 95 Z"/>'+
-      '<path class="asd-lowerlip-f" d="M88 97 Q99 103 108 100 Q112 98 115 92 Q104 92 92 92 Z"/>'+
-      '<path class="asd-tongue" d="M95 104 Q113 100 127 103 Q114 111 98 110 Z"/>'+
-      '<path class="asd-tongue-tip" d="M115 102 Q124 96 131 97"/>'+
-      '<path class="asd-nasal-path" d="M112 46 Q129 38 144 42"/>'+
-      '<path class="asd-air a1" d="M126 90 Q145 87 165 88"/>'+
-      '<path class="asd-air a2" d="M126 98 Q147 98 170 102"/>'+
-      '<path class="asd-air a3" d="M123 105 Q145 109 164 116"/>'+
-      '<path class="asd-nasal a1" d="M118 49 Q128 34 141 28"/>'+
-      '<path class="asd-nasal a2" d="M126 48 Q139 37 152 34"/>'+
-      '<circle class="asd-label-dot asd-label-lip" cx="72" cy="98" r="3"/>'+
-      '<circle class="asd-label-dot asd-label-tooth" cx="121" cy="86" r="3"/>'+
-      '<circle class="asd-label-dot asd-label-tongue" cx="135" cy="104" r="3"/>'+
-      '<text class="asd-label lip" x="18" y="102">くちびる</text>'+
-      '<text class="asd-label tooth" x="126" y="79">歯</text>'+
-      '<text class="asd-label tongue" x="140" y="118">舌</text>'+
-      '</svg></span><small class="art-side-note">'+copy[letter]+'</small>';
+    var notes={b:'両唇を閉じてから開く。舌は下の歯の近くで休ませる',p:'両唇を閉じ、開く瞬間に強く送気。舌は低い位置',m:'両唇を閉じたまま鼻へ響かせる。舌は低い位置',f:'上の前歯を下唇に軽く当て、細い息を通す'};
+    var path='<path class="k58-head" d="M78 13 Q105 5 145 17 Q190 29 204 75 L209 149 Q194 166 163 168 L96 166 Q77 151 64 128 L61 106 Q56 96 62 88 Q70 82 70 74 L59 68 Q53 62 60 57 L73 45 Q69 32 78 13Z"/>'+
+      '<path class="k58-nose" d="M70 43 Q59 48 57 60 Q54 66 69 68 Q78 67 82 61"/>'+
+      '<path class="k58-nostril" d="M68 63 q5 -3 9 0"/>'+
+      '<path class="k58-palate" d="M80 80 Q113 57 151 73 Q174 84 186 96"/>'+
+      '<path class="k58-cavity" d="M80 91 Q114 76 160 92 Q190 109 192 136 Q168 151 124 145 Q100 139 78 113Z"/>'+
+      '<path class="k58-upper-tooth" d="M82 88 Q88 84 93 88 L93 104 Q88 110 83 105Z"/>'+
+      '<path class="k58-lower-tooth" d="M84 117 Q90 115 95 119 L96 129 Q90 136 84 130Z"/>'+
+      '<path class="k58-tongue" d="M96 127 Q113 116 135 118 Q166 121 182 137 Q155 153 125 147 Q107 143 96 138Z"/>'+
+      '<path class="k58-tongue-line" d="M99 129 Q132 119 158 130"/>'+
+      '<path class="k58-upper-lip" d="M65 91 Q72 88 83 93"/>'+
+      '<path class="k58-lower-lip" d="M66 102 Q74 109 84 109"/>'+
+      '<path class="k58-lip-join" d="M64 98 Q74 97 84 100"/>'+
+      '<path class="k58-opening" d="M66 98 Q75 94 84 99 Q76 105 66 104Z"/>'+
+      '<path class="k58-nose-channel" d="M128 73 Q145 55 162 42 Q177 35 191 42"/>'+
+      '<path class="k58-nasal-air" d="M164 44 Q180 27 202 25"/>'+
+      '<path class="k58-flow f1" d="M66 99 L36 99"/><path class="k58-flow f2" d="M65 99 L24 85"/><path class="k58-flow f3" d="M65 99 L24 113"/>'+
+      '<circle class="k58-dot" cx="69" cy="99" r="3"/><text class="k58-label" x="8" y="79">唇</text>'+
+      '<circle class="k58-dot" cx="90" cy="104" r="3"/><text class="k58-label" x="100" y="108">歯</text>'+
+      '<circle class="k58-dot" cx="135" cy="127" r="3"/><text class="k58-label" x="146" y="120">舌</text>';
+    return '<span class="k58-side is-'+letter+'" role="img" aria-label="'+letter+' の横からの発音図。歯、舌、唇と息の通り道">'+
+      '<svg viewBox="0 0 220 176" xmlns="http://www.w3.org/2000/svg">'+path+'</svg></span>'+
+      '<small class="art-side-note">'+notes[letter]+'</small>';
   }
   function frontArt(letter){
+    // Same anatomical nose and vertically opening lips in every b/p frame.
     if(letter==='m'||letter==='f')return artPortrait(letter,'front');
-    var extra='';
-    if(letter==='b'||letter==='p'||letter==='f')extra+='<i class="af-air a1"></i><i class="af-air a2"></i><i class="af-air a3"></i>';
-    return '<span class="art-front-face is-'+letter+'" aria-hidden="true"><i class="af-bridge"></i><i class="af-nose"><u class="af-ala left"></u><u class="af-ala right"></u><b class="af-nostril left"></b><b class="af-nostril right"></b></i><i class="af-upper-lip"></i><i class="af-mouth-gap"></i><i class="af-lower-lip"></i><i class="af-teeth"></i><i class="af-corner left"></i><i class="af-corner right"></i>'+extra+'</span>';
+    return '<span class="k58-front is-'+letter+'" role="img" aria-label="'+letter+' の正面口型">'+
+      '<svg viewBox="0 0 220 176" xmlns="http://www.w3.org/2000/svg">'+
+      '<rect x="4" y="3" width="212" height="170" rx="28" fill="#fff0e8"/>'+
+      '<path d="M18 66 Q29 24 96 19 Q167 16 200 69 L197 139 Q171 164 110 166 Q48 165 23 143Z" fill="#ffe1d3"/>'+
+      '<path d="M84 59 Q110 40 136 59 Q143 70 130 80 Q110 87 90 79 Q78 73 84 59Z" fill="#f0bfae"/>'+
+      '<ellipse cx="94" cy="75" rx="7" ry="3.2" fill="#986b61"/><ellipse cx="126" cy="75" rx="7" ry="3.2" fill="#986b61"/>'+
+      '<path d="M105 83 Q109 86 114 83" fill="none" stroke="#e8b7a8" stroke-width="2"/>'+
+      '<path class="k58-front-mouth" d="M64 115 Q87 107 109 112 Q133 107 156 115 Q135 123 109 122 Q87 123 64 115Z" fill="#d78482"/>'+
+      '<path class="k58-front-open" d="M65 114 Q83 98 110 103 Q138 98 156 114 Q143 140 110 141 Q78 140 65 114Z" fill="#763e41"/>'+
+      '<path class="k58-front-bottom" d="M73 128 Q109 145 148 128" fill="none" stroke="#ea9894" stroke-width="8" stroke-linecap="round"/>'+
+      '<path class="k58-front-air a1" d="M172 115 L197 108"/><path class="k58-front-air a2" d="M172 123 L200 123"/><path class="k58-front-air a3" d="M172 132 L195 139"/>'+
+      '</svg></span>';
   }
   function applyArtView(box){
     if(!box)return;
@@ -295,7 +298,7 @@
     var needSide=true;
     box.className='initials-focus-visual articulation-stage art-player is-'+letter+(needSide?' has-side':'');
     var side=needSide?('<div class="art-view art-view-side"><span class="art-view-label">横から</span>'+articulationSide(letter)+'</div>'):'';
-    box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>'+(needSide?'正面で口の形、横から齿・舌・唇の動き':'正面で口の形、横から齿・舌・唇の動き')+'</small></div>'+
+    box.innerHTML='<div class="art-stage-head"><span>口の動きアニメーション</span><small>'+(needSide?'正面で口の形、横から歯・舌・唇の動き':'正面で口の形、横から歯・舌・唇の動き')+'</small></div>'+
       '<div class="art-player-controls"><button type="button" class="art-play-main" data-art-play><span>▶</span> 動きを見る</button><div class="art-speed" aria-label="再生スピード"><button type="button" data-art-speed="slow" class="is-active">ゆっくり</button><button type="button" data-art-speed="normal">ふつう</button></div></div>'+
       '<div class="art-view-tabs" aria-label="見方"><button type="button" data-art-view="front">正面</button><button type="button" data-art-view="side">横から</button><button type="button" data-art-view="both">いっしょに見る</button></div>'+
       '<div class="art-player-stage"><div class="art-view art-view-front"><span class="art-view-label">正面</span><span class="art-playing-badge">▶ 再生中</span>'+frontArt(letter)+'</div>'+side+'</div>'+
