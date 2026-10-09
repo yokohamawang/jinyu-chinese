@@ -1,0 +1,1 @@
+10.108.66: Fixes why the 10.108.65 mobile two-column layout remained stacked, and redraws the side profile with a clear human nose-to-chin contour.

@@ -1,0 +1,4 @@
+10.108.69
+Base: 10.108.68 FULL
+
+Restores the anime-style front-only character animation that preceded the animated side portrait. Side anatomy is shown only in the separate static f explainer view.

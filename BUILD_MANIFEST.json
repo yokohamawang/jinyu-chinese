@@ -1,16 +1,15 @@
 {
-  "version": "10.108.66",
-  "base": "10.108.65 FULL Articulation compact dual view",
+  "version": "10.108.69",
+  "base": "10.108.68 FULL Restored anime motion and static f explainer",
   "changes": [
-    "Fixed mobile two-column rule precedence using a uniquely stronger selector",
-    "Redrew profile silhouette with a distinct nose bridge, projecting nose tip, lips, chin, and jaw",
-    "Adjusted frontal nose and lip proportions toward the reference illustration",
-    "Kept the front/profile pair compact on phones"
+    "Corrected the animation restoration to the original front-only anime-style character motion; removed the animated side portrait and side/both view selector",
+    "Kept the f static explainer as the separate view for the side cutaway showing teeth, lower lip, tongue, oral cavity, and airflow",
+    "Kept the animation and static explainer as mutually exclusive views to preserve mobile screen space"
   ],
   "changed_files": [
     "index.html",
     "js/10-demo1010808-initials-forest.js",
-    "css/92-demo1010866-articulation-specificity-fix.css",
+    "css/94-demo1010869-front-only-motion.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ]

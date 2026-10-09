@@ -1,0 +1,4 @@
+10.108.68
+Base: 10.108.66 FULL
+
+Restored the previously embedded anime-style character front and side animation frames in the articulation player. The static explanatory illustration is a separate view, not stacked with animation. The static reference is currently offered for f only because the illustration specifically depicts f articulation; it is not reused for b/p/m. The f profile shows upper-incisor/lower-lip contact, oral cavity, tongue, and fine outward airflow.
