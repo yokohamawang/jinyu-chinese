@@ -1,4 +1,2 @@
-Koepanda DEMO 10.108.57 FULL — Side articulation teaching view unified
-Based on 10.108.56.
-Added stable side-view SVG teaching diagrams for b/p/m/f with teeth, tongue, lips, airflow, and nasal resonance cues.
-Unified articulation panel layout to reduce jumpiness across letters; updated articulation player timing and step states.
+Koepanda 10.108.58 FULL — Anatomically aligned articulation prototype
+Base: 10.108.57 FULL. Rebuilt b/p front vector and shared b/p/m/f side anatomy with low relaxed tongue; independent lip, teeth, nasal, breath states.

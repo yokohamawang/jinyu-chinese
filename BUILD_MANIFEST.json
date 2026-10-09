@@ -1,20 +1,18 @@
 {
-  "version": "10.108.57",
-  "base": "Koepanda_10_108_56_FULL_ArticulationFramesAndStableLayout.zip",
-  "name": "SideArticulationTeachingViewUnified",
-  "build_name": "FULL_SideArticulationTeachingViewUnified",
+  "version": "10.108.58",
+  "base": "Koepanda_10_108_57_FULL_SideArticulationTeachingViewUnified.zip",
   "changes": [
-    "replace fragile side-view images with inline SVG teaching diagrams for b/p/m/f",
-    "show teeth, tongue, lips, airflow and nasal resonance cues in side view",
-    "use explicit articulation step states for more visible motion during playback",
-    "keep panel heights stable across letters and refresh cache-busting tag"
+    "new front b/p SVG replacing CSS whisker-like nose",
+    "new simplified side anatomy for b/p/m/f",
+    "tongue positioned low near lower teeth",
+    "distinct lip/nasal/airflow step animations",
+    "matched frame heights"
   ],
   "changed_files": [
     "js/10-demo1010808-initials-forest.js",
-    "css/84-demo1010854-articulation-motion.css",
+    "css/85-demo1010858-articulation-anatomy.css",
     "index.html",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
-  ],
-  "build": "SideArticulationTeachingViewUnified"
+  ]
 }
