@@ -1,0 +1,75 @@
+/* 10.108.65 — fit both articulation views together on phone screens. */
+@media (max-width: 700px) {
+  .initials-tone-ribbon { gap: 8px !important; padding: 10px !important; }
+  .initials-tone-ribbon .initials-focus-copy { margin: 0 !important; }
+  .initials-tone-ribbon #initialsFocusLetter { font-size: 32px !important; }
+  .initials-tone-ribbon strong { font-size: 16px !important; line-height: 1.25 !important; }
+  .initials-tone-ribbon #initialsFocusTip { min-height: 0 !important; font-size: 11px !important; }
+
+  .initials-focus-visual.art-player {
+    padding: 9px !important;
+    gap: 7px !important;
+    border-radius: 18px !important;
+  }
+  .initials-focus-visual.art-player .art-stage-head { padding: 0 2px 2px !important; }
+  .initials-focus-visual.art-player .art-stage-head span { font-size: 13px !important; }
+  .initials-focus-visual.art-player .art-stage-head small { display: none !important; }
+  .initials-focus-visual.art-player .art-player-stage {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+    min-height: 0 !important;
+  }
+  .initials-focus-visual.art-player.view-front .art-player-stage,
+  .initials-focus-visual.art-player.view-side .art-player-stage { grid-template-columns: minmax(0, 1fr) !important; }
+  .initials-focus-visual.art-player .art-view,
+  .initials-focus-visual.art-player .art-view-front,
+  .initials-focus-visual.art-player .art-view-side {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 22px 5px 6px !important;
+    gap: 4px !important;
+    border-radius: 15px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  .initials-focus-visual.art-player .art-view-front .k59-front,
+  .initials-focus-visual.art-player .art-view-side .k58-side {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 320 / 220 !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+  }
+  .initials-focus-visual.art-player .art-view-front .k59-front > svg,
+  .initials-focus-visual.art-player .art-view-side .k58-side > svg {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .initials-focus-visual.art-player .art-view-label { left: 6px !important; top: 5px !important; font-size: 8px !important; }
+  .initials-focus-visual.art-player .art-side-note,
+  .initials-focus-visual.art-player .art-stage-copy { display: none !important; }
+  .initials-focus-visual.art-player .art-playing-badge { display: none !important; }
+  .initials-focus-visual.art-player .art-player-controls { gap: 6px !important; }
+  .initials-focus-visual.art-player .art-play-main { min-height: 38px !important; font-size: 11px !important; }
+  .initials-focus-visual.art-player .art-speed button { min-height: 38px !important; font-size: 10px !important; }
+  .initials-focus-visual.art-player .art-view-tabs { margin-top: 0 !important; }
+  .initials-focus-visual.art-player .art-view-tabs button { min-height: 32px !important; font-size: 10px !important; }
+  .initials-tone-ribbon .initials-tone-buttons { gap: 5px !important; }
+  .initials-tone-ribbon .initials-tone-buttons .initial-guide-button { min-height: 42px !important; font-size: 14px !important; }
+  .initials-tone-ribbon .initials-tone-buttons .initial-raw-button { min-height: 34px !important; font-size: 10px !important; }
+
+  .initials-focus-visual.art-player .k59-lip-seam { opacity: .8; }
+  .initials-focus-visual.art-player[data-art-step="2"] .k59-lip-seam,
+  .initials-focus-visual.art-player.is-f .k59-lip-seam { opacity: 0; }
+}
