@@ -1,0 +1,42 @@
+/* 10.108.59 – unified premium articulation faces and LARGE cross sections. */
+.initials-focus-visual.art-player .art-player-stage,
+.initials-focus-visual.art-player.has-side.view-both .art-player-stage{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important;align-items:stretch!important}
+.initials-focus-visual.art-player .art-view{height:unset!important;min-height:0!important;padding:34px 12px 16px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;overflow:hidden!important}
+.initials-focus-visual.art-player .art-view-front,.initials-focus-visual.art-player .art-view-side{min-height:270px!important}
+.initials-focus-visual.art-player .art-view-front .k59-front{display:block!important;width:100%!important;max-width:390px!important;aspect-ratio:320/220!important;flex-shrink:0!important;border-radius:19px!important;overflow:hidden!important;background:#fff4ed}
+.initials-focus-visual.art-player .k59-front svg{display:block;width:100%;height:100%}
+.initials-focus-visual.art-player .art-view-side .k58-side{display:block!important;width:100%!important;max-width:390px!important;aspect-ratio:220/176!important;flex-shrink:0!important;border-radius:19px!important;background:#fff4ed}
+.initials-focus-visual.art-player .k58-side svg{display:block;width:100%;height:100%}
+.initials-focus-visual.art-player .art-side-note{display:block!important;box-sizing:border-box!important;min-height:2.8em!important;max-height:none!important;margin:8px auto 0!important;font-size:13px!important;line-height:1.4!important;overflow:visible!important;font-weight:800!important;text-align:center!important;color:#426f61!important}
+.initials-focus-visual.art-player .art-view-front .k59-front .k59-mouth-open,
+.initials-focus-visual.art-player .art-view-front .k59-front .k59-lowerlip,
+.initials-focus-visual.art-player .art-view-front .k59-front .k59-breath,
+.initials-focus-visual.art-player .art-view-front .k59-front .k59-nasal-cue{opacity:0;transition:opacity .23s ease,transform .23s ease}
+.initials-focus-visual.art-player .art-view-front .k59-front .k59-mouth-closed,
+.initials-focus-visual.art-player .art-view-front .k59-front .k59-mouth-gap{opacity:1;transition:opacity .23s ease}
+.initials-focus-visual.art-player[data-art-step="1"] .k59-mouth-closed,
+.initials-focus-visual.art-player[data-art-step="2"] .k59-mouth-closed,
+.initials-focus-visual.art-player[data-art-step="1"] .k59-mouth-gap,
+.initials-focus-visual.art-player[data-art-step="2"] .k59-mouth-gap{opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-open,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k59-mouth-open,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-lowerlip,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k59-lowerlip{opacity:1!important}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .k59-breath{opacity:.35!important}
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .k59-breath{opacity:1!important}
+.initials-focus-visual.art-player.is-m .k59-nasal-cue{opacity:.15!important}
+.initials-focus-visual.art-player.is-m[data-art-step="1"] .k59-nasal-cue{opacity:1!important;transform:translateY(-5px)}
+.initials-focus-visual.art-player.is-f .k59-upper-teeth{opacity:1!important}
+.initials-focus-visual.art-player.is-f .k59-mouth-closed,.initials-focus-visual.art-player.is-f .k59-mouth-gap{opacity:0!important}
+.initials-focus-visual.art-player.is-f .k59-f-lower{opacity:1!important}
+.initials-focus-visual.art-player.is-f[data-art-step="1"] .k59-f-lower{transform:translateY(-4px)}
+.initials-focus-visual.art-player.is-f[data-art-step="2"] .k59-f-lower{transform:translateY(-6px)}
+.initials-focus-visual.art-player.is-f[data-art-step="1"] .k59-breath{opacity:.35!important}
+.initials-focus-visual.art-player.is-f[data-art-step="2"] .k59-breath{opacity:.65!important}
+.initials-focus-visual.art-player:not(.is-f) .k59-upper-teeth,.initials-focus-visual.art-player:not(.is-f) .k59-f-lower{opacity:0!important}
+.initials-focus-visual.art-player .k58-side .k58-label{display:none!important}
+.initials-focus-visual.art-player .art-stage-copy{min-height:97px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.initials-focus-visual.art-player.view-front .art-view-side,.initials-focus-visual.art-player.view-side .art-view-front{display:none!important}
+.initials-focus-visual.art-player.view-front .art-view-front,.initials-focus-visual.art-player.view-side .art-view-side{display:flex!important}
+@media(min-width:720px){.initials-focus-visual.art-player.view-both .art-player-stage{grid-template-columns:1fr 1fr!important}}
+@media(max-width:420px){.initials-focus-visual.art-player .art-view{padding:31px 8px 13px!important}.initials-focus-visual.art-player .art-view-front,.initials-focus-visual.art-player .art-view-side{min-height:225px!important}.initials-focus-visual.art-player .art-side-note{font-size:12px!important}}
