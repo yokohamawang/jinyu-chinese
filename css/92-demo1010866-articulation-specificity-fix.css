@@ -1,0 +1,10 @@
+/* 10.108.66 — force the verified two-view phone layout above older rules. */
+@media (max-width: 700px) {
+  #initialsFocusVisual.art-player.has-side.view-both .art-player-stage { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  #initialsFocusVisual.art-player.view-front .art-player-stage,
+  #initialsFocusVisual.art-player.view-side .art-player-stage { grid-template-columns: minmax(0, 1fr) !important; }
+  #initialsFocusVisual.art-player.has-side.view-both .art-view-front,
+  #initialsFocusVisual.art-player.has-side.view-both .art-view-side { width: 100% !important; min-width: 0 !important; }
+  #initialsFocusVisual.art-player .art-view-front .k59-front,
+  #initialsFocusVisual.art-player .art-view-side .k58-side { width: 100% !important; max-width: none !important; aspect-ratio: 320 / 220 !important; }
+}
