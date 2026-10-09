@@ -1,2 +1,2 @@
-Koepanda 10.108.58 FULL — Anatomically aligned articulation prototype
-Base: 10.108.57 FULL. Rebuilt b/p front vector and shared b/p/m/f side anatomy with low relaxed tongue; independent lip, teeth, nasal, breath states.
+Koepanda DEMO 10.108.59 FULL – Large unified articulation illustrations
+Base: 10.108.58 FULL. Four consonants share the same front illustration; side diagrams enlarged with corrected tooth / tongue geometry.
