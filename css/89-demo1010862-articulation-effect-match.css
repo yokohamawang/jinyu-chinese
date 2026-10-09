@@ -1,0 +1,94 @@
+/* Koepanda 10.108.62 — make the resting mouth correct and give the motion
+   enough room on iPhone to read as an articulation demonstration. */
+.initials-focus-visual.art-player .art-player-stage {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:14px!important;
+  align-items:start!important;
+}
+.initials-focus-visual.art-player.has-side.view-both .art-player-stage {
+  grid-template-columns:minmax(0,1fr)!important;
+}
+.initials-focus-visual.art-player .art-player-stage .art-view,
+.initials-focus-visual.art-player .art-view-front,
+.initials-focus-visual.art-player .art-view-side {
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  padding:28px 12px 16px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:10px!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+.initials-focus-visual.art-player .art-view-front .k59-front,
+.initials-focus-visual.art-player .art-view-side .k58-side {
+  display:block!important;
+  width:100%!important;
+  max-width:480px!important;
+  height:auto!important;
+  min-height:0!important;
+  flex:none!important;
+  position:relative!important;
+  overflow:hidden!important;
+  border-radius:24px!important;
+  box-sizing:border-box!important;
+}
+.initials-focus-visual.art-player .art-view-front .k59-front {aspect-ratio:320/220!important}
+.initials-focus-visual.art-player .art-view-side .k58-side {aspect-ratio:220/176!important}
+.initials-focus-visual.art-player .art-view-front .k59-front>svg,
+.initials-focus-visual.art-player .art-view-side .k58-side>svg {
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  position:absolute!important;
+  inset:0!important;
+}
+.initials-focus-visual.art-player .art-view .art-side-note {
+  margin:2px auto 0!important;
+  min-height:0!important;
+  max-height:none!important;
+  font-size:clamp(13px,3.5vw,17px)!important;
+  line-height:1.5!important;
+  text-align:center!important;
+}
+/* Proper silent/rest position: closed lips for b/p/m, with no dark open-mouth
+   stripe. A release is shown only during step 2. */
+.initials-focus-visual.art-player:is(.is-b,.is-p,.is-m) .k59-mouth-closed {opacity:1!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p,.is-m) .k59-mouth-gap,
+.initials-focus-visual.art-player:is(.is-b,.is-p,.is-m) .k59-mouth-open,
+.initials-focus-visual.art-player:is(.is-b,.is-p,.is-m) .k59-lowerlip {opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-closed {opacity:1!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-gap,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-mouth-open,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k59-lowerlip {opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k59-mouth-closed,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k59-mouth-gap {opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k59-mouth-open,
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k59-lowerlip {opacity:1!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p) .k58-opening {opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="1"] .k58-opening {opacity:0!important}
+.initials-focus-visual.art-player:is(.is-b,.is-p)[data-art-step="2"] .k58-opening {opacity:1!important}
+.initials-focus-visual.art-player.is-b[data-art-step="2"] .k59-breath {opacity:.34!important}
+.initials-focus-visual.art-player.is-p[data-art-step="2"] .k59-breath {opacity:.82!important}
+.initials-focus-visual.art-player.is-m .k58-opening {opacity:0!important}
+.initials-focus-visual.art-player.is-m .k59-nasal-cue {opacity:.12!important}
+.initials-focus-visual.art-player.is-m[data-art-step="1"] .k59-nasal-cue,
+.initials-focus-visual.art-player.is-m[data-art-step="2"] .k59-nasal-cue {opacity:1!important}
+.initials-focus-visual.art-player.is-f .k58-opening {opacity:.12!important}
+.initials-focus-visual.art-player.is-f .k58-upper-tooth {transform:translate(-2px,4px)!important}
+.initials-focus-visual.art-player.is-f .k58-lower-lip {transform:translateY(-5px)!important}
+@media(min-width:760px) {
+  .initials-focus-visual.art-player.has-side.view-both .art-player-stage {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(prefers-reduced-motion:reduce) {
+  .initials-focus-visual.art-player .k59-mouth-closed,
+  .initials-focus-visual.art-player .k59-mouth-gap,
+  .initials-focus-visual.art-player .k59-mouth-open,
+  .initials-focus-visual.art-player .k59-lowerlip {transition:none!important}
+}
