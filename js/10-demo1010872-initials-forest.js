@@ -1,4 +1,4 @@
-/* DEMO 10.108.91 — f reference-style raster posture image after the preserved mouth animation.
+/* DEMO 10.108.92 — f reference-style raster posture image after the preserved mouth animation.
    Builds on 10.108.17 visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
@@ -166,8 +166,8 @@
       card.setAttribute('aria-labelledby','fStaticTitle');
       card.innerHTML='<header class="initial-static-head"><span aria-hidden="true">f</span><div><small>口の形のポイント</small><h3 id="fStaticTitle">上の前歯を<br>下くちびるへ</h3></div></header>'
         +'<p class="initial-static-intro">ふれる位置を確認。</p>'
-        +'<div class="initial-static-views"><figure class="initial-raster-front"><figcaption>正面</figcaption><img src="'+staticArtRoot+'f-static-raster-91.png?v=10.108.91" width="1774" height="887" alt="上の前歯が下くちびるに軽く触れる、正面からの口の形。" decoding="async"><p>口角を少し寄せ<br>小さく開く</p></figure>'
-        +'<figure class="initial-raster-side"><figcaption>横から</figcaption><img src="'+staticArtRoot+'f-static-raster-91.png?v=10.108.91" width="1774" height="887" alt="右が口の前。上の前歯の先が下くちびるの内側に触れ、その狭いすき間から息が出る。" decoding="async"><p>細いすき間から<br>息を流す</p></figure></div>'
+        +'<div class="initial-static-views"><figure class="initial-raster-front"><figcaption>正面</figcaption><img src="'+staticArtRoot+'f-static-raster-91.png?v=10.108.91" width="1774" height="887" alt="上の前歯が下くちびるに軽く触れる、正面からの口の形。" decoding="async"><p>口角を寄せ<br>小さく開く</p></figure>'
+        +'<figure class="initial-raster-side"><figcaption>横から</figcaption><img src="'+staticArtRoot+'f-static-raster-91.png?v=10.108.91" width="1774" height="887" alt="右が口の前。上の前歯の先が下くちびるの内側に触れ、その狭いすき間から息が出る。" decoding="async"><p>すき間から<br>息を流す</p></figure></div>'
         +'<div class="initial-static-summary"><b>軽くふれて、細い息を流す</b><small><i class="contact" aria-hidden="true"></i>ふれる位置 <i class="air" aria-hidden="true"></i>息の向き</small></div>';
       visual.insertAdjacentElement('afterend',card);
     }
