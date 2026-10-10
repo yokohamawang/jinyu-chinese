@@ -1,41 +1,39 @@
 {
-  "version": "10.108.77",
-  "base": "Koepanda_10_108_76_FULL_UnifiedNoseAndFrontLateralFlow.zip",
-  "archive_root": "k77/",
-  "built_at": "2026-10-10T12:34:56+09:00",
+  "version": "10.108.79",
+  "base": "Koepanda_10_108_78_FULL_DTNLButtonPressFeedback.zip",
+  "archive_root": "k79/",
+  "built_at": "2026-10-10T12:47:30+09:00",
   "changes": [
-    "Add visible pointer and click press feedback to the model-play button used by b, p, m and f",
-    "Animate a small downward press, deeper shadow and subtle color change, then release automatically",
-    "Preserve all other file contents and ZIP timestamp metadata"
+    "Remove synthetic air-only playback controls from both the b/p/m/f and d/t/n/l lessons for consistent interaction",
+    "Keep one clear model-example playback button in each group; make the DTNL example button full width",
+    "Remove DTNL synthetic raw sound fallback and use speech synthesis when model playback rejects",
+    "Preserve the current articulation diagrams, recording and quiz flows",
+    "Preserve all untouched files and ZIP timestamps"
   ],
   "changed_files": [
     "index.html",
     "js/10-demo1010872-initials-forest.js",
+    "js/12-demo1010820-dtnl-first-lesson.js",
     "css/68-demo1010872-initials-forest.css",
+    "css/70-demo1010820-dtnl-first-lesson.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
   "verification": {
-    "browser": "Chrome for Testing headless shell",
-    "device_emulation": "390px iPhone touch",
-    "tested_letters": [
-      "b",
-      "p",
-      "m",
-      "f"
-    ],
-    "touch_press_transform": "translateY(3px) scale(.978)",
-    "pressed_shadow_changes": true,
-    "pointer_release_restores_button": true,
-    "click_feedback_and_auto_release": true,
-    "page_errors": [],
-    "audio_and_recording_implementation_unchanged": true,
-    "audio_not_retested": true,
-    "physical_iphone_safari_not_tested": true
+    "javascript_syntax_check": "passed",
+    "raw_audio_buttons_removed_from_both_groups": true,
+    "one_model_button_remains_per_group": true,
+    "recording_and_quiz_handlers_preserved": true,
+    "archive_integrity": "passed",
+    "untouched_file_bytes_and_timestamps_preserved": true,
+    "mobile_browser_render": "not run; browser launch was blocked in this session",
+    "physical_iphone_safari": "not tested"
   },
   "sha256": {
-    "index.html": "0f94d46b7a896d57001d2b08c3073a3d5c77d405a8ad95f4b7d9ecf5bf58e9d9",
-    "js/10-demo1010872-initials-forest.js": "6d4211930e9fa7c0c2fa022683f97cab79e8dc202203ab8447ffea77df7bd311",
-    "css/68-demo1010872-initials-forest.css": "73c4a3a276578ccbcb84cb46dd383636c323891b2fcc91a707fc08d0109cd7cd"
+    "index.html": "054e91e86ce2731b82241fa2b464146ca5df8497072f2ad798725b482b10130f",
+    "js/10-demo1010872-initials-forest.js": "6cfed3347db35ff9fe0887ae30a3290c0ef80f42adc97159dc3b0ebb827808c8",
+    "js/12-demo1010820-dtnl-first-lesson.js": "35863b8633044192741fc91b30d14df477bd5fb27ca452d29407a465d59698e1",
+    "css/68-demo1010872-initials-forest.css": "87df27824becb308149500fa57c4680e4911bb1a99d0785a1261d6dc295ad059",
+    "css/70-demo1010820-dtnl-first-lesson.css": "f836204374250d3c3c094617a936792c89dfd7d891e804f1a9eef5b394bafa53"
   }
 }

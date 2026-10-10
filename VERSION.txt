@@ -1,5 +1,5 @@
-10.108.77 FULL — Initial Model Button Press Feedback
-Base: 10.108.76 FULL
-Archive root: k77/
-Built: 2026-10-10T12:34:56+09:00
-Changed files: index.html, js/10-demo1010872-initials-forest.js, css/68-demo1010872-initials-forest.css, VERSION.txt, BUILD_MANIFEST.json
+10.108.79 FULL — Unified Example Playback Buttons
+Base: 10.108.78 FULL
+Archive root: k79/
+Built: 2026-10-10T12:47:30+09:00
+Changed files: index.html, js/10-demo1010872-initials-forest.js, js/12-demo1010820-dtnl-first-lesson.js, css/68-demo1010872-initials-forest.css, css/70-demo1010820-dtnl-first-lesson.css, VERSION.txt, BUILD_MANIFEST.json
