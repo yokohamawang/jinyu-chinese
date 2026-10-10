@@ -1,31 +1,31 @@
 {
-  "version": "10.108.73",
-  "base": "Koepanda_10_108_72_FULL_MFLipBalance.zip",
-  "original_layout_base": "10.108.42",
-  "archive_root": "k73/",
-  "built_at": "2026-10-10T10:28:28+09:00",
+  "version": "10.108.74",
+  "base": "Koepanda_10_108_73_FULL_DTNLTongueMotion.zip",
+  "archive_root": "k74/",
+  "built_at": "2026-10-10T11:24:52+09:00",
   "changes": [
-    "d/t/n/l: stable lips, teeth and palate; connected tongue blade bends to contact the ridge immediately behind the upper incisors",
-    "d/t: contact then release, with a weaker/stronger air pulse after release",
-    "n/l: hold contact; show nasal/lateral airflow as a labelled schematic",
-    "Japanese contact wording specifies the front of the palate just behind the upper teeth",
-    "Preserve 72 b/p/m/f changes and audio/recording implementation",
-    "Modified DOS and extended UTC timestamps agree"
+    "Embed the complete dedicated DTNL stylesheet in index.html",
+    "Provide intrinsic SVG dimensions, colors and label sizes if stylesheet rules are absent",
+    "Restore stable DTNL asset paths and update the script cache query",
+    "Soften the shared BPMF nose and static m comparison nose: lighter skin, muted nostrils, thinner contour and quieter highlights",
+    "Preserve verified lip placement and tongue motion",
+    "Preserve all untouched file bytes and ZIP timestamp metadata"
   ],
   "changed_files": [
     "index.html",
-    "js/12-demo1010873-dtnl-first-lesson.js",
-    "css/70-demo1010873-dtnl-first-lesson.css",
+    "js/10-demo1010872-initials-forest.js",
+    "js/12-demo1010820-dtnl-first-lesson.js",
+    "css/70-demo1010820-dtnl-first-lesson.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
   "removed_files": [
-    "js/12-demo1010820-dtnl-first-lesson.js",
-    "css/70-demo1010820-dtnl-first-lesson.css"
+    "js/12-demo1010873-dtnl-first-lesson.js",
+    "css/70-demo1010873-dtnl-first-lesson.css"
   ],
   "renamed_files": {
-    "js/12-demo1010820-dtnl-first-lesson.js": "js/12-demo1010873-dtnl-first-lesson.js",
-    "css/70-demo1010820-dtnl-first-lesson.css": "css/70-demo1010873-dtnl-first-lesson.css"
+    "js/12-demo1010873-dtnl-first-lesson.js": "js/12-demo1010820-dtnl-first-lesson.js",
+    "css/70-demo1010873-dtnl-first-lesson.css": "css/70-demo1010820-dtnl-first-lesson.css"
   },
   "verification": {
     "browser": "Chrome for Testing 151.0.7922.34",
@@ -35,7 +35,7 @@
       393,
       430
     ],
-    "letters": [
+    "dtnl_letters": [
       "d",
       "t",
       "n",
@@ -49,20 +49,25 @@
       2.6,
       3.2
     ],
+    "reproduced_73_missing_stylesheet_black_diagram": true,
+    "74_layout_works_when_external_dtnl_stylesheet_is_blocked": true,
+    "svg_colors_label_sizes_and_dimensions_work_without_dedicated_styles": true,
     "lips_teeth_and_palate_stationary": true,
-    "tongue_connected_and_animated": true,
     "d_t_release_after_contact": true,
-    "n_l_hold_contact_during_sound_phase": true,
-    "card_height_stable_during_letter_switch": true,
+    "n_l_hold_contact": true,
+    "bpmf_geometry_matches_72": true,
     "horizontal_overflow": false,
-    "recording_controls_present": true,
-    "quiz_entry_works": true,
-    "audio_and_recording_not_retested": true
+    "quiz_entries_work": true,
+    "audio_and_recording_implementation_unchanged": true,
+    "audio_and_recording_not_retested": true,
+    "physical_iphone_safari_not_tested": true,
+    "modified_dos_ut_and_actual_unzip_timestamps_agree": true,
+    "unchanged_zip_bytes_and_timestamp_metadata_preserved": true
   },
-  "phonetics_reference": "https://pressbooks.uiowa.edu/zheng/chapter/lesson-2/",
   "sha256": {
-    "index.html": "5fbc28c8b95cce12bcfb26436aeb6ee57e0dc3d5b6485a27c1a0af6ca5968e7b",
-    "js/12-demo1010873-dtnl-first-lesson.js": "c6277fe779ba8361359ac836c4acf77bb49a7747344fd4c15e773c5ecda0b1cb",
-    "css/70-demo1010873-dtnl-first-lesson.css": "73d5988a402006d8a7a7f05f37f325276169a60ec7ee63396afa7dd533b51c7f"
+    "index.html": "a6e8d06902e9f95615d88eced4f253b5cf8ea98e1ec1d843418f83a71ea7952e",
+    "js/10-demo1010872-initials-forest.js": "dc272b0b55996e9117f1ee166d2e663f9d0360a4aafe0f0867c6ebb9b25626ff",
+    "js/12-demo1010820-dtnl-first-lesson.js": "4ab14498ca49d918bae75c32421d96bb214bc66547a180ef8834c4beb31c4f85",
+    "css/70-demo1010820-dtnl-first-lesson.css": "978d03bdfbb86766a1b9be6620eaef1ff1d17b6f528230b988b98c2e1524832e"
   }
 }
