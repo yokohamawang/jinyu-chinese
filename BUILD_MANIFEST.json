@@ -1,39 +1,34 @@
 {
-  "version": "10.108.79",
-  "base": "Koepanda_10_108_78_FULL_DTNLButtonPressFeedback.zip",
-  "archive_root": "k79/",
-  "built_at": "2026-10-10T12:47:30+09:00",
+  "version": "10.108.81",
+  "base": "Koepanda_10_108_80_FULL_DTNLLayoutRestore.zip",
+  "archive_root": "k81/",
+  "built_at": "2026-10-10T14:11:20+09:00",
   "changes": [
-    "Remove synthetic air-only playback controls from both the b/p/m/f and d/t/n/l lessons for consistent interaction",
-    "Keep one clear model-example playback button in each group; make the DTNL example button full width",
-    "Remove DTNL synthetic raw sound fallback and use speech synthesis when model playback rejects",
-    "Preserve the current articulation diagrams, recording and quiz flows",
-    "Preserve all untouched files and ZIP timestamps"
+    "Load DTNL CSS from one canonical external stylesheet with version 10.108.81",
+    "DTNL script replaces stale inline or old external style with the versioned stylesheet",
+    "Use inherited font and explicit CSS button appearance for consistent native browser controls",
+    "Preserve one example button, press feedback, articulation, audio and recording/quiz flows"
   ],
   "changed_files": [
     "index.html",
-    "js/10-demo1010872-initials-forest.js",
-    "js/12-demo1010820-dtnl-first-lesson.js",
-    "css/68-demo1010872-initials-forest.css",
     "css/70-demo1010820-dtnl-first-lesson.css",
+    "js/12-demo1010820-dtnl-first-lesson.js",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
   "verification": {
-    "javascript_syntax_check": "passed",
-    "raw_audio_buttons_removed_from_both_groups": true,
-    "one_model_button_remains_per_group": true,
-    "recording_and_quiz_handlers_preserved": true,
-    "archive_integrity": "passed",
-    "untouched_file_bytes_and_timestamps_preserved": true,
-    "mobile_browser_render": "not run; browser launch was blocked in this session",
-    "physical_iphone_safari": "not tested"
+    "stylesheet_loader_old_inline_old_link_current_link_and_missing_cases": "passed",
+    "javascript_syntax_all_scripts": "passed",
+    "local_css_js_paths_and_stylesheet_identity": "passed",
+    "existing_layout_rules_preserved": true,
+    "live_80_version_desktop_render": "observed: DTNL cards and button styling restored",
+    "81_browser_render": "not completed locally",
+    "physical_iphone_safari": "not tested",
+    "untouched_file_bytes_and_zip_timestamps": "verified"
   },
   "sha256": {
-    "index.html": "054e91e86ce2731b82241fa2b464146ca5df8497072f2ad798725b482b10130f",
-    "js/10-demo1010872-initials-forest.js": "6cfed3347db35ff9fe0887ae30a3290c0ef80f42adc97159dc3b0ebb827808c8",
-    "js/12-demo1010820-dtnl-first-lesson.js": "35863b8633044192741fc91b30d14df477bd5fb27ca452d29407a465d59698e1",
-    "css/68-demo1010872-initials-forest.css": "87df27824becb308149500fa57c4680e4911bb1a99d0785a1261d6dc295ad059",
-    "css/70-demo1010820-dtnl-first-lesson.css": "f836204374250d3c3c094617a936792c89dfd7d891e804f1a9eef5b394bafa53"
+    "index.html": "5c60e9e428b15f2c806d819a99f26b7a250d7d35cc2a88b36004aff857f2cc98",
+    "css/70-demo1010820-dtnl-first-lesson.css": "0d69aa8efcc5a0b040698aec27088b8fd60abfbc668b2b3f9fcb0fb5ddd2ccd0",
+    "js/12-demo1010820-dtnl-first-lesson.js": "35fcef093a8a8882af9893b92a014a9900c4b3122ede6f478d0f4d1e0bbaa9c0"
   }
 }
