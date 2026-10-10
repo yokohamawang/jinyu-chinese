@@ -228,32 +228,64 @@
 @media(prefers-reduced-motion:reduce){#kidsInitialsLesson .initials-tone-buttons .initial-guide-button{transition:none}}
 
 /* 10.108.87 — static f posture card follows the existing animation. */
-#kidsInitialsLesson #fStaticExplainer[hidden]{display:none!important}
-#kidsInitialsLesson #fStaticExplainer{grid-column:1/-1;margin-top:14px;padding:16px;border:1px solid rgba(78,135,106,.13);border-radius:23px;background:linear-gradient(145deg,#fffefb,#fffdf8 70%,#f5faf3);box-shadow:0 7px 20px rgba(65,99,79,.055)}
-#fStaticExplainer .initial-static-head{display:flex;align-items:center;gap:10px}
-#fStaticExplainer .initial-static-head>span{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:15px;background:linear-gradient(145deg,#e3f3e8,#f0f8ec);color:#2f765b;font-size:31px;line-height:1;font-weight:900;box-shadow:inset 0 0 0 1px rgba(69,137,98,.07)}
-#fStaticExplainer .initial-static-head small{display:block;font-size:12px;font-weight:800;color:#719080;letter-spacing:.025em}
-#fStaticExplainer h3{margin:3px 0 0;color:#2b6652;font-size:17px;line-height:1.5;font-weight:900}
-#fStaticExplainer .initial-static-intro{margin:10px 0 13px;color:#708479;font-size:13px;line-height:1.7;font-weight:700}
-#fStaticExplainer .initial-static-views{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
-#fStaticExplainer figure{position:relative;margin:0;min-width:0;overflow:hidden;border-radius:20px;background:linear-gradient(180deg,#fffaf6,#fff4ec);box-shadow:inset 0 0 0 1px rgba(186,129,103,.16)}
-#fStaticExplainer figcaption{position:relative;z-index:1;display:table;margin:10px 0 0 10px;padding:4px 10px;border-radius:99px;background:#edf6ef;color:#346b56;font-size:13px;line-height:1.4;font-weight:900;box-shadow:inset 0 0 0 1px rgba(55,124,81,.06)}
-#fStaticExplainer img{display:block;width:100%;height:auto;margin:0;box-shadow:none;border:0;transform:none;animation:none}
-#fStaticExplainer figure p{margin:0;padding:9px 7px 13px;color:#596f64;text-align:center;font-size:13px;line-height:1.6;font-weight:800;background:linear-gradient(180deg,rgba(255,251,248,.6),#fffaf5)}
-#fStaticExplainer .initial-static-summary{margin-top:13px;text-align:center}
-#fStaticExplainer .initial-static-summary b{display:block;color:#2b6953;font-size:16px;line-height:1.6;font-weight:900}
-#fStaticExplainer .initial-static-summary small{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;column-gap:6px;row-gap:4px;margin-top:7px;color:#7b8b80;font-size:11px;line-height:1.5;font-weight:700}
-#fStaticExplainer .contact{width:9px;height:9px;border:1.5px solid #d8aa53;border-radius:50%;background:#f7e5bf}
-#fStaticExplainer .air{width:17px;height:0;border-top:2px dashed #4b9caf;margin-left:9px}
-@media(max-width:360px){#kidsInitialsLesson #fStaticExplainer{padding:12px}#fStaticExplainer .initial-static-views{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}#fStaticExplainer h3{font-size:16px}#fStaticExplainer figcaption{margin:8px 0 0 8px;padding:4px 8px}#fStaticExplainer figure p{padding:8px 5px 10px}}
+#kidsInitialsLesson #initialStaticExplainer[hidden]{display:none!important}
+#kidsInitialsLesson #initialStaticExplainer{grid-column:1/-1;margin-top:14px;padding:16px;border:1px solid rgba(78,135,106,.13);border-radius:23px;background:linear-gradient(145deg,#fffefb,#fffdf8 70%,#f5faf3);box-shadow:0 7px 20px rgba(65,99,79,.055)}
+#initialStaticExplainer .initial-static-head{display:flex;align-items:center;gap:10px}
+#initialStaticExplainer .initial-static-head>span{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:15px;background:linear-gradient(145deg,#e3f3e8,#f0f8ec);color:#2f765b;font-size:31px;line-height:1;font-weight:900;box-shadow:inset 0 0 0 1px rgba(69,137,98,.07)}
+#initialStaticExplainer .initial-static-head small{display:block;font-size:12px;font-weight:800;color:#719080;letter-spacing:.025em}
+#initialStaticExplainer h3{margin:3px 0 0;color:#2b6652;font-size:17px;line-height:1.5;font-weight:900}
+#initialStaticExplainer .initial-static-intro{margin:10px 0 13px;color:#708479;font-size:13px;line-height:1.7;font-weight:700}
+#initialStaticExplainer .initial-static-views{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+#initialStaticExplainer figure{position:relative;margin:0;min-width:0;overflow:hidden;border-radius:20px;background:linear-gradient(180deg,#fffaf6,#fff4ec);box-shadow:inset 0 0 0 1px rgba(186,129,103,.16)}
+#initialStaticExplainer figcaption{position:relative;z-index:1;display:table;margin:10px 0 0 10px;padding:4px 10px;border-radius:99px;background:#edf6ef;color:#346b56;font-size:13px;line-height:1.4;font-weight:900;box-shadow:inset 0 0 0 1px rgba(55,124,81,.06)}
+#initialStaticExplainer img{display:block;width:100%;height:auto;margin:0;box-shadow:none;border:0;transform:none;animation:none}
+#initialStaticExplainer figure p{margin:0;padding:9px 7px 13px;color:#596f64;text-align:center;font-size:13px;line-height:1.6;font-weight:800;background:linear-gradient(180deg,rgba(255,251,248,.6),#fffaf5)}
+#initialStaticExplainer .initial-static-summary{margin-top:13px;text-align:center}
+#initialStaticExplainer .initial-static-summary b{display:block;color:#2b6953;font-size:16px;line-height:1.6;font-weight:900}
+#initialStaticExplainer .initial-static-summary small{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;column-gap:6px;row-gap:4px;margin-top:7px;color:#7b8b80;font-size:11px;line-height:1.5;font-weight:700}
+#initialStaticExplainer .contact{width:9px;height:9px;border:1.5px solid #d8aa53;border-radius:50%;background:#f7e5bf}
+#initialStaticExplainer .air{width:17px;height:0;border-top:2px dashed #4b9caf;margin-left:9px}
+@media(max-width:360px){#kidsInitialsLesson #initialStaticExplainer{padding:12px}#initialStaticExplainer .initial-static-views{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}#initialStaticExplainer h3{font-size:16px}#initialStaticExplainer figcaption{margin:8px 0 0 8px;padding:4px 8px}#initialStaticExplainer figure p{padding:8px 5px 10px}}
 
 /* 10.108.91: use one raster illustration; crop its equal panels for each view. */
-#fStaticExplainer .initial-raster-front img,#fStaticExplainer .initial-raster-side img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;max-width:none}
-#fStaticExplainer .initial-raster-front img{object-position:left center}
-#fStaticExplainer .initial-raster-side img{object-position:right center}
+#initialStaticExplainer .initial-raster-front img,#initialStaticExplainer .initial-raster-side img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;max-width:none}
+#initialStaticExplainer .initial-raster-front img{object-position:left center}
+#initialStaticExplainer .initial-raster-side img{object-position:right center}
 
 /* 10.108.92: keep the two raster views compact and side by side on phones. */
-#fStaticExplainer .initial-static-views{max-width:320px;margin:0 auto}
-#kidsInitialsLesson #fStaticExplainer{margin-top:12px;padding-top:14px;padding-bottom:14px}
-#fStaticExplainer .initial-static-intro{margin:8px 0 10px}
-#fStaticExplainer .initial-static-summary{margin-top:10px}
+#initialStaticExplainer .initial-static-views{max-width:320px;margin:0 auto}
+#kidsInitialsLesson #initialStaticExplainer{margin-top:12px;padding-top:14px;padding-bottom:14px}
+#initialStaticExplainer .initial-static-intro{margin:8px 0 10px}
+#initialStaticExplainer .initial-static-summary{margin-top:10px}
+
+/* 10.108.94: stable static-card height and a gentle nasal legend for b/p/m/f. */
+#initialStaticExplainer .initial-static-summary b{min-height:3.2em;display:flex;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center}
+#initialStaticExplainer .initial-static-summary .nasal{width:10px;height:10px;border-radius:50%;background:#b9dfce;box-shadow:0 0 0 3px rgba(185,223,206,.20)}
+
+#initialStaticExplainer .initial-static-summary b>span{flex:0 0 auto}
+
+/* 10.108.95: optional lesson-wide comparisons, separated from each letter's guide. */
+#kidsInitialsLesson .initials-comparison-group{margin:16px;border:1px solid rgba(47,122,100,.14);border-radius:24px;background:linear-gradient(135deg,#f3faf5,#fffdf7);box-shadow:0 7px 20px rgba(54,92,78,.055);overflow:hidden}
+#kidsInitialsLesson .initials-comparison-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px;min-height:72px;box-sizing:border-box;list-style:none;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#kidsInitialsLesson .initials-comparison-summary::-webkit-details-marker{display:none}
+#kidsInitialsLesson .initials-comparison-copy{min-width:0;display:block}
+#kidsInitialsLesson .initials-comparison-copy strong{display:block;color:#285f50;font-size:17px;line-height:1.5;font-weight:900}
+#kidsInitialsLesson .initials-comparison-copy small{display:flex;flex-wrap:wrap;column-gap:12px;row-gap:2px;margin-top:4px;color:#6d8579;font-size:12px;line-height:1.6;font-weight:700}
+#kidsInitialsLesson .initials-comparison-copy small>span{white-space:nowrap}
+#kidsInitialsLesson .initials-comparison-toggle{position:relative;width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:#e1f1e7;box-shadow:inset 0 0 0 1px rgba(47,122,100,.1)}
+#kidsInitialsLesson .initials-comparison-toggle:before,#kidsInitialsLesson .initials-comparison-toggle:after{content:"";position:absolute;left:9px;top:14px;width:12px;height:2px;border-radius:2px;background:#377a61}
+#kidsInitialsLesson .initials-comparison-toggle:after{transform:rotate(90deg)}
+#kidsInitialsLesson .initials-comparison-group[open] .initials-comparison-toggle:after{display:none}
+#kidsInitialsLesson .initials-comparison-group[open] .initials-comparison-summary{border-bottom:1px solid rgba(47,122,100,.10);background:rgba(255,255,255,.6)}
+#kidsInitialsLesson .initials-comparison-summary:active{background:#eaf5ed}
+#kidsInitialsLesson .initials-comparison-summary:focus-visible{outline:3px solid #67ae8d;outline-offset:-4px;border-radius:24px}
+#kidsInitialsLesson .initials-comparison-content{padding:14px 12px 12px}
+#kidsInitialsLesson .initials-comparison-content>.initials-panel{margin:0;padding:16px;box-shadow:none;border-radius:19px}
+#kidsInitialsLesson .initials-comparison-content>.initials-panel+.initials-panel{margin-top:12px}
+#kidsInitialsLesson .initials-comparison-content .initials-panel-head>div{min-width:0}
+@media(max-width:360px){#kidsInitialsLesson .initials-comparison-summary{padding:14px;gap:10px}#kidsInitialsLesson .initials-comparison-copy strong{font-size:16px}#kidsInitialsLesson .initials-comparison-content{padding:10px 8px}#kidsInitialsLesson .initials-comparison-content>.initials-panel{padding:12px}}
+
+#kidsInitialsLesson .initials-comparison-content .initials-panel-head b,#kidsInitialsLesson .initials-comparison-content .initials-panel-head small{text-wrap:balance}
+
+#kidsInitialsLesson .initials-comparison-content .initials-panel-head b>span{display:inline-block}
+#kidsInitialsLesson .initials-comparison-content .air-card small,#kidsInitialsLesson .initials-comparison-content .mouth-sound-card b,#kidsInitialsLesson .initials-comparison-content .mouth-sound-card small{text-wrap:balance}
