@@ -1,14 +1,14 @@
-/* DEMO 10.108.84 — small mouth opening and isolated anterior tongue motion. */
+/* DEMO 10.108.85 — connected profile lips with a relaxed small opening. */
 (function(){
   // Keep the lesson styled even when an older HTML page is reused.
   var lessonScript=document.currentScript;
-  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.84',
+  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.85',
     lessonScript&&lessonScript.src?lessonScript.src:new URL('js/',document.baseURI).href).href;
   function ensureLessonStyles(){
     var existing=document.getElementById('demo1010820-dtnl-first-lesson');
     if(existing&&existing.tagName==='LINK'&&existing.href===stylesheetUrl)return;
     var link=document.createElement('link');link.rel='stylesheet';
-    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.84';
+    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.85';
     if(existing)existing.replaceWith(link);else document.head.appendChild(link);
   }
   ensureLessonStyles();
@@ -40,7 +40,7 @@
   // Posterior contours at x >= 74 are identical in every animation frame.
   // Small fixed mouth opening; all paths share command counts for smooth SMIL.
   function diagram(letter){
-    // 10.108.84: one continuous facial silhouette supports both lips and the jaw.
+    // 10.108.85: lips follow the open facial contour; tongue geometry is preserved from 84.
     var hold=letter==='n'||letter==='l',id='dtnl75-'+letter+'-';
     var rest='M126 49 C111 49 91 49 78 48 C64 47 52 47 46 44 C42 42 43 38.5 49 38 C55 37.5 61 40 66 41 C69 41.5 70 41.8 74 42 C88 43.5 107 43.8 126 43.8 Z';
     var touch='M126 49 C111 49 91 49 78 48 C64 47 52 43 46 39 C42 36 42 34 48 34 C54 34 61 32.5 66 36.5 C69 39 70 41 74 42 C88 43.5 107 43.8 126 43.8 Z';
@@ -49,18 +49,22 @@
     function morph(v){return '<animate attributeName="d" values="'+v.join(';')+'" keyTimes="'+times+'" dur="3.6s" repeatCount="indefinite"/>'}
     function pulse(v,t){return '<animate attributeName="opacity" values="'+v+'" keyTimes="'+t+'" dur="3.6s" repeatCount="indefinite"/>'}
     var heldPulse=pulse('0;0;.85;.85;0;0','0;.25;.33;.72;.83;1');
-    var oral='<path class="td73-cavity" fill="#fcf0e9" d="M28 34.2 Q68 24.6 125 30.6 L131 49.8 Q95 56.2 34 51 L25 45.8 L25 38.2 Z"/>'
-      +'<path class="td73-palate" fill="none" stroke="#dcb9a8" stroke-width="5" stroke-linecap="round" d="M30 33 Q35 30.6 42 31.8 Q48 33.8 59 31 Q91 25.4 125 30.6"/>'
+    var oral='<path class="td73-cavity" fill="#fcf0e9" d="M35 34 Q68 24.6 125 30.6 L131 49.8 Q95 56.2 38 51 L35 47 Z"/>'
+      +'<path class="td73-palate" fill="none" stroke="#dcb9a8" stroke-width="5" stroke-linecap="round" d="M36 32.2 Q39 31.2 42 31.8 Q48 33.8 59 31 Q91 25.4 125 30.6"/>'
       +'<path class="td83-mouth-floor" fill="none" stroke="#dcb9a8" stroke-width="2.5" stroke-linecap="round" d="M34 51.4 C54 54.6 86 56.2 126 51.8"/>'
-      +'<path class="td73-lower-teeth" fill="#fffdfa" stroke="#d8c8bf" stroke-width="1.2" d="M31 47.4 L39 48.2 L39 52.2 L32 51.8 Z"/>'
+      +'<path class="td73-lower-teeth" fill="#fffdfa" stroke="#d8c8bf" stroke-width="1.2" d="M36 46.8 L41 47.2 L41 50.2 L36 49.8 Z"/>'
       +'<path class="td73-tongue" stroke="#cf7069" stroke-width="1" stroke-linejoin="round" d="'+rest+'" fill="url(#'+id+'tongue)">'+morph([rest,touch,touch,rest,rest])+'</path>'
       +'<path class="td73-tongue-highlight" fill="none" stroke="#ffe0d7" stroke-width="2.1" stroke-linecap="round" d="'+hRest+'">'+morph([hRest,hTouch,hTouch,hRest,hRest])+'</path>'
-      +'<path class="td73-upper-teeth" fill="#fffdfa" stroke="#d8c8bf" stroke-width="1.2" d="M31 32.2 L39 32.2 L39 37.8 Q35 38.6 31 37.4 Z"/>'
-      +'<path class="td73-upper-lip" fill="#f09a8e" d="M20 33.8 C23 32.2 29 31.8 34 32.6 L34 33.8 C29 33.4 26 34.2 22 35 L20 35 Z"/>'
-      +'<path class="td73-lower-lip" fill="#e9847b" d="M20 47 C24 46.2 29 46.6 33 47.4 L33 49 C28 50.2 22 49.4 20 48.6 Z"/>'
+      +'<path class="td73-upper-teeth" fill="#fffdfa" stroke="#d8c8bf" stroke-width="1.2" d="M36 32.2 L41 32.2 L41 36.8 Q38.5 37.2 36 36.8 Z"/>'
+      +'<path class="td73-upper-lip" fill="#f09a8e" d="M29 31.2 C28 32 26.3 32.6 26 33.3 C28.5 34.2 32 34.3 36 34.1 L40 33.6 C36 33.4 32 32.6 29 31.2 Z"/>'
+      +'<path class="td73-lower-lip" fill="#e9847b" d="M26 47.4 C29 46.7 33 47 36 47.6 L40 48.4 C35 48.5 32 49 30 49.4 C28.5 49.1 27 48.4 26 47.4 Z"/>'
       +'<path class="td73-contact" fill="#efb449" d="M43 33 C48 33.4 54 33.4 59 31.8 L60 32.6 C54 34.2 48 34.2 43 33.8 Z" opacity="0">'+pulse('0;0;.8;.8;0;0',hold?'0;.23;.25;.78;.90;1':'0;.23;.25;.46;.52;1')+'</path>'
       +'<text class="td73-roof-label" fill="#a48b7b" font-size="9" font-weight="800" x="78" y="14">上あご</text>';
-    var profile='<path class="td76-face-profile" fill="#fbf0e7" stroke="#dec2b2" stroke-width="1.5" stroke-linejoin="round" d="M53 16 C45 23 41 31 39 39 C37 47 30 52 23 57 C17 61 17 65 23 68 C28 71 34 69 38 68 C39 74 36 78 31 82 C27 84 22 85 20 87.8 C18 89 21 90.2 27 90.6 C30 91 34 91 37 90.6 L37 100.6 C31 99.8 25 99.8 21 100.6 C18 101.4 19 103 23 103.8 C26 104.6 29 104.6 29 108 C29 112 26 116 27 119 C30 129 45 135 61 137 C85 140 109 138 127 131 L127 40 C91 20 70 18 53 16 Z"/>'
+    // Skin fill is continuous, while the outline stops at each lip.
+    // No vertical edge across the mouth and no detached coloured lip pads.
+    var profile='<path class="td85-face-skin" fill="#fbf0e7" d="M53 16 C45 23 41 31 39 39 C37 47 30 52 23 57 C17 61 17 65 23 68 C28 71 34 69 38 68 C39 75 35 81 29 85.2 C28 86 26.3 86.6 26 87.3 C28.5 88.2 32 88.3 36 88.1 L36 101.6 C33 101 29 100.7 26 101.4 C27 102.4 28.5 103.1 30 103.4 C34 109 32 112 32 115 C32 125 46 133 61 136 C85 140 109 138 127 131 L127 40 C91 20 70 18 53 16 Z"/>'
+      +'<path class="td85-upper-profile" fill="none" stroke="#dec2b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M127 40 C91 20 70 18 53 16 C45 23 41 31 39 39 C37 47 30 52 23 57 C17 61 17 65 23 68 C28 71 34 69 38 68 C39 75 35 81 29 85.2 C28 86 26.3 86.6 26 87.3"/>'
+      +'<path class="td85-lower-profile" fill="none" stroke="#dec2b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M26 101.4 C27 102.4 28.5 103.1 30 103.4 C34 109 32 112 32 115 C32 125 46 133 61 136 C85 140 109 138 127 131"/>'
       +'<path fill="none" stroke="#e9d3c5" stroke-width="2" stroke-linecap="round" d="M45 34 Q42 48 29 58"/>'
       +'<ellipse class="td76-nostril" fill="#b99583" cx="30" cy="65" rx="4.4" ry="2.1" transform="rotate(-14 30 65)"/>';
     function sideFace(air){return profile+'<g transform="translate(0 54)">'+oral+(air||'')+'</g>'}
@@ -101,7 +105,7 @@
     }
     return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'"><defs><linearGradient id="'+id+'tongue" gradientUnits="userSpaceOnUse" x1="0" y1="32" x2="0" y2="50"><stop offset="0" stop-color="#f6aca1"/><stop offset="1" stop-color="#df7b75"/></linearGradient><linearGradient id="'+id+'frontTongue" gradientUnits="userSpaceOnUse" x1="0" y1="116" x2="0" y2="164"><stop offset="0" stop-color="#f6aca1"/><stop offset="1" stop-color="#df7b75"/></linearGradient></defs>'+scene+'</svg></span>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.84';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.85';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){
