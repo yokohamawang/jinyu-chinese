@@ -1,66 +1,41 @@
 {
-  "version": "10.108.76",
-  "base": "Koepanda_10_108_75_FULL_NasalAndLateralAirflow.zip",
-  "archive_root": "k76/",
-  "built_at": "2026-10-10T12:22:34+09:00",
+  "version": "10.108.77",
+  "base": "Koepanda_10_108_76_FULL_UnifiedNoseAndFrontLateralFlow.zip",
+  "archive_root": "k77/",
+  "built_at": "2026-10-10T12:34:56+09:00",
+  "changes": [
+    "Add visible pointer and click press feedback to the model-play button used by b, p, m and f",
+    "Animate a small downward press, deeper shadow and subtle color change, then release automatically",
+    "Preserve all other file contents and ZIP timestamp metadata"
+  ],
   "changed_files": [
     "index.html",
-    "js/12-demo1010820-dtnl-first-lesson.js",
-    "css/70-demo1010820-dtnl-first-lesson.css",
+    "js/10-demo1010872-initials-forest.js",
+    "css/68-demo1010872-initials-forest.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
-  "changes": [
-    "Use the same integrated nose profile for d, t, n and l; highlight nasal airflow only for n",
-    "Turn the supplementary l view to face the viewer from slightly above; rotate anatomy and airflow together",
-    "Keep l tongue root at the top, tongue tip at the bottom, and airflow towards the lower oral exit",
-    "Keep illustration heights consistent on letter selection; stack illustration and copy on very narrow screens",
-    "Preserve all other file contents and ZIP timestamp metadata"
-  ],
   "verification": {
     "browser": "Chrome for Testing headless shell",
-    "mobile_widths": [
-      320,
-      375,
-      390,
-      430
+    "device_emulation": "390px iPhone touch",
+    "tested_letters": [
+      "b",
+      "p",
+      "m",
+      "f"
     ],
-    "letters": [
-      "d",
-      "t",
-      "n",
-      "l"
-    ],
-    "visually_inspected": [
-      "390-d",
-      "390-n",
-      "390-l",
-      "390-t-release"
-    ],
-    "letter_selection_heights_consistent": true,
-    "horizontal_overflow": false,
-    "copy_overflow": false,
-    "quiz_entries_work": true,
-    "reduced_motion_freezes_at_contact": true,
-    "inline_style_fallback_works": true,
+    "touch_press_transform": "translateY(3px) scale(.978)",
+    "pressed_shadow_changes": true,
+    "pointer_release_restores_button": true,
+    "click_feedback_and_auto_release": true,
     "page_errors": [],
-    "animation_phase_samples_seconds": [
-      0,
-      1.1,
-      1.8,
-      2.1,
-      2.6,
-      3.4
-    ],
-    "lips_teeth_and_face_profile_stationary": true,
-    "airflow_visible_at_expected_phases": true,
     "audio_and_recording_implementation_unchanged": true,
-    "audio_and_recording_not_retested": true,
+    "audio_not_retested": true,
     "physical_iphone_safari_not_tested": true
   },
   "sha256": {
-    "index.html": "90395dc5ad37f95cffa1a49f11e574944b1ce8b3a0fb71f07a471f47a97b5451",
-    "js/12-demo1010820-dtnl-first-lesson.js": "c156c3b1d49aa3159709f2b855e59e9449c4b696bedc97a41d42389d435123c7",
-    "css/70-demo1010820-dtnl-first-lesson.css": "5540fce41867000a69e987b04592d6d7a1ca65d2873feb68fe0ee86f67932757"
+    "index.html": "0f94d46b7a896d57001d2b08c3073a3d5c77d405a8ad95f4b7d9ecf5bf58e9d9",
+    "js/10-demo1010872-initials-forest.js": "6d4211930e9fa7c0c2fa022683f97cab79e8dc202203ab8447ffea77df7bd311",
+    "css/68-demo1010872-initials-forest.css": "73c4a3a276578ccbcb84cb46dd383636c323891b2fcc91a707fc08d0109cd7cd"
   }
 }
