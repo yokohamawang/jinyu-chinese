@@ -1,5 +1,5 @@
-10.108.75 FULL — Nasal and Lateral Airflow
-Base: 10.108.74 FULL
-Archive root: k75/
-Built: 2026-10-10T12:03:38+09:00
+10.108.76 FULL — Unified Nose and Front Lateral Flow
+Base: 10.108.75 FULL
+Archive root: k76/
+Built: 2026-10-10T12:22:34+09:00
 Changed files: index.html, js/12-demo1010820-dtnl-first-lesson.js, css/70-demo1010820-dtnl-first-lesson.css, VERSION.txt, BUILD_MANIFEST.json

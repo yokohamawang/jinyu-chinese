@@ -1,8 +1,8 @@
 {
-  "version": "10.108.75",
-  "base": "Koepanda_10_108_74_FULL_DTNLStyleAndSoftNose.zip",
-  "archive_root": "k75/",
-  "built_at": "2026-10-10T12:03:38+09:00",
+  "version": "10.108.76",
+  "base": "Koepanda_10_108_75_FULL_NasalAndLateralAirflow.zip",
+  "archive_root": "k76/",
+  "built_at": "2026-10-10T12:22:34+09:00",
   "changed_files": [
     "index.html",
     "js/12-demo1010820-dtnl-first-lesson.js",
@@ -11,9 +11,9 @@
     "BUILD_MANIFEST.json"
   ],
   "changes": [
-    "Add a continuous nose profile, nasal cavity and a clear nostril exit for n",
-    "Keep tongue contact in the l side view; show lateral airflow only in a separate top view",
-    "Use the cue 舌の両側へ and explain oral airflow through the sides of the tongue",
+    "Use the same integrated nose profile for d, t, n and l; highlight nasal airflow only for n",
+    "Turn the supplementary l view to face the viewer from slightly above; rotate anatomy and airflow together",
+    "Keep l tongue root at the top, tongue tip at the bottom, and airflow towards the lower oral exit",
     "Keep illustration heights consistent on letter selection; stack illustration and copy on very narrow screens",
     "Preserve all other file contents and ZIP timestamp metadata"
   ],
@@ -32,9 +32,10 @@
       "l"
     ],
     "visually_inspected": [
+      "390-d",
       "390-n",
       "390-l",
-      "320-l"
+      "390-t-release"
     ],
     "letter_selection_heights_consistent": true,
     "horizontal_overflow": false,
@@ -43,13 +44,23 @@
     "reduced_motion_freezes_at_contact": true,
     "inline_style_fallback_works": true,
     "page_errors": [],
+    "animation_phase_samples_seconds": [
+      0,
+      1.1,
+      1.8,
+      2.1,
+      2.6,
+      3.4
+    ],
+    "lips_teeth_and_face_profile_stationary": true,
+    "airflow_visible_at_expected_phases": true,
     "audio_and_recording_implementation_unchanged": true,
     "audio_and_recording_not_retested": true,
     "physical_iphone_safari_not_tested": true
   },
   "sha256": {
-    "index.html": "b71c9927e63b9a0d9087838521dae4f80aad66ea531ae108f08a16f830741f97",
-    "js/12-demo1010820-dtnl-first-lesson.js": "63ce8fa97b249992996d1e095ba4e761ea742e588db0d1a214124eeab54a048a",
-    "css/70-demo1010820-dtnl-first-lesson.css": "9fe0ed2809a47e9803ff57331b089b6c0c892fc414649d6aa3d9d6c12d1e9adc"
+    "index.html": "90395dc5ad37f95cffa1a49f11e574944b1ce8b3a0fb71f07a471f47a97b5451",
+    "js/12-demo1010820-dtnl-first-lesson.js": "c156c3b1d49aa3159709f2b855e59e9449c4b696bedc97a41d42389d435123c7",
+    "css/70-demo1010820-dtnl-first-lesson.css": "5540fce41867000a69e987b04592d6d7a1ca65d2873feb68fe0ee86f67932757"
   }
 }
