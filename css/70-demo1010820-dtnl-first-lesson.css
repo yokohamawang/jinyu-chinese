@@ -45,3 +45,17 @@
 @media(prefers-reduced-motion:reduce){#kidsInitialsDTNLLesson button{transition:none}}
 
 #kidsInitialsDTNLLesson button{font-family:inherit;-webkit-appearance:none;appearance:none}
+
+/* 10.108.86 — illustration material polish only; dimensions and motion unchanged. */
+#kidsInitialsDTNLLesson .dtnl-articulation{background:linear-gradient(145deg,#fffefb,#fffdf9 64%,#f7faf4);border-color:rgba(72,123,101,.13);box-shadow:0 5px 16px rgba(65,99,79,.045),inset 0 1px 0 rgba(255,255,255,.9)}
+#kidsInitialsDTNLLesson .dtnl73-diagram{background:radial-gradient(ellipse at 30% 15%,#fffefa 0%,#fff7ef 56%,#f8e9df 100%);box-shadow:inset 0 0 0 1px rgba(172,115,91,.17),inset 0 2px 8px rgba(255,255,255,.9),0 3px 9px rgba(118,87,63,.055)}
+#kidsInitialsDTNLLesson .td73-cavity{fill:var(--dtnl-cavity,#fcf0e9)}
+#kidsInitialsDTNLLesson .td73-palate{stroke:var(--dtnl-palate,#dcb9a8)}
+#kidsInitialsDTNLLesson .td73-upper-teeth,#kidsInitialsDTNLLesson .td73-lower-teeth{fill:var(--dtnl-tooth,#fffdfa);stroke:#cfc4b7}
+#kidsInitialsDTNLLesson .td73-upper-lip,#kidsInitialsDTNLLesson .td73-lower-lip{fill:var(--dtnl-lip,#e99285)}
+#kidsInitialsDTNLLesson .td73-tongue{stroke:#bd726c}
+#kidsInitialsDTNLLesson .td73-tongue-highlight{opacity:.65}
+#kidsInitialsDTNLLesson .td73-roof-label{fill:#95715e}
+#kidsInitialsDTNLLesson .dtnl-art-copy b{color:#2d6252}
+#kidsInitialsDTNLLesson .dtnl-art-copy small{color:#6a8176}
+#kidsInitialsDTNLLesson .dtnl-art-copy em{background:linear-gradient(180deg,#eef8f1,#e2f0e7);color:#37765f;box-shadow:inset 0 0 0 1px rgba(81,141,105,.07)}
