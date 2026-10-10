@@ -245,9 +245,15 @@
 #fStaticExplainer .initial-static-summary small{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;column-gap:6px;row-gap:4px;margin-top:7px;color:#7b8b80;font-size:11px;line-height:1.5;font-weight:700}
 #fStaticExplainer .contact{width:9px;height:9px;border:1.5px solid #d8aa53;border-radius:50%;background:#f7e5bf}
 #fStaticExplainer .air{width:17px;height:0;border-top:2px dashed #4b9caf;margin-left:9px}
-@media(max-width:360px){#kidsInitialsLesson #fStaticExplainer{padding:14px}#fStaticExplainer .initial-static-views{grid-template-columns:1fr;gap:12px}#fStaticExplainer img{max-width:280px;margin:0 auto}#fStaticExplainer h3{font-size:16px}}
+@media(max-width:360px){#kidsInitialsLesson #fStaticExplainer{padding:12px}#fStaticExplainer .initial-static-views{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}#fStaticExplainer h3{font-size:16px}#fStaticExplainer figcaption{margin:8px 0 0 8px;padding:4px 8px}#fStaticExplainer figure p{padding:8px 5px 10px}}
 
 /* 10.108.91: use one raster illustration; crop its equal panels for each view. */
 #fStaticExplainer .initial-raster-front img,#fStaticExplainer .initial-raster-side img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;max-width:none}
 #fStaticExplainer .initial-raster-front img{object-position:left center}
 #fStaticExplainer .initial-raster-side img{object-position:right center}
+
+/* 10.108.92: keep the two raster views compact and side by side on phones. */
+#fStaticExplainer .initial-static-views{max-width:320px;margin:0 auto}
+#kidsInitialsLesson #fStaticExplainer{margin-top:12px;padding-top:14px;padding-bottom:14px}
+#fStaticExplainer .initial-static-intro{margin:8px 0 10px}
+#fStaticExplainer .initial-static-summary{margin-top:10px}
