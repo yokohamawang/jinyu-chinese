@@ -1,4 +1,4 @@
-/* DEMO 10.108.79 — quiz result flow + stable two-line descriptions + linked mouth/airflow visual.
+/* DEMO 10.108.91 — f reference-style raster posture image after the preserved mouth animation.
    Builds on 10.108.17 visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
@@ -158,6 +158,21 @@
     body=body.replace(/ID/g,id).replace('GLOW',nasal?'<ellipse class="kp71-nasal-glow" cx="36" cy="27" rx="35" ry="26" fill="url(#'+id+'glow)"/>':'');
     return '<svg class="kp71-front-nose'+(nasal?' is-nasal':'')+'" viewBox="0 0 72 58" aria-hidden="true">'+body+'</svg>';
   }
+  var staticArtRoot=new URL('../assets/articulation/',document.currentScript?document.currentScript.src:document.baseURI).href;
+  function renderStaticExplainer(letter){
+    var card=el('fStaticExplainer'),visual=el('initialsFocusVisual');if(!visual)return;
+    if(!card){
+      card=document.createElement('section');card.id='fStaticExplainer';card.className='initial-static-explainer';
+      card.setAttribute('aria-labelledby','fStaticTitle');
+      card.innerHTML='<header class="initial-static-head"><span aria-hidden="true">f</span><div><small>口の形のポイント</small><h3 id="fStaticTitle">上の前歯を<br>下くちびるへ</h3></div></header>'
+        +'<p class="initial-static-intro">ふれる位置を確認。</p>'
+        +'<div class="initial-static-views"><figure class="initial-raster-front"><figcaption>正面</figcaption><img src="'+staticArtRoot+'f-static-raster-91.png?v=10.108.91" width="1774" height="887" alt="上の前歯が下くちびるに軽く触れる、正面からの口の形。" decoding="async"><p>口角を少し寄せ<br>小さく開く</p></figure>'
+        +'<figure class="initial-raster-side"><figcaption>横から</figcaption><img src="'+staticArtRoot+'f-static-raster-91.png?v=10.108.91" width="1774" height="887" alt="右が口の前。上の前歯の先が下くちびるの内側に触れ、その狭いすき間から息が出る。" decoding="async"><p>細いすき間から<br>息を流す</p></figure></div>'
+        +'<div class="initial-static-summary"><b>軽くふれて、細い息を流す</b><small><i class="contact" aria-hidden="true"></i>ふれる位置 <i class="air" aria-hidden="true"></i>息の向き</small></div>';
+      visual.insertAdjacentElement('afterend',card);
+    }
+    card.hidden=letter!=='f';
+  }
   function renderFocusVisual(letter){
     var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
     var nose=noseSvg('kp71-'+letter+'-',letter==='m'),art='';
@@ -182,6 +197,7 @@
     if(s)s.textContent=guide[letter].hanzi+' '+guide[letter].pinyin+' · '+sounds[letter].mark;
     if(t)t.textContent=tips[letter];
     renderFocusVisual(letter);
+    renderStaticExplainer(letter);
     renderToneButtons()
   }
   function wirePressFeedback(button){
