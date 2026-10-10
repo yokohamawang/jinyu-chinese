@@ -1,28 +1,31 @@
 {
-  "version": "10.108.72",
-  "base": "Koepanda_10_108_71_FULL_From42_FrontNoseVerified.zip",
+  "version": "10.108.73",
+  "base": "Koepanda_10_108_72_FULL_MFLipBalance.zip",
   "original_layout_base": "10.108.42",
-  "archive_root": "k72/",
-  "built_at": "2026-10-10T10:09:36+09:00",
+  "archive_root": "k73/",
+  "built_at": "2026-10-10T10:28:28+09:00",
   "changes": [
-    "m uses the shared b/p closed-lip baseline at all tested widths",
-    "f upper lip restored above upper teeth in the animated focus illustration and the static comparison illustration",
-    "Modified files have matching DOS and extended UTC modification timestamps"
+    "d/t/n/l: stable lips, teeth and palate; connected tongue blade bends to contact the ridge immediately behind the upper incisors",
+    "d/t: contact then release, with a weaker/stronger air pulse after release",
+    "n/l: hold contact; show nasal/lateral airflow as a labelled schematic",
+    "Japanese contact wording specifies the front of the palate just behind the upper teeth",
+    "Preserve 72 b/p/m/f changes and audio/recording implementation",
+    "Modified DOS and extended UTC timestamps agree"
   ],
   "changed_files": [
     "index.html",
-    "js/10-demo1010872-initials-forest.js",
-    "css/68-demo1010872-initials-forest.css",
+    "js/12-demo1010873-dtnl-first-lesson.js",
+    "css/70-demo1010873-dtnl-first-lesson.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
   ],
   "removed_files": [
-    "js/10-demo1010871-initials-forest.js",
-    "css/68-demo1010871-initials-forest.css"
+    "js/12-demo1010820-dtnl-first-lesson.js",
+    "css/70-demo1010820-dtnl-first-lesson.css"
   ],
   "renamed_files": {
-    "js/10-demo1010871-initials-forest.js": "js/10-demo1010872-initials-forest.js",
-    "css/68-demo1010871-initials-forest.css": "css/68-demo1010872-initials-forest.css"
+    "js/12-demo1010820-dtnl-first-lesson.js": "js/12-demo1010873-dtnl-first-lesson.js",
+    "css/70-demo1010820-dtnl-first-lesson.css": "css/70-demo1010873-dtnl-first-lesson.css"
   },
   "verification": {
     "browser": "Chrome for Testing 151.0.7922.34",
@@ -33,28 +36,33 @@
       430
     ],
     "letters": [
-      "b",
-      "p",
-      "m",
-      "f"
+      "d",
+      "t",
+      "n",
+      "l"
     ],
-    "animation_phase_samples_ms": [
+    "animation_phase_samples_seconds": [
       0,
-      700,
-      1500,
-      2600
+      1.1,
+      1.6,
+      1.9,
+      2.6,
+      3.2
     ],
-    "m_closed_lip_baseline_matches_b_p": true,
-    "f_upper_lip_present_in_both_illustrations": true,
-    "b_p_geometry_unchanged": true,
+    "lips_teeth_and_palate_stationary": true,
+    "tongue_connected_and_animated": true,
+    "d_t_release_after_contact": true,
+    "n_l_hold_contact_during_sound_phase": true,
+    "card_height_stable_during_letter_switch": true,
     "horizontal_overflow": false,
     "recording_controls_present": true,
     "quiz_entry_works": true,
     "audio_and_recording_not_retested": true
   },
+  "phonetics_reference": "https://pressbooks.uiowa.edu/zheng/chapter/lesson-2/",
   "sha256": {
-    "index.html": "df253d63068c641501066de0976657f82d669ede55d25c6874ccbb1b50b14ae6",
-    "js/10-demo1010872-initials-forest.js": "b776db8063463a21367675bbc9562957458ae0aa88eaf74bdff23f08816097a5",
-    "css/68-demo1010872-initials-forest.css": "cd22109b973166b880c13df57e95873abb79cd39baa550816d68f25eb8b9e568"
+    "index.html": "5fbc28c8b95cce12bcfb26436aeb6ee57e0dc3d5b6485a27c1a0af6ca5968e7b",
+    "js/12-demo1010873-dtnl-first-lesson.js": "c6277fe779ba8361359ac836c4acf77bb49a7747344fd4c15e773c5ecda0b1cb",
+    "css/70-demo1010873-dtnl-first-lesson.css": "73d5988a402006d8a7a7f05f37f325276169a60ec7ee63396afa7dd533b51c7f"
   }
 }

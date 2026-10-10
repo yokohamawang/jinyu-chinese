@@ -1,5 +1,6 @@
-10.108.72 FULL — M/F Lip Balance
-Base: 10.108.71 FULL (original layout from 10.108.42)
-Archive root: k72/
-Built: 2026-10-10T10:09:36+09:00
+10.108.73 FULL — DTNL Tongue Motion
+Base: 10.108.72 FULL
+Archive root: k73/
+Built: 2026-10-10T10:28:28+09:00
 Mobile visual verification: 375 / 390 / 393 / 430 px
+Motion: stable lips and teeth; connected tongue blade/contact/release
