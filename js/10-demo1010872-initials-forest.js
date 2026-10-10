@@ -1,4 +1,4 @@
-/* DEMO 10.108.72 — quiz result flow + stable two-line descriptions + linked mouth/airflow visual.
+/* DEMO 10.108.74 — quiz result flow + stable two-line descriptions + linked mouth/airflow visual.
    Builds on 10.108.17 visual/mouth polish + readable initial models + explicit tone-placement rule.
    Primary listening uses a native-style helper syllable (呼読音); pure consonant/airflow remains a secondary contrast.
    b/p/m/f cards now share one deliberate hierarchy instead of relying on text wrapping.
@@ -152,9 +152,9 @@
       x.classList.toggle('is-done',k<n)
     })
   }
-  // 10.108.72: one scoped front nose; no side-panel renderer.
+  // 10.108.74: one scoped front nose; no side-panel renderer.
   function noseSvg(id,nasal){
-    var body='<defs><linearGradient id="IDskin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e0d1"/><stop offset=".5" stop-color="#efd0bf"/><stop offset="1" stop-color="#c89580"/></linearGradient><radialGradient id="IDglow"><stop offset="0" stop-color="#8bc3af" stop-opacity=".46"/><stop offset="1" stop-color="#8bc3af" stop-opacity="0"/></radialGradient></defs>GLOW<g class="kp71-nose-body"><path d="M26 25 C20 21 13 26 13 34 C13 42 21 44 29 40 M46 25 C52 21 59 26 59 34 C59 42 51 44 43 40" fill="url(#IDskin)" stroke="#cfaa98" stroke-width="1.3"/><path d="M30 6 C32 2 40 2 42 6 C42 13 41 20 44 26 C47 29 49 33 46 38 C42 44 30 44 26 38 C23 33 25 29 28 26 C31 20 30 13 30 6Z" fill="url(#IDskin)"/><path d="M33 9 Q31 21 31 27" fill="none" stroke="#fff7ee" stroke-width="3" stroke-linecap="round" opacity=".64"/><ellipse cx="36" cy="32" rx="7.3" ry="4.6" fill="#f6dccc" opacity=".64"/><ellipse cx="23" cy="36.5" rx="4.2" ry="2.2" transform="rotate(14 23 36.5)" fill="#9c6b59"/><ellipse cx="49" cy="36.5" rx="4.2" ry="2.2" transform="rotate(-14 49 36.5)" fill="#9c6b59"/><path d="M30 40 Q36 43 42 40" fill="none" stroke="#bf8f79" stroke-width="1.5" stroke-linecap="round"/></g>';
+    var body='<defs><linearGradient id="IDskin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e7de"/><stop offset=".5" stop-color="#efdbce"/><stop offset="1" stop-color="#d8bca9"/></linearGradient><radialGradient id="IDglow"><stop offset="0" stop-color="#8bc3af" stop-opacity=".28"/><stop offset="1" stop-color="#8bc3af" stop-opacity="0"/></radialGradient></defs>GLOW<g class="kp71-nose-body" opacity=".88"><path d="M26 25 C20 21 13 26 13 34 C13 42 21 44 29 40 M46 25 C52 21 59 26 59 34 C59 42 51 44 43 40" fill="url(#IDskin)" stroke="#ddc3b2" stroke-width=".8"/><path d="M30 6 C32 2 40 2 42 6 C42 13 41 20 44 26 C47 29 49 33 46 38 C42 44 30 44 26 38 C23 33 25 29 28 26 C31 20 30 13 30 6Z" fill="url(#IDskin)"/><path d="M33 9 Q31 21 31 27" fill="none" stroke="#fff4ec" stroke-width="2" stroke-linecap="round" opacity=".34"/><ellipse cx="36" cy="32" rx="7.3" ry="4.6" fill="#f5e5d8" opacity=".34"/><ellipse cx="23" cy="36.5" rx="4.2" ry="2.2" transform="rotate(14 23 36.5)" fill="#b69a86"/><ellipse cx="49" cy="36.5" rx="4.2" ry="2.2" transform="rotate(-14 49 36.5)" fill="#b69a86"/><path d="M30 40 Q36 43 42 40" fill="none" stroke="#cbb09c" stroke-width="1" stroke-linecap="round"/></g>';
     body=body.replace(/ID/g,id).replace('GLOW',nasal?'<ellipse class="kp71-nasal-glow" cx="36" cy="27" rx="35" ry="26" fill="url(#'+id+'glow)"/>':'');
     return '<svg class="kp71-front-nose'+(nasal?' is-nasal':'')+'" viewBox="0 0 72 58" aria-hidden="true">'+body+'</svg>';
   }
@@ -169,7 +169,7 @@
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.72';
+    box.dataset.build='10.108.74';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
