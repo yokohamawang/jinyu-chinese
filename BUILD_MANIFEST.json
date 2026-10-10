@@ -1,18 +1,44 @@
 {
-  "version": "10.108.41",
-  "base": "Koepanda_10_108_40_FULL_RoadmapCleanLayoutFix.zip",
-  "name": "RoadmapOldCleanWrapRestore",
-  "build_name": "FULL_RoadmapOldCleanWrapRestore",
+  "version": "10.108.71",
+  "base": "Koepanda_10_108_42_FULL_VowelQuizUnifiedPremium(1).zip",
   "changes": [
-    "restore roadmap layout rules from the last clean pre-no-wrap version",
-    "allow lesson titles to wrap naturally instead of forcing one-line compression",
-    "keep all 10.108.40 functionality and JavaScript unchanged",
-    "refresh roadmap CSS cache-busting tag to 10.108.41"
+    "Original 42 front-only b/p/m/f structure",
+    "One SVG nose with bridge, tip, wings and nostrils",
+    "m resonance uses soft glow; no wave-line antenna",
+    "Unique CSS/JS URLs prevent older articulation renderer/style reuse",
+    "Mobile focus panel uses one column through 600px for readable spacing"
   ],
   "changed_files": [
-    "css/66-demo1010798-simple-learning-path.css",
     "index.html",
+    "js/10-demo1010871-initials-forest.js",
+    "css/68-demo1010871-initials-forest.css",
     "VERSION.txt",
     "BUILD_MANIFEST.json"
-  ]
+  ],
+  "removed_files": [
+    "js/10-demo1010808-initials-forest.js",
+    "css/68-demo1010808-initials-forest.css"
+  ],
+  "built_at": "2026-10-10T09:28:50+09:00",
+  "verification": {
+    "browser": "Chrome for Testing 151.0.7922.34",
+    "mobile_widths": [
+      375,
+      393,
+      430
+    ],
+    "letters": [
+      "b",
+      "p",
+      "m",
+      "f"
+    ],
+    "front_nose_svg": true,
+    "added_side_panel": false,
+    "m_wave_lines": false,
+    "horizontal_overflow": false,
+    "recording_controls_present": true,
+    "quiz_entry_works": true,
+    "audio_and_recording_not_retested": true
+  }
 }
