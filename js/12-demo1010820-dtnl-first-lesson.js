@@ -1,19 +1,19 @@
-/* DEMO 10.108.81 — explicit versioned stylesheet; tongue/contact and stable lips preserved. */
+/* DEMO 10.108.82 — gentle anterior tongue lift and broad alveolar contact. */
 (function(){
   // Keep the lesson styled even when an older HTML page is reused.
   var lessonScript=document.currentScript;
-  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.81',
+  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.82',
     lessonScript&&lessonScript.src?lessonScript.src:new URL('js/',document.baseURI).href).href;
   function ensureLessonStyles(){
     var existing=document.getElementById('demo1010820-dtnl-first-lesson');
     if(existing&&existing.tagName==='LINK'&&existing.href===stylesheetUrl)return;
     var link=document.createElement('link');link.rel='stylesheet';
-    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.81';
+    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.82';
     if(existing)existing.replaceWith(link);else document.head.appendChild(link);
   }
   ensureLessonStyles();
   var letters=['d','t','n','l'];
-  var guide={"d":{"hanzi":"得","pinyin":"dé","ipa":"[t]","cue":"弱い息","tip":"唇はそのまま。舌先を上の歯のすぐ後ろにつけ、すぐ離す。","title":"舌の前を上げて、離す","sub":"上あごの手前に触れる → 弱い息"},"t":{"hanzi":"特","pinyin":"tè","ipa":"[tʰ]","cue":"強い息","tip":"唇はそのまま。d と同じ場所から舌先を離し、強く息を出す。","title":"同じ舌先、強い息","sub":"上の歯のすぐ後ろに触れる → 強い息"},"n":{"hanzi":"讷","pinyin":"nè","ipa":"[n]","cue":"鼻に響く","tip":"唇はそのまま。舌先を上の歯のすぐ後ろにつけたまま、鼻に響かせる。","title":"舌先はつけたまま","sub":"口の通り道をふさぎ、息は鼻から出る"},"l":{"hanzi":"勒","pinyin":"lè","ipa":"[l]","cue":"舌の両側へ","tip":"唇はそのまま。舌先を上の歯のすぐ後ろにつけ、舌の両脇から音を通す。","title":"舌先はつけたまま","sub":"舌の両側を息が通り、口から出る"}};
+  var guide={"d":{"hanzi":"得","pinyin":"dé","ipa":"[t]","cue":"弱い息","tip":"舌の前をゆるやかに上げ、上の歯のすぐ後ろにつけて、すぐ離す。","title":"舌の前を上げて、離す","sub":"上あごの手前に触れる → 弱い息"},"t":{"hanzi":"特","pinyin":"tè","ipa":"[tʰ]","cue":"強い息","tip":"舌の前を d と同じ場所につけてから離し、強く息を出す。","title":"同じ場所から、強い息","sub":"上の歯のすぐ後ろに触れる → 強い息"},"n":{"hanzi":"讷","pinyin":"nè","ipa":"[n]","cue":"鼻に響く","tip":"舌の前を上の歯のすぐ後ろにつけたまま、鼻に響かせる。","title":"舌はつけたまま","sub":"口の通り道をふさぎ、息は鼻から出る"},"l":{"hanzi":"勒","pinyin":"lè","ipa":"[l]","cue":"舌の両側へ","tip":"舌の前を上の歯のすぐ後ろにつけ、舌の両脇から音を通す。","title":"舌はつけたまま","sub":"舌の両側を息が通り、口から出る"}};
   var selected='d',quizOrder=['d','t','n','l'],quizIndex=0,quizScore=0,quizAnswered=false,recorder=null,stream=null,chunks=[],recordingUrl='',playback=null;
   function el(id){return document.getElementById(id)}
   function speakFallback(item){
@@ -36,15 +36,17 @@
     speakFallback(item);
   }
   function setStep(n){document.querySelectorAll('.dtnl-progress span').forEach(function(x){var k=Number(x.dataset.dtnlStep);x.classList.toggle('is-current',k===n);x.classList.toggle('is-done',k<n)})}
-  // 10.108.79: a connected tongue blade bends toward the ridge behind the
-  // upper incisors. Lips, teeth and the posterior tongue root stay fixed.
+  // 10.108.82: the tongue tip and adjacent blade rise as one soft curve.
+  // Contact stays at the ridge behind the upper teeth, not the whole palate.
+  // Both silhouettes share cubic commands so SMIL interpolates smoothly.
+  // Lips, teeth and the posterior tongue root stay fixed.
   // 10.108.79: one shared nose profile and a front-facing elevated lateral view.
   // The side view shows tongue contact only; no lateral paths above/below it.
   function diagram(letter){
     var hold=letter==='n'||letter==='l',id='dtnl75-'+letter+'-';
-    var rest='M126 73 C103 69 76 77 60 66 C52 62 44 58 45 54 C46 49 52 49 57 53 C72 65 97 59 126 60 Z';
-    var touch='M126 73 C103 69 76 77 60 66 C52 59 45 40 45 35 C46 31 52 31 56 35 C62 54 97 59 126 60 Z';
-    var hRest='M46 54 C46 49 52 49 57 53',hTouch='M46 35 C46 31 52 31 56 35';
+    var rest='M126 73 C104 70 83 72 66 64 C55 59 45 55 43 50 C42 45 50 44 59 48 C77 59 100 59 126 60 Z';
+    var touch='M126 73 C104 70 83 68 66 57 C55 50 45 46 43 40 C42 34 50 34 59 31 C76 39 96 57 126 60 Z';
+    var hRest='M44 50 C43 46 50 46 59 50',hTouch='M44 40 C43 35 50 36 59 33';
     var times=hold?'0;.24;.78;.90;1':'0;.24;.46;.52;1';
     function morph(v){return '<animate attributeName="d" values="'+v.join(';')+'" keyTimes="'+times+'" dur="3.6s" repeatCount="indefinite"/>'}
     function pulse(v,t){return '<animate attributeName="opacity" values="'+v+'" keyTimes="'+t+'" dur="3.6s" repeatCount="indefinite"/>'}
@@ -57,8 +59,8 @@
       +'<path class="td73-upper-teeth" fill="#fffdfa" stroke="#d8c8bf" stroke-width="1.2" d="M31 31 L39 31 L39 45 Q35 47 31 44Z"/>'
       +'<path class="td73-upper-lip" fill="#f09a8e" d="M16 35 Q21 30 31 33 L29 41 Q22 44 16 40Z"/>'
       +'<path class="td73-lower-lip" fill="#e9847b" d="M16 68 Q23 65 32 68 L32 74 Q23 79 17 74Z"/>'
-      +'<ellipse class="td73-contact" fill="#efb449" cx="50" cy="33" rx="5" ry="2.6" opacity="0">'+pulse('0;0;.8;.8;0;0',hold?'0;.23;.25;.78;.90;1':'0;.23;.25;.46;.52;1')+'</ellipse>'
-      +'<text class="td73-roof-label" fill="#a48b7b" font-size="9" font-weight="800" x="66" y="40">上あご</text>';
+      +'<path class="td73-contact" fill="#efb449" d="M43 33 C48 34 54 34 59 30 L60 32 C54 36 48 36 43 35Z" opacity="0">'+pulse('0;0;.8;.8;0;0',hold?'0;.23;.25;.78;.90;1':'0;.23;.25;.46;.52;1')+'</path>'
+      +'<text class="td73-roof-label" fill="#a48b7b" font-size="9" font-weight="800" x="78" y="14">上あご</text>';
     var profile='<path class="td76-face-profile" fill="#fbf0e7" stroke="#dec2b2" stroke-width="1.5" stroke-linejoin="round" d="M53 16 Q42 25 39 39 Q37 46 23 56 Q15 63 23 68 Q29 71 38 68 Q40 76 30 86 L125 82 L126 40 Q91 20 53 16Z"/>'
       +'<path fill="none" stroke="#e9d3c5" stroke-width="2" stroke-linecap="round" d="M45 34 Q42 48 29 58"/>'
       +'<ellipse class="td76-nostril" fill="#b99583" cx="30" cy="65" rx="4.4" ry="2.1" transform="rotate(-14 30 65)"/>';
@@ -75,7 +77,7 @@
         +'<text fill="#aa9589" font-size="9" font-weight="700" x="24" y="200">鼻から息が出る</text>';
     }else if(letter==='l'){
       scene='<g class="td76-side-view" transform="translate(16 0) scale(.78)">'+sideFace('')+'</g>'
-        +'<text fill="#a48b7b" font-size="9" font-weight="800" x="24" y="126">横：舌先の位置</text>'
+        +'<text fill="#a48b7b" font-size="9" font-weight="800" x="24" y="126">横：舌の前の位置</text>'
         +'<path fill="none" stroke="#e7dcd4" stroke-width="1" d="M14 136 H130"/>'
         +'<g class="td76-front-above-view" transform="translate(0 35) rotate(180 72 137)">'
         +'<path fill="#fcf0e9" stroke="#ddc4b6" stroke-width="1.5" d="M26 161 L26 137 Q26 111 72 111 Q118 111 118 137 L118 161 L108 161 L108 136 Q108 121 72 121 Q36 121 36 136 L36 161Z"/>'
@@ -99,7 +101,7 @@
     }
     return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'"><defs><linearGradient id="'+id+'tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6aca1"/><stop offset="1" stop-color="#df7b75"/></linearGradient></defs>'+scene+'</svg></span>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.81';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.82';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){
