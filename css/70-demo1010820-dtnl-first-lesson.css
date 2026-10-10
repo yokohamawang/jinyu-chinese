@@ -31,8 +31,8 @@
 @media(prefers-reduced-motion:reduce){#kidsInitialsDTNLLesson .dtnl73-svg{animation:none}}
 
 /* 10.108.75 — consistent illustration size; side and top views stay separate. */
-#kidsInitialsDTNLLesson .dtnl-articulation{grid-template-columns:124px minmax(0,1fr);gap:10px;min-height:177px}
-#kidsInitialsDTNLLesson .dtnl73-diagram{width:124px;height:155px}
+#kidsInitialsDTNLLesson .dtnl-articulation{grid-template-columns:124px minmax(0,1fr);gap:10px;min-height:220px}
+#kidsInitialsDTNLLesson .dtnl73-diagram{width:124px;height:198px}
 #kidsInitialsDTNLLesson .dtnl-art-copy b{font-size:13px;line-height:1.45}
 #kidsInitialsDTNLLesson .dtnl-art-copy small{font-size:11px;line-height:1.5}
 #kidsInitialsDTNLLesson .dtnl-art-copy em{font-size:10px}
