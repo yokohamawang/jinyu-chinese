@@ -13,7 +13,7 @@
 /* 10.108.74 — scoped oral cutaway: lips/teeth fixed, connected tongue blade. */
 #kidsInitialsDTNLLesson .dtnl73-diagram{display:block;width:108px;height:90px;border-radius:20px;background:linear-gradient(180deg,#fffdfb,#fff1eb);box-shadow:inset 0 0 0 1px rgba(194,125,112,.13);overflow:hidden;flex:none}
 #kidsInitialsDTNLLesson .dtnl73-svg{display:block;width:100%;height:100%;overflow:visible}
-#kidsInitialsDTNLLesson .dtnl73-svg *{box-shadow:none;transform:none;animation:none}
+#kidsInitialsDTNLLesson .dtnl73-svg *{box-shadow:none;animation:none}
 #kidsInitialsDTNLLesson .td73-cavity{fill:#fcf0e9}
 #kidsInitialsDTNLLesson .td73-palate{fill:none;stroke:#dcb9a8;stroke-width:5;stroke-linecap:round}
 #kidsInitialsDTNLLesson .td73-upper-teeth,#kidsInitialsDTNLLesson .td73-lower-teeth{fill:#fffdfa;stroke:#d8c8bf;stroke-width:1.2}
@@ -29,3 +29,11 @@
 #kidsInitialsDTNLLesson .dtnl-art-copy small{min-height:3em}
 @media(max-width:390px){#kidsInitialsDTNLLesson .dtnl73-diagram{width:92px;height:80px}}
 @media(prefers-reduced-motion:reduce){#kidsInitialsDTNLLesson .dtnl73-svg{animation:none}}
+
+/* 10.108.75 — consistent illustration size; side and top views stay separate. */
+#kidsInitialsDTNLLesson .dtnl-articulation{grid-template-columns:124px minmax(0,1fr);gap:10px;min-height:177px}
+#kidsInitialsDTNLLesson .dtnl73-diagram{width:124px;height:155px}
+#kidsInitialsDTNLLesson .dtnl-art-copy b{font-size:13px;line-height:1.45}
+#kidsInitialsDTNLLesson .dtnl-art-copy small{font-size:11px;line-height:1.5}
+#kidsInitialsDTNLLesson .dtnl-art-copy em{font-size:10px}
+@media(max-width:360px){#kidsInitialsDTNLLesson .dtnl-articulation{grid-template-columns:1fr;gap:8px}#kidsInitialsDTNLLesson .dtnl73-diagram{margin:0 auto}#kidsInitialsDTNLLesson .dtnl-art-copy{text-align:center}#kidsInitialsDTNLLesson .dtnl-art-copy small{min-height:3em}}
