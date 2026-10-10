@@ -1,4 +1,4 @@
-/* DEMO 10.108.75 — P4 tongue blade/contact and stable lips */
+/* DEMO 10.108.76 — P4 tongue blade/contact and stable lips */
 (function(){
   var letters=['d','t','n','l'];
   var guide={"d":{"hanzi":"得","pinyin":"dé","ipa":"[t]","cue":"弱い息","tip":"唇はそのまま。舌先を上の歯のすぐ後ろにつけ、すぐ離す。","title":"舌の前を上げて、離す","sub":"上あごの手前に触れる → 弱い息"},"t":{"hanzi":"特","pinyin":"tè","ipa":"[tʰ]","cue":"強い息","tip":"唇はそのまま。d と同じ場所から舌先を離し、強く息を出す。","title":"同じ舌先、強い息","sub":"上の歯のすぐ後ろに触れる → 強い息"},"n":{"hanzi":"讷","pinyin":"nè","ipa":"[n]","cue":"鼻に響く","tip":"唇はそのまま。舌先を上の歯のすぐ後ろにつけたまま、鼻に響かせる。","title":"舌先はつけたまま","sub":"口の通り道をふさぎ、息は鼻から出る"},"l":{"hanzi":"勒","pinyin":"lè","ipa":"[l]","cue":"舌の両側へ","tip":"唇はそのまま。舌先を上の歯のすぐ後ろにつけ、舌の両脇から音を通す。","title":"舌先はつけたまま","sub":"舌の両側を息が通り、口から出る"}};
@@ -14,9 +14,9 @@
   function playRaw(letter){if(letter==='d')burst(false);else if(letter==='t')burst(true);else if(letter==='n')nasal();else lateral()}
   function playGuide(letter){var it=guide[letter];if(!it)return;stopSynthetic();try{if('speechSynthesis' in window)speechSynthesis.cancel()}catch(e0){}try{if(typeof window.playMachine==='function'){var r=window.playMachine(it.hanzi,null,false);if(r&&typeof r.catch==='function')r.catch(function(){playRaw(letter)});return}}catch(e){}try{if('speechSynthesis'in window){speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(it.hanzi);u.lang='zh-CN';u.rate=.78;u.pitch=1;u.onerror=function(){playRaw(letter)};speechSynthesis.speak(u);return}}catch(e2){}playRaw(letter)}
   function setStep(n){document.querySelectorAll('.dtnl-progress span').forEach(function(x){var k=Number(x.dataset.dtnlStep);x.classList.toggle('is-current',k===n);x.classList.toggle('is-done',k<n)})}
-  // 10.108.75: a connected tongue blade bends toward the ridge behind the
+  // 10.108.76: a connected tongue blade bends toward the ridge behind the
   // upper incisors. Lips, teeth and the posterior tongue root stay fixed.
-  // 10.108.75: a visible nasal exit and a separate top view for lateral airflow.
+  // 10.108.76: one shared nose profile and a front-facing elevated lateral view.
   // The side view shows tongue contact only; no lateral paths above/below it.
   function diagram(letter){
     var hold=letter==='n'||letter==='l',id='dtnl75-'+letter+'-';
@@ -37,22 +37,25 @@
       +'<path class="td73-lower-lip" fill="#e9847b" d="M16 68 Q23 65 32 68 L32 74 Q23 79 17 74Z"/>'
       +'<ellipse class="td73-contact" fill="#efb449" cx="50" cy="33" rx="5" ry="2.6" opacity="0">'+pulse('0;0;.8;.8;0;0',hold?'0;.23;.25;.78;.90;1':'0;.23;.25;.46;.52;1')+'</ellipse>'
       +'<text class="td73-roof-label" fill="#a48b7b" font-size="9" font-weight="800" x="66" y="40">上あご</text>';
+    var profile='<path class="td76-face-profile" fill="#fbf0e7" stroke="#dec2b2" stroke-width="1.5" stroke-linejoin="round" d="M53 16 Q42 25 39 39 Q37 46 23 56 Q15 63 23 68 Q29 71 38 68 Q40 76 30 86 L125 82 L126 40 Q91 20 53 16Z"/>'
+      +'<path fill="none" stroke="#e9d3c5" stroke-width="2" stroke-linecap="round" d="M45 34 Q42 48 29 58"/>'
+      +'<ellipse class="td76-nostril" fill="#b99583" cx="30" cy="65" rx="4.4" ry="2.1" transform="rotate(-14 30 65)"/>';
+    function sideFace(air){return profile+'<g transform="translate(0 54)">'+oral+(air||'')+'</g>'}
     var scene='';
     if(letter==='n'){
-      scene='<path fill="#fbf0e7" stroke="#dec2b2" stroke-width="1.5" stroke-linejoin="round" d="M53 16 Q42 25 39 39 Q37 46 23 56 Q15 63 23 68 Q29 71 38 68 Q40 76 30 86 L125 82 L126 40 Q91 20 53 16Z"/>'
+      scene=profile
         +'<path fill="#e1eee3" stroke="#c9dbcc" stroke-width="1" d="M37 60 Q60 43 94 44 Q113 44 117 55 L121 97 L113 99 L110 62 Q78 49 40 66Z"/>'
-        +'<path fill="none" stroke="#e9d3c5" stroke-width="2" stroke-linecap="round" d="M45 34 Q42 48 29 58"/>'
-        +'<ellipse fill="#b99583" cx="30" cy="65" rx="4.4" ry="2.1" transform="rotate(-14 30 65)"/>'
         +'<g transform="translate(0 54)">'+oral+'</g>'
         +'<g class="td75-nasal-route" fill="none" stroke="#61a68b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">'+heldPulse
         +'<path d="M117 104 Q120 84 116 60 Q83 42 42 60 L30 65 Q23 72 16 73"/><path d="M22 69 L16 73 L23 76"/></g>'
         +'<text fill="#699980" font-size="10" font-weight="800" x="64" y="38">鼻の中</text>'
         +'<text fill="#66917c" font-size="9" font-weight="800" x="42" y="77">鼻孔</text>'
-        +'<text fill="#aa9589" font-size="9" font-weight="700" x="24" y="165">鼻から息が出る</text>';
+        +'<text fill="#aa9589" font-size="9" font-weight="700" x="24" y="200">鼻から息が出る</text>';
     }else if(letter==='l'){
-      scene='<g transform="translate(5 0) scale(.92)">'+oral+'</g>'
-        +'<text fill="#a48b7b" font-size="9" font-weight="800" x="24" y="86">横：舌先の位置</text>'
-        +'<path fill="none" stroke="#e7dcd4" stroke-width="1" d="M14 95 H130"/>'
+      scene='<g class="td76-side-view" transform="translate(16 0) scale(.78)">'+sideFace('')+'</g>'
+        +'<text fill="#a48b7b" font-size="9" font-weight="800" x="24" y="126">横：舌先の位置</text>'
+        +'<path fill="none" stroke="#e7dcd4" stroke-width="1" d="M14 136 H130"/>'
+        +'<g class="td76-front-above-view" transform="translate(0 35) rotate(180 72 137)">'
         +'<path fill="#fcf0e9" stroke="#ddc4b6" stroke-width="1.5" d="M26 161 L26 137 Q26 111 72 111 Q118 111 118 137 L118 161 L108 161 L108 136 Q108 121 72 121 Q36 121 36 136 L36 161Z"/>'
         +'<g stroke="#ddc4b6" stroke-width="1"><path d="M53 113 L56 122 M72 111 V121 M91 113 L88 122 M35 120 L41 128 M109 120 L103 128 M27 135 L37 138 M117 135 L107 138"/></g>'
         +'<path fill="url(#'+id+'tongue)" stroke="#cf7069" stroke-width="1.1" d="M49 164 Q46 143 54 135 Q61 131 63 123 Q64 117 72 117 Q80 117 81 123 Q83 131 90 135 Q98 143 95 164Z"/>'
@@ -61,18 +64,20 @@
         +'<g class="td75-lateral-route" fill="none" stroke="#61a68b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" opacity="0">'+heldPulse
         +'<path d="M42 162 Q36 143 43 130 Q48 123 53 116 L54 104 M102 162 Q108 143 101 130 Q96 123 91 116 L90 104"/>'
         +'<path d="M50 110 L54 104 L58 110 M86 110 L90 104 L94 110"/></g>'
-        +'<text fill="#a48b7b" font-size="9" font-weight="800" x="24" y="173">上：息は舌の両側へ</text>';
+
+        +'</g>'
+        +'<path fill="none" stroke="#e9b5a9" stroke-width="2.5" stroke-linecap="round" d="M27 198 Q35 209 72 209 Q109 209 117 198"/>'
+        +'<text fill="#a48b7b" font-size="9" font-weight="800" x="32" y="223">正面・少し上から</text>';
     }else{
       var strong=letter==='t';
-      scene='<g transform="translate(0 32)">'+oral
-        +'<g class="td73-oral-air" fill="none" stroke="#65a98f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0">'
+      var air='<g class="td73-oral-air" fill="none" stroke="#65a98f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0">'
         +pulse(strong?'0;0;.72;.72;0;0':'0;0;.40;0;0','0;.47;.53;'+(strong?'.65;.73;1':'.60;1'))
-        +'<path d="M92 46 Q55 44 18 52"/><path d="M24 47 L18 52 L25 54"/>'+(strong?'<path d="M88 52 Q58 54 20 58"/>':'')+'</g></g>'
-        +'<text fill="#aa9589" font-size="9" font-weight="700" x="32" y="140">横から見た図</text>';
+        +'<path d="M92 46 Q55 44 18 52"/><path d="M24 47 L18 52 L25 54"/>'+(strong?'<path d="M88 52 Q58 54 20 58"/>':'')+'</g>';
+      scene=sideFace(air)+'<text fill="#aa9589" font-size="9" font-weight="700" x="32" y="200">横から見た図</text>';
     }
-    return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:155px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="155" viewBox="0 0 144 180" focusable="false" data-letter="'+letter+'"><defs><linearGradient id="'+id+'tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6aca1"/><stop offset="1" stop-color="#df7b75"/></linearGradient></defs>'+scene+'</svg></span>';
+    return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'"><defs><linearGradient id="'+id+'tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6aca1"/><stop offset="1" stop-color="#df7b75"/></linearGradient></defs>'+scene+'</svg></span>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};var b=document.createElement('button');b.type='button';b.className='dtnl-raw-btn';b.textContent='舌・息だけ';b.onclick=function(){playRaw(selected)};act.append(a,b);el('dtnlArticulation').dataset.build='10.108.75';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};var b=document.createElement('button');b.type='button';b.className='dtnl-raw-btn';b.textContent='舌・息だけ';b.onclick=function(){playRaw(selected)};act.append(a,b);el('dtnlArticulation').dataset.build='10.108.76';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){
