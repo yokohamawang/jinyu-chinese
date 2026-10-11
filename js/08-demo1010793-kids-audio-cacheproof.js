@@ -1,14 +1,14 @@
-/* 10.108.101: approved vowel mouths, audio-linked pose, optional static guide; ear exercise hidden. */
+/* 10.108.102: one vowel mouth view, automatic reference return; ear exercise hidden. */
 /* DEMO 10.108.06 — restore ü to the verified same-speaker Yanyu source.
    Ear replay follows the last tone heard above, imitation is free-choice 1–4 tones,
    playback buttons have tactile feedback, and all six vowel groups use one speaker. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.108.101";
+  window.KOEPANDA_PINYIN_BUILD="10.108.102";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var introToneBusy=false, introTonePending=null, introToneLastEnd=0, introToneGuardMs=180;
   var STORE='koepandaVowelProgress54', MASTERY_STORE='koepandaVowelMastery69';
-  var aFlow=null, introToneEpoch=0, audioCleanup=null;
+  var aFlow=null, introToneEpoch=0, audioCleanup=null, mouthRestTimer=null;
   function el(id){return document.getElementById(id)}
   var VOWEL_MOUTH_GUIDES={
     a:{x:18,y:145,title:'口を大きく開く',tip:'力を入れすぎず、口を縦に開こう。'},
@@ -22,20 +22,27 @@
   function renderMouth(letter){
     var g=VOWEL_MOUTH_GUIDES[letter],box=el('kidsVowelMouth');if(!g||!box)return;
     box.dataset.letter=letter;box.dataset.state='reference';box.hidden=false;
-    ['kidsVowelMouthPose','kidsVowelMouthRest','kidsVowelMouthStatic'].forEach(function(id){var svg=el(id);if(svg){svg.setAttribute('viewBox',g.x+' '+g.y+' 412 378');svg.setAttribute('aria-label',letter+' の口の形')}});
+    ['kidsVowelMouthPose','kidsVowelMouthRest'].forEach(function(id){var svg=el(id);if(svg){svg.setAttribute('viewBox',g.x+' '+g.y+' 412 378');svg.setAttribute('aria-label',letter+' の口の形')}});
     el('kidsVowelMouthTitle').textContent=g.title;el('kidsVowelMouthTip').textContent=g.tip;
-    el('kidsVowelMouthStaticTip').textContent=g.tip;
-    el('kidsVowelMouthGuide').open=false;
     el('kidsVowelMouthCompare').hidden=letter!=='u'&&letter!=='ü';
     setMouthState('reference');
   }
   function setMouthState(state,letter){
+    if(mouthRestTimer!==null){clearTimeout(mouthRestTimer);mouthRestTimer=null}
     var box=el('kidsVowelMouth');if(!box||box.hidden)return;
     if(letter&&(!aFlow||aFlow.letter!==letter||aFlow.quizStarted))return;
     box.dataset.state=state;
     var status=el('kidsVowelMouthStatus');
     if(status)status.textContent=state==='playing'?'声を出すあいだ、この形をキープ':state==='waiting'?'音声を読み込んでいます…':state==='rest'?'力をぬいて、ひと休み':state==='error'?'もう一度、音を押してみよう':'音を押して、口の形も見てみよう';
     document.querySelectorAll('#kidsVowelToneGrid button, #kidsAImitateChoices button').forEach(function(b){b.classList.remove('is-sounding')});
+  }
+  function relaxMouth(letter,requestId){
+    setMouthState('rest',letter);var session=aFlow;
+    if(!session||session.letter!==letter||session.quizStarted)return;
+    mouthRestTimer=setTimeout(function(){
+      mouthRestTimer=null;var box=el('kidsVowelMouth');
+      if(requestId===audioRequestId&&aFlow===session&&!session.quizStarted&&box&&!box.hidden&&box.dataset.state==='rest')setMouthState('reference',letter);
+    },420);
   }
   function cancelIntroTones(){introToneEpoch++;introTonePending=null;introToneBusy=false;}
   function loadProgress(){
@@ -52,7 +59,7 @@
   }
   function enterKids(ev){if(typeof window.koepandaEnterKidsCourse==='function')return window.koepandaEnterKidsCourse(ev);document.body.classList.remove('app-home-mode','app-function-mode','app-area-listen','app-area-chat','app-area-repeat','app-area-settings');document.body.classList.add('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','false');try{history.replaceState(null,'',location.pathname+location.search+'#kidsCourse')}catch(e){}requestAnimationFrame(function(){window.scrollTo({top:0,left:0,behavior:'auto'})})}
   function leaveKids(){cancelIntroTones();stopAudio();clearImitateRecording();document.body.classList.remove('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','true');if(typeof window.returnToAppHome==='function')window.returnToAppHome();else{document.body.classList.add('app-home-mode');window.scrollTo(0,0)}}
-  function stopAudio(){audioRequestId++;if(audioCleanup){audioCleanup();audioCleanup=null}setMouthState('rest');var oldAudio=localAudio;localAudio=null;try{if(oldAudio){oldAudio.pause();oldAudio.currentTime=0}}catch(e){}try{if(typeof pinyinSource!=='undefined'&&pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
+  function stopAudio(){audioRequestId++;if(audioCleanup){audioCleanup();audioCleanup=null}setMouthState('reference');var oldAudio=localAudio;localAudio=null;try{if(oldAudio){oldAudio.pause();oldAudio.currentTime=0}}catch(e){}try{if(typeof pinyinSource!=='undefined'&&pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
 
   /* Verified 10.107.68 pronunciation source. 10.107.92 keeps the same MP3s but reuses one preloaded Audio element per syllable/tone on iPhone Safari. */
   var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
@@ -79,7 +86,7 @@
       function isCurrent(){return requestId===audioRequestId&&localAudio===a}
       function finish(value){if(settled)return;settled=true;a.removeEventListener('canplay',start);resolve(value)}
       function cleanup(){['canplay','playing','waiting','ended','pause','error'].forEach(function(name){a.removeEventListener(name,handlers[name])});finish(null)}
-      function released(){if(!isCurrent())return;setMouthState('rest',letter);cleanup();if(localAudio===a)localAudio=null;if(audioCleanup===cleanup)audioCleanup=null}
+      function released(){if(!isCurrent())return;relaxMouth(letter,requestId);cleanup();if(localAudio===a)localAudio=null;if(audioCleanup===cleanup)audioCleanup=null}
       function fail(){if(!isCurrent()){finish(null);return}setMouthState('error',letter);cleanup();localAudio=null;audioCleanup=null;try{a.pause();a.currentTime=0}catch(e){}showAudioMissing(letter,tone)}
       function playing(){if(!isCurrent())return;setMouthState('playing',letter);if(aFlow&&aFlow.letter===letter&&!aFlow.quizStarted){[el('kidsVowelToneGrid'),el('kidsAImitateChoices')].forEach(function(box){if(box&&box.children[tone-1])box.children[tone-1].classList.add('is-sounding')})}}
       function waiting(){if(isCurrent())setMouthState('waiting',letter)}
@@ -148,7 +155,7 @@
       +'<div class="kids-vowel-drill-head"><button type="button" class="kids-vowel-drill-back" id="kidsVowelDrillBack">← 戻る　母音一覧</button><div class="kids-vowel-drill-title"><b id="kidsVowelDrillTitle">a の四声</b><small id="kidsVowelDrillSubtitle">きく → まねる → たしかめる</small></div></div>'
       +'<div class="kids-vowel-drill-hero"><img id="kidsVowelDrillImage" alt=""><div><div class="kids-vowel-drill-letter" id="kidsVowelDrillLetter">a</div><div class="kids-vowel-drill-tip" id="kidsVowelDrillTip"></div></div></div>'
       +'<div class="kids-a-progress" id="kidsAProgress" hidden><span data-step="listen">1 きく</span><span data-step="imitate">2 まねる</span><span data-step="quiz">3 チェック</span></div>'
-      +'<section class="kids-vowel-mouth" id="kidsVowelMouth" data-state="reference"><div class="kids-vowel-mouth-heading"><span>口のかたち</span><small>四声が変わっても、口の形は同じ</small></div><div class="kids-vowel-mouth-main"><div class="kids-vowel-mouth-art">'+mouthFrame('kidsVowelMouthPose',false)+mouthFrame('kidsVowelMouthRest',true)+'</div><div class="kids-vowel-mouth-copy"><strong id="kidsVowelMouthTitle"></strong><p id="kidsVowelMouthTip"></p></div></div><div class="kids-vowel-mouth-status" id="kidsVowelMouthStatus" role="status" aria-live="polite"></div><details class="kids-vowel-mouth-guide" id="kidsVowelMouthGuide"><summary>口の形をゆっくり見る<span aria-hidden="true">⌄</span></summary><div class="kids-vowel-mouth-guide-body">'+mouthFrame('kidsVowelMouthStatic',false)+'<p id="kidsVowelMouthStaticTip"></p><p id="kidsVowelMouthCompare" hidden><strong>u と ü のちがい</strong><br>u は丸く、少し前へ。ü は少し平たい丸。<br>舌は u が奥、ü が前。息を強く吹く必要はないよ。</p></div></details></section>'
+      +'<section class="kids-vowel-mouth" id="kidsVowelMouth" data-state="reference"><div class="kids-vowel-mouth-heading"><span>口のかたち</span><small>四声が変わっても、口の形は同じ</small></div><div class="kids-vowel-mouth-main"><div class="kids-vowel-mouth-art">'+mouthFrame('kidsVowelMouthPose',false)+mouthFrame('kidsVowelMouthRest',true)+'</div><div class="kids-vowel-mouth-copy"><strong id="kidsVowelMouthTitle"></strong><p id="kidsVowelMouthTip"></p><p class="kids-vowel-mouth-compare" id="kidsVowelMouthCompare" hidden>u は舌が奥、ü は舌が前。<br>どちらも、息を強く吹く必要はないよ。</p></div></div><div class="kids-vowel-mouth-status" id="kidsVowelMouthStatus" role="status" aria-live="polite"></div></section>'
       +'<div class="kids-vowel-tone-title">🔊 4つの声調を聞いてみよう</div><div class="kids-vowel-tone-grid" id="kidsVowelToneGrid"></div>'
       +'<section class="kids-a-stage" id="kidsAEarStage" hidden><div class="kids-a-stage-head"><span>👂</span><div><b>耳でえらんでみよう</b><small>音を1回聞いて、どの声調か選ぼう</small></div></div><button type="button" class="kids-a-listen-button" id="kidsAEarListen">▶ もう一度聞く</button><div class="kids-a-choice-row" id="kidsAEarChoices"></div><div class="kids-a-feedback" id="kidsAEarFeedback"></div></section>'
       +'<section class="kids-a-stage kids-a-imitate-stage" id="kidsAImitateStage" hidden><div class="kids-a-stage-head"><span>🗣️</span><div><b>小音といっしょにまねよう</b><small>好きな声調をえらんで、何度でも自由に練習できます</small></div></div><div class="kids-a-imitate-prompt">練習したい声調をタップ</div><div class="kids-a-choice-row kids-a-imitate-choices" id="kidsAImitateChoices"></div><div class="practice-tap-hint">タップするとお手本が聞けます</div><div class="practice-console vowel-practice-console"><div class="practice-console-top"><span>自由練習</span><small>選んだ声調を録音して、聞きくらべよう</small></div><div class="kids-a-record-row"><button type="button" class="kids-a-record-button" id="kidsAImitateRecord">● 録音する</button><button type="button" class="kids-a-playback-button" id="kidsAImitatePlayback" disabled>▶ 自分の声を聞く</button></div><div class="kids-a-feedback" id="kidsAImitateFeedback"></div></div><div class="practice-next-label"><span>練習は自由 · 自信があればそのまま挑戦</span></div><button type="button" class="kids-a-confirm-button kids-a-to-quiz" id="kidsAToQuiz">⭐ ミニチェックへ →</button></section>'
