@@ -1,19 +1,19 @@
-/* DEMO 10.108.86 — soft illustration materials; articulation geometry and timing retained from 85. */
+/* DEMO 10.108.98 — textbook-grounded DTNL wording; existing articulation and audio retained. */
 (function(){
   // Keep the lesson styled even when an older HTML page is reused.
   var lessonScript=document.currentScript;
-  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.86',
+  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.98',
     lessonScript&&lessonScript.src?lessonScript.src:new URL('js/',document.baseURI).href).href;
   function ensureLessonStyles(){
     var existing=document.getElementById('demo1010820-dtnl-first-lesson');
     if(existing&&existing.tagName==='LINK'&&existing.href===stylesheetUrl)return;
     var link=document.createElement('link');link.rel='stylesheet';
-    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.86';
+    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.98';
     if(existing)existing.replaceWith(link);else document.head.appendChild(link);
   }
   ensureLessonStyles();
   var letters=['d','t','n','l'];
-  var guide={"d":{"hanzi":"得","pinyin":"dé","ipa":"[t]","cue":"弱い息","tip":"舌の前をゆるやかに上げ、上の歯のすぐ後ろにつけて、すぐ離す。","title":"舌の前を上げて、離す","sub":"上あごの手前に触れる → 弱い息"},"t":{"hanzi":"特","pinyin":"tè","ipa":"[tʰ]","cue":"強い息","tip":"舌の前を d と同じ場所につけてから離し、強く息を出す。","title":"同じ場所から、強い息","sub":"上の歯のすぐ後ろに触れる → 強い息"},"n":{"hanzi":"讷","pinyin":"nè","ipa":"[n]","cue":"鼻に響く","tip":"舌の前を上の歯のすぐ後ろにつけたまま、鼻に響かせる。","title":"舌はつけたまま","sub":"口の通り道をふさぎ、息は鼻から出る"},"l":{"hanzi":"勒","pinyin":"lè","ipa":"[l]","cue":"舌の両側へ","tip":"舌の前を上の歯のすぐ後ろにつけ、舌の両脇から音を通す。","title":"舌はつけたまま","sub":"舌の両側を息が通り、口から出る"}};
+  var guide={"d":{"hanzi":"得","pinyin":"dé","ipa":"[t]","cue":"弱い息","tip":"舌先で息をいったん止め、ぱっと離します。強い息は出しません。","title":"舌先をつけて、ぱっと離す","sub":"息をいったん止めてから、短く出す"},"t":{"hanzi":"特","pinyin":"tè","ipa":"[tʰ]","cue":"強い息","tip":"d と同じ位置から舌先を離し、強い息を出します。","title":"舌先を離して、強い息","sub":"d と同じ場所につけ、離すときに送気する"},"n":{"hanzi":"讷","pinyin":"nè","ipa":"[n]","cue":"鼻に響く","tip":"舌先をつけたまま、鼻に声をひびかせます。","title":"舌先をつけたまま、鼻へ","sub":"口の通り道をふさぎ、鼻から息を通す"},"l":{"hanzi":"勒","pinyin":"lè","ipa":"[l]","cue":"舌の両側へ","tip":"舌先をつけたまま、舌の両側から息を通して声を出します。","title":"舌先をつけたまま、両側へ","sub":"舌の両側に通り道を残して、声を出す"}};
   var selected='d',quizOrder=['d','t','n','l'],quizIndex=0,quizScore=0,quizAnswered=false,recorder=null,stream=null,chunks=[],recordingUrl='',playback=null;
   function el(id){return document.getElementById(id)}
   function speakFallback(item){
@@ -40,7 +40,7 @@
   // Posterior contours at x >= 74 are identical in every animation frame.
   // Small fixed mouth opening; all paths share command counts for smooth SMIL.
   function diagram(letter){
-    // 10.108.86: lips follow the open facial contour; tongue geometry is preserved from 84.
+    // 10.108.98: lips follow the open facial contour; tongue geometry is preserved from 84.
     var hold=letter==='n'||letter==='l',id='dtnl75-'+letter+'-';
     var rest='M126 49 C111 49 91 49 78 48 C64 47 52 47 46 44 C42 42 43 38.5 49 38 C55 37.5 61 40 66 41 C69 41.5 70 41.8 74 42 C88 43.5 107 43.8 126 43.8 Z';
     var touch='M126 49 C111 49 91 49 78 48 C64 47 52 43 46 39 C42 36 42 34 48 34 C54 34 61 32.5 66 36.5 C69 39 70 41 74 42 C88 43.5 107 43.8 126 43.8 Z';
@@ -113,7 +113,7 @@
     }
     return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'" style="--dtnl-cavity:url(#'+id+'cavity);--dtnl-palate:url(#'+id+'palate);--dtnl-tooth:url(#'+id+'tooth);--dtnl-lip:url(#'+id+'lip)"><defs><linearGradient id="'+id+'tongue" gradientUnits="userSpaceOnUse" x1="0" y1="32" x2="0" y2="50"><stop offset="0" stop-color="#f9b7aa"/><stop offset=".45" stop-color="#ec968a"/><stop offset="1" stop-color="#d57571"/></linearGradient><linearGradient id="'+id+'frontTongue" gradientUnits="userSpaceOnUse" x1="0" y1="116" x2="0" y2="164"><stop offset="0" stop-color="#f9b7aa"/><stop offset=".45" stop-color="#ec968a"/><stop offset="1" stop-color="#d57571"/></linearGradient>'+materials+'</defs>'+scene+'</svg></span>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.86';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.98';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><b>'+it.title+'</b><small>'+it.sub+'</small><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){
