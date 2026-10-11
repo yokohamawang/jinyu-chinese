@@ -89,3 +89,10 @@
 #kidsInitialsDTNLLesson .dtnl-comparison-content{padding:12px}
 #kidsInitialsDTNLLesson .dtnl-comparison-content>.dtnl-panel{margin:0!important;padding:16px;box-shadow:none!important;border-radius:19px!important}
 @media(max-width:360px){#kidsInitialsDTNLLesson .dtnl-comparison-summary{padding:14px;gap:10px}#kidsInitialsDTNLLesson .dtnl-comparison-summary strong{font-size:16px}#kidsInitialsDTNLLesson .dtnl-comparison-content{padding:8px}#kidsInitialsDTNLLesson .dtnl-comparison-content>.dtnl-panel{padding:12px}}
+
+/* 10.108.103 — same restrained material family; geometry, layout and SMIL untouched. */
+#kidsInitialsDTNLLesson .dtnl-articulation{background:linear-gradient(145deg,#fffefa,#fffdf8 65%,#f7faf5);border-color:rgba(81,126,103,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 4px 12px rgba(65,99,79,.035)}
+#kidsInitialsDTNLLesson .dtnl73-diagram{background:radial-gradient(ellipse at 30% 16%,#fffaf2 0%,#fcf0e5 60%,#f6e4d6 100%);box-shadow:inset 0 0 0 1px rgba(179,123,95,.10),inset 0 1px 0 rgba(255,255,255,.8),0 3px 9px rgba(118,87,63,.045)}
+#kidsInitialsDTNLLesson .td73-tongue{stroke:#bc7770}
+#kidsInitialsDTNLLesson .td73-tongue-highlight{opacity:.54}
+#kidsInitialsDTNLLesson .dtnl-art-copy em{background:linear-gradient(180deg,#f0f8f2,#e2f0e7);box-shadow:inset 0 0 0 1px rgba(81,141,105,.075),inset 0 1px 0 rgba(255,255,255,.72)}
