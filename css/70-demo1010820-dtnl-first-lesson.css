@@ -59,3 +59,14 @@
 #kidsInitialsDTNLLesson .dtnl-art-copy b{color:#2d6252}
 #kidsInitialsDTNLLesson .dtnl-art-copy small{color:#6a8176}
 #kidsInitialsDTNLLesson .dtnl-art-copy em{background:linear-gradient(180deg,#eef8f1,#e2f0e7);color:#37765f;box-shadow:inset 0 0 0 1px rgba(81,141,105,.07)}
+
+/* 10.108.98: readable textbook guidance inside the existing teaching cards. */
+#kidsInitialsDTNLLesson .dtnl-focus-copy>div{min-width:0}
+#kidsInitialsDTNLLesson .dtnl-focus-copy small{font-size:13px;line-height:1.5;min-height:4.5em;color:#526f63}
+#kidsInitialsDTNLLesson .dtnl-art-copy{min-width:0}
+#kidsInitialsDTNLLesson .dtnl-art-copy b{font-size:14px;line-height:1.45}
+#kidsInitialsDTNLLesson .dtnl-art-copy small{font-size:13px;line-height:1.5;color:#60796d}
+#kidsInitialsDTNLLesson .dtnl-compare-panel .dtnl-panel-head{margin-bottom:10px}
+#kidsInitialsDTNLLesson .dtnl-compare-panel .dtnl-panel-head small{font-size:13px;line-height:1.55;color:#526f63}
+#kidsInitialsDTNLLesson .dtnl-compare-grid span,#kidsInitialsDTNLLesson .dtnl-compare-grid small{font-size:13px;line-height:1.5;color:#526f63}
+@media(min-width:361px){#kidsInitialsDTNLLesson .dtnl-focus-copy small{min-height:3em}}
