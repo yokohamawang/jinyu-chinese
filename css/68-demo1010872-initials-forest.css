@@ -299,3 +299,13 @@
 #initialStaticExplainer figure{box-sizing:border-box;min-width:0;width:100%}
 #initialStaticExplainer img{box-sizing:border-box;min-width:0}
 @media(max-width:390px){#kidsInitialsLesson #initialsToneRibbon{grid-template-columns:minmax(0,1fr)}}
+
+/* 10.108.97: raise supporting illustrations by tightening mobile spacing. */
+@media(max-width:600px){
+ #kidsInitialsLesson .initials-letter-card{min-height:120px;padding-top:10px;padding-bottom:8px}
+ #kidsInitialsLesson #initialsToneRibbon{margin-top:10px;padding-top:12px;padding-bottom:12px;row-gap:9px}
+ #kidsInitialsLesson #initialsFocusVisual{min-height:88px}
+ #kidsInitialsLesson #initialStaticExplainer{margin-top:2px;padding-top:12px}
+ #kidsInitialsLesson #initialStaticExplainer h3{line-height:1.4}
+ #kidsInitialsLesson #initialStaticExplainer .initial-static-intro{margin-top:4px;margin-bottom:6px}
+}
