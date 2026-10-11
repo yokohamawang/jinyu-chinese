@@ -1,15 +1,43 @@
-/* 10.108.100: optional practice, explicit quiz entry, handwriting temporarily hidden. */
+/* 10.108.101: approved vowel mouths, audio-linked pose, optional static guide; ear exercise hidden. */
 /* DEMO 10.108.06 — restore ü to the verified same-speaker Yanyu source.
    Ear replay follows the last tone heard above, imitation is free-choice 1–4 tones,
    playback buttons have tactile feedback, and all six vowel groups use one speaker. */
 (function(){
-  window.KOEPANDA_PINYIN_BUILD="10.108.100";
+  window.KOEPANDA_PINYIN_BUILD="10.108.101";
   var data=window.KOEPANDA_KIDS_FIRST_LESSON;if(!data)return;
   var vowelIndex=0, localAudio=null, audioRequestId=0, audioPool={}, heard={}, completed={}, mastery={}, activeLetters=null, activeGroupTitle='';
   var introToneBusy=false, introTonePending=null, introToneLastEnd=0, introToneGuardMs=180;
   var STORE='koepandaVowelProgress54', MASTERY_STORE='koepandaVowelMastery69';
-  var aFlow=null;
+  var aFlow=null, introToneEpoch=0, audioCleanup=null;
   function el(id){return document.getElementById(id)}
+  var VOWEL_MOUTH_GUIDES={
+    a:{x:18,y:145,title:'口を大きく開く',tip:'力を入れすぎず、口を縦に開こう。'},
+    o:{x:451,y:145,title:'くちびるを丸く',tip:'口を丸くして、少し開こう。'},
+    e:{x:881,y:145,title:'丸めず、軽く開く',tip:'くちびるを丸めず、舌は奥へ。'},
+    i:{x:18,y:632,title:'横に軽く広げる',tip:'口を横に軽く広げて、舌を前の高い位置へ。'},
+    u:{x:451,y:632,title:'丸く、小さく、少し前へ',tip:'くちびるを寄せて、少し前へ。舌は奥の高い位置へ。'},
+    'ü':{x:881,y:632,title:'少し平たい丸・舌は前',tip:'u より前に出しすぎず、やわらかく丸めよう。舌は i の位置へ。'}
+  };
+  function mouthFrame(id,rest){return '<svg id="'+id+'" viewBox="18 145 412 378" role="img"'+(rest?' aria-hidden="true"':'')+' aria-label="" focusable="false"><image href="./assets/articulation/vowel-'+(rest?'rest':'mouth')+'-101.png" width="1312" height="1199" /></svg>'}
+  function renderMouth(letter){
+    var g=VOWEL_MOUTH_GUIDES[letter],box=el('kidsVowelMouth');if(!g||!box)return;
+    box.dataset.letter=letter;box.dataset.state='reference';box.hidden=false;
+    ['kidsVowelMouthPose','kidsVowelMouthRest','kidsVowelMouthStatic'].forEach(function(id){var svg=el(id);if(svg){svg.setAttribute('viewBox',g.x+' '+g.y+' 412 378');svg.setAttribute('aria-label',letter+' の口の形')}});
+    el('kidsVowelMouthTitle').textContent=g.title;el('kidsVowelMouthTip').textContent=g.tip;
+    el('kidsVowelMouthStaticTip').textContent=g.tip;
+    el('kidsVowelMouthGuide').open=false;
+    el('kidsVowelMouthCompare').hidden=letter!=='u'&&letter!=='ü';
+    setMouthState('reference');
+  }
+  function setMouthState(state,letter){
+    var box=el('kidsVowelMouth');if(!box||box.hidden)return;
+    if(letter&&(!aFlow||aFlow.letter!==letter||aFlow.quizStarted))return;
+    box.dataset.state=state;
+    var status=el('kidsVowelMouthStatus');
+    if(status)status.textContent=state==='playing'?'声を出すあいだ、この形をキープ':state==='waiting'?'音声を読み込んでいます…':state==='rest'?'力をぬいて、ひと休み':state==='error'?'もう一度、音を押してみよう':'音を押して、口の形も見てみよう';
+    document.querySelectorAll('#kidsVowelToneGrid button, #kidsAImitateChoices button').forEach(function(b){b.classList.remove('is-sounding')});
+  }
+  function cancelIntroTones(){introToneEpoch++;introTonePending=null;introToneBusy=false;}
   function loadProgress(){
     try{completed=JSON.parse(localStorage.getItem(STORE)||'{}')||{}}catch(e){completed={}}
     try{mastery=JSON.parse(localStorage.getItem(MASTERY_STORE)||'{}')||{}}catch(e){mastery={}}
@@ -23,8 +51,8 @@
     try{window.dispatchEvent(new CustomEvent('koepandaVowelProgressChanged',{detail:{completed:completed,mastery:mastery}}))}catch(e){}
   }
   function enterKids(ev){if(typeof window.koepandaEnterKidsCourse==='function')return window.koepandaEnterKidsCourse(ev);document.body.classList.remove('app-home-mode','app-function-mode','app-area-listen','app-area-chat','app-area-repeat','app-area-settings');document.body.classList.add('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','false');try{history.replaceState(null,'',location.pathname+location.search+'#kidsCourse')}catch(e){}requestAnimationFrame(function(){window.scrollTo({top:0,left:0,behavior:'auto'})})}
-  function leaveKids(){document.body.classList.remove('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','true');if(typeof window.returnToAppHome==='function')window.returnToAppHome();else{document.body.classList.add('app-home-mode');window.scrollTo(0,0)}}
-  function stopAudio(){audioRequestId++;var oldAudio=localAudio;localAudio=null;try{if(oldAudio){oldAudio.pause();oldAudio.currentTime=0}}catch(e){}try{if(typeof pinyinSource!=='undefined'&&pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
+  function leaveKids(){cancelIntroTones();stopAudio();clearImitateRecording();document.body.classList.remove('app-kids-mode');var c=el('kidsCourse');if(c)c.setAttribute('aria-hidden','true');if(typeof window.returnToAppHome==='function')window.returnToAppHome();else{document.body.classList.add('app-home-mode');window.scrollTo(0,0)}}
+  function stopAudio(){audioRequestId++;if(audioCleanup){audioCleanup();audioCleanup=null}setMouthState('rest');var oldAudio=localAudio;localAudio=null;try{if(oldAudio){oldAudio.pause();oldAudio.currentTime=0}}catch(e){}try{if(typeof pinyinSource!=='undefined'&&pinyinSource){pinyinSource.stop();pinyinSource.disconnect();pinyinSource=null}}catch(e){}try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
 
   /* Verified 10.107.68 pronunciation source. 10.107.92 keeps the same MP3s but reuses one preloaded Audio element per syllable/tone on iPhone Safari. */
   var PINYIN_AUDIO_BASE='https://raw.githubusercontent.com/byhow/yanyu/main/pinyin-syllables/';
@@ -45,15 +73,20 @@
   function warmPinyin(letter){for(var t=1;t<=4;t++)getPinyinAudio(letter,t)}
   function showAudioMissing(letter,tone){var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';console.error(msg,letter,tone);var hint=el('kidsToneHint');if(hint)hint.textContent='⚠ '+msg}
   function playLocalPinyin(letter,tone){
-    stopAudio();var requestId=audioRequestId,p=getPinyinAudio(letter,tone),a=p.audio,isO=p.info.isO;localAudio=a;
+    stopAudio();var requestId=audioRequestId,p=getPinyinAudio(letter,tone),a=p.audio;localAudio=a;
+    setMouthState('waiting',letter);
     return new Promise(function(resolve){var settled=false,started=false;
       function isCurrent(){return requestId===audioRequestId&&localAudio===a}
-      function cleanup(){try{a.removeEventListener('canplay',start);a.removeEventListener('error',fail)}catch(e){}}
-      function finish(value){if(settled)return;settled=true;cleanup();resolve(value)}
-      function fail(){if(settled)return;if(!isCurrent()){finish(null);return}try{a.pause();a.currentTime=0}catch(e){}if(localAudio===a)localAudio=null;showAudioMissing(letter,tone);finish(null)}
-      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.pause();a.currentTime=0;var profile=p.info.profile||{rate:1,start:0};a.playbackRate=profile.rate||1;try{a.preservesPitch=true;a.mozPreservesPitch=true;a.webkitPreservesPitch=true}catch(_e){}a.volume=1;if(profile.start&&a.duration>0.12)a.currentTime=Math.min(profile.start,a.duration*0.06)}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else{try{a.pause();a.currentTime=0}catch(e){}finish(null)}}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
-      a.addEventListener('ended',function(){if(localAudio===a)localAudio=null},{once:true});a.addEventListener('error',fail,{once:true});
-      if(a.readyState>=2)start();else{a.addEventListener('canplay',start,{once:true});try{a.load()}catch(e){start()}}
+      function finish(value){if(settled)return;settled=true;a.removeEventListener('canplay',start);resolve(value)}
+      function cleanup(){['canplay','playing','waiting','ended','pause','error'].forEach(function(name){a.removeEventListener(name,handlers[name])});finish(null)}
+      function released(){if(!isCurrent())return;setMouthState('rest',letter);cleanup();if(localAudio===a)localAudio=null;if(audioCleanup===cleanup)audioCleanup=null}
+      function fail(){if(!isCurrent()){finish(null);return}setMouthState('error',letter);cleanup();localAudio=null;audioCleanup=null;try{a.pause();a.currentTime=0}catch(e){}showAudioMissing(letter,tone)}
+      function playing(){if(!isCurrent())return;setMouthState('playing',letter);if(aFlow&&aFlow.letter===letter&&!aFlow.quizStarted){[el('kidsVowelToneGrid'),el('kidsAImitateChoices')].forEach(function(box){if(box&&box.children[tone-1])box.children[tone-1].classList.add('is-sounding')})}}
+      function waiting(){if(isCurrent())setMouthState('waiting',letter)}
+      function start(){if(started||!isCurrent()){if(!isCurrent())finish(null);return}started=true;try{a.currentTime=0;var profile=p.info.profile||{rate:1,start:0};a.playbackRate=profile.rate||1;try{a.preservesPitch=true;a.mozPreservesPitch=true;a.webkitPreservesPitch=true}catch(_e){}a.volume=1;if(profile.start&&a.duration>0.12)a.currentTime=Math.min(profile.start,a.duration*0.06)}catch(e){}try{var pr=a.play();if(pr&&typeof pr.then==='function')pr.then(function(){if(isCurrent())finish(a);else finish(null)}).catch(fail);else finish(isCurrent()?a:null)}catch(e){fail()}}
+      var handlers={canplay:start,playing:playing,waiting:waiting,ended:released,pause:released,error:fail};
+      Object.keys(handlers).forEach(function(name){a.addEventListener(name,handlers[name])});audioCleanup=cleanup;
+      if(a.readyState>=2)start();else try{a.load()}catch(e){fail()}
     })
   }
   function playToneExample(tone){return playLocalPinyin('a',tone)}
@@ -63,20 +96,21 @@
     if(introToneBusy)return;
     function launch(){
       if(!introTonePending){introToneBusy=false;return}
-      var job=introTonePending;introTonePending=null;introToneBusy=true;
+      var job=introTonePending,epoch=introToneEpoch;introTonePending=null;introToneBusy=true;
       var wait=Math.max(0,introToneGuardMs-(Date.now()-introToneLastEnd));
       setTimeout(function(){
+        if(epoch!==introToneEpoch)return;
         playVowelExample(job.v,job.tone).then(function(a){
-          if(!a){introToneBusy=false;launch();return}
+          if(epoch!==introToneEpoch)return;if(!a){introToneBusy=false;launch();return}
           var done=false;
           function finish(){
-            if(done)return;done=true;introToneLastEnd=Date.now();introToneBusy=false;
-            setTimeout(launch,introToneGuardMs);
+            if(done||epoch!==introToneEpoch)return;done=true;introToneLastEnd=Date.now();introToneBusy=false;
+            setTimeout(function(){if(epoch===introToneEpoch)launch()},introToneGuardMs);
           }
           if(a.ended||a.paused){finish();return}
           a.addEventListener('ended',finish,{once:true});
           a.addEventListener('pause',function(){if(a.currentTime>0&&!a.ended)finish()},{once:true});
-        }).catch(function(){introToneBusy=false;launch()});
+        }).catch(function(){if(epoch===introToneEpoch){introToneBusy=false;launch()}});
       },wait);
     }
     launch();
@@ -114,7 +148,8 @@
       +'<div class="kids-vowel-drill-head"><button type="button" class="kids-vowel-drill-back" id="kidsVowelDrillBack">← 戻る　母音一覧</button><div class="kids-vowel-drill-title"><b id="kidsVowelDrillTitle">a の四声</b><small id="kidsVowelDrillSubtitle">きく → まねる → たしかめる</small></div></div>'
       +'<div class="kids-vowel-drill-hero"><img id="kidsVowelDrillImage" alt=""><div><div class="kids-vowel-drill-letter" id="kidsVowelDrillLetter">a</div><div class="kids-vowel-drill-tip" id="kidsVowelDrillTip"></div></div></div>'
       +'<div class="kids-a-progress" id="kidsAProgress" hidden><span data-step="listen">1 きく</span><span data-step="imitate">2 まねる</span><span data-step="quiz">3 チェック</span></div>'
-      +'<div class="kids-vowel-tone-title">🔊 4つの声調を順番に聞いてみよう</div><div class="kids-vowel-tone-grid" id="kidsVowelToneGrid"></div>'
+      +'<section class="kids-vowel-mouth" id="kidsVowelMouth" data-state="reference"><div class="kids-vowel-mouth-heading"><span>口のかたち</span><small>四声が変わっても、口の形は同じ</small></div><div class="kids-vowel-mouth-main"><div class="kids-vowel-mouth-art">'+mouthFrame('kidsVowelMouthPose',false)+mouthFrame('kidsVowelMouthRest',true)+'</div><div class="kids-vowel-mouth-copy"><strong id="kidsVowelMouthTitle"></strong><p id="kidsVowelMouthTip"></p></div></div><div class="kids-vowel-mouth-status" id="kidsVowelMouthStatus" role="status" aria-live="polite"></div><details class="kids-vowel-mouth-guide" id="kidsVowelMouthGuide"><summary>口の形をゆっくり見る<span aria-hidden="true">⌄</span></summary><div class="kids-vowel-mouth-guide-body">'+mouthFrame('kidsVowelMouthStatic',false)+'<p id="kidsVowelMouthStaticTip"></p><p id="kidsVowelMouthCompare" hidden><strong>u と ü のちがい</strong><br>u は丸く、少し前へ。ü は少し平たい丸。<br>舌は u が奥、ü が前。息を強く吹く必要はないよ。</p></div></details></section>'
+      +'<div class="kids-vowel-tone-title">🔊 4つの声調を聞いてみよう</div><div class="kids-vowel-tone-grid" id="kidsVowelToneGrid"></div>'
       +'<section class="kids-a-stage" id="kidsAEarStage" hidden><div class="kids-a-stage-head"><span>👂</span><div><b>耳でえらんでみよう</b><small>音を1回聞いて、どの声調か選ぼう</small></div></div><button type="button" class="kids-a-listen-button" id="kidsAEarListen">▶ もう一度聞く</button><div class="kids-a-choice-row" id="kidsAEarChoices"></div><div class="kids-a-feedback" id="kidsAEarFeedback"></div></section>'
       +'<section class="kids-a-stage kids-a-imitate-stage" id="kidsAImitateStage" hidden><div class="kids-a-stage-head"><span>🗣️</span><div><b>小音といっしょにまねよう</b><small>好きな声調をえらんで、何度でも自由に練習できます</small></div></div><div class="kids-a-imitate-prompt">練習したい声調をタップ</div><div class="kids-a-choice-row kids-a-imitate-choices" id="kidsAImitateChoices"></div><div class="practice-tap-hint">タップするとお手本が聞けます</div><div class="practice-console vowel-practice-console"><div class="practice-console-top"><span>自由練習</span><small>選んだ声調を録音して、聞きくらべよう</small></div><div class="kids-a-record-row"><button type="button" class="kids-a-record-button" id="kidsAImitateRecord">● 録音する</button><button type="button" class="kids-a-playback-button" id="kidsAImitatePlayback" disabled>▶ 自分の声を聞く</button></div><div class="kids-a-feedback" id="kidsAImitateFeedback"></div></div><div class="practice-next-label"><span>練習は自由 · 自信があればそのまま挑戦</span></div><button type="button" class="kids-a-confirm-button kids-a-to-quiz" id="kidsAToQuiz">⭐ ミニチェックへ →</button></section>'
       +'<section class="kids-a-stage" id="kidsAQuizStage" hidden><div class="kids-a-stage-head"><span>⭐</span><div><b>声調のミニチェック</b><small>音を聞いて、4つの声調から選ぼう</small></div></div><div class="kids-a-quiz-count" id="kidsAQuizCount">1 / 4</div><button type="button" class="kids-a-listen-button" id="kidsAQuizListen">▶ 音を聞く</button><div class="kids-a-choice-row" id="kidsAQuizChoices"></div><div class="kids-a-feedback" id="kidsAQuizFeedback"></div><button type="button" class="kids-a-next-question" id="kidsAQuizNext" hidden>次の問題へ →</button></section>'
@@ -153,7 +188,7 @@
     var fb=el('kidsAImitateFeedback'),recBtn=el('kidsAImitateRecord');
     if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){if(fb){fb.textContent='このブラウザでは録音が使えません。';fb.className='kids-a-feedback'};return}
     try{
-      stopAudio();
+      cancelIntroTones();stopAudio();
       if(imitateAudioUrl){try{URL.revokeObjectURL(imitateAudioUrl)}catch(e){} imitateAudioUrl=''}
       imitateChunks=[];imitateStream=await navigator.mediaDevices.getUserMedia({audio:true});
       var mt=mimeForRecording(),opts=mt?{mimeType:mt}:undefined;imitateRecorder=new MediaRecorder(imitateStream,opts);
@@ -192,19 +227,19 @@
     var states={listen:listenDone,ear:aFlow.earDone,imitate:aFlow.imitateDone,quiz:aFlow.passed};
     p.querySelectorAll('span').forEach(function(s){s.classList.toggle('is-done',!!states[s.dataset.step])});
     var ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage');
-    if(ear)ear.hidden=!listenDone||aFlow.quizStarted;if(imit)imit.hidden=aFlow.quizStarted;if(quiz)quiz.hidden=!aFlow.quizStarted||aFlow.quizDone;
-    if(listenDone&&ear){/* Ear check is independent from the visible tone cards: keep one hidden random target and do not reveal it. */ear.dataset.autoPlayed='manual';var earBtn=el('kidsAEarListen');if(earBtn&&!aFlow.earPlayed)earBtn.textContent='▶ 問題の音を聞く';setEarChoicesEnabled(!!aFlow.earPlayed);}
+    if(ear)ear.hidden=true;var mouth=el('kidsVowelMouth');if(mouth)mouth.hidden=aFlow.quizStarted;if(imit)imit.hidden=aFlow.quizStarted;if(quiz)quiz.hidden=!aFlow.quizStarted||aFlow.quizDone;
+    /* The legacy ear exercise stays hidden; the mini-check is the explicit assessment entry. */
   }
   function buildToneChoices(containerId,handler){var box=el(containerId);if(!box)return;box.replaceChildren();toneMarks(aFlow&&aFlow.letter?aFlow.letter:'a').forEach(function(mark,k){var b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice';b.innerHTML='<strong>'+mark+'</strong><small>'+(k+1)+'声</small>';b.addEventListener('click',function(){handler(k+1,b)});box.appendChild(b)})}
 
   function renderImitateChoices(){
     var box=el('kidsAImitateChoices');if(!box||!aFlow)return;box.replaceChildren();
-    toneMarks(aFlow.letter).forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice'+(tone===aFlow.imitateTone?' is-selected':'');b.innerHTML='<strong>'+mark+'</strong><small>'+tone+'声</small>';b.addEventListener('click',function(){if(!aFlow)return;if(aFlow.imitateTone!==tone){aFlow.imitateTone=tone;aFlow.imitateDone=false;clearImitateRecording();markAProgress()}box.querySelectorAll('.kids-a-tone-choice').forEach(function(x){x.classList.remove('is-selected')});b.classList.add('is-selected');pulseButton(b);playLocalPinyin(aFlow.letter,tone)});box.appendChild(b)});
+    toneMarks(aFlow.letter).forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-a-tone-choice'+(tone===aFlow.imitateTone?' is-selected':'');b.innerHTML='<strong>'+mark+'</strong><small>'+tone+'声</small>';b.addEventListener('click',function(){if(!aFlow)return;if(aFlow.imitateTone!==tone){aFlow.imitateTone=tone;aFlow.imitateDone=false;clearImitateRecording();markAProgress()}box.querySelectorAll('.kids-a-tone-choice').forEach(function(x){x.classList.remove('is-selected')});b.classList.add('is-selected');pulseButton(b);cancelIntroTones();playLocalPinyin(aFlow.letter,tone)});box.appendChild(b)});
   }
   function renderAEarChoices(){buildToneChoices('kidsAEarChoices',function(tone,b){if(!aFlow||aFlow.earDone||!aFlow.earPlayed)return;var fb=el('kidsAEarFeedback');if(tone===aFlow.earTone){aFlow.earDone=true;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！' ;fb.className='kids-a-feedback is-good'};markAProgress()}else{b.classList.add('is-try');if(fb){fb.textContent='もう一度聞いてみよう。まちがえても大丈夫 👂';fb.className='kids-a-feedback'};setTimeout(function(){b.classList.remove('is-try');playLocalPinyin(aFlow.letter,aFlow.earTone)},180)}});setEarChoicesEnabled(!!(aFlow&&aFlow.earPlayed))}
   function startAQuiz(){
     if(!aFlow)return;
-    stopAudio();introTonePending=null;introToneBusy=false;clearImitateRecording();
+    cancelIntroTones();stopAudio();clearImitateRecording();
     aFlow.quizStarted=true;aFlow.quizDone=false;aFlow.passed=false;
     aFlow.quizOrder=randomQuizOrder();aFlow.quizIndex=0;aFlow.quizCorrect=0;
     el('kidsAResult').hidden=true;el('kidsAReward').hidden=true;
@@ -216,7 +251,7 @@
     if(!aFlow)return;var count=el('kidsAQuizCount'),fb=el('kidsAQuizFeedback'),next=el('kidsAQuizNext');if(count)count.textContent=(aFlow.quizIndex+1)+' / 4';if(fb){fb.textContent='';fb.className='kids-a-feedback'}if(next)next.hidden=true;aFlow.quizAnswered=false;
     buildToneChoices('kidsAQuizChoices',function(tone,b){if(!aFlow||aFlow.quizAnswered||aFlow.quizDone)return;aFlow.quizAnswered=true;var correct=aFlow.quizOrder[aFlow.quizIndex],box=el('kidsAQuizChoices');if(tone===correct){aFlow.quizCorrect++;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！';fb.className='kids-a-feedback is-good'}}else{b.classList.add('is-wrong');if(box){Array.prototype.forEach.call(box.children,function(x,idx){if(idx+1===correct)x.classList.add('is-good')})}if(fb){fb.textContent='答えは '+toneMarks(aFlow.letter)[correct-1]+'。音をもう一度聞いてみよう';fb.className='kids-a-feedback'}}if(aFlow.quizIndex===3){if(next)next.hidden=true;var quizSession=aFlow;setTimeout(function(){if(aFlow===quizSession&&aFlow.quizStarted&&aFlow.quizAnswered&&!aFlow.quizDone)finishAQuiz()},650)}else if(next){next.hidden=false;next.textContent='次の問題へ'}})
   }
-  function nextQuizQuestion(){if(!aFlow||!aFlow.quizAnswered)return;if(aFlow.quizIndex<3){aFlow.quizIndex++;renderQuizQuestion();setTimeout(playCurrentQuizTone,180);return}finishAQuiz()}
+  function nextQuizQuestion(){if(!aFlow||!aFlow.quizAnswered)return;if(aFlow.quizIndex<3){aFlow.quizIndex++;renderQuizQuestion();var session=aFlow;setTimeout(function(){if(aFlow===session)playCurrentQuizTone()},180);return}finishAQuiz()}
   function showVowelCelebration(letter,score){
     var old=document.getElementById('kidsVowelCelebration');if(old)old.remove();
     var perfect=score===4,wrap=document.createElement('div');wrap.id='kidsVowelCelebration';wrap.className='kids-vowel-celebration'+(perfect?' is-perfect':'');
@@ -229,7 +264,7 @@
     var quiz=el('kidsAQuizStage'),result=el('kidsAResult'),reward=el('kidsAReward');
     if(result)result.hidden=true;if(reward)reward.hidden=true;if(quiz)quiz.hidden=false;
     aFlow.quizOrder=randomQuizOrder();aFlow.quizIndex=0;aFlow.quizCorrect=0;aFlow.quizAnswered=false;aFlow.quizDone=false;aFlow.quizStarted=true;aFlow.passed=false;
-    renderQuizQuestion();setTimeout(playCurrentQuizTone,180);
+    renderQuizQuestion();var session=aFlow;setTimeout(function(){if(aFlow===session)playCurrentQuizTone()},180);
     requestAnimationFrame(function(){if(quiz)quiz.scrollIntoView({block:'start',behavior:'smooth'})});
   }
   function finishAQuiz(){
@@ -259,23 +294,23 @@
   }
 
   function renderDrill(i){
-    vowelIndex=i;heard={};introToneBusy=false;introTonePending=null;introToneLastEnd=0;var v=data.vowels[i],d=ensureDrill();if(!d)return;warmPinyin(v.letter);
+    cancelIntroTones();stopAudio();vowelIndex=i;heard={};introToneLastEnd=0;var v=data.vowels[i],d=ensureDrill();if(!d)return;warmPinyin(v.letter);
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent='聞く → 自由練習 → ミニチェック';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.tip+'。'+v.note;
     var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),result=el('kidsAResult'),reward=el('kidsAReward');if(p)p.hidden=false;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(result)result.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=toneLabels(),g=el('kidsVowelToneGrid');g.replaceChildren();
     marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="tone-mark">'+mark+'</span><b>'+tone+'声</b><small>'+labels[k]+'</small>';b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){heard[tone]=true;b.classList.add('is-heard');playIntroToneSerialized(v,tone);markAProgress()});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
-    var complete=el('kidsVowelComplete');resetAFlow(v.letter);renderAEarChoices();renderImitateChoices();if(complete){complete.disabled=true;complete.textContent='ミニチェックでクリア'};markAProgress()
+    var complete=el('kidsVowelComplete');resetAFlow(v.letter);renderMouth(v.letter);renderAEarChoices();renderImitateChoices();if(complete){complete.disabled=true;complete.textContent='ミニチェックでクリア'};markAProgress()
     el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;requestAnimationFrame(function(){d.scrollIntoView({block:'start',behavior:'auto'})})
   }
-  function closeDrill(){introTonePending=null;introToneBusy=false;stopAudio();clearImitateRecording();aFlow=null;var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels();requestAnimationFrame(function(){grid.scrollIntoView({block:'start',behavior:'auto'})})}
+  function closeDrill(){cancelIntroTones();stopAudio();clearImitateRecording();aFlow=null;var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels();requestAnimationFrame(function(){grid.scrollIntoView({block:'start',behavior:'auto'})})}
   function completeCurrent(){var v=data.vowels[vowelIndex];if(!(aFlow&&aFlow.passed&&aFlow.letter===v.letter))return;var list=visibleVowels(),pos=list.findIndex(function(x){return x.letter===v.letter}),nextVowel=(pos>=0&&pos+1<list.length)?list[pos+1]:null;closeDrill();if(nextVowel){var nextIndex=data.vowels.indexOf(nextVowel);if(nextIndex>=0)setTimeout(function(){renderDrill(nextIndex)},40)}}
   function setVowelCardTitle(){var card=el('kidsVowelGrid');card=card?card.closest('.kids-lesson-card'):null;if(!card)return;var strong=card.querySelector('.kids-lesson-title strong'),small=card.querySelector('.kids-lesson-title small');if(strong)strong.textContent=activeGroupTitle?(activeGroupTitle+' の音あそび'):'6つの母音の音あそび';if(small)small.textContent='音・口の形・イメージをいっしょに覚えよう'}
   function renderVowels(){
     var box=el('kidsVowelGrid');if(!box)return;box.replaceChildren();visibleVowels().forEach(function(v){var i=data.vowels.indexOf(v),unlocked=isUnlocked(v.letter),b=document.createElement('button');b.type='button';b.className='kids-vowel-button';b.dataset.letter=v.letter;b.disabled=!unlocked;b.innerHTML='<img src="'+v.image+'" alt=""><span class="letter">'+v.letter+'</span><small class="hint">'+(unlocked?(v.buttonHint||''):'🔒 ひとつ前をクリア')+'</small>';b.setAttribute('aria-label',unlocked?(v.letter+' の四声練習を開く'):(v.letter+' はまだロックされています'));if(unlocked)b.addEventListener('click',function(){renderDrill(i)});box.appendChild(b)});ensureDrill();setVowelCardTitle();updateProgress()
   }
-  window.koepandaOpenVowelGroup=function(letters,title){activeLetters=Array.isArray(letters)?letters.slice():null;activeGroupTitle=title||'';var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var card=grid?grid.closest('.kids-lesson-card'):null;var t=card?card.querySelector('.kids-lesson-title'):null;if(t)t.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels()};
+  window.koepandaOpenVowelGroup=function(letters,title){cancelIntroTones();stopAudio();clearImitateRecording();aFlow=null;activeLetters=Array.isArray(letters)?letters.slice():null;activeGroupTitle=title||'';var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var card=grid?grid.closest('.kids-lesson-card'):null;var t=card?card.querySelector('.kids-lesson-title'):null;if(t)t.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels()};
   window.koepandaResetVowelGroup=function(){activeLetters=null;activeGroupTitle='';setVowelCardTitle()};
   function init(){loadProgress();renderTones();renderVowels();var entry=el('kidsEntryButton'),back=el('kidsBackHome');if(entry)entry.addEventListener('click',enterKids);if(back)back.addEventListener('click',leaveKids)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
