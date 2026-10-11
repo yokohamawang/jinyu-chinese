@@ -2,13 +2,13 @@
 (function(){
   // Keep the lesson styled even when an older HTML page is reused.
   var lessonScript=document.currentScript;
-  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.99',
+  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.100',
     lessonScript&&lessonScript.src?lessonScript.src:new URL('js/',document.baseURI).href).href;
   function ensureLessonStyles(){
     var existing=document.getElementById('demo1010820-dtnl-first-lesson');
     if(existing&&existing.tagName==='LINK'&&existing.href===stylesheetUrl)return;
     var link=document.createElement('link');link.rel='stylesheet';
-    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.99';
+    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.100';
     if(existing)existing.replaceWith(link);else document.head.appendChild(link);
   }
   ensureLessonStyles();
@@ -135,7 +135,7 @@
     }
     return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'" style="--dtnl-cavity:url(#'+id+'cavity);--dtnl-palate:url(#'+id+'palate);--dtnl-tooth:url(#'+id+'tooth);--dtnl-lip:url(#'+id+'lip)"><defs><linearGradient id="'+id+'tongue" gradientUnits="userSpaceOnUse" x1="0" y1="32" x2="0" y2="50"><stop offset="0" stop-color="#f9b7aa"/><stop offset=".45" stop-color="#ec968a"/><stop offset="1" stop-color="#d57571"/></linearGradient><linearGradient id="'+id+'frontTongue" gradientUnits="userSpaceOnUse" x1="0" y1="116" x2="0" y2="164"><stop offset="0" stop-color="#f9b7aa"/><stop offset=".45" stop-color="#ec968a"/><stop offset="1" stop-color="#d57571"/></linearGradient>'+materials+'</defs>'+scene+'</svg></span>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.99';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}renderStaticGuide(selected)}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.100';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}renderStaticGuide(selected)}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){
