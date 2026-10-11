@@ -42,15 +42,7 @@
 #kidsVowelDrill .kids-vowel-mouth-copy p{margin:8px 0 0;font-size:15px;line-height:1.75;color:#5c776b;overflow-wrap:anywhere}
 #kidsVowelDrill .kids-vowel-mouth-status{margin-top:14px;padding:9px 0 0;border-top:1px solid #e1ece4;text-align:center;font-size:13px;line-height:1.6;min-height:31px;color:#5c776b}
 #kidsVowelDrill .kids-vowel-mouth[data-state="playing"] .kids-vowel-mouth-status{color:#187257;font-weight:700}
-#kidsVowelDrill .kids-vowel-mouth-guide{margin-top:10px;border-top:1px solid #e1ece4}
-#kidsVowelDrill .kids-vowel-mouth-guide summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;font-weight:700;cursor:pointer;list-style:none}
-#kidsVowelDrill .kids-vowel-mouth-guide summary::-webkit-details-marker{display:none}
-#kidsVowelDrill .kids-vowel-mouth-guide summary>span{font-size:21px;transition:transform .15s}
-#kidsVowelDrill .kids-vowel-mouth-guide[open] summary>span{transform:rotate(180deg)}
-#kidsVowelDrill .kids-vowel-mouth-guide-body{padding:5px 0 12px;text-align:center}
-#kidsVowelDrill .kids-vowel-mouth-guide-body svg{display:block;width:180px;max-width:100%;height:auto;margin:0 auto;border-radius:18px;overflow:hidden}
-#kidsVowelDrill .kids-vowel-mouth-guide-body p{margin:12px 0 0;font-size:14px;line-height:1.8;color:#577466}
-#kidsVowelDrill .kids-vowel-mouth-guide-body #kidsVowelMouthCompare{padding:12px;background:#edf5ee;border-radius:14px;text-align:left}
 #kidsVowelDrill .kids-vowel-tone-btn.is-sounding,#kidsVowelDrill .kids-a-imitate-choices .kids-a-tone-choice.is-sounding{border-color:#32876b!important;box-shadow:0 0 0 2px #a9d7c1!important}
-#kidsVowelDrill .kids-vowel-mouth-guide summary:focus-visible{outline:3px solid #86bba4;outline-offset:2px;border-radius:8px}
-@media(prefers-reduced-motion:reduce){#kidsVowelDrill #kidsVowelMouthRest{display:none!important}#kidsVowelDrill .kids-vowel-mouth-guide summary>span{transition:none}}
+
+#kidsVowelDrill .kids-vowel-mouth-copy .kids-vowel-mouth-compare{margin-top:12px;padding-top:10px;border-top:1px solid #dcebe2;font-size:14px;line-height:1.75;color:#577466}
+@media(prefers-reduced-motion:reduce){#kidsVowelDrill #kidsVowelMouthRest{display:none!important}}
