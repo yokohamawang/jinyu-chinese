@@ -289,3 +289,13 @@
 
 #kidsInitialsLesson .initials-comparison-content .initials-panel-head b>span{display:inline-block}
 #kidsInitialsLesson .initials-comparison-content .air-card small,#kidsInitialsLesson .initials-comparison-content .mouth-sound-card b,#kidsInitialsLesson .initials-comparison-content .mouth-sound-card small{text-wrap:balance}
+
+/* 10.108.96: contain intrinsic raster sizes and text within the phone card. */
+#kidsInitialsLesson #initialsToneRibbon{grid-template-columns:minmax(0,1.05fr) minmax(0,1.6fr);min-width:0}
+#kidsInitialsLesson #initialsToneRibbon>div{min-width:0}
+#kidsInitialsLesson #initialStaticExplainer{box-sizing:border-box;min-width:0;width:100%;max-width:100%;overflow:hidden}
+#initialStaticExplainer .initial-static-head>div{min-width:0}
+#initialStaticExplainer .initial-static-views{width:100%;min-width:0}
+#initialStaticExplainer figure{box-sizing:border-box;min-width:0;width:100%}
+#initialStaticExplainer img{box-sizing:border-box;min-width:0}
+@media(max-width:390px){#kidsInitialsLesson #initialsToneRibbon{grid-template-columns:minmax(0,1fr)}}
