@@ -2,13 +2,13 @@
 (function(){
   // Keep the lesson styled even when an older HTML page is reused.
   var lessonScript=document.currentScript;
-  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.100',
+  var stylesheetUrl=new URL('../css/70-demo1010820-dtnl-first-lesson.css?v=10.108.103',
     lessonScript&&lessonScript.src?lessonScript.src:new URL('js/',document.baseURI).href).href;
   function ensureLessonStyles(){
     var existing=document.getElementById('demo1010820-dtnl-first-lesson');
     if(existing&&existing.tagName==='LINK'&&existing.href===stylesheetUrl)return;
     var link=document.createElement('link');link.rel='stylesheet';
-    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.100';
+    link.id='demo1010820-dtnl-first-lesson';link.href=stylesheetUrl;link.dataset.build='10.108.103';
     if(existing)existing.replaceWith(link);else document.head.appendChild(link);
   }
   ensureLessonStyles();
@@ -72,10 +72,10 @@
     function pulse(v,t){return '<animate attributeName="opacity" values="'+v+'" keyTimes="'+t+'" dur="3.6s" repeatCount="indefinite"/>'}
     var heldPulse=pulse('0;0;.85;.85;0;0','0;.25;.33;.72;.83;1');
     // Materials only: each gradient stays inside the existing anatomical path.
-    var materials='<radialGradient id="'+id+'skin" cx="28%" cy="23%" r="88%"><stop offset="0" stop-color="#fff8ef"/><stop offset=".56" stop-color="#f8e8da"/><stop offset="1" stop-color="#eed5c5"/></radialGradient>'
-      +'<linearGradient id="'+id+'cavity" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e0d4"/><stop offset=".55" stop-color="#fff6ee"/><stop offset="1" stop-color="#f4e1d7"/></linearGradient>'
+    var materials='<radialGradient id="'+id+'skin" cx="28%" cy="23%" r="88%"><stop offset="0" stop-color="#fff5e9"/><stop offset=".56" stop-color="#f5dfce"/><stop offset="1" stop-color="#e8c8b3"/></radialGradient>'
+      +'<linearGradient id="'+id+'cavity" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2ddcf"/><stop offset=".55" stop-color="#fff4e9"/><stop offset="1" stop-color="#f0d9ce"/></linearGradient>'
       +'<linearGradient id="'+id+'palate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d2aa97"/><stop offset="1" stop-color="#e4c6b6"/></linearGradient>'
-      +'<linearGradient id="'+id+'lip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8b5a5"/><stop offset=".5" stop-color="#e99285"/><stop offset="1" stop-color="#d67b73"/></linearGradient>'
+      +'<linearGradient id="'+id+'lip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6b6a6"/><stop offset=".5" stop-color="#e68d80"/><stop offset="1" stop-color="#d17c72"/></linearGradient>'
       +'<linearGradient id="'+id+'tooth" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f2eee5"/></linearGradient>'
       +'<linearGradient id="'+id+'nasal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#edf3e9"/><stop offset="1" stop-color="#d8e7db"/></linearGradient>';
 
@@ -133,9 +133,9 @@
         +'<path d="M92 37.5 Q55 39 18 40.6"/><path d="M24 38.6 L18 40.6 L24 42.1"/>'+(strong?'<path d="M88 39.4 Q58 41 20 42.2"/>':'')+'</g>';
       scene=sideFace(air)+'<text fill="#aa9589" font-size="9" font-weight="700" x="32" y="200">横から見た図</text>';
     }
-    return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'" style="--dtnl-cavity:url(#'+id+'cavity);--dtnl-palate:url(#'+id+'palate);--dtnl-tooth:url(#'+id+'tooth);--dtnl-lip:url(#'+id+'lip)"><defs><linearGradient id="'+id+'tongue" gradientUnits="userSpaceOnUse" x1="0" y1="32" x2="0" y2="50"><stop offset="0" stop-color="#f9b7aa"/><stop offset=".45" stop-color="#ec968a"/><stop offset="1" stop-color="#d57571"/></linearGradient><linearGradient id="'+id+'frontTongue" gradientUnits="userSpaceOnUse" x1="0" y1="116" x2="0" y2="164"><stop offset="0" stop-color="#f9b7aa"/><stop offset=".45" stop-color="#ec968a"/><stop offset="1" stop-color="#d57571"/></linearGradient>'+materials+'</defs>'+scene+'</svg></span>';
+    return '<span class="dtnl73-diagram is-'+letter+'" aria-hidden="true" style="display:block;width:124px;height:198px;overflow:hidden"><svg class="dtnl73-svg" width="124" height="198" viewBox="0 0 144 230" focusable="false" data-letter="'+letter+'" style="--dtnl-cavity:url(#'+id+'cavity);--dtnl-palate:url(#'+id+'palate);--dtnl-tooth:url(#'+id+'tooth);--dtnl-lip:url(#'+id+'lip)"><defs><linearGradient id="'+id+'tongue" gradientUnits="userSpaceOnUse" x1="0" y1="32" x2="0" y2="50"><stop offset="0" stop-color="#fbc1b1"/><stop offset=".45" stop-color="#ed9c8f"/><stop offset="1" stop-color="#cf7d75"/></linearGradient><linearGradient id="'+id+'frontTongue" gradientUnits="userSpaceOnUse" x1="0" y1="116" x2="0" y2="164"><stop offset="0" stop-color="#fbc1b1"/><stop offset=".45" stop-color="#ed9c8f"/><stop offset="1" stop-color="#cf7d75"/></linearGradient>'+materials+'</defs>'+scene+'</svg></span>';
   }
-  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.100';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}renderStaticGuide(selected)}
+  function renderFocus(){var it=guide[selected];el('dtnlFocusLetter').textContent=selected;el('dtnlFocusGuide').textContent=it.hanzi+' '+it.pinyin+' · '+it.ipa;el('dtnlFocusTip').textContent=it.tip;var act=el('dtnlActions');act.replaceChildren();var a=document.createElement('button');a.type='button';a.className='dtnl-guide-btn';a.textContent='▶ お手本（'+it.hanzi+'）';a.onclick=function(){playGuide(selected)};act.append(a);el('dtnlArticulation').dataset.build='10.108.103';el('dtnlArticulation').innerHTML=diagram(selected)+'<div class="dtnl-art-copy"><em>'+it.cue+'</em></div>';var svg=el('dtnlArticulation').querySelector('svg');if(svg&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}renderStaticGuide(selected)}
   function select(letter,listen){selected=letter;document.querySelectorAll('.dtnl-letter-card,.dtnl-free-choice button').forEach(function(x){x.classList.toggle('is-active',x.dataset.letter===letter)});renderFocus();if(listen)playGuide(letter)}
   function renderLetters(){var grid=el('dtnlLetterGrid'),free=el('dtnlFreeChoice');if(!grid||!free)return;grid.replaceChildren();free.replaceChildren();letters.forEach(function(letter){var it=guide[letter],b=document.createElement('button');b.type='button';b.className='dtnl-letter-card';b.dataset.letter=letter;b.innerHTML='<span class="big">'+letter+'</span><span class="ipa">'+it.ipa+'</span><span class="cue">'+it.cue+'</span>';b.onclick=function(){setStep(2);select(letter,true)};grid.appendChild(b);var f=document.createElement('button');f.type='button';f.dataset.letter=letter;f.textContent=letter;f.onclick=function(){setStep(3);select(letter,true)};free.appendChild(f)});select('d',false)}
   function mimeType(){

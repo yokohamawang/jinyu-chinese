@@ -154,13 +154,13 @@
   }
   // 10.108.79: one scoped front nose; no side-panel renderer.
   function noseSvg(id,nasal){
-    var body='<defs><linearGradient id="IDskin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e7de"/><stop offset=".5" stop-color="#efdbce"/><stop offset="1" stop-color="#d8bca9"/></linearGradient><radialGradient id="IDglow"><stop offset="0" stop-color="#8bc3af" stop-opacity=".28"/><stop offset="1" stop-color="#8bc3af" stop-opacity="0"/></radialGradient></defs>GLOW<g class="kp71-nose-body" opacity=".88"><path d="M26 25 C20 21 13 26 13 34 C13 42 21 44 29 40 M46 25 C52 21 59 26 59 34 C59 42 51 44 43 40" fill="url(#IDskin)" stroke="#ddc3b2" stroke-width=".8"/><path d="M30 6 C32 2 40 2 42 6 C42 13 41 20 44 26 C47 29 49 33 46 38 C42 44 30 44 26 38 C23 33 25 29 28 26 C31 20 30 13 30 6Z" fill="url(#IDskin)"/><path d="M33 9 Q31 21 31 27" fill="none" stroke="#fff4ec" stroke-width="2" stroke-linecap="round" opacity=".34"/><ellipse cx="36" cy="32" rx="7.3" ry="4.6" fill="#f5e5d8" opacity=".34"/><ellipse cx="23" cy="36.5" rx="4.2" ry="2.2" transform="rotate(14 23 36.5)" fill="#b69a86"/><ellipse cx="49" cy="36.5" rx="4.2" ry="2.2" transform="rotate(-14 49 36.5)" fill="#b69a86"/><path d="M30 40 Q36 43 42 40" fill="none" stroke="#cbb09c" stroke-width="1" stroke-linecap="round"/></g>';
+    var body='<defs><linearGradient id="IDskin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0e0"/><stop offset=".5" stop-color="#f3dac6"/><stop offset="1" stop-color="#dcb99f"/></linearGradient><radialGradient id="IDglow"><stop offset="0" stop-color="#8bc3af" stop-opacity=".28"/><stop offset="1" stop-color="#8bc3af" stop-opacity="0"/></radialGradient></defs>GLOW<g class="kp71-nose-body" opacity=".88"><path d="M26 25 C20 21 13 26 13 34 C13 42 21 44 29 40 M46 25 C52 21 59 26 59 34 C59 42 51 44 43 40" fill="url(#IDskin)" stroke="#dfc5b0" stroke-width=".8"/><path d="M30 6 C32 2 40 2 42 6 C42 13 41 20 44 26 C47 29 49 33 46 38 C42 44 30 44 26 38 C23 33 25 29 28 26 C31 20 30 13 30 6Z" fill="url(#IDskin)"/><path d="M33 9 Q31 21 31 27" fill="none" stroke="#fff4ec" stroke-width="2" stroke-linecap="round" opacity=".34"/><ellipse cx="36" cy="32" rx="7.3" ry="4.6" fill="#fff0df" opacity=".34"/><ellipse cx="23" cy="36.5" rx="4.2" ry="2.2" transform="rotate(14 23 36.5)" fill="#af8d75"/><ellipse cx="49" cy="36.5" rx="4.2" ry="2.2" transform="rotate(-14 49 36.5)" fill="#af8d75"/><path d="M30 40 Q36 43 42 40" fill="none" stroke="#cbaa91" stroke-width="1" stroke-linecap="round"/></g>';
     body=body.replace(/ID/g,id).replace('GLOW',nasal?'<ellipse class="kp71-nasal-glow" cx="36" cy="27" rx="35" ry="26" fill="url(#'+id+'glow)"/>':'');
     return '<svg class="kp71-front-nose'+(nasal?' is-nasal':'')+'" viewBox="0 0 72 58" aria-hidden="true">'+body+'</svg>';
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.97',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.103',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -206,7 +206,7 @@
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.79';
+    box.dataset.build='10.108.103';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
