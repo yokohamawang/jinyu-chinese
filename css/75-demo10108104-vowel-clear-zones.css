@@ -1,0 +1,78 @@
+/* 10.108.104 — scoped to the six vowel drill pages. */
+#kidsVowelDrill{background:#fffdf8!important;color:#203e34;box-shadow:none!important;border:1px solid #e0e5dc!important;padding:14px!important;text-shadow:none!important}
+#kidsVowelDrill :is(h2,p,small,b,strong,button){text-shadow:none!important}
+#kidsVowelDrill .kids-vowel-drill-hero{background:#fff!important;box-shadow:none!important;border:1px solid #e1e7df!important}
+#kidsVowelDrill .kids-vowel-drill-letter{font-weight:700;color:#203e34}
+#kidsVowelDrill .kids-vowel-drill-tip{font-size:15px;color:#43594f;font-weight:400;line-height:1.6}
+#kidsVowelDrill .kids-vowel-drill-title b{color:#203e34;font-weight:700}
+#kidsVowelDrill .kids-vowel-drill-title small{display:none}
+#kidsVowelDrill #kidsAProgress{display:none!important}
+#kidsVowelDrill :is(#kidsVowelTeaching,#kidsVowelCheckEntry)[hidden]{display:none!important}
+#kidsVowelDrill .vowel-zone-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px}
+#kidsVowelDrill .vowel-zone-number{flex:0 0 32px;display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#e9eee6;color:#385143;font-size:15px;font-weight:700;line-height:1;letter-spacing:0}
+#kidsVowelDrill .vowel-zone-head>div{min-width:0;flex:1}
+#kidsVowelDrill .vowel-zone-head h2{margin:0;font-size:20px;font-weight:700;line-height:1.5;letter-spacing:0;color:#203e34}
+#kidsVowelDrill .vowel-zone-head p{margin:5px 0 0;font-size:15px;line-height:1.6;font-weight:400;color:#43594f}
+#kidsVowelDrill .vowel-teaching-zone{margin-top:22px}
+#kidsVowelDrill .kids-vowel-mouth{margin:0 0 18px;padding:12px;background:#f5f6f0;border:1px solid #e0e5d8;border-radius:16px;box-shadow:none}
+#kidsVowelDrill .kids-vowel-mouth-heading{gap:4px 8px;margin-bottom:10px}
+#kidsVowelDrill .kids-vowel-mouth-heading>span{font-size:16px;font-weight:700;letter-spacing:0;color:#203e34}
+#kidsVowelDrill .kids-vowel-mouth-heading>small{font-size:14px;color:#43594f;font-weight:400}
+#kidsVowelDrill .kids-vowel-mouth-copy strong{font-weight:700;color:#203e34}
+#kidsVowelDrill .kids-vowel-mouth-copy p,#kidsVowelDrill .kids-vowel-mouth-copy .kids-vowel-mouth-compare{font-size:15px;color:#43594f;font-weight:400;line-height:1.65}
+#kidsVowelDrill .kids-vowel-mouth-status{font-size:14px;color:#43594f;font-weight:400;border-color:#d8e0d4;line-height:1.5}
+#kidsVowelDrill .kids-vowel-tone-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 10px;color:#203e34;font-size:17px;font-weight:700;line-height:1.5}
+#kidsVowelDrill .kids-vowel-tone-title>span{font-size:14px;color:#43594f;font-weight:400}
+#kidsVowelDrill .kids-vowel-tone-grid{gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+#kidsVowelDrill .kids-vowel-tone-btn{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;min-height:144px;padding:10px;border:1px solid #cbd6ca;border-radius:15px;background:#fff;box-shadow:none;color:#203e34;touch-action:manipulation;transition:border-color .12s,background .12s}
+#kidsVowelDrill .vowel-tone-card-top{display:flex;justify-content:space-between;align-items:center;gap:6px}
+#kidsVowelDrill .vowel-tone-card-top b{margin:0;font-size:16px;font-weight:700;color:#203e34;line-height:1.4}
+#kidsVowelDrill .kids-vowel-tone-btn .tone-mark{font-size:30px;font-weight:600;line-height:1.25;color:#274e3e}
+#kidsVowelDrill .vowel-tone-contour{display:block;width:100%;height:56px;overflow:visible}
+#kidsVowelDrill .contour-guide{fill:none;stroke:#e3e9df;stroke-width:1.5}
+#kidsVowelDrill .contour-line{fill:none;stroke:#35775a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#kidsVowelDrill .contour-start{fill:#fff;stroke:#35775a;stroke-width:2}
+#kidsVowelDrill .kids-vowel-tone-btn small{font-size:14px;line-height:1.45;font-weight:400;color:#43594f;margin:4px 0 0;min-height:40px}
+#kidsVowelDrill .kids-vowel-tone-btn.is-heard{background:#fff;border-color:#cbd6ca;box-shadow:none}
+#kidsVowelDrill .kids-vowel-tone-btn.is-heard .vowel-tone-card-top b:after{content:' ✓';color:#35775a;font-size:14px}
+#kidsVowelDrill .kids-vowel-tone-btn.is-sounding{background:#edf6ef!important;border-color:#35775a!important;box-shadow:inset 0 0 0 1px #35775a!important}
+#kidsVowelDrill #kidsAImitateStage{margin-top:26px!important;padding:16px!important;border:1px solid #a9c9b9!important;border-radius:20px!important;background:#edf5ef!important;box-shadow:none!important;overflow:visible}
+#kidsVowelDrill #kidsAImitateStage:before{display:none}
+#kidsVowelDrill #kidsAImitateStage .vowel-zone-number{background:#d6e9dc;color:#20523b}
+#kidsVowelDrill .kids-a-imitate-choices{gap:8px;margin:0}
+#kidsVowelDrill .kids-a-imitate-choices .kids-a-tone-choice{position:relative;min-width:0;min-height:76px!important;padding:9px 3px;border:1px solid #b8c9bd!important;border-radius:12px!important;background:#fff!important;color:#203e34;box-shadow:none!important;touch-action:manipulation;transition:background .12s,border-color .12s}
+#kidsVowelDrill .kids-a-imitate-choices .kids-a-tone-choice strong{font-size:30px!important;font-weight:600;line-height:1.3!important;color:inherit}
+#kidsVowelDrill .kids-a-imitate-choices .kids-a-tone-choice small{font-size:15px!important;line-height:1.4;font-weight:500!important;color:inherit;margin-top:2px}
+#kidsVowelDrill .kids-a-imitate-choices .kids-a-tone-choice.is-selected{background:#285c45!important;color:#fff!important;border-color:#285c45!important;box-shadow:none!important}
+#kidsVowelDrill .kids-a-imitate-choices .kids-a-tone-choice.is-sounding{box-shadow:none!important;border-color:#285c45!important}
+#kidsVowelDrill .vowel-practice-hint{margin:12px 0 0;color:#43594f;font-weight:400;font-size:15px;line-height:1.6}
+#kidsVowelDrill .vowel-practice-console{margin:15px 0 0;padding:14px 0 0;background:transparent;border:0;border-top:1px solid #c6d9cb;border-radius:0;box-shadow:none}
+#kidsVowelDrill .vowel-practice-console:before{display:none}
+#kidsVowelDrill .vowel-practice-target{color:#203e34;font-size:16px;font-weight:600;line-height:1.5}
+#kidsVowelDrill .vowel-practice-console .kids-a-record-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;margin-top:12px!important}
+#kidsVowelDrill .vowel-practice-console .kids-a-record-row button{min-height:62px!important;padding:10px 6px!important;border:1px solid #8eafa0!important;border-radius:13px!important;background:#fff!important;color:#203e34!important;box-shadow:0 3px 0 #d0ded4!important;font-size:16px!important;font-weight:600!important;line-height:1.5!important;touch-action:manipulation}
+#kidsVowelDrill .vowel-practice-console .kids-a-record-row .kids-a-record-button{background:#285c45!important;color:#fff!important;border-color:#285c45!important;box-shadow:0 3px 0 #173e2c!important}
+#kidsVowelDrill .vowel-practice-console .kids-a-playback-button:disabled{color:#53635b!important;background:#e7eee8!important;border-color:#c1cec5!important;opacity:1;box-shadow:none!important}
+#kidsVowelDrill .vowel-practice-console .kids-a-record-row .kids-a-record-button.is-recording{background:#a43f39!important;border-color:#a43f39!important;box-shadow:0 3px 0 #772923!important;animation:none!important;transform:none}
+#kidsVowelDrill .vowel-practice-console .kids-a-playback-button.is-playing{background:#dce9f1!important;border-color:#789aac!important}
+#kidsVowelDrill .vowel-practice-console .kids-a-record-row button:active:not(:disabled),#kidsVowelDrill .vowel-practice-console .kids-a-record-row button.is-pressed{transform:translateY(2px)!important;box-shadow:none!important;filter:none!important}
+#kidsVowelDrill #kidsAImitateFeedback:empty{display:none}
+#kidsVowelDrill #kidsAImitateFeedback{margin:12px 0 0;font-weight:400;color:#203e34;line-height:1.6}
+#kidsVowelDrill .vowel-check-entry{margin-top:24px;padding-top:22px;border-top:1px solid #dddacb}
+#kidsVowelDrill .vowel-check-entry .vowel-zone-number{background:#f4e9c8;color:#755916}
+#kidsVowelDrill .vowel-check-entry .vowel-zone-head{margin-bottom:12px}
+#kidsVowelDrill #kidsAToQuiz{margin:0;background:#fbf0ce!important;color:#5e4915!important;border:1px solid #d4be7b!important;box-shadow:0 3px 0 #e6d7ac!important;font-weight:600!important;border-radius:14px!important}
+#kidsVowelDrill #kidsAToQuiz:active{transform:translateY(2px);box-shadow:none!important}
+#kidsVowelDrill :is(.kids-vowel-tone-btn,.kids-a-tone-choice):focus-visible{outline:3px solid #35775a;outline-offset:3px}
+#kidsVowelDrill :is(.kids-vowel-tone-btn,.kids-a-tone-choice):active{transform:translateY(1px);filter:none}
+#kidsVowelDrill .kids-vowel-special-note{font-size:15px;line-height:1.6;font-weight:400;color:#4c4d38;box-shadow:none}
+#kidsVowelDrill .kids-vowel-back-bottom{min-height:48px;color:#344b3f;font-weight:600;font-size:16px}
+@media(max-width:360px){
+  #kidsVowelDrill{padding:10px!important}
+  #kidsVowelDrill #kidsAImitateStage{padding:12px!important}
+  #kidsVowelDrill .vowel-zone-head{gap:8px}
+  #kidsVowelDrill .vowel-zone-head h2{font-size:19px}
+  #kidsVowelDrill .kids-a-imitate-choices{gap:6px}
+  #kidsVowelDrill .kids-vowel-tone-btn{padding:8px}
+}
+@media(prefers-reduced-motion:reduce){#kidsVowelDrill :is(.kids-vowel-tone-btn,.kids-a-tone-choice){transition:none}}
