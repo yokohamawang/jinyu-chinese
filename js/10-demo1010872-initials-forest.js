@@ -161,7 +161,7 @@
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.108',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.109',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -218,12 +218,12 @@
     if(letter==='m'){
       art='<span class="focus-mouth focus-mouth-m" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i></span>';
     }else if(letter==='f'){
-      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-teeth">'+fDentalArt()+'</i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-teeth">'+fDentalArt()+'</i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }else{
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.108';
+    box.dataset.build='10.108.109';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
