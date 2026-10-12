@@ -1,0 +1,23 @@
+/* 10.108.112: matte surface depth, within the original anatomical paths. */
+#kidsInitialsDTNLLesson .dtnl73-diagram{
+  background:radial-gradient(ellipse at 34% 12%,#fffaf1,transparent 74%),linear-gradient(180deg,#fcf1e3,#f4dfcb);
+  box-shadow:inset 0 0 0 1px rgba(155,113,84,.10),inset 0 1px 0 rgba(255,255,255,.9);
+}
+#kidsInitialsDTNLLesson .td85-upper-profile,
+#kidsInitialsDTNLLesson .td85-lower-profile{stroke:#b58a6c;stroke-width:1}
+#kidsInitialsDTNLLesson .td76-nostril{fill:#987157}
+#kidsInitialsDTNLLesson .td73-tongue{stroke:#b1715b;stroke-width:.7}
+#kidsInitialsDTNLLesson .td73-tongue-highlight{stroke:#ffe9d5;stroke-width:1.5;opacity:.25}
+#kidsInitialsDTNLLesson .td106-gingiva{fill:var(--dtnl-gum,#e8c7af)}
+#kidsInitialsDTNLLesson .td73-upper-teeth,
+#kidsInitialsDTNLLesson .td73-lower-teeth{stroke:#b9a689;stroke-width:.5}
+#kidsInitialsDTNLLesson .td106-dental-root-light{stroke:#fff9ec;stroke-width:.55;opacity:.42}
+#kidsInitialsDTNLLesson .td106-dental-arch{fill:var(--dtnl-arch-bed,#dcb99c);stroke:#c4a287;stroke-width:.55}
+#kidsInitialsDTNLLesson .td106-arch-crowns path{fill:var(--dtnl-arch-tooth,#fffdf3);stroke:#baa98b;stroke-width:.45}
+#kidsInitialsDTNLLesson .td86-nasal-cavity{stroke:#b6c8b3;stroke-width:.65}
+#kidsInitialsDTNLLesson .td73-oral-air,
+#kidsInitialsDTNLLesson .td75-nasal-route,
+#kidsInitialsDTNLLesson .td75-lateral-route{stroke:var(--dtnl-air-paint,#6aa488)}
+#kidsInitialsDTNLLesson .td73-roof-label{fill:#80624b}
+#kidsInitialsDTNLLesson .td84-front-blade-rim{fill:var(--dtnl-front-blade,#de9c84)}
+#kidsInitialsDTNLLesson .td112-tongue-furrow{fill:none;stroke:#a16a54;stroke-width:.7;stroke-linecap:round;opacity:.24}
