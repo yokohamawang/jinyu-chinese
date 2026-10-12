@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="10.108.112 sculpted dtnl illustration">
+<meta name="koepanda-build" content="10.108.113 P5 gkh lesson from stable112">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -68,7 +68,7 @@
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.108.41" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
 <link rel="stylesheet" href="./css/68-demo1010872-initials-forest.css?v=10.108.110" id="demo1010808-initials-forest">
-<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.112">
+<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.113">
 <style id="demo1010880-initial-example-press-feedback">
 /* Retain the unified example button feedback from 10.108.79. */
 
@@ -90,6 +90,7 @@
 <link rel="stylesheet" href="./css/78-demo10108107-consonant-finish.css?v=10.108.107" id="demo10108107-consonant-finish">
 <link rel="stylesheet" href="./css/79-demo10108110-f-contact-motion.css?v=10.108.111" id="demo10108110-f-contact-motion">
 <link rel="stylesheet" href="./css/80-demo10108112-dtnl-texture.css?v=10.108.112" id="demo10108112-dtnl-texture">
+<link rel="stylesheet" href="./css/81-demo10108113-gkh-first-lesson.css?v=10.108.113" id="demo10108113-gkh-first-lesson">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -470,6 +471,52 @@ window.koepandaEnterKidsCourse=function(ev){
     <section class="dtnl-result" id="dtnlResult" hidden aria-live="polite"><div class="dtnl-result-badge" id="dtnlResultBadge">✓</div><div><strong id="dtnlResultTitle">ミニチェック結果</strong><span id="dtnlResultScore">4問中 0問正解</span><small id="dtnlResultMessage"></small></div><button type="button" class="dtnl-result-action" id="dtnlResultAction"></button></section>
   </article>
 
+  <article class="kids-lesson-card gkh-lesson" id="kidsInitialsGKHLesson" hidden>
+    <header class="gkh-hero">
+      <span class="gkh-kicker">LESSON 5 · 舌の奥へ</span>
+      <h2>g・k・h</h2>
+      <p>舌の奥を使って、息の出し方を聞き分けよう。</p>
+      <span class="gkh-music" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"/><ellipse cx="7" cy="18" rx="3" ry="2"/><ellipse cx="16" cy="16" rx="3" ry="2"/></svg></span>
+      <span class="gkh-complete" id="gkhCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="gkh-zone gkh-teaching" aria-labelledby="gkhTeachingTitle">
+      <div class="gkh-zone-head"><span>01</span><div><h3 id="gkhTeachingTitle">音と舌の動きを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="gkh-letter-grid" id="gkhLetterGrid"></div>
+      <div class="gkh-focus">
+        <div class="gkh-focus-copy"><span id="gkhFocusLetter">g</span><div><strong id="gkhFocusGuide">哥 gē · [k]</strong><p id="gkhFocusTip"></p></div></div>
+        <button class="gkh-button gkh-model" id="gkhModel" type="button">▶ g のお手本を聞く</button>
+        <p class="gkh-model-feedback" id="gkhModelFeedback" aria-live="polite"></p>
+        <div class="gkh-articulation" id="gkhArticulation" aria-label="舌の奥と息の動き"></div>
+      </div>
+      <details class="gkh-detail" id="gkhStaticDetails"><summary>舌の位置を静止図で確かめる<span aria-hidden="true"></span></summary><div class="gkh-static-content" id="gkhStaticGuide"></div></details>
+      <details class="gkh-model-note"><summary>お手本の読み方について</summary><p>聞き取りやすい補助音「哥 gē・科 kē・喝 hē」を使います。声母そのものには四声をつけません。</p><p>g は [k]、k は [kʰ]。小さな ʰ は、強い息のしるしです。</p></details>
+    </section>
+    <section class="gkh-zone gkh-practice" aria-labelledby="gkhPracticeTitle">
+      <div class="gkh-zone-head"><span>02</span><div><h3 id="gkhPracticeTitle">好きな音をまねよう</h3><p>聞く・録音する・自分の声を聞く。何度でも自由に練習できます。</p></div></div>
+      <div class="gkh-free-choice" id="gkhFreeChoice"></div>
+      <p class="gkh-practice-target" id="gkhPracticeTarget">練習する音：g</p>
+      <div class="gkh-record-row"><button class="gkh-button gkh-record" id="gkhRecord" type="button">● 録音する</button><button class="gkh-button gkh-playback" id="gkhPlayback" type="button" disabled>▶ 自分の声を聞く</button></div>
+      <p class="gkh-feedback" id="gkhPracticeFeedback" aria-live="polite"></p>
+    </section>
+    <section class="gkh-zone gkh-check" aria-labelledby="gkhCheckTitle">
+      <div class="gkh-zone-head"><span>03</span><div><h3 id="gkhCheckTitle">耳でミニチェック</h3><p>音を聞いて g・k・h を選ぼう。練習を飛ばして挑戦できます。</p></div></div>
+      <button class="gkh-button gkh-to-quiz" id="gkhToQuiz" type="button">ミニチェックへ →</button>
+      <div class="gkh-quiz" id="gkhQuizPanel" hidden>
+        <div class="gkh-quiz-top"><strong>聞こえたのはどの音？</strong><span id="gkhQuizCount">1 / 4</span></div>
+        <button class="gkh-button gkh-listen" id="gkhQuizListen" type="button">▶ 音をもう一度聞く</button>
+        <div class="gkh-quiz-choices" id="gkhQuizChoices"></div>
+        <p class="gkh-feedback" id="gkhQuizFeedback" aria-live="polite"></p>
+        <button class="gkh-button gkh-next" id="gkhQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="gkh-result" id="gkhResult" hidden aria-live="polite">
+        <span class="gkh-result-mark" id="gkhResultMark">✓</span><h4 id="gkhResultTitle">ミニチェック結果</h4><strong id="gkhResultScore"></strong><p id="gkhResultMessage"></p>
+        <div class="gkh-result-actions"><button class="gkh-button" id="gkhRetry" type="button">もう一度チェック</button><button class="gkh-button gkh-return" id="gkhReturn" type="button">レッスン一覧へ</button></div>
+      </div>
+    </section>
+  </article>
+
+
+
   <button type="button" class="kids-finish" id="kidsFinishLesson">できた！ 今日のれんしゅう完了</button>
   <div class="kids-finish-note" id="kidsFinishNote" role="status" aria-live="polite"></div>
 </section>
@@ -526,12 +573,12 @@ SOFTWARE.
 
 <script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.107.72"></script>
 <script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.107.72"></script>
-<script src="./data/pinyin-course.js?v=10.107.99"></script>
+<script src="./data/pinyin-course.js?v=10.108.113"></script>
 <script src="./data/kids-pinyin.js?v=10.107.72"></script>
 <script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.104"></script>
 <script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.107.72"></script>
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.12"></script>
-<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.12"></script>
+<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.113"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
 <script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.36"></script>
 <script id="demo1010808-initials-forest-js" src="./js/10-demo1010872-initials-forest.js?v=10.108.110"></script>
@@ -787,4 +834,5 @@ body.app-home-mode #homeEffect > a.hs-repeat{
 </script>
 
 <script id="demo1010777-tone-road-fullbody-fix">/* full-body mascot is inline SVG; no cloned head image */</script>
+<script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.113"></script>
 </body></html>
