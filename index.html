@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="10.108.114 P5 consistent lesson layout">
+<meta name="koepanda-build" content="10.108.116 P6 jqx first lesson">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -68,7 +68,7 @@
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.108.41" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
 <link rel="stylesheet" href="./css/68-demo1010872-initials-forest.css?v=10.108.110" id="demo1010808-initials-forest">
-<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.114">
+<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.116">
 <style id="demo1010880-initial-example-press-feedback">
 /* Retain the unified example button feedback from 10.108.79. */
 
@@ -90,7 +90,8 @@
 <link rel="stylesheet" href="./css/78-demo10108107-consonant-finish.css?v=10.108.107" id="demo10108107-consonant-finish">
 <link rel="stylesheet" href="./css/79-demo10108110-f-contact-motion.css?v=10.108.111" id="demo10108110-f-contact-motion">
 <link rel="stylesheet" href="./css/80-demo10108112-dtnl-texture.css?v=10.108.112" id="demo10108112-dtnl-texture">
-<link rel="stylesheet" href="./css/81-demo10108113-gkh-first-lesson.css?v=10.108.114" id="demo10108113-gkh-first-lesson">
+<link rel="stylesheet" href="./css/81-demo10108113-gkh-first-lesson.css?v=10.108.115" id="demo10108113-gkh-first-lesson">
+<link rel="stylesheet" href="./css/82-demo10108116-jqx-first-lesson.css?v=10.108.116">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -504,17 +505,66 @@ window.koepandaEnterKidsCourse=function(ev){
       <button class="gkh-button gkh-to-quiz" id="gkhToQuiz" type="button">ミニチェックへ →</button>
       <div class="gkh-quiz" id="gkhQuizPanel" hidden>
         <div class="gkh-quiz-top"><strong>聞こえたのはどの音？</strong><span id="gkhQuizCount">1 / 4</span></div>
-        <button class="gkh-button gkh-listen" id="gkhQuizListen" type="button">▶ 音をもう一度聞く</button>
+        <button class="gkh-button gkh-listen" id="gkhQuizListen" type="button">▶ 音を聞く</button>
         <div class="gkh-quiz-choices" id="gkhQuizChoices"></div>
         <p class="gkh-feedback" id="gkhQuizFeedback" aria-live="polite"></p>
         <button class="gkh-button gkh-next" id="gkhQuizNext" type="button" hidden>次の問題へ →</button>
       </div>
       <div class="gkh-result" id="gkhResult" hidden aria-live="polite">
         <span class="gkh-result-mark" id="gkhResultMark">✓</span><h4 id="gkhResultTitle">ミニチェック結果</h4><strong id="gkhResultScore"></strong><p id="gkhResultMessage"></p>
-        <div class="gkh-result-actions"><button class="gkh-button" id="gkhRetry" type="button">もう一度チェック</button><button class="gkh-button gkh-return" id="gkhReturn" type="button">レッスン一覧へ</button></div>
+        <div class="gkh-result-actions"><button class="gkh-button" id="gkhRetry" type="button">もう一度チェックする</button><button class="gkh-button gkh-return" id="gkhReturn" type="button">レッスン一覧へ戻る</button></div>
       </div>
     </section>
   </article>
+
+<article class="kids-lesson-card jqx-lesson" id="kidsInitialsJQXLesson" hidden>
+    <header class="jqx-hero">
+      <span class="jqx-kicker">LESSON 6 · 舌の前面へ</span>
+      <h2>j・q・x</h2>
+      <p>舌の前面を使って、息の出し方を聞き分けよう。</p>
+      <span class="jqx-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="jqx-complete" id="jqxCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="jqx-zone jqx-teaching" aria-labelledby="jqxTeachingTitle">
+      <div class="jqx-zone-head"><span>01</span><div><h3 id="jqxTeachingTitle">音と舌の動きを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="jqx-letter-grid" id="jqxLetterGrid"></div>
+      <div class="jqx-focus">
+        <div class="jqx-focus-copy"><span id="jqxFocusLetter">j</span><div><strong id="jqxFocusGuide">鸡 jī · [tɕ]</strong><p id="jqxFocusTip"></p></div></div>
+        <button class="jqx-button jqx-model" id="jqxModel" type="button">▶ j のお手本を聞く</button>
+        <p class="jqx-model-feedback" id="jqxModelFeedback" aria-live="polite"></p>
+        <div class="jqx-articulation" id="jqxArticulation" aria-label="舌の前面と息の動き"></div>
+      </div>
+      <section class="jqx-static-section" id="jqxStaticDetails" aria-labelledby="jqxStaticTitle"><div class="jqx-static-head"><span id="jqxStaticLetter" aria-hidden="true">j</span><div><small>静止図で確認</small><h3 id="jqxStaticTitle">舌の位置と息の通り道</h3></div></div><div class="jqx-static-content" id="jqxStaticGuide"></div><p class="jqx-static-note">舌先は下の歯の裏に。舌の前面を上げます。</p></section>
+      <details class="jqx-detail jqx-comparison" id="jqxComparison"><summary>j・q・x のちがい<span aria-hidden="true"></span></summary><div class="jqx-comparison-content"><div><strong>j ↔ q</strong><b>舌の前面をつける場所は同じ</b><p>j は弱い息、q は強い息。手のひらを口の前に置いて比べよう。</p></div><div><strong>j・q ↔ x</strong><b>止めてから細く開く／すき間に通す</b><p>j・q は息を止めたあと、細いすき間を開きます。x は初めからすき間を残し、細い息を続けます。</p></div></div></details>
+      <details class="jqx-model-note"><summary>お手本の読み方について</summary><p>聞き取りやすい補助音「鸡 jī・七 qī・西 xī」を使います。声母そのものには四声をつけません。</p><p>j は [tɕ]、q は [tɕʰ]。小さな ʰ は、強い息のしるしです。</p></details>
+    </section>
+    <section class="jqx-zone jqx-practice" aria-labelledby="jqxPracticeTitle">
+      <div class="jqx-zone-head"><span>02</span><div><h3 id="jqxPracticeTitle">好きな音をまねよう</h3><p>聞く・録音する・自分の声を聞く。何度でも自由に練習できます。</p></div></div>
+      <div class="jqx-free-choice" id="jqxFreeChoice"></div>
+      <p class="jqx-practice-target" id="jqxPracticeTarget">練習する音：j</p>
+      <div class="jqx-record-row"><button class="jqx-button jqx-record" id="jqxRecord" type="button">● 録音する</button><button class="jqx-button jqx-playback" id="jqxPlayback" type="button" disabled>▶ 自分の声を聞く</button></div>
+      <p class="jqx-feedback" id="jqxPracticeFeedback" aria-live="polite"></p>
+    </section>
+    <section class="jqx-zone jqx-check" aria-labelledby="jqxCheckTitle">
+      <div class="jqx-zone-head"><span>03</span><div><h3 id="jqxCheckTitle">耳でミニチェック</h3><p>音を聞いて j・q・x を選ぼう。練習を飛ばして挑戦できます。</p></div></div>
+      <button class="jqx-button jqx-to-quiz" id="jqxToQuiz" type="button">ミニチェックへ →</button>
+      <div class="jqx-quiz" id="jqxQuizPanel" hidden>
+        <div class="jqx-quiz-top"><strong>聞こえたのはどの音？</strong><span id="jqxQuizCount">1 / 4</span></div>
+        <button class="jqx-button jqx-listen" id="jqxQuizListen" type="button">▶ 音を聞く</button>
+        <div class="jqx-quiz-choices" id="jqxQuizChoices"></div>
+        <p class="jqx-feedback" id="jqxQuizFeedback" aria-live="polite"></p>
+        <button class="jqx-button jqx-next" id="jqxQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="jqx-result" id="jqxResult" hidden aria-live="polite">
+        <span class="jqx-result-mark" id="jqxResultMark">✓</span><h4 id="jqxResultTitle">ミニチェック結果</h4><strong id="jqxResultScore"></strong><p id="jqxResultMessage"></p>
+        <div class="jqx-result-actions"><button class="jqx-button" id="jqxRetry" type="button">もう一度チェックする</button><button class="jqx-button jqx-return" id="jqxReturn" type="button">レッスン一覧へ戻る</button></div>
+      </div>
+    </section>
+  </article>
+
+
+
+  
 
 
 
@@ -574,12 +624,12 @@ SOFTWARE.
 
 <script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.107.72"></script>
 <script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.107.72"></script>
-<script src="./data/pinyin-course.js?v=10.108.114"></script>
+<script src="./data/pinyin-course.js?v=10.108.116"></script>
 <script src="./data/kids-pinyin.js?v=10.107.72"></script>
 <script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.104"></script>
 <script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.107.72"></script>
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.12"></script>
-<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.113"></script>
+<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.116"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
 <script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.36"></script>
 <script id="demo1010808-initials-forest-js" src="./js/10-demo1010872-initials-forest.js?v=10.108.110"></script>
@@ -835,5 +885,6 @@ body.app-home-mode #homeEffect > a.hs-repeat{
 </script>
 
 <script id="demo1010777-tone-road-fullbody-fix">/* full-body mascot is inline SVG; no cloned head image */</script>
-<script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.114"></script>
+<script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.115"></script>
+<script src="./js/15-demo10108116-jqx-first-lesson.js?v=10.108.116"></script>
 </body></html>
