@@ -184,3 +184,16 @@
 #kidsFrontNasalLesson .nsv-articulation{min-height:220px}
 
 #kidsFrontNasalLesson .nsv-hero h2>span{display:block}
+
+/* 10.108.125 — five teaching choices sit immediately above articulation. */
+#kidsFrontNasalLesson #nsvLetterGrid{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+#kidsFrontNasalLesson #nsvLetterGrid>button:nth-child(n){grid-column:auto;min-height:54px;padding:10px 2px;border-radius:15px}
+#kidsFrontNasalLesson #nsvLetterGrid strong{font-size:27px;line-height:1.2}
+#kidsFrontNasalLesson #nsvLetterGrid small,#kidsFrontNasalLesson #nsvLetterGrid em{display:none}
+#kidsFrontNasalLesson .nsv-focus{margin-top:12px}
+#kidsFrontNasalLesson .nsv-focus-copy{margin-top:14px}
+#kidsFrontNasalLesson #nsvLetterGrid{scroll-margin-top:12px}
+@media(max-width:360px){#kidsFrontNasalLesson #nsvLetterGrid{gap:4px}#kidsFrontNasalLesson #nsvLetterGrid strong{font-size:25px}}
+
+#kidsFrontNasalLesson .nsv-articulation{padding:8px;gap:6px}
+#kidsFrontNasalLesson .nsv-focus{margin-top:10px}
