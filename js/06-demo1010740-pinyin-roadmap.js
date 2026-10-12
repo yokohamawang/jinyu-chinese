@@ -21,9 +21,12 @@
       window.koepandaIsUnitComplete('P1') && window.koepandaIsUnitComplete('P2');
   }
 
+  function allInitialsComplete(){try{return ['P3','P4','P5','P6','P7','P8'].every(function(id){return localStorage.getItem('koepandaInitial'+id+'Complete')==='1'})}catch(e){return false}}
+
   function effectiveStageStatus(stage){
     if(devUnlockEnabled())return 'next';
     if(stage && stage.id==='P3-P8' && allSingleVowelsComplete())return 'next';
+    if(stage && stage.id==='P9-P13' && allInitialsComplete())return 'next';
     return stage ? stage.status : 'locked';
   }
 
@@ -45,6 +48,7 @@
     if(id==='P6')return document.getElementById('kidsInitialsJQXLesson');
     if(id==='P7')return document.getElementById('kidsInitialsZHRLesson');
     if(id==='P8')return document.getElementById('kidsInitialsZCSLesson');
+    if(id==='P9')return document.getElementById('kidsCompoundAIEIUILesson');
     return null;
   }
 
@@ -159,6 +163,7 @@
     if(unit.id==='P6'){try{if(localStorage.getItem('koepandaInitialP6Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌の前面と息の違いを復習しよう'}}catch(e){}}
     if(unit.id==='P7'){try{if(localStorage.getItem('koepandaInitialP7Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌先と息・声の違いを復習しよう'}}catch(e){}}
     if(unit.id==='P8'){try{if(localStorage.getItem('koepandaInitialP8Complete')==='1'){b.classList.add('is-complete');note='クリア！ 歯の裏と息の違いを復習しよう'}}catch(e){}}
+    if(unit.id==='P9'){try{if(localStorage.getItem('koepandaCompoundP9Complete')==='1'){b.classList.add('is-complete');note='クリア！ ai・ei・ui のつながりを復習しよう'}}catch(e){}}
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
     if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
@@ -269,9 +274,10 @@
 
   window.addEventListener('koepandaInitialProgressChanged',function(){
     if(!root)return;
-    var world=document.querySelector('.pinyin-world[data-stage-id="P3-P8"]');
-    if(detail && !detail.hidden && lastStageId==='P3-P8' && world){
-      var stage=course.stages.find(function(x){return x.id==='P3-P8'});
+    refreshRoadmapLocks();
+    var world=document.querySelector('.pinyin-world[data-stage-id="'+lastStageId+'"]');
+    if(detail && !detail.hidden && (lastStageId==='P3-P8'||lastStageId==='P9-P13') && world){
+      var stage=course.stages.find(function(x){return x.id===lastStageId});
       if(stage)openStage(stage,world,effectiveStageStatus(stage));
     }
   });
