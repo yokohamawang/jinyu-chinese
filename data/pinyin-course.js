@@ -3,7 +3,7 @@
    Tone learning is woven through every pronunciation lesson from the beginning. */
 window.KOEPANDA_PINYIN_COURSE = {
   id: 'pinyin-main-course',
-  version: '10.108.116',
+  version: '10.108.117',
   title: '音からはじめる中国語',
   principles: {
     toneFromFirstLesson: true,
@@ -30,7 +30,7 @@ window.KOEPANDA_PINYIN_COURSE = {
         {id:'P4',title:'d・t・n・l',short:'d t n l'},
         {id:'P5',title:'g・k・h',short:'g k h',reward:'舌の奥マスター'},
         {id:'P6',title:'j・q・x',short:'j q x',reward:'舌の前面マスター'},
-        {id:'P7',title:'zh・ch・sh・r',short:'zh ch sh r'},
+        {id:'P7',title:'zh・ch・sh・r',short:'zh ch sh r',reward:'舌先と声マスター'},
         {id:'P8',title:'z・c・s',short:'z c s'}
       ]
     },
