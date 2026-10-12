@@ -97,7 +97,7 @@
   }
   function renderArt(){
     el('gkhArticulation').innerHTML='<span class="gkh-diagram-shell">'+gkhDiagram(selected,'live','live')+'<small class="gkh-view-label">舌の奥・ゆっくり</small></span><span class="gkh-art-cue">'+guide[selected].cue+'</span>';
-    var item=guide[selected];el('gkhStaticGuide').innerHTML='<div class="gkh-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+gkhDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div><p class="gkh-static-note">'+item.compare+'</p>';
+    var item=guide[selected];el('gkhStaticGuide').innerHTML='<div class="gkh-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+gkhDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('gkhStaticLetter').textContent=selected;
     var svg=el('gkhArticulation').querySelector('svg');if(matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(1.1)}
   }
   function select(letter,listen){
