@@ -3,7 +3,7 @@
    Tone learning is woven through every pronunciation lesson from the beginning. */
 window.KOEPANDA_PINYIN_COURSE = {
   id: 'pinyin-main-course',
-  version: '10.108.118',
+  version: '10.108.119',
   title: '音からはじめる中国語',
   principles: {
     toneFromFirstLesson: true,
@@ -37,7 +37,7 @@ window.KOEPANDA_PINYIN_COURSE = {
     {
       id:'P9-P13', world:'🌊 韻母の湖', title:'複韻母・鼻韻母', subtitle:'音のつながりを耳と口で覚える', status:'locked',
       units:[
-        {id:'P9',title:'ai・ei・ui',short:'ai ei ui'},
+        {id:'P9',title:'ai・ei・ui',short:'ai ei ui',reward:'音のつながりマスター'},
         {id:'P10',title:'ao・ou・iu',short:'ao ou iu'},
         {id:'P11',title:'ie・üe・er',short:'ie üe er'},
         {id:'P12',title:'an・en・in・un・ün',short:'前鼻韻母'},
