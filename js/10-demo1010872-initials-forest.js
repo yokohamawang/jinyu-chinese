@@ -161,7 +161,7 @@
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.107',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.108',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -201,14 +201,15 @@
   function lipArt(part,letter){
     var id='kp105-'+letter+'-'+part+'-',upper=part==='upper';
     var shape=upper?'M1 19 C13 14 25 13 34 8 C40 5 44 5 50 9 C56 5 60 5 66 8 C75 13 87 14 99 19 C82 22 66 21.5 50 21 C34 21.5 18 22 1 19Z':'M1 3 C18 1 35 3 50 5 C65 3 82 1 99 3 C94 17 78 27 50 27 C22 27 6 17 1 3Z';
-    if(letter==='f')shape=upper?'M1 21 C16 12 33 6 50 6 C67 6 84 12 99 21 C81 23 65 23 50 22 C35 23 19 23 1 21Z':'M1 5 C20 3 34 0 50 0 C66 0 80 3 99 5 C94 17 77 27 50 28 C23 27 6 17 1 5Z';
+    if(letter==='f')shape=upper?'M1 21 C16 12 33 6 50 6 C67 6 84 12 99 21 C82 29 66 31 50 31 C34 31 18 29 1 21Z':'M1 5 C20 3 34 0 50 0 C66 0 80 3 99 5 C94 17 77 27 50 28 C23 27 6 17 1 5Z';
     var edge=upper?'M4 20 C22 21.5 38 21 50 21 C62 21 78 21.5 96 20':'M4 3 C20 2 36 4 50 5 C64 4 80 2 96 3';
+    if(upper&&letter==='f')edge='M4 22 C22 29 38 31 50 31 C62 31 78 29 96 22';
     if(!upper&&letter==='f')edge='M4 5 C24 2 38 0 50 0 C62 0 76 2 96 5';
     return '<svg class="kp105-lip-art" viewBox="0 0 100 '+(upper?24:30)+'" aria-hidden="true" focusable="false"><defs><linearGradient id="'+id+'paint" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="'+(upper?'#efb4a4':'#edae9c')+'"/><stop offset=".55" stop-color="'+(upper?'#df9280':'#df917e')+'"/><stop offset="1" stop-color="'+(upper?'#c77c6d':'#c97e6c')+'"/></linearGradient><radialGradient id="'+id+'light" cx="38%" cy="28%" r="68%"><stop offset="0" stop-color="#ffe8d9" stop-opacity=".5"/><stop offset=".55" stop-color="#ffe8d9" stop-opacity=".18"/><stop offset="1" stop-color="#ffe8d9" stop-opacity="0"/></radialGradient><clipPath id="'+id+'clip"><path d="'+shape+'"/></clipPath></defs><path d="'+shape+'" fill="url(#'+id+'paint)"/><path d="'+shape+'" fill="url(#'+id+'light)"/><g clip-path="url(#'+id+'clip)"><path d="'+edge+'" fill="none" stroke="#995e55" stroke-width=".8" stroke-linecap="round" opacity=".24"/></g></svg>';
   }
 
   function fDentalArt(){
-    return '<svg class="kp106-dental-art" viewBox="0 0 100 36" aria-hidden="true" focusable="false"><defs><linearGradient id="kp106-f-enamel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf4"/><stop offset=".65" stop-color="#fcf5e8"/><stop offset="1" stop-color="#ecdec7"/></linearGradient><linearGradient id="kp106-f-gum" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b7a0"/><stop offset="1" stop-color="#f1d1b7"/></linearGradient><linearGradient id="kp106-f-root" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#be9778" stop-opacity=".38"/><stop offset="1" stop-color="#be9778" stop-opacity="0"/></linearGradient></defs><path fill="url(#kp106-f-gum)" d="M1 3 Q25 0 50 3 Q75 0 99 3 L99 16 Q80 14 50 15 Q20 14 1 16Z"/><path class="kp106-f-crowns" fill="url(#kp106-f-enamel)" d="M4 10 C18 6 32 7 50 8 C68 7 82 6 96 10 L94 23 Q93 28 86 28 Q77 30 68 29 Q59 32 50 31 Q41 32 32 29 Q23 30 14 28 Q7 28 6 23Z"/><path fill="url(#kp106-f-root)" d="M4 10 C18 6 32 7 50 8 C68 7 82 6 96 10 L95 14 Q76 12 50 13 Q24 12 5 14Z"/><g fill="none" stroke="#b9ab92" stroke-width=".85" stroke-linecap="round" opacity=".3"><path d="M50 10 L50 29 M28 10 Q28 18 30 26 M72 10 Q72 18 70 26"/></g><path fill="none" stroke="#fffefa" stroke-width="1.15" stroke-linecap="round" opacity=".75" d="M17 15 Q28 12 39 14 M61 14 Q72 12 83 15"/></svg>';
+    return '<svg class="kp106-dental-art" viewBox="0 0 100 36" aria-hidden="true" focusable="false"><defs><linearGradient id="kp106-f-enamel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf4"/><stop offset=".65" stop-color="#fcf5e8"/><stop offset="1" stop-color="#ecdec7"/></linearGradient><linearGradient id="kp106-f-gum" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b7a0"/><stop offset="1" stop-color="#f1d1b7"/></linearGradient><linearGradient id="kp106-f-root" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#be9778" stop-opacity=".38"/><stop offset="1" stop-color="#be9778" stop-opacity="0"/></linearGradient></defs><g transform="translate(5 0) scale(.9 1)"><path fill="url(#kp106-f-gum)" d="M1 3 Q25 0 50 3 Q75 0 99 3 L99 16 Q80 14 50 15 Q20 14 1 16Z"/><path class="kp106-f-crowns" fill="url(#kp106-f-enamel)" d="M4 10 C18 6 32 7 50 8 C68 7 82 6 96 10 L94 23 Q93 28 86 28 Q77 30 68 29 Q59 32 50 31 Q41 32 32 29 Q23 30 14 28 Q7 28 6 23Z"/><path fill="url(#kp106-f-root)" d="M4 10 C18 6 32 7 50 8 C68 7 82 6 96 10 L95 14 Q76 12 50 13 Q24 12 5 14Z"/><g fill="none" stroke="#b9ab92" stroke-width=".85" stroke-linecap="round" opacity=".3"><path d="M50 10 L50 29 M28 10 Q28 18 30 26 M72 10 Q72 18 70 26"/></g><path fill="none" stroke="#fffefa" stroke-width="1.15" stroke-linecap="round" opacity=".75" d="M17 15 Q28 12 39 14 M61 14 Q72 12 83 15"/></g></svg>';
   }
 
   function renderFocusVisual(letter){
@@ -222,7 +223,7 @@
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.107';
+    box.dataset.build='10.108.108';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
