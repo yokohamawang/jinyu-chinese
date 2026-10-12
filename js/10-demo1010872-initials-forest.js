@@ -155,12 +155,13 @@
   // 10.108.79: one scoped front nose; no side-panel renderer.
   function noseSvg(id,nasal){
     var body='<defs><linearGradient id="IDskin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0e0"/><stop offset=".5" stop-color="#f3dac6"/><stop offset="1" stop-color="#dcb99f"/></linearGradient><radialGradient id="IDglow"><stop offset="0" stop-color="#8bc3af" stop-opacity=".28"/><stop offset="1" stop-color="#8bc3af" stop-opacity="0"/></radialGradient></defs>GLOW<g class="kp71-nose-body" opacity=".88"><path d="M26 25 C20 21 13 26 13 34 C13 42 21 44 29 40 M46 25 C52 21 59 26 59 34 C59 42 51 44 43 40" fill="url(#IDskin)" stroke="#dfc5b0" stroke-width=".8"/><path d="M30 6 C32 2 40 2 42 6 C42 13 41 20 44 26 C47 29 49 33 46 38 C42 44 30 44 26 38 C23 33 25 29 28 26 C31 20 30 13 30 6Z" fill="url(#IDskin)"/><path d="M33 9 Q31 21 31 27" fill="none" stroke="#fff4ec" stroke-width="2" stroke-linecap="round" opacity=".34"/><ellipse cx="36" cy="32" rx="7.3" ry="4.6" fill="#fff0df" opacity=".34"/><ellipse cx="23" cy="36.5" rx="4.2" ry="2.2" transform="rotate(14 23 36.5)" fill="#af8d75"/><ellipse cx="49" cy="36.5" rx="4.2" ry="2.2" transform="rotate(-14 49 36.5)" fill="#af8d75"/><path d="M30 40 Q36 43 42 40" fill="none" stroke="#cbaa91" stroke-width="1" stroke-linecap="round"/></g>';
+    body=body.replace('</g>','<path d="M31 44 Q32 49 29 55 M41 44 Q40 49 43 55" fill="none" stroke="#b18b71" stroke-width="1.3" stroke-linecap="round" opacity=".12"/></g>');
     body=body.replace(/ID/g,id).replace('GLOW',nasal?'<ellipse class="kp71-nasal-glow" cx="36" cy="27" rx="35" ry="26" fill="url(#'+id+'glow)"/>':'');
     return '<svg class="kp71-front-nose'+(nasal?' is-nasal':'')+'" viewBox="0 0 72 58" aria-hidden="true">'+body+'</svg>';
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.103',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.105',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -195,18 +196,29 @@
       +'<figure class="initial-raster-side"><figcaption>'+guide.labels[1]+'</figcaption><img src="'+src+'" width="1774" height="887" alt="'+guide.alts[1]+'" decoding="async"><p>'+guide.notes[1]+'</p></figure></div>'
       +'<div class="initial-static-summary"><b>'+guide.summary.split('、').map(function(part,i){return '<span>'+part+(i===0?'、':'')+'</span>'}).join('')+'</b><small>'+legend+'</small></div>';
   }
+  /* Lip drawings live inside the existing moving layers; timing and placement stay native. */
+  function lipArt(part,letter){
+    var id='kp105-'+letter+'-'+part+'-',upper=part==='upper';
+    var shape=upper?'M1 19 C13 11 26 12 35 6 C42 0 46 1 50 7 C54 1 58 0 65 6 C74 12 87 11 99 19 C82 23 66 22 50 21 C34 22 18 23 1 19Z':'M1 3 C18 1 35 3 50 5 C65 3 82 1 99 3 C95 18 78 29 50 29 C22 29 5 18 1 3Z';
+    if(letter==='f')shape=upper?'M1 21 C14 10 34 3 50 4 C66 3 86 10 99 21 C81 23 65 23 50 22 C35 23 19 23 1 21Z':'M1 5 C20 3 34 0 50 0 C66 0 80 3 99 5 C94 17 77 27 50 28 C23 27 6 17 1 5Z';
+    var light=upper?'M19 13 C29 12 36 10 42 8 M58 8 C65 10 71 12 81 13':'M24 15 C38 21 62 21 76 15';
+    var edge=upper?'M4 20 C22 22 38 21 50 21 C62 21 78 22 96 20':'M4 3 C20 2 36 4 50 5 C64 4 80 2 96 3';
+    if(!upper&&letter==='f')edge='M4 5 C24 2 38 0 50 0 C62 0 76 2 96 5';
+    return '<svg class="kp105-lip-art" viewBox="0 0 100 '+(upper?24:30)+'" aria-hidden="true" focusable="false"><defs><linearGradient id="'+id+'paint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(upper?'#f4b0a3':'#f1a798')+'"/><stop offset=".5" stop-color="'+(upper?'#e98d80':'#e99182')+'"/><stop offset="1" stop-color="'+(upper?'#cc756c':'#d77f72')+'"/></linearGradient><radialGradient id="'+id+'light" cx="48%" cy="25%" r="75%"><stop offset="0" stop-color="#ffe7d7" stop-opacity=".42"/><stop offset="1" stop-color="#ffe7d7" stop-opacity="0"/></radialGradient><clipPath id="'+id+'clip"><path d="'+shape+'"/></clipPath></defs><path d="'+shape+'" fill="url(#'+id+'paint)"/><path d="'+shape+'" fill="url(#'+id+'light)"/><g clip-path="url(#'+id+'clip)"><path d="'+light+'" fill="none" stroke="#ffd6c4" stroke-width="1.25" stroke-linecap="round" opacity=".45"/><path d="'+edge+'" fill="none" stroke="#ac625b" stroke-width="1.1" stroke-linecap="round" opacity=".38"/></g></svg>';
+  }
+
   function renderFocusVisual(letter){
     var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
     var nose=noseSvg('kp71-'+letter+'-',letter==='m'),art='';
     if(letter==='m'){
-      art='<span class="focus-mouth focus-mouth-m" aria-hidden="true">'+nose+'<i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i></span>';
+      art='<span class="focus-mouth focus-mouth-m" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i></span>';
     }else if(letter==='f'){
-      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-teeth"></i><i class="focus-lower-lip"></i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-teeth"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }else{
-      art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip"></i><i class="focus-mouth-gap"></i><i class="focus-lower-lip"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.103';
+    box.dataset.build='10.108.105';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
