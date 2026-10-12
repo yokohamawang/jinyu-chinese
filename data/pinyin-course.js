@@ -3,7 +3,7 @@
    Tone learning is woven through every pronunciation lesson from the beginning. */
 window.KOEPANDA_PINYIN_COURSE = {
   id: 'pinyin-main-course',
-  version: '10.107.63',
+  version: '10.108.113',
   title: '音からはじめる中国語',
   principles: {
     toneFromFirstLesson: true,
@@ -11,13 +11,13 @@ window.KOEPANDA_PINYIN_COURSE = {
   },
   stages: [
     {
-      id:'P0', world:'🌱 はじめの島', title:'音のぼうけん', subtitle:'中国語の音と四声に出会おう', status:'current',
+      id:'P0', world:'🌱 はじめの島', title:'四声', subtitle:'声の高さと動きを耳で感じよう', status:'current',
       units:[
         {id:'P0-U1', title:'四声を聞いてみよう', short:'四声の感じ', lessons:['tone-feel'], reward:'はじめの一歩'}
       ]
     },
     {
-      id:'P1-P2', world:'🌼 声のお花畑', title:'単韻母', subtitle:'a・o・e・i・u・ü を音と声調で覚える', status:'next',
+      id:'P1-P2', world:'🌼 声のお花畑', title:'単母音', subtitle:'a・o・e・i・u・ü を音から覚えよう', status:'next',
       units:[
         {id:'P1', title:'a・o・e', short:'a o e', lessons:['a','o','e'], reward:'はじめての音バッジ'},
         {id:'P2', title:'i・u・ü', short:'i u ü', lessons:['i','u','ü'], reward:'単韻母クリア'}
@@ -28,7 +28,7 @@ window.KOEPANDA_PINYIN_COURSE = {
       units:[
         {id:'P3',title:'b・p・m・f',short:'b p m f'},
         {id:'P4',title:'d・t・n・l',short:'d t n l'},
-        {id:'P5',title:'g・k・h',short:'g k h'},
+        {id:'P5',title:'g・k・h',short:'g k h',reward:'舌の奥マスター'},
         {id:'P6',title:'j・q・x',short:'j q x'},
         {id:'P7',title:'zh・ch・sh・r',short:'zh ch sh r'},
         {id:'P8',title:'z・c・s',short:'z c s'}
