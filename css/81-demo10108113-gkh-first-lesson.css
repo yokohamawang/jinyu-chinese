@@ -1,0 +1,102 @@
+/* 10.108.113: a complete, isolated P5 lesson; existing lessons remain untouched. */
+#kidsInitialsGKHLesson{padding:0!important;overflow:hidden;background:#fffdf8!important;border:1px solid #d7e4d8!important;border-radius:26px;color:#294b3d;box-shadow:0 8px 24px rgba(54,86,65,.07)!important;text-shadow:none}
+#kidsInitialsGKHLesson[hidden],#kidsInitialsGKHLesson [hidden]{display:none!important}
+#kidsInitialsGKHLesson *{box-sizing:border-box}
+#kidsInitialsGKHLesson :is(button,h2,h3,h4,p,strong,small){font-family:inherit;text-shadow:none}
+#kidsInitialsGKHLesson button{appearance:none;-webkit-appearance:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;transition:transform .1s,background .1s,box-shadow .1s}
+#kidsInitialsGKHLesson button:active:not(:disabled),#kidsInitialsGKHLesson button.is-pressed{transform:translateY(2px);box-shadow:none!important}
+#kidsInitialsGKHLesson button:focus-visible,#kidsInitialsGKHLesson summary:focus-visible{outline:3px solid #438864;outline-offset:3px}
+#kidsInitialsGKHLesson button:disabled{cursor:default}
+#kidsInitialsGKHLesson .gkh-hero{position:relative;padding:24px 22px 20px;background:radial-gradient(ellipse at 94% 10%,#fff1d2,transparent 58%),linear-gradient(130deg,#e5f0e3,#f8f4e3)}
+#kidsInitialsGKHLesson .gkh-kicker{display:block;padding-right:46px;font-size:13px;font-weight:600;letter-spacing:.05em;color:#52725c}
+#kidsInitialsGKHLesson .gkh-hero h2{margin:10px 0 7px;font-size:35px;line-height:1.2;font-weight:700;letter-spacing:.08em;color:#285842}
+#kidsInitialsGKHLesson .gkh-hero p{margin:0;font-size:15px;line-height:1.65;max-width:85%;color:#486551;font-weight:400}
+#kidsInitialsGKHLesson .gkh-music{position:absolute;right:22px;top:25px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#fcf0ca;border:1px solid #ead8a1;box-shadow:inset 0 1px 0 #fff8e7}
+#kidsInitialsGKHLesson .gkh-music svg{width:23px;height:23px;fill:none;stroke:#ac8133;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+#kidsInitialsGKHLesson .gkh-complete{display:inline-block;margin-top:10px;font-size:13px;color:#285842;background:#d4e8d9;border-radius:99px;padding:4px 10px}
+#kidsInitialsGKHLesson .gkh-zone{margin:18px 16px;padding:16px;border:1px solid #dce5d9;border-radius:20px;background:#fffefb;min-width:0}
+#kidsInitialsGKHLesson .gkh-zone-head{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+#kidsInitialsGKHLesson .gkh-zone-head>span{flex:0 0 31px;width:31px;height:31px;display:grid;place-items:center;background:#edf0e6;border-radius:10px;font-size:14px;font-weight:600}
+#kidsInitialsGKHLesson .gkh-zone-head>div{min-width:0;flex:1}
+#kidsInitialsGKHLesson .gkh-zone-head h3{margin:0;font-size:19px;font-weight:700;line-height:1.5}
+#kidsInitialsGKHLesson .gkh-zone-head p{margin:4px 0 0;font-size:14px;line-height:1.6;font-weight:400;color:#536956}
+#kidsInitialsGKHLesson .gkh-letter-grid,#kidsInitialsGKHLesson .gkh-free-choice,#kidsInitialsGKHLesson .gkh-quiz-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#kidsInitialsGKHLesson .gkh-letter-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:113px;padding:10px 4px;border:1px solid #cbdace;border-radius:15px;background:#f5f8f1;color:#315c46;box-shadow:none}
+#kidsInitialsGKHLesson .gkh-letter-card strong{display:block;font-size:36px;line-height:1;font-weight:600}
+#kidsInitialsGKHLesson .gkh-letter-card small{display:block;font-size:15px;line-height:1.4;font-weight:400}
+#kidsInitialsGKHLesson .gkh-letter-card em{display:block;font-style:normal;font-size:12px;line-height:1.4;white-space:nowrap;font-weight:500}
+#kidsInitialsGKHLesson .gkh-letter-card.is-active{background:#2e644a;color:#fff;border-color:#2e644a}
+#kidsInitialsGKHLesson .gkh-focus{margin-top:17px}
+#kidsInitialsGKHLesson .gkh-focus-copy{display:grid;grid-template-columns:43px minmax(0,1fr);gap:10px;align-items:start;margin-bottom:10px}
+#kidsInitialsGKHLesson .gkh-focus-copy>span{font-size:38px;line-height:1.1;font-weight:600;color:#315f47;display:grid;place-items:center;border-radius:13px;background:#eaf2e8;min-height:49px}
+#kidsInitialsGKHLesson .gkh-focus-copy>div{min-width:0}
+#kidsInitialsGKHLesson .gkh-focus-copy strong{font-size:19px;line-height:1.5;font-weight:600;color:#305540}
+#kidsInitialsGKHLesson .gkh-focus-copy p{margin:5px 0 0;font-size:14px;font-weight:400;line-height:1.6;min-height:4.8em;color:#50674f}
+#kidsInitialsGKHLesson .gkh-button{width:100%;min-height:54px;border:1px solid #97b39f;border-radius:14px;background:#fff;color:#2b6247;box-shadow:0 3px 0 #d5e3d6;padding:10px 8px;font-size:16px;line-height:1.55;font-weight:600}
+#kidsInitialsGKHLesson .gkh-model{background:#edf5eb;border-color:#b2c8b1;box-shadow:0 3px 0 #d4e2cf}
+#kidsInitialsGKHLesson .gkh-button.is-playing{background:#e0eee0;border-color:#6a9977}
+#kidsInitialsGKHLesson .gkh-button:disabled{background:#e8eee6;border-color:#c5d0c1;color:#69766a;box-shadow:none}
+#kidsInitialsGKHLesson .gkh-model-feedback{min-height:2.9em;margin:9px 0 4px;font-size:13px;line-height:1.45;color:#657461;font-weight:400}
+#kidsInitialsGKHLesson .gkh-articulation{display:grid;grid-template-columns:144px minmax(0,1fr);align-items:center;gap:10px;min-height:197px;padding:10px;border:1px solid #dce4d8;border-radius:19px;background:#fffdf7;overflow:hidden}
+#kidsInitialsGKHLesson .gkh-diagram-shell{display:block;min-width:0;width:144px;height:176px;border-radius:17px;background:radial-gradient(ellipse at 34% 12%,#fffaf0,transparent 70%),linear-gradient(180deg,#fbefdf,#f4dec8);box-shadow:inset 0 0 0 1px rgba(163,112,78,.10);overflow:hidden}
+#kidsInitialsGKHLesson .gkh-art-svg{display:block;width:100%;height:154px;overflow:visible}
+#kidsInitialsGKHLesson .gkh-art-svg *{box-shadow:none}
+#kidsInitialsGKHLesson .gkh-view-label{display:block;text-align:center;height:22px;font-size:11px;line-height:22px;color:#75644f}
+#kidsInitialsGKHLesson .gkh-art-cue{font-size:13px;line-height:1.5;font-weight:600;border:1px solid #d0e2d1;border-radius:12px;padding:7px 5px;color:#356c50;background:#e9f2e7;text-align:center;min-width:0}
+#kidsInitialsGKHLesson .gkh-detail{margin-top:14px;border:1px solid #e5e2d2;border-radius:14px;background:#fcfbf4;overflow:hidden}
+#kidsInitialsGKHLesson .gkh-detail summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;min-height:52px;padding:12px;font-size:14px;line-height:1.55;font-weight:600;cursor:pointer}
+#kidsInitialsGKHLesson summary::-webkit-details-marker{display:none}
+#kidsInitialsGKHLesson .gkh-detail summary span{width:8px;height:8px;flex:0 0 8px;border-right:2px solid #668369;border-bottom:2px solid #668369;transform:rotate(45deg)}
+#kidsInitialsGKHLesson .gkh-detail[open] summary span{transform:rotate(225deg)}
+#kidsInitialsGKHLesson .gkh-static-content{padding:0 10px 12px}
+#kidsInitialsGKHLesson .gkh-static-views{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsInitialsGKHLesson .gkh-static-views figure{min-width:0;margin:0;border:1px solid #e6d6bf;border-radius:13px;background:#fff5e6;overflow:hidden}
+#kidsInitialsGKHLesson .gkh-static-views strong{display:block;text-align:center;padding:6px 3px;font-size:14px;line-height:1.4;color:#5a6a49}
+#kidsInitialsGKHLesson .gkh-static-views svg{display:block;width:100%;height:auto;aspect-ratio:144/154}
+#kidsInitialsGKHLesson .gkh-static-views figcaption{padding:6px 5px 9px;min-height:4em;font-size:13px;line-height:1.5;text-align:center;color:#6c644d}
+#kidsInitialsGKHLesson .gkh-static-note{margin:10px 1px 0;font-size:14px;line-height:1.55;color:#5e644c}
+#kidsInitialsGKHLesson .gkh-model-note{margin-top:12px;font-size:13px;color:#6e725e;line-height:1.6}
+#kidsInitialsGKHLesson .gkh-model-note summary{cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px}
+#kidsInitialsGKHLesson .gkh-model-note p{margin:7px 0;font-size:14px;font-weight:400}
+#kidsInitialsGKHLesson .gkh-practice{background:#edf5ec;border-color:#aec8b3}
+#kidsInitialsGKHLesson .gkh-practice .gkh-zone-head>span{background:#d9e9d8}
+#kidsInitialsGKHLesson .gkh-free-choice button{min-height:59px;background:#fff;border:1px solid #b5c9b7;border-radius:13px;color:#37654d;font-size:30px;line-height:1.2;font-weight:600}
+#kidsInitialsGKHLesson .gkh-free-choice button.is-active{background:#2f6348;color:#fff;border-color:#2f6348}
+#kidsInitialsGKHLesson .gkh-practice-target{margin:14px 0 10px;font-size:15px;line-height:1.5;font-weight:500}
+#kidsInitialsGKHLesson .gkh-record-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsInitialsGKHLesson .gkh-record-row .gkh-button{font-size:15px;min-height:64px}
+#kidsInitialsGKHLesson .gkh-record{background:#2d6247;color:#fff;border-color:#2d6247;box-shadow:0 3px 0 #1f4831}
+#kidsInitialsGKHLesson .gkh-record.is-recording{background:#a95143;border-color:#9a493c;color:#fff;box-shadow:none}
+#kidsInitialsGKHLesson .gkh-feedback{margin:12px 0 0;min-height:3.1em;font-size:14px;line-height:1.55;font-weight:400;color:#52654e}
+#kidsInitialsGKHLesson .gkh-feedback.is-bad{color:#934735}
+#kidsInitialsGKHLesson .gkh-feedback.is-good{color:#2e6445}
+#kidsInitialsGKHLesson .gkh-check{background:#fff9e9;border-color:#decda0}
+#kidsInitialsGKHLesson .gkh-check .gkh-zone-head>span{background:#f4e7bc;color:#7c6326}
+#kidsInitialsGKHLesson .gkh-to-quiz{background:#faedc7;color:#6a5220;border-color:#cfb979;box-shadow:0 3px 0 #e6d6a5}
+#kidsInitialsGKHLesson .gkh-quiz-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px;font-size:15px;line-height:1.5}
+#kidsInitialsGKHLesson .gkh-quiz-top span{white-space:nowrap;font-weight:500;color:#837449}
+#kidsInitialsGKHLesson .gkh-quiz-choices{margin-top:14px}
+#kidsInitialsGKHLesson .gkh-quiz-choices button{min-height:75px;border:1px solid #d2c69f;border-radius:15px;background:#fffefa;font-size:35px;font-weight:600;color:#566242}
+#kidsInitialsGKHLesson .gkh-quiz-choices button.is-correct{background:#deecd8;border-color:#78a36a;color:#31592b}
+#kidsInitialsGKHLesson .gkh-quiz-choices button.is-wrong{background:#f4e1d8;border-color:#c7937a;color:#8a4936}
+#kidsInitialsGKHLesson .gkh-result{text-align:center;padding:12px 0 0}
+#kidsInitialsGKHLesson .gkh-result-mark{display:grid;place-items:center;width:50px;height:50px;margin:0 auto 10px;border-radius:50%;background:#dfedcf;color:#466c35;font-size:27px;font-weight:600}
+#kidsInitialsGKHLesson .gkh-result h4{margin:0 0 8px;font-size:21px;line-height:1.5;color:#526139}
+#kidsInitialsGKHLesson .gkh-result>strong{display:block;font-size:22px;font-weight:600}
+#kidsInitialsGKHLesson .gkh-result>p{font-size:15px;line-height:1.65;margin:8px 0 14px;color:#6b7052}
+#kidsInitialsGKHLesson .gkh-result-actions{display:grid;grid-template-columns:1fr;gap:10px}
+#kidsInitialsGKHLesson .gkh-return{background:#f8f4e5;border-color:#d5c69d;color:#72603c}
+@media(max-width:360px){
+  #kidsInitialsGKHLesson .gkh-hero{padding:20px 16px}
+  #kidsInitialsGKHLesson .gkh-zone{margin:15px 10px;padding:12px}
+  #kidsInitialsGKHLesson .gkh-zone-head h3{font-size:18px}
+  #kidsInitialsGKHLesson .gkh-articulation{grid-template-columns:1fr;gap:9px}
+  #kidsInitialsGKHLesson .gkh-diagram-shell{margin:0 auto}
+  #kidsInitialsGKHLesson .gkh-art-cue{justify-self:center;padding:5px 12px}
+  #kidsInitialsGKHLesson .gkh-focus-copy p{min-height:6.4em}
+  #kidsInitialsGKHLesson .gkh-feedback{min-height:4.65em}
+}
+@media(prefers-reduced-motion:reduce){#kidsInitialsGKHLesson button{transition:none}}
+/* P5 result overlay: the moving mascot never blocks the close target. */
+#koepandaResultStage.is-gkh-result .koepanda-result-stage-close{z-index:5;pointer-events:auto;display:grid;place-items:center;width:40px!important;height:40px!important;min-height:40px!important;padding:0!important;font-size:25px!important;line-height:1!important}
+#koepandaResultStage.is-gkh-result .koepanda-result-stage-mascot{pointer-events:none}
