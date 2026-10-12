@@ -161,7 +161,7 @@
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.105',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.106',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -207,18 +207,22 @@
     return '<svg class="kp105-lip-art" viewBox="0 0 100 '+(upper?24:30)+'" aria-hidden="true" focusable="false"><defs><linearGradient id="'+id+'paint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(upper?'#f4b0a3':'#f1a798')+'"/><stop offset=".5" stop-color="'+(upper?'#e98d80':'#e99182')+'"/><stop offset="1" stop-color="'+(upper?'#cc756c':'#d77f72')+'"/></linearGradient><radialGradient id="'+id+'light" cx="48%" cy="25%" r="75%"><stop offset="0" stop-color="#ffe7d7" stop-opacity=".42"/><stop offset="1" stop-color="#ffe7d7" stop-opacity="0"/></radialGradient><clipPath id="'+id+'clip"><path d="'+shape+'"/></clipPath></defs><path d="'+shape+'" fill="url(#'+id+'paint)"/><path d="'+shape+'" fill="url(#'+id+'light)"/><g clip-path="url(#'+id+'clip)"><path d="'+light+'" fill="none" stroke="#ffd6c4" stroke-width="1.25" stroke-linecap="round" opacity=".45"/><path d="'+edge+'" fill="none" stroke="#ac625b" stroke-width="1.1" stroke-linecap="round" opacity=".38"/></g></svg>';
   }
 
+  function fDentalArt(){
+    return '<svg class="kp106-dental-art" viewBox="0 0 100 36" aria-hidden="true" focusable="false"><defs><linearGradient id="kp106-f-enamel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf4"/><stop offset=".65" stop-color="#fcf5e8"/><stop offset="1" stop-color="#ecdec7"/></linearGradient><linearGradient id="kp106-f-gum" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b7a0"/><stop offset="1" stop-color="#f1d1b7"/></linearGradient><linearGradient id="kp106-f-root" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#be9778" stop-opacity=".38"/><stop offset="1" stop-color="#be9778" stop-opacity="0"/></linearGradient></defs><path fill="url(#kp106-f-gum)" d="M1 3 Q25 0 50 3 Q75 0 99 3 L99 16 Q80 14 50 15 Q20 14 1 16Z"/><path class="kp106-f-crowns" fill="url(#kp106-f-enamel)" d="M4 10 C18 6 32 7 50 8 C68 7 82 6 96 10 L94 23 Q93 28 86 28 Q77 30 68 29 Q59 32 50 31 Q41 32 32 29 Q23 30 14 28 Q7 28 6 23Z"/><path fill="url(#kp106-f-root)" d="M4 10 C18 6 32 7 50 8 C68 7 82 6 96 10 L95 14 Q76 12 50 13 Q24 12 5 14Z"/><g fill="none" stroke="#b9ab92" stroke-width=".85" stroke-linecap="round" opacity=".3"><path d="M50 10 L50 29 M28 10 Q28 18 30 26 M72 10 Q72 18 70 26"/></g><path fill="none" stroke="#fffefa" stroke-width="1.15" stroke-linecap="round" opacity=".75" d="M17 15 Q28 12 39 14 M61 14 Q72 12 83 15"/></svg>';
+  }
+
   function renderFocusVisual(letter){
     var box=el('initialsFocusVisual'),v=focusVisuals[letter]; if(!box||!v)return;
     var nose=noseSvg('kp71-'+letter+'-',letter==='m'),art='';
     if(letter==='m'){
       art='<span class="focus-mouth focus-mouth-m" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i></span>';
     }else if(letter==='f'){
-      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-teeth"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-teeth">'+fDentalArt()+'</i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-corner left"></i><i class="focus-corner right"></i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }else{
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.105';
+    box.dataset.build='10.108.106';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
