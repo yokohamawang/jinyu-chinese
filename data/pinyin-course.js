@@ -3,7 +3,7 @@
    Tone learning is woven through every pronunciation lesson from the beginning. */
 window.KOEPANDA_PINYIN_COURSE = {
   id: 'pinyin-main-course',
-  version: '10.108.121',
+  version: '10.108.123',
   title: '音からはじめる中国語',
   principles: {
     toneFromFirstLesson: true,
