@@ -1,0 +1,13 @@
+/* 10.108.106 — one dental drawing inside the existing lip/teeth motion layers. */
+#kidsInitialsLesson .focus-mouth-f .focus-teeth{background:none!important;box-shadow:none!important;border:0;border-radius:0;overflow:visible}
+#kidsInitialsLesson .focus-mouth-f .focus-teeth:after{content:none!important;display:none!important}
+#kidsInitialsLesson .kp106-dental-art{display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+#kidsInitialsLesson .kp106-dental-art *{border:0;box-shadow:none}
+#kidsInitialsDTNLLesson .td106-gingiva{fill:var(--dtnl-palate,#e4c6b6);stroke:none}
+#kidsInitialsDTNLLesson .td73-upper-teeth,#kidsInitialsDTNLLesson .td73-lower-teeth{stroke:#c6b89f;stroke-width:.65;stroke-linejoin:round}
+#kidsInitialsDTNLLesson .td106-dental-root-light{fill:none;stroke:#f8ead5;stroke-width:.65;stroke-linecap:round;opacity:.75}
+#kidsInitialsDTNLLesson .td106-arch-gum{fill:var(--dtnl-gum,#e8c7b3);stroke:none}
+#kidsInitialsDTNLLesson .td106-dental-arch{fill:var(--dtnl-gum,#e8c7b3);stroke:none}
+#kidsInitialsDTNLLesson .td106-arch-crowns path{fill:var(--dtnl-tooth,#fffdf3);stroke:#c9bba2;stroke-width:.5;stroke-linejoin:round}
+#kidsInitialsDTNLLesson .td106-tooth-divisions{display:none}
+#kidsInitialsDTNLLesson .td106-tooth-divisions{stroke:#c4b59b;stroke-width:.75;stroke-linecap:round;opacity:.5}
