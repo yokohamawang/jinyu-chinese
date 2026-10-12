@@ -1,0 +1,44 @@
+/* 10.108.105 — sculpted SVG lips inside the verified CSS motion layers. */
+#kidsInitialsLesson .initials-focus-visual,#kidsInitialsDTNLLesson .dtnl-articulation{
+  background:#fffdf8;border:1px solid #dce7de;box-shadow:0 3px 10px rgba(47,76,58,.035),inset 0 1px 0 #fff;
+}
+#kidsInitialsLesson #initialsFocusVisual{min-height:128px!important}
+#kidsInitialsLesson .focus-mouth{
+  transform:scale(1.08);transform-origin:center center;
+  background:radial-gradient(ellipse at 50% 20%,rgba(255,249,233,.9),transparent 58%),radial-gradient(ellipse at 9% 63%,rgba(228,154,130,.13),transparent 39%),radial-gradient(ellipse at 91% 63%,rgba(228,154,130,.13),transparent 39%),linear-gradient(180deg,#fff1df,#f5dfcd);
+  box-shadow:inset 0 0 0 1px rgba(161,115,89,.09),inset 0 1px 0 rgba(255,255,255,.85);overflow:hidden;
+}
+#kidsInitialsLesson .focus-upper-lip,#kidsInitialsLesson .focus-lower-lip{
+  background:none!important;box-shadow:none!important;border:0;border-radius:0;
+}
+#kidsInitialsLesson .focus-mouth .kp105-lip-art{display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+#kidsInitialsLesson .kp105-lip-art *{box-shadow:none;border:0}
+#kidsInitialsLesson .focus-mouth-gap{background:radial-gradient(ellipse at 50% 0%,#70433e,#90544b 74%,#b27c67);box-shadow:none;clip-path:ellipse(50% 50% at 50% 50%)}
+#kidsInitialsLesson .focus-mouth-f .focus-mouth-gap{background:radial-gradient(ellipse at 50% 0%,#96594e,#b37561 80%,#cd9780)}
+#kidsInitialsLesson .focus-teeth{background:linear-gradient(180deg,#fffdf5,#fff9ed 65%,#eadac7);box-shadow:inset 0 0 0 1px rgba(181,158,133,.32)}
+#kidsInitialsLesson .focus-teeth:after{background:linear-gradient(90deg,transparent 48%,rgba(181,158,133,.2) 49%,rgba(181,158,133,.2) 51%,transparent 52%)}
+#kidsInitialsLesson .focus-corner{border-top-color:rgba(153,84,72,.28)}
+#kidsInitialsLesson .focus-air-line{background:linear-gradient(90deg,rgba(73,152,125,.16),rgba(73,152,125,.7) 55%,rgba(73,152,125,.15));box-shadow:none}
+#kidsInitialsLesson .initials-focus-visual>div b{font-size:13px;line-height:1.5;color:#294b3b;font-weight:700}
+#kidsInitialsLesson .initials-focus-visual>div small{font-size:12px;line-height:1.5;color:#526d5d;font-weight:500}
+#kidsInitialsLesson .initials-focus-visual>div em{font-size:11px;line-height:1.4;font-weight:600;color:#346c54;background:#eaf4ec;border:1px solid #d6e8dc;box-shadow:none;padding:3px 8px}
+#kidsInitialsLesson .initials-focus-visual.is-p>div em,#kidsInitialsLesson .initials-focus-visual.is-f>div em{color:#915b3f;background:#fcf0df;border-color:#eee0c6}
+
+/* DTNL: crop only unused scene margins; tongue paths and all SMIL remain native. */
+#kidsInitialsDTNLLesson .dtnl-articulation{grid-template-columns:144px minmax(0,1fr);gap:10px}
+#kidsInitialsDTNLLesson .dtnl73-diagram{
+  width:144px;height:198px;border-radius:18px;background:radial-gradient(ellipse at 40% 12%,#fff8ed,transparent 70%),linear-gradient(180deg,#fcf0e2,#f6e1cf);
+  box-shadow:inset 0 0 0 1px rgba(161,115,89,.09),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#kidsInitialsDTNLLesson .dtnl73-diagram:not(.is-l) .dtnl73-svg{height:166px}
+#kidsInitialsDTNLLesson .kp105-view-label{display:block;text-align:center;font-size:12px;line-height:32px;height:32px;font-weight:500;color:#6c7462}
+#kidsInitialsDTNLLesson .dtnl73-diagram.is-l .kp105-view-label{display:none}
+#kidsInitialsDTNLLesson .td85-upper-profile,#kidsInitialsDTNLLesson .td85-lower-profile{stroke:#ba9279;stroke-width:1.25}
+#kidsInitialsDTNLLesson .td76-nostril{fill:#a57f66}
+#kidsInitialsDTNLLesson .td73-tongue{stroke:#ba786a;stroke-width:.85}
+#kidsInitialsDTNLLesson .td73-tongue-highlight{opacity:.4;stroke:#ffddc5}
+#kidsInitialsDTNLLesson .td73-upper-teeth,#kidsInitialsDTNLLesson .td73-lower-teeth{stroke:#c1b4a0;stroke-width:1}
+#kidsInitialsDTNLLesson .td73-contact{fill:#d6a753}
+#kidsInitialsDTNLLesson .dtnl-art-copy em{font-size:12px;line-height:1.45;font-weight:600;color:#346c54;background:#eaf4ec;border:1px solid #d6e8dc;box-shadow:none;padding:4px 6px!important;max-width:100%;box-sizing:border-box;text-align:center}
+@media(max-width:360px){#kidsInitialsDTNLLesson .dtnl-articulation{grid-template-columns:1fr;gap:8px}#kidsInitialsDTNLLesson .dtnl73-diagram{margin:0 auto}}
+@media(max-width:360px){#kidsInitialsLesson #initialsFocusVisual{min-height:146px!important}}
