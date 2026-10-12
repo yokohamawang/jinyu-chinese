@@ -49,6 +49,8 @@
     if(id==='P7')return document.getElementById('kidsInitialsZHRLesson');
     if(id==='P8')return document.getElementById('kidsInitialsZCSLesson');
     if(id==='P9')return document.getElementById('kidsCompoundAIEIUILesson');
+    if(id==='P10')return document.getElementById('kidsCompoundAOOUIULesson');
+    if(id==='P11')return document.getElementById('kidsCompoundIEUEERLesson');
     return null;
   }
 
@@ -149,6 +151,8 @@
     if(unit.id==='P6'){try{return localStorage.getItem('koepandaInitialP5Complete')!=='1'}catch(e){return true}}
     if(unit.id==='P7'){try{return localStorage.getItem('koepandaInitialP6Complete')!=='1'}catch(e){return true}}
     if(unit.id==='P8'){try{return localStorage.getItem('koepandaInitialP7Complete')!=='1'}catch(e){return true}}
+    if(unit.id==='P10'){try{return localStorage.getItem('koepandaCompoundP9Complete')!=='1'}catch(e){return true}}
+    if(unit.id==='P11'){try{return localStorage.getItem('koepandaCompoundP10Complete')!=='1'}catch(e){return true}}
     return false;
   }
 
@@ -164,6 +168,8 @@
     if(unit.id==='P7'){try{if(localStorage.getItem('koepandaInitialP7Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌先と息・声の違いを復習しよう'}}catch(e){}}
     if(unit.id==='P8'){try{if(localStorage.getItem('koepandaInitialP8Complete')==='1'){b.classList.add('is-complete');note='クリア！ 歯の裏と息の違いを復習しよう'}}catch(e){}}
     if(unit.id==='P9'){try{if(localStorage.getItem('koepandaCompoundP9Complete')==='1'){b.classList.add('is-complete');note='クリア！ ai・ei・ui のつながりを復習しよう'}}catch(e){}}
+    if(unit.id==='P10'){try{if(localStorage.getItem('koepandaCompoundP10Complete')==='1'){b.classList.add('is-complete');note='クリア！ ao・ou・iu のつながりを復習しよう'}else if(locked){note='ai・ei・ui をクリアすると開く'}}catch(e){}}
+    if(unit.id==='P11'){try{if(localStorage.getItem('koepandaCompoundP11Complete')==='1'){b.classList.add('is-complete');note='クリア！ ie・üe・er の音色を復習しよう'}else if(locked){note='ao・ou・iu をクリアすると開く'}}catch(e){}}
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
     if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
