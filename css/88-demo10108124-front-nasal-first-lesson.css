@@ -1,0 +1,186 @@
+/* 10.108.119: P9 compound vowels; photos remain unchanged; existing lessons remain untouched. */
+#kidsFrontNasalLesson{padding:0!important;overflow:hidden;background:#fffdf8!important;border:1px solid #d7e4d8!important;border-radius:26px;color:#294b3d;box-shadow:0 8px 24px rgba(54,86,65,.07)!important;text-shadow:none}
+#kidsFrontNasalLesson[hidden],#kidsFrontNasalLesson [hidden]{display:none!important}
+#kidsFrontNasalLesson *{box-sizing:border-box}
+#kidsFrontNasalLesson :is(button,h2,h3,h4,p,strong,small){font-family:inherit;text-shadow:none}
+#kidsFrontNasalLesson button{appearance:none;-webkit-appearance:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;transition:transform .1s,background .1s,box-shadow .1s}
+#kidsFrontNasalLesson button:active:not(:disabled),#kidsFrontNasalLesson button.is-pressed{transform:translateY(2px);box-shadow:none!important}
+#kidsFrontNasalLesson button:focus-visible,#kidsFrontNasalLesson summary:focus-visible{outline:3px solid #438864;outline-offset:3px}
+#kidsFrontNasalLesson button:disabled{cursor:default}
+#kidsFrontNasalLesson .nsv-hero{position:relative;padding:24px 22px 20px;background:radial-gradient(ellipse at 94% 10%,#fff1d2,transparent 58%),linear-gradient(130deg,#e5f0e3,#f8f4e3)}
+#kidsFrontNasalLesson .nsv-kicker{display:block;padding-right:46px;font-size:13px;font-weight:600;letter-spacing:.05em;color:#52725c}
+#kidsFrontNasalLesson .nsv-hero h2{margin:10px 0 7px;font-size:35px;line-height:1.2;font-weight:700;letter-spacing:.08em;color:#285842}
+#kidsFrontNasalLesson .nsv-hero p{margin:0;font-size:15px;line-height:1.65;max-width:85%;color:#486551;font-weight:400}
+#kidsFrontNasalLesson .nsv-music{position:absolute;right:22px;top:25px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#fcf0ca;border:1px solid #ead8a1;box-shadow:inset 0 1px 0 #fff8e7}
+#kidsFrontNasalLesson .nsv-music svg{width:23px;height:23px;fill:none;stroke:#ac8133;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+#kidsFrontNasalLesson .nsv-complete{display:inline-block;margin-top:10px;font-size:13px;color:#285842;background:#d4e8d9;border-radius:99px;padding:4px 10px}
+#kidsFrontNasalLesson .nsv-zone{margin:18px 16px;padding:16px;border:1px solid #dce5d9;border-radius:20px;background:#fffefb;min-width:0}
+#kidsFrontNasalLesson .nsv-zone-head{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+#kidsFrontNasalLesson .nsv-zone-head>span{flex:0 0 31px;width:31px;height:31px;display:grid;place-items:center;background:#edf0e6;border-radius:10px;font-size:14px;font-weight:600}
+#kidsFrontNasalLesson .nsv-zone-head>div{min-width:0;flex:1}
+#kidsFrontNasalLesson .nsv-zone-head h3{margin:0;font-size:19px;font-weight:700;line-height:1.5}
+#kidsFrontNasalLesson .nsv-zone-head p{margin:4px 0 0;font-size:14px;line-height:1.6;font-weight:400;color:#536956}
+#kidsFrontNasalLesson .nsv-letter-grid,#kidsFrontNasalLesson .nsv-free-choice,#kidsFrontNasalLesson .nsv-quiz-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#kidsFrontNasalLesson .nsv-letter-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:113px;padding:10px 4px;border:1px solid #cbdace;border-radius:15px;background:#f5f8f1;color:#315c46;box-shadow:none}
+#kidsFrontNasalLesson .nsv-letter-card strong{display:block;font-size:36px;line-height:1;font-weight:600}
+#kidsFrontNasalLesson .nsv-letter-card small{display:block;font-size:15px;line-height:1.4;font-weight:400}
+#kidsFrontNasalLesson .nsv-letter-card em{display:block;font-style:normal;font-size:12px;line-height:1.4;white-space:nowrap;font-weight:500}
+#kidsFrontNasalLesson .nsv-letter-card.is-active{background:#2e644a;color:#fff;border-color:#2e644a}
+#kidsFrontNasalLesson .nsv-focus{margin-top:17px}
+#kidsFrontNasalLesson .nsv-focus-copy{display:grid;grid-template-columns:43px minmax(0,1fr);gap:10px;align-items:start;margin-bottom:10px}
+#kidsFrontNasalLesson .nsv-focus-copy>span{font-size:38px;line-height:1.1;font-weight:600;color:#315f47;display:grid;place-items:center;border-radius:13px;background:#eaf2e8;min-height:49px}
+#kidsFrontNasalLesson .nsv-focus-copy>div{min-width:0}
+#kidsFrontNasalLesson .nsv-focus-copy strong{font-size:19px;line-height:1.5;font-weight:600;color:#305540}
+#kidsFrontNasalLesson .nsv-focus-copy p{margin:5px 0 0;font-size:14px;font-weight:400;line-height:1.6;min-height:4.8em;color:#50674f}
+#kidsFrontNasalLesson .nsv-button{width:100%;min-height:54px;border:1px solid #97b39f;border-radius:14px;background:#fff;color:#2b6247;box-shadow:0 3px 0 #d5e3d6;padding:10px 8px;font-size:16px;line-height:1.55;font-weight:600}
+#kidsFrontNasalLesson .nsv-model{background:#edf5eb;border-color:#b2c8b1;box-shadow:0 3px 0 #d4e2cf}
+#kidsFrontNasalLesson .nsv-button.is-playing{background:#e0eee0;border-color:#6a9977}
+#kidsFrontNasalLesson .nsv-button:disabled{background:#e8eee6;border-color:#c5d0c1;color:#69766a;box-shadow:none}
+#kidsFrontNasalLesson .nsv-model-feedback{min-height:2.9em;margin:9px 0 4px;font-size:13px;line-height:1.45;color:#657461;font-weight:400}
+#kidsFrontNasalLesson .nsv-articulation{display:grid;grid-template-columns:144px minmax(0,1fr);align-items:center;gap:10px;min-height:197px;padding:10px;border:1px solid #dce4d8;border-radius:19px;background:#fffdf7;overflow:hidden}
+#kidsFrontNasalLesson .nsv-diagram-shell{display:block;min-width:0;width:144px;height:176px;border-radius:17px;background:radial-gradient(ellipse at 34% 12%,#fffaf0,transparent 70%),linear-gradient(180deg,#fbefdf,#f4dec8);box-shadow:inset 0 0 0 1px rgba(163,112,78,.10);overflow:hidden}
+#kidsFrontNasalLesson .nsv-art-svg{display:block;width:100%;height:154px;overflow:visible}
+#kidsFrontNasalLesson .nsv-art-svg *{box-shadow:none}
+#kidsFrontNasalLesson .nsv-view-label{display:block;text-align:center;height:22px;font-size:11px;line-height:22px;color:#75644f}
+#kidsFrontNasalLesson .nsv-art-cue{font-size:13px;line-height:1.5;font-weight:600;border:1px solid #d0e2d1;border-radius:12px;padding:7px 5px;color:#356c50;background:#e9f2e7;text-align:center;min-width:0}
+#kidsFrontNasalLesson .nsv-detail{margin-top:14px;border:1px solid #e5e2d2;border-radius:14px;background:#fcfbf4;overflow:hidden}
+#kidsFrontNasalLesson .nsv-detail summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;min-height:52px;padding:12px;font-size:14px;line-height:1.55;font-weight:600;cursor:pointer}
+#kidsFrontNasalLesson summary::-webkit-details-marker{display:none}
+#kidsFrontNasalLesson .nsv-detail summary span{width:8px;height:8px;flex:0 0 8px;border-right:2px solid #668369;border-bottom:2px solid #668369;transform:rotate(45deg)}
+#kidsFrontNasalLesson .nsv-detail[open] summary span{transform:rotate(225deg)}
+#kidsFrontNasalLesson .nsv-static-content{padding:0 10px 12px}
+#kidsFrontNasalLesson .nsv-static-views{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsFrontNasalLesson .nsv-static-views figure{min-width:0;margin:0;border:1px solid #e6d6bf;border-radius:13px;background:#fff5e6;overflow:hidden}
+#kidsFrontNasalLesson .nsv-static-views strong{display:block;text-align:center;padding:6px 3px;font-size:14px;line-height:1.4;color:#5a6a49}
+#kidsFrontNasalLesson .nsv-static-views svg{display:block;width:100%;height:auto;aspect-ratio:144/154}
+#kidsFrontNasalLesson .nsv-static-views figcaption{padding:6px 5px 9px;min-height:4em;font-size:13px;line-height:1.5;text-align:center;color:#6c644d}
+#kidsFrontNasalLesson .nsv-static-note{margin:10px 1px 0;font-size:14px;line-height:1.55;color:#5e644c}
+#kidsFrontNasalLesson .nsv-model-note{margin-top:12px;font-size:13px;color:#6e725e;line-height:1.6}
+#kidsFrontNasalLesson .nsv-model-note summary{cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px}
+#kidsFrontNasalLesson .nsv-model-note p{margin:7px 0;font-size:14px;font-weight:400}
+#kidsFrontNasalLesson .nsv-practice{background:#edf5ec;border-color:#aec8b3}
+#kidsFrontNasalLesson .nsv-practice .nsv-zone-head>span{background:#d9e9d8}
+#kidsFrontNasalLesson .nsv-free-choice button{min-height:59px;background:#fff;border:1px solid #b5c9b7;border-radius:13px;color:#37654d;font-size:30px;line-height:1.2;font-weight:600}
+#kidsFrontNasalLesson .nsv-free-choice button.is-active{background:#2f6348;color:#fff;border-color:#2f6348}
+#kidsFrontNasalLesson .nsv-practice-target{margin:14px 0 10px;font-size:15px;line-height:1.5;font-weight:500}
+#kidsFrontNasalLesson .nsv-record-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsFrontNasalLesson .nsv-record-row .nsv-button{font-size:15px;min-height:64px}
+#kidsFrontNasalLesson .nsv-record{background:#2d6247;color:#fff;border-color:#2d6247;box-shadow:0 3px 0 #1f4831}
+#kidsFrontNasalLesson .nsv-record.is-recording{background:#a95143;border-color:#9a493c;color:#fff;box-shadow:none}
+#kidsFrontNasalLesson .nsv-feedback{margin:12px 0 0;min-height:3.1em;font-size:14px;line-height:1.55;font-weight:400;color:#52654e}
+#kidsFrontNasalLesson .nsv-feedback.is-bad{color:#934735}
+#kidsFrontNasalLesson .nsv-feedback.is-good{color:#2e6445}
+#kidsFrontNasalLesson .nsv-check{background:#fff9e9;border-color:#decda0}
+#kidsFrontNasalLesson .nsv-check .nsv-zone-head>span{background:#f4e7bc;color:#7c6326}
+#kidsFrontNasalLesson .nsv-to-quiz{background:#faedc7;color:#6a5220;border-color:#cfb979;box-shadow:0 3px 0 #e6d6a5}
+#kidsFrontNasalLesson .nsv-quiz-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px;font-size:15px;line-height:1.5}
+#kidsFrontNasalLesson .nsv-quiz-top span{white-space:nowrap;font-weight:500;color:#837449}
+#kidsFrontNasalLesson .nsv-quiz-choices{margin-top:14px}
+#kidsFrontNasalLesson .nsv-quiz-choices button{min-height:75px;border:1px solid #d2c69f;border-radius:15px;background:#fffefa;font-size:35px;font-weight:600;color:#566242}
+#kidsFrontNasalLesson .nsv-quiz-choices button.is-correct{background:#deecd8;border-color:#78a36a;color:#31592b}
+#kidsFrontNasalLesson .nsv-quiz-choices button.is-wrong{background:#f4e1d8;border-color:#c7937a;color:#8a4936}
+#kidsFrontNasalLesson .nsv-result{text-align:center;padding:12px 0 0}
+#kidsFrontNasalLesson .nsv-result-mark{display:grid;place-items:center;width:50px;height:50px;margin:0 auto 10px;border-radius:50%;background:#dfedcf;color:#466c35;font-size:27px;font-weight:600}
+#kidsFrontNasalLesson .nsv-result h4{margin:0 0 8px;font-size:21px;line-height:1.5;color:#526139}
+#kidsFrontNasalLesson .nsv-result>strong{display:block;font-size:22px;font-weight:600}
+#kidsFrontNasalLesson .nsv-result>p{font-size:15px;line-height:1.65;margin:8px 0 14px;color:#6b7052}
+#kidsFrontNasalLesson .nsv-result-actions{display:grid;grid-template-columns:1fr;gap:10px}
+#kidsFrontNasalLesson .nsv-return{background:#f8f4e5;border-color:#d5c69d;color:#72603c}
+@media(max-width:360px){
+  #kidsFrontNasalLesson .nsv-hero{padding:20px 16px}
+  #kidsFrontNasalLesson .nsv-zone{margin:15px 10px;padding:12px}
+  #kidsFrontNasalLesson .nsv-zone-head h3{font-size:18px}
+  #kidsFrontNasalLesson .nsv-articulation{grid-template-columns:1fr;gap:9px}
+  #kidsFrontNasalLesson .nsv-diagram-shell{margin:0 auto}
+  #kidsFrontNasalLesson .nsv-art-cue{justify-self:center;padding:5px 12px}
+  #kidsFrontNasalLesson .nsv-focus-copy p{min-height:6.4em}
+  #kidsFrontNasalLesson .nsv-feedback{min-height:4.65em}
+}
+@media(prefers-reduced-motion:reduce){#kidsFrontNasalLesson button{transition:none}}
+/* P5 result overlay: the moving mascot never blocks the close target. */
+#koepandaResultStage.is-nsv-result .koepanda-result-stage-close{z-index:5;pointer-events:auto;display:grid;place-items:center;width:40px!important;height:40px!important;min-height:40px!important;padding:0!important;font-size:25px!important;line-height:1!important}
+#koepandaResultStage.is-nsv-result .koepanda-result-stage-mascot{pointer-events:none}
+
+/* 10.108.114 — match established mint palette; static guidance stays visible. */
+#kidsFrontNasalLesson{background:linear-gradient(180deg,#fbfffc,#f7fbf5)!important;border-color:#dcece2!important;border-radius:28px}
+#kidsFrontNasalLesson .nsv-hero{background:linear-gradient(135deg,#eaf6ed,#fff5dd);border-bottom:1px solid #e1ecdf}
+#kidsFrontNasalLesson .nsv-hero h2,#kidsFrontNasalLesson .nsv-zone-head h3{color:#285f50}
+#kidsFrontNasalLesson .nsv-zone{border-radius:24px;border-color:#deece3;background:#fff;box-shadow:0 6px 18px rgba(54,92,78,.055)}
+#kidsFrontNasalLesson .nsv-letter-card{border-radius:20px;background:linear-gradient(180deg,#fbfffc,#edf7ef);border-color:#d5e9df;color:#2f705c}
+#kidsFrontNasalLesson .nsv-letter-card.is-active{background:linear-gradient(180deg,#59bf91,#3da87a);border-color:#75c6a0;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.2)}
+#kidsFrontNasalLesson .nsv-focus{padding:12px;border-radius:20px;background:linear-gradient(135deg,#f1f9f3,#fff9e9);border:1px solid #e0ebdd}
+#kidsFrontNasalLesson .nsv-focus-copy>span{background:transparent;color:#2f7a64}
+#kidsFrontNasalLesson .nsv-focus-copy strong{color:#e9786f}
+#kidsFrontNasalLesson .nsv-model{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
+#kidsFrontNasalLesson .nsv-model.is-playing{background:#3a9775;border-color:#3a9775;color:#fff}
+#kidsFrontNasalLesson .nsv-articulation{background:#fff;border-color:#d8e7df;border-radius:20px}
+#kidsFrontNasalLesson .nsv-static-section{margin-top:12px;padding:12px;border:1px solid #dcebe1;border-radius:20px;background:linear-gradient(145deg,#fffefb,#fbfdf8);min-width:0;overflow:hidden}
+#kidsFrontNasalLesson .nsv-static-head{display:grid;grid-template-columns:36px minmax(0,1fr);gap:9px;align-items:center;margin-bottom:10px}
+#kidsFrontNasalLesson .nsv-static-head>span{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#eaf6ed;color:#2f7a64;font-size:27px;font-weight:700}
+#kidsFrontNasalLesson .nsv-static-head small{display:block;color:#73897c;font-size:12px;line-height:1.4}
+#kidsFrontNasalLesson .nsv-static-head h3{margin:2px 0 0;color:#295f4e;font-size:15px;line-height:1.4;font-weight:700}
+#kidsFrontNasalLesson .nsv-static-content{padding:0}
+#kidsFrontNasalLesson .nsv-static-views{max-width:320px;margin:0 auto}
+#kidsFrontNasalLesson .nsv-static-views figure{border-color:#eeded4;background:#fff8f2;border-radius:16px}
+#kidsFrontNasalLesson .nsv-static-views strong{color:#34755e}
+#kidsFrontNasalLesson .nsv-static-views figcaption{color:#637c6d;min-height:4.5em}
+#kidsFrontNasalLesson .nsv-detail{background:#f6fbf7;border-color:#dcebe1;border-radius:18px}
+#kidsFrontNasalLesson .nsv-comparison-content{display:grid;grid-template-columns:1fr;gap:8px;padding:0 12px 12px}
+#kidsFrontNasalLesson .nsv-comparison-content>div{padding:12px;background:#fff;border:1px solid #e0ece4;border-radius:16px}
+#kidsFrontNasalLesson .nsv-comparison-content strong{display:block;color:#2f7a64;font-size:19px}
+#kidsFrontNasalLesson .nsv-comparison-content b{display:block;margin-top:5px;color:#4f7466;font-size:14px;line-height:1.5}
+#kidsFrontNasalLesson .nsv-comparison-content p{margin:5px 0 0;color:#647d70;font-size:14px;line-height:1.6}
+#kidsFrontNasalLesson .nsv-practice{background:#eef7f1;border-color:#c8e0d0}
+#kidsFrontNasalLesson .nsv-free-choice button{background:#edf7f0;border-color:#cfe3d7;border-radius:15px;color:#34745f}
+#kidsFrontNasalLesson .nsv-free-choice button.is-active{background:#3dac7c;border-color:#3dac7c;color:#fff}
+#kidsFrontNasalLesson .nsv-record{background:#fff0ee;border-color:#efd0cb;color:#c95d57;box-shadow:0 3px 0 #efd5cf;border-radius:16px}
+#kidsFrontNasalLesson .nsv-record.is-recording{background:#ea6e66;border-color:#ea6e66;color:#fff;box-shadow:none}
+#kidsFrontNasalLesson .nsv-playback:not(:disabled){background:#f0f2fb;border-color:#d8ddef;color:#566590}
+#kidsFrontNasalLesson .nsv-check{background:#fff9e9;border-color:#e7dab7}
+#kidsFrontNasalLesson .nsv-to-quiz{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
+@media(max-width:360px){#kidsFrontNasalLesson .nsv-focus{padding:9px}#kidsFrontNasalLesson .nsv-static-section{padding:9px}#kidsFrontNasalLesson .nsv-static-views{gap:6px}#kidsFrontNasalLesson .nsv-static-views figcaption{font-size:12px;min-height:5.5em}}
+
+/* 10.108.115 — established quiz controls and answer states. */
+#kidsFrontNasalLesson .nsv-listen,#kidsFrontNasalLesson .nsv-next{background:#2f7a64;border-color:#2f7a64;color:#fff;border-radius:16px;box-shadow:0 3px 0 #256450}
+#kidsFrontNasalLesson .nsv-listen.is-playing{background:#3a9775;border-color:#3a9775;color:#fff}
+#kidsFrontNasalLesson .nsv-quiz-choices button{background:#eff7f1;border-color:#d5e9df;color:#2f705c}
+#kidsFrontNasalLesson .nsv-quiz-choices button.is-correct{background:#43ad7e;border-color:#43ad7e;color:#fff}
+#kidsFrontNasalLesson .nsv-quiz-choices button.is-wrong{background:#ef837b;border-color:#ef837b;color:#fff}
+#kidsFrontNasalLesson .nsv-result-actions .nsv-button{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
+
+
+#kidsFrontNasalLesson .nsv-articulation{grid-template-columns:158px minmax(0,1fr);min-height:205px}
+#kidsFrontNasalLesson .nsv-diagram-shell{width:158px;height:176px;background:#fae4d6}
+#kidsFrontNasalLesson .nsv-art-svg{height:154px}
+#kidsFrontNasalLesson .nsv-route{min-width:0;width:100%;max-width:180px;display:block;margin:0 auto}
+#kidsFrontNasalLesson .nsv-route-caption{margin:5px 0 0;font-size:12px;line-height:1.55;text-align:center;color:#5c776b}
+#kidsFrontNasalLesson .nsv-movement{min-width:0}
+#kidsFrontNasalLesson .nsv-focus-copy{grid-template-columns:49px minmax(0,1fr)}
+#kidsFrontNasalLesson .nsv-focus-copy>span{font-size:31px}
+#kidsFrontNasalLesson .nsv-static-head>span{font-size:23px}
+#kidsFrontNasalLesson .nsv-static-views svg{aspect-ratio:412/378}
+#kidsFrontNasalLesson .nsv-pose{opacity:0;animation:nsv119Last 4.8s linear infinite}
+#kidsFrontNasalLesson .nsv-pose-0{animation-name:nsv119First}
+#kidsFrontNasalLesson .nsv-art-svg[data-letter="ui"] .nsv-pose-0{animation-name:nsv119Round}
+#kidsFrontNasalLesson .nsv-art-svg[data-letter="ui"] .nsv-pose-1{animation-name:nsv119Middle}
+#kidsFrontNasalLesson .nsv-art-svg[data-letter="ui"] .nsv-pose-2{animation-name:nsv119UIEnd}
+#kidsFrontNasalLesson:not(.is-roadmap-lesson-active) .nsv-pose{animation-play-state:paused}
+@keyframes nsv119First{0%,39.99%{opacity:1}40%,89.99%{opacity:0}90%,100%{opacity:1}}
+@keyframes nsv119Last{0%,39.99%{opacity:0}40%,89.99%{opacity:1}90%,100%{opacity:0}}
+@keyframes nsv119Round{0%,24.99%{opacity:1}25%,89.99%{opacity:0}90%,100%{opacity:1}}
+@keyframes nsv119Middle{0%,24.99%{opacity:0}25%,57.99%{opacity:1}58%,100%{opacity:0}}
+@keyframes nsv119UIEnd{0%,57.99%{opacity:0}58%,89.99%{opacity:1}90%,100%{opacity:0}}
+@media(max-width:360px){#kidsFrontNasalLesson .nsv-articulation{grid-template-columns:1fr}#kidsFrontNasalLesson .nsv-movement{width:100%;max-width:180px;justify-self:center}}
+@media(prefers-reduced-motion:reduce){#kidsFrontNasalLesson .nsv-pose{animation:none;opacity:0}#kidsFrontNasalLesson .nsv-pose-0{opacity:1}}
+#kidsFrontNasalLesson .nsv-static-views strong{min-height:3.7em;display:grid;place-items:center}
+@media(max-width:560px){#kidsFrontNasalLesson .nsv-articulation{grid-template-columns:1fr;gap:10px}#kidsFrontNasalLesson .nsv-diagram-shell{margin:0 auto}#kidsFrontNasalLesson .nsv-movement{width:100%;max-width:220px;justify-self:center}#kidsFrontNasalLesson .nsv-route{max-width:220px}}
+#kidsFrontNasalLesson .nsv-pose{animation-timing-function:steps(1,end)}
+
+/* Five equal-size choices: three above, two centered below. */
+#kidsFrontNasalLesson .nsv-letter-grid,#kidsFrontNasalLesson .nsv-free-choice,#kidsFrontNasalLesson .nsv-quiz-choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+#kidsFrontNasalLesson .nsv-letter-grid>button,#kidsFrontNasalLesson .nsv-free-choice>button,#kidsFrontNasalLesson .nsv-quiz-choices>button{grid-column:span 2}
+#kidsFrontNasalLesson .nsv-letter-grid>button:nth-child(4),#kidsFrontNasalLesson .nsv-free-choice>button:nth-child(4),#kidsFrontNasalLesson .nsv-quiz-choices>button:nth-child(4){grid-column:2/span 2}
+#kidsFrontNasalLesson .nsv-letter-grid>button:nth-child(5),#kidsFrontNasalLesson .nsv-free-choice>button:nth-child(5),#kidsFrontNasalLesson .nsv-quiz-choices>button:nth-child(5){grid-column:4/span 2}
+#kidsFrontNasalLesson .nsv-articulation{min-height:220px}
+
+#kidsFrontNasalLesson .nsv-hero h2>span{display:block}
