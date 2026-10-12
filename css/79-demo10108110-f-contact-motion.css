@@ -1,4 +1,6 @@
-/* 10.108.110: f sustains a labiodental constriction while air is shown. */
+/* 10.108.111: f sustains a labiodental constriction while air is shown. */
+/* Suppress the retired oval even if an older renderer leaves its node behind. */
+#kidsInitialsLesson .focus-mouth-f .focus-mouth-gap{display:none!important;animation:none!important}
 #kidsInitialsLesson .focus-mouth-f .focus-teeth{animation:none!important;transform:none}
 #kidsInitialsLesson .focus-mouth-f .focus-lower-lip{animation:kp110FLower 3.2s ease-in-out infinite}
 #kidsInitialsLesson .focus-mouth-f .focus-air-line{height:1.25px;animation:kp110FAir 3.2s ease-in-out infinite}
