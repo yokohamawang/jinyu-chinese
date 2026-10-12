@@ -24,13 +24,13 @@
     b:'くちびるを閉じる → 一瞬だけ開く。母音を足さない（無気音）',
     p:'b と同じ口 → 開く瞬間に強く息を出す（有気音）',
     m:'くちびるを閉じたまま、鼻から「んー」と響かせる',
-    f:'上の歯で下くちびるに軽くふれ、口角を少し引いて細い息を流す'
+    f:'上の歯を下くちびるに軽く当て、そのすき間から細い息を流す'
   };
   var focusVisuals={
     b:{title:'両くちびるを閉じる',sub:'開く瞬間は、息を弱く',kind:'b',air:'弱い息'},
     p:{title:'両くちびるを閉じる',sub:'開く瞬間に、息を強く',kind:'p',air:'強い息'},
     m:{title:'くちびるは閉じたまま',sub:'音は鼻へ響かせる',kind:'m',air:'鼻に響く'},
-    f:{title:'上の歯を下くちびるへ',sub:'口角を少し引き、細い息を流す',kind:'f',air:'細い息'}
+    f:{title:'上の歯を下くちびるへ',sub:'軽くふれたまま、細い息を流す',kind:'f',air:'細い息'}
   };
   var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null, modelAudio=null;
   var soundFiles={
@@ -161,7 +161,7 @@
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.109',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.110',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -218,12 +218,12 @@
     if(letter==='m'){
       art='<span class="focus-mouth focus-mouth-m" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i></span>';
     }else if(letter==='f'){
-      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-teeth">'+fDentalArt()+'</i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
+      art='<span class="focus-mouth focus-mouth-f" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-teeth">'+fDentalArt()+'</i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }else{
       art='<span class="focus-mouth focus-mouth-'+letter+'" aria-hidden="true">'+nose+'<i class="focus-upper-lip">'+lipArt('upper',letter)+'</i><i class="focus-mouth-gap"></i><i class="focus-lower-lip">'+lipArt('lower',letter)+'</i><i class="focus-air-line l1"></i><i class="focus-air-line l2"></i><i class="focus-air-line l3"></i></span>';
     }
     box.className='initials-focus-visual kp71-front-only is-'+letter;
-    box.dataset.build='10.108.109';
+    box.dataset.build='10.108.110';
     box.innerHTML=art+'<div><b>'+v.title+'</b><small>'+v.sub+'</small><em>'+v.air+'</em></div>';
   }
   function select(letter){
