@@ -44,6 +44,7 @@
     if(id==='P5')return document.getElementById('kidsInitialsGKHLesson');
     if(id==='P6')return document.getElementById('kidsInitialsJQXLesson');
     if(id==='P7')return document.getElementById('kidsInitialsZHRLesson');
+    if(id==='P8')return document.getElementById('kidsInitialsZCSLesson');
     return null;
   }
 
@@ -143,7 +144,7 @@
     }
     if(unit.id==='P6'){try{return localStorage.getItem('koepandaInitialP5Complete')!=='1'}catch(e){return true}}
     if(unit.id==='P7'){try{return localStorage.getItem('koepandaInitialP6Complete')!=='1'}catch(e){return true}}
-    if(unit.id==='P8')return true;
+    if(unit.id==='P8'){try{return localStorage.getItem('koepandaInitialP7Complete')!=='1'}catch(e){return true}}
     return false;
   }
 
@@ -153,10 +154,11 @@
     var locked=unitLocked(unit,stageStatus),hasBody=!!targetForUnit(unit.id);
     if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked'); if(!locked&&!hasBody)b.classList.add('is-upcoming');
     b.disabled=locked||(!hasBody&&!isCurrent);
-    var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(locked&&unit.id==='P4'?'b・p・m・f をクリアすると開く':(locked&&unit.id==='P5'?'d・t・n・l をクリアすると開く':(locked&&unit.id==='P6'?'g・k・h をクリアすると開く':(locked&&unit.id==='P7'?'j・q・x をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習'))))));
+    var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(locked&&unit.id==='P4'?'b・p・m・f をクリアすると開く':(locked&&unit.id==='P5'?'d・t・n・l をクリアすると開く':(locked&&unit.id==='P6'?'g・k・h をクリアすると開く':(locked&&unit.id==='P7'?'j・q・x をクリアすると開く':(locked&&unit.id==='P8'?'zh・ch・sh・r をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習')))))));
     if(unit.id==='P5'){try{if(localStorage.getItem('koepandaInitialP5Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌の奥と息の違いを復習しよう'}}catch(e){}}
     if(unit.id==='P6'){try{if(localStorage.getItem('koepandaInitialP6Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌の前面と息の違いを復習しよう'}}catch(e){}}
     if(unit.id==='P7'){try{if(localStorage.getItem('koepandaInitialP7Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌先と息・声の違いを復習しよう'}}catch(e){}}
+    if(unit.id==='P8'){try{if(localStorage.getItem('koepandaInitialP8Complete')==='1'){b.classList.add('is-complete');note='クリア！ 歯の裏と息の違いを復習しよう'}}catch(e){}}
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
     if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
