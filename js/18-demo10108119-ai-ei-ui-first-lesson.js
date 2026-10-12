@@ -6,7 +6,7 @@
   function route(letter){var ui=letter==='ui',marks=ui?['u','e','i']:letter==='ai'?['a','i']:['e','i'];return '<svg class="cpv-route" viewBox="0 0 180 54" aria-hidden="true"><path d="M12 22H166" stroke="#cfdfd2" stroke-width="3" fill="none"/>'+marks.map(function(p,i){var x=ui?[12,89,166][i]:[12,166][i];return '<circle cx="'+x+'" cy="22" r="4" fill="#dbeadf"/><text x="'+x+'" y="46" text-anchor="middle" fill="#376e53" font-size="14">'+p+'</text>'}).join('')+'<circle class="cpv-flow-dot" cx="12" cy="22" r="5" fill="#3c9975"><animate attributeName="cx" values="12;166;166;12;12" keyTimes="0;.72;.90;.9001;1" dur="4.8s" repeatCount="indefinite"/></circle></svg>'}
 
   var letters=['ai','ei','ui'];
-  var guide={"ai": {"hanzi": "改", "pinyin": "gǎi", "ipa": "[ai̯]", "cue": "a → i", "tip": "a から i の方向へ、ひと息でつなぎます。最後は短く軽く。", "poses": ["a", "i"], "labels": ["はじめ（a）", "i に近づく"], "notes": ["大きめに口を開く", "軽く横へ、短く終える"]}, "ei": {"hanzi": "给", "pinyin": "gěi", "ipa": "[ei̯]", "cue": "e → i", "tip": "前寄りの e から i の方向へ。ai より小さい動きでつなぎます。", "poses": ["e", "i"], "labels": ["はじめ（e）", "i に近づく"], "notes": ["丸めず、軽く開く", "小さく変えてつなぐ"]}, "ui": {"hanzi": "鬼", "pinyin": "guǐ", "ipa": "[uei̯]", "cue": "u → e → i", "tip": "丸い唇の u から、短い e を通って i へ。途中で音を切りません。", "poses": ["u", "e", "i"], "labels": ["はじめ（u）", "e を通って i へ"], "notes": ["唇を丸く、やわらかく", "丸さをほどいてつなぐ"]}};
+  var guide={"ai": {"hanzi": "唉", "pinyin": "āi", "ipa": "[ai̯]", "cue": "a → i", "tip": "a の口形から、i の方向へ。口の開きを小さくしながら、ひと息でつなぎます。", "poses": ["a", "i"], "labels": ["スタート（a）", "ゴール（i に近づく）"], "notes": ["大きめに口を開く", "i に近づけ、短く軽く終える"]}, "ei": {"hanzi": "诶", "pinyin": "ēi", "ipa": "[ei̯]", "cue": "e → i", "tip": "前寄りの e の口形から、i の方向へ。単母音 e の写真は目安です。小さな動きでつなぎます。", "poses": ["e", "i"], "labels": ["スタート（e）", "ゴール（i に近づく）"], "notes": ["丸めず、軽く開く", "i に近づけ、短く軽く終える"]}, "ui": {"hanzi": "唯", "pinyin": "wéi", "ipa": "[uei̯]", "cue": "u → e → i", "tip": "u の丸い口形から、短い e を通って i の方向へ。唇の丸さをほどき、ひと息でつなぎます。", "poses": ["u", "e", "i"], "labels": ["スタート（u）", "ゴール（i に近づく）"], "notes": ["唇を丸く、やわらかく", "短い e を通って、i に近づく"]}};
   var selected='ai',root,recordings={},recorder=null,stream=null,pendingRecord=false,recordToken=0,recordTimer=0;
   var playback=null,modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
   function el(id){return document.getElementById(id)}
@@ -49,14 +49,14 @@
       if(token!==modelToken)return;
       if(!audio)audio=await fallbackSpeech(item.hanzi);
       if(token!==modelToken)return;
-      if(!forQuiz){resetArt();feedback(fb,'口形の流れを見よう。音は途中で切らずにつなぎます。')}
+      if(!forQuiz){resetArt();feedback(fb,'はじめの口形から i の方向へ。音を切らず、最後は短く軽く。')}
       if(audio&&typeof audio.addEventListener==='function')audio.addEventListener('ended',function(){if(token===modelToken)button.classList.remove('is-playing')},{once:true});
       playingTimer=setTimeout(function(){if(token===modelToken)button.classList.remove('is-playing')},2200);
     }catch(e){if(token===modelToken){button.classList.remove('is-playing');feedback(fb,'音声を再生できませんでした。もう一度聞いてみよう。','bad')}}
     finally{if(token===modelToken)button.removeAttribute('aria-busy')}
   }
   function renderArt(){
-    el('cpvArticulation').innerHTML='<span class="cpv-diagram-shell">'+cpvDiagram(selected,'live','live')+'<small class="cpv-view-label">口形の目安・ゆっくり</small></span><span class="cpv-movement">'+route(selected)+'<p class="cpv-route-caption">音を切らず、ひと息で</p></span>';
+    el('cpvArticulation').innerHTML='<span class="cpv-diagram-shell">'+cpvDiagram(selected,'live','live')+'<small class="cpv-view-label">口形の目安・ゆっくり</small></span><span class="cpv-movement">'+route(selected)+'<p class="cpv-route-caption">'+guide[selected].cue+'<br>左がスタート、右がゴール。ひと息でつなぐ</p></span>';
     var item=guide[selected];el('cpvStaticGuide').innerHTML='<div class="cpv-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+cpvDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('cpvStaticLetter').textContent=selected;
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.cpv-art-svg,.cpv-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }
