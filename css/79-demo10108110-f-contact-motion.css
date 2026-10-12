@@ -1,0 +1,21 @@
+/* 10.108.110: f sustains a labiodental constriction while air is shown. */
+#kidsInitialsLesson .focus-mouth-f .focus-teeth{animation:none!important;transform:none}
+#kidsInitialsLesson .focus-mouth-f .focus-lower-lip{animation:kp110FLower 3.2s ease-in-out infinite}
+#kidsInitialsLesson .focus-mouth-f .focus-air-line{height:1.25px;animation:kp110FAir 3.2s ease-in-out infinite}
+#kidsInitialsLesson .focus-mouth-f .l1{top:40.5px}
+#kidsInitialsLesson .focus-mouth-f .l2{top:42.5px}
+#kidsInitialsLesson .focus-mouth-f .l3{top:44.5px}
+@keyframes kp110FLower{
+  0%,8%,100%{transform:translateY(1.5px) scaleX(.98)}
+  18%,64%{transform:translateY(0) scaleX(.96)}
+  78%,90%{transform:translateY(1.5px) scaleX(.98)}
+}
+@keyframes kp110FAir{
+  0%,12%,100%{opacity:0;transform:scaleX(.8)}
+  22%,54%{opacity:.68;transform:scaleX(1)}
+  64%,100%{opacity:0;transform:scaleX(.88)}
+}
+@media(prefers-reduced-motion:reduce){
+  #kidsInitialsLesson .focus-mouth-f .focus-lower-lip{animation:none;transform:translateY(0) scaleX(.96)}
+  #kidsInitialsLesson .focus-mouth-f .focus-air-line{animation:none;opacity:.5;transform:none}
+}
