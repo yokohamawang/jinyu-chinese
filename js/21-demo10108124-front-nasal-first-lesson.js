@@ -64,9 +64,20 @@
     finally{if(token===modelToken)button.removeAttribute('aria-busy')}
   }
   function renderArt(){
-    el('nsvArticulation').innerHTML='<span class="nsv-diagram-shell">'+nsvDiagram(selected,'live','live')+'<small class="nsv-view-label">舌と鼻音の目安・ゆっくり</small></span><span class="nsv-movement">'+route(selected)+'<p class="nsv-route-caption">'+guide[selected].cue+'<br>最後は舌の前部で閉じ、鼻に響かせる</p></span>';
+    el('nsvArticulation').innerHTML='<span class="nsv-diagram-shell">'+nsvDiagram(selected,'live','live')+'<small class="nsv-view-label">舌と鼻音の目安・ゆっくり</small></span><span class="nsv-movement">'+route(selected)+'<p class="nsv-route-caption">舌の前部で閉じ、鼻に響かせる</p></span>';
     var item=guide[selected];el('nsvStaticGuide').innerHTML='<div class="nsv-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+nsvDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('nsvStaticLetter').textContent=selected;
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.nsv-art-svg,.nsv-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
+  }
+  function revealTeachingArt(){
+    requestAnimationFrame(function(){
+      if(root.hidden||!root.classList.contains('is-roadmap-lesson-active'))return;
+      var grid=el('nsvLetterGrid'),art=el('nsvArticulation'),view=window.visualViewport;
+      var top=view?view.offsetTop:0,height=view?view.height:window.innerHeight;
+      var g=grid.getBoundingClientRect(),a=art.getBoundingClientRect();
+      if(g.top<top+12||a.bottom>top+height-8){
+        grid.scrollIntoView({block:'start',inline:'nearest',behavior:'instant'});
+      }
+    });
   }
   function select(letter,listen){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
@@ -151,7 +162,7 @@
   }
   function init(){
     root=el('kidsFrontNasalLesson');if(!root)return;
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+item.cue+'</em>';button.onclick=function(){select(letter,true)};el('nsvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+item.cue+'</em>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.nsvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('nsvFreeChoice').appendChild(free)});
     el('nsvModel').onclick=function(){playModel(selected,this,false)};el('nsvRecord').onclick=toggleRecord;el('nsvPlayback').onclick=playRecording;el('nsvToQuiz').onclick=startQuiz;el('nsvRetry').onclick=startQuiz;
     el('nsvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('nsvQuizNext').onclick=nextQuestion;
