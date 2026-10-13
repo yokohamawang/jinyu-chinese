@@ -2,26 +2,26 @@
   "use strict";
   var mouthCrops={a:[18,145],e:[881,145],o:[451,145],i:[18,632],u:[451,632],ü:[881,632]};
   function photo(pose,live,index){var p=mouthCrops[pose];return '<svg '+(live?'class="nsv-pose nsv-pose-'+index+'" ':'')+'x="0" y="0" width="144" height="132" viewBox="'+p[0]+' '+p[1]+' 412 378" aria-hidden="true"><image href="./assets/articulation/vowel-mouth-101.png" width="1312" height="1199" /></svg>'}
-  function nasalDiagram(letter,live,instance){
+  function mouthDiagram(letter,live,instance){
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)live=false;
-    var id='nsv-'+instance;
-    // Natural small front movement toward the alveolar region behind upper incisors.
-    // Never lift the entire anterior tongue to the high hard-palate arch.
-    var contours={"an": {"rest": "M43 68 C53 71 59 76 65 78 C81 80 98 80 110 84 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C40 79 40 71 43 68 Z", "end": "M41 61 C53 71 59 76 65 78 C81 80 98 80 110 84 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C39 76 38 64 41 61 Z"}, "en": {"rest": "M43 65 C53 69 59 73 65 74 C81 71 98 76 110 82 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C40 79 40 68 43 65 Z", "end": "M41 61 C53 69 59 73 65 74 C81 71 98 76 110 82 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C39 76 38 64 41 61 Z"}, "in": {"rest": "M43 63 C51 63 57 57 65 57 C81 56 98 71 110 82 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C40 79 40 66 43 63 Z", "end": "M41 61 C51 63 57 57 65 57 C81 56 98 71 110 82 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C39 76 38 64 41 61 Z"}, "un": {"rest": "M43 67 C51 70 59 73 65 73 C81 67 98 63 110 70 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C40 79 40 70 43 67 Z", "end": "M41 61 C51 70 59 73 65 73 C81 67 98 63 110 70 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C39 76 38 64 41 61 Z"}, "ün": {"rest": "M43 63 C51 63 57 57 65 57 C81 56 98 71 110 82 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C40 79 40 66 43 63 Z", "end": "M41 61 C51 63 57 57 65 57 C81 56 98 71 110 82 C115 85 117 91 118 94 C114 97 89 97 70 94 C57 92 48 87 43 83 C39 76 38 64 41 61 Z"}};
-    var rest=contours[letter].rest,closed=contours[letter].end;
-    var rounded=letter==='un'||letter==='ün';
-    var motion=rest+';'+rest+';'+closed+';'+closed+';'+rest;
-    var times='0;.24;.48;.86;1';
-    var upperOpen='M30 49 C26 49 20 49 18 53 C17 56 21 56 24 55 C27 54 29 53 30 52 Z';
-    var upperRound='M30 49 C26 51 18 56 12 63 C9 66 12 69 16 68 C22 65 27 61 30 60 Z';
-    var lowerOpen='M30 78 C26 80 23 80 20 81 C17 82 18 86 22 86 C25 86 28 85 30 84 Z';
-    var lowerRound='M30 78 C25 74 19 69 14 70 C10 70 10 74 14 76 C20 80 25 83 30 86 Z';
-    function lip(which,open,round){
-      return '<path class="nsv-lip nsv-lip-'+which+'" d="'+open+'" fill="#e6a697" stroke="#bb796e" stroke-width=".8">'+(live&&rounded?'<animate attributeName="d" values="'+open+';'+round+';'+round+';'+open+';'+open+'" keyTimes="0;.16;.24;.48;1" dur="5.2s" repeatCount="indefinite"/>':'')+'</path>';
+    var poses={an:[[68,30],[68,19]],en:[[70,17],[72,13]],in:[[76,13],[76,10]],un:[[34,19],[68,16]],'ün':[[34,15],[42,13]]};
+    var begin=poses[letter][0],end=poses[letter][1],id='nsv-mouth-'+instance;
+    function paths(p){
+      var w=p[0],h=p[1],l=90-w/2,r=90+w/2,top=60-h/2,bottom=60+h/2;
+      return {
+        opening:'M'+l+' 60 C'+l+' '+(top+3)+' '+(90-w*.25)+' '+top+' 90 '+top+' C'+(90+w*.25)+' '+top+' '+r+' '+(top+3)+' '+r+' 60 C'+r+' '+(bottom-3)+' '+(90+w*.25)+' '+bottom+' 90 '+bottom+' C'+(90-w*.25)+' '+bottom+' '+l+' '+(bottom-3)+' '+l+' 60 Z',
+        upper:'M'+l+' 60 C'+(l+w*.15)+' '+(top-8)+' 78 '+(top-8)+' 90 '+(top-5)+' C102 '+(top-8)+' '+(r-w*.15)+' '+(top-8)+' '+r+' 60 C'+(r-w*.20)+' '+(top+1)+' 100 '+top+' 90 '+top+' C80 '+top+' '+(l+w*.20)+' '+(top+1)+' '+l+' 60 Z',
+        lower:'M'+l+' 60 C'+(l+w*.20)+' '+(bottom-1)+' 80 '+bottom+' 90 '+bottom+' C100 '+bottom+' '+(r-w*.20)+' '+(bottom-1)+' '+r+' 60 C'+(r-w*.15)+' '+(bottom+10)+' 102 '+(bottom+11)+' 90 '+(bottom+11)+' C78 '+(bottom+11)+' '+(l+w*.15)+' '+(bottom+10)+' '+l+' 60 Z',
+        highlight:'M'+(l+w*.23)+' '+(bottom+5)+' Q90 '+(bottom+9)+' '+(r-w*.23)+' '+(bottom+5)
+      };
     }
-    return '<svg class="nsv-art-svg nsv-nasal-diagram" viewBox="0 0 144 132" aria-hidden="true"><defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5b1a0"/><stop offset="1" stop-color="#d78079"/></linearGradient></defs><rect x="5" y="6" width="134" height="120" rx="22" fill="#fff6ef"/><path d="M25 50 Q39 26 74 29 Q108 29 122 49 L121 96 Q97 112 62 106 Q36 102 25 83" fill="#f5e6da" stroke="#d9b8a4" stroke-width="2"/><path d="M29 50 Q57 34 86 37 Q109 38 119 50" fill="none" stroke="#ba9180" stroke-width="4" stroke-linecap="round"/><path d="M28 84 Q66 107 119 94" fill="none" stroke="#d2ae99" stroke-width="3" stroke-linecap="round"/><rect x="30" y="49" width="9" height="13" rx="3" fill="#fffefa" stroke="#d8cbbb"/><rect x="30" y="75" width="8" height="10" rx="3" fill="#fffefa" stroke="#d8cbbb"/><path class="nsv-alveolar-guide" d="M40 51 Q42 56 40 61" fill="none" stroke="#ba9180" stroke-width="1.5" stroke-linecap="round"/><path class="nsv-nasal-tongue" d="'+(live?rest:closed)+'" fill="url(#'+id+')" stroke="#c77d72" stroke-width="1.3">'+(live?'<animate attributeName="d" values="'+motion+'" keyTimes="'+times+'" dur="5.2s" repeatCount="indefinite"/>':'')+'</path>'+lip('upper',upperOpen,upperRound)+lip('lower',lowerOpen,lowerRound)+'<text x="20" y="96" text-anchor="middle" font-size="8" fill="#8b544f">唇</text><g opacity="'+(live?'.15':'1')+'"><path d="M120 48 V27 Q120 17 105 17 H46" fill="none" stroke="#8abc9f" stroke-width="2.5" stroke-linecap="round"/><path d="M51 13 L46 17 L51 21" fill="none" stroke="#8abc9f" stroke-width="2" stroke-linecap="round"/>'+(live?'<animate attributeName="opacity" values=".15;.15;1;1;.15" keyTimes="0;.38;.5;.86;1" dur="5.2s" repeatCount="indefinite"/>':'')+'</g><text x="82" y="14" text-anchor="middle" font-size="9" fill="#4d8064">鼻への通り道</text><text x="86" y="98" text-anchor="middle" font-size="10" fill="#8b544f">舌</text><text x="72" y="119" text-anchor="middle" font-size="9" fill="#678174">口の中・横からの模式図</text></svg>';
+    var start=paths(begin),finish=paths(end);
+    function motion(kind){return live?'<animate attributeName="d" values="'+start[kind]+';'+start[kind]+';'+finish[kind]+';'+finish[kind]+';'+start[kind]+'" keyTimes="0;.16;.64;.86;1" dur="5.2s" repeatCount="indefinite"/>':''}
+    var pose=live?start:finish;
+    var rounded=letter==='un'||letter==='ün',teethStart=rounded?.12:.85,teethEnd=letter==='ün'?.18:.8;
+    return '<svg class="nsv-art-svg nsv-mouth-diagram" data-letter="'+letter+'" viewBox="0 0 180 132" aria-hidden="true"><defs><linearGradient id="'+id+'-skin" x2="0" y2="1"><stop stop-color="#fff8f3"/><stop offset="1" stop-color="#fae7dc"/></linearGradient><linearGradient id="'+id+'-upper" x2="0" y2="1"><stop stop-color="#bf7472"/><stop offset=".5" stop-color="#da9490"/><stop offset="1" stop-color="#a45d61"/></linearGradient><linearGradient id="'+id+'-lower" x2="0" y2="1"><stop stop-color="#d68a87"/><stop offset=".5" stop-color="#e8aaa2"/><stop offset="1" stop-color="#b96e70"/></linearGradient><radialGradient id="'+id+'-inside"><stop stop-color="#542832"/><stop offset="1" stop-color="#301c27"/></radialGradient><clipPath id="'+id+'-clip"><path class="nsv-mouth-clip" d="'+pose.opening+'">'+motion('opening')+'</path></clipPath></defs><rect x="5" y="6" width="170" height="120" rx="22" fill="url(#'+id+'-skin)"/><path d="M84 14 Q88 19 86 24 M96 14 Q92 19 94 24" fill="none" stroke="#dbbbae" stroke-width="1" opacity=".4"/><ellipse cx="90" cy="99" rx="45" ry="6" fill="#cfaba0" opacity=".1"/><g transform="translate(-30 -20) scale(1.333333)"><path class="nsv-mouth-opening" d="'+pose.opening+'" fill="url(#'+id+'-inside)">'+motion('opening')+'</path><g clip-path="url(#'+id+'-clip)"><path d="M46 43 Q90 48 134 43 L132 59 Q90 65 48 59 Z" fill="#fffaf0" stroke="#dccfc4" stroke-width=".5" opacity="'+(live?teethStart:teethEnd)+'">'+(live?'<animate attributeName="opacity" values="'+teethStart+';'+teethStart+';'+teethEnd+';'+teethEnd+';'+teethStart+'" keyTimes="0;.16;.64;.86;1" dur="5.2s" repeatCount="indefinite"/>':'')+'</path><path d="M69 81 Q90 74 111 81" fill="none" stroke="#b87a7c" stroke-width="5" opacity=".22"/></g><path class="nsv-lip nsv-lip-upper" d="'+pose.upper+'" fill="url(#'+id+'-upper)" stroke="#a96a69" stroke-width=".55">'+motion('upper')+'</path><path class="nsv-lip nsv-lip-lower" d="'+pose.lower+'" fill="url(#'+id+'-lower)" stroke="#b77472" stroke-width=".55">'+motion('lower')+'</path><path d="'+pose.highlight+'" fill="none" stroke="#fff4e9" stroke-width="1.4" stroke-linecap="round" opacity=".25">'+motion('highlight')+'</path></g><text x="90" y="118" text-anchor="middle" font-size="9" fill="#678174">正面から見た口形の目安</text></svg>';
   }
-  function nsvDiagram(letter,mode,instance){if(mode==='live'||mode==='release')return nasalDiagram(letter,mode==='live',instance);return '<svg class="nsv-art-svg" viewBox="0 0 144 132" aria-hidden="true">'+photo(guide[letter].poses[0],false,0)+'</svg>'}
+  function nsvDiagram(letter,mode,instance){if(mode==='live'||mode==='release')return mouthDiagram(letter,mode==='live',instance);return '<svg class="nsv-art-svg" viewBox="0 0 144 132" aria-hidden="true">'+photo(guide[letter].poses[0],false,0)+'</svg>'}
   function route(letter){
     var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,marks=letter==='un'?['u','e','n']:[guide[letter].poses[0],'n'];
     var values=marks.length===3?'12;89;166;166;12':'12;166;166;12';
@@ -31,11 +31,11 @@
 
 
   var letters=['an','en','in','un','ün'];
-  var guide={"an": {"hanzi": "安", "pinyin": "ān", "ipa": "[an]", "cue": "a → n", "tip": "a の音から、舌先を前歯のすぐ後ろへ軽く寄せて n に収めます。高い上あごへ大きく持ち上げたり、強く押しつけたりしません。", "poses": ["a"], "labels": ["スタート（a）", "ゴール（軽い n の舌位）"], "notes": ["写真は口唇の目安", "舌先は前歯のすぐ後ろへ。強く押しつけない"]}, "en": {"hanzi": "恩", "pinyin": "ēn", "ipa": "[ən]", "cue": "e → n", "tip": "e の音から、舌先を前歯のすぐ後ろへ軽く寄せて n に収めます。高い上あごへ大きく持ち上げたり、強く押しつけたりしません。", "poses": ["e"], "labels": ["スタート（e）", "ゴール（軽い n の舌位）"], "notes": ["写真は口唇の目安", "舌先は前歯のすぐ後ろへ。強く押しつけない"]}, "in": {"hanzi": "音", "pinyin": "yīn", "ipa": "[in]", "cue": "i → n", "tip": "i の音から、舌先を前歯のすぐ後ろへ軽く寄せて n に収めます。高い上あごへ大きく持ち上げたり、強く押しつけたりしません。", "poses": ["i"], "labels": ["スタート（i）", "ゴール（軽い n の舌位）"], "notes": ["写真は口唇の目安", "舌先は前歯のすぐ後ろへ。強く押しつけない"]}, "un": {"hanzi": "温", "pinyin": "wēn", "ipa": "[uən]", "cue": "u → e → n", "tip": "u の撮った唇を少し前へ。短い e を通り、唇をほどいて軽く開きながら n に収めます。舌の動きは小さく。", "poses": ["u"], "labels": ["スタート（u）", "ゴール（軽い n の舌位）"], "notes": ["唇を前へ。収めるときは力をほどく", "舌先は前歯のすぐ後ろへ。強く押しつけない"]}, "ün": {"hanzi": "晕", "pinyin": "yūn", "ipa": "[yn]", "cue": "ü → n", "tip": "ü の小さく丸い唇を少し前へ。唇の力をほどき、軽く開きながら n に収めます。舌は前寄りに保ち、動きは小さく。", "poses": ["ü"], "labels": ["スタート（ü）", "ゴール（軽い n の舌位）"], "notes": ["唇を前へ。収めるときは力をほどく", "舌先は前歯のすぐ後ろへ。強く押しつけない"]}};
+  var guide={"an": {"hanzi": "安", "pinyin": "ān", "ipa": "[an]", "cue": "a → n", "tip": "a から、開いた唇を少し収めて n へ。舌を大きく持ち上げる動きをまねしません。", "poses": ["a"], "labels": ["はじめの口形", "収めるときの口形"], "notes": ["写真は母音の唇の参考", "唇を力ませず、短い n へ"], "audio": "./assets/audio/front-nasal-133/an1.wav?v=10.108.133"}, "en": {"hanzi": "恩", "pinyin": "ēn", "ipa": "[ən]", "cue": "e → n", "tip": "唇を丸めず、口の開きは小さめ。短い n へ、ひと息で収めます。", "poses": ["e"], "labels": ["はじめの口形", "収めるときの口形"], "notes": ["写真は母音の唇の参考", "唇を力ませず、短い n へ"], "audio": "./assets/audio/front-nasal-133/en1.wav?v=10.108.133"}, "in": {"hanzi": "音", "pinyin": "yīn", "ipa": "[in]", "cue": "i → n", "tip": "i の横に引いた唇を保ち、短い n へ。唇や舌を大きく動かしません。", "poses": ["i"], "labels": ["はじめの口形", "収めるときの口形"], "notes": ["写真は母音の唇の参考", "唇を力ませず、短い n へ"], "audio": "./assets/audio/front-nasal-133/in1.wav?v=10.108.133"}, "un": {"hanzi": "温", "pinyin": "wēn", "ipa": "[uən]", "cue": "u → e → n", "tip": "u の丸い唇から、力をほどいて少し横に開き、短い e・n へ。", "poses": ["u"], "labels": ["はじめの口形", "収めるときの口形"], "notes": ["写真は母音の唇の参考", "唇を力ませず、短い n へ"], "audio": "./assets/audio/front-nasal-133/un1.wav?v=10.108.133"}, "ün": {"hanzi": "晕", "pinyin": "yūn", "ipa": "[yn]", "cue": "ü → n", "tip": "ü の小さく丸い唇を保ち、少しだけ力をほどいて n へ。un のように大きく横へ開きません。", "poses": ["ü"], "labels": ["はじめの口形", "収めるときの口形"], "notes": ["写真は母音の唇の参考", "唇を力ませず、短い n へ"], "audio": "./assets/audio/front-nasal-133/vn1.wav?v=10.108.133"}};
   var quizTotal=letters.length+1,passScore=quizTotal-1;
   var group='plain',groupSelection={plain:'an',rounded:'un'};
   var selected='an',root,recordings={},recorder=null,stream=null,pendingRecord=false,recordToken=0,recordTimer=0;
-  var playback=null,modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
+  var playback=null,modelAudio=null,modelCache={},artFrame=0,modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
   function el(id){return document.getElementById(id)}
   function feedback(id,text,kind){var box=el(id);box.textContent=text;box.className=(id==='nsvModelFeedback'?'nsv-model-feedback':'nsv-feedback')+(kind?' is-'+kind:'')}
   function complete(){try{return localStorage.getItem('koepandaCompoundP12Complete')==='1'}catch(e){return false}}
@@ -48,43 +48,53 @@
     if(!busy){el('nsvRecord').textContent=recordings[selected]?'↻ もう一度録音':'● 録音する';el('nsvRecord').disabled=false;el('nsvRecord').classList.remove('is-recording');el('nsvRecord').removeAttribute('aria-busy')}
   }
   function stopSound(){
-    modelToken++;clearTimeout(playingTimer);
+    modelToken++;clearTimeout(playingTimer);cancelAnimationFrame(artFrame);artFrame=0;
     try{if(typeof window.stopStandardAudio==='function')window.stopStandardAudio()}catch(e){}
     try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
+    if(modelAudio){try{modelAudio.pause();modelAudio.currentTime=0}catch(e){}modelAudio=null}
     if(playback){try{playback.pause()}catch(e){}}
     root.querySelectorAll('.is-playing').forEach(function(b){b.classList.remove('is-playing')});
     root.querySelectorAll('#nsvModel[aria-busy],#nsvQuizListen[aria-busy]').forEach(function(b){b.removeAttribute('aria-busy')});
   }
   function resetArt(){root.querySelectorAll('.nsv-art-svg,.nsv-route').forEach(function(svg){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(0)}else{svg.unpauseAnimations();svg.setCurrentTime(0)}}catch(e){}});var poses=root.querySelectorAll('.nsv-pose');poses.forEach(function(p){p.style.animation='none'});void root.offsetWidth;poses.forEach(function(p){p.style.animation=''})}
-  function fallbackSpeech(text){
-    return new Promise(function(resolve,reject){
-      if(!('speechSynthesis' in window)){reject(new Error('speech unavailable'));return}
-      var u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.78;
-      var voices=speechSynthesis.getVoices(),voice=voices.find(function(v){return /^zh[-_](CN|Hans)/i.test(v.lang)});if(voice)u.voice=voice;
-      var timer=setTimeout(function(){reject(new Error('speech timeout'))},6000);
-      u.onstart=function(){clearTimeout(timer);resolve(true)};u.onerror=function(){clearTimeout(timer);reject(new Error('speech failed'))};
-      speechSynthesis.speak(u);
-    });
+  function finishAudioArt(){cancelAnimationFrame(artFrame);artFrame=0;if(!root)return;root.querySelectorAll('#nsvArticulation svg').forEach(function(svg){try{svg.pauseAnimations();svg.setCurrentTime(5.2*.75)}catch(e){}})}
+  function syncAudioArt(audio){
+    cancelAnimationFrame(artFrame);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var svgs=root.querySelectorAll('#nsvArticulation svg');svgs.forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)});
+    function tick(){if(modelAudio!==audio||audio.paused||audio.ended){artFrame=0;return}var fraction=audio.duration?Math.min(1,audio.currentTime/audio.duration):0;svgs.forEach(function(svg){svg.setCurrentTime(5.2*.75*fraction)});artFrame=requestAnimationFrame(tick)}tick();
+  }
+  function recordedAudio(letter){
+    if(!modelCache[letter]){var audio=new Audio(guide[letter].audio);audio.preload='auto';audio.playsInline=true;audio.playbackRate=.9;audio.defaultPlaybackRate=.9;audio.preservesPitch=true;modelCache[letter]=audio}
+    return modelCache[letter];
   }
   async function playModel(letter,button,forQuiz){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
-    stopSound();var token=modelToken,item=guide[letter],fb=forQuiz?'nsvQuizFeedback':'nsvModelFeedback';
+    stopSound();var token=modelToken,fb=forQuiz?'nsvQuizFeedback':'nsvModelFeedback';
+    var questionIndex=quiz.index;
     button.classList.add('is-playing');button.setAttribute('aria-busy','true');
     if(!forQuiz)feedback(fb,'お手本を準備しています…');
+    var audio=recordedAudio(letter);modelAudio=audio;
+    function failed(){if(token!==modelToken)return;cancelAnimationFrame(artFrame);artFrame=0;clearTimeout(playingTimer);button.classList.remove('is-playing');button.removeAttribute('aria-busy');feedback(fb,'音声を読み込めませんでした。もう一度聞いてね。','bad')}
+    audio.onended=function(){
+      if(token!==modelToken)return;finishAudioArt();if(!forQuiz)root.querySelector('.nsv-view-label').textContent='収めるときの口形';clearTimeout(playingTimer);button.classList.remove('is-playing');button.removeAttribute('aria-busy');
+      if(forQuiz&&quiz.active&&quiz.index===questionIndex&&!quiz.answered){quiz.heard=true;el('nsvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false});feedback(fb,'聞こえた韻母を選ぼう。')}
+    };
+    audio.onerror=failed;
+    playingTimer=setTimeout(function(){if(token===modelToken){try{audio.pause()}catch(e){}failed()}},10000);
     try{
-      var audio=typeof window.playMachine==='function'?await window.playMachine(item.hanzi,null,false):null;
+      if(audio.error)audio.load();
+      try{audio.currentTime=0}catch(e){}
+      // Invoked directly from the user gesture; the WAV is already local and cached.
+      await audio.play();
       if(token!==modelToken)return;
-      if(!audio)audio=await fallbackSpeech(item.hanzi);
-      if(token!==modelToken)return;
-      if(!forQuiz){resetArt();feedback(fb,'母音から軽く n へ。舌を大きく上げず、前歯のすぐ後ろで鼻に響かせます。')}
-      if(audio&&typeof audio.addEventListener==='function')audio.addEventListener('ended',function(){if(token===modelToken)button.classList.remove('is-playing')},{once:true});
-      playingTimer=setTimeout(function(){if(token===modelToken)button.classList.remove('is-playing')},2200);
-    }catch(e){if(token===modelToken){button.classList.remove('is-playing');feedback(fb,e&&e.name==='NotAllowedError'?'音声の準備ができました。もう一度押すと再生します。':'音声を再生できませんでした。もう一度聞いてみよう。','bad')}}
+      if(!forQuiz){syncAudioArt(audio);root.querySelector('.nsv-view-label').textContent='お手本に合わせて見る';feedback(fb,'ひと息で韻母を聞こう。舌を強く動かさず、短い n へ。')}
+    }catch(e){failed()}
     finally{if(token===modelToken)button.removeAttribute('aria-busy')}
   }
   function renderArt(){
-    el('nsvArticulation').innerHTML='<span class="nsv-diagram-shell">'+nsvDiagram(selected,'live','live')+'<small class="nsv-view-label">唇・舌・鼻音の目安・ゆっくり</small></span><span class="nsv-movement">'+route(selected)+'<p class="nsv-route-caption">舌先は前歯のすぐ後ろへ・軽く n</p></span>';
-    var item=guide[selected];el('nsvStaticGuide').innerHTML='<div class="nsv-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+nsvDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('nsvStaticLetter').textContent=selected;el('nsvStaticNote').textContent='左は唇の参考写真、右は軽い n の舌位の模式図です。舌先は前歯のすぐ後ろへ。高い上あごへ大きく動かしたり、強く押しつけたりしません。un・ün は唇の前伸と、その後の力をほどく動きも見よう。';
+    el('nsvArticulation').innerHTML='<span class="nsv-diagram-shell">'+nsvDiagram(selected,'live','live')+'<small class="nsv-view-label">口形の変化・ゆっくり</small></span><span class="nsv-movement">'+route(selected)+'<p class="nsv-route-caption">母音から、短い n に収める</p></span>';
+    var item=guide[selected];el('nsvStaticGuide').innerHTML='<div class="nsv-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+nsvDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('nsvStaticLetter').textContent=selected;el('nsvStaticNote').textContent='口形の外観を示す図です。口の中の舌の動きを再現する図ではありません。un は丸い唇から少し開き、ün は比較的丸い唇を保ちます。強く押しつける動きをまねせず、お手本を短い n で収めよう。';
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.nsv-art-svg,.nsv-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }
   function revealTeachingArt(){
@@ -152,8 +162,8 @@
     visit([],source);return orders[Math.floor(Math.random()*orders.length)];
   }
   function renderQuestion(){
-    var box=el('nsvQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.nsvAnswer=letter;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
-    el('nsvQuizCount').textContent=(quiz.index+1)+' / '+quizTotal;feedback('nsvQuizFeedback','');el('nsvQuizNext').hidden=true;quiz.answered=false;
+    var box=el('nsvQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.nsvAnswer=letter;b.disabled=true;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
+    el('nsvQuizCount').textContent=(quiz.index+1)+' / '+quizTotal;feedback('nsvQuizFeedback','音を聞いてから選ぼう。');el('nsvQuizNext').hidden=true;quiz.answered=false;quiz.heard=false;
   }
   function startQuiz(){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
@@ -161,7 +171,7 @@
     el('nsvQuizPanel').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   }
   function answer(letter,button){
-    if(!quiz.active||quiz.answered)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
+    if(!quiz.active||quiz.answered||!quiz.heard)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
     el('nsvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true;if(b.dataset.nsvAnswer===right)b.classList.add('is-correct')});
     if(correct){quiz.score++;feedback('nsvQuizFeedback','いい耳！ '+right+' だよ。','good')}else{button.classList.add('is-wrong');feedback('nsvQuizFeedback','今回は '+right+'。もう一度音を聞いて確かめよう。','bad')}
     if(quiz.index===quizTotal-1)quizTimer=setTimeout(function(){if(quiz.active&&quiz.answered&&quiz.index===quizTotal-1)finishQuiz()},650);else el('nsvQuizNext').hidden=false;
@@ -202,7 +212,7 @@
     if(el('kidsCourse'))observer.observe(el('kidsCourse'),{attributes:true,attributeFilter:['hidden','class','style']});observer.observe(document.body,{attributes:true,attributeFilter:['class']});
     var motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
     if(motionPreference.addEventListener)motionPreference.addEventListener('change',function(){renderArt();resetArt()});
-    window.addEventListener('pagehide',cleanup);el('nsvCompleteBadge').hidden=!complete();select('an',false);
+    window.addEventListener('pagehide',cleanup);el('nsvCompleteBadge').hidden=!complete();letters.forEach(recordedAudio);select('an',false);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
