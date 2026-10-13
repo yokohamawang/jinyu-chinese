@@ -1,0 +1,65 @@
+{
+  "upstream": "https://github.com/hugolpz/audio-cmn",
+  "commit": "ff9ed3d0c631195bd2c06f39450f3264c7124040",
+  "speaker": "Chen Wang",
+  "license": "CC-by-sa; version unspecified upstream",
+  "changes": [
+    "mono 24kHz 16-bit PCM",
+    "silence trim",
+    "6ms edge fades",
+    "peak normalization .8",
+    "50ms lead /80ms tail silence"
+  ],
+  "records": {
+    "an": {
+      "source": "cmn-an1.mp3",
+      "file": "an1.wav",
+      "interval": [
+        0.305,
+        0.705
+      ],
+      "duration": 0.53,
+      "sha256": "d60ea787e8cc99a10de30b1585b2f0718649ed79837e1786211d4f81c167a7a7"
+    },
+    "en": {
+      "source": "cmn-en1.mp3",
+      "file": "en1.wav",
+      "interval": [
+        0.28,
+        0.695
+      ],
+      "duration": 0.545,
+      "sha256": "ae1183faa6f26f9b37c116f426b2fbe79b86f8db642701a0e30aa2b56150611d"
+    },
+    "in": {
+      "source": "cmn-yin1.mp3",
+      "file": "in1.wav",
+      "interval": [
+        0.345,
+        0.715
+      ],
+      "duration": 0.5,
+      "sha256": "c28f0164b605b3fab1bc171436e4fe3d951b952157cae363abce286fb0d5e634"
+    },
+    "un": {
+      "source": "cmn-wen1.mp3",
+      "file": "un1.wav",
+      "interval": [
+        0.305,
+        0.865
+      ],
+      "duration": 0.69,
+      "sha256": "148bb2a754be36437d0f830e857e7970b0c2e8ace725cf01ac0c947d5ae2b7c3"
+    },
+    "ün": {
+      "source": "cmn-yun1.mp3",
+      "file": "vn1.wav",
+      "interval": [
+        0.255,
+        0.725
+      ],
+      "duration": 0.6,
+      "sha256": "e569b34bbbbe03c702bb9b764145212d7bf998c47913762ecb4a8a476cc69601"
+    }
+  }
+}

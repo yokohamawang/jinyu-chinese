@@ -1,0 +1,17 @@
+Front nasal final audio — Koepanda 10.108.133
+
+Speaker: Chen Wang
+Source project: hugolpz/audio-cmn
+https://github.com/hugolpz/audio-cmn
+Pinned source commit: ff9ed3d0c631195bd2c06f39450f3264c7124040
+Files: 64k/syllabs/cmn-an1.mp3, cmn-en1.mp3, cmn-yin1.mp3, cmn-wen1.mp3, cmn-yun1.mp3
+Project management, compression and naming: Hugo Lopez (PLIDAM, INALCO)
+Recording software and technical support: Nicolas Vion
+License: CC-by-sa, exactly as stated by the source repository.
+License family: https://creativecommons.org/licenses/by-sa/
+The upstream statement does not specify a license version; none is invented here.
+These edited audio files remain under the upstream CC-by-sa terms.
+
+Changes: decoded to mono 24kHz 16-bit WAV, silence trim, short edge fades and peak normalization.
+All five source syllables are kept intact. in/un/ün are written yin/wen/yun as independent syllables. No consonantal syllable has been substituted or synthesized.
+Source intervals and hashes are in AUDIO_PROVENANCE.json.
