@@ -53,7 +53,7 @@
       if(!forQuiz){resetArt();feedback(fb,'はじめの口形から u の方向へ。音を切らず、最後は短く軽く。')}
       if(audio&&typeof audio.addEventListener==='function')audio.addEventListener('ended',function(){if(token===modelToken)button.classList.remove('is-playing')},{once:true});
       playingTimer=setTimeout(function(){if(token===modelToken)button.classList.remove('is-playing')},2200);
-    }catch(e){if(token===modelToken){button.classList.remove('is-playing');feedback(fb,'音声を再生できませんでした。もう一度聞いてみよう。','bad')}}
+    }catch(e){if(token===modelToken){button.classList.remove('is-playing');feedback(fb,e&&e.name==='NotAllowedError'?'音声の準備ができました。もう一度押すと再生します。':'音声を再生できませんでした。もう一度聞いてみよう。','bad')}}
     finally{if(token===modelToken)button.removeAttribute('aria-busy')}
   }
   function renderArt(){

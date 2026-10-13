@@ -325,6 +325,12 @@ const TTS_API='https://worker-xiaoshuang.wangjinyu00.workers.dev';
 const STT_API=TTS_API+'/stt';
 const ttsCache=new Map();
 const ttsPending=new Map();
+const ttsAudioPool=new Map();
+function getTTSAudio(text,url){
+  let audio=ttsAudioPool.get(text);
+  if(!audio){audio=new Audio(url);audio.preload='auto';audio.playsInline=true;ttsAudioPool.set(text,audio);try{audio.load()}catch(e){}}
+  return audio;
+}
 function fetchTTSBlobUrl(text){
   const key=String(text||'').trim();
   if(!key)return Promise.reject(new Error('empty'));
@@ -340,6 +346,7 @@ function fetchTTSBlobUrl(text){
       if(!blob.size)throw new Error('empty audio');
       const url=URL.createObjectURL(blob);
       ttsCache.set(key,url);
+      getTTSAudio(key,url);
       return url;
     }finally{
       clearTimeout(timer);
@@ -385,41 +392,15 @@ async function playMachine(t,feedbackTargetId,showMouthPopup=true){
     let audioUrl=ttsCache.get(text);
     audioDiag(audioUrl?'③ キャッシュ音声あり':'③ キャッシュなし → TTS取得開始',audioUrl?'ok':'info');
 
-    if(!audioUrl){
-      const controller=new AbortController();
-      const timer=setTimeout(()=>controller.abort(),10000);
-
-      let r;
-      try{
-        audioDiag('④ fetch送信: '+TTS_API,'info');
-        r=await fetch(TTS_API,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({text}),
-          signal:controller.signal
-        });
-        audioDiag('⑤ TTS応答: HTTP '+r.status+(r.ok?' OK':' NG'),r.ok?'ok':'err');
-      }finally{
-        clearTimeout(timer);
-      }
-
-      if(!r.ok){
-        const detail=await r.text().catch(()=>'');
-        audioDiag('TTS本文: '+detail.slice(0,160),'err');
-        throw new Error('TTS '+r.status+' '+detail.slice(0,120));
-      }
-
-      const blob=await r.blob();
-      audioDiag('⑥ blob取得: '+blob.size+' bytes / '+(blob.type||'type不明'),blob.size?'ok':'err');
-      if(!blob.size)throw new Error('empty audio');
-
-      audioUrl=URL.createObjectURL(blob);
-      ttsCache.set(text,audioUrl);
-      audioDiag('⑦ Blob URL作成成功','ok');
-    }
+    // Join the existing prefetch request; never issue a second cold request for the same sound.
+    if(!audioUrl)audioUrl=await fetchTTSBlobUrl(text);
 
     if(playToken!==mouthToken){audioDiag('再生要求が別処理でキャンセルされました','err');return;}
-    standardAudio=new Audio(audioUrl);
+    standardAudio=getTTSAudio(text,audioUrl);
+    if(standardAudio.error)standardAudio.load();
+    try{standardAudio.currentTime=0}catch(e){}
+    standardAudio.playbackRate=1;
+    standardAudio.defaultPlaybackRate=1;
     standardAudio.preload='auto';
     standardAudio.playsInline=true;
     // Example sentences are intentionally a little slower for learners.
@@ -438,7 +419,7 @@ async function playMachine(t,feedbackTargetId,showMouthPopup=true){
       audioDiag('audio ERROR code='+(er?er.code:'?')+' '+(er&&er.message?er.message:''),'err');
     },{once:true});
     if(showMouthPopup){
-      thisAudio.addEventListener('playing',()=>startMouthPop(text,thisAudio,playToken),{once:true});
+      thisAudio.addEventListener('playing',()=>{if(playToken===mouthToken)startMouthPop(text,thisAudio,playToken)},{once:true});
       thisAudio.addEventListener('ended',()=>{if(activeAudio===thisAudio)hideMouthPop()},{once:true});
       thisAudio.addEventListener('error',()=>{if(activeAudio===thisAudio)hideMouthPop()},{once:true});
     }
@@ -454,6 +435,8 @@ async function playMachine(t,feedbackTargetId,showMouthPopup=true){
   }catch(e){
     if(playToken!==mouthToken)return;
     hideMouthPop();
+    // Lesson buttons can explain an iOS gesture rejection instead of switching voices silently.
+    if(e&&e.name==='NotAllowedError'&&showMouthPopup===false)throw e;
     console.error('Standard audio error',e);
     audioDiag('停止位置: '+(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)),'err');
     audioDiag('環境: speechSynthesis='+(('speechSynthesis' in window)?'あり':'なし')+', online='+(navigator.onLine?'yes':'no'),'info');
