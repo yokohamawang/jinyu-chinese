@@ -1,0 +1,19 @@
+Back nasal final audio — Koepanda 10.108.129
+
+Speaker: Chen Wang
+Source project: hugolpz/audio-cmn
+https://github.com/hugolpz/audio-cmn
+Pinned source commit: ff9ed3d0c631195bd2c06f39450f3264c7124040
+Files: 64k/syllabs/cmn-ang1.mp3, cmn-eng1.mp3, cmn-ying1.mp3, cmn-dong1.mp3
+Project management, compression and naming: Hugo Lopez (PLIDAM, INALCO)
+Recording software and technical support: Nicolas Vion
+License: CC-by-sa, exactly as stated by the source repository.
+License family: https://creativecommons.org/licenses/by-sa/
+The upstream statement does not specify a license version; none is invented here.
+These edited audio files remain under the upstream CC-by-sa terms.
+
+Changes: decoded to mono 24kHz 16-bit WAV, silence trim, short edge fades and peak normalization.
+ong1.wav is an adaptation of dong1: the d onset and early transition have been removed at .375 s.
+It is an extracted final, not an original isolated-ong recording and not TTS.
+No text, pitch or syllable has been synthesized. Source intervals and file hashes are in AUDIO_PROVENANCE.json.
+Phonetic perceptual review, especially of the extracted ong, is still required.

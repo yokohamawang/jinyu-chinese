@@ -1,0 +1,87 @@
+{
+  "upstream": "https://github.com/hugolpz/audio-cmn",
+  "commit": "ff9ed3d0c631195bd2c06f39450f3264c7124040",
+  "path": "64k/syllabs/",
+  "speaker": "Chen Wang",
+  "production": "Hugo Lopez (PLIDAM, INALCO), Nicolas Vion",
+  "license": "CC-by-sa (as stated by upstream; upstream does not specify a version)",
+  "records": {
+    "ang": {
+      "source": "ang1",
+      "source_file": "cmn-ang1.mp3",
+      "source_interval_seconds": [
+        0.255,
+        0.645
+      ],
+      "duration_seconds": 0.52,
+      "sample_rate": 24000,
+      "channels": 1,
+      "sha256": "a32d9037f6dd13792067c314e46eecd5119ef060de0f3fd723f2916b6d775c84",
+      "changes": [
+        "decode to mono 24kHz 16-bit PCM",
+        "trim silence",
+        "6ms edge fades",
+        "peak normalized to 0.80",
+        "50ms leading and 80ms trailing silence"
+      ]
+    },
+    "eng": {
+      "source": "eng1",
+      "source_file": "cmn-eng1.mp3",
+      "source_interval_seconds": [
+        0.285,
+        0.735
+      ],
+      "duration_seconds": 0.58,
+      "sample_rate": 24000,
+      "channels": 1,
+      "sha256": "90d3321e59621e894b0844464ea57e9058287214639c15048c261bc4a662e59d",
+      "changes": [
+        "decode to mono 24kHz 16-bit PCM",
+        "trim silence",
+        "6ms edge fades",
+        "peak normalized to 0.80",
+        "50ms leading and 80ms trailing silence"
+      ]
+    },
+    "ing": {
+      "source": "ying1",
+      "source_file": "cmn-ying1.mp3",
+      "source_interval_seconds": [
+        0.345,
+        0.86
+      ],
+      "duration_seconds": 0.645,
+      "sample_rate": 24000,
+      "channels": 1,
+      "sha256": "f2106fa7ad1d64846ec4ae122e23086c1dee9d10180188ad9ab7a5956d30b7e6",
+      "changes": [
+        "decode to mono 24kHz 16-bit PCM",
+        "trim silence",
+        "6ms edge fades",
+        "peak normalized to 0.80",
+        "50ms leading and 80ms trailing silence"
+      ]
+    },
+    "ong": {
+      "source": "dong1",
+      "source_file": "cmn-dong1.mp3",
+      "source_interval_seconds": [
+        0.375,
+        0.68
+      ],
+      "duration_seconds": 0.435,
+      "sample_rate": 24000,
+      "channels": 1,
+      "sha256": "f133c83c03e1a040f1c9fc056040b810fc906090fb7847aa53c4fa600d5a302c",
+      "changes": [
+        "decode to mono 24kHz 16-bit PCM",
+        "trim silence",
+        "6ms edge fades",
+        "peak normalized to 0.80",
+        "50ms leading and 80ms trailing silence",
+        "d onset and vowel transition removed; derived final requires perceptual review"
+      ]
+    }
+  }
+}
