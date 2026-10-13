@@ -1,0 +1,177 @@
+/* 10.108.119: P9 compound vowels; photos remain unchanged; existing lessons remain untouched. */
+#kidsCompoundAOOUIULesson{padding:0!important;overflow:hidden;background:#fffdf8!important;border:1px solid #d7e4d8!important;border-radius:26px;color:#294b3d;box-shadow:0 8px 24px rgba(54,86,65,.07)!important;text-shadow:none}
+#kidsCompoundAOOUIULesson[hidden],#kidsCompoundAOOUIULesson [hidden]{display:none!important}
+#kidsCompoundAOOUIULesson *{box-sizing:border-box}
+#kidsCompoundAOOUIULesson :is(button,h2,h3,h4,p,strong,small){font-family:inherit;text-shadow:none}
+#kidsCompoundAOOUIULesson button{appearance:none;-webkit-appearance:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;transition:transform .1s,background .1s,box-shadow .1s}
+#kidsCompoundAOOUIULesson button:active:not(:disabled),#kidsCompoundAOOUIULesson button.is-pressed{transform:translateY(2px);box-shadow:none!important}
+#kidsCompoundAOOUIULesson button:focus-visible,#kidsCompoundAOOUIULesson summary:focus-visible{outline:3px solid #438864;outline-offset:3px}
+#kidsCompoundAOOUIULesson button:disabled{cursor:default}
+#kidsCompoundAOOUIULesson .cpo-hero{position:relative;padding:24px 22px 20px;background:radial-gradient(ellipse at 94% 10%,#fff1d2,transparent 58%),linear-gradient(130deg,#e5f0e3,#f8f4e3)}
+#kidsCompoundAOOUIULesson .cpo-kicker{display:block;padding-right:46px;font-size:13px;font-weight:600;letter-spacing:.05em;color:#52725c}
+#kidsCompoundAOOUIULesson .cpo-hero h2{margin:10px 0 7px;font-size:35px;line-height:1.2;font-weight:700;letter-spacing:.08em;color:#285842}
+#kidsCompoundAOOUIULesson .cpo-hero p{margin:0;font-size:15px;line-height:1.65;max-width:85%;color:#486551;font-weight:400}
+#kidsCompoundAOOUIULesson .cpo-music{position:absolute;right:22px;top:25px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#fcf0ca;border:1px solid #ead8a1;box-shadow:inset 0 1px 0 #fff8e7}
+#kidsCompoundAOOUIULesson .cpo-music svg{width:23px;height:23px;fill:none;stroke:#ac8133;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+#kidsCompoundAOOUIULesson .cpo-complete{display:inline-block;margin-top:10px;font-size:13px;color:#285842;background:#d4e8d9;border-radius:99px;padding:4px 10px}
+#kidsCompoundAOOUIULesson .cpo-zone{margin:18px 16px;padding:16px;border:1px solid #dce5d9;border-radius:20px;background:#fffefb;min-width:0}
+#kidsCompoundAOOUIULesson .cpo-zone-head{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+#kidsCompoundAOOUIULesson .cpo-zone-head>span{flex:0 0 31px;width:31px;height:31px;display:grid;place-items:center;background:#edf0e6;border-radius:10px;font-size:14px;font-weight:600}
+#kidsCompoundAOOUIULesson .cpo-zone-head>div{min-width:0;flex:1}
+#kidsCompoundAOOUIULesson .cpo-zone-head h3{margin:0;font-size:19px;font-weight:700;line-height:1.5}
+#kidsCompoundAOOUIULesson .cpo-zone-head p{margin:4px 0 0;font-size:14px;line-height:1.6;font-weight:400;color:#536956}
+#kidsCompoundAOOUIULesson .cpo-letter-grid,#kidsCompoundAOOUIULesson .cpo-free-choice,#kidsCompoundAOOUIULesson .cpo-quiz-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#kidsCompoundAOOUIULesson .cpo-letter-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:113px;padding:10px 4px;border:1px solid #cbdace;border-radius:15px;background:#f5f8f1;color:#315c46;box-shadow:none}
+#kidsCompoundAOOUIULesson .cpo-letter-card strong{display:block;font-size:36px;line-height:1;font-weight:600}
+#kidsCompoundAOOUIULesson .cpo-letter-card small{display:block;font-size:15px;line-height:1.4;font-weight:400}
+#kidsCompoundAOOUIULesson .cpo-letter-card em{display:block;font-style:normal;font-size:12px;line-height:1.4;white-space:nowrap;font-weight:500}
+#kidsCompoundAOOUIULesson .cpo-letter-card.is-active{background:#2e644a;color:#fff;border-color:#2e644a}
+#kidsCompoundAOOUIULesson .cpo-focus{margin-top:17px}
+#kidsCompoundAOOUIULesson .cpo-focus-copy{display:grid;grid-template-columns:43px minmax(0,1fr);gap:10px;align-items:start;margin-bottom:10px}
+#kidsCompoundAOOUIULesson .cpo-focus-copy>span{font-size:38px;line-height:1.1;font-weight:600;color:#315f47;display:grid;place-items:center;border-radius:13px;background:#eaf2e8;min-height:49px}
+#kidsCompoundAOOUIULesson .cpo-focus-copy>div{min-width:0}
+#kidsCompoundAOOUIULesson .cpo-focus-copy strong{font-size:19px;line-height:1.5;font-weight:600;color:#305540}
+#kidsCompoundAOOUIULesson .cpo-focus-copy p{margin:5px 0 0;font-size:14px;font-weight:400;line-height:1.6;min-height:4.8em;color:#50674f}
+#kidsCompoundAOOUIULesson .cpo-button{width:100%;min-height:54px;border:1px solid #97b39f;border-radius:14px;background:#fff;color:#2b6247;box-shadow:0 3px 0 #d5e3d6;padding:10px 8px;font-size:16px;line-height:1.55;font-weight:600}
+#kidsCompoundAOOUIULesson .cpo-model{background:#edf5eb;border-color:#b2c8b1;box-shadow:0 3px 0 #d4e2cf}
+#kidsCompoundAOOUIULesson .cpo-button.is-playing{background:#e0eee0;border-color:#6a9977}
+#kidsCompoundAOOUIULesson .cpo-button:disabled{background:#e8eee6;border-color:#c5d0c1;color:#69766a;box-shadow:none}
+#kidsCompoundAOOUIULesson .cpo-model-feedback{min-height:2.9em;margin:9px 0 4px;font-size:13px;line-height:1.45;color:#657461;font-weight:400}
+#kidsCompoundAOOUIULesson .cpo-articulation{display:grid;grid-template-columns:144px minmax(0,1fr);align-items:center;gap:10px;min-height:197px;padding:10px;border:1px solid #dce4d8;border-radius:19px;background:#fffdf7;overflow:hidden}
+#kidsCompoundAOOUIULesson .cpo-diagram-shell{display:block;min-width:0;width:144px;height:176px;border-radius:17px;background:radial-gradient(ellipse at 34% 12%,#fffaf0,transparent 70%),linear-gradient(180deg,#fbefdf,#f4dec8);box-shadow:inset 0 0 0 1px rgba(163,112,78,.10);overflow:hidden}
+#kidsCompoundAOOUIULesson .cpo-art-svg{display:block;width:100%;height:154px;overflow:visible}
+#kidsCompoundAOOUIULesson .cpo-art-svg *{box-shadow:none}
+#kidsCompoundAOOUIULesson .cpo-view-label{display:block;text-align:center;height:22px;font-size:11px;line-height:22px;color:#75644f}
+#kidsCompoundAOOUIULesson .cpo-art-cue{font-size:13px;line-height:1.5;font-weight:600;border:1px solid #d0e2d1;border-radius:12px;padding:7px 5px;color:#356c50;background:#e9f2e7;text-align:center;min-width:0}
+#kidsCompoundAOOUIULesson .cpo-detail{margin-top:14px;border:1px solid #e5e2d2;border-radius:14px;background:#fcfbf4;overflow:hidden}
+#kidsCompoundAOOUIULesson .cpo-detail summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;min-height:52px;padding:12px;font-size:14px;line-height:1.55;font-weight:600;cursor:pointer}
+#kidsCompoundAOOUIULesson summary::-webkit-details-marker{display:none}
+#kidsCompoundAOOUIULesson .cpo-detail summary span{width:8px;height:8px;flex:0 0 8px;border-right:2px solid #668369;border-bottom:2px solid #668369;transform:rotate(45deg)}
+#kidsCompoundAOOUIULesson .cpo-detail[open] summary span{transform:rotate(225deg)}
+#kidsCompoundAOOUIULesson .cpo-static-content{padding:0 10px 12px}
+#kidsCompoundAOOUIULesson .cpo-static-views{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsCompoundAOOUIULesson .cpo-static-views figure{min-width:0;margin:0;border:1px solid #e6d6bf;border-radius:13px;background:#fff5e6;overflow:hidden}
+#kidsCompoundAOOUIULesson .cpo-static-views strong{display:block;text-align:center;padding:6px 3px;font-size:14px;line-height:1.4;color:#5a6a49}
+#kidsCompoundAOOUIULesson .cpo-static-views svg{display:block;width:100%;height:auto;aspect-ratio:144/154}
+#kidsCompoundAOOUIULesson .cpo-static-views figcaption{padding:6px 5px 9px;min-height:4em;font-size:13px;line-height:1.5;text-align:center;color:#6c644d}
+#kidsCompoundAOOUIULesson .cpo-static-note{margin:10px 1px 0;font-size:14px;line-height:1.55;color:#5e644c}
+#kidsCompoundAOOUIULesson .cpo-model-note{margin-top:12px;font-size:13px;color:#6e725e;line-height:1.6}
+#kidsCompoundAOOUIULesson .cpo-model-note summary{cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px}
+#kidsCompoundAOOUIULesson .cpo-model-note p{margin:7px 0;font-size:14px;font-weight:400}
+#kidsCompoundAOOUIULesson .cpo-practice{background:#edf5ec;border-color:#aec8b3}
+#kidsCompoundAOOUIULesson .cpo-practice .cpo-zone-head>span{background:#d9e9d8}
+#kidsCompoundAOOUIULesson .cpo-free-choice button{min-height:59px;background:#fff;border:1px solid #b5c9b7;border-radius:13px;color:#37654d;font-size:30px;line-height:1.2;font-weight:600}
+#kidsCompoundAOOUIULesson .cpo-free-choice button.is-active{background:#2f6348;color:#fff;border-color:#2f6348}
+#kidsCompoundAOOUIULesson .cpo-practice-target{margin:14px 0 10px;font-size:15px;line-height:1.5;font-weight:500}
+#kidsCompoundAOOUIULesson .cpo-record-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsCompoundAOOUIULesson .cpo-record-row .cpo-button{font-size:15px;min-height:64px}
+#kidsCompoundAOOUIULesson .cpo-record{background:#2d6247;color:#fff;border-color:#2d6247;box-shadow:0 3px 0 #1f4831}
+#kidsCompoundAOOUIULesson .cpo-record.is-recording{background:#a95143;border-color:#9a493c;color:#fff;box-shadow:none}
+#kidsCompoundAOOUIULesson .cpo-feedback{margin:12px 0 0;min-height:3.1em;font-size:14px;line-height:1.55;font-weight:400;color:#52654e}
+#kidsCompoundAOOUIULesson .cpo-feedback.is-bad{color:#934735}
+#kidsCompoundAOOUIULesson .cpo-feedback.is-good{color:#2e6445}
+#kidsCompoundAOOUIULesson .cpo-check{background:#fff9e9;border-color:#decda0}
+#kidsCompoundAOOUIULesson .cpo-check .cpo-zone-head>span{background:#f4e7bc;color:#7c6326}
+#kidsCompoundAOOUIULesson .cpo-to-quiz{background:#faedc7;color:#6a5220;border-color:#cfb979;box-shadow:0 3px 0 #e6d6a5}
+#kidsCompoundAOOUIULesson .cpo-quiz-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px;font-size:15px;line-height:1.5}
+#kidsCompoundAOOUIULesson .cpo-quiz-top span{white-space:nowrap;font-weight:500;color:#837449}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices{margin-top:14px}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices button{min-height:75px;border:1px solid #d2c69f;border-radius:15px;background:#fffefa;font-size:35px;font-weight:600;color:#566242}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices button.is-correct{background:#deecd8;border-color:#78a36a;color:#31592b}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices button.is-wrong{background:#f4e1d8;border-color:#c7937a;color:#8a4936}
+#kidsCompoundAOOUIULesson .cpo-result{text-align:center;padding:12px 0 0}
+#kidsCompoundAOOUIULesson .cpo-result-mark{display:grid;place-items:center;width:50px;height:50px;margin:0 auto 10px;border-radius:50%;background:#dfedcf;color:#466c35;font-size:27px;font-weight:600}
+#kidsCompoundAOOUIULesson .cpo-result h4{margin:0 0 8px;font-size:21px;line-height:1.5;color:#526139}
+#kidsCompoundAOOUIULesson .cpo-result>strong{display:block;font-size:22px;font-weight:600}
+#kidsCompoundAOOUIULesson .cpo-result>p{font-size:15px;line-height:1.65;margin:8px 0 14px;color:#6b7052}
+#kidsCompoundAOOUIULesson .cpo-result-actions{display:grid;grid-template-columns:1fr;gap:10px}
+#kidsCompoundAOOUIULesson .cpo-return{background:#f8f4e5;border-color:#d5c69d;color:#72603c}
+@media(max-width:360px){
+  #kidsCompoundAOOUIULesson .cpo-hero{padding:20px 16px}
+  #kidsCompoundAOOUIULesson .cpo-zone{margin:15px 10px;padding:12px}
+  #kidsCompoundAOOUIULesson .cpo-zone-head h3{font-size:18px}
+  #kidsCompoundAOOUIULesson .cpo-articulation{grid-template-columns:1fr;gap:9px}
+  #kidsCompoundAOOUIULesson .cpo-diagram-shell{margin:0 auto}
+  #kidsCompoundAOOUIULesson .cpo-art-cue{justify-self:center;padding:5px 12px}
+  #kidsCompoundAOOUIULesson .cpo-focus-copy p{min-height:6.4em}
+  #kidsCompoundAOOUIULesson .cpo-feedback{min-height:4.65em}
+}
+@media(prefers-reduced-motion:reduce){#kidsCompoundAOOUIULesson button{transition:none}}
+/* P5 result overlay: the moving mascot never blocks the close target. */
+#koepandaResultStage.is-cpo-result .koepanda-result-stage-close{z-index:5;pointer-events:auto;display:grid;place-items:center;width:40px!important;height:40px!important;min-height:40px!important;padding:0!important;font-size:25px!important;line-height:1!important}
+#koepandaResultStage.is-cpo-result .koepanda-result-stage-mascot{pointer-events:none}
+
+/* 10.108.114 — match established mint palette; static guidance stays visible. */
+#kidsCompoundAOOUIULesson{background:linear-gradient(180deg,#fbfffc,#f7fbf5)!important;border-color:#dcece2!important;border-radius:28px}
+#kidsCompoundAOOUIULesson .cpo-hero{background:linear-gradient(135deg,#eaf6ed,#fff5dd);border-bottom:1px solid #e1ecdf}
+#kidsCompoundAOOUIULesson .cpo-hero h2,#kidsCompoundAOOUIULesson .cpo-zone-head h3{color:#285f50}
+#kidsCompoundAOOUIULesson .cpo-zone{border-radius:24px;border-color:#deece3;background:#fff;box-shadow:0 6px 18px rgba(54,92,78,.055)}
+#kidsCompoundAOOUIULesson .cpo-letter-card{border-radius:20px;background:linear-gradient(180deg,#fbfffc,#edf7ef);border-color:#d5e9df;color:#2f705c}
+#kidsCompoundAOOUIULesson .cpo-letter-card.is-active{background:linear-gradient(180deg,#59bf91,#3da87a);border-color:#75c6a0;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.2)}
+#kidsCompoundAOOUIULesson .cpo-focus{padding:12px;border-radius:20px;background:linear-gradient(135deg,#f1f9f3,#fff9e9);border:1px solid #e0ebdd}
+#kidsCompoundAOOUIULesson .cpo-focus-copy>span{background:transparent;color:#2f7a64}
+#kidsCompoundAOOUIULesson .cpo-focus-copy strong{color:#e9786f}
+#kidsCompoundAOOUIULesson .cpo-model{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
+#kidsCompoundAOOUIULesson .cpo-model.is-playing{background:#3a9775;border-color:#3a9775;color:#fff}
+#kidsCompoundAOOUIULesson .cpo-articulation{background:#fff;border-color:#d8e7df;border-radius:20px}
+#kidsCompoundAOOUIULesson .cpo-static-section{margin-top:12px;padding:12px;border:1px solid #dcebe1;border-radius:20px;background:linear-gradient(145deg,#fffefb,#fbfdf8);min-width:0;overflow:hidden}
+#kidsCompoundAOOUIULesson .cpo-static-head{display:grid;grid-template-columns:36px minmax(0,1fr);gap:9px;align-items:center;margin-bottom:10px}
+#kidsCompoundAOOUIULesson .cpo-static-head>span{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#eaf6ed;color:#2f7a64;font-size:27px;font-weight:700}
+#kidsCompoundAOOUIULesson .cpo-static-head small{display:block;color:#73897c;font-size:12px;line-height:1.4}
+#kidsCompoundAOOUIULesson .cpo-static-head h3{margin:2px 0 0;color:#295f4e;font-size:15px;line-height:1.4;font-weight:700}
+#kidsCompoundAOOUIULesson .cpo-static-content{padding:0}
+#kidsCompoundAOOUIULesson .cpo-static-views{max-width:320px;margin:0 auto}
+#kidsCompoundAOOUIULesson .cpo-static-views figure{border-color:#eeded4;background:#fff8f2;border-radius:16px}
+#kidsCompoundAOOUIULesson .cpo-static-views strong{color:#34755e}
+#kidsCompoundAOOUIULesson .cpo-static-views figcaption{color:#637c6d;min-height:4.5em}
+#kidsCompoundAOOUIULesson .cpo-detail{background:#f6fbf7;border-color:#dcebe1;border-radius:18px}
+#kidsCompoundAOOUIULesson .cpo-comparison-content{display:grid;grid-template-columns:1fr;gap:8px;padding:0 12px 12px}
+#kidsCompoundAOOUIULesson .cpo-comparison-content>div{padding:12px;background:#fff;border:1px solid #e0ece4;border-radius:16px}
+#kidsCompoundAOOUIULesson .cpo-comparison-content strong{display:block;color:#2f7a64;font-size:19px}
+#kidsCompoundAOOUIULesson .cpo-comparison-content b{display:block;margin-top:5px;color:#4f7466;font-size:14px;line-height:1.5}
+#kidsCompoundAOOUIULesson .cpo-comparison-content p{margin:5px 0 0;color:#647d70;font-size:14px;line-height:1.6}
+#kidsCompoundAOOUIULesson .cpo-practice{background:#eef7f1;border-color:#c8e0d0}
+#kidsCompoundAOOUIULesson .cpo-free-choice button{background:#edf7f0;border-color:#cfe3d7;border-radius:15px;color:#34745f}
+#kidsCompoundAOOUIULesson .cpo-free-choice button.is-active{background:#3dac7c;border-color:#3dac7c;color:#fff}
+#kidsCompoundAOOUIULesson .cpo-record{background:#fff0ee;border-color:#efd0cb;color:#c95d57;box-shadow:0 3px 0 #efd5cf;border-radius:16px}
+#kidsCompoundAOOUIULesson .cpo-record.is-recording{background:#ea6e66;border-color:#ea6e66;color:#fff;box-shadow:none}
+#kidsCompoundAOOUIULesson .cpo-playback:not(:disabled){background:#f0f2fb;border-color:#d8ddef;color:#566590}
+#kidsCompoundAOOUIULesson .cpo-check{background:#fff9e9;border-color:#e7dab7}
+#kidsCompoundAOOUIULesson .cpo-to-quiz{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
+@media(max-width:360px){#kidsCompoundAOOUIULesson .cpo-focus{padding:9px}#kidsCompoundAOOUIULesson .cpo-static-section{padding:9px}#kidsCompoundAOOUIULesson .cpo-static-views{gap:6px}#kidsCompoundAOOUIULesson .cpo-static-views figcaption{font-size:12px;min-height:5.5em}}
+
+/* 10.108.115 — established quiz controls and answer states. */
+#kidsCompoundAOOUIULesson .cpo-listen,#kidsCompoundAOOUIULesson .cpo-next{background:#2f7a64;border-color:#2f7a64;color:#fff;border-radius:16px;box-shadow:0 3px 0 #256450}
+#kidsCompoundAOOUIULesson .cpo-listen.is-playing{background:#3a9775;border-color:#3a9775;color:#fff}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices button{background:#eff7f1;border-color:#d5e9df;color:#2f705c}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices button.is-correct{background:#43ad7e;border-color:#43ad7e;color:#fff}
+#kidsCompoundAOOUIULesson .cpo-quiz-choices button.is-wrong{background:#ef837b;border-color:#ef837b;color:#fff}
+#kidsCompoundAOOUIULesson .cpo-result-actions .cpo-button{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
+
+
+#kidsCompoundAOOUIULesson .cpo-articulation{grid-template-columns:158px minmax(0,1fr);min-height:205px}
+#kidsCompoundAOOUIULesson .cpo-diagram-shell{width:158px;height:176px;background:#fae4d6}
+#kidsCompoundAOOUIULesson .cpo-art-svg{height:154px}
+#kidsCompoundAOOUIULesson .cpo-route{min-width:0;width:100%;max-width:180px;display:block;margin:0 auto}
+#kidsCompoundAOOUIULesson .cpo-route-caption{margin:5px 0 0;font-size:12px;line-height:1.55;text-align:center;color:#5c776b}
+#kidsCompoundAOOUIULesson .cpo-movement{min-width:0}
+#kidsCompoundAOOUIULesson .cpo-focus-copy{grid-template-columns:49px minmax(0,1fr)}
+#kidsCompoundAOOUIULesson .cpo-focus-copy>span{font-size:31px}
+#kidsCompoundAOOUIULesson .cpo-static-head>span{font-size:23px}
+#kidsCompoundAOOUIULesson .cpo-static-views svg{aspect-ratio:412/378}
+#kidsCompoundAOOUIULesson .cpo-pose{opacity:0;animation:cpo119Last 4.8s linear infinite}
+#kidsCompoundAOOUIULesson .cpo-pose-0{animation-name:cpo119First}
+#kidsCompoundAOOUIULesson .cpo-art-svg[data-letter="iu"] .cpo-pose-0{animation-name:cpo119Round}
+#kidsCompoundAOOUIULesson .cpo-art-svg[data-letter="iu"] .cpo-pose-1{animation-name:cpo119Middle}
+#kidsCompoundAOOUIULesson .cpo-art-svg[data-letter="iu"] .cpo-pose-2{animation-name:cpo119UIEnd}
+#kidsCompoundAOOUIULesson:not(.is-roadmap-lesson-active) .cpo-pose{animation-play-state:paused}
+@keyframes cpo119First{0%,39.99%{opacity:1}40%,89.99%{opacity:0}90%,100%{opacity:1}}
+@keyframes cpo119Last{0%,39.99%{opacity:0}40%,89.99%{opacity:1}90%,100%{opacity:0}}
+@keyframes cpo119Round{0%,24.99%{opacity:1}25%,89.99%{opacity:0}90%,100%{opacity:1}}
+@keyframes cpo119Middle{0%,24.99%{opacity:0}25%,57.99%{opacity:1}58%,100%{opacity:0}}
+@keyframes cpo119UIEnd{0%,57.99%{opacity:0}58%,89.99%{opacity:1}90%,100%{opacity:0}}
+@media(max-width:360px){#kidsCompoundAOOUIULesson .cpo-articulation{grid-template-columns:1fr}#kidsCompoundAOOUIULesson .cpo-movement{width:100%;max-width:180px;justify-self:center}}
+@media(prefers-reduced-motion:reduce){#kidsCompoundAOOUIULesson .cpo-pose{animation:none;opacity:0}#kidsCompoundAOOUIULesson .cpo-pose-0{opacity:1}}
+#kidsCompoundAOOUIULesson .cpo-static-views strong{min-height:3.7em;display:grid;place-items:center}
+@media(max-width:560px){#kidsCompoundAOOUIULesson .cpo-articulation{grid-template-columns:1fr;gap:10px}#kidsCompoundAOOUIULesson .cpo-diagram-shell{margin:0 auto}#kidsCompoundAOOUIULesson .cpo-movement{width:100%;max-width:220px;justify-self:center}#kidsCompoundAOOUIULesson .cpo-route{max-width:220px}}
+#kidsCompoundAOOUIULesson .cpo-pose{animation-timing-function:steps(1,end)}
