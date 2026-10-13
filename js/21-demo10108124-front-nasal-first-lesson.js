@@ -15,6 +15,7 @@
   var letters=['an','en','in','un','ün'];
   var guide={"an": {"hanzi": "安", "pinyin": "ān", "ipa": "[an]", "cue": "a → n", "tip": "a の開いた口形から、舌先・舌の前部を上の前歯のすぐ後ろへ。最後は鼻に響かせて収めます。", "poses": ["a"], "labels": ["スタート（a）", "ゴール（n の舌位）"], "notes": ["写真は口唇の目安", "舌の前部で閉じ、鼻に響かせる"]}, "en": {"hanzi": "恩", "pinyin": "ēn", "ipa": "[ən]", "cue": "e → n", "tip": "口を軽く開いた e のような音から、舌先・舌の前部で前歯のすぐ後ろを閉じます。最後に余分な母音を足しません。", "poses": ["e"], "labels": ["スタート（e）", "ゴール（n の舌位）"], "notes": ["写真は口唇の目安", "舌の前部で閉じ、鼻に響かせる"]}, "in": {"hanzi": "音", "pinyin": "yīn", "ipa": "[in]", "cue": "i → n", "tip": "i の横に開いた口形から、舌先・舌の前部で前歯のすぐ後ろを閉じます。短い鼻の響きで終えます。", "poses": ["i"], "labels": ["スタート（i）", "ゴール（n の舌位）"], "notes": ["写真は口唇の目安", "舌の前部で閉じ、鼻に響かせる"]}, "un": {"hanzi": "温", "pinyin": "wēn", "ipa": "[uən]", "cue": "u → e → n", "tip": "u の丸い口形から、短い e を通って n へ。唇の丸さをほどき、舌の前部で口の中を閉じます。", "poses": ["u"], "labels": ["スタート（u）", "ゴール（n の舌位）"], "notes": ["写真は口唇の目安", "舌の前部で閉じ、鼻に響かせる"]}, "ün": {"hanzi": "晕", "pinyin": "yūn", "ipa": "[yn]", "cue": "ü → n", "tip": "ü の小さく丸い口形から、舌の前部を上の前歯のすぐ後ろへ。u で始めず、舌は前寄りに保ちます。", "poses": ["ü"], "labels": ["スタート（ü）", "ゴール（n の舌位）"], "notes": ["写真は口唇の目安", "舌の前部で閉じ、鼻に響かせる"]}};
   var quizTotal=letters.length+1,passScore=quizTotal-1;
+  var group='plain',groupSelection={plain:'an',rounded:'un'};
   var selected='an',root,recordings={},recorder=null,stream=null,pendingRecord=false,recordToken=0,recordTimer=0;
   var playback=null,modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
   function el(id){return document.getElementById(id)}
@@ -22,7 +23,7 @@
   function complete(){try{return localStorage.getItem('koepandaCompoundP12Complete')==='1'}catch(e){return false}}
   function redrawRecordingControls(){
     var busy=pendingRecord||!!(recorder&&recorder.state==='recording');
-    root.querySelectorAll('[data-nsv-letter]').forEach(function(b){b.disabled=busy});
+    root.querySelectorAll('[data-nsv-letter],[data-nsv-group]').forEach(function(b){b.disabled=busy});
     el('nsvModel').disabled=busy;el('nsvToQuiz').disabled=busy;
     el('nsvPlayback').disabled=busy||!recordings[selected];
     el('nsvPracticeTarget').textContent='練習する音：'+selected;
@@ -75,13 +76,23 @@
       var top=view?view.offsetTop:0,height=view?view.height:window.innerHeight;
       var g=grid.getBoundingClientRect(),a=art.getBoundingClientRect();
       if(g.top<top+12||a.bottom>top+height-8){
-        grid.scrollIntoView({block:'start',inline:'nearest',behavior:'instant'});
+        if(a.bottom-g.top<=height-120)grid.scrollIntoView({block:'start',inline:'nearest',behavior:'instant'});
+        else art.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});
       }
     });
   }
+  function syncGroups(){
+    var active=group==='plain'?['an','en','in']:['un','ün'];
+    ['nsvLetterGrid','nsvFreeChoice'].forEach(function(id){var box=el(id);box.dataset.group=group;box.querySelectorAll('[data-nsv-letter]').forEach(function(b){b.hidden=active.indexOf(b.dataset.nsvLetter)<0})});
+    root.querySelectorAll('[data-nsv-group]').forEach(function(b){var chosen=b.dataset.nsvGroup===group;b.classList.toggle('is-active',chosen);b.setAttribute('aria-pressed',String(chosen))});
+  }
+  function selectGroup(next,fromTeaching){
+    if(pendingRecord||(recorder&&recorder.state==='recording'))return;
+    stopSound();group=next;select(groupSelection[next],false);if(fromTeaching)revealTeachingArt();
+  }
   function select(letter,listen){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
-    selected=letter;root.querySelectorAll('[data-nsv-letter]').forEach(function(b){var active=b.dataset.nsvLetter===letter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
+    selected=letter;group=['un','ün'].indexOf(letter)>=0?'rounded':'plain';groupSelection[group]=letter;syncGroups();root.querySelectorAll('[data-nsv-letter]').forEach(function(b){var active=b.dataset.nsvLetter===letter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
     var item=guide[letter];el('nsvFocusLetter').textContent=letter;el('nsvFocusGuide').textContent=item.hanzi+' '+item.pinyin+' · '+item.ipa;el('nsvFocusTip').textContent=item.tip;
     el('nsvModel').textContent='▶ '+letter+' のお手本を聞く';feedback('nsvModelFeedback','');feedback('nsvPracticeFeedback',recordings[letter]?'この音の録音を聞き返せます。':'');
     renderArt();redrawRecordingControls();if(listen)playModel(letter,el('nsvModel'),false);
@@ -164,6 +175,7 @@
     root=el('kidsFrontNasalLesson');if(!root)return;
     letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+item.cue+'</em>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.nsvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('nsvFreeChoice').appendChild(free)});
+    root.querySelectorAll('[data-nsv-group]').forEach(function(b){b.onclick=function(){selectGroup(b.dataset.nsvGroup,!!b.closest('.nsv-teaching'))}});
     el('nsvModel').onclick=function(){playModel(selected,this,false)};el('nsvRecord').onclick=toggleRecord;el('nsvPlayback').onclick=playRecording;el('nsvToQuiz').onclick=startQuiz;el('nsvRetry').onclick=startQuiz;
     el('nsvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('nsvQuizNext').onclick=nextQuestion;
     el('nsvReturn').onclick=function(){cleanup();var back=el('pinyinLessonBack');if(back)back.click();window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P12:complete()}}))};
