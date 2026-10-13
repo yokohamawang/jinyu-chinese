@@ -1,4 +1,4 @@
-/* 10.108.128 — P13 back nasal finals; two study groups and independent recordings. */
+/* 10.108.129 — P13 local recorded finals; no full-syllable or character TTS fallback. */
 (function(){
   "use strict";
   var mouthCrops={a:[18,145],e:[881,145],o:[451,145],i:[18,632],u:[451,632],ü:[881,632]};
@@ -15,11 +15,11 @@
 
 
   var letters=["ang", "eng", "ing", "ong"];
-  var guide={"ang": {"hanzi": "当", "pinyin": "dāng", "ipa": "[ɑŋ]", "cue": "a → ng", "tip": "口を開いた a の音から、舌の後ろ側を上あごの奥へ。舌先は前歯の後ろにつけず、鼻の響きで終えます。", "poses": ["a"], "labels": ["スタート（a）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"]}, "eng": {"hanzi": "灯", "pinyin": "dēng", "ipa": "[ɤŋ]", "cue": "e → ng", "tip": "唇を丸めず、中国語の e の音から ng へ。舌の後ろ側を上あごの奥に当て、最後に「グ」を足しません。", "poses": ["e"], "labels": ["スタート（e）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"]}, "ing": {"hanzi": "丁", "pinyin": "dīng", "ipa": "[iŋ]", "cue": "i → ng", "tip": "i の横に開いた口形から、舌の後ろ側を上あごの奥へ。唇を強く閉じず、ng の鼻の響きで収めます。", "poses": ["i"], "labels": ["スタート（i）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"]}, "ong": {"hanzi": "东", "pinyin": "dōng", "ipa": "[ʊŋ]", "cue": "丸い口 → ng", "tip": "唇を小さく丸めた音から ng へ。唇の丸さを保ち、舌の後ろ側で口の奥を閉じて、鼻に響かせます。", "poses": ["u"], "labels": ["スタート（丸い口）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"]}};
+  var guide={"ang": {"hanzi": "肮", "pinyin": "āng", "ipa": "[ɑŋ]", "cue": "a → ng", "tip": "口を開いた a の音から、舌の後ろ側を上あごの奥へ。舌先は前歯の後ろにつけず、鼻の響きで終えます。", "poses": ["a"], "labels": ["スタート（a）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"], "audio": "./assets/audio/back-nasal-129/ang1.wav?v=10.108.129"}, "eng": {"hanzi": "鞥", "pinyin": "ēng", "ipa": "[ɤŋ]", "cue": "e → ng", "tip": "唇を丸めず、中国語の e の音から ng へ。舌の後ろ側を上あごの奥に当て、最後に「グ」を足しません。", "poses": ["e"], "labels": ["スタート（e）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"], "audio": "./assets/audio/back-nasal-129/eng1.wav?v=10.108.129"}, "ing": {"hanzi": "鹰", "pinyin": "yīng", "ipa": "[iŋ]", "cue": "i → ng", "tip": "i の横に開いた口形から、舌の後ろ側を上あごの奥へ。唇を強く閉じず、ng の鼻の響きで収めます。", "poses": ["i"], "labels": ["スタート（i）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"], "audio": "./assets/audio/back-nasal-129/ing1.wav?v=10.108.129"}, "ong": {"hanzi": "", "pinyin": "ong", "ipa": "[ʊŋ]", "cue": "丸い口 → ng", "tip": "唇を小さく丸めた音から ng へ。唇の丸さを保ち、舌の後ろ側で口の奥を閉じて、鼻に響かせます。", "poses": ["u"], "labels": ["スタート（丸い口）", "ゴール（ng の舌位）"], "notes": ["写真は口唇の目安", "舌の後ろ側で閉じ、鼻に響かせる"], "audio": "./assets/audio/back-nasal-129/ong1.wav?v=10.108.129"}};
   var quizTotal=letters.length+1,passScore=quizTotal-1;
   var group='plain',groupSelection={plain:'ang',rounded:'ing'};
   var selected='ang',root,recordings={},recorder=null,stream=null,pendingRecord=false,recordToken=0,recordTimer=0;
-  var playback=null,modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
+  var playback=null,modelAudio=null,modelCache={},modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
   function el(id){return document.getElementById(id)}
   function feedback(id,text,kind){var box=el(id);box.textContent=text;box.className=(id==='bnvModelFeedback'?'bnv-model-feedback':'bnv-feedback')+(kind?' is-'+kind:'')}
   function complete(){try{return localStorage.getItem('koepandaCompoundP13Complete')==='1'}catch(e){return false}}
@@ -28,42 +28,45 @@
     root.querySelectorAll('[data-bnv-letter],[data-bnv-group]').forEach(function(b){b.disabled=busy});
     el('bnvModel').disabled=busy;el('bnvToQuiz').disabled=busy;
     el('bnvPlayback').disabled=busy||!recordings[selected];
-    el('bnvPracticeTarget').textContent='練習する音：'+selected+'（例：'+guide[selected].pinyin+'）';
+    el('bnvPracticeTarget').textContent='練習する音：'+selected;
     if(!busy){el('bnvRecord').textContent=recordings[selected]?'↻ もう一度録音':'● 録音する';el('bnvRecord').disabled=false;el('bnvRecord').classList.remove('is-recording');el('bnvRecord').removeAttribute('aria-busy')}
   }
   function stopSound(){
     modelToken++;clearTimeout(playingTimer);
     try{if(typeof window.stopStandardAudio==='function')window.stopStandardAudio()}catch(e){}
     try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
+    if(modelAudio){try{modelAudio.pause();modelAudio.currentTime=0}catch(e){}modelAudio=null}
     if(playback){try{playback.pause()}catch(e){}}
     root.querySelectorAll('.is-playing').forEach(function(b){b.classList.remove('is-playing')});
     root.querySelectorAll('#bnvModel[aria-busy],#bnvQuizListen[aria-busy]').forEach(function(b){b.removeAttribute('aria-busy')});
   }
   function resetArt(){root.querySelectorAll('.bnv-art-svg,.bnv-route').forEach(function(svg){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(0)}else{svg.unpauseAnimations();svg.setCurrentTime(0)}}catch(e){}});var poses=root.querySelectorAll('.bnv-pose');poses.forEach(function(p){p.style.animation='none'});void root.offsetWidth;poses.forEach(function(p){p.style.animation=''})}
-  function fallbackSpeech(text){
-    return new Promise(function(resolve,reject){
-      if(!('speechSynthesis' in window)){reject(new Error('speech unavailable'));return}
-      var u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.78;
-      var voices=speechSynthesis.getVoices(),voice=voices.find(function(v){return /^zh[-_](CN|Hans)/i.test(v.lang)});if(voice)u.voice=voice;
-      var timer=setTimeout(function(){reject(new Error('speech timeout'))},6000);
-      u.onstart=function(){clearTimeout(timer);resolve(true)};u.onerror=function(){clearTimeout(timer);reject(new Error('speech failed'))};
-      speechSynthesis.speak(u);
-    });
+  function recordedAudio(letter){
+    if(!modelCache[letter]){var audio=new Audio(guide[letter].audio);audio.preload='auto';audio.playsInline=true;audio.playbackRate=.9;audio.defaultPlaybackRate=.9;audio.preservesPitch=true;modelCache[letter]=audio}
+    return modelCache[letter];
   }
   async function playModel(letter,button,forQuiz){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
-    stopSound();var token=modelToken,item=guide[letter],fb=forQuiz?'bnvQuizFeedback':'bnvModelFeedback';
+    stopSound();var token=modelToken,fb=forQuiz?'bnvQuizFeedback':'bnvModelFeedback';
+    var questionIndex=quiz.index;
     button.classList.add('is-playing');button.setAttribute('aria-busy','true');
     if(!forQuiz)feedback(fb,'お手本を準備しています…');
+    var audio=recordedAudio(letter);modelAudio=audio;
+    function failed(){if(token!==modelToken)return;clearTimeout(playingTimer);button.classList.remove('is-playing');button.removeAttribute('aria-busy');feedback(fb,'音声を読み込めませんでした。もう一度聞いてね。','bad')}
+    audio.onended=function(){
+      if(token!==modelToken)return;clearTimeout(playingTimer);button.classList.remove('is-playing');button.removeAttribute('aria-busy');
+      if(forQuiz&&quiz.active&&quiz.index===questionIndex&&!quiz.answered){quiz.heard=true;el('bnvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false});feedback(fb,'聞こえた韻母を選ぼう。')}
+    };
+    audio.onerror=failed;
+    playingTimer=setTimeout(function(){if(token===modelToken){try{audio.pause()}catch(e){}failed()}},10000);
     try{
-      var audio=typeof window.playMachine==='function'?await window.playMachine(item.hanzi,null,false):null;
+      if(audio.error)audio.load();
+      audio.currentTime=0;
+      // Invoked directly from the user gesture; the WAV is already local and cached.
+      await audio.play();
       if(token!==modelToken)return;
-      if(!audio)audio=await fallbackSpeech(item.hanzi);
-      if(token!==modelToken)return;
-      if(!forQuiz){resetArt();feedback(fb,'同じ d のあとに続く韻母を聞こう。舌の後ろ側で閉じ、ng で収めます。')}
-      if(audio&&typeof audio.addEventListener==='function')audio.addEventListener('ended',function(){if(token===modelToken)button.classList.remove('is-playing')},{once:true});
-      playingTimer=setTimeout(function(){if(token===modelToken)button.classList.remove('is-playing')},2200);
-    }catch(e){if(token===modelToken){button.classList.remove('is-playing');feedback(fb,'音声を再生できませんでした。もう一度聞いてみよう。','bad')}}
+      if(!forQuiz){resetArt();feedback(fb,'韻母の音を聞こう。舌の後ろ側で閉じ、ng の響きで終えます。')}
+    }catch(e){failed()}
     finally{if(token===modelToken)button.removeAttribute('aria-busy')}
   }
   function renderArt(){
@@ -95,7 +98,7 @@
   function select(letter,listen){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
     selected=letter;group=['ing','ong'].indexOf(letter)>=0?'rounded':'plain';groupSelection[group]=letter;syncGroups();root.querySelectorAll('[data-bnv-letter]').forEach(function(b){var active=b.dataset.bnvLetter===letter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
-    var item=guide[letter];el('bnvFocusLetter').textContent=letter;el('bnvFocusGuide').textContent=item.ipa+' · 例：'+item.hanzi+' '+item.pinyin;el('bnvFocusTip').textContent=item.tip;
+    var item=guide[letter];el('bnvFocusLetter').textContent=letter;el('bnvFocusGuide').textContent=item.hanzi?item.hanzi+' '+item.pinyin+' · '+item.ipa:'韻母の音 '+item.ipa;el('bnvFocusTip').textContent=item.tip;
     el('bnvModel').textContent='▶ '+letter+' のお手本を聞く';feedback('bnvModelFeedback','');feedback('bnvPracticeFeedback',recordings[letter]?'この音の録音を聞き返せます。':'');
     renderArt();redrawRecordingControls();if(listen)playModel(letter,el('bnvModel'),false);
   }
@@ -136,8 +139,8 @@
     visit([],source);return orders[Math.floor(Math.random()*orders.length)];
   }
   function renderQuestion(){
-    var box=el('bnvQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.bnvAnswer=letter;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
-    el('bnvQuizCount').textContent=(quiz.index+1)+' / '+quizTotal;feedback('bnvQuizFeedback','');el('bnvQuizNext').hidden=true;quiz.answered=false;
+    var box=el('bnvQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.bnvAnswer=letter;b.disabled=true;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
+    el('bnvQuizCount').textContent=(quiz.index+1)+' / '+quizTotal;feedback('bnvQuizFeedback','音を聞いてから選ぼう。');el('bnvQuizNext').hidden=true;quiz.answered=false;quiz.heard=false;
   }
   function startQuiz(){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
@@ -145,7 +148,7 @@
     el('bnvQuizPanel').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   }
   function answer(letter,button){
-    if(!quiz.active||quiz.answered)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
+    if(!quiz.active||quiz.answered||!quiz.heard)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
     el('bnvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true;if(b.dataset.bnvAnswer===right)b.classList.add('is-correct')});
     if(correct){quiz.score++;feedback('bnvQuizFeedback','いい耳！ '+right+' だよ。','good')}else{button.classList.add('is-wrong');feedback('bnvQuizFeedback','今回は '+right+'。もう一度音を聞いて確かめよう。','bad')}
     if(quiz.index===quizTotal-1)quizTimer=setTimeout(function(){if(quiz.active&&quiz.answered&&quiz.index===quizTotal-1)finishQuiz()},650);else el('bnvQuizNext').hidden=false;
@@ -186,7 +189,7 @@
     if(el('kidsCourse'))observer.observe(el('kidsCourse'),{attributes:true,attributeFilter:['hidden','class','style']});observer.observe(document.body,{attributes:true,attributeFilter:['class']});
     var motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
     if(motionPreference.addEventListener)motionPreference.addEventListener('change',function(){renderArt();resetArt()});
-    window.addEventListener('pagehide',cleanup);el('bnvCompleteBadge').hidden=!complete();select('ang',false);
+    window.addEventListener('pagehide',cleanup);el('bnvCompleteBadge').hidden=!complete();letters.forEach(recordedAudio);select('ang',false);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
