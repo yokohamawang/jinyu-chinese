@@ -197,3 +197,12 @@
 #kidsFrontNasalLesson .nsv-focus-copy{margin-top:14px}
 #kidsFrontNasalLesson #nsvLetterGrid{scroll-margin-top:12px}
 #kidsFrontNasalLesson .nsv-articulation{padding:8px;gap:6px}
+
+/* 10.108.133: observed front-mouth presentation, soft lip contours and room for motion. */
+#kidsFrontNasalLesson .nsv-diagram-shell{width:220px;height:180px;background:#fff6f0;border:1px solid #f0ddd1;border-radius:20px;box-shadow:0 5px 18px rgba(142,95,75,.06)}
+#kidsFrontNasalLesson .nsv-articulation{grid-template-columns:220px minmax(0,1fr);gap:12px}
+#kidsFrontNasalLesson .nsv-mouth-diagram{height:155px}
+#kidsFrontNasalLesson .nsv-view-label{font-size:11px;letter-spacing:.02em}
+#kidsFrontNasalLesson .nsv-model-note{margin:12px 18px 20px}
+#kidsFrontNasalLesson .nsv-model-note a{color:#35735d;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:560px){#kidsFrontNasalLesson .nsv-articulation{grid-template-columns:1fr;gap:10px}#kidsFrontNasalLesson .nsv-diagram-shell{width:min(100%,250px);margin:0 auto}#kidsFrontNasalLesson .nsv-movement{width:100%;max-width:220px;justify-self:center}}
