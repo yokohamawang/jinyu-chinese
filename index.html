@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="10.108.125 P12 selection and articulation layout">
+<meta name="koepanda-build" content="10.108.126 P12 two groups and iu animation fix">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -68,7 +68,7 @@
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.108.41" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
 <link rel="stylesheet" href="./css/68-demo1010872-initials-forest.css?v=10.108.110" id="demo1010808-initials-forest">
-<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.125">
+<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.126">
 <style id="demo1010880-initial-example-press-feedback">
 /* Retain the unified example button feedback from 10.108.79. */
 
@@ -95,9 +95,9 @@
 <link rel="stylesheet" href="./css/83-demo10108117-zhr-first-lesson.css?v=10.108.117">
 <link rel="stylesheet" href="./css/84-demo10108118-zcs-first-lesson.css?v=10.108.118">
 <link rel="stylesheet" href="./css/85-demo10108119-ai-ei-ui-first-lesson.css?v=10.108.119">
-<link rel="stylesheet" href="./css/86-demo10108122-ao-ou-iu-first-lesson.css?v=10.108.122">
+<link rel="stylesheet" href="./css/86-demo10108122-ao-ou-iu-first-lesson.css?v=10.108.126">
 <link rel="stylesheet" href="./css/87-demo10108123-ie-ue-er-first-lesson.css?v=10.108.123">
-<link rel="stylesheet" href="./css/88-demo10108124-front-nasal-first-lesson.css?v=10.108.125">
+<link rel="stylesheet" href="./css/88-demo10108124-front-nasal-first-lesson.css?v=10.108.126">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -799,8 +799,9 @@ window.koepandaEnterKidsCourse=function(ev){
       <span class="nsv-complete" id="nsvCompleteBadge" hidden>クリア済み</span>
     </header>
     <section class="nsv-zone nsv-teaching" aria-labelledby="nsvTeachingTitle">
-      <div class="nsv-zone-head"><span>01</span><div><h3 id="nsvTeachingTitle">n で終わる音を知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
-      <div class="nsv-letter-grid" id="nsvLetterGrid"></div>
+      <div class="nsv-zone-head"><span>01</span><div><h3 id="nsvTeachingTitle">n で終わる音を知ろう</h3><p>グループを選び、好きな音をタップして聞こう。</p></div></div>
+      <div class="nsv-group-nav" aria-label="教学のグループ"><button type="button" data-nsv-group="plain" aria-pressed="true">① an・en・in</button><button type="button" data-nsv-group="rounded" aria-pressed="false">② un・ün</button></div>
+      <div class="nsv-letter-grid" id="nsvLetterGrid" data-group="plain"></div>
       <div class="nsv-focus">
         <div class="nsv-articulation" id="nsvArticulation" aria-label="複韻母の口形と音の流れ"></div>
         <div class="nsv-focus-copy"><span id="nsvFocusLetter">an</span><div><strong id="nsvFocusGuide">安 ān · [an]</strong><p id="nsvFocusTip"></p></div></div>
@@ -813,13 +814,14 @@ window.koepandaEnterKidsCourse=function(ev){
       <details class="nsv-model-note"><summary>お手本と拼音の書き方</summary><p>「安 ān・恩 ēn・音 yīn・温 wēn・晕 yūn」をお手本にします。最後の n に注目して、ひと息で読んでみよう。</p><p>声母をつけずに示すと in は yin、un（uen）は wen、ün は yun と書きます。un と ün は別の音です。</p><p>j・q・x の後の un は ün の音です（jun・qun・xun）。一方、dun・tun・lun などの un は uen の音です。</p><p>声調記号は an の a、en の e、in の i、un の u、ün の ü につけます。</p></details></section>
     <section class="nsv-zone nsv-practice" aria-labelledby="nsvPracticeTitle">
       <div class="nsv-zone-head"><span>02</span><div><h3 id="nsvPracticeTitle">好きな音をまねよう</h3><p>聞く・録音する・自分の声を聞く。何度でも自由に練習できます。</p></div></div>
-      <div class="nsv-free-choice" id="nsvFreeChoice"></div>
+      <div class="nsv-group-nav" aria-label="練習のグループ"><button type="button" data-nsv-group="plain" aria-pressed="true">① an・en・in</button><button type="button" data-nsv-group="rounded" aria-pressed="false">② un・ün</button></div>
+      <div class="nsv-free-choice" id="nsvFreeChoice" data-group="plain"></div>
       <p class="nsv-practice-target" id="nsvPracticeTarget">練習する音：an</p>
       <div class="nsv-record-row"><button class="nsv-button nsv-record" id="nsvRecord" type="button">● 録音する</button><button class="nsv-button nsv-playback" id="nsvPlayback" type="button" disabled>▶ 自分の声を聞く</button></div>
       <p class="nsv-feedback" id="nsvPracticeFeedback" aria-live="polite"></p>
     </section>
     <section class="nsv-zone nsv-check" aria-labelledby="nsvCheckTitle">
-      <div class="nsv-zone-head"><span>03</span><div><h3 id="nsvCheckTitle">耳でミニチェック</h3><p>6問で五つの音をチェック。聞こえた韻母を選ぼう。5問以上正解で合格です。</p></div></div>
+      <div class="nsv-zone-head"><span>03</span><div><h3 id="nsvCheckTitle">耳でミニチェック</h3><p>両グループの五つの音を6問でチェック。聞こえた韻母を選ぼう。5問以上正解で合格です。</p></div></div>
       <button class="nsv-button nsv-to-quiz" id="nsvToQuiz" type="button">ミニチェックへ →</button>
       <div class="nsv-quiz" id="nsvQuizPanel" hidden>
         <div class="nsv-quiz-top"><strong>聞こえたのはどの音？</strong><span id="nsvQuizCount">1 / 6</span></div>
@@ -953,7 +955,7 @@ SOFTWARE.
 
 <script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.107.72"></script>
 <script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.107.72"></script>
-<script src="./data/pinyin-course.js?v=10.108.125"></script>
+<script src="./data/pinyin-course.js?v=10.108.126"></script>
 <script src="./data/kids-pinyin.js?v=10.107.72"></script>
 <script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.104"></script>
 <script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.107.72"></script>
@@ -1221,5 +1223,5 @@ body.app-home-mode #homeEffect > a.hs-repeat{
 <script src="./js/18-demo10108119-ai-ei-ui-first-lesson.js?v=10.108.121"></script>
 <script src="./js/19-demo10108122-ao-ou-iu-first-lesson.js?v=10.108.122"></script>
 <script src="./js/20-demo10108123-ie-ue-er-first-lesson.js?v=10.108.123"></script>
-<script src="./js/21-demo10108124-front-nasal-first-lesson.js?v=10.108.125"></script>
+<script src="./js/21-demo10108124-front-nasal-first-lesson.js?v=10.108.126"></script>
 </body></html>
