@@ -1,4 +1,4 @@
-Koepanda 10.108.138
-Built 2026-10-14T20:20:16+09:00 (Asia/Tokyo)
-Base: 10.108.137
-Status: mobile playback placement; expert/native-device signoff pending
+Koepanda 10.108.144
+Built 2026-10-15T08:05:08+09:00 (Asia/Tokyo)
+Base: 10.108.143 FULL_ClearToneCards
+Status: natural illustrated vowel portrait; browser QA passed

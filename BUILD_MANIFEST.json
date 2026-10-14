@@ -1,50 +1,85 @@
 {
-  "version": "10.108.139",
-  "base": "10.108.138 FULL_PlayAboveAnimation",
-  "archive_root": "k139/",
-  "built_at": "2026-10-14T21:48:07+09:00",
-  "modified_files": [
-    "BUILD_MANIFEST.json",
-    "REVIEW_10_108_139.md",
-    "UPLOAD_10_108_139.txt",
-    "css/92-articulation-motion-139.css",
-    "data/pinyin-course.js",
-    "data/pronunciation-timing-139.js",
+  "version": "10.108.144",
+  "base": "10.108.143 FULL_ClearToneCards",
+  "update_compatible_bases": [
+    "10.108.142",
+    "10.108.143"
+  ],
+  "archive_root": "k144/",
+  "built_at": "2026-10-15T08:05:08+09:00",
+  "modified_website_files": [
     "index.html",
-    "js/10-demo1010872-initials-forest.js",
-    "js/12-demo1010820-dtnl-first-lesson.js",
-    "js/14-demo10108113-gkh-first-lesson.js",
-    "js/15-demo10108116-jqx-first-lesson.js",
-    "js/16-demo10108117-zhr-first-lesson.js",
-    "js/17-demo10108118-zcs-first-lesson.js",
-    "js/18-demo10108119-ai-ei-ui-first-lesson.js",
-    "js/19-demo10108122-ao-ou-iu-first-lesson.js",
-    "js/20-demo10108123-ie-ue-er-first-lesson.js",
-    "js/21-demo10108124-front-nasal-first-lesson.js",
-    "js/22-demo10108128-back-nasal-first-lesson.js",
     "js/24-pronunciation-studio-134.js",
-    "js/25-pronunciation-ux-135.js",
-    "js/26-articulation-motion-139.js"
+    "js/27-vowel-portrait-144.js",
+    "css/92-articulation-motion-139.css"
+  ],
+  "carried_previous_fix_files": [
+    "css/91-pronunciation-ux-135.css"
+  ],
+  "update_package_files": [
+    "index.html",
+    "js/24-pronunciation-studio-134.js",
+    "js/27-vowel-portrait-144.js",
+    "css/92-articulation-motion-139.css",
+    "css/91-pronunciation-ux-135.css",
+    "VERSION.txt",
+    "BUILD_MANIFEST.json",
+    "README_144.md"
   ],
   "validation": {
-    "viewport_widths": [
-      320,
-      375,
-      390,
-      430,
-      768
+    "portrait_models": 24,
+    "geometry_samples_per_model": 121,
+    "geometry_samples_total": 2904,
+    "rendered_review_frames": 120,
+    "front_layout_samples": 35,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        375,
+        640
+      ],
+      [
+        393,
+        650
+      ],
+      [
+        430,
+        740
+      ],
+      [
+        768,
+        430
+      ]
     ],
-    "letter_viewport_combinations": 195,
-    "played_audio_files": 63,
-    "articulation_models": 45,
-    "model_frame_samples": 4545,
-    "script_errors": [],
-    "quiz": "4/4; automatic result popup shown",
-    "reduced_motion": true
+    "target_checks": 186,
+    "side_checks": 1232,
+    "usability": {
+      "recording": true,
+      "ownVoiceReplay": true,
+      "quizEntry": true,
+      "fastSwitches": 12,
+      "reducedMotion": true,
+      "renderTiming": {
+        "max": 22,
+        "mean": 10.29166666666843,
+        "cache": 32
+      },
+      "errors": [],
+      "missing": []
+    },
+    "browser": "Chromium 153 / Playwright mobile emulation",
+    "physical_safari": false,
+    "external_expert_signoff": false,
+    "audio_and_image_assets_unchanged": true
   },
-  "limitations": [
-    "No physical iPhone/Safari verification",
-    "Qualitative illustrations; phoneme boundaries not measured",
-    "No independent teacher signoff"
-  ]
+  "modified_file_sha256": {
+    "index.html": "87a9ab3969b3faa5ee2c7a75d6add2f2285b0491484c58cc2f94316bc21a355c",
+    "js/24-pronunciation-studio-134.js": "a9e8edcf981da4f1306288e7dd458f70ae4d08955f7725da8dfd41583f96e1ab",
+    "js/27-vowel-portrait-144.js": "b4ebbb19cf782277e4277361ab67fc8dc4a0e0e9d31e75e661eb0756e80b1d9d",
+    "css/92-articulation-motion-139.css": "d5fe5417b325989bae1713f778591882c6ba9294f9fc671c9a6bac18270bb2f7",
+    "css/91-pronunciation-ux-135.css": "d72be41525157e1afb2ba4abca4fad8269bc8e2772295851419e5e42be084825"
+  }
 }
