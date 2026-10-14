@@ -1,0 +1,18 @@
+/* 139: two clear rows per sound selector; explanations belong to the active figure. */
+#kidsCourse [id$="LetterGrid"]>button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-width:0!important;min-height:96px!important;padding:10px 5px!important;box-sizing:border-box!important;overflow:hidden!important;white-space:normal!important}
+#kidsCourse [id$="LetterGrid"]>button::before,#kidsCourse [id$="LetterGrid"]>button::after{display:none!important}
+#kidsCourse [id$="LetterGrid"]>button>em,#kidsCourse [id$="LetterGrid"] .cue,#kidsCourse [id$="LetterGrid"] .initial-articulation{display:none!important}
+#kidsCourse [id$="LetterGrid"]>button>strong,#kidsCourse [id$="LetterGrid"]>button>.big{display:block!important;position:static!important;margin:0!important;font-size:34px!important;font-weight:800!important;line-height:1.12!important;max-width:100%;text-align:center}
+#kidsCourse [id$="LetterGrid"]>button>small,#kidsCourse [id$="LetterGrid"]>button>.ipa,#kidsCourse [id$="LetterGrid"]>button>.initial-ipa{display:block!important;position:static!important;margin:0!important;font-size:14px!important;line-height:1.35!important;font-style:normal!important;max-width:100%;text-align:center}
+.kp134-studio .kp139-position{width:min(100%,248px)!important;max-height:195px!important;height:auto!important;overflow:hidden}
+.kp139-position .kp139-tongue{animation:none!important;transform:none!important;transition:none!important}
+.kp134-studio .kp134-position-view{min-height:210px;gap:2px;padding:5px 5px 7px}
+.kp134-studio .kp134-position-view figcaption{font-size:12px!important;line-height:1.5!important;margin:0;max-width:28em}
+.kp134-studio .kp134-front-view figcaption{font-size:13px!important;color:#4d7863}
+.kp134-studio .kp134-toolbar{flex-wrap:nowrap;align-items:center}
+.kp134-studio .kp134-toolbar .kp134-slow{white-space:nowrap!important;min-width:0;font-size:12px!important;padding:7px 8px!important}
+.kp134-studio .kp134-state{font-size:13px!important;min-height:24px!important;margin:0!important}
+.kp134-studio .kp134-timeline>div{min-height:35px!important;margin-top:3px}
+.kp134-studio .kp134-timeline{margin-top:3px!important}
+@media(max-width:360px){#kidsCourse [id$="LetterGrid"]>button>strong,#kidsCourse [id$="LetterGrid"]>button>.big{font-size:30px!important}#kidsCourse [id$="LetterGrid"]>button{min-height:86px!important}.kp134-studio .kp139-position{max-height:173px!important}.kp134-studio .kp134-position-view{min-height:190px!important}.kp134-studio .kp134-toolbar [role=group]{gap:3px}.kp134-studio .kp134-toolbar button{padding:7px 7px!important}}
+@media(max-height:600px) and (max-width:600px){.kp134-studio .kp139-position{max-height:165px!important}.kp134-studio .kp134-position-view{min-height:182px!important}}
