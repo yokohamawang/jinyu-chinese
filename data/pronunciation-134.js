@@ -1646,9 +1646,9 @@ window.KP134_DATA={
     "syllable": "ang1",
     "ipa": "[ɑŋ]",
     "title": "短い ng へ",
-    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "tip": "a からつなげ、舌先は低いまま、舌の後ろ側を軟口蓋へ。最後に g を破裂させません。",
     "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
-    "avoid": "最後に破裂音 g や母音を足さない。",
+    "avoid": "舌先を巻いたり、舌全体を大きく跳ね上げたりしない。図の高さは個人の実測値ではありません。",
     "poses": [
       [
         68,
@@ -1681,9 +1681,9 @@ window.KP134_DATA={
     "syllable": "eng1",
     "ipa": "[ɤŋ]",
     "title": "短い ng へ",
-    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "tip": "奥寄りの e の構えから、舌の後ろ側で ng に収めます。舌全体を大きく持ち上げるように力ませません。",
     "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
-    "avoid": "最後に破裂音 g や母音を足さない。",
+    "avoid": "舌先を巻いたり、舌全体を大きく跳ね上げたりしない。図の高さは個人の実測値ではありません。",
     "poses": [
       [
         66,
@@ -1704,7 +1704,8 @@ window.KP134_DATA={
     ],
     "sources": [
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
-      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02"
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-08-01.php"
     ],
     "audio": "./assets/audio/course-134/eng1.wav?v=10.108.134",
     "status": "reference-model",
@@ -1716,9 +1717,9 @@ window.KP134_DATA={
     "syllable": "ying1",
     "ipa": "[iŋ]",
     "title": "短い ng へ",
-    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "tip": "高い i の構えから、そのまま後ろ側で ng に収めます。舌をいったん低くして大きく上げ直したり、間の母音を意識して足したりしません。",
     "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
-    "avoid": "最後に破裂音 g や母音を足さない。",
+    "avoid": "舌先を巻いたり、舌全体を大きく跳ね上げたりしない。図の高さは個人の実測値ではありません。",
     "poses": [
       [
         76,
@@ -1739,7 +1740,8 @@ window.KP134_DATA={
     ],
     "sources": [
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-06-01.php"
     ],
     "audio": "./assets/audio/course-134/ying1.wav?v=10.108.134",
     "status": "reference-model",
@@ -1752,9 +1754,9 @@ window.KP134_DATA={
     "syllable": "ong-derived",
     "ipa": "[ʊŋ]",
     "title": "短い ng へ",
-    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "tip": "丸い唇を保ち、舌先を上げず、後ろ側で ng に収めます。最後に余分な「グ」を足しません。",
     "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
-    "avoid": "最後に破裂音 g や母音を足さない。",
+    "avoid": "舌先を巻いたり、舌全体を大きく跳ね上げたりしない。図の高さは個人の実測値ではありません。",
     "poses": [
       [
         40,
