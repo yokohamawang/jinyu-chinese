@@ -1,0 +1,16 @@
+{
+  "vowels": "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+  "initials": "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+  "aspiration": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+  "friction": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
+  "retroflex": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
+  "apical": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+  "compound": "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#03",
+  "nasal": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+  "natural_n": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/03-02-01.php",
+  "ui_iu_un": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-07-01.php",
+  "er": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-08-01.php",
+  "ie": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-04-01.php",
+  "high_vowels": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php",
+  "a_finals": "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-03-01-01.php"
+}

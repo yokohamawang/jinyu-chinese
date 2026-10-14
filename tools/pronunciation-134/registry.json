@@ -1,0 +1,1784 @@
+{
+  "a": {
+    "key": "a",
+    "kind": "vowel",
+    "syllable": "a1",
+    "ipa": "[a]",
+    "title": "縦に開く",
+    "tip": "唇を力ませず、あごを下げて声を続けます。",
+    "check": "鏡で、唇が横に引かれすぎていないか見る。",
+    "avoid": "舌を大きく振り回さない。",
+    "poses": [
+      [
+        68,
+        34,
+        0
+      ],
+      [
+        68,
+        34,
+        0
+      ],
+      [
+        68,
+        34,
+        0
+      ]
+    ],
+    "mechanism": "low",
+    "phase": [
+      "構える",
+      "形を保つ",
+      "力をぬく"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/a1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ā"
+  },
+  "o": {
+    "key": "o",
+    "kind": "vowel",
+    "syllable": "o1",
+    "ipa": "[o]",
+    "title": "丸く、少し開く",
+    "tip": "唇を丸くして、ほどよく開いた形を保ちます。",
+    "check": "u より開きが大きいか、鏡で見くらべる。",
+    "avoid": "w を強く付け足さない。",
+    "poses": [
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        38,
+        25,
+        1
+      ]
+    ],
+    "mechanism": "back",
+    "phase": [
+      "構える",
+      "形を保つ",
+      "力をぬく"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/o1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ō"
+  },
+  "e": {
+    "key": "e",
+    "kind": "vowel",
+    "syllable": "e1",
+    "ipa": "[ɤ]",
+    "title": "丸めず、軽く開く",
+    "tip": "唇を丸めず、舌はやや奥の位置で声を続けます。",
+    "check": "o の丸さをほどいた唇で聞きくらべる。",
+    "avoid": "日本語の「エ」と同じ音にしない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "back",
+    "phase": [
+      "構える",
+      "形を保つ",
+      "力をぬく"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/e1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ē"
+  },
+  "i": {
+    "key": "i",
+    "kind": "vowel",
+    "syllable": "yi1",
+    "ipa": "[i]",
+    "title": "横に、軽く広げる",
+    "tip": "舌は前の高い位置。唇を横に軽く広げます。",
+    "check": "舌先を強く上へ押しつけず、音を保つ。",
+    "avoid": "舌先を巻いたり、唇を丸めたりしない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ]
+    ],
+    "mechanism": "front-high",
+    "phase": [
+      "構える",
+      "形を保つ",
+      "力をぬく"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/yi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yī"
+  },
+  "u": {
+    "key": "u",
+    "kind": "vowel",
+    "syllable": "wu1",
+    "ipa": "[u]",
+    "title": "小さく丸め、少し前へ",
+    "tip": "唇を小さく丸め、舌は奥の高い位置に保ちます。",
+    "check": "i と比べ、唇が丸くなっているか見る。",
+    "avoid": "日本語の「ウ」のように平たい唇だけにしない。",
+    "poses": [
+      [
+        30,
+        17,
+        1
+      ],
+      [
+        30,
+        17,
+        1
+      ],
+      [
+        30,
+        17,
+        1
+      ]
+    ],
+    "mechanism": "back-high",
+    "phase": [
+      "構える",
+      "形を保つ",
+      "力をぬく"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/wu1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "wū"
+  },
+  "ü": {
+    "key": "ü",
+    "kind": "vowel",
+    "syllable": "yu1",
+    "ipa": "[y]",
+    "title": "丸い唇・前寄りの舌",
+    "tip": "i の舌の構えで、唇をやわらかく丸めます。",
+    "check": "u と唇が似ても、舌は i の前寄りか意識する。",
+    "avoid": "u と同じ舌の位置にしない。",
+    "poses": [
+      [
+        34,
+        14,
+        1
+      ],
+      [
+        34,
+        14,
+        1
+      ],
+      [
+        34,
+        14,
+        1
+      ]
+    ],
+    "mechanism": "front-high",
+    "phase": [
+      "構える",
+      "形を保つ",
+      "力をぬく"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/yu1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yū"
+  },
+  "b": {
+    "key": "b",
+    "kind": "initial",
+    "syllable": "bo1",
+    "ipa": "[p]",
+    "title": "両唇を閉じて離す",
+    "tip": "両唇で止めてから、短く離します。強い息を続けません。",
+    "check": "p と同じ唇で、口の前の手に届く息を比べる。",
+    "avoid": "英語の有声 b を目標にしない。",
+    "poses": [
+      [
+        57,
+        0,
+        0
+      ],
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        38,
+        25,
+        1
+      ]
+    ],
+    "mechanism": "bilabial-stop",
+    "phase": [
+      "構える",
+      "離す・短い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/bo1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "bō"
+  },
+  "p": {
+    "key": "p",
+    "kind": "initial",
+    "syllable": "po1",
+    "ipa": "[pʰ]",
+    "title": "離す瞬間に、はっきり息",
+    "tip": "b と同じ両唇の位置。離したあと、はっきり息を出します。",
+    "check": "薄い紙を口の前に置き、b より動くか比べる。",
+    "avoid": "大声にするだけで送気を表そうとしない。",
+    "poses": [
+      [
+        57,
+        0,
+        0
+      ],
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        38,
+        25,
+        1
+      ]
+    ],
+    "mechanism": "bilabial-stop",
+    "phase": [
+      "構える",
+      "離す・強い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/po1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": true,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "pō"
+  },
+  "m": {
+    "key": "m",
+    "kind": "initial",
+    "syllable": "mo1",
+    "ipa": "[m]",
+    "title": "両唇を閉じて、鼻へ",
+    "tip": "声母 m の間は唇を閉じ、鼻に声を響かせます。",
+    "check": "鼻に軽く触れ、響きを感じてから母音 o へ。",
+    "avoid": "呼読音 mō の o まで唇を閉じ続けない。",
+    "poses": [
+      [
+        57,
+        0,
+        0
+      ],
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        38,
+        25,
+        1
+      ]
+    ],
+    "mechanism": "bilabial-nasal",
+    "phase": [
+      "構える",
+      "鼻に声",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+    ],
+    "audio": "./assets/audio/course-134/mo1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "mō"
+  },
+  "f": {
+    "key": "f",
+    "kind": "initial",
+    "syllable": "fo1",
+    "ipa": "[f]",
+    "title": "上の歯と下唇のすき間",
+    "tip": "上の前歯を下唇の内側へ軽く当て、細い息を続けます。",
+    "check": "鏡で上の歯と下唇の軽い接触を確かめる。",
+    "avoid": "日本語のフのように、両唇だけで息を出さない。",
+    "poses": [
+      [
+        61,
+        7,
+        0
+      ],
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        38,
+        25,
+        1
+      ]
+    ],
+    "mechanism": "labiodental",
+    "phase": [
+      "構える",
+      "息を続ける",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+    ],
+    "audio": "./assets/audio/course-134/fo1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "fō"
+  },
+  "d": {
+    "key": "d",
+    "kind": "initial",
+    "syllable": "de1",
+    "ipa": "[t]",
+    "title": "舌先で止めて、短く離す",
+    "tip": "前歯のすぐ後ろの歯ぐき付近で止め、短く離します。",
+    "check": "t と同じ調音位置で、息の量を比べる。",
+    "avoid": "英語の有声 d と同じにしない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "alveolar-stop",
+    "phase": [
+      "構える",
+      "離す・短い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/de1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "dē"
+  },
+  "t": {
+    "key": "t",
+    "kind": "initial",
+    "syllable": "te1",
+    "ipa": "[tʰ]",
+    "title": "同じ舌先から、はっきり息",
+    "tip": "d と同じ位置で止め、離すときにはっきり送気します。",
+    "check": "手のひらに届く息を d と比べる。",
+    "avoid": "舌を必要以上に高く、大きく動かさない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "alveolar-stop",
+    "phase": [
+      "構える",
+      "離す・強い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/te1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": true,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "tē"
+  },
+  "n": {
+    "key": "n",
+    "kind": "initial",
+    "syllable": "ne1",
+    "ipa": "[n]",
+    "title": "前で閉じ、鼻に響かせる",
+    "tip": "舌の前部で口の通り道を閉じ、鼻から声を通します。",
+    "check": "l と比べ、鼻の響きがあるか聞く。",
+    "avoid": "日本語の「ン」をどの位置でも代用しない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "alveolar-nasal",
+    "phase": [
+      "構える",
+      "鼻に声",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ne1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "nē"
+  },
+  "l": {
+    "key": "l",
+    "kind": "initial",
+    "syllable": "le1",
+    "ipa": "[l]",
+    "title": "舌先を保ち、両側へ",
+    "tip": "舌先を前歯の後ろへ軽くつけ、舌の両側から声を通します。",
+    "check": "子音部分を少し保ち、日本語のラの弾きと比べる。",
+    "avoid": "舌先を一瞬はじいて終えない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "lateral",
+    "phase": [
+      "構える",
+      "声を通す",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+    ],
+    "audio": "./assets/audio/course-134/le1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "lē"
+  },
+  "g": {
+    "key": "g",
+    "kind": "initial",
+    "syllable": "ge1",
+    "ipa": "[k]",
+    "title": "舌の後ろで止めて離す",
+    "tip": "舌の後ろ側を軟口蓋へつけ、短く離します。",
+    "check": "k と同じ奥の位置で、息の量を比べる。",
+    "avoid": "英語の有声 g と同じにしない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "velar-stop",
+    "phase": [
+      "構える",
+      "離す・短い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ge1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "gē"
+  },
+  "k": {
+    "key": "k",
+    "kind": "initial",
+    "syllable": "ke1",
+    "ipa": "[kʰ]",
+    "title": "奥で離し、はっきり息",
+    "tip": "g と同じ奥の位置から離し、はっきり送気します。",
+    "check": "手に届く息を g と聞きくらべる。",
+    "avoid": "息を出すために舌全体を回さない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "velar-stop",
+    "phase": [
+      "構える",
+      "離す・強い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ke1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": true,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "kē"
+  },
+  "h": {
+    "key": "h",
+    "kind": "initial",
+    "syllable": "he1",
+    "ipa": "[x]",
+    "title": "奥のすき間で息をこする",
+    "tip": "舌の後ろ側と上あごの奥のすき間で、息をこすります。",
+    "check": "g のような止めと破裂がないか聞く。",
+    "avoid": "日本語のハのような、単なる息だけにしない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        19,
+        0
+      ]
+    ],
+    "mechanism": "velar-fricative",
+    "phase": [
+      "構える",
+      "息を続ける",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+    ],
+    "audio": "./assets/audio/course-134/he1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "hē"
+  },
+  "j": {
+    "key": "j",
+    "kind": "initial",
+    "syllable": "ji1",
+    "ipa": "[tɕ]",
+    "title": "舌の前面で止めて細く開く",
+    "tip": "舌先は下の前歯付近。舌の前面で止め、細く開いてこすります。",
+    "check": "q と同じ位置で、送気の違いを聞く。",
+    "avoid": "舌先を zh の位置へ巻かない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ]
+    ],
+    "mechanism": "palatal-affricate",
+    "phase": [
+      "構える",
+      "離す・短い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ji1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "jī"
+  },
+  "q": {
+    "key": "q",
+    "kind": "initial",
+    "syllable": "qi1",
+    "ipa": "[tɕʰ]",
+    "title": "前面を開き、はっきり息",
+    "tip": "j と同じ舌の前面。開いてこするときにはっきり送気します。",
+    "check": "口の前の紙の動きを j と比べる。",
+    "avoid": "アルファベット Q の読み方で覚えない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ]
+    ],
+    "mechanism": "palatal-affricate",
+    "phase": [
+      "構える",
+      "離す・強い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/qi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": true,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "qī"
+  },
+  "x": {
+    "key": "x",
+    "kind": "initial",
+    "syllable": "xi1",
+    "ipa": "[ɕ]",
+    "title": "舌の前面のすき間で息",
+    "tip": "舌先は下の前歯付近。舌の前面と硬口蓋のすき間から息を続けます。",
+    "check": "j のような止めや破裂を付けていないか聞く。",
+    "avoid": "sh のように舌先を上へ反らせない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        12,
+        0
+      ]
+    ],
+    "mechanism": "palatal-fricative",
+    "phase": [
+      "構える",
+      "息を続ける",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+    ],
+    "audio": "./assets/audio/course-134/xi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "xī"
+  },
+  "zh": {
+    "key": "zh",
+    "kind": "initial",
+    "syllable": "zhi1",
+    "ipa": "[tʂ]",
+    "title": "少し後ろで止め、細く開く",
+    "tip": "舌先・舌の前部を、歯ぐきより少し後ろへ。止めてから細く開きます。",
+    "check": "z と場所を比べ、舌を奥まで巻き込んでいないか確かめる。",
+    "avoid": "舌を大きく巻き、喉の奥へ押し込まない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "retroflex-affricate",
+    "phase": [
+      "構える",
+      "離す・短い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/zhi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "zhī"
+  },
+  "ch": {
+    "key": "ch",
+    "kind": "initial",
+    "syllable": "chi1",
+    "ipa": "[tʂʰ]",
+    "title": "少し後ろから、はっきり息",
+    "tip": "zh と同じ構えで止め、細く開くときにはっきり送気します。",
+    "check": "zh と同じ舌の位置で、息の量を比べる。",
+    "avoid": "qi と同じ舌面の構えにしない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "retroflex-affricate",
+    "phase": [
+      "構える",
+      "離す・強い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/chi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": true,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "chī"
+  },
+  "sh": {
+    "key": "sh",
+    "kind": "initial",
+    "syllable": "shi1",
+    "ipa": "[ʂ]",
+    "title": "少し反らせ、すき間で息",
+    "tip": "舌の前部を少し上・後ろへ向け、すき間から息を続けます。",
+    "check": "s と聞きくらべ、音の響きの違いを感じる。",
+    "avoid": "上あごへ強く押しつけ、通り道を閉じない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "retroflex-fricative",
+    "phase": [
+      "構える",
+      "息を続ける",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/shi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "shī"
+  },
+  "r": {
+    "key": "r",
+    "kind": "initial",
+    "syllable": "ri1",
+    "ipa": "[ɻ~ʐ]",
+    "title": "同じ構えで、声を響かせる",
+    "tip": "舌の前部を少し上・後ろへ向け、声を通します。摩擦の強さには話者差があります。",
+    "check": "喉に軽く触れ、sh と声の響きを比べる。",
+    "avoid": "日本語のラのようにはじいたり、巻き舌を繰り返したりしない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "retroflex-voiced",
+    "phase": [
+      "構える",
+      "声を通す",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ri1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "rī"
+  },
+  "z": {
+    "key": "z",
+    "kind": "initial",
+    "syllable": "zi1",
+    "ipa": "[ts]",
+    "title": "前歯の後ろで止め、細く開く",
+    "tip": "前歯の後ろ付近で止めてから、細いすき間を開いて息をこすります。",
+    "check": "c と同じ場所で、送気の違いを聞く。",
+    "avoid": "英語の有声 z や、日本語のズと同じにしない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "dental-affricate",
+    "phase": [
+      "構える",
+      "離す・短い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/zi1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "zī"
+  },
+  "c": {
+    "key": "c",
+    "kind": "initial",
+    "syllable": "ci1",
+    "ipa": "[tsʰ]",
+    "title": "前のすき間から、はっきり息",
+    "tip": "z と同じ前の位置で止め、開くときにはっきり送気します。",
+    "check": "手のひらに届く息を z と比べる。",
+    "avoid": "アルファベット C の読み方にしない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "dental-affricate",
+    "phase": [
+      "構える",
+      "離す・強い息",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ci1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": true,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "cī"
+  },
+  "s": {
+    "key": "s",
+    "kind": "initial",
+    "syllable": "si1",
+    "ipa": "[s]",
+    "title": "前の細いすき間で息",
+    "tip": "舌の前部と歯の付近に細いすき間を残し、息を続けます。",
+    "check": "z のような止めを付けず、子音を少し保つ。",
+    "avoid": "shi や xi と同じ舌の構えにしない。",
+    "poses": [
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ],
+      [
+        62,
+        11,
+        0
+      ]
+    ],
+    "mechanism": "dental-fricative",
+    "phase": [
+      "構える",
+      "息を続ける",
+      "母音へ"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+    ],
+    "audio": "./assets/audio/course-134/si1.wav?v=10.108.134",
+    "status": "reference-model",
+    "aspirated": false,
+    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
+    "roman": "sī"
+  },
+  "ai": {
+    "key": "ai",
+    "kind": "final",
+    "syllable": "ai1",
+    "ipa": "[ai̯]",
+    "title": "開きから、横へ",
+    "tip": "a の開きから i の方向へ、開きを小さくしてひと息でつなぎます。",
+    "check": "あごの開きがなめらかに小さくなるか見る。",
+    "avoid": "「ア・イ」と二拍に分けない。",
+    "poses": [
+      [
+        68,
+        34,
+        0
+      ],
+      [
+        73,
+        14,
+        0
+      ]
+    ],
+    "mechanism": "vowel-flow",
+    "phase": [
+      "a",
+      "i へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#03",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-03-01-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ai1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "āi"
+  },
+  "ei": {
+    "key": "ei",
+    "kind": "final",
+    "syllable": "ei1",
+    "ipa": "[ei̯]",
+    "title": "前寄りの e から i へ",
+    "tip": "前寄りの e から i の方向へ。唇を丸めず、なめらかにつなぎます。",
+    "check": "ai より小さい開きで始めているか見る。",
+    "avoid": "単母音 e [ɤ] と同じ始まりにしない。",
+    "poses": [
+      [
+        70,
+        22,
+        0
+      ],
+      [
+        73,
+        14,
+        0
+      ]
+    ],
+    "mechanism": "vowel-flow",
+    "phase": [
+      "e",
+      "i へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#03",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ei1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ēi"
+  },
+  "ui": {
+    "key": "ui",
+    "kind": "final",
+    "syllable": "wei1",
+    "ipa": "[uei̯]",
+    "title": "丸さをほどき、横へ",
+    "tip": "u から短い e を通って i へ。独立した音節では wei と書きます。",
+    "check": "丸い唇が少しずつほどけるか見る。",
+    "avoid": "最初から平たい唇で始めない。",
+    "poses": [
+      [
+        30,
+        17,
+        1
+      ],
+      [
+        68,
+        20,
+        0
+      ],
+      [
+        73,
+        14,
+        0
+      ]
+    ],
+    "mechanism": "vowel-flow",
+    "phase": [
+      "u",
+      "短い e",
+      "i へ"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-07-01.php"
+    ],
+    "audio": "./assets/audio/course-134/wei1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "wēi",
+    "helperNote": "音声は独立音節 wēi。声母が付く -ui では途中の e が弱くなります。"
+  },
+  "ao": {
+    "key": "ao",
+    "kind": "final",
+    "syllable": "ao1",
+    "ipa": "[ɑʊ̯]",
+    "title": "開きから、丸く収める",
+    "tip": "a の大きい開きから、唇を丸めて u に近い方向へ収めます。",
+    "check": "ai と比べ、最後に丸さが出るか見る。",
+    "avoid": "最後をはっきりした単母音 o にしない。",
+    "poses": [
+      [
+        68,
+        34,
+        0
+      ],
+      [
+        44,
+        21,
+        1
+      ]
+    ],
+    "mechanism": "vowel-flow",
+    "phase": [
+      "a",
+      "丸める",
+      "短く収める"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#03",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-03-01-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ao1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "āo"
+  },
+  "ou": {
+    "key": "ou",
+    "kind": "final",
+    "syllable": "ou1",
+    "ipa": "[oʊ̯]",
+    "title": "丸さを保ち、少し小さく",
+    "tip": "o の丸い形から、小さく収めます。ao より動きは小さめです。",
+    "check": "終わりまで唇の丸さが残っているか見る。",
+    "avoid": "「オ・ウ」と切らない。",
+    "poses": [
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        32,
+        17,
+        1
+      ]
+    ],
+    "mechanism": "vowel-flow",
+    "phase": [
+      "o",
+      "小さく",
+      "収める"
+    ],
+    "sources": [
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#03"
+    ],
+    "audio": "./assets/audio/course-134/ou1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ōu"
+  },
+  "iu": {
+    "key": "iu",
+    "kind": "final",
+    "syllable": "you1",
+    "ipa": "[ioʊ̯]",
+    "title": "横から、丸さへ",
+    "tip": "i から o を通り u の方向へ。独立音節 you と、声母後の iu では強さが変わります。",
+    "check": "唇が横から丸さへ移るか見る。",
+    "avoid": "you の音を全ての iu と完全に同一と断定しない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        38,
+        25,
+        1
+      ],
+      [
+        30,
+        17,
+        1
+      ]
+    ],
+    "mechanism": "vowel-flow",
+    "phase": [
+      "i",
+      "o を通る",
+      "u へ"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-07-01.php"
+    ],
+    "audio": "./assets/audio/course-134/you1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yōu",
+    "helperNote": "音声は独立音節 yōu。声母が付く -iu では途中の o が弱くなります。"
+  },
+  "ie": {
+    "key": "ie",
+    "kind": "final",
+    "syllable": "ye1",
+    "ipa": "[iɛ]",
+    "title": "横から、少し開く",
+    "tip": "i から前寄りの ê [ɛ] へ。後ろの音をしっかり、ひと息でつなぎます。",
+    "check": "後半であごが少し開くか見る。",
+    "avoid": "最後の e を単母音 e [ɤ] にしない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        70,
+        25,
+        0
+      ]
+    ],
+    "mechanism": "front-high",
+    "phase": [
+      "i",
+      "ê へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-04-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ye1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yē",
+    "helperNote": "音声は独立音節 yē。声母が付くと ie と書きます。"
+  },
+  "üe": {
+    "key": "üe",
+    "kind": "final",
+    "syllable": "yue1",
+    "ipa": "[yɛ]",
+    "title": "丸さから、前寄りの ê",
+    "tip": "ü の丸い唇から、丸さをほどいて前寄りの ê へ。舌は前寄りのままです。",
+    "check": "丸さがほどけても u の舌の構えにしない。",
+    "avoid": "u と同じ音で始めない。",
+    "poses": [
+      [
+        34,
+        14,
+        1
+      ],
+      [
+        70,
+        25,
+        0
+      ]
+    ],
+    "mechanism": "front-high",
+    "phase": [
+      "ü",
+      "ê へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-04-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/yue1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yuē",
+    "helperNote": "音声は独立音節 yuē。j・q・x の後では ü の点を省いて ue と書きます。"
+  },
+  "er": {
+    "key": "er",
+    "kind": "final",
+    "syllable": "er2",
+    "ipa": "[ɚ]",
+    "title": "口は穏やか・舌は軽く後ろへ",
+    "tip": "舌の前部を軽く上・後ろへ向け、声を続けます。接触を強制せず、舌をはじきません。",
+    "check": "唇を大きく動かさず、声が一つにつながるか聞く。",
+    "avoid": "舌を大きく回したり、ラ行のように弾いたりしない。",
+    "poses": [
+      [
+        64,
+        21,
+        0
+      ],
+      [
+        64,
+        21,
+        0
+      ]
+    ],
+    "mechanism": "rhotic",
+    "phase": [
+      "声を出す",
+      "舌の構えを保つ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-08-01.php"
+    ],
+    "audio": "./assets/audio/course-134/er2.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ér"
+  },
+  "an": {
+    "key": "an",
+    "kind": "final",
+    "syllable": "an1",
+    "ipa": "[an]",
+    "title": "短い n へ",
+    "tip": "母音から短い n へ。舌の前部の収め方には、話者や発話条件による違いがあります。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "全ての話者が同じ大きさで舌尖を上げる、と図から決めつけない。",
+    "poses": [
+      [
+        68,
+        34,
+        0
+      ],
+      [
+        68,
+        20,
+        0
+      ]
+    ],
+    "mechanism": "front-nasal",
+    "phase": [
+      "a",
+      "n へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/03-02-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-03-01-01.php"
+    ],
+    "audio": "./assets/audio/course-134/an1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ān"
+  },
+  "en": {
+    "key": "en",
+    "kind": "final",
+    "syllable": "en1",
+    "ipa": "[ən]",
+    "title": "短い n へ",
+    "tip": "母音から短い n へ。舌の前部の収め方には、話者や発話条件による違いがあります。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "全ての話者が同じ大きさで舌尖を上げる、と図から決めつけない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        70,
+        14,
+        0
+      ]
+    ],
+    "mechanism": "front-nasal",
+    "phase": [
+      "e",
+      "n へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/03-02-01.php",
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02"
+    ],
+    "audio": "./assets/audio/course-134/en1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ēn"
+  },
+  "in": {
+    "key": "in",
+    "kind": "final",
+    "syllable": "yin1",
+    "ipa": "[in]",
+    "title": "短い n へ",
+    "tip": "母音から短い n へ。舌の前部の収め方には、話者や発話条件による違いがあります。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "全ての話者が同じ大きさで舌尖を上げる、と図から決めつけない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        76,
+        10,
+        0
+      ]
+    ],
+    "mechanism": "front-nasal",
+    "phase": [
+      "i",
+      "n へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/03-02-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/yin1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yīn",
+    "helperNote": "音声は独立音節 yīn。声母が付くと in と書きます。"
+  },
+  "un": {
+    "key": "un",
+    "kind": "final",
+    "syllable": "wen1",
+    "ipa": "[uən]",
+    "title": "短い n へ",
+    "tip": "u の丸い唇から、短い e を通って少し横に開き、n へ。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "全ての話者が同じ大きさで舌尖を上げる、と図から決めつけない。",
+    "poses": [
+      [
+        30,
+        17,
+        1
+      ],
+      [
+        68,
+        16,
+        0
+      ]
+    ],
+    "mechanism": "front-nasal",
+    "phase": [
+      "u",
+      "n へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/03-02-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-07-01.php"
+    ],
+    "audio": "./assets/audio/course-134/wen1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "wēn",
+    "helperNote": "音声は独立音節 wēn。声母が付く -un では途中の e が弱くなります。"
+  },
+  "ün": {
+    "key": "ün",
+    "kind": "final",
+    "syllable": "yun1",
+    "ipa": "[yn]",
+    "title": "短い n へ",
+    "tip": "ü の小さく丸い唇を比較的保ち、小さい変化で n に収めます。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "全ての話者が同じ大きさで舌尖を上げる、と図から決めつけない。",
+    "poses": [
+      [
+        34,
+        14,
+        1
+      ],
+      [
+        42,
+        13,
+        1
+      ]
+    ],
+    "mechanism": "front-nasal",
+    "phase": [
+      "ü",
+      "n へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/03-02-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/yun1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yūn",
+    "helperNote": "音声は独立音節 yūn。j・q・x の後では ü の点を省いて un と書きます。"
+  },
+  "ang": {
+    "key": "ang",
+    "kind": "final",
+    "syllable": "ang1",
+    "ipa": "[ɑŋ]",
+    "title": "短い ng へ",
+    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "最後に破裂音 g や母音を足さない。",
+    "poses": [
+      [
+        68,
+        34,
+        0
+      ],
+      [
+        68,
+        24,
+        0
+      ]
+    ],
+    "mechanism": "back-nasal",
+    "phase": [
+      "a",
+      "ng へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-03-01-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ang1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "āng"
+  },
+  "eng": {
+    "key": "eng",
+    "kind": "final",
+    "syllable": "eng1",
+    "ipa": "[ɤŋ]",
+    "title": "短い ng へ",
+    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "最後に破裂音 g や母音を足さない。",
+    "poses": [
+      [
+        66,
+        19,
+        0
+      ],
+      [
+        66,
+        17,
+        0
+      ]
+    ],
+    "mechanism": "back-nasal",
+    "phase": [
+      "e",
+      "ng へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#02"
+    ],
+    "audio": "./assets/audio/course-134/eng1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "ēng"
+  },
+  "ing": {
+    "key": "ing",
+    "kind": "final",
+    "syllable": "ying1",
+    "ipa": "[iŋ]",
+    "title": "短い ng へ",
+    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "最後に破裂音 g や母音を足さない。",
+    "poses": [
+      [
+        76,
+        12,
+        0
+      ],
+      [
+        74,
+        15,
+        0
+      ]
+    ],
+    "mechanism": "back-nasal",
+    "phase": [
+      "i",
+      "ng へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-10-01.php"
+    ],
+    "audio": "./assets/audio/course-134/ying1.wav?v=10.108.134",
+    "status": "reference-model",
+    "roman": "yīng",
+    "helperNote": "音声は独立音節 yīng。声母が付くと ing と書きます。"
+  },
+  "ong": {
+    "key": "ong",
+    "kind": "final",
+    "syllable": "ong-derived",
+    "ipa": "[ʊŋ]",
+    "title": "短い ng へ",
+    "tip": "舌先を大きく上げず、舌の後ろ側で ng の響きに収めます。最後に余分な「グ」を足しません。",
+    "check": "口を力ませず、余分な母音を足さずに収められるか録音で比べる。",
+    "avoid": "最後に破裂音 g や母音を足さない。",
+    "poses": [
+      [
+        40,
+        18,
+        1
+      ],
+      [
+        40,
+        17,
+        1
+      ]
+    ],
+    "mechanism": "back-nasal",
+    "phase": [
+      "丸い唇",
+      "ng へ",
+      "収める"
+    ],
+    "sources": [
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-07-01.php",
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-07-01.php"
+    ],
+    "audio": "./assets/audio/back-nasal-129/ong1.wav?v=10.108.129",
+    "status": "derived-audio-review-required",
+    "helperNote": "韻母部分の編集音。独立した漢字音節の録音ではありません。",
+    "roman": "ong"
+  }
+}

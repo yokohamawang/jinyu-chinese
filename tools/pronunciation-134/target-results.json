@@ -1,0 +1,368 @@
+{
+  "checks": 186,
+  "summary": [
+    {
+      "key": "b",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/bo1.wav?v=10.108.134"
+    },
+    {
+      "key": "p",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/po1.wav?v=10.108.134"
+    },
+    {
+      "key": "m",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/mo1.wav?v=10.108.134"
+    },
+    {
+      "key": "f",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/fo1.wav?v=10.108.134"
+    },
+    {
+      "key": "d",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/de1.wav?v=10.108.134"
+    },
+    {
+      "key": "t",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/te1.wav?v=10.108.134"
+    },
+    {
+      "key": "n",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ne1.wav?v=10.108.134"
+    },
+    {
+      "key": "l",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/le1.wav?v=10.108.134"
+    },
+    {
+      "key": "g",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ge1.wav?v=10.108.134"
+    },
+    {
+      "key": "k",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ke1.wav?v=10.108.134"
+    },
+    {
+      "key": "h",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/he1.wav?v=10.108.134"
+    },
+    {
+      "key": "j",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ji1.wav?v=10.108.134"
+    },
+    {
+      "key": "q",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/qi1.wav?v=10.108.134"
+    },
+    {
+      "key": "x",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/xi1.wav?v=10.108.134"
+    },
+    {
+      "key": "zh",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/zhi1.wav?v=10.108.134"
+    },
+    {
+      "key": "ch",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/chi1.wav?v=10.108.134"
+    },
+    {
+      "key": "sh",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/shi1.wav?v=10.108.134"
+    },
+    {
+      "key": "r",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ri1.wav?v=10.108.134"
+    },
+    {
+      "key": "z",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/zi1.wav?v=10.108.134"
+    },
+    {
+      "key": "c",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ci1.wav?v=10.108.134"
+    },
+    {
+      "key": "s",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/si1.wav?v=10.108.134"
+    },
+    {
+      "key": "ai",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ai1.wav?v=10.108.134"
+    },
+    {
+      "key": "ei",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ei1.wav?v=10.108.134"
+    },
+    {
+      "key": "ui",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/wei1.wav?v=10.108.134"
+    },
+    {
+      "key": "ao",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ao1.wav?v=10.108.134"
+    },
+    {
+      "key": "ou",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ou1.wav?v=10.108.134"
+    },
+    {
+      "key": "iu",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/you1.wav?v=10.108.134"
+    },
+    {
+      "key": "ie",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ye1.wav?v=10.108.134"
+    },
+    {
+      "key": "üe",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/yue1.wav?v=10.108.134"
+    },
+    {
+      "key": "er",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/er2.wav?v=10.108.134"
+    },
+    {
+      "key": "an",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/an1.wav?v=10.108.134"
+    },
+    {
+      "key": "en",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/en1.wav?v=10.108.134"
+    },
+    {
+      "key": "in",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/yin1.wav?v=10.108.134"
+    },
+    {
+      "key": "un",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/wen1.wav?v=10.108.134"
+    },
+    {
+      "key": "ün",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/yun1.wav?v=10.108.134"
+    },
+    {
+      "key": "ang",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ang1.wav?v=10.108.134"
+    },
+    {
+      "key": "eng",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/eng1.wav?v=10.108.134"
+    },
+    {
+      "key": "ing",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/course-134/ying1.wav?v=10.108.134"
+    },
+    {
+      "key": "ong",
+      "first": true,
+      "replay": true,
+      "views": true,
+      "poses": 8,
+      "src": "http://127.0.0.1:8771/release/k134/assets/audio/back-nasal-129/ong1.wav?v=10.108.129"
+    },
+    {
+      "key": "a",
+      "tones": 4,
+      "views": true
+    },
+    {
+      "key": "o",
+      "tones": 4,
+      "views": true
+    },
+    {
+      "key": "e",
+      "tones": 4,
+      "views": true
+    },
+    {
+      "key": "i",
+      "tones": 4,
+      "views": true
+    },
+    {
+      "key": "u",
+      "tones": 4,
+      "views": true
+    },
+    {
+      "key": "ü",
+      "tones": 4,
+      "views": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "ttsStartupOnly": [
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！",
+    "你好！"
+  ]
+}
