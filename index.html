@@ -39,7 +39,7 @@
 
 
 <link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="10.108.133 local front nasal audio and observed mouth shapes">
+<meta name="koepanda-build" content="10.108.136 rounded-lip pronunciation review">
 
 <link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
 <link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
@@ -68,7 +68,7 @@
 <link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.108.41" id="demo1010798-simple-learning-path">
 <link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
 <link rel="stylesheet" href="./css/68-demo1010872-initials-forest.css?v=10.108.110" id="demo1010808-initials-forest">
-<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.133">
+<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.112" id="demo1010820-dtnl-first-lesson" data-build="10.108.134">
 <style id="demo1010880-initial-example-press-feedback">
 /* Retain the unified example button feedback from 10.108.79. */
 
@@ -99,6 +99,8 @@
 <link rel="stylesheet" href="./css/87-demo10108123-ie-ue-er-first-lesson.css?v=10.108.123">
 <link rel="stylesheet" href="./css/88-demo10108124-front-nasal-first-lesson.css?v=10.108.133">
 <link rel="stylesheet" href="./css/89-demo10108128-back-nasal-first-lesson.css?v=10.108.128">
+<link rel="stylesheet" href="./css/90-pronunciation-studio-134.css?v=10.108.134">
+<link rel="stylesheet" href="./css/91-pronunciation-ux-135.css?v=10.108.135">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -379,8 +381,8 @@ window.koepandaEnterKidsCourse=function(ev){
     </aside>
 
     <section class="initials-panel initials-sound-panel">
-      <div class="initials-panel-head"><span>👂</span><div><b>まず、4つの声母に会おう</b><small>最初は聞き取りやすい「呼読音」で形をつかみ、次に息だけの本音を比べよう</small></div></div>
-      <div class="initials-source-note"><span>🎙️</span><div><b>お手本は「呼読音」＋「声母の本音」</b><small>波 bō・泼 pō・摸 mō・佛 fó のような呼読音は、声母を聞き取りやすくするための補助です。声母そのものには四声はつきません。</small></div></div>
+      <div class="initials-panel-head"><span>👂</span><div><b>まず、4つの声母に会おう</b><small>呼読音で聞き、唇・息・鼻への響きを比べよう</small></div></div>
+      <div class="initials-source-note"><span>🎙️</span><div><b>お手本は聞き取りやすい呼読音</b><small>bō・pō・mō・fō（1声）は練習用の補助音です。声母そのものには四声をつけません。</small></div></div>
       <div class="initials-letter-grid" id="initialsLetterGrid"></div>
       <div class="initials-tone-ribbon" id="initialsToneRibbon" aria-live="polite">
         <div class="initials-focus-copy"><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">[p] · 短い音</strong><small id="initialsFocusTip">くちびるを閉じる → 一瞬だけ開く。母音を足さない</small></div>
@@ -469,9 +471,9 @@ window.koepandaEnterKidsCourse=function(ev){
     <aside class="dtnl-tone-rule"><span>♪</span><div><b>ここでも声調は韻母につくよ</b><small>d・t・n・l 自体には四声をつけません。</small></div></aside>
     <section class="dtnl-panel">
       <div class="dtnl-panel-head"><span>👂</span><div><b>まず4つの音を比べよう</b><small>呼読音で聞いて、舌先・息・鼻への響きを見比べる</small></div></div>
-      <div class="dtnl-source-note"><span>🎙️</span><div><b>お手本は「呼読音」＋「声母の本音」</b><small>得 dé・特 tè・讷 nè・勒 lè のような補助音で聞き取りやすくします。</small></div></div>
+      <div class="dtnl-source-note"><span>🎙️</span><div><b>お手本は聞き取りやすい呼読音</b><small>dē・tē・nē・lē（1声）は練習用の補助音です。声母の部分と、後ろの母音を区別して聞きます。</small></div></div>
       <div class="dtnl-letter-grid" id="dtnlLetterGrid"></div>
-      <div class="dtnl-focus-card" id="dtnlFocusCard"><div class="dtnl-focus-copy"><span id="dtnlFocusLetter">d</span><div><strong id="dtnlFocusGuide">得 dé · [t]</strong><small id="dtnlFocusTip">舌先で息をいったん止め、ぱっと離します。強い息は出しません。</small></div></div><div class="dtnl-actions" id="dtnlActions"></div><div class="dtnl-articulation" id="dtnlArticulation" aria-label="舌先と息の動き"></div></div>
+      <div class="dtnl-focus-card" id="dtnlFocusCard"><div class="dtnl-focus-copy"><span id="dtnlFocusLetter">d</span><div><strong id="dtnlFocusGuide">dē（呼読音） · [t]</strong><small id="dtnlFocusTip">舌先で息をいったん止め、ぱっと離します。強い息は出しません。</small></div></div><div class="dtnl-actions" id="dtnlActions"></div><div class="dtnl-articulation" id="dtnlArticulation" aria-label="舌先と息の動き"></div></div>
     </section>
     <details class="dtnl-comparison-group"><summary class="dtnl-comparison-summary"><strong>d・t／n・l のちがい</strong><span class="dtnl-comparison-toggle" aria-hidden="true"></span></summary><div class="dtnl-comparison-content"><section class="dtnl-panel dtnl-compare-panel"><div class="dtnl-panel-head"><span>👅</span><div><b>舌をつける場所と、息の通り道</b><small>舌先を、上の前歯のすぐ後ろにある、上あごのふくらみに当てます。</small></div></div><div class="dtnl-compare-grid"><div><strong>d ↔ t</strong><span>息を止めてから、舌先を離す</span><small>d は強い息なし<br>t は強い息を出す</small></div><div><strong>n ↔ l</strong><span>舌先をつけたまま、声を出す</span><small>n は鼻から<br>l は舌の両側から</small></div></div></section></div></details>
     <section class="dtnl-panel dtnl-practice-panel"><div class="dtnl-panel-head"><span>🗣️</span><div><b>好きな音をまねよう</b><small>好きな音をタップして、何度でも自由に練習できます</small></div></div><div class="dtnl-free-choice" id="dtnlFreeChoice"></div><div class="practice-tap-hint">音をタップするとお手本が聞けます</div><div class="practice-console dtnl-practice-console"><div class="practice-console-top"><span>自由練習</span><small>選んだ音を録音して、聞きくらべよう</small></div><div class="dtnl-record-row"><button type="button" class="dtnl-record" id="dtnlRecord">● 録音する</button><button type="button" class="dtnl-playback" id="dtnlPlayback" disabled>▶ 自分の声を聞く</button></div><div class="dtnl-feedback" id="dtnlPracticeFeedback"></div></div><div class="practice-next-label"><span>練習は自由 · 自信があればそのまま挑戦</span></div><button type="button" class="dtnl-to-quiz" id="dtnlToQuiz">⭐ ミニチェックへ →</button></section>
@@ -496,7 +498,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="gkh-model-feedback" id="gkhModelFeedback" aria-live="polite"></p>
         <div class="gkh-articulation" id="gkhArticulation" aria-label="舌の奥と息の動き"></div>
       </div>
-      <section class="gkh-static-section" id="gkhStaticDetails" aria-labelledby="gkhStaticTitle"><div class="gkh-static-head"><span id="gkhStaticLetter" aria-hidden="true">g</span><div><small>静止図で確認</small><h3 id="gkhStaticTitle">舌の位置と息の通り道</h3></div></div><div class="gkh-static-content" id="gkhStaticGuide"></div></section>
+      <details class="gkh-static-section" id="gkhStaticDetails" aria-labelledby="gkhStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="gkh-static-head"><span id="gkhStaticLetter" aria-hidden="true">g</span><div><small>静止図で確認</small><h3 id="gkhStaticTitle">口形と舌・息の基本図</h3></div></div><div class="gkh-static-content" id="gkhStaticGuide"></div></details>
       <details class="gkh-detail gkh-comparison" id="gkhComparison"><summary>g・k・h のちがい<span aria-hidden="true"></span></summary><div class="gkh-comparison-content"><div><strong>g ↔ k</strong><b>舌をつける場所は同じ</b><p>g は弱い息、k は強い息。手のひらを口の前に置いて比べよう。</p></div><div><strong>g・k ↔ h</strong><b>止めてから離す／すき間に通す</b><p>g・k はいったん息を止めます。h は完全にはふさがず、細い息を続けます。</p></div></div></details>
       <details class="gkh-model-note"><summary>お手本の読み方について</summary><p>聞き取りやすい補助音「哥 gē・科 kē・喝 hē」を使います。声母そのものには四声をつけません。</p><p>g は [k]、k は [kʰ]。小さな ʰ は、強い息のしるしです。</p></details>
     </section>
@@ -541,7 +543,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="jqx-model-feedback" id="jqxModelFeedback" aria-live="polite"></p>
         <div class="jqx-articulation" id="jqxArticulation" aria-label="舌の前面と息の動き"></div>
       </div>
-      <section class="jqx-static-section" id="jqxStaticDetails" aria-labelledby="jqxStaticTitle"><div class="jqx-static-head"><span id="jqxStaticLetter" aria-hidden="true">j</span><div><small>静止図で確認</small><h3 id="jqxStaticTitle">舌の位置と息の通り道</h3></div></div><div class="jqx-static-content" id="jqxStaticGuide"></div><p class="jqx-static-note">舌先は下の歯の裏に。舌の前面を上げます。</p></section>
+      <details class="jqx-static-section" id="jqxStaticDetails" aria-labelledby="jqxStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="jqx-static-head"><span id="jqxStaticLetter" aria-hidden="true">j</span><div><small>静止図で確認</small><h3 id="jqxStaticTitle">口形と舌・息の基本図</h3></div></div><div class="jqx-static-content" id="jqxStaticGuide"></div><p class="jqx-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="jqx-detail jqx-comparison" id="jqxComparison"><summary>j・q・x のちがい<span aria-hidden="true"></span></summary><div class="jqx-comparison-content"><div><strong>j ↔ q</strong><b>舌の前面をつける場所は同じ</b><p>j は弱い息、q は強い息。手のひらを口の前に置いて比べよう。</p></div><div><strong>j・q ↔ x</strong><b>止めてから細く開く／すき間に通す</b><p>j・q は息を止めたあと、細いすき間を開きます。x は初めからすき間を残し、細い息を続けます。</p></div></div></details>
       <details class="jqx-model-note"><summary>お手本の読み方について</summary><p>聞き取りやすい補助音「鸡 jī・七 qī・西 xī」を使います。声母そのものには四声をつけません。</p><p>j は [tɕ]、q は [tɕʰ]。小さな ʰ は、強い息のしるしです。</p></details>
     </section>
@@ -586,7 +588,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="zhr-model-feedback" id="zhrModelFeedback" aria-live="polite"></p>
         <div class="zhr-articulation" id="zhrArticulation" aria-label="舌先の奥と息の動き"></div>
       </div>
-      <section class="zhr-static-section" id="zhrStaticDetails" aria-labelledby="zhrStaticTitle"><div class="zhr-static-head"><span id="zhrStaticLetter" aria-hidden="true">zh</span><div><small>静止図で確認</small><h3 id="zhrStaticTitle">舌の位置と息の通り道</h3></div></div><div class="zhr-static-content" id="zhrStaticGuide"></div><p class="zhr-static-note">舌先を少し持ち上げ、歯ぐきより奥の上あごへ。大きく巻き込みません。</p></section>
+      <details class="zhr-static-section" id="zhrStaticDetails" aria-labelledby="zhrStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="zhr-static-head"><span id="zhrStaticLetter" aria-hidden="true">zh</span><div><small>静止図で確認</small><h3 id="zhrStaticTitle">口形と舌・息の基本図</h3></div></div><div class="zhr-static-content" id="zhrStaticGuide"></div><p class="zhr-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="zhr-detail zhr-comparison" id="zhrComparison"><summary>zh・ch・sh・r のちがい<span aria-hidden="true"></span></summary><div class="zhr-comparison-content"><div><strong>zh ↔ ch</strong><b>舌先をつける場所は同じ</b><p>zh は弱い息、ch は強い息。手のひらを口の前に置いて比べよう。</p></div><div><strong>sh ↔ r</strong><b>息の音／声を響かせる</b><p>sh はすき間から息を通します。r は声帯を振動させ、よりやわらかく声を通します。喉に手を当てて比べよう。</p></div></div></details>
       <details class="zhr-model-note"><summary>お手本の読み方について</summary><p>補助音「智 zhì・赤 chì・是 shì・日 rì」で聞き比べます。音節はすべて4声にそろえます。声母そのものには四声をつけません。</p><p>zh は [tʂ]、ch は [tʂʰ]、sh は [ʂ]、r は [ʐ]。小さな ʰ は強い息のしるし。r は sh よりやわらかく声を通します。</p></details>
     </section>
@@ -631,7 +633,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="zcs-model-feedback" id="zcsModelFeedback" aria-live="polite"></p>
         <div class="zcs-articulation" id="zcsArticulation" aria-label="舌先の奥と息の動き"></div>
       </div>
-      <section class="zcs-static-section" id="zcsStaticDetails" aria-labelledby="zcsStaticTitle"><div class="zcs-static-head"><span id="zcsStaticLetter" aria-hidden="true">z</span><div><small>静止図で確認</small><h3 id="zcsStaticTitle">舌の位置と息の通り道</h3></div></div><div class="zcs-static-content" id="zcsStaticGuide"></div><p class="zcs-static-note">舌先は上の歯の裏の近くへ。奥へ巻き上げず、前に向けます。</p></section>
+      <details class="zcs-static-section" id="zcsStaticDetails" aria-labelledby="zcsStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="zcs-static-head"><span id="zcsStaticLetter" aria-hidden="true">z</span><div><small>静止図で確認</small><h3 id="zcsStaticTitle">口形と舌・息の基本図</h3></div></div><div class="zcs-static-content" id="zcsStaticGuide"></div><p class="zcs-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="zcs-detail zcs-comparison" id="zcsComparison"><summary>z・c・s のちがい<span aria-hidden="true"></span></summary><div class="zcs-comparison-content"><div><strong>z ↔ c</strong><b>舌先をつける場所は同じ</b><p>z は弱い息、c は強い息。手のひらを口の前に置いて比べよう。</p></div><div><strong>z・c ↔ s</strong><b>止めてから細く開く／すき間に通す</b><p>z・c はいったん息を止めます。s はすき間を残して、細い息を続けます。</p></div><div><strong>z・c・s ↔ zh・ch・sh</strong><b>上の歯の裏／歯ぐきより奥</b><p>z・c・s は舌先を前へ。zh・ch・sh は舌先を少し上げ、より奥で息を止めたり通したりします。</p></div></div></details>
       <details class="zcs-model-note"><summary>お手本の読み方について</summary><p>補助音「字 zì・次 cì・四 sì」で聞き比べます。音節はすべて4声にそろえます。声母そのものには四声をつけません。</p><p>z は [ts]、c は [tsʰ]、s は [s]。小さな ʰ は、強い息のしるしです。</p></details>
     </section>
@@ -676,7 +678,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="cpv-model-feedback" id="cpvModelFeedback" aria-live="polite"></p>
         <div class="cpv-articulation" id="cpvArticulation" aria-label="複韻母の口形と音の流れ"></div>
       </div>
-      <section class="cpv-static-section" id="cpvStaticDetails" aria-labelledby="cpvStaticTitle"><div class="cpv-static-head"><span id="cpvStaticLetter" aria-hidden="true">ai</span><div><small>静止図で確認</small><h3 id="cpvStaticTitle">スタートから i の口形へ</h3></div></div><div class="cpv-static-content" id="cpvStaticGuide"></div><p class="cpv-static-note">写真は代表的な口形の目安です。左の口形から右の i の方向へ、ひと息でつなぎます。ui は途中で短い e を通ります。最後の i は短く軽く、単母音を一つずつ読みません。</p></section>
+      <details class="cpv-static-section" id="cpvStaticDetails" aria-labelledby="cpvStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="cpv-static-head"><span id="cpvStaticLetter" aria-hidden="true">ai</span><div><small>静止図で確認</small><h3 id="cpvStaticTitle">口形と舌・息の基本図</h3></div></div><div class="cpv-static-content" id="cpvStaticGuide"></div><p class="cpv-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="cpv-detail cpv-comparison" id="cpvComparison"><summary>ai・ei・ui のちがい<span aria-hidden="true"></span></summary><div class="cpv-comparison-content"><div><strong>ai ↔ ei</strong><b>はじめの開き方が違う</b><p>ai は口を大きめに開いてから、ei は軽く開いた前寄りの音から、i の方向へつなぎます。</p></div><div><strong>ui = uei</strong><b>u → e → i</b><p>丸い唇から、途中の e を短く通って i へ。声母の後では e を省いて ui と書きます。</p></div></div></details>
       <details class="cpv-model-note"><summary>お手本と声調について</summary><p>ai は「唉」、ei は「诶」、ui は「微（wēi）」で聞いてみよう。声調の違いより、口形が動く方向と音のつながりに注目します。</p><p>声調は韻母につきます。ai は a、ei は e、ui は i に声調記号をつけます。ui は声母の後で使う uei の省略表記です。声母をつけずに示す音は wei と書くため、「微」でお手本を聞きます。</p><p>ei の出だしは前寄りの音で、単母音 e のように口の奥へ引きません。</p></details></section>
     <section class="cpv-zone cpv-practice" aria-labelledby="cpvPracticeTitle">
@@ -720,7 +722,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="cpo-model-feedback" id="cpoModelFeedback" aria-live="polite"></p>
         <div class="cpo-articulation" id="cpoArticulation" aria-label="複韻母の口形と音の流れ"></div>
       </div>
-      <section class="cpo-static-section" id="cpoStaticDetails" aria-labelledby="cpoStaticTitle"><div class="cpo-static-head"><span id="cpoStaticLetter" aria-hidden="true">ao</span><div><small>静止図で確認</small><h3 id="cpoStaticTitle">スタートから u の口形へ</h3></div></div><div class="cpo-static-content" id="cpoStaticGuide"></div><p class="cpo-static-note">写真は代表的な口形の目安です。左の口形から右の u の方向へ、ひと息でつなぎます。iu は途中で o を通ります。最後は短く軽く、単母音を一つずつ読みません。</p></section>
+      <details class="cpo-static-section" id="cpoStaticDetails" aria-labelledby="cpoStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="cpo-static-head"><span id="cpoStaticLetter" aria-hidden="true">ao</span><div><small>静止図で確認</small><h3 id="cpoStaticTitle">口形と舌・息の基本図</h3></div></div><div class="cpo-static-content" id="cpoStaticGuide"></div><p class="cpo-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="cpo-detail cpo-comparison" id="cpoComparison"><summary>ao・ou・iu のちがい<span aria-hidden="true"></span></summary><div class="cpo-comparison-content"><div><strong>ao ↔ ou</strong><b>はじめの開き方が違う</b><p>ao は口を開いた a のような形から、ou は丸い o のような形から。どちらも u の方向へ短く収めます。</p></div><div><strong>iu = iou</strong><b>i → o → u</b><p>i から ou へ、ひと息でつなぎます。声母の後では o を省いて iu と書きます。</p></div></div></details>
       <details class="cpo-model-note"><summary>お手本と拼音の書き方</summary><p>ao は「凹 āo」、ou は「欧 ōu」、iu は「优 yōu」で聞いてみよう。すべて1声のお手本です。</p><p>iu は声母の後で使う iou の省略表記です。声母をつけずに示す音は you と書くため、「优」でお手本を聞きます。</p><p>声調記号は ao の a、ou の o、iu の u につけます。ao の終わりは独立した o を読み足さず、唇を丸めて短く終えます。</p></details></section>
     <section class="cpo-zone cpo-practice" aria-labelledby="cpoPracticeTitle">
@@ -764,7 +766,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="cpn-model-feedback" id="cpnModelFeedback" aria-live="polite"></p>
         <div class="cpn-articulation" id="cpnArticulation" aria-label="複韻母の口形と音の流れ"></div>
       </div>
-      <section class="cpn-static-section" id="cpnStaticDetails" aria-labelledby="cpnStaticTitle"><div class="cpn-static-head"><span id="cpnStaticLetter" aria-hidden="true">ie</span><div><small>静止図で確認</small><h3 id="cpnStaticTitle">スタートから ê の口形へ</h3></div></div><div class="cpn-static-content" id="cpnStaticGuide"></div><p class="cpn-static-note" id="cpnStaticNote">写真は口形の目安です。ie・üe の最後の e は前寄りの ê（[ɛ]）で、単母音 e とは違います。途中で音を切らずにつなぎます。</p></section>
+      <details class="cpn-static-section" id="cpnStaticDetails" aria-labelledby="cpnStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="cpn-static-head"><span id="cpnStaticLetter" aria-hidden="true">ie</span><div><small>静止図で確認</small><h3 id="cpnStaticTitle">口形と舌・息の基本図</h3></div></div><div class="cpn-static-content" id="cpnStaticGuide"></div><p class="cpn-static-note" id="cpnStaticNote">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="cpn-detail cpn-comparison" id="cpnComparison"><summary>ie・üe・er のちがい<span aria-hidden="true"></span></summary><div class="cpn-comparison-content"><div><strong>ie ↔ üe</strong><b>はじめの唇が違う</b><p>ie は i の横に開いた唇から、üe は ü の丸い唇から。同じ前寄りの ê につなぎます。</p></div><div><strong>er</strong><b>口より、舌の位置に注目</b><p>er は巻舌母音です。舌先を軽く上・後ろへ向け、上あごに触れずに声を続けます。日本語のラ行のように舌をはじきません。</p></div></div></details>
       <details class="cpn-model-note"><summary>お手本と拼音の書き方</summary><p>ie は「耶 yē」、üe は「约 yuē」の1声、er は「儿 ér」の2声で聞いてみよう。声調より、韻母の音色に注目します。</p><p>声母をつけずに示すと ie は ye、üe は yue と書きます。yue の u は ü の音です。j・q・x の後でも ü の点を省きます（jue・que・xue）。n・l の後では点を残します（nüe・lüe）。</p><p>ie・üe の声調記号は e につけます。er は声母と組み合わせず、一つの音節として読みます。ここでは単独の er を練習し、儿化は後の内容で扱います。</p></details></section>
     <section class="cpn-zone cpn-practice" aria-labelledby="cpnPracticeTitle">
@@ -810,7 +812,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="nsv-model-feedback" id="nsvModelFeedback" aria-live="polite"></p>
         
       </div>
-      <section class="nsv-static-section" id="nsvStaticDetails" aria-labelledby="nsvStaticTitle"><div class="nsv-static-head"><span id="nsvStaticLetter" aria-hidden="true">an</span><div><small>口形を見くらべる</small><h3 id="nsvStaticTitle">母音から収めるときの口形へ</h3></div></div><div class="nsv-static-content" id="nsvStaticGuide"></div><p class="nsv-static-note" id="nsvStaticNote">左は母音の唇の参考写真、右は収めるときの口形の目安です。唇を力ませず、短い n で収めます。舌の内部動作を示す図ではありません。</p></section>
+      <details class="nsv-static-section" id="nsvStaticDetails" aria-labelledby="nsvStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="nsv-static-head"><span id="nsvStaticLetter" aria-hidden="true">an</span><div><small>口形を見くらべる</small><h3 id="nsvStaticTitle">口形と舌・息の基本図</h3></div></div><div class="nsv-static-content" id="nsvStaticGuide"></div><p class="nsv-static-note" id="nsvStaticNote">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="nsv-detail nsv-comparison" id="nsvComparison"><summary>an・en・in・un・ün のちがい<span aria-hidden="true"></span></summary><div class="nsv-comparison-content"><div><strong>an・en・in</strong><b>はじめの母音が違う</b><p>a・e・i の違いを聞き、どれも最後は n で収めます。日本語の「ん」は前後の音で舌位が変わるため、ここでは舌の前部で閉じる感覚を確かめます。</p></div><div><strong>un ↔ ün</strong><b>u と ü を聞き分けよう</b><p>un（uen）は u から短い e を通って n へ。ün は ü から n へ。舌が前寄りの ü と、後ろ寄りの u を同じ音にしません。</p></div></div></details>
       <details class="nsv-model-note"><summary>お手本と拼音の書き方</summary><p>「安 ān・恩 ēn・音 yīn・温 wēn・晕 yūn」をお手本にします。最後の n に注目して、ひと息で読んでみよう。</p><p>声母をつけずに示すと in は yin、un（uen）は wen、ün は yun と書きます。un と ün は別の音です。</p><p>j・q・x の後の un は ün の音です（jun・qun・xun）。一方、dun・tun・lun などの un は uen の音です。</p><p>声調記号は an の a、en の e、in の i、un の u、ün の ü につけます。</p></details></section>
     <section class="nsv-zone nsv-practice" aria-labelledby="nsvPracticeTitle">
@@ -857,7 +859,7 @@ window.koepandaEnterKidsCourse=function(ev){
         <p class="bnv-model-feedback" id="bnvModelFeedback" aria-live="polite"></p>
         
       </div>
-      <section class="bnv-static-section" id="bnvStaticDetails" aria-labelledby="bnvStaticTitle"><div class="bnv-static-head"><span id="bnvStaticLetter" aria-hidden="true">ang</span><div><small>静止図で確認</small><h3 id="bnvStaticTitle">母音の口形から ng の舌位へ</h3></div></div><div class="bnv-static-content" id="bnvStaticGuide"></div><p class="bnv-static-note" id="bnvStaticNote">左は母音の口唇の参考写真、右は ng の収尾を示す模式図です。舌の後ろ側を上あごの奥に当て、鼻に響かせます。舌先を前歯の後ろにつけず、最後に「グ」を足しません。</p></section>
+      <details class="bnv-static-section" id="bnvStaticDetails" aria-labelledby="bnvStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="bnv-static-head"><span id="bnvStaticLetter" aria-hidden="true">ang</span><div><small>静止図で確認</small><h3 id="bnvStaticTitle">口形と舌・息の基本図</h3></div></div><div class="bnv-static-content" id="bnvStaticGuide"></div><p class="bnv-static-note" id="bnvStaticNote">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
       <details class="bnv-detail bnv-comparison" id="bnvComparison"><summary>n と ng・四つの韻母のちがい<span aria-hidden="true"></span></summary><div class="bnv-comparison-content"><div><strong>n ↔ ng</strong><b>閉じる場所が違う</b><p>n は舌の前部、ng は舌の後ろ側で口の中を閉じます。どちらも鼻の響きで終わり、ng のあとに g の破裂音は足しません。</p></div><div><strong>eng ↔ ong</strong><b>唇の丸さを比べよう</b><p>eng は唇を丸めず、ong は小さく丸めます。はじめの母音を保ち、どちらも舌の後ろ側で ng に収めます。</p></div><div><strong>ang ↔ ing</strong><b>はじめの開き方が違う</b><p>ang は口を開いた音から、ing は i の横に開いた音から。舌先で n に変えてしまわないように、収尾を聞こう。</p></div></div></details>
       <details class="bnv-model-note"><summary>お手本と拼音の書き方</summary><p>ang は「肮 āng」、eng は「鞥 ēng」、ing は「鹰 yīng」の音です。漢字を覚える課ではなく、韻母の音を聞いてまねる課です。</p><p>ong は独立した漢字音節ではないため、韻母部分の音を使います。「翁 wēng」は ueng の音なので、ong の代わりにはしません。ing を声母なしで書くと ying になります。</p><p>ng は一つの鼻音 [ŋ] です。n と g を一つずつ読まず、最後に余分な母音や破裂音を足しません。</p><p>声調記号は ang の a、eng の e、ing の i、ong の o につけます。</p><p class="bnv-audio-credit">音声：Chen Wang / <a href="https://github.com/hugolpz/audio-cmn" target="_blank" rel="noopener">audio-cmn</a>（<a href="https://creativecommons.org/licenses/by-sa/" target="_blank" rel="noopener">CC BY-SA</a>）。形式・音量を調整。ong は同じ話者の dong から韻母部分を切り出しています。</p></details></section>
     <section class="bnv-zone bnv-practice" aria-labelledby="bnvPracticeTitle">
@@ -981,8 +983,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 -->
+<script src="./data/pronunciation-134.js?v=10.108.136"></script>
+<script src="./js/24-pronunciation-studio-134.js?v=10.108.136"></script>
+<script src="./js/25-pronunciation-ux-135.js?v=10.108.135"></script>
 <script src="./js/00-core.js?v=10.107.72"></script>
-<script src="./js/01-features.js?v=10.108.131"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.107.72" id="demo1077-final-fix">
+<script src="./js/01-features.js?v=10.108.134"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.107.72" id="demo1077-final-fix">
 
 <link rel="stylesheet" href="./css/17-demo1078-step1-visual-only.css?v=10.107.72" id="demo1078-step1-visual-only">
 
@@ -1003,16 +1008,16 @@ SOFTWARE.
 
 <script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.107.72"></script>
 <script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.107.72"></script>
-<script src="./data/pinyin-course.js?v=10.108.128"></script>
+<script src="./data/pinyin-course.js?v=10.108.136"></script>
 <script src="./data/kids-pinyin.js?v=10.107.72"></script>
-<script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.104"></script>
-<script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.107.72"></script>
+<script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.135"></script>
+<script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.108.134"></script>
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.12"></script>
 <script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.128"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.07"></script>
 <script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.36"></script>
-<script id="demo1010808-initials-forest-js" src="./js/10-demo1010872-initials-forest.js?v=10.108.110"></script>
-<script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.112"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010872-initials-forest.js?v=10.108.135"></script>
+<script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.135"></script>
 
 
 <link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107.72" id="demo10100-step23-header-align-fix">
@@ -1264,14 +1269,14 @@ body.app-home-mode #homeEffect > a.hs-repeat{
 </script>
 
 <script id="demo1010777-tone-road-fullbody-fix">/* full-body mascot is inline SVG; no cloned head image */</script>
-<script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.115"></script>
-<script src="./js/15-demo10108116-jqx-first-lesson.js?v=10.108.116"></script>
-<script src="./js/16-demo10108117-zhr-first-lesson.js?v=10.108.117"></script>
-<script src="./js/17-demo10108118-zcs-first-lesson.js?v=10.108.118"></script>
-<script src="./js/18-demo10108119-ai-ei-ui-first-lesson.js?v=10.108.131"></script>
-<script src="./js/19-demo10108122-ao-ou-iu-first-lesson.js?v=10.108.131"></script>
-<script src="./js/20-demo10108123-ie-ue-er-first-lesson.js?v=10.108.131"></script>
-<script src="./js/21-demo10108124-front-nasal-first-lesson.js?v=10.108.133"></script>
-<script src="./js/22-demo10108128-back-nasal-first-lesson.js?v=10.108.131"></script>
-<script src="./js/23-demo10108131-lesson-audio-warmup.js?v=10.108.133"></script>
+<script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.135"></script>
+<script src="./js/15-demo10108116-jqx-first-lesson.js?v=10.108.135"></script>
+<script src="./js/16-demo10108117-zhr-first-lesson.js?v=10.108.135"></script>
+<script src="./js/17-demo10108118-zcs-first-lesson.js?v=10.108.135"></script>
+<script src="./js/18-demo10108119-ai-ei-ui-first-lesson.js?v=10.108.135"></script>
+<script src="./js/19-demo10108122-ao-ou-iu-first-lesson.js?v=10.108.135"></script>
+<script src="./js/20-demo10108123-ie-ue-er-first-lesson.js?v=10.108.135"></script>
+<script src="./js/21-demo10108124-front-nasal-first-lesson.js?v=10.108.135"></script>
+<script src="./js/22-demo10108128-back-nasal-first-lesson.js?v=10.108.135"></script>
+
 </body></html>
