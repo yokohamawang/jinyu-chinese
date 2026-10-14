@@ -3,11 +3,11 @@
   "use strict";
   var mouthCrops={a:[18,145],e:[881,145],o:[451,145],i:[18,632],u:[451,632]};
   function photo(pose,live,index){var p=mouthCrops[pose];return '<svg '+(live?'class="cpo-pose cpo-pose-'+index+'" ':'')+'x="0" y="0" width="144" height="132" viewBox="'+p[0]+' '+p[1]+' 412 378" aria-hidden="true"><image href="./assets/articulation/vowel-mouth-101.png" width="1312" height="1199" /></svg>'}
-  function cpoDiagram(letter,mode,instance){var live=mode==='live',poses=guide[letter].poses;var pictures=live?poses.map(function(p,i){return photo(p,true,i)}).join(''):photo(mode==='contact'?poses[0]:poses[poses.length-1],false,0);return '<svg class="cpo-art-svg" data-letter="'+letter+'" viewBox="0 0 144 132" aria-hidden="true" focusable="false">'+pictures+'</svg>'}
+  function cpoDiagram(letter,mode,instance){return mode==='live'?window.KP134.front(letter,true,'cpo-'+instance):mode==='contact'?window.KP134.front(letter,false,'cpo-'+instance):window.KP134.mechanism(letter,'cpo-'+instance)}
   function route(letter){var ui=letter==='iu',marks=guide[letter].poses;return '<svg class="cpo-route" viewBox="0 0 180 54" aria-hidden="true"><path d="M12 22H166" stroke="#cfdfd2" stroke-width="3" fill="none"/>'+marks.map(function(p,i){var x=ui?[12,89,166][i]:[12,166][i];return '<circle cx="'+x+'" cy="22" r="4" fill="#dbeadf"/><text x="'+x+'" y="46" text-anchor="middle" fill="#376e53" font-size="14">'+p+'</text>'}).join('')+'<circle class="cpo-flow-dot" cx="12" cy="22" r="5" fill="#3c9975"><animate attributeName="cx" values="12;166;166;12;12" keyTimes="0;.72;.90;.9001;1" dur="4.8s" repeatCount="indefinite"/></circle></svg>'}
 
   var letters=['ao','ou','iu'];
-  var guide={"ao": {"hanzi": "凹", "pinyin": "āo", "ipa": "[ɑʊ̯]", "cue": "a → u", "tip": "a のように口を開き、唇を丸めながら u の方向へ。最後は短く軽く、ひと息でつなぎます。", "poses": ["a", "u"], "labels": ["スタート（a）", "ゴール（u に近づく）"], "notes": ["口を開いて音を出す", "開きを小さく、丸く収める"]}, "ou": {"hanzi": "欧", "pinyin": "ōu", "ipa": "[oʊ̯]", "cue": "o → u", "tip": "o の丸い口形から、さらに小さく u の方向へ。ao より小さい動きで、音を切らずにつなぎます。", "poses": ["o", "u"], "labels": ["スタート（o）", "ゴール（u に近づく）"], "notes": ["丸い唇で、軽く開く", "丸さを保って、小さく収める"]}, "iu": {"hanzi": "优", "pinyin": "yōu", "ipa": "[ioʊ̯]", "cue": "i → o → u", "tip": "i の横に開いた口形から、o を通って u の方向へ。唇を丸めながら、ひとつの音につなぎます。", "poses": ["i", "o", "u"], "labels": ["スタート（i）", "ゴール（u に近づく）"], "notes": ["唇を横に、軽く開く", "o を通って、丸く収める"]}};
+  var guide={"ao": {"hanzi": "凹", "pinyin": "āo", "ipa": "[ɑʊ̯]", "cue": "開きから、丸く収める", "tip": "a の大きい開きから、唇を丸めて u に近い方向へ収めます。", "poses": ["a", "u"], "labels": ["口形の目安", "舌・息の基本図"], "notes": ["口形には個人差があります", "調音部位の基本図。舌の実測動画ではありません。"], "audio": "./assets/audio/course-134/ao1.wav?v=10.108.134"}, "ou": {"hanzi": "欧", "pinyin": "ōu", "ipa": "[oʊ̯]", "cue": "丸さを保ち、少し小さく", "tip": "o の丸い形から、小さく収めます。ao より動きは小さめです。", "poses": ["o", "u"], "labels": ["口形の目安", "舌・息の基本図"], "notes": ["口形には個人差があります", "調音部位の基本図。舌の実測動画ではありません。"], "audio": "./assets/audio/course-134/ou1.wav?v=10.108.134"}, "iu": {"hanzi": "优", "pinyin": "yōu", "ipa": "[ioʊ̯]", "cue": "横から、丸さへ", "tip": "i から o を通り u の方向へ。独立音節 you と、声母後の iu では強さが変わります。", "poses": ["i", "o", "u"], "labels": ["口形の目安", "舌・息の基本図"], "notes": ["口形には個人差があります", "調音部位の基本図。舌の実測動画ではありません。"], "audio": "./assets/audio/course-134/you1.wav?v=10.108.134"}};;
   var selected='ao',root,recordings={},recorder=null,stream=null,pendingRecord=false,recordToken=0,recordTimer=0;
   var playback=null,modelToken=0,playingTimer=0,quizTimer=0,resultTimer=0,quiz={active:false,order:[],index:0,score:0,answered:false},celebration=null;
   function el(id){return document.getElementById(id)}
@@ -23,13 +23,13 @@
   }
   function stopSound(){
     modelToken++;clearTimeout(playingTimer);
-    try{if(typeof window.stopStandardAudio==='function')window.stopStandardAudio()}catch(e){}
-    try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}
+    try{if(window.KP134)window.KP134.stopFor(root)}catch(e){}
+    
     if(playback){try{playback.pause()}catch(e){}}
     root.querySelectorAll('.is-playing').forEach(function(b){b.classList.remove('is-playing')});
     root.querySelectorAll('#cpoModel[aria-busy],#cpoQuizListen[aria-busy]').forEach(function(b){b.removeAttribute('aria-busy')});
   }
-  function resetArt(){root.querySelectorAll('.cpo-art-svg,.cpo-route').forEach(function(svg){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();svg.setCurrentTime(0)}else{svg.unpauseAnimations();svg.setCurrentTime(0)}}catch(e){}});var poses=root.querySelectorAll('.cpo-pose');poses.forEach(function(p){p.style.animation='none'});void root.offsetWidth;poses.forEach(function(p){p.style.animation=''})}
+  function resetArt(){window.KP134.progress(root,selected,matchMedia('(prefers-reduced-motion: reduce)').matches?1:0)}
   function fallbackSpeech(text){
     return new Promise(function(resolve,reject){
       if(!('speechSynthesis' in window)){reject(new Error('speech unavailable'));return}
@@ -42,22 +42,16 @@
   }
   async function playModel(letter,button,forQuiz){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
-    stopSound();var token=modelToken,item=guide[letter],fb=forQuiz?'cpoQuizFeedback':'cpoModelFeedback';
+    stopSound();var token=modelToken,index=quiz.index,fb=forQuiz?'cpoQuizFeedback':'cpoModelFeedback';
     button.classList.add('is-playing');button.setAttribute('aria-busy','true');
-    if(!forQuiz)feedback(fb,'お手本を準備しています…');
-    try{
-      var audio=typeof window.playMachine==='function'?await window.playMachine(item.hanzi,null,false):null;
-      if(token!==modelToken)return;
-      if(!audio)audio=await fallbackSpeech(item.hanzi);
-      if(token!==modelToken)return;
-      if(!forQuiz){resetArt();feedback(fb,'はじめの口形から u の方向へ。音を切らず、最後は短く軽く。')}
-      if(audio&&typeof audio.addEventListener==='function')audio.addEventListener('ended',function(){if(token===modelToken)button.classList.remove('is-playing')},{once:true});
-      playingTimer=setTimeout(function(){if(token===modelToken)button.classList.remove('is-playing')},2200);
-    }catch(e){if(token===modelToken){button.classList.remove('is-playing');feedback(fb,e&&e.name==='NotAllowedError'?'音声の準備ができました。もう一度押すと再生します。':'音声を再生できませんでした。もう一度聞いてみよう。','bad')}}
-    finally{if(token===modelToken)button.removeAttribute('aria-busy')}
+    if(forQuiz&&!quiz.answered){quiz.heard=false;el('cpoQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true})}
+    feedback(fb,'お手本を準備しています…');
+    function clear(){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}
+    try{await window.KP134.play(letter,{root:root,button:button,onCancel:clear,onPlaying:function(){if(token===modelToken&&!forQuiz){feedback(fb,'聞いて・見て・まねよう。')}},onEnded:function(){if(token!==modelToken)return;clear();if(forQuiz&&quiz.active&&quiz.index===index&&!quiz.answered){quiz.heard=true;el('cpoQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false});feedback(fb,'聞こえた音を選ぼう。')}},onError:function(){if(token===modelToken){clear();feedback(fb,'音声を読み込めませんでした。もう一度押してね。','bad')}}})}
+    catch(e){if(e&&e.name==='AbortError')return;if(token===modelToken){clear();feedback(fb,'音声を再生できませんでした。もう一度押してね。','bad')}}
   }
-  function renderArt(){
-    el('cpoArticulation').innerHTML='<span class="cpo-diagram-shell">'+cpoDiagram(selected,'live','live')+'<small class="cpo-view-label">口形の目安・ゆっくり</small></span><span class="cpo-movement">'+route(selected)+'<p class="cpo-route-caption">'+guide[selected].cue+'<br>左がスタート、右がゴール。ひと息でつなぐ</p></span>';
+  function renderArt(){window.KP135.park(root,'cpo');
+    el('cpoArticulation').innerHTML=window.KP134.panel(selected,'cpo');window.KP135.mount(root,'cpo',selected);
     var item=guide[selected];el('cpoStaticGuide').innerHTML='<div class="cpo-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+cpoDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('cpoStaticLetter').textContent=selected;
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.cpo-art-svg,.cpo-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }
@@ -105,8 +99,8 @@
     visit([],source);return orders[Math.floor(Math.random()*orders.length)];
   }
   function renderQuestion(){
-    var box=el('cpoQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.cpoAnswer=letter;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
-    el('cpoQuizCount').textContent=(quiz.index+1)+' / 4';feedback('cpoQuizFeedback','');el('cpoQuizNext').hidden=true;quiz.answered=false;
+    var box=el('cpoQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.cpoAnswer=letter;b.disabled=true;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
+    el('cpoQuizCount').textContent=(quiz.index+1)+' / 4';feedback('cpoQuizFeedback','音を聞いてから選ぼう。');el('cpoQuizNext').hidden=true;quiz.answered=false;quiz.heard=false;
   }
   function startQuiz(){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
@@ -114,7 +108,7 @@
     el('cpoQuizPanel').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   }
   function answer(letter,button){
-    if(!quiz.active||quiz.answered)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
+    if(!quiz.active||quiz.answered||!quiz.heard)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
     el('cpoQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true;if(b.dataset.cpoAnswer===right)b.classList.add('is-correct')});
     if(correct){quiz.score++;feedback('cpoQuizFeedback','いい耳！ '+right+' だよ。','good')}else{button.classList.add('is-wrong');feedback('cpoQuizFeedback','今回は '+right+'。もう一度音を聞いて確かめよう。','bad')}
     if(quiz.index===3)quizTimer=setTimeout(function(){if(quiz.active&&quiz.answered&&quiz.index===3)finishQuiz()},650);else el('cpoQuizNext').hidden=false;
@@ -143,7 +137,7 @@
     quiz.active=false;el('cpoQuizPanel').hidden=true;el('cpoToQuiz').hidden=false;root.querySelector('.cpo-practice').hidden=false
   }
   function init(){
-    root=el('kidsCompoundAOOUIULesson');if(!root)return;
+    root=el('kidsCompoundAOOUIULesson');if(!root)return;window.KP134.attach(root,letters);
     letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpo-letter-card';button.dataset.cpoLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+item.cue+'</em>';button.onclick=function(){select(letter,true)};el('cpoLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.cpoLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('cpoFreeChoice').appendChild(free)});
     el('cpoModel').onclick=function(){playModel(selected,this,false)};el('cpoRecord').onclick=toggleRecord;el('cpoPlayback').onclick=playRecording;el('cpoToQuiz').onclick=startQuiz;el('cpoRetry').onclick=startQuiz;
