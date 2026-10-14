@@ -221,11 +221,10 @@
 
     if(passed){
       try{localStorage.setItem('koepandaInitialP3Complete','1');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:true}}))}catch(e){}
-    }else{
-      try{localStorage.removeItem('koepandaInitialP3Complete');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:false}}))}catch(e){}
     }
     var celebration={score:quizScore,total:total,passed:passed,title:passed?'ミニチェック合格！':'あと一歩！',message:passed?(quizScore===total?'b・p・m・f、4問ぜんぶ正解！ 音の違いをばっちり聞き分けられたよ。':'b・p・m・f の違いを聞き分けられたよ。あと1問で満点！'):'苦手な音をもう一度確認して、再チャレンジしよう。'};
     if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
+    if(!window.KP134.lessonVisible(el('kidsInitialsLesson')))return;
     if(window.koepandaQueueResultCelebration)window.koepandaQueueResultCelebration(celebration,90);
     else if(window.koepandaShowResultCelebration)window.setTimeout(function(){window.koepandaShowResultCelebration(celebration)},90);
   }
@@ -249,7 +248,7 @@
     el('initialsRecord').addEventListener('click',toggleRecord);
     el('initialsPlayback').addEventListener('click',playRecording);
     el('initialsToQuiz').addEventListener('click',function(){
-      el('initialsQuizPanel').hidden=false; this.closest('.initials-imitate-panel').hidden=true;
+      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false; this.closest('.initials-imitate-panel').hidden=true;
       quizIndex=0; quizScore=0; quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(4);
       requestAnimationFrame(function(){el('initialsQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})
     });

@@ -165,7 +165,7 @@
     quiz.active=false;el('nsvQuizPanel').hidden=true;el('nsvToQuiz').hidden=false;root.querySelector('.nsv-practice').hidden=false
   }
   function init(){
-    root=el('kidsFrontNasalLesson');if(!root)return;window.KP134.attach(root,letters);
+    root=el('kidsFrontNasalLesson');if(!root)return;root.querySelectorAll('.nsv-group-nav,[data-nsv-group]').forEach(function(n){n.remove()});['nsvLetterGrid','nsvFreeChoice'].forEach(function(id){el(id).removeAttribute('data-group')});root.querySelectorAll('.nsv-zone-head p').forEach(function(p){p.textContent=p.textContent.replace('両グループの','').replace('グループを選び、好きな音をタップして聞こう。','好きな音を選び、お手本を聞こう。')});window.KP134.attach(root,letters);
     letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.nsvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('nsvFreeChoice').appendChild(free)});
     el('nsvModel').onclick=function(){playModel(selected,this,false)};el('nsvRecord').onclick=toggleRecord;el('nsvPlayback').onclick=playRecording;el('nsvToQuiz').onclick=startQuiz;el('nsvRetry').onclick=startQuiz;
