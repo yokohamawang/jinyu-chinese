@@ -1,6 +1,4 @@
-10.108.81 FULL — DTNL Style Refresh
-Base: 10.108.80 FULL
-Archive root: k81/
-Built (JST): 2026-10-10T14:11:20+09:00
-Changed files: index.html, css/70-demo1010820-dtnl-first-lesson.css, js/12-demo1010820-dtnl-first-lesson.js, VERSION.txt, BUILD_MANIFEST.json
-Upload index.html, css/70-demo1010820-dtnl-first-lesson.css and js/12-demo1010820-dtnl-first-lesson.js together, or replace the complete website contents.
+Koepanda 10.108.138
+Built 2026-10-14T20:20:16+09:00 (Asia/Tokyo)
+Base: 10.108.137
+Status: mobile playback placement; expert/native-device signoff pending
