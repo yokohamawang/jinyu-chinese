@@ -139,3 +139,11 @@
 #kidsInitialsGKHLesson .gkh-check{background:#fff9e9;border-color:#e7dab7}
 #kidsInitialsGKHLesson .gkh-to-quiz{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}
 @media(max-width:360px){#kidsInitialsGKHLesson .gkh-focus{padding:9px}#kidsInitialsGKHLesson .gkh-static-section{padding:9px}#kidsInitialsGKHLesson .gkh-static-views{gap:6px}#kidsInitialsGKHLesson .gkh-static-views figcaption{font-size:12px;min-height:5.5em}}
+
+/* 10.108.115 — established quiz controls and answer states. */
+#kidsInitialsGKHLesson .gkh-listen,#kidsInitialsGKHLesson .gkh-next{background:#2f7a64;border-color:#2f7a64;color:#fff;border-radius:16px;box-shadow:0 3px 0 #256450}
+#kidsInitialsGKHLesson .gkh-listen.is-playing{background:#3a9775;border-color:#3a9775;color:#fff}
+#kidsInitialsGKHLesson .gkh-quiz-choices button{background:#eff7f1;border-color:#d5e9df;color:#2f705c}
+#kidsInitialsGKHLesson .gkh-quiz-choices button.is-correct{background:#43ad7e;border-color:#43ad7e;color:#fff}
+#kidsInitialsGKHLesson .gkh-quiz-choices button.is-wrong{background:#ef837b;border-color:#ef837b;color:#fff}
+#kidsInitialsGKHLesson .gkh-result-actions .gkh-button{background:#2f7a64;border-color:#2f7a64;color:#fff;box-shadow:0 3px 0 #256450;border-radius:16px}

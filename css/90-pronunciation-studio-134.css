@@ -1,0 +1,29 @@
+/* Shared instructional surface. No exact anatomy/time claim is made for these reference diagrams. */
+.kp134-studio{color:#34594d;font-family:inherit;min-width:0;width:100%;padding:2px 0;--kp134-accent:#38866d}
+.kp134-studio button{font:inherit;font-size:12px!important;line-height:1.4;min-height:38px;padding:7px 11px!important;border:1px solid #d5e4dc!important;border-radius:10px!important;background:#fff!important;color:#426d5d!important;box-shadow:none!important;white-space:normal;cursor:pointer}
+.kp134-studio button[aria-pressed=true]{background:#e4f2e9!important;border-color:#87b99e!important;color:#235f48!important}
+.kp134-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.kp134-toolbar [role=group]{display:flex;gap:5px}.kp134-slow{margin-left:auto}
+.kp134-studio figure{display:grid;place-items:center;gap:7px;margin:0;padding:10px 10px 12px;border:1px solid #eeded3;border-radius:20px;background:linear-gradient(145deg,#fffaf6,#fff5ee);box-shadow:0 6px 20px rgba(146,101,77,.045)}
+.kp134-studio [hidden]{display:none!important}
+.kp134-front,.kp134-position{display:block;width:min(100%,310px)!important;height:auto!important;max-height:230px;overflow:visible}
+.kp134-position{width:min(100%,250px)!important}
+.kp134-studio figcaption{max-width:35em;text-align:center;font-size:11px;line-height:1.5;color:#7b8275}
+.kp134-timeline{margin-top:17px;padding:0 5px}.kp134-track{display:block;height:5px;border-radius:999px;background:#dfebe4;overflow:hidden}.kp134-track i{display:block;width:0;height:100%;background:var(--kp134-accent);border-radius:inherit}
+.kp134-timeline>div{display:flex;justify-content:space-between;gap:8px;margin-top:8px}.kp134-timeline>div span{font-size:12px;font-weight:500;color:#7b8c80;flex:1;text-align:center}.kp134-studio[data-phase="0"] [data-kp134-phase="0"],.kp134-studio[data-phase="1"] [data-kp134-phase="1"],.kp134-studio[data-phase="2"] [data-kp134-phase="2"]{color:#2e7257;font-weight:700}
+.kp134-state{display:block;min-height:2.5em;margin-top:9px;text-align:center;font-size:12px;color:#678175;line-height:1.5}
+.kp134-selfcheck{margin:9px 0 0!important;padding:10px 12px;border-radius:12px;background:#f0f7f0;border:1px solid #e1ebe0;font-size:13px!important;line-height:1.65!important;font-weight:400!important;color:#526e5d!important}.kp134-selfcheck b{display:block;margin-bottom:3px;font-size:11px;letter-spacing:.07em;color:#3b775a}
+.kp134-teacher-note{margin-top:8px;font-size:12px;line-height:1.6;color:#6c7769}.kp134-teacher-note summary{padding:9px 0;cursor:pointer}.kp134-teacher-note p{font-size:12px!important;line-height:1.6!important;font-weight:400!important;margin:8px 0!important}.kp134-teacher-note a{color:#3b795e;text-decoration:underline;text-underline-offset:3px}
+.kp134-air{opacity:.35}.kp134-studio[data-phase="1"] .kp134-air,.kp134-studio[data-phase="2"] .kp134-air{opacity:.85}.kp134-voice{opacity:.3}.kp134-studio[data-phase="1"] .kp134-voice{opacity:.8}.kp134-target{opacity:.32}
+:is(#initialsFocusVisual,#dtnlArticulation,#gkhArticulation,#jqxArticulation,#zhrArticulation,#zcsArticulation,#cpvArticulation,#cpoArticulation,#cpnArticulation,#nsvArticulation,#bnvArticulation){display:block!important;min-height:0!important;width:100%!important;padding:12px!important;grid-template-columns:none!important;background:#fff!important;border:1px solid #dde9e2!important;border-radius:20px!important}
+:is(.gkh-static-views,.jqx-static-views,.zhr-static-views,.zcs-static-views,.cpv-static-views,.cpo-static-views,.cpn-static-views,.nsv-static-views,.bnv-static-views) .kp134-front,:is(.gkh-static-views,.jqx-static-views,.zhr-static-views,.zcs-static-views,.cpv-static-views,.cpo-static-views,.cpn-static-views,.nsv-static-views,.bnv-static-views) .kp134-position{width:100%!important;height:auto!important}
+@media(max-width:360px){.kp134-studio button{font-size:11px!important;padding:7px 8px!important}.kp134-toolbar{gap:5px}.kp134-slow{margin-left:0}.kp134-timeline>div span{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.kp134-studio *{transition:none!important;animation:none!important}}
+
+.kp134-adult .kp134-front,#popFace .kp134-front{max-width:250px!important;margin:0 auto;background:none}.kp134-adult .kp134-position{margin:0 auto;max-width:250px!important}.kp134-adult .mouth-animation{min-width:0}.kp134-adult .tongue-diagram svg{height:auto!important;max-width:250px!important}.kp134-adult .guide-note{font-size:12px;line-height:1.6}
+#kidsVowelMouth{display:block;padding:14px!important}#kidsVowelMouth .kp134-studio{width:100%}#kidsVowelMouth .kids-vowel-mouth-heading{margin-bottom:10px}
+#initialStaticExplainer,#dtnlStaticGuide{padding:12px 16px;margin:10px 0;max-width:100%;font-size:13px;color:#5e7769}#initialStaticExplainer details svg,#dtnlStaticGuide details svg{display:block;margin:0 auto;max-width:260px;height:auto}
+
+.kp134-position-sequence{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%}.kp134-position-sequence>div{flex:1 1 90px;max-width:155px;text-align:center}.kp134-position-sequence strong{display:block;color:#3b775a;font-size:16px}.kp134-position-sequence .kp134-position{width:100%!important}.kp134-position-sequence .kp134-position text{font-size:9px}
+
+details[class$="-static-section"]>summary{font-size:13px;line-height:1.6;font-weight:600;color:#4a775f;cursor:pointer;padding:4px 0}details[class$="-static-section"][open]>summary{margin-bottom:12px}
