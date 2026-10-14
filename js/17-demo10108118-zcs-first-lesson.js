@@ -137,7 +137,7 @@
   }
   function init(){
     root=el('kidsInitialsZCSLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='zcs-letter-card';button.dataset.zcsLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+(letter==='s'?'続く息':item.cue)+'</em>';button.onclick=function(){select(letter,true)};el('zcsLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='zcs-letter-card';button.dataset.zcsLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('zcsLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.zcsLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('zcsFreeChoice').appendChild(free)});
     el('zcsModel').onclick=function(){playModel(selected,this,false)};el('zcsRecord').onclick=toggleRecord;el('zcsPlayback').onclick=playRecording;el('zcsToQuiz').onclick=startQuiz;el('zcsRetry').onclick=startQuiz;
     el('zcsQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('zcsQuizNext').onclick=nextQuestion;

@@ -140,7 +140,7 @@
       var icon=letter==='m'
         ? '<span class="initial-cue-icon kp71-nose-cue" aria-hidden="true">'+noseSvg('kp71-cue-',true)+'</span>'
         : '<span class="initial-cue-icon '+cue.kind+'" aria-hidden="true"><i></i><i></i><i></i></span>';
-      b.innerHTML='<span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span><span class="initial-articulation">'+icon+'<em>'+cue.label+'</em></span>';
+      b.innerHTML='<span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span>';
       b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
       var c=document.createElement('button'); c.type='button'; c.dataset.letter=letter;
       c.innerHTML='<span class="free-letter">'+letter+'</span><span class="free-ipa">'+sounds[letter].mark+'</span>';

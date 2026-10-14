@@ -137,7 +137,7 @@
   }
   function init(){
     root=el('kidsInitialsJQXLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='jqx-letter-card';button.dataset.jqxLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+(letter==='x'?'続く息':item.cue)+'</em>';button.onclick=function(){select(letter,true)};el('jqxLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='jqx-letter-card';button.dataset.jqxLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('jqxLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.jqxLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('jqxFreeChoice').appendChild(free)});
     el('jqxModel').onclick=function(){playModel(selected,this,false)};el('jqxRecord').onclick=toggleRecord;el('jqxPlayback').onclick=playRecording;el('jqxToQuiz').onclick=startQuiz;el('jqxRetry').onclick=startQuiz;
     el('jqxQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('jqxQuizNext').onclick=nextQuestion;

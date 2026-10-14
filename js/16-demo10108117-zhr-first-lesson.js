@@ -138,7 +138,7 @@
   }
   function init(){
     root=el('kidsInitialsZHRLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='zhr-letter-card';button.dataset.zhrLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+(letter==='sh'?'続く息':item.cue)+'</em>';button.onclick=function(){select(letter,true)};el('zhrLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='zhr-letter-card';button.dataset.zhrLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('zhrLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.zhrLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('zhrFreeChoice').appendChild(free)});
     el('zhrModel').onclick=function(){playModel(selected,this,false)};el('zhrRecord').onclick=toggleRecord;el('zhrPlayback').onclick=playRecording;el('zhrToQuiz').onclick=startQuiz;el('zhrRetry').onclick=startQuiz;
     el('zhrQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('zhrQuizNext').onclick=nextQuestion;

@@ -137,7 +137,7 @@
   }
   function init(){
     root=el('kidsInitialsGKHLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='gkh-letter-card';button.dataset.gkhLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+(letter==='h'?'続く息':item.cue)+'</em>';button.onclick=function(){select(letter,true)};el('gkhLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='gkh-letter-card';button.dataset.gkhLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('gkhLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.gkhLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('gkhFreeChoice').appendChild(free)});
     el('gkhModel').onclick=function(){playModel(selected,this,false)};el('gkhRecord').onclick=toggleRecord;el('gkhPlayback').onclick=playRecording;el('gkhToQuiz').onclick=startQuiz;el('gkhRetry').onclick=startQuiz;
     el('gkhQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('gkhQuizNext').onclick=nextQuestion;

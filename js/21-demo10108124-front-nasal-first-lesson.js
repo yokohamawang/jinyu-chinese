@@ -176,7 +176,7 @@
   }
   function init(){
     root=el('kidsFrontNasalLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+item.cue+'</em>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.nsvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('nsvFreeChoice').appendChild(free)});
     root.querySelectorAll('[data-nsv-group]').forEach(function(b){b.onclick=function(){selectGroup(b.dataset.nsvGroup,!!b.closest('.nsv-teaching'))}});
     el('nsvModel').onclick=function(){playModel(selected,this,false)};el('nsvRecord').onclick=toggleRecord;el('nsvPlayback').onclick=playRecording;el('nsvToQuiz').onclick=startQuiz;el('nsvRetry').onclick=startQuiz;

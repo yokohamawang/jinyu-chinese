@@ -144,7 +144,7 @@
   }
   function init(){
     root=el('kidsCompoundIEUEERLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpn-letter-card';button.dataset.cpnLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small><em>'+item.cue+'</em>';button.onclick=function(){select(letter,true)};el('cpnLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpn-letter-card';button.dataset.cpnLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('cpnLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.cpnLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('cpnFreeChoice').appendChild(free)});
     el('cpnModel').onclick=function(){playModel(selected,this,false)};el('cpnRecord').onclick=toggleRecord;el('cpnPlayback').onclick=playRecording;el('cpnToQuiz').onclick=startQuiz;el('cpnRetry').onclick=startQuiz;
     el('cpnQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('cpnQuizNext').onclick=nextQuestion;
