@@ -111,3 +111,63 @@
 
 .kp145-initial-note{display:block;font-size:11px;font-weight:400;line-height:1.4;color:#728475;margin-top:3px}
 .kp134-studio .kp134-front-view{overflow:hidden}
+
+/* 146: tactile controls and honest playback feedback. */
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button{position:relative;box-shadow:0 4px 0 #b5ccbd,0 5px 9px #284f3210!important;transition:background-color .1s,border-color .1s,box-shadow .1s,transform .08s!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent;overflow:hidden!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button:is(:active,.kp-ui-pressed){transform:translateY(3px)!important;background:#d6e8da!important;border-color:#55856b!important;box-shadow:inset 0 2px 4px #1d50352b,0 1px 0 #a7bfae!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button.is-sounding{background:#dceee1!important;border-color:#24634d!important;box-shadow:inset 0 0 0 1px #24634d,0 3px 0 #a7bfae!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button[aria-busy=true] .contour-start{fill:#24634d}
+#kidsCourse [id$="LetterGrid"]>button.kp-ui-pressed,#kidsCourse [id$="FreeChoice"]>button.kp-ui-pressed{box-shadow:inset 0 3px 6px #173d3738!important;filter:brightness(.94)}
+.kp134-studio .kp134-toolbar button:is(:active,.kp-ui-pressed),.kp134-studio .kp141-observe-steps button:is(:active,.kp-ui-pressed){background:#d9e9df!important;box-shadow:inset 0 2px 4px #214b3426!important;transform:translateY(1px)!important}
+.kp135-listen-slot:not(.kp135-tones) button.kp-ui-pressed{background:#225d48!important;transform:translateY(3px)!important;box-shadow:inset 0 2px 4px #123e352b!important}
+.kp-playback-status{display:flex;align-items:center;gap:7px;min-height:28px;margin:-2px 2px 6px;color:#596e61;font-size:12px;line-height:1.4}
+.kp-playback-copy{white-space:nowrap;font-weight:500}.kp-playback-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;gap:2px;color:#7c9286}.kp-playback-icon i{width:2px;height:5px;border-radius:2px;background:currentColor}.kp-playback-icon i:nth-child(2){height:11px}
+.kp-playback-meter{flex:1;height:3px;margin-left:4px;overflow:hidden;border-radius:9px;background:#dfe9e1}.kp-playback-meter i{display:block;height:100%;width:var(--kp-playback-progress,0%);border-radius:inherit;background:#3e8061}
+.kp134-studio[data-playback=playing] .kp-playback-status{color:#245e45}.kp134-studio[data-playback=playing] .kp-playback-icon{color:#26734d}.kp134-studio[data-playback=playing] .kp-playback-icon i{animation:kp-voice-feedback .65s ease-in-out infinite alternate}.kp134-studio[data-playback=playing] .kp-playback-icon i:nth-child(2){animation-delay:-.32s}.kp134-studio[data-playback=playing] .kp-playback-icon i:nth-child(3){animation-delay:-.18s}
+.kp134-studio[data-playback=loading] .kp-playback-meter i{width:28%;animation:kp-audio-loading 1s ease-in-out infinite alternate}.kp134-studio[data-playback=error] .kp-playback-status{color:#a43f39}.kp134-studio[data-playback=error] .kp-playback-meter i{background:#a43f39}
+.kp134-studio[data-playback=playing] .kp134-front-view{border-color:#6c9b7e!important;box-shadow:0 0 0 2px #dcebe0!important}
+@keyframes kp-voice-feedback{from{transform:scaleY(.45)}to{transform:scaleY(1.35)}}
+@keyframes kp-audio-loading{from{transform:translateX(0)}to{transform:translateX(240%)}}
+@media(prefers-reduced-motion:reduce){.kp134-studio .kp-playback-icon i,.kp134-studio .kp-playback-meter i{animation:none!important}#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button{transition:none!important}.kp134-studio button:is(:active,.kp-ui-pressed){transform:none!important}}
+
+/* A proportionate, spacious cutaway; never flatten anatomy to fit a card. */
+.kp134-studio .kp141-position{width:min(100%,280px)!important;max-height:217px!important;aspect-ratio:300/232}
+.kp134-studio .kp134-position-view{background:#fbfcf7!important;border-color:#dce5da!important;border-radius:18px!important;padding:8px 7px 10px!important;gap:5px!important;box-shadow:0 3px 12px #3b614409!important}
+.kp134-studio .kp134-position-view figcaption{font-weight:600!important;color:#315b47!important}
+.kp134-studio .kp134-position-view figcaption span{color:#65766b!important}
+.kp134-studio .kp141-observe-steps button{color:#466651!important;background:#f8faf4!important}
+.kp134-studio .kp141-observe-steps button[aria-pressed=true]{color:#24513c!important;background:#dfece0!important;border-color:#7eaa8a!important}
+.kp134-studio .kp134-toolbar [role=group]{background:#eaf0e8;border:1px solid #dce5db;border-radius:13px;padding:3px;gap:3px}
+.kp134-studio .kp134-toolbar [data-kp134-view]{border:0!important;background:transparent!important;box-shadow:none!important;border-radius:9px!important;min-height:40px!important}
+.kp134-studio .kp134-toolbar [data-kp134-view][aria-pressed=true]{background:#fffef9!important;color:#254f3b!important;box-shadow:0 1px 4px #2f55451a!important}
+@media(max-height:600px) and (max-width:600px){.kp134-studio .kp141-position{width:min(100%,225px)!important;max-height:174px!important}}
+@media(max-height:500px) and (min-width:601px){.kp134-studio .kp141-position{width:min(100%,203px)!important;max-height:157px!important}}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button.is-sounding:is(:active,.kp-ui-pressed){background:#cce1d1!important;border-color:#3a6c50!important;box-shadow:inset 0 2px 5px #1a4a3238,0 1px 0 #a7bfae!important}
+@media(prefers-reduced-motion:reduce){#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button:is(:active,.kp-ui-pressed){transform:none!important}}
+.kp134-studio .kp144-front{transition:opacity 80ms ease}
+.kp134-studio .kp144-front.kp-reference-reset{opacity:0}
+@media(prefers-reduced-motion:reduce){.kp134-studio .kp144-front{transition:none}}
+/* Short screens keep a full-size teaching figure with a nearby tone player.
+   The large explanatory cards remain above for reading and first exploration. */
+.kp-vowel-compact{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 10px}
+#kidsVowelDrill .kp-vowel-compact>button{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:66px!important;padding:4px!important;border-radius:12px!important;border:1px solid #bdcfbf!important;background:#fffdf6!important;color:#294d3b!important;box-shadow:0 2px 0 #c8d8ca!important;touch-action:manipulation}
+#kidsVowelDrill .kp-vowel-compact strong{font-family:Arial,sans-serif;font-weight:700;font-size:28px;line-height:1.45;overflow:visible}
+#kidsVowelDrill .kp-vowel-compact span{font-size:14px;line-height:1.4;font-weight:600}
+#kidsVowelDrill .kp-vowel-compact>button[aria-pressed=true]{background:#e1eee2!important;border-color:#56866b!important;color:#204e36!important}
+#kidsVowelDrill .kp-vowel-compact>button.is-sounding{box-shadow:inset 0 0 0 1px #3e7253,0 2px 0 #b0c8b5!important}
+#kidsVowelDrill .kp-vowel-compact>button:is(:active,.kp-ui-pressed){background:#cfe2d3!important;box-shadow:inset 0 2px 4px #24543a2b!important;transform:translateY(2px)!important}
+#kidsVowelDrill .kp-vowel-compact>button:focus-visible{outline:3px solid #30694b;outline-offset:2px}
+.kp134-studio[data-kp-compact-player=true]>.kp-vowel-compact{display:grid}
+@media(prefers-reduced-motion:reduce){#kidsVowelDrill .kp-vowel-compact>button:is(:active,.kp-ui-pressed){transform:none!important}}
+/* In a short landscape window, the full model button carries playback status
+   so the separate status row does not squeeze the anatomy or stage controls. */
+@media(max-height:500px) and (min-width:601px){
+ .kp134-studio:not(:has(.kp-vowel-compact)) .kp-playback-status{display:none}
+ .kp135-listen-slot:not(.kp135-tones) button[aria-busy=true]:not(.is-sounding)::after{content:' · 準備中';font-size:13px}
+ .kp135-listen-slot:not(.kp135-tones) button.is-sounding::after{content:' · 再生中';font-size:13px}
+}
+
+/* Keep observation controls readable on narrow phones, too. */
+.kp134-studio .kp141-observe-steps button,.kp134-studio .kp134-toolbar button,.kp134-studio .kp134-toolbar .kp134-slow{font-size:14px!important}
+.kp-playback-status{font-size:13px}
+.kp-playback-copy{min-width:0;white-space:normal}
