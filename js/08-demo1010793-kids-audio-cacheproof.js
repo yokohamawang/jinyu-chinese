@@ -70,12 +70,12 @@
   };
   function audioInfo(letter,tone){var isO=letter==='o',key=isO?('wo'+tone):audioKey(letter,tone),src=PINYIN_AUDIO_BASE+key+'.mp3';return {isO:isO,key:key,src:src,profile:(PINYIN_PLAYBACK_PROFILE[letter]&&PINYIN_PLAYBACK_PROFILE[letter][tone])||{rate:1,start:0}}}
   function getPinyinAudio(letter,tone){return {audio:window.KP134.audioFor(letter,tone),info:{key:letter+tone,profile:{rate:.9,start:0}}}}
-  function warmPinyin(letter){for(var t=1;t<=4;t++)getPinyinAudio(letter,t)}
+  function warmPinyin(letter){window.KP134.warm([letter])}
   function showAudioMissing(letter,tone){var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';console.error(msg,letter,tone);var hint=el('kidsToneHint');if(hint)hint.textContent='⚠ '+msg}
-  function playLocalPinyin(letter,tone){stopAudio();var request=audioRequestId;setMouthState('waiting',letter);return window.KP134.play(letter,{tone:tone,root:el('kidsVowelDrill'),onPlaying:function(a){if(request===audioRequestId){localAudio=a;setMouthState('playing',letter)}},onEnded:function(){if(request===audioRequestId)relaxMouth(letter,request)},onError:function(){if(request===audioRequestId){setMouthState('error',letter);showAudioMissing(letter,tone)}}}).catch(function(e){if(e&&e.name!=='AbortError')showAudioMissing(letter,tone);return null})}
+  function playLocalPinyin(letter,tone,ended){stopAudio();var request=audioRequestId;setMouthState('waiting',letter);return window.KP134.play(letter,{tone:tone,button:document.querySelector('#kidsVowelToneGrid [data-tone="'+tone+'"]'),root:el('kidsVowelDrill'),onPlaying:function(a){if(request===audioRequestId){localAudio=a;setMouthState('playing',letter);var card=document.querySelector('#kidsVowelToneGrid [data-tone="'+tone+'"]');if(card)card.classList.add('is-sounding')}},onEnded:function(){if(request===audioRequestId){relaxMouth(letter,request);if(ended)ended()}},onError:function(){if(request===audioRequestId){setMouthState('error',letter);showAudioMissing(letter,tone)}}}).catch(function(e){if(e&&e.name!=='AbortError')showAudioMissing(letter,tone);return null})}
   function playToneExample(tone){return playLocalPinyin('a',tone)}
-  function playVowelExample(v,tone){return playLocalPinyin(v.letter,tone)}
-  function playIntroToneSerialized(v,tone){introTonePending=null;introToneBusy=false;introToneEpoch++;return playVowelExample(v,tone)}
+  function playVowelExample(v,tone,ended){return playLocalPinyin(v.letter,tone,ended)}
+  function playIntroToneSerialized(v,tone,ended){introTonePending=null;introToneBusy=false;introToneEpoch++;return playVowelExample(v,tone,ended)}
   window.koepandaPlayToneIntro=playToneExample;
   function toneMarks(letter){var m={a:['ā','á','ǎ','à'],o:['ō','ó','ǒ','ò'],e:['ē','é','ě','è'],i:['ī','í','ǐ','ì'],u:['ū','ú','ǔ','ù'],'ü':['ǖ','ǘ','ǚ','ǜ']};return m[letter]||[letter,letter,letter,letter]}
   function toneContour(tone){
@@ -137,9 +137,10 @@
 
   var imitateRecorder=null,imitateStream=null,imitateChunks=[],imitateAudioUrl='',imitateAudio=null;
   function clearImitateRecording(){
+    if(window.KP134)window.KP134.stopFor(el('kidsVowelDrill'));
     if(imitateAudio){try{imitateAudio.pause()}catch(e){} imitateAudio=null}
     if(imitateAudioUrl){try{URL.revokeObjectURL(imitateAudioUrl)}catch(e){} imitateAudioUrl=''}
-    if(imitateStream){try{imitateStream.getTracks().forEach(function(t){t.stop()})}catch(e){} imitateStream=null}
+    if(imitateStream){try{window.KP134.releaseMicrophone(imitateStream)}catch(e){} imitateStream=null}
     imitateRecorder=null;imitateChunks=[];
     var rec=el('kidsAImitateRecord'),play=el('kidsAImitatePlayback');
     if(rec){rec.textContent='● 録音する';rec.classList.remove('is-recording')}
@@ -151,32 +152,15 @@
     for(var i=0;i<types.length;i++){try{if(MediaRecorder.isTypeSupported(types[i]))return types[i]}catch(e){}}
     return '';
   }
-  async function startImitateRecording(){
-    var fb=el('kidsAImitateFeedback'),recBtn=el('kidsAImitateRecord');
-    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){if(fb){fb.textContent='このブラウザでは録音が使えません。';fb.className='kids-a-feedback'};return}
-    try{
-      cancelIntroTones();stopAudio();
-      if(imitateAudioUrl){try{URL.revokeObjectURL(imitateAudioUrl)}catch(e){} imitateAudioUrl=''}
-      imitateChunks=[];imitateStream=await navigator.mediaDevices.getUserMedia({audio:true});
-      var mt=mimeForRecording(),opts=mt?{mimeType:mt}:undefined;imitateRecorder=new MediaRecorder(imitateStream,opts);
-      imitateRecorder.ondataavailable=function(e){if(e.data&&e.data.size)imitateChunks.push(e.data)};
-      imitateRecorder.onstop=function(){
-        var type=(imitateRecorder&&imitateRecorder.mimeType)||mt||'audio/mp4';var blob=new Blob(imitateChunks,{type:type});
-        imitateAudioUrl=URL.createObjectURL(blob);
-        if(imitateStream){imitateStream.getTracks().forEach(function(t){t.stop()});imitateStream=null}
-        if(recBtn){recBtn.textContent='↻ もう一度録音';recBtn.classList.remove('is-recording')}
-        var play=el('kidsAImitatePlayback');if(play)play.disabled=false;
-        if(aFlow){aFlow.imitateDone=true;markAProgress()}
-        if(fb){fb.textContent='録音できたよ。自分の声も聞きくらべてみよう 👂';fb.className='kids-a-feedback is-good'}
-      };
-      imitateRecorder.start();if(recBtn){recBtn.textContent='■ 録音を止める';recBtn.classList.add('is-recording')}
-      if(fb){fb.textContent='録音中… お手本と同じように声を出してみよう';fb.className='kids-a-feedback'}
-    }catch(e){if(fb){fb.textContent='マイクを使えませんでした。マイクの許可を確認してね。';fb.className='kids-a-feedback'}}
+  function startImitateRecording(){
+    if(!aFlow)return;cancelIntroTones();stopAudio();var session=aFlow,key=session.letter,button=el('kidsAImitateRecord'),playback=el('kidsAImitatePlayback'),fb=el('kidsAImitateFeedback');
+    if(imitateAudioUrl){URL.revokeObjectURL(imitateAudioUrl);imitateAudioUrl=''}
+    window.KP134.capture(el('kidsVowelDrill'),button,playback,key,fb,function(letter,url){if(aFlow!==session||aFlow.letter!==letter){URL.revokeObjectURL(url);return}imitateAudioUrl=url;button.textContent='↻ もう一度録音';session.imitateDone=true;markAProgress()});
   }
-  function stopImitateRecording(){if(imitateRecorder&&imitateRecorder.state==='recording'){try{imitateRecorder.stop()}catch(e){}}}
-  function toggleImitateRecording(){if(imitateRecorder&&imitateRecorder.state==='recording')stopImitateRecording();else startImitateRecording()}
+  function stopImitateRecording(){var root=el('kidsVowelDrill');if(window.KP134.isRecording(root))window.KP134.capture(root,el('kidsAImitateRecord'),el('kidsAImitatePlayback'),aFlow&&aFlow.letter,el('kidsAImitateFeedback'),function(){})}
+  function toggleImitateRecording(){if(window.KP134.isRecording(el('kidsVowelDrill')))stopImitateRecording();else startImitateRecording()}
   function pulseButton(btn){if(!btn)return;btn.classList.remove('is-pressed');void btn.offsetWidth;btn.classList.add('is-pressed');setTimeout(function(){btn.classList.remove('is-pressed')},180)}
-  function playImitateRecording(){if(!imitateAudioUrl)return;var btn=el('kidsAImitatePlayback');pulseButton(btn);try{if(imitateAudio)imitateAudio.pause();imitateAudio=new Audio(imitateAudioUrl);if(btn)btn.classList.add('is-playing');imitateAudio.addEventListener('ended',function(){if(btn)btn.classList.remove('is-playing')},{once:true});var pr=imitateAudio.play();if(pr&&pr.catch)pr.catch(function(){if(btn)btn.classList.remove('is-playing')})}catch(e){if(btn)btn.classList.remove('is-playing')}}
+  function playImitateRecording(){if(!imitateAudioUrl||!aFlow)return;var btn=el('kidsAImitatePlayback');pulseButton(btn);function clear(){btn.classList.remove('is-playing')}window.KP134.play(aFlow.letter,{root:el('kidsVowelDrill'),clipUrl:imitateAudioUrl,referenceVisual:false,rate:1,button:btn,onPlaying:function(){btn.classList.add('is-playing')},onEnded:clear,onCancel:clear,onError:function(){clear();el('kidsAImitateFeedback').textContent='録音を再生できませんでした。もう一度押してね。'}}).catch(function(){clear()})}
   function randomEarTone(){return 1+Math.floor(Math.random()*4)}
   var lastQuizOrder='';
   function randomQuizOrder(){
@@ -217,7 +201,7 @@
     renderQuizQuestion();markAProgress();
     requestAnimationFrame(function(){el('kidsAQuizStage').scrollIntoView({block:'start',behavior:'smooth'})});
   }
-  function playCurrentQuizTone(){if(!aFlow||!aFlow.quizStarted||aFlow.quizDone)return;var session=aFlow,index=aFlow.quizIndex;aFlow.quizHeard=false;el('kidsAQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true});playLocalPinyin(aFlow.letter,aFlow.quizOrder[index]).then(function(a){if(!a)return;a.addEventListener('ended',function(){if(aFlow===session&&aFlow.quizIndex===index&&!aFlow.quizAnswered){aFlow.quizHeard=true;el('kidsAQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false})}},{once:true})})}
+  function playCurrentQuizTone(){if(!aFlow||!aFlow.quizStarted||aFlow.quizDone)return;var session=aFlow,index=aFlow.quizIndex;aFlow.quizHeard=false;el('kidsAQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true});playLocalPinyin(aFlow.letter,aFlow.quizOrder[index],function(){if(aFlow===session&&aFlow.quizIndex===index&&!aFlow.quizAnswered){aFlow.quizHeard=true;el('kidsAQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false})}})}
   function renderQuizQuestion(){
     if(!aFlow)return;var count=el('kidsAQuizCount'),fb=el('kidsAQuizFeedback'),next=el('kidsAQuizNext');if(count)count.textContent=(aFlow.quizIndex+1)+' / 4';if(fb){fb.textContent='';fb.className='kids-a-feedback'}if(next)next.hidden=true;aFlow.quizAnswered=false;aFlow.quizHeard=false;
     buildToneChoices('kidsAQuizChoices',function(tone,b){if(!aFlow||aFlow.quizAnswered||aFlow.quizDone||!aFlow.quizHeard)return;aFlow.quizAnswered=true;var correct=aFlow.quizOrder[aFlow.quizIndex],box=el('kidsAQuizChoices');if(tone===correct){aFlow.quizCorrect++;b.classList.add('is-good');if(fb){fb.textContent='✨ 正解！';fb.className='kids-a-feedback is-good'}}else{b.classList.add('is-wrong');if(box){Array.prototype.forEach.call(box.children,function(x,idx){if(idx+1===correct)x.classList.add('is-good')})}if(fb){fb.textContent='答えは '+toneMarks(aFlow.letter)[correct-1]+'。音をもう一度聞いてみよう';fb.className='kids-a-feedback'}}if(aFlow.quizIndex===3){if(next)next.hidden=true;var quizSession=aFlow;setTimeout(function(){if(aFlow===quizSession&&aFlow.quizStarted&&aFlow.quizAnswered&&!aFlow.quizDone)finishAQuiz()},650)}else if(next){next.hidden=false;next.textContent='次の問題へ'}})
@@ -270,11 +254,11 @@
     el('kidsVowelDrillTitle').textContent=v.letter+' の四声';el('kidsVowelDrillSubtitle').textContent='聞く → 自由練習 → ミニチェック';el('kidsVowelDrillLetter').textContent=v.letter;el('kidsVowelDrillImage').src=v.image;el('kidsVowelDrillImage').alt=v.sceneTitle||v.letter;el('kidsVowelDrillTip').textContent=v.note;
     var p=el('kidsAProgress'),ear=el('kidsAEarStage'),imit=el('kidsAImitateStage'),quiz=el('kidsAQuizStage'),result=el('kidsAResult'),reward=el('kidsAReward');if(p)p.hidden=false;if(ear)ear.hidden=true;if(imit)imit.hidden=true;if(quiz)quiz.hidden=true;if(result)result.hidden=true;if(reward)reward.hidden=true;
     var marks=toneMarks(v.letter),labels=['高く、平らに','低めから、上へ','下げてから、上へ','高い音から、下へ'],g=el('kidsVowelToneGrid');g.replaceChildren();
-    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="vowel-tone-card-top"><b>'+tone+'声</b><span class="tone-mark">'+mark+'</span></span>'+toneContour(tone)+'<small>'+labels[k]+'</small>';b.dataset.tone=tone;b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){playIntroToneSerialized(v,tone).then(function(a){if(!a)return;var session=aFlow;a.addEventListener('ended',function(){if(aFlow===session&&aFlow.letter===v.letter){heard[tone]=true;b.classList.add('is-heard');markAProgress()}},{once:true})})});g.appendChild(b)});
+    marks.forEach(function(mark,k){var tone=k+1,b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="vowel-tone-card-top"><b>'+tone+'声</b><span class="tone-mark">'+mark+'</span></span>'+toneContour(tone)+'<small>'+labels[k]+'</small>';b.dataset.tone=tone;b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.addEventListener('click',function(){var session=aFlow;playIntroToneSerialized(v,tone,function(){if(aFlow===session&&aFlow.letter===v.letter){heard[tone]=true;b.classList.add('is-heard');markAProgress()}})});g.appendChild(b)});
     var tr=el('kidsVowelTraceRow');tr.replaceChildren();marks.forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)});
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
     var complete=el('kidsVowelComplete');resetAFlow(v.letter);renderMouth(v.letter);renderAEarChoices();renderImitateChoices();if(complete){complete.disabled=true;complete.textContent='ミニチェックでクリア'};markAProgress()
-    el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;requestAnimationFrame(function(){d.scrollIntoView({block:'start',behavior:'auto'})})
+    el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;g.querySelector('button').click();requestAnimationFrame(function(){window.KP135.prepare(el('kidsVowelDrill'),v.letter,g.querySelector('button'))})
   }
   function closeDrill(){cancelIntroTones();stopAudio();clearImitateRecording();aFlow=null;var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels();requestAnimationFrame(function(){grid.scrollIntoView({block:'start',behavior:'auto'})})}
   function completeCurrent(){var v=data.vowels[vowelIndex];if(!(aFlow&&aFlow.passed&&aFlow.letter===v.letter))return;var list=visibleVowels(),pos=list.findIndex(function(x){return x.letter===v.letter}),nextVowel=(pos>=0&&pos+1<list.length)?list[pos+1]:null;closeDrill();if(nextVowel){var nextIndex=data.vowels.indexOf(nextVowel);if(nextIndex>=0)setTimeout(function(){renderDrill(nextIndex)},40)}}

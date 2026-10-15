@@ -71,28 +71,28 @@
     el('zhrRecord').disabled=true;el('zhrRecord').textContent='マイクを準備中…';el('zhrRecord').setAttribute('aria-busy','true');redrawRecordingControls();
     feedback('zhrPracticeFeedback','マイクを準備しています…');
     try{
-      var media=await navigator.mediaDevices.getUserMedia({audio:true});
-      if(token!==recordToken){media.getTracks().forEach(function(t){t.stop()});return}
+      var media=await window.KP134.microphone();
+      if(token!==recordToken){window.KP134.releaseMicrophone(media);return}
       stream=media;var mt=mimeType(),rec=new MediaRecorder(media,mt?{mimeType:mt}:undefined);recorder=rec;
       rec.ondataavailable=function(e){if(e.data&&e.data.size)chunks.push(e.data)};
       rec.onstop=function(){
-        clearTimeout(recordTimer);media.getTracks().forEach(function(t){t.stop()});if(stream===media)stream=null;if(recorder===rec)recorder=null;
+        clearTimeout(recordTimer);window.KP134.releaseMicrophone(media);if(stream===media)stream=null;if(recorder===rec)recorder=null;
         if(token!==recordToken)return;
         var blob=new Blob(chunks,{type:rec.mimeType||mt||'audio/mp4'});
         if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('zhrPracticeFeedback','録音できたよ。お手本と聞きくらべてみよう。','good')}else feedback('zhrPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
         redrawRecordingControls();
       };
-      rec.onerror=function(){feedback('zhrPracticeFeedback','録音を続けられませんでした。もう一度試してね。','bad');try{rec.stop()}catch(e){}media.getTracks().forEach(function(t){t.stop()})};
+      rec.onerror=function(){feedback('zhrPracticeFeedback','録音を続けられませんでした。もう一度試してね。','bad');try{rec.stop()}catch(e){}window.KP134.releaseMicrophone(media)};
       pendingRecord=false;rec.start(100);el('zhrRecord').disabled=false;el('zhrRecord').removeAttribute('aria-busy');el('zhrRecord').textContent='■ 録音を止める';el('zhrRecord').classList.add('is-recording');redrawRecordingControls();
       feedback('zhrPracticeFeedback','録音中… もう一度押すと止まります。10秒で自動停止。');recordTimer=setTimeout(function(){if(rec.state==='recording')rec.stop()},10000);
-    }catch(e){if(token!==recordToken)return;pendingRecord=false;if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}recorder=null;redrawRecordingControls();feedback('zhrPracticeFeedback','マイクの許可を確認して、もう一度試してね。','bad')}
+    }catch(e){if(token!==recordToken)return;pendingRecord=false;if(stream){window.KP134.releaseMicrophone(stream);stream=null}recorder=null;redrawRecordingControls();feedback('zhrPracticeFeedback','マイクの許可を確認して、もう一度試してね。','bad')}
   }
   async function playRecording(){
     if(!recordings[selected]||pendingRecord||(recorder&&recorder.state==='recording'))return;
-    stopSound();var button=el('zhrPlayback');playback=new Audio(recordings[selected]);playback.playsInline=true;button.classList.add('is-playing');
-    playback.onended=function(){button.classList.remove('is-playing')};playback.onerror=function(){button.classList.remove('is-playing');feedback('zhrPracticeFeedback','録音を再生できませんでした。もう一度試してね。','bad')};
-    try{await playback.play()}catch(e){button.classList.remove('is-playing');feedback('zhrPracticeFeedback','もう一度「自分の声を聞く」を押してね。','bad')}
+    stopSound();var button=el('zhrPlayback');function clear(){button.classList.remove('is-playing')}
+    try{await window.KP134.play(selected,{root:root,clipUrl:recordings[selected],rate:1,referenceVisual:false,button:button,onPlaying:function(){button.classList.add('is-playing')},onEnded:clear,onCancel:clear,onError:function(){clear();feedback('zhrPracticeFeedback','録音を再生できませんでした。もう一度試してね。','bad')}})}catch(e){clear()}
   }
+
   function quizOrder(){
     var source=letters.slice(),orders=[],seen={};
     function visit(prefix,left){if(!left.length){var key=prefix.join('');if(!seen[key]){seen[key]=true;orders.push(prefix)}return}left.forEach(function(l,i){if(prefix[prefix.length-1]!==l)visit(prefix.concat(l),left.slice(0,i).concat(left.slice(i+1)))})}
@@ -132,7 +132,7 @@
     stopSound();recordToken++;pendingRecord=false;clearTimeout(recordTimer);clearTimeout(quizTimer);clearTimeout(resultTimer);
     var stage=document.querySelector('#koepandaResultStage.is-zhr-result');if(stage)stage.remove();
     if(recorder&&recorder.state==='recording')try{recorder.stop()}catch(e){}
-    if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}recorder=null;redrawRecordingControls();
+    if(stream){window.KP134.releaseMicrophone(stream);stream=null}recorder=null;redrawRecordingControls();
     feedback('zhrPracticeFeedback',recordings[selected]?'この音の録音を聞き返せます。':'');feedback('zhrModelFeedback','');
     if(quiz.active){quiz.active=false;el('zhrQuizPanel').hidden=true;el('zhrToQuiz').hidden=false;root.querySelector('.zhr-practice').hidden=false}
   }
