@@ -285,3 +285,7 @@ body.app-kids-mode .kp148-vowel-header#kp148VowelHeader .kids-vowel-drill-head{p
 /* A translating lesson entrance changes button coordinates during the first tap. */
 #kidsCourse .is-roadmap-lesson-active{animation:none!important;transform:none!important}
 @media(max-height:500px) and (min-width:601px){.kp134-studio .kp144-front:has(.kp147-face-image){width:min(100%,128px)!important;max-height:118px!important}}
+/* 149: initials play directly from the letter in both teaching and practice. */
+.kp135-listen-slot[hidden]{display:none!important}
+#kidsCourse [id$="LetterGrid"]>button.is-sounding,#kidsCourse [id$="FreeChoice"]>button.is-sounding{box-shadow:0 0 0 3px rgba(71,146,111,.2),0 3px 0 rgba(40,93,69,.16)!important}
+#kidsCourse [id$="LetterGrid"]>button[aria-busy=true],#kidsCourse [id$="FreeChoice"]>button[aria-busy=true]{cursor:progress}
