@@ -82,7 +82,7 @@ const LIP_MAP={
 };
 const PINYIN_HINT={'我':'wǒ','买':'mǎi','卖':'mài','一':'yí','个':'ge','你':'nǐ','好':'hǎo','吗':'ma','吃':'chī','饭':'fàn','了':'le','是':'shì','日':'Rì','本':'běn','人':'rén','中':'Zhōng','国':'guó','文':'wén','水':'shuǐ','睡':'shuì','糖':'táng','汤':'tāng','请':'qǐng','说':'shuō','不':'bù','谢':'xiè','去':'qù','哪':'nǎ','儿':'r','有':'yǒu','明':'míng','天':'tiān','想':'xiǎng','很':'hěn','可':'kě','以':'yǐ','这':'zhè','多':'duō','少':'shao','钱':'qián','现':'xiàn','在':'zài','知':'zhī','道':'dào','时':'shí','间':'jiān','要':'yào','上':'shàng','班':'bān'};
 let mouthFrame=0,mouthToken=0,guideTimer=0,guideLoop=false,activeAudio=null,activeMouthExample=-1,activeChatBubble=null,activeChatPinyin=null;
-function faceHtml(){return window.KP134.front('a',false)} 
+function faceHtml(){return window.KP134.front('a',false,null,true)} 
 function stagesFor(char){
  let py='';try{py=pinyinPro.pinyin(String(char).slice(0,1),{toneType:'none'}).toLowerCase().replace(/u:/g,'ü')}catch(e){}
  if(!/^[a-zü]+$/.test(py))return [['a','open']];
@@ -100,7 +100,7 @@ function stagesFor(char){
 /* DEMO 10.95 — keep pinyin stage letters complete even when adjacent stages use the same mouth shape (e.g. wo, shi). */
 const PHASE_WEIGHTS={m:[.16,.53,.31],sh:[.29,.34,.37],t:[.15,.62,.23]};
 function stageAtProgress(stages,progress){if(stages.length<2)return 0;const first=stages[0][0];const weights=PHASE_WEIGHTS[first]&&PHASE_WEIGHTS[first].length===stages.length?PHASE_WEIGHTS[first]:stages.map(()=>1/stages.length);const total=weights.reduce((a,b)=>a+b,0);let edge=0;for(let i=0;i<stages.length;i++){edge+=weights[i]/total;if(progress<edge)return i}return stages.length-1}
-function paintFace(box,stage){if(!box||!window.KP134)return;const svg=box.querySelector('.kp134-front');if(!svg)return;const k=stage[0],fallback={open:[68,34,0],round:[34,18,1],mid:[65,18,0],narrow:[74,12,0],closed:[57,0,0],apical:[62,11,0]};const poses=window.KP134.data[k]?.poses;let p=k==='ê'?[70,25,0]:poses?poses[0]:fallback[stage[1]]||fallback.mid;if(stage[1]==='nasal-final'&&box.dataset.kp134LastPose){try{p=JSON.parse(box.dataset.kp134LastPose);p=[p[0],Math.max(6,p[1]-2),p[2]]}catch(e){}}if(stage[1]!=='nasal-final')box.dataset.kp134LastPose=JSON.stringify(p);const g=window.KP134.geometry(p,k==='f');const nodes={opening:svg.querySelector('.kp134-opening'),upper:svg.querySelector('.kp134-upper'),lower:svg.querySelector('.kp134-lower'),teeth:svg.querySelector('.kp134-teeth'),highlight:svg.querySelector('path[stroke="#fff2e7"]')};Object.keys(nodes).forEach(x=>{if(nodes[x])nodes[x].setAttribute('d',g[x])});const teeth=svg.querySelector('.kp134-teeth');if(teeth)teeth.setAttribute('opacity',p[2]?.18:.9);const clip=svg.querySelector('clipPath path');if(clip)clip.setAttribute('d',g.opening)}
+function paintFace(box,stage){if(!box||!window.KP134)return;if(!box.querySelector('.kp134-front'))box.innerHTML=faceHtml();const svg=box.querySelector('.kp134-front');if(!svg)return;const k=stage[0];svg.dataset.kp134Key=k;svg.setAttribute('aria-label',k+' の唇の形を示す模式図');const fallback={open:[68,34,0],round:[34,18,1],mid:[65,18,0],narrow:[74,12,0],closed:[57,0,0],apical:[62,11,0]};const poses=window.KP134.data[k]?.poses;let p=k==='ê'?[70,25,0]:poses?poses[0]:fallback[stage[1]]||fallback.mid;if(stage[1]==='nasal-final'&&box.dataset.kp134LastPose){try{p=JSON.parse(box.dataset.kp134LastPose);p=[p[0],Math.max(6,p[1]-2),p[2]]}catch(e){}}if(stage[1]!=='nasal-final')box.dataset.kp134LastPose=JSON.stringify(p);const g=window.KP134.geometry(p,k==='f');const nodes={opening:svg.querySelector('.kp134-opening'),upper:svg.querySelector('.kp134-upper'),lower:svg.querySelector('.kp134-lower'),teeth:svg.querySelector('.kp134-teeth'),highlight:svg.querySelector('path[stroke="#fff2e7"]')};Object.keys(nodes).forEach(x=>{if(nodes[x])nodes[x].setAttribute('d',g[x])});const teeth=svg.querySelector('.kp134-teeth');if(teeth)teeth.setAttribute('opacity',p[1]<1?0:p[2]?.18:.9);const clip=svg.querySelector('clipPath path');if(clip)clip.setAttribute('d',g.opening)}
 function paintStages(box,steps,current,onClick){if(!box)return;box.replaceChildren();steps.forEach((step,i)=>{const b=document.createElement('button');b.type='button';b.textContent=step[0];b.className=i===current?'active':'';b.setAttribute('aria-label',step[0]+' の口の形');b.onclick=()=>onClick(i);box.appendChild(b)})}
 const TONGUE_POSITIONS={
  m:['M43 92 Q91 85 154 83 Q180 80 210 89 Q143 106 89 104 Z','上下の唇を閉じる。舌は力を抜く。'],
@@ -1410,7 +1410,7 @@ function bindReliableTap(button,handler){
  button.ontouchend=event=>handler(event);
  button.onpointerup=event=>handler(event);
 }
-function mouthMascotHtml(){return window.KP134.front('a',false)}
+function mouthMascotHtml(){return window.KP134.front('a',false,null,true)}
 function chatBubble(text,kind,options={}){
  const item=document.createElement('div');item.className='chat-bubble '+kind+(options.echo?' echo':'');
  if(options.echo){const label=document.createElement('span');label.className='chat-echo-label';label.textContent=options.lead?'🐼 小音が先に読む':'🐼 聞こえた言葉のお手本';item.appendChild(label)}
