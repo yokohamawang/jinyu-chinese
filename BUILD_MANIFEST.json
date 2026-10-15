@@ -1,85 +1,65 @@
 {
-  "version": "10.108.144",
-  "base": "10.108.143 FULL_ClearToneCards",
-  "update_compatible_bases": [
+  "version": "10.108.145",
+  "built_at": "2026-10-15T12:16:04+09:00",
+  "archive_root": "k145/",
+  "base": "10.108.144",
+  "cumulative_update_bases": [
     "10.108.142",
-    "10.108.143"
+    "10.108.143",
+    "10.108.144"
   ],
-  "archive_root": "k144/",
-  "built_at": "2026-10-15T08:05:08+09:00",
   "modified_website_files": [
     "index.html",
+    "css/92-articulation-motion-139.css",
+    "data/pronunciation-134.js",
+    "js/01-features.js",
     "js/24-pronunciation-studio-134.js",
-    "js/27-vowel-portrait-144.js",
-    "css/92-articulation-motion-139.css"
+    "js/26-articulation-motion-139.js",
+    "js/27-vowel-portrait-144.js"
   ],
-  "carried_previous_fix_files": [
+  "carried_website_files": [
     "css/91-pronunciation-ux-135.css"
   ],
+  "website_upload_count": 8,
   "update_package_files": [
     "index.html",
-    "js/24-pronunciation-studio-134.js",
-    "js/27-vowel-portrait-144.js",
-    "css/92-articulation-motion-139.css",
     "css/91-pronunciation-ux-135.css",
+    "css/92-articulation-motion-139.css",
+    "data/pronunciation-134.js",
+    "js/01-features.js",
+    "js/24-pronunciation-studio-134.js",
+    "js/26-articulation-motion-139.js",
+    "js/27-vowel-portrait-144.js",
     "VERSION.txt",
     "BUILD_MANIFEST.json",
-    "README_144.md"
+    "README_145.md",
+    "QA_REPORT_145.md"
   ],
-  "validation": {
-    "portrait_models": 24,
-    "geometry_samples_per_model": 121,
-    "geometry_samples_total": 2904,
-    "rendered_review_frames": 120,
-    "front_layout_samples": 35,
-    "viewports": [
-      [
-        320,
-        568
-      ],
-      [
-        375,
-        640
-      ],
-      [
-        393,
-        650
-      ],
-      [
-        430,
-        740
-      ],
-      [
-        768,
-        430
-      ]
-    ],
-    "target_checks": 186,
-    "side_checks": 1232,
-    "usability": {
-      "recording": true,
-      "ownVoiceReplay": true,
-      "quizEntry": true,
-      "fastSwitches": 12,
-      "reducedMotion": true,
-      "renderTiming": {
-        "max": 22,
-        "mean": 10.29166666666843,
-        "cache": 32
-      },
-      "errors": [],
-      "missing": []
-    },
-    "browser": "Chromium 153 / Playwright mobile emulation",
-    "physical_safari": false,
-    "external_expert_signoff": false,
-    "audio_and_image_assets_unchanged": true
+  "sha256": {
+    "index.html": "f102222caa7d9ba3723a36d3965e4c5af226a1ad879efe414cdbd71f51794c4a",
+    "css/91-pronunciation-ux-135.css": "d72be41525157e1afb2ba4abca4fad8269bc8e2772295851419e5e42be084825",
+    "css/92-articulation-motion-139.css": "2508370cfa66d9632712d325f43fb0ddd2a83d17ae28d67b45ce66fc380614d2",
+    "data/pronunciation-134.js": "b1d0572fb814c90f4c0cad97e798e7824e2634eb0dcc08fe2428b6d81106b7b3",
+    "js/01-features.js": "5a796ff21046a1c18b53643951d75c8c4cd47fe3aaf23ce7f171755880cc3125",
+    "js/24-pronunciation-studio-134.js": "b671741002bda75ea91ae0da91f63ff837dd0eb590a2f8f284ea1a325ef2379b",
+    "js/26-articulation-motion-139.js": "e60be6cf15da36aaad2c2cbe8dcdf72b81bc987caed4ed7aae4e5989aa1e532f",
+    "js/27-vowel-portrait-144.js": "a118ea24fab10ef934482694ba57f03dcc3b8a6e18cbbdd85f702ed5f174ab2a"
   },
-  "modified_file_sha256": {
-    "index.html": "87a9ab3969b3faa5ee2c7a75d6add2f2285b0491484c58cc2f94316bc21a355c",
-    "js/24-pronunciation-studio-134.js": "a9e8edcf981da4f1306288e7dd458f70ae4d08955f7725da8dfd41583f96e1ab",
-    "js/27-vowel-portrait-144.js": "b4ebbb19cf782277e4277361ab67fc8dc4a0e0e9d31e75e661eb0756e80b1d9d",
-    "css/92-articulation-motion-139.css": "d5fe5417b325989bae1713f778591882c6ba9294f9fc671c9a6bac18270bb2f7",
-    "css/91-pronunciation-ux-135.css": "d72be41525157e1afb2ba4abca4fad8269bc8e2772295851419e5e42be084825"
-  }
+  "validation": {
+    "tongue_frames": 5445,
+    "photo_mesh_frames": 2904,
+    "chromium_layout_rows": 675,
+    "webkit_layout_rows": 939,
+    "webkit_native_audio_completed": 45,
+    "target_checks": 186,
+    "side_interaction_checks": 1232,
+    "final_component_frames": 360,
+    "quiz_runs": 18,
+    "local_html_references": 119,
+    "physical_iphone_safari": false,
+    "external_services_tested": false,
+    "page_errors": [],
+    "missing_local_resources": []
+  },
+  "qa_report": "QA_REPORT_145.md"
 }

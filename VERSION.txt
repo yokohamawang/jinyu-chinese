@@ -1,4 +1,5 @@
-Koepanda 10.108.144
-Built 2026-10-15T08:05:08+09:00 (Asia/Tokyo)
-Base: 10.108.143 FULL_ClearToneCards
-Status: natural illustrated vowel portrait; browser QA passed
+Koepanda 10.108.145
+Built 2026-10-15T12:16:04+09:00 (Asia/Tokyo)
+Archive root: k145/
+Base: 10.108.144 FULL_NaturalVowelPortrait
+Cumulative update: compatible with 10.108.142, 143 and 144
