@@ -289,3 +289,35 @@ body.app-kids-mode .kp148-vowel-header#kp148VowelHeader .kids-vowel-drill-head{p
 .kp135-listen-slot[hidden]{display:none!important}
 #kidsCourse [id$="LetterGrid"]>button.is-sounding,#kidsCourse [id$="FreeChoice"]>button.is-sounding{box-shadow:0 0 0 3px rgba(71,146,111,.2),0 3px 0 rgba(40,93,69,.16)!important}
 #kidsCourse [id$="LetterGrid"]>button[aria-busy=true],#kidsCourse [id$="FreeChoice"]>button[aria-busy=true]{cursor:progress}
+
+/* 150: a small word illustration shares the existing focus heading. */
+#kidsCourse .is-roadmap-lesson-active .kp150-illustrated{display:flex!important;align-items:center!important;gap:8px!important;min-height:64px!important;height:64px!important;margin:0 0 7px!important}
+#kidsCourse .kp150-illustrated>[id$="FocusLetter"]{display:none!important}
+.kp150-mnemonic{display:block;flex:0 0 64px;width:64px;height:56px;border-radius:14px;background:#fffdf4;box-shadow:inset 0 0 0 1px #e7e8d7}
+.kp150-mnemonic svg{display:block;width:100%;height:100%;overflow:visible}
+#kidsCourse .kp150-illustrated>div{flex:1;min-width:0}
+#kidsCourse .kp150-illustrated [id$="FocusGuide"],#kidsCourse .kp150-illustrated #initialsFocusSyllable{font-size:14px!important;line-height:1.4!important;color:#496d5b!important;font-weight:600}
+#kidsCourse .kp150-illustrated .kp150-word{display:block;line-height:1.4;font-size:14px;color:#526759;font-weight:500;margin-top:3px;overflow-wrap:anywhere}
+#kidsCourse .initials-focus-copy.kp150-illustrated{display:grid!important;grid-template-columns:64px minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:8px!important;row-gap:0!important}
+.initials-focus-copy.kp150-illustrated .kp150-mnemonic{grid-row:1/3;grid-column:1}
+.initials-focus-copy.kp150-illustrated #initialsFocusSyllable{align-self:end;grid-column:2}
+.initials-focus-copy.kp150-illustrated .kp150-word{align-self:start;grid-column:2}
+@media(max-width:360px){.kp150-mnemonic{flex-basis:52px;width:52px;height:50px}#kidsCourse .initials-focus-copy.kp150-illustrated{grid-template-columns:52px minmax(0,1fr)}#kidsCourse .kp150-illustrated .kp150-word{font-size:13px}}
+
+/* Keep a complete vector diagram behind portraits during a cold or failed image load. */
+.kp150-emergency{position:absolute;inset:0;display:grid;place-items:center;background:#fcf0e4}
+.kp150-emergency>svg{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important}
+
+@media(max-height:500px) and (min-width:601px){
+ #kidsCourse .is-roadmap-lesson-active .kp150-illustrated{min-height:54px!important;height:54px!important}
+ .kp150-mnemonic{height:48px}
+ .kp134-studio .kp144-front{width:min(100%,124px)!important;max-height:114px!important}
+ .kp134-studio .kp141-position{width:min(100%,150px)!important;max-height:116px!important}
+ .kp134-studio .kp134-position-view figcaption{height:44px!important;min-height:44px!important;font-size:13px!important}
+}
+#kidsCourse .kp150-illustrated .kp150-word{line-height:1.35!important;margin-top:2px!important}
+
+/* 151: affricates expose closure, friction, aspiration and voicing independently. */
+.kp141-observe-steps:has(>[data-kp141-step="3"]){grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.kp141-observe-steps:has(>[data-kp141-step="3"])>button{font-size:13px!important;padding:5px 2px!important}
+@media(max-width:360px){.kp141-observe-steps:has(>[data-kp141-step="3"])>button{font-size:12px!important}}
