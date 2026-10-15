@@ -93,7 +93,7 @@
     }
     lessonMarker=null;
     var lessonBack=document.getElementById('pinyinLessonBack');
-    if(lessonBack)lessonBack.remove();
+    if(lessonBack)lessonBack.remove();var header=document.querySelector('.kp148-lesson-header');if(header)header.remove();
     if(typeof window.koepandaResetVowelGroup==='function')window.koepandaResetVowelGroup();
     showRoadmapChrome(true);
     var y=lessonState.returnY;
@@ -137,8 +137,8 @@
     var back=document.createElement('button');
     back.type='button'; back.id='pinyinLessonBack'; back.className='pinyin-lesson-back';
     back.textContent='← 戻る　レッスン一覧'; back.addEventListener('click',closeLesson);
-    target.parentNode.insertBefore(back,target);
-    requestAnimationFrame(function(){ back.scrollIntoView({block:'start',behavior:'auto'}); });
+    var previousHeader=document.querySelector('.kp148-lesson-header');if(previousHeader)previousHeader.remove();var header=document.createElement('div');header.className='kp148-lesson-header';header.appendChild(back);var lessonName=document.createElement('span');lessonName.className='kp148-lesson-name';lessonName.textContent=unit.title;header.appendChild(lessonName);target.parentNode.insertBefore(header,target);
+    requestAnimationFrame(function(){var grid=target.querySelector('[id$="LetterGrid"]');if(grid){var y=grid.getBoundingClientRect().top+window.scrollY-58;window.scrollTo({top:Math.max(0,y),left:0,behavior:'auto'})}else back.scrollIntoView({block:'start',behavior:'auto'})});
   }
 
   function unitLocked(unit,stageStatus){

@@ -1,4 +1,4 @@
-/* Teaching articulation 10.108.147: source-reviewed qualitative schematics.
+/* Teaching articulation 10.108.148: source-reviewed qualitative schematics.
  * These draft drawing coordinates are NOT measurements from an articulatory
  * recording. Source checks support movement type and contact, not these values.
  * TUFS 1.4/1.5/1.6/1.7; USTS language training IV; SXFTC q training.
@@ -113,8 +113,13 @@
    }else if(m==='labiodental'){p=shapes.schwa;dental=1;marker=[48,80];contact=1;oral=1}
    else if(/^alveolar/.test(m)||m==='lateral'){
     marker=[64,palate(64)];
-    if(key==='n'){p=shapes.n;contact=1;nasal=1;oral=0}
-    else if(key==='l'){p=shapes.n;contact=1;lateral=1;oral=0}
+    if(key==='n'||key==='l'){
+     // Small anterior approach, then sustained contact. Root stays still.
+     // Nasal/lateral closure is shown separately in the labelled top inset.
+     var approach=smooth(f/.22),ready=shapes.n.map(function(v,i){return [v[0],v[1]+(i<3?6:i===3?2:0)]});
+     p=mix(ready,shapes.n,approach);contact=approach>.999999?1:0;oral=0;
+     if(key==='n')nasal=approach;else lateral=approach;
+    }
     else{p=mix(shapes.n,shapes.nGap,release);contact=1-release;oral=release}
    }else if(/^velar/.test(m)){
     var closed=m==='velar-stop';p=closed?mix(shapes.ngmid,shapes.velarGap,release):shapes.velarFricative;marker=[154,palate(154)];contact=closed?1-release:0;oral=closed?release:1;
@@ -133,7 +138,7 @@
   // Flow begins and ends smoothly; a stop has a brief release, while an
   // aspirated partner keeps its breath visible for longer. Tongue travel is
   // the same for the pair. These times describe a teaching sequence only.
-  var flowing=smooth(f/.12)*(1-smooth((f-.9)/.1));
+  var flowing=smooth(f/.12)*(1-smooth((f-.9)/.1));if(key==='n'||key==='l')flowing*=smooth((f-.22)/.10);
   if(initial&&/stop/.test(m)&&key!=='m')oral*=1-smooth((f-(d.aspirated?.65:.43))/(d.aspirated?.2:.15));
   else if(initial&&/affricate/.test(m))oral*=1-smooth((f-.78)/.2);
   
@@ -161,8 +166,9 @@
  function label(key,s){
   if(labels[key])return labels[key];
   if(nasalFinal(key))return /ng$/.test(key)?(s.stage===0?'母音から・舌先は上げない':s.stage===1?'舌の後部を、軟口蓋へ':'奥で収める・g は足さない'):(s.stage===0?'母音の構えから':s.stage===1?'舌先・前縁を、上の前歯の後ろへ':'前で収める・母音を足さない');
-  if(key==='l')return s.stage<2?'舌先は接触・息は舌の両側へ':'舌先をつけたまま保つ';
-  if(key==='m'||key==='n')return s.stage<2?(key==='m'?'唇を閉じ、鼻に声を通す':'舌の前部をつけ、鼻に声を通す'):'接触を保ち、鼻に響かせる';
+  if(key==='l')return s.stage===0?'舌先を、上の前歯の後ろへ':s.stage===1?'中央は接触・息は舌の両側へ':'舌先を保つ・鼻へは通さない';
+  if(key==='n')return s.stage===0?'舌先・前縁を、上の前歯の後ろへ':s.stage===1?'口の通り道を閉じ、鼻へ通す':'接触を保ち、鼻に響かせる';
+  if(key==='m')return s.stage<2?'唇を閉じ、鼻に声を通す':'接触を保ち、鼻に響かせる';
   if(key==='d'||key==='t')return s.stage===0?'舌の前部を、上の前歯の後ろへ':s.stage===1?(key==='t'?'前部を離す・強い息':'前部を離す・短い息'):'小さく離して保つ';
   if(key==='g'||key==='k')return s.stage===0?'舌の後部を、軟口蓋へつける':s.stage===1?(key==='k'?'後部を離す・強い息':'後部を離す・短い息'):'小さく離して保つ';
   if(key==='h')return s.stage<2?'舌の後部のすき間から、息を続ける':'奥のすき間を保つ';
@@ -173,7 +179,7 @@
   if(/^(zh|ch|sh|r)$/.test(key))return key==='r'?'舌先を軽く上げ、声を響かせる':s.stage<2?(key==='sh'?'舌先を軽く上げ、すき間を保つ':'舌先を軽く上げ、閉鎖→すき間'):'大きく巻かず、すき間を保つ';
   return data[key]?data[key].phase[s.stage]:'舌の構え';
  }
- function steps(key){var d=data[key];if(!d)return [];if(d.kind!=='initial')return d.phase.slice();if(key==='m'||key==='n')return ['閉じる','鼻に響く','形を保つ'];if(key==='l')return ['つける','両側へ','形を保つ'];if(/stop|affricate/.test(d.mechanism))return ['閉じる',d.aspirated?'強い息':'短く開く','形を保つ'];return ['構える','息を通す','形を保つ']}
+ function steps(key){var d=data[key];if(!d)return [];if(d.kind!=='initial')return d.phase.slice();if(key==='n')return ['近づける','鼻に響く','形を保つ'];if(key==='m')return ['閉じる','鼻に響く','形を保つ'];if(key==='l')return ['近づける','両側へ','形を保つ'];if(/stop|affricate/.test(d.mechanism))return ['閉じる',d.aspirated?'強い息':'短く開く','形を保つ'];return ['構える','息を通す','形を保つ']}
  function stepFrame(key,index){return (/^(ai|ei|ao|ou)$/.test(key)?[0,.625,.98]:/^(ie|üe)$/.test(key)?[0,.225,.92]:nasalFinal(key)?[0,.6,.92]:[0,.48,.92])[index]}
  function referenceFrame(key){var d=data[key]||{};return d.kind==='initial'?(/stop|affricate/.test(d.mechanism)?0:.36):nasalFinal(key)?.9:.6}
  function hasMotion(key){return !!(data[key]&&key!=='r'&&key!=='er'&&(data[key].kind==='initial'||nasalFinal(key)||components[key]))}
@@ -185,6 +191,12 @@
  }
  function oralPath(s){var p=s.tongue,bendX=Math.min(54.6,(54+p[0][0])/2),entry=ceiling(170,s)+(surface(p,170)-ceiling(170,s))*.44,out='M188 112 Q193 94 184 79 Q178 '+entry.toFixed(1)+' 170 '+entry.toFixed(1);for(var x=167;x>=p[0][0];x-=3){var y=ceiling(x,s)+(surface(p,x)-ceiling(x,s))*.44;out+=' L'+x.toFixed(1)+' '+y.toFixed(1)}return out+' L'+p[0][0]+' '+(p[0][0]<=54?Math.max(82,Math.min(84,surface(p,54)-1)):ceiling(p[0][0],s)+(surface(p,p[0][0])-ceiling(p[0][0],s))*.44).toFixed(1)+(p[0][0]<=54?' Q47 '+outletY(s)+' 37 '+outletY(s):' L'+bendX+' 68 L'+bendX+' 81 Q'+bendX+' 84 53 84 Q46 '+outletY(s)+' 37 '+outletY(s))}
  function route(s,key){if(s.stage===2&&s.oral===0&&s.nasal===0&&s.lateral===0)return '音を収める';if(s.stage===0&&s.oral===0&&s.nasal===0&&s.lateral===0)return '構えを確かめる';return key==='l'&&s.lateral>.1?'舌の両側へ':s.nasal>.1?'鼻へ通す':s.oral>.1?'口から息を出す':'いったん止める'}
+ function coronalTongue(key,s){var n=key==='n',closed=s.contact>.95;return n?(closed?'M218 168 L218 145 Q218 127 245 128 Q272 127 272 145 L272 168Z':'M221 168 L221 146 Q224 136 245 136 Q266 136 269 146 L269 168Z'):(closed?'M235 170 L234 140 Q235 128 245 128 Q255 128 256 140 L255 170Z':'M235 170 L234 145 Q235 136 245 136 Q255 136 256 145 L255 170Z');}
+ function coronalInset(key,id,s){
+  if(key!=='n'&&key!=='l')return '';
+  var n=key==='n',flow=n?0:s.lateral;
+  return '<g class="kp148-coronal-inset" aria-label="'+(n?'上から：口の前と両側を閉じる':'上から：中央は接触、両側は開く')+'"><rect x="203" y="101" width="85" height="85" rx="10" fill="#fffdf7" stroke="#d7dfd4"/><text x="245" y="115" text-anchor="middle" fill="#65786c" font-size="12">上から</text><path d="M216 166 C207 144 219 127 245 127 C271 127 283 144 274 166" fill="none" stroke="#c8b29d" stroke-width="3"/><path class="kp148-inset-tongue" d="'+coronalTongue(key,s)+'" fill="#dfa296" stroke="#b67e77" stroke-width="1"/><path class="kp148-inset-contact" d="'+(n?'M218 151 Q215 128 245 128 Q275 128 272 151':'M240 128 H250')+'" fill="none" stroke="#3b8261" stroke-width="2.5" opacity="'+s.contact+'"/><path class="kp139-lateral" d="M225 167 Q216 148 228 136 M265 167 Q274 148 262 136" fill="none" stroke="#347e77" stroke-width="1.8" marker-end="url(#'+id+'-arrow)" opacity="'+flow+'"/><text x="245" y="179" text-anchor="middle" fill="#416c58" font-size="11">'+(n?'口を閉じ、鼻へ':'中央は接触・両側へ')+'</text></g>';
+ }
  function mechanism(key,id){
   id=(id||'kp-diagram-'+(++serial)).replace(/[^a-zA-Z0-9_-]/g,'');var s=model(key,referenceFrame(key)),lp=lipPaths(s),td=tonguePath(s.tongue,s.jawAngle),contact=s.marker||[64,52];
   return '<svg class="kp134-position kp139-position kp141-position" data-kp139-key="'+esc(key)+'" viewBox="0 0 300 232" role="img" aria-label="'+esc(key)+' の歯・舌・息。左が口の前、右が奥の側面模式図"><defs>'
@@ -218,13 +230,13 @@
    +'<path class="kp141-oral-inner" d="'+oralPath(s)+'" fill="none" stroke="#438d80" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>'
    +'<path class="kp139-oral" d="'+oralArrow(s)+'" fill="none" stroke="#347e77" stroke-width="1.8" stroke-linecap="round" marker-end="url(#'+id+'-arrow)" opacity="'+(s.oral*.8)+'"/>'
    +'<path class="kp139-nasal" d="'+nasalPath()+'" fill="none" stroke="#347e77" stroke-width="1.8" stroke-linecap="round" marker-end="url(#'+id+'-arrow)" opacity="'+(s.nasal*.85)+'"/></g>'
-   +(key==='l'?'<g class="kp139-lateral" opacity="'+s.lateral+'"><rect x="203" y="103" width="77" height="70" rx="10" fill="#fffdf7" stroke="#d7dfd4"/><text x="241" y="117" text-anchor="middle" fill="#65786c" font-size="14">上から</text><path d="M214 156 Q207 125 241 125 Q275 125 268 156" fill="none" stroke="#c8b29d" stroke-width="3"/><path d="M232 165 L232 138 Q241 129 250 138 L250 165Z" fill="#d8948b" stroke="#b67e77" stroke-width="1"/><path d="M223 161 Q215 145 224 136 M259 161 Q267 145 258 136" fill="none" stroke="#347e77" stroke-width="1.5" marker-end="url(#'+id+'-arrow)"/></g>':'')
-   +'<text x="116" y="43" text-anchor="middle" font-size="14" fill="#727d6e">硬口蓋</text><path d="M129 47 L140 63" fill="none" stroke="#b5c0b0" stroke-width=".75"/><text x="251" y="43" text-anchor="end" font-size="14" fill="#8f7467">軟口蓋</text><path class="kp-soft-palate-leader" d="M226 47 L212 78" fill="none" stroke="#c9ada0" stroke-width=".75"/>'
+   +coronalInset(key,id,s)
+   +'<text x="116" y="43" text-anchor="middle" font-size="14" fill="#727d6e">硬口蓋</text><path d="M129 47 L140 63" fill="none" stroke="#b5c0b0" stroke-width=".75"/><text x="251" y="43" text-anchor="end" font-size="14" fill="#8f7467">軟口蓋</text><path class="kp-soft-palate-leader" d="M226 47 L'+(198-22*s.velum)+' '+(43+33*s.velum)+'" fill="none" stroke="#c9ada0" stroke-width=".75"/>'
    +'<text class="kp139-label" x="17" y="202" font-size="14" font-weight="500" fill="#416c58">'+esc(route(s,key))+'</text>'
    +'<circle cx="20" cy="220" r="3.4" fill="#d8948b"/><text x="29" y="224" font-size="16" fill="#65786c">舌</text><circle cx="65" cy="220" r="3.4" fill="#3b8261"/><text x="74" y="224" font-size="16" fill="#65786c">接触</text><path d="M113 220 H127" fill="none" stroke="#347e77" stroke-width="1.4" marker-end="url(#'+id+'-arrow)"/><text x="136" y="224" font-size="16" fill="#65786c">息</text>'
    +'<g class="kp-voicing" transform="translate(205 211)"><path d="M1 5 Q4 0 7 5 T13 5 T19 5" fill="none" stroke="#aa8243" stroke-width="1.6" opacity="'+(s.voice>.05?1:.18)+'"/><text class="kp-voicing-label" x="26" y="11" font-size="16" fill="#766b51">'+(s.voiced?'声あり':'声なし')+'</text></g></svg>';
  }
- function seek(svg,f,flow,opening){var key=svg.dataset.kp139Key,s=model(key,f);if(typeof opening==='number'&&/^(a|o|e|i|u|ü)$/.test(key)){opening=clamp(opening);s.aperture*=opening;s.jawAngle=(22*(1-clamp(s.aperture/20)))/136;s.tongue=mix(anteriorWithJaw(shapes.schwa,s.jawAngle),s.tongue,opening)}var lp=lipPaths(s),td=tonguePath(s.tongue,s.jawAngle);svg.dataset.motionPhase=String(s.stage);svg.querySelector('.kp145-lower-incisors').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-jaw-bone').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-tongue-shading').setAttribute('transform',jawTransform(s.jawAngle));var band=svg.querySelector('.kp-contact-band');band.setAttribute('d',contactBand(s));band.setAttribute('opacity',String(s.contact*.85));svg.querySelector('.kp139-tongue').setAttribute('d',td);svg.querySelector('.kp141-tongue-clip').setAttribute('d',td);svg.querySelector('.kp140-tongue-edge').setAttribute('d',topPath(s.tongue));svg.querySelector('.kp139-lip-upper').setAttribute('d',lp[0]);svg.querySelector('.kp139-lip-lower').setAttribute('d',lp[1]);var oral=svg.querySelector('.kp139-oral'),allowed=flow!==false;oral.setAttribute('opacity',String(allowed?s.oral*.85:0));oral.setAttribute('stroke-width',s.aspirated?'2.9':'1.8');oral.setAttribute('d',oralArrow(s));var inner=svg.querySelector('.kp141-oral-inner');inner.setAttribute('d',oralPath(s));inner.setAttribute('opacity',String(allowed&&s.oral>.05&&key!=='f'&&key!=='l'?s.oral*.45:0));svg.querySelector('.kp139-nasal').setAttribute('opacity',String(allowed?s.nasal*.85:0));svg.querySelector('.kp141-nasal-wash').setAttribute('opacity',String(s.velum*.25));svg.querySelector('.kp139-velum').setAttribute('d',softPalateBand(s));var leader=svg.querySelector('.kp-soft-palate-leader');if(leader)leader.setAttribute('d','M226 47 L212 '+(78+9.45*s.velum));var marker=svg.querySelector('.kp139-contact');if(s.marker){marker.setAttribute('cx',s.marker[0]);marker.setAttribute('cy',s.marker[1])}marker.setAttribute('opacity',String(s.marker?s.contact*.85:0));svg.querySelector('.kp139-label').textContent=route(s,key);var voice=svg.querySelector('.kp-voicing');if(voice){voice.querySelector('path').setAttribute('opacity',s.voice>.05?'1':'.18');voice.querySelector('text').textContent=s.voiced?'声あり':'声なし'}var side=svg.querySelector('.kp139-lateral');if(side)side.setAttribute('opacity',String(allowed?s.lateral:0));}
+ function seek(svg,f,flow,opening){var key=svg.dataset.kp139Key,s=model(key,f);if(typeof opening==='number'&&/^(a|o|e|i|u|ü)$/.test(key)){opening=clamp(opening);s.aperture*=opening;s.jawAngle=(22*(1-clamp(s.aperture/20)))/136;s.tongue=mix(anteriorWithJaw(shapes.schwa,s.jawAngle),s.tongue,opening)}var lp=lipPaths(s),td=tonguePath(s.tongue,s.jawAngle);svg.dataset.motionPhase=String(s.stage);svg.querySelector('.kp145-lower-incisors').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-jaw-bone').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-tongue-shading').setAttribute('transform',jawTransform(s.jawAngle));var band=svg.querySelector('.kp-contact-band');band.setAttribute('d',contactBand(s));band.setAttribute('opacity',String(s.contact*.85));svg.querySelector('.kp139-tongue').setAttribute('d',td);svg.querySelector('.kp141-tongue-clip').setAttribute('d',td);svg.querySelector('.kp140-tongue-edge').setAttribute('d',topPath(s.tongue));svg.querySelector('.kp139-lip-upper').setAttribute('d',lp[0]);svg.querySelector('.kp139-lip-lower').setAttribute('d',lp[1]);var oral=svg.querySelector('.kp139-oral'),allowed=flow!==false;oral.setAttribute('opacity',String(allowed?s.oral*.85:0));oral.setAttribute('stroke-width',s.aspirated?'2.9':'1.8');oral.setAttribute('d',oralArrow(s));var inner=svg.querySelector('.kp141-oral-inner');inner.setAttribute('d',oralPath(s));inner.setAttribute('opacity',String(allowed&&s.oral>.05&&key!=='f'&&key!=='l'?s.oral*.45:0));svg.querySelector('.kp139-nasal').setAttribute('opacity',String(allowed?s.nasal*.85:0));svg.querySelector('.kp141-nasal-wash').setAttribute('opacity',String(s.velum*.25));svg.querySelector('.kp139-velum').setAttribute('d',softPalateBand(s));var leader=svg.querySelector('.kp-soft-palate-leader');if(leader)leader.setAttribute('d','M226 47 L'+(198-22*s.velum)+' '+(43+33*s.velum));var marker=svg.querySelector('.kp139-contact');if(s.marker){marker.setAttribute('cx',s.marker[0]);marker.setAttribute('cy',s.marker[1])}marker.setAttribute('opacity',String(s.marker?s.contact*.85:0));svg.querySelector('.kp139-label').textContent=route(s,key);var voice=svg.querySelector('.kp-voicing');if(voice){voice.querySelector('path').setAttribute('opacity',s.voice>.05?'1':'.18');voice.querySelector('text').textContent=s.voiced?'声あり':'声なし'}var side=svg.querySelector('.kp139-lateral');if(side)side.setAttribute('opacity',String(allowed?s.lateral:0));var inset=svg.querySelector('.kp148-coronal-inset');if(inset){inset.querySelector('.kp148-inset-tongue').setAttribute('d',coronalTongue(key,s));inset.querySelector('.kp148-inset-contact').setAttribute('opacity',String(s.contact))}}
  function audioFraction(a){var path=new URL(a.currentSrc||a.src,document.baseURI).pathname,idx=path.indexOf('/assets/'),key=idx<0?'':path.slice(idx+1),w=window.KP139_AUDIO_WINDOWS&&window.KP139_AUDIO_WINDOWS[key];return w?clamp((a.currentTime-w[0])/(w[1]-w[0])):a.duration>0?clamp(a.currentTime/a.duration):0}
  window.KP139={referenceFrame:referenceFrame,audioFraction:audioFraction,mechanism:mechanism,seek:seek,model:model,hasMotion:hasMotion,palate:palate,ceiling:ceiling,surface:surface,motionFraction:motionFraction,spline:curve,jawPoint:jawPoint,label:label,steps:steps,stepFrame:stepFrame};
 })();
