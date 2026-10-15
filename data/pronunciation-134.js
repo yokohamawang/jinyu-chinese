@@ -498,7 +498,7 @@ window.KP134_DATA={
     "syllable": "ne1",
     "ipa": "[n]",
     "title": "前で閉じ、鼻に響かせる",
-    "tip": "舌先・前縁を上の前歯の後ろの歯ぐきにつけ、鼻から声を通します。",
+    "tip": "舌先・前縁を上の前歯の後ろにつけ、口の通り道を閉じます。鼻から声を通します。",
     "check": "l と比べ、鼻の響きがあるか聞く。",
     "avoid": "日本語の「ン」をどの位置でも代用しない。",
     "poses": [
@@ -525,6 +525,7 @@ window.KP134_DATA={
       "形を保つ"
     ],
     "sources": [
+      "https://putonghua.szu.edu.cn/info/1014/2856.htm",
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
     ],
@@ -540,7 +541,7 @@ window.KP134_DATA={
     "syllable": "le1",
     "ipa": "[l]",
     "title": "舌先を保ち、両側へ",
-    "tip": "舌先を上の前歯の後ろの歯ぐきに軽くつけ、舌の両側から声を通します。",
+    "tip": "舌先を上の前歯の後ろに軽くつけ、中央は接触したまま、舌の両側から声を通します。鼻へは通しません。",
     "check": "子音部分を少し保ち、日本語のラの弾きと比べる。",
     "avoid": "舌先を一瞬はじいて終えない。",
     "poses": [
@@ -567,6 +568,7 @@ window.KP134_DATA={
       "形を保つ"
     ],
     "sources": [
+      "https://putonghua.szu.edu.cn/info/1014/2856.htm",
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
     ],
