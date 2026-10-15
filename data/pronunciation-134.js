@@ -1,4 +1,4 @@
-/* 45 instructional reference models. Unreleased phonetic and interaction review. */
+/* 149: consonant-to-carrier-vowel teaching sequences; qualitative timing. */
 window.KP134_DATA={
   "a": {
     "key": "a",
@@ -261,16 +261,16 @@ window.KP134_DATA={
         0
       ],
       [
-        58,
-        7,
-        0
+        38,
+        25,
+        1
       ]
     ],
     "mechanism": "bilabial-stop",
     "phase": [
       "構える",
-      "離す・短い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -279,8 +279,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/bo1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "bō"
+    "helperNote": "お手本は bō。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "bō",
+    "carrier": "o"
   },
   "p": {
     "key": "p",
@@ -303,16 +304,16 @@ window.KP134_DATA={
         0
       ],
       [
-        58,
-        7,
-        0
+        38,
+        25,
+        1
       ]
     ],
     "mechanism": "bilabial-stop",
     "phase": [
       "構える",
-      "離す・強い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -321,16 +322,17 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/po1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": true,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "pō"
+    "helperNote": "お手本は pō。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "pō",
+    "carrier": "o"
   },
   "m": {
     "key": "m",
     "kind": "initial",
     "syllable": "mo1",
     "ipa": "[m]",
-    "title": "両唇を閉じて、鼻へ",
-    "tip": "声母 m の間は唇を閉じ、鼻に声を響かせます。",
+    "title": "閉じて鼻に響かせ、o へ開く",
+    "tip": "両唇を閉じて鼻に響かせてから、唇を開き、丸い o へつなぎます。",
     "check": "鼻に軽く触れ、響きを感じてから母音 o へ。",
     "avoid": "呼読音 mō の o まで唇を閉じ続けない。",
     "poses": [
@@ -345,16 +347,16 @@ window.KP134_DATA={
         0
       ],
       [
-        57,
-        0,
-        0
+        38,
+        25,
+        1
       ]
     ],
     "mechanism": "bilabial-nasal",
     "phase": [
       "構える",
-      "鼻に声",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -363,16 +365,17 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/mo1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "mō"
+    "helperNote": "お手本は mō。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "mō",
+    "carrier": "o"
   },
   "f": {
     "key": "f",
     "kind": "initial",
     "syllable": "fo1",
     "ipa": "[f]",
-    "title": "上の前歯を、下唇の内側に軽く当てる",
-    "tip": "上の前歯を下唇の内側へ軽く当て、細い息を続けます。",
+    "title": "歯と下唇から、丸い o へ",
+    "tip": "上の前歯を下唇の内側に軽く当てて息を通し、下唇を離して o へつなぎます。",
     "check": "鏡で上の歯と下唇の軽い接触を確かめる。",
     "avoid": "日本語のフのように、両唇だけで息を出さない。",
     "poses": [
@@ -387,16 +390,16 @@ window.KP134_DATA={
         0
       ],
       [
-        61,
-        7,
-        0
+        38,
+        25,
+        1
       ]
     ],
     "mechanism": "labiodental",
     "phase": [
       "構える",
-      "息を続ける",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -405,8 +408,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/fo1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "fō"
+    "helperNote": "お手本は fō。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "fō",
+    "carrier": "o"
   },
   "d": {
     "key": "d",
@@ -430,15 +434,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "alveolar-stop",
     "phase": [
       "構える",
-      "離す・短い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -447,8 +451,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/de1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "dē"
+    "helperNote": "お手本は dē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "dē",
+    "carrier": "e"
   },
   "t": {
     "key": "t",
@@ -472,15 +477,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "alveolar-stop",
     "phase": [
       "構える",
-      "離す・強い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -489,8 +494,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/te1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": true,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "tē"
+    "helperNote": "お手本は tē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "tē",
+    "carrier": "e"
   },
   "n": {
     "key": "n",
@@ -514,15 +520,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "alveolar-nasal",
     "phase": [
       "構える",
-      "鼻に声",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://putonghua.szu.edu.cn/info/1014/2856.htm",
@@ -532,8 +538,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/ne1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "nē"
+    "helperNote": "お手本は nē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "nē",
+    "carrier": "e"
   },
   "l": {
     "key": "l",
@@ -557,15 +564,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "lateral",
     "phase": [
       "構える",
-      "声を通す",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://putonghua.szu.edu.cn/info/1014/2856.htm",
@@ -575,8 +582,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/le1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "lē"
+    "helperNote": "お手本は lē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "lē",
+    "carrier": "e"
   },
   "g": {
     "key": "g",
@@ -600,15 +608,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "velar-stop",
     "phase": [
       "構える",
-      "離す・短い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -617,8 +625,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/ge1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "gē"
+    "helperNote": "お手本は gē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "gē",
+    "carrier": "e"
   },
   "k": {
     "key": "k",
@@ -642,15 +651,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "velar-stop",
     "phase": [
       "構える",
-      "離す・強い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -659,8 +668,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/ke1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": true,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "kē"
+    "helperNote": "お手本は kē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "kē",
+    "carrier": "e"
   },
   "h": {
     "key": "h",
@@ -684,15 +694,15 @@ window.KP134_DATA={
       ],
       [
         66,
-        10,
+        19,
         0
       ]
     ],
     "mechanism": "velar-fricative",
     "phase": [
       "構える",
-      "息を続ける",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -701,8 +711,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/he1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "hē"
+    "helperNote": "お手本は hē。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "hē",
+    "carrier": "e"
   },
   "j": {
     "key": "j",
@@ -725,16 +736,16 @@ window.KP134_DATA={
         0
       ],
       [
-        74,
-        7,
+        76,
+        12,
         0
       ]
     ],
     "mechanism": "palatal-affricate",
     "phase": [
       "構える",
-      "離す・短い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -744,8 +755,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/ji1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "jī"
+    "helperNote": "お手本は jī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "jī",
+    "carrier": "i"
   },
   "q": {
     "key": "q",
@@ -768,16 +780,16 @@ window.KP134_DATA={
         0
       ],
       [
-        74,
-        7,
+        76,
+        12,
         0
       ]
     ],
     "mechanism": "palatal-affricate",
     "phase": [
       "構える",
-      "離す・強い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -787,8 +799,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/qi1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": true,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "qī"
+    "helperNote": "お手本は qī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "qī",
+    "carrier": "i"
   },
   "x": {
     "key": "x",
@@ -811,16 +824,16 @@ window.KP134_DATA={
         0
       ],
       [
-        74,
-        7,
+        76,
+        12,
         0
       ]
     ],
     "mechanism": "palatal-fricative",
     "phase": [
       "構える",
-      "息を続ける",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -830,8 +843,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/xi1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "xī"
+    "helperNote": "お手本は xī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "xī",
+    "carrier": "i"
   },
   "zh": {
     "key": "zh",
@@ -862,8 +876,8 @@ window.KP134_DATA={
     "mechanism": "retroflex-affricate",
     "phase": [
       "構える",
-      "離す・短い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -875,8 +889,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/zhi1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "zhī"
+    "helperNote": "お手本は zhī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "zhī",
+    "carrier": "apical"
   },
   "ch": {
     "key": "ch",
@@ -907,8 +922,8 @@ window.KP134_DATA={
     "mechanism": "retroflex-affricate",
     "phase": [
       "構える",
-      "離す・強い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -920,8 +935,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/chi1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": true,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "chī"
+    "helperNote": "お手本は chī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "chī",
+    "carrier": "apical"
   },
   "sh": {
     "key": "sh",
@@ -952,8 +968,8 @@ window.KP134_DATA={
     "mechanism": "retroflex-fricative",
     "phase": [
       "構える",
-      "息を続ける",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -965,8 +981,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/shi1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "shī"
+    "helperNote": "お手本は shī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "shī",
+    "carrier": "apical"
   },
   "r": {
     "key": "r",
@@ -997,8 +1014,8 @@ window.KP134_DATA={
     "mechanism": "retroflex-voiced",
     "phase": [
       "構える",
-      "声を通す",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -1010,8 +1027,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/ri1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "rī"
+    "helperNote": "お手本は rī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "rī",
+    "carrier": "apical"
   },
   "z": {
     "key": "z",
@@ -1042,8 +1060,8 @@ window.KP134_DATA={
     "mechanism": "dental-affricate",
     "phase": [
       "構える",
-      "離す・短い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -1054,8 +1072,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/zi1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "zī"
+    "helperNote": "お手本は zī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "zī",
+    "carrier": "apical"
   },
   "c": {
     "key": "c",
@@ -1086,8 +1105,8 @@ window.KP134_DATA={
     "mechanism": "dental-affricate",
     "phase": [
       "構える",
-      "離す・強い息",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -1098,8 +1117,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/ci1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": true,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "cī"
+    "helperNote": "お手本は cī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "cī",
+    "carrier": "apical"
   },
   "s": {
     "key": "s",
@@ -1130,8 +1150,8 @@ window.KP134_DATA={
     "mechanism": "dental-fricative",
     "phase": [
       "構える",
-      "息を続ける",
-      "形を保つ"
+      "声母を出す",
+      "母音へつなぐ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -1142,8 +1162,9 @@ window.KP134_DATA={
     "audio": "./assets/audio/course-134/si1.wav?v=10.108.134",
     "status": "reference-model",
     "aspirated": false,
-    "helperNote": "声母を聞きやすくする呼読音。後ろの母音は練習用です。",
-    "roman": "sī"
+    "helperNote": "お手本は sī。声母から後ろの母音へ、一息でつなぎます。図は動きの順序を示す模式図です。",
+    "roman": "sī",
+    "carrier": "apical"
   },
   "ai": {
     "key": "ai",
