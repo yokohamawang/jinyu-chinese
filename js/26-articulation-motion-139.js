@@ -1,4 +1,4 @@
-/* Teaching articulation 10.108.146: source-reviewed qualitative schematics.
+/* Teaching articulation 10.108.147: source-reviewed qualitative schematics.
  * These draft drawing coordinates are NOT measurements from an articulatory
  * recording. Source checks support movement type and contact, not these values.
  * TUFS 1.4/1.5/1.6/1.7; USTS language training IV; SXFTC q training.
@@ -54,15 +54,15 @@
   // Dental initials meet the BACK of the upper incisors, anterior to d/t/n/l.
   dental:shape([8,20,27,39,45,51,57,64,71],[54,60,64,96,116,136,154,168,174]),
   dentalGap:shape([12,22,29,40,46,52,58,64,71],[57,63,70,96,116,136,154,168,174]),
-  // Choose a modest raised tip with a bunched anterior blade, rather than
-  // making the free tip itself reach far backwards to the contact landmark.
-  // This is one standard-Mandarin teaching posture among documented variants.
-  retro:shape([14,7,0,10,22,35,46,61,71],[70,80,88,104,122,140,157,170,174]),
-  retroGap:shape([17,10,4,13,24,36,47,61,71],[70,80,88,104,122,140,157,170,174])
+  // Apical teaching variant: the free tip itself rises to the postalveolar
+  // region. Keep the blade lower behind it, showing actual retroflexion rather
+  // than confusing a bunched anterior dorsum with a curled tip.
+  retro:shape([0,6,15,25,35,43,49,61,71],[84,90,100,112,126,142,157,170,174]),
+  retroGap:shape([4,10,19,28,37,44,50,61,71],[84,90,100,112,126,142,157,170,174])
  };
  shapes.nGap=shape([9,5,5,19,30,43,55,63,71],[59,64,75,96,116,136,154,168,174]);shapes.velarGap=shape([45,54,53,44,30,14,6,21,71]);shapes.velarFricative=shape([45,54,53,44,30,16,8,23,71]);
  // Rhotic vowel: raised tip without the narrow fricative constriction of sh.
- shapes.rhotic=shape([12,16,23,31,31,35,43,55,71],[72,82,94,108,124,141,156,169,174]);
+ shapes.rhotic=shape([12,17,25,32,35,39,46,58,71],[80,88,99,112,127,143,157,170,174]);
  shapes['ü']=shapes.i;
  function motionFraction(key,f){if(/^(ai|ei|ao|ou)$/.test(key))return smooth((f-.35)/.55);if(/^(ie|üe)$/.test(key))return smooth(f/.45);if(key==='ui'||key==='iu')return curve(clamp(f),[0,.20,.72,1],[0,.42,.57,1]);if(components[key])return smooth(f);if(nasalFinal(key))return key==='un'?smooth(f/.35):smooth((f-.35)/.45);return smooth((f-.14)/.64)}
  function lipPose(d,f){var p=d.poses||[[64,19,0]],seq,times;if(components[d.key]||nasalFinal(d.key)){var knots=p.length===3?[0,.48,1]:[0,1],g=motionFraction(d.key,f);return p[0].map(function(_,j){return curve(g,knots,p.map(function(v){return v[j]}))})}if(d.kind==='initial'){seq=[p[0],p[0],p[p.length-1],p[p.length-1]];times=[0,.24,.40,1]}else if(p.length===3){seq=[p[0],p[1],p[2],p[2]];times=[0,.38,.78,1]}else{seq=[p[0],p[0],p[p.length-1],p[p.length-1]];times=[0,.14,.78,1]}var i=0;while(i<times.length-2&&f>times[i+1])i++;var t=clamp((f-times[i])/(times[i+1]-times[i]));return seq[i].map(function(n,j){return n+(seq[i+1][j]-n)*t})}
@@ -123,7 +123,7 @@
    }else if(/^dental/.test(m)){
     var aff=/affricate/.test(m);p=aff?mix(shapes.dental,shapes.dentalGap,release):shapes.dentalGap;marker=[54,70];contact=aff?1-release:0;oral=aff?release:1;
    }else if(/^retroflex/.test(m)){
-    var aff=/affricate/.test(m);p=aff?mix(shapes.retro,shapes.retroGap,release):shapes.retroGap;marker=[88,palate(88)];contact=aff?1-release:0;oral=aff?release:1;
+    var aff=/affricate/.test(m);p=aff?mix(shapes.retro,shapes.retroGap,release):shapes.retroGap;marker=[84,palate(84)];contact=aff?1-release:0;oral=aff?release:1;
    }
    asp=!!d.aspirated&&f>.32&&f<.64;stage=f<.24?0:f<.65?1:2;
   }else if(key==='er'){p=shapes.rhotic}
@@ -181,7 +181,7 @@
   function pt(x,y){var q=jawPoint(x,y,a);return q[0].toFixed(2)+' '+q[1].toFixed(2)}
   var capT=smooth((rise-8)/8),capX=x-.65+(Math.max(55,x-1.6)-(x-.65))*capT,capControl=x-.65+(Math.max(54,x-1.4)-(x-.65))*capT,capY=y+Math.max(1.2,Math.min(4,rise*.16));
   var front=x>68?'C'+base[0].toFixed(2)+' '+(base[1]-8).toFixed(2)+' 61 81 65 80 Q69 '+(y+16)+' '+capX.toFixed(2)+' '+capY.toFixed(2):'C'+base[0].toFixed(2)+' '+(base[1]-rise*.45).toFixed(2)+' '+capX.toFixed(2)+' '+(capY+Math.max(1,rise*.15)).toFixed(2)+' '+capX.toFixed(2)+' '+capY.toFixed(2);
-  return topPath(p)+' C'+pt(177,134)+' '+pt(180,141)+' '+pt(180,145)+' C'+pt(148,153)+' '+pt(98,150)+' '+pt(64,130)+' C'+pt(56,125)+' '+pt(54,115)+' '+pt(54,107)+' '+front+' Q'+capControl.toFixed(2)+' '+(y+.7).toFixed(2)+' '+x.toFixed(2)+' '+y.toFixed(2)+' Z';
+  return topPath(p)+' C'+pt(175,133)+' '+pt(177,140)+' '+pt(173,144)+' C'+pt(150,154)+' '+pt(98,150)+' '+pt(64,130)+' C'+pt(56,125)+' '+pt(54,115)+' '+pt(54,107)+' '+front+' Q'+capControl.toFixed(2)+' '+(y+.7).toFixed(2)+' '+x.toFixed(2)+' '+y.toFixed(2)+' Z';
  }
  function oralPath(s){var p=s.tongue,bendX=Math.min(54.6,(54+p[0][0])/2),entry=ceiling(170,s)+(surface(p,170)-ceiling(170,s))*.44,out='M188 112 Q193 94 184 79 Q178 '+entry.toFixed(1)+' 170 '+entry.toFixed(1);for(var x=167;x>=p[0][0];x-=3){var y=ceiling(x,s)+(surface(p,x)-ceiling(x,s))*.44;out+=' L'+x.toFixed(1)+' '+y.toFixed(1)}return out+' L'+p[0][0]+' '+(p[0][0]<=54?Math.max(82,Math.min(84,surface(p,54)-1)):ceiling(p[0][0],s)+(surface(p,p[0][0])-ceiling(p[0][0],s))*.44).toFixed(1)+(p[0][0]<=54?' Q47 '+outletY(s)+' 37 '+outletY(s):' L'+bendX+' 68 L'+bendX+' 81 Q'+bendX+' 84 53 84 Q46 '+outletY(s)+' 37 '+outletY(s))}
  function route(s,key){if(s.stage===2&&s.oral===0&&s.nasal===0&&s.lateral===0)return '音を収める';if(s.stage===0&&s.oral===0&&s.nasal===0&&s.lateral===0)return '構えを確かめる';return key==='l'&&s.lateral>.1?'舌の両側へ':s.nasal>.1?'鼻へ通す':s.oral>.1?'口から息を出す':'いったん止める'}
