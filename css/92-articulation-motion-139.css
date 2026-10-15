@@ -147,18 +147,6 @@
 .kp134-studio .kp144-front{transition:opacity 80ms ease}
 .kp134-studio .kp144-front.kp-reference-reset{opacity:0}
 @media(prefers-reduced-motion:reduce){.kp134-studio .kp144-front{transition:none}}
-/* Short screens keep a full-size teaching figure with a nearby tone player.
-   The large explanatory cards remain above for reading and first exploration. */
-.kp-vowel-compact{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 10px}
-#kidsVowelDrill .kp-vowel-compact>button{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:66px!important;padding:4px!important;border-radius:12px!important;border:1px solid #bdcfbf!important;background:#fffdf6!important;color:#294d3b!important;box-shadow:0 2px 0 #c8d8ca!important;touch-action:manipulation}
-#kidsVowelDrill .kp-vowel-compact strong{font-family:Arial,sans-serif;font-weight:700;font-size:28px;line-height:1.45;overflow:visible}
-#kidsVowelDrill .kp-vowel-compact span{font-size:14px;line-height:1.4;font-weight:600}
-#kidsVowelDrill .kp-vowel-compact>button[aria-pressed=true]{background:#e1eee2!important;border-color:#56866b!important;color:#204e36!important}
-#kidsVowelDrill .kp-vowel-compact>button.is-sounding{box-shadow:inset 0 0 0 1px #3e7253,0 2px 0 #b0c8b5!important}
-#kidsVowelDrill .kp-vowel-compact>button:is(:active,.kp-ui-pressed){background:#cfe2d3!important;box-shadow:inset 0 2px 4px #24543a2b!important;transform:translateY(2px)!important}
-#kidsVowelDrill .kp-vowel-compact>button:focus-visible{outline:3px solid #30694b;outline-offset:2px}
-.kp134-studio[data-kp-compact-player=true]>.kp-vowel-compact{display:grid}
-@media(prefers-reduced-motion:reduce){#kidsVowelDrill .kp-vowel-compact>button:is(:active,.kp-ui-pressed){transform:none!important}}
 /* In a short landscape window, the full model button carries playback status
    so the separate status row does not squeeze the anatomy or stage controls. */
 @media(max-height:500px) and (min-width:601px){
@@ -171,3 +159,22 @@
 .kp134-studio .kp141-observe-steps button,.kp134-studio .kp134-toolbar button,.kp134-studio .kp134-toolbar .kp134-slow{font-size:14px!important}
 .kp-playback-status{font-size:13px}
 .kp-playback-copy{min-width:0;white-space:normal}
+
+/* 147: one tone control set, with contour and explanation in each card. */
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button{height:96px!important;min-height:96px!important;max-height:96px!important;grid-template-columns:minmax(0,1fr) 34px!important;grid-template-rows:48px 1fr!important;padding:6px 8px!important;gap:0 4px!important}
+#kidsVowelDrill .kp135-tones .vowel-tone-card-top{flex-direction:row!important;gap:5px!important;align-items:center!important;justify-content:center!important}
+#kidsVowelDrill .kp135-tones .vowel-tone-card-top b{font-size:14px!important;white-space:nowrap}
+#kidsVowelDrill .kp135-tones .tone-mark{font-size:34px!important;line-height:1.4!important}
+#kidsVowelDrill .kp135-tones .vowel-tone-contour{width:34px!important;height:28px!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid small{font-size:13px!important;line-height:1.3!important;align-self:center}
+#kidsCourse [id$="LetterGrid"],.kp134-studio{overflow-anchor:none}
+.kp147-face-image{display:block;width:100%;height:100%;object-fit:cover}
+@media(min-width:760px){#kidsVowelDrill .kp135-tones #kidsVowelToneGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+/* A single caption accompanies the face; duplicated phase captions distract. */
+.kp134-studio[data-view=front] .kp134-timeline{display:none!important}
+.kp134-studio .kp145-initial-note{font-size:14px!important;line-height:1.45!important;color:#536c5d!important;margin-top:5px}
+.kp134-studio .kp134-teacher-note{margin-top:12px}
+.kp134-studio .kp134-toolbar [data-kp134-view]{min-height:44px!important}
+/* The developer shortcut remains on navigation screens, never over lesson controls. */
+body.app-kids-mode:has(.is-roadmap-lesson-active) #koepandaDevBadge{display:none!important}
