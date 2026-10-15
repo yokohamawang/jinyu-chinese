@@ -1,5 +1,4 @@
-Koepanda 10.108.146
-Built 2026-10-15T17:47:55+09:00 (Asia/Tokyo)
-Archive root: k146/
-Base: 10.108.145
-Cumulative update: 10.108.142 / 143 / 144 / 145
+Koepanda 10.108.147
+Built 2026-10-15T21:48:12+09:00 (Asia/Tokyo)
+Archive root: k147/
+Update base: 10.108.146 only
