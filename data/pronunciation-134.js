@@ -256,21 +256,21 @@ window.KP134_DATA={
         0
       ],
       [
-        38,
-        25,
-        1
+        58,
+        7,
+        0
       ],
       [
-        38,
-        25,
-        1
+        58,
+        7,
+        0
       ]
     ],
     "mechanism": "bilabial-stop",
     "phase": [
       "構える",
       "離す・短い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -298,21 +298,21 @@ window.KP134_DATA={
         0
       ],
       [
-        38,
-        25,
-        1
+        58,
+        7,
+        0
       ],
       [
-        38,
-        25,
-        1
+        58,
+        7,
+        0
       ]
     ],
     "mechanism": "bilabial-stop",
     "phase": [
       "構える",
       "離す・強い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -340,21 +340,21 @@ window.KP134_DATA={
         0
       ],
       [
-        38,
-        25,
-        1
+        57,
+        0,
+        0
       ],
       [
-        38,
-        25,
-        1
+        57,
+        0,
+        0
       ]
     ],
     "mechanism": "bilabial-nasal",
     "phase": [
       "構える",
       "鼻に声",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -371,7 +371,7 @@ window.KP134_DATA={
     "kind": "initial",
     "syllable": "fo1",
     "ipa": "[f]",
-    "title": "上の歯と下唇のすき間",
+    "title": "上の前歯を、下唇の内側に軽く当てる",
     "tip": "上の前歯を下唇の内側へ軽く当て、細い息を続けます。",
     "check": "鏡で上の歯と下唇の軽い接触を確かめる。",
     "avoid": "日本語のフのように、両唇だけで息を出さない。",
@@ -382,21 +382,21 @@ window.KP134_DATA={
         0
       ],
       [
-        38,
-        25,
-        1
+        61,
+        7,
+        0
       ],
       [
-        38,
-        25,
-        1
+        61,
+        7,
+        0
       ]
     ],
     "mechanism": "labiodental",
     "phase": [
       "構える",
       "息を続ける",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -420,17 +420,17 @@ window.KP134_DATA={
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -438,7 +438,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・短い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -462,17 +462,17 @@ window.KP134_DATA={
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -480,7 +480,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・強い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -498,23 +498,23 @@ window.KP134_DATA={
     "syllable": "ne1",
     "ipa": "[n]",
     "title": "前で閉じ、鼻に響かせる",
-    "tip": "舌の前部で口の通り道を閉じ、鼻から声を通します。",
+    "tip": "舌先・前縁を上の前歯の後ろの歯ぐきにつけ、鼻から声を通します。",
     "check": "l と比べ、鼻の響きがあるか聞く。",
     "avoid": "日本語の「ン」をどの位置でも代用しない。",
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -522,7 +522,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "鼻に声",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -540,23 +540,23 @@ window.KP134_DATA={
     "syllable": "le1",
     "ipa": "[l]",
     "title": "舌先を保ち、両側へ",
-    "tip": "舌先を前歯の後ろへ軽くつけ、舌の両側から声を通します。",
+    "tip": "舌先を上の前歯の後ろの歯ぐきに軽くつけ、舌の両側から声を通します。",
     "check": "子音部分を少し保ち、日本語のラの弾きと比べる。",
     "avoid": "舌先を一瞬はじいて終えない。",
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -564,7 +564,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "声を通す",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -588,17 +588,17 @@ window.KP134_DATA={
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -606,7 +606,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・短い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -630,17 +630,17 @@ window.KP134_DATA={
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -648,7 +648,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・強い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -672,17 +672,17 @@ window.KP134_DATA={
     "poses": [
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ],
       [
         66,
-        19,
+        10,
         0
       ]
     ],
@@ -690,7 +690,7 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "息を続ける",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
@@ -708,23 +708,23 @@ window.KP134_DATA={
     "syllable": "ji1",
     "ipa": "[tɕ]",
     "title": "舌の前面で止めて細く開く",
-    "tip": "舌先は下の前歯付近。舌の前面で止め、細く開いてこすります。",
+    "tip": "舌先は下の前歯の裏へ軽く。舌面の前部で止め、細く開いてこすります。",
     "check": "q と同じ位置で、送気の違いを聞く。",
     "avoid": "舌先を zh の位置へ巻かない。",
     "poses": [
       [
-        76,
-        12,
+        74,
+        7,
         0
       ],
       [
-        76,
-        12,
+        74,
+        7,
         0
       ],
       [
-        76,
-        12,
+        74,
+        7,
         0
       ]
     ],
@@ -732,11 +732,12 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・短い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+      "https://www.sxftc.edu.cn/cjc/info/1228/2229.htm"
     ],
     "audio": "./assets/audio/course-134/ji1.wav?v=10.108.134",
     "status": "reference-model",
@@ -750,23 +751,23 @@ window.KP134_DATA={
     "syllable": "qi1",
     "ipa": "[tɕʰ]",
     "title": "前面を開き、はっきり息",
-    "tip": "j と同じ舌の前面。開いてこするときにはっきり送気します。",
+    "tip": "舌先は下の前歯の裏へ。j と同じ舌面の前部で止め、開くときに送気します。",
     "check": "口の前の紙の動きを j と比べる。",
     "avoid": "アルファベット Q の読み方で覚えない。",
     "poses": [
       [
-        76,
-        12,
+        74,
+        7,
         0
       ],
       [
-        76,
-        12,
+        74,
+        7,
         0
       ],
       [
-        76,
-        12,
+        74,
+        7,
         0
       ]
     ],
@@ -774,11 +775,12 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・強い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
+      "https://www.sxftc.edu.cn/cjc/info/1228/2229.htm"
     ],
     "audio": "./assets/audio/course-134/qi1.wav?v=10.108.134",
     "status": "reference-model",
@@ -792,23 +794,23 @@ window.KP134_DATA={
     "syllable": "xi1",
     "ipa": "[ɕ]",
     "title": "舌の前面のすき間で息",
-    "tip": "舌先は下の前歯付近。舌の前面と硬口蓋のすき間から息を続けます。",
+    "tip": "舌先は下の前歯の裏へ軽く。舌面の前部と硬口蓋のすき間から息を続けます。",
     "check": "j のような止めや破裂を付けていないか聞く。",
     "avoid": "sh のように舌先を上へ反らせない。",
     "poses": [
       [
-        76,
-        12,
+        74,
+        7,
         0
       ],
       [
-        76,
-        12,
+        74,
+        7,
         0
       ],
       [
-        76,
-        12,
+        74,
+        7,
         0
       ]
     ],
@@ -816,11 +818,12 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "息を続ける",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
+      "https://www.sxftc.edu.cn/cjc/info/1228/2229.htm"
     ],
     "audio": "./assets/audio/course-134/xi1.wav?v=10.108.134",
     "status": "reference-model",
@@ -839,18 +842,18 @@ window.KP134_DATA={
     "avoid": "舌を大きく巻き、喉の奥へ押し込まない。",
     "poses": [
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ]
     ],
@@ -858,13 +861,14 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・短い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://putonghua.szu.edu.cn/info/1014/2860.htm"
     ],
     "audio": "./assets/audio/course-134/zhi1.wav?v=10.108.134",
     "status": "reference-model",
@@ -883,18 +887,18 @@ window.KP134_DATA={
     "avoid": "qi と同じ舌面の構えにしない。",
     "poses": [
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ]
     ],
@@ -902,13 +906,14 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・強い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://putonghua.szu.edu.cn/info/1014/2860.htm"
     ],
     "audio": "./assets/audio/course-134/chi1.wav?v=10.108.134",
     "status": "reference-model",
@@ -927,18 +932,18 @@ window.KP134_DATA={
     "avoid": "上あごへ強く押しつけ、通り道を閉じない。",
     "poses": [
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ]
     ],
@@ -946,13 +951,14 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "息を続ける",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://putonghua.szu.edu.cn/info/1014/2860.htm"
     ],
     "audio": "./assets/audio/course-134/shi1.wav?v=10.108.134",
     "status": "reference-model",
@@ -971,18 +977,18 @@ window.KP134_DATA={
     "avoid": "日本語のラのようにはじいたり、巻き舌を繰り返したりしない。",
     "poses": [
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ],
       [
-        62,
-        11,
+        60,
+        8,
         0
       ]
     ],
@@ -990,13 +996,14 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "声を通す",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-06-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://putonghua.szu.edu.cn/info/1014/2860.htm"
     ],
     "audio": "./assets/audio/course-134/ri1.wav?v=10.108.134",
     "status": "reference-model",
@@ -1010,23 +1017,23 @@ window.KP134_DATA={
     "syllable": "zi1",
     "ipa": "[ts]",
     "title": "前歯の後ろで止め、細く開く",
-    "tip": "前歯の後ろ付近で止めてから、細いすき間を開いて息をこすります。",
+    "tip": "舌先を上の前歯の裏につけて止め、細いすき間を開いて息をこすります。",
     "check": "c と同じ場所で、送気の違いを聞く。",
     "avoid": "英語の有声 z や、日本語のズと同じにしない。",
     "poses": [
       [
-        62,
-        11,
+        64,
+        6,
         0
       ],
       [
-        62,
-        11,
+        64,
+        6,
         0
       ],
       [
-        62,
-        11,
+        64,
+        6,
         0
       ]
     ],
@@ -1034,12 +1041,13 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・短い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://jc.sdbi.edu.cn/info/1018/2009.htm"
     ],
     "audio": "./assets/audio/course-134/zi1.wav?v=10.108.134",
     "status": "reference-model",
@@ -1053,23 +1061,23 @@ window.KP134_DATA={
     "syllable": "ci1",
     "ipa": "[tsʰ]",
     "title": "前のすき間から、はっきり息",
-    "tip": "z と同じ前の位置で止め、開くときにはっきり送気します。",
+    "tip": "舌先を上の前歯の裏につけて止め、細く開くときにはっきり送気します。",
     "check": "手のひらに届く息を z と比べる。",
     "avoid": "アルファベット C の読み方にしない。",
     "poses": [
       [
-        62,
-        11,
+        64,
+        6,
         0
       ],
       [
-        62,
-        11,
+        64,
+        6,
         0
       ],
       [
-        62,
-        11,
+        64,
+        6,
         0
       ]
     ],
@@ -1077,12 +1085,13 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "離す・強い息",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-04-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://jc.sdbi.edu.cn/info/1018/2009.htm"
     ],
     "audio": "./assets/audio/course-134/ci1.wav?v=10.108.134",
     "status": "reference-model",
@@ -1096,23 +1105,23 @@ window.KP134_DATA={
     "syllable": "si1",
     "ipa": "[s]",
     "title": "前の細いすき間で息",
-    "tip": "舌の前部と歯の付近に細いすき間を残し、息を続けます。",
+    "tip": "舌先を上の前歯の裏に近づけ、触れずに細いすき間から息を続けます。",
     "check": "z のような止めを付けず、子音を少し保つ。",
     "avoid": "shi や xi と同じ舌の構えにしない。",
     "poses": [
       [
-        62,
-        11,
+        64,
+        6,
         0
       ],
       [
-        62,
-        11,
+        64,
+        6,
         0
       ],
       [
-        62,
-        11,
+        64,
+        6,
         0
       ]
     ],
@@ -1120,12 +1129,13 @@ window.KP134_DATA={
     "phase": [
       "構える",
       "息を続ける",
-      "母音へ"
+      "形を保つ"
     ],
     "sources": [
       "https://www.isc.meiji.ac.jp/~katotoru/chinvu3.html#05",
       "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-05-01.php",
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/01-11-01.php",
+      "https://jc.sdbi.edu.cn/info/1018/2009.htm"
     ],
     "audio": "./assets/audio/course-134/si1.wav?v=10.108.134",
     "status": "reference-model",
@@ -1451,7 +1461,8 @@ window.KP134_DATA={
       "収める"
     ],
     "sources": [
-      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-08-01.php"
+      "https://www.coelang.tufs.ac.jp/mt/zh/pmod/practical/02-08-01.php",
+      "https://www.gsjtxy.edu.cn/jcjxb/content/169/t202423-169-17079.html"
     ],
     "audio": "./assets/audio/course-134/er2.wav?v=10.108.134",
     "status": "reference-model",
