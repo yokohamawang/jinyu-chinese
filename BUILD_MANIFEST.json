@@ -1,25 +1,47 @@
 {
-  "version": "10.108.149",
-  "built": "2026-10-16T03:51:35+09:00",
-  "archiveRoot": "k149/",
-  "updateBase": "10.108.148",
-  "runtimeFiles": 244,
+  "version": "10.108.151",
+  "built": "2026-10-16T08:37:25+09:00",
+  "archiveRoot": "k151/",
+  "base": "10.108.149",
+  "scope": "qualitative teaching animation implementation; no measured-anatomy claim",
+  "runtimeFiles": 246,
   "modifiedRuntimeFiles": [
     "css/92-articulation-motion-139.css",
+    "data/articulation-151.js",
+    "index.html",
+    "js/24-pronunciation-studio-134.js",
+    "js/25-pronunciation-ux-135.js",
+    "js/26-articulation-motion-139.js",
+    "js/27-vowel-portrait-144.js",
+    "js/28-initial-mnemonics-150.js"
+  ],
+  "updateRuntimeFiles": [
+    "css/92-articulation-motion-139.css",
+    "data/articulation-151.js",
     "data/pronunciation-134.js",
     "index.html",
     "js/24-pronunciation-studio-134.js",
     "js/25-pronunciation-ux-135.js",
     "js/26-articulation-motion-139.js",
-    "js/27-vowel-portrait-144.js"
+    "js/27-vowel-portrait-144.js",
+    "js/28-initial-mnemonics-150.js"
+  ],
+  "updateBases": [
+    "10.108.148 FULL",
+    "10.108.149 FULL",
+    "10.108.150 CHECKPOINT"
   ],
   "validation": {
-    "checks": 2898,
-    "unresolvedFailures": 0,
+    "browserAssertions": 3250,
+    "failures": 0,
+    "modelSamples": 9045,
+    "layoutCombinations": 450,
     "nativeTargetPasses": 2,
-    "layoutViews": 450,
-    "initialEntries": 65,
-    "scope": "Chromium mobile emulation; qualitative phonetic diagrams, no iPhone hardware or external teacher sign-off"
+    "audioReplacement": "DEFERRED_BY_USER",
+    "audioBytesUnchanged": true,
+    "iPhoneHardwareVerified": false,
+    "independentTeacherSignoff": false,
+    "MRIOrUltrasoundTraced": false
   },
   "sha256": {
     "assets/articulation/b-static-raster-94.png": "45cd9cc86e62f1b8d781344d1df434703a1cbc16f8a094bc20d3567c9c8528bc",
@@ -231,14 +253,15 @@
     "css/89-demo10108128-back-nasal-first-lesson.css": "44dbe7fedb730a81e02d1474b060f045d94df2cfdc5032678c23a88887583670",
     "css/90-pronunciation-studio-134.css": "4f18de55b9dd933337ebc63a1d2bc7f0e9b6600ed774a412ddaba5c8641b38d1",
     "css/91-pronunciation-ux-135.css": "d72be41525157e1afb2ba4abca4fad8269bc8e2772295851419e5e42be084825",
-    "css/92-articulation-motion-139.css": "d117b058a5cde32bdcbe6f5a18f0175eba43e2a244ead87f349f99539c26f527",
+    "css/92-articulation-motion-139.css": "d277e865b95ed0a6067136d267ed17e0b4d4bf7f61b813bdac352cbd97a7a16e",
     "data/README.txt": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b",
+    "data/articulation-151.js": "77bcbea174c4156b440841f0a295892ca5451e544e7a74ad7d29f13fefbacb8e",
     "data/kids-pinyin.js": "26b821c43c67d9b98332be7400b4e9da88cdd86066fdd99344e343afc12ce6e3",
     "data/pinyin-course.js": "2ba3045215cf091a175d3a5d668b0c2d6ae6eb048d0b2b9f604bd4b948f35f4d",
     "data/pronunciation-134.js": "2ae7886024261693ed3ee450c3e5c42e187a086700d8c4f8c57aa6d7582de3dd",
     "data/pronunciation-audit-134.json": "d3657e1fc73ab9e2f7ffe53b2846944bf3a6e2b503a12bbff8a106020308fdc9",
     "data/pronunciation-timing-139.js": "1c102106a54d80f7434778b5f02e09edbe578d546d871ccfb5ab028992ce0fb8",
-    "index.html": "cbea53161e600db203382c52a16469df5c7a62aeb69c7cdd9b6331291b16b4d1",
+    "index.html": "51bfb44b1592c2883a2a1ec8b4b4533a130fdd5b002e0116f717c17459d37568",
     "js/00-core.js": "c0aec897ada82e5f0762bc394ea66ebb400e2c60df7e08cf0a803c5cf2a2c2c0",
     "js/01-features.js": "5a796ff21046a1c18b53643951d75c8c4cd47fe3aaf23ce7f171755880cc3125",
     "js/02-demo1099-home-navigation-js.js": "7b2961bdde3b4c071075dc05457175cb84f663379e1693b333cedf345b2157dc",
@@ -262,9 +285,10 @@
     "js/21-demo10108124-front-nasal-first-lesson.js": "a00ba6fce0babd9977862483056100a1291dcc70e5e74dc1103e9f118a840f63",
     "js/22-demo10108128-back-nasal-first-lesson.js": "4435632cc53e2a63cdd4b2f9a1b0b5421e5edbf9931927800a8e29dc9539e501",
     "js/23-demo10108131-lesson-audio-warmup.js": "f1a4fbbfd0b2c8fbdabc78613198e17014660f5e9819562bf9b5a9a68568ede4",
-    "js/24-pronunciation-studio-134.js": "021622ff44bf0157c2b8eef3aea117eded245a4408501621b2f2a2e50ddf44ce",
-    "js/25-pronunciation-ux-135.js": "837fc5096fefa56b859816acfd779aca19b4f942a66c238ae37e42e0a50f4460",
-    "js/26-articulation-motion-139.js": "b99ac2b88ef056cda0f0b52fc701acf72625a4c4958a1a26007c6b17ebb813d4",
-    "js/27-vowel-portrait-144.js": "10b42199fe2a46b834419d11a0958bf734c46e423e969268a1f78d697b82b310"
+    "js/24-pronunciation-studio-134.js": "22004a9e4f29be2f2a2890d3f1aa2c2d46e53a12409f327e02f3bf62274ef8a2",
+    "js/25-pronunciation-ux-135.js": "9c6f2f8056fd8b69c2aa6f8454b50b968610a12825073d014168a41a24b123ed",
+    "js/26-articulation-motion-139.js": "59c020228d465cafe6e03e61e5315e99906a96f8ea7932caac00bce96fcf4a2c",
+    "js/27-vowel-portrait-144.js": "5646073c4b9528a7376fe5d36252d2fe54f5674c9795cde1052787c028f2dd30",
+    "js/28-initial-mnemonics-150.js": "9a042e90a084a757a3ee38ae43d55024fe6abd0ee349d0ccfe026b7e0fe0fafe"
   }
 }
