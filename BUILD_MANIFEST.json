@@ -1,26 +1,25 @@
 {
-  "version": "10.108.148",
-  "built": "2026-10-15T23:42:39+09:00",
-  "archiveRoot": "k148/",
-  "updateBase": "10.108.147",
+  "version": "10.108.149",
+  "built": "2026-10-16T03:51:35+09:00",
+  "archiveRoot": "k149/",
+  "updateBase": "10.108.148",
   "runtimeFiles": 244,
   "modifiedRuntimeFiles": [
     "css/92-articulation-motion-139.css",
     "data/pronunciation-134.js",
     "index.html",
-    "js/06-demo1010740-pinyin-roadmap.js",
-    "js/08-demo1010793-kids-audio-cacheproof.js",
     "js/24-pronunciation-studio-134.js",
     "js/25-pronunciation-ux-135.js",
-    "js/26-articulation-motion-139.js"
+    "js/26-articulation-motion-139.js",
+    "js/27-vowel-portrait-144.js"
   ],
   "validation": {
-    "checks": 2659,
+    "checks": 2898,
     "unresolvedFailures": 0,
     "nativeTargetPasses": 2,
     "layoutViews": 450,
     "initialEntries": 65,
-    "phoneticScope": "qualitative schematics; no iPhone hardware or external teacher sign-off"
+    "scope": "Chromium mobile emulation; qualitative phonetic diagrams, no iPhone hardware or external teacher sign-off"
   },
   "sha256": {
     "assets/articulation/b-static-raster-94.png": "45cd9cc86e62f1b8d781344d1df434703a1cbc16f8a094bc20d3567c9c8528bc",
@@ -232,14 +231,14 @@
     "css/89-demo10108128-back-nasal-first-lesson.css": "44dbe7fedb730a81e02d1474b060f045d94df2cfdc5032678c23a88887583670",
     "css/90-pronunciation-studio-134.css": "4f18de55b9dd933337ebc63a1d2bc7f0e9b6600ed774a412ddaba5c8641b38d1",
     "css/91-pronunciation-ux-135.css": "d72be41525157e1afb2ba4abca4fad8269bc8e2772295851419e5e42be084825",
-    "css/92-articulation-motion-139.css": "f39b78b9c1bc7a96393da7975db62887210c177ba350a72cd453866b3f88e27f",
+    "css/92-articulation-motion-139.css": "d117b058a5cde32bdcbe6f5a18f0175eba43e2a244ead87f349f99539c26f527",
     "data/README.txt": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b",
     "data/kids-pinyin.js": "26b821c43c67d9b98332be7400b4e9da88cdd86066fdd99344e343afc12ce6e3",
     "data/pinyin-course.js": "2ba3045215cf091a175d3a5d668b0c2d6ae6eb048d0b2b9f604bd4b948f35f4d",
-    "data/pronunciation-134.js": "afdf623e085fa576fc5b3299c51eddd903b4a3b9fa9a5d09e48081a2935f7a87",
+    "data/pronunciation-134.js": "2ae7886024261693ed3ee450c3e5c42e187a086700d8c4f8c57aa6d7582de3dd",
     "data/pronunciation-audit-134.json": "d3657e1fc73ab9e2f7ffe53b2846944bf3a6e2b503a12bbff8a106020308fdc9",
     "data/pronunciation-timing-139.js": "1c102106a54d80f7434778b5f02e09edbe578d546d871ccfb5ab028992ce0fb8",
-    "index.html": "3712dff5dacccd597f5113639aa8fdcefbdf28b64a9d1fc8aa7f7becab02d0ec",
+    "index.html": "cbea53161e600db203382c52a16469df5c7a62aeb69c7cdd9b6331291b16b4d1",
     "js/00-core.js": "c0aec897ada82e5f0762bc394ea66ebb400e2c60df7e08cf0a803c5cf2a2c2c0",
     "js/01-features.js": "5a796ff21046a1c18b53643951d75c8c4cd47fe3aaf23ce7f171755880cc3125",
     "js/02-demo1099-home-navigation-js.js": "7b2961bdde3b4c071075dc05457175cb84f663379e1693b333cedf345b2157dc",
@@ -263,9 +262,9 @@
     "js/21-demo10108124-front-nasal-first-lesson.js": "a00ba6fce0babd9977862483056100a1291dcc70e5e74dc1103e9f118a840f63",
     "js/22-demo10108128-back-nasal-first-lesson.js": "4435632cc53e2a63cdd4b2f9a1b0b5421e5edbf9931927800a8e29dc9539e501",
     "js/23-demo10108131-lesson-audio-warmup.js": "f1a4fbbfd0b2c8fbdabc78613198e17014660f5e9819562bf9b5a9a68568ede4",
-    "js/24-pronunciation-studio-134.js": "93398451508f53582255630f03b912db5edfe5c04bdcd1a2e3564ea75d41b992",
-    "js/25-pronunciation-ux-135.js": "3a70168dd8b5ccabbd0c00c03911989f1f0e0c81b75d0c3cf288ae4eeefb953b",
-    "js/26-articulation-motion-139.js": "074703d38624f1d1fee6496fe9e6ddd52e6ea614dfd0cc91f11dbd2a6413e8fa",
-    "js/27-vowel-portrait-144.js": "ff3fefba4b87b0eba19faec766a49e182919f3bf25dc3e5c354fe33bf74efe20"
+    "js/24-pronunciation-studio-134.js": "021622ff44bf0157c2b8eef3aea117eded245a4408501621b2f2a2e50ddf44ce",
+    "js/25-pronunciation-ux-135.js": "837fc5096fefa56b859816acfd779aca19b4f942a66c238ae37e42e0a50f4460",
+    "js/26-articulation-motion-139.js": "b99ac2b88ef056cda0f0b52fc701acf72625a4c4958a1a26007c6b17ebb813d4",
+    "js/27-vowel-portrait-144.js": "10b42199fe2a46b834419d11a0958bf734c46e423e969268a1f78d697b82b310"
   }
 }
