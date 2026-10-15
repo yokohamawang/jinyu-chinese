@@ -1,4 +1,4 @@
-/* Teaching articulation 10.108.148: source-reviewed qualitative schematics.
+/* Teaching articulation 10.108.149: source-reviewed qualitative schematics.
  * These draft drawing coordinates are NOT measurements from an articulatory
  * recording. Source checks support movement type and contact, not these values.
  * TUFS 1.4/1.5/1.6/1.7; USTS language training IV; SXFTC q training.
@@ -65,7 +65,8 @@
  shapes.rhotic=shape([12,17,25,32,35,39,46,58,71],[80,88,99,112,127,143,157,170,174]);
  shapes['ü']=shapes.i;
  function motionFraction(key,f){if(/^(ai|ei|ao|ou)$/.test(key))return smooth((f-.35)/.55);if(/^(ie|üe)$/.test(key))return smooth(f/.45);if(key==='ui'||key==='iu')return curve(clamp(f),[0,.20,.72,1],[0,.42,.57,1]);if(components[key])return smooth(f);if(nasalFinal(key))return key==='un'?smooth(f/.35):smooth((f-.35)/.45);return smooth((f-.14)/.64)}
- function lipPose(d,f){var p=d.poses||[[64,19,0]],seq,times;if(components[d.key]||nasalFinal(d.key)){var knots=p.length===3?[0,.48,1]:[0,1],g=motionFraction(d.key,f);return p[0].map(function(_,j){return curve(g,knots,p.map(function(v){return v[j]}))})}if(d.kind==='initial'){seq=[p[0],p[0],p[p.length-1],p[p.length-1]];times=[0,.24,.40,1]}else if(p.length===3){seq=[p[0],p[1],p[2],p[2]];times=[0,.38,.78,1]}else{seq=[p[0],p[0],p[p.length-1],p[p.length-1]];times=[0,.14,.78,1]}var i=0;while(i<times.length-2&&f>times[i+1])i++;var t=clamp((f-times[i])/(times[i+1]-times[i]));return seq[i].map(function(n,j){return n+(seq[i+1][j]-n)*t})}
+ function carrierFraction(key,f){return data[key]&&data[key].kind==='initial'?smooth((f-.38)/.32):0}
+ function lipPose(d,f){var p=d.poses||[[64,19,0]],seq,times;if(components[d.key]||nasalFinal(d.key)){var knots=p.length===3?[0,.48,1]:[0,1],g=motionFraction(d.key,f);return p[0].map(function(_,j){return curve(g,knots,p.map(function(v){return v[j]}))})}if(d.kind==='initial'){var g=carrierFraction(d.key,f),start=p[0],released=p[Math.min(1,p.length-1)],r=smooth((f-.20)/.16),held=start.map(function(v,j){return v+(released[j]-v)*r});return held.map(function(v,j){return v+(p[p.length-1][j]-v)*g})}else if(p.length===3){seq=[p[0],p[1],p[2],p[2]];times=[0,.38,.78,1]}else{seq=[p[0],p[0],p[p.length-1],p[p.length-1]];times=[0,.14,.78,1]}var i=0;while(i<times.length-2&&f>times[i+1])i++;var t=clamp((f-times[i])/(times[i+1]-times[i]));return seq[i].map(function(n,j){return n+(seq[i+1][j]-n)*t})}
 
  var components={ai:['aFront','iOff'],ei:['frontmid','iOff'],ui:['u','frontmid','iOff'],ao:['aBack','uOff'],ou:['o','uOff'],iu:['i','o','uOff'],ie:['i','ae'],'üe':['ü','ae']};
  function glide(parts,f,key){
@@ -103,8 +104,8 @@
    var t=smooth((f-.35)/.45);if(key==='un'&&f<.35)p=mix(start,shapes.schwa,smooth(f/.35));else p=mix(base,end,t);
    nasal=smooth((f-.53)/.27);oral=1-nasal;contact=t>=.999999?1:0;marker=ng?[154,palate(154)+9*nasal]:[64,palate(64)];stage=f<.35?0:f<.8?1:2;
   }else if(initial){
-   // Only the initial consonant is illustrated here. The carrier vowel in
-   // the example recording is deliberately excluded from the movement model.
+   // Establish the consonant contact, then connect to the recorded carrier.
+   // Timing is a qualitative teaching sequence, not measured segmentation.
    voice=/^(m|n|l|r)$/.test(key)?1:0;
    if(/bilabial/.test(m)){
     p=shapes.schwa;marker=[34,80];
@@ -130,7 +131,13 @@
    }else if(/^retroflex/.test(m)){
     var aff=/affricate/.test(m);p=aff?mix(shapes.retro,shapes.retroGap,release):shapes.retroGap;marker=[84,palate(84)];contact=aff?1-release:0;oral=aff?release:1;
    }
-   asp=!!d.aspirated&&f>.32&&f<.64;stage=f<.24?0:f<.65?1:2;
+   var cg=carrierFraction(key,f),target=d.carrier==='apical'?p:posture(d.carrier);
+   // The tongue tip/blade releases its contact into the actual carrier vowel.
+   // Lip consonants do not acquire a spurious tongue-palate contact.
+   p=mix(p,target,cg);lip*=1-cg;dental*=1-cg;contact*=1-cg;
+   nasal*=1-cg;lateral*=1-cg;oral=oral*(1-cg)+cg;
+   if(cg>.001)voice=1;
+   asp=!!d.aspirated&&f>.32&&f<.64&&cg<.9;stage=f<.20?0:f<.38?1:2;
   }else if(key==='er'){p=shapes.rhotic}
   // Lip opening/rounding share the front-view keyframes. The jaw is left
   // relaxed: lip closure is not a command to clench the teeth.
@@ -139,8 +146,8 @@
   // aspirated partner keeps its breath visible for longer. Tongue travel is
   // the same for the pair. These times describe a teaching sequence only.
   var flowing=smooth(f/.12)*(1-smooth((f-.9)/.1));if(key==='n'||key==='l')flowing*=smooth((f-.22)/.10);
-  if(initial&&/stop/.test(m)&&key!=='m')oral*=1-smooth((f-(d.aspirated?.65:.43))/(d.aspirated?.2:.15));
-  else if(initial&&/affricate/.test(m))oral*=1-smooth((f-.78)/.2);
+  if(initial&&/stop/.test(m)&&key!=='m'&&carrierFraction(key,f)===0)oral*=1-smooth((f-(d.aspirated?.65:.43))/(d.aspirated?.2:.15));
+  else if(initial&&/affricate/.test(m)&&carrierFraction(key,f)===0)oral*=1-smooth((f-.78)/.2);
   
   // The mobile mandibular frame carries the passive low tip and underside.
   // Active coronal contacts stay at the upper articulator; the high dorsum
@@ -164,6 +171,7 @@
  function outletY(s){return s.dental?81:80+s.aperture*.18}
  function oralArrow(s){var y=outletY(s),start=28-s.round*4;return s.aspirated?'M'+start+' '+y+' Q18 '+(y-5)+' 7 '+(y-1):'M'+start+' '+y+' H7'}
  function label(key,s){
+  if(data[key]&&data[key].kind==='initial'&&s.stage===2)return '声母から '+(data[key].carrier==='apical'?'後ろの母音':data[key].carrier)+' へ、一息でつなぐ';
   if(labels[key])return labels[key];
   if(nasalFinal(key))return /ng$/.test(key)?(s.stage===0?'母音から・舌先は上げない':s.stage===1?'舌の後部を、軟口蓋へ':'奥で収める・g は足さない'):(s.stage===0?'母音の構えから':s.stage===1?'舌先・前縁を、上の前歯の後ろへ':'前で収める・母音を足さない');
   if(key==='l')return s.stage===0?'舌先を、上の前歯の後ろへ':s.stage===1?'中央は接触・息は舌の両側へ':'舌先を保つ・鼻へは通さない';
@@ -179,8 +187,8 @@
   if(/^(zh|ch|sh|r)$/.test(key))return key==='r'?'舌先を軽く上げ、声を響かせる':s.stage<2?(key==='sh'?'舌先を軽く上げ、すき間を保つ':'舌先を軽く上げ、閉鎖→すき間'):'大きく巻かず、すき間を保つ';
   return data[key]?data[key].phase[s.stage]:'舌の構え';
  }
- function steps(key){var d=data[key];if(!d)return [];if(d.kind!=='initial')return d.phase.slice();if(key==='n')return ['近づける','鼻に響く','形を保つ'];if(key==='m')return ['閉じる','鼻に響く','形を保つ'];if(key==='l')return ['近づける','両側へ','形を保つ'];if(/stop|affricate/.test(d.mechanism))return ['閉じる',d.aspirated?'強い息':'短く開く','形を保つ'];return ['構える','息を通す','形を保つ']}
- function stepFrame(key,index){return (/^(ai|ei|ao|ou)$/.test(key)?[0,.625,.98]:/^(ie|üe)$/.test(key)?[0,.225,.92]:nasalFinal(key)?[0,.6,.92]:[0,.48,.92])[index]}
+ function steps(key){var d=data[key];if(!d)return [];if(d.kind!=='initial')return d.phase.slice();if(key==='n')return ['近づける','鼻に響く','母音へ'];if(key==='m')return ['閉じる','鼻に響く','o へ'];if(key==='l')return ['近づける','両側へ','母音へ'];if(/stop|affricate/.test(d.mechanism))return ['閉じる',d.aspirated?'息を出す':'短く開く','母音へ'];return ['構える','息を通す','母音へ']}
+ function stepFrame(key,index){return (/^(ai|ei|ao|ou)$/.test(key)?[0,.625,.98]:/^(ie|üe)$/.test(key)?[0,.225,.92]:nasalFinal(key)?[0,.6,.92]:(data[key]&&data[key].kind==='initial'?[0,.30,.88]:[0,.48,.92]))[index]}
  function referenceFrame(key){var d=data[key]||{};return d.kind==='initial'?(/stop|affricate/.test(d.mechanism)?0:.36):nasalFinal(key)?.9:.6}
  function hasMotion(key){return !!(data[key]&&key!=='r'&&key!=='er'&&(data[key].kind==='initial'||nasalFinal(key)||components[key]))}
  function tonguePath(p,jawAngle){var a=jawAngle||0,x=p[0][0],y=surface(p,x),base=jawPoint(54,107,a),rise=base[1]-y;
@@ -191,11 +199,12 @@
  }
  function oralPath(s){var p=s.tongue,bendX=Math.min(54.6,(54+p[0][0])/2),entry=ceiling(170,s)+(surface(p,170)-ceiling(170,s))*.44,out='M188 112 Q193 94 184 79 Q178 '+entry.toFixed(1)+' 170 '+entry.toFixed(1);for(var x=167;x>=p[0][0];x-=3){var y=ceiling(x,s)+(surface(p,x)-ceiling(x,s))*.44;out+=' L'+x.toFixed(1)+' '+y.toFixed(1)}return out+' L'+p[0][0]+' '+(p[0][0]<=54?Math.max(82,Math.min(84,surface(p,54)-1)):ceiling(p[0][0],s)+(surface(p,p[0][0])-ceiling(p[0][0],s))*.44).toFixed(1)+(p[0][0]<=54?' Q47 '+outletY(s)+' 37 '+outletY(s):' L'+bendX+' 68 L'+bendX+' 81 Q'+bendX+' 84 53 84 Q46 '+outletY(s)+' 37 '+outletY(s))}
  function route(s,key){if(s.stage===2&&s.oral===0&&s.nasal===0&&s.lateral===0)return '音を収める';if(s.stage===0&&s.oral===0&&s.nasal===0&&s.lateral===0)return '構えを確かめる';return key==='l'&&s.lateral>.1?'舌の両側へ':s.nasal>.1?'鼻へ通す':s.oral>.1?'口から息を出す':'いったん止める'}
- function coronalTongue(key,s){var n=key==='n',closed=s.contact>.95;return n?(closed?'M218 168 L218 145 Q218 127 245 128 Q272 127 272 145 L272 168Z':'M221 168 L221 146 Q224 136 245 136 Q266 136 269 146 L269 168Z'):(closed?'M235 170 L234 140 Q235 128 245 128 Q255 128 256 140 L255 170Z':'M235 170 L234 145 Q235 136 245 136 Q255 136 256 145 L255 170Z');}
+ function coronalTongue(key,s){var c=s.contact,t=function(a,b){return a+(b-a)*c};return key==='n'?'M'+t(221,218)+' 168 L'+t(221,218)+' '+t(146,145)+' Q'+t(224,218)+' '+t(136,127)+' 245 '+t(136,128)+' Q'+t(266,272)+' '+t(136,127)+' '+t(269,272)+' '+t(146,145)+' L'+t(269,272)+' 168Z':'M235 170 L234 '+t(145,140)+' Q235 '+t(136,128)+' 245 '+t(136,128)+' Q255 '+t(136,128)+' 256 '+t(145,140)+' L255 170Z';}
+
  function coronalInset(key,id,s){
   if(key!=='n'&&key!=='l')return '';
   var n=key==='n',flow=n?0:s.lateral;
-  return '<g class="kp148-coronal-inset" aria-label="'+(n?'上から：口の前と両側を閉じる':'上から：中央は接触、両側は開く')+'"><rect x="203" y="101" width="85" height="85" rx="10" fill="#fffdf7" stroke="#d7dfd4"/><text x="245" y="115" text-anchor="middle" fill="#65786c" font-size="12">上から</text><path d="M216 166 C207 144 219 127 245 127 C271 127 283 144 274 166" fill="none" stroke="#c8b29d" stroke-width="3"/><path class="kp148-inset-tongue" d="'+coronalTongue(key,s)+'" fill="#dfa296" stroke="#b67e77" stroke-width="1"/><path class="kp148-inset-contact" d="'+(n?'M218 151 Q215 128 245 128 Q275 128 272 151':'M240 128 H250')+'" fill="none" stroke="#3b8261" stroke-width="2.5" opacity="'+s.contact+'"/><path class="kp139-lateral" d="M225 167 Q216 148 228 136 M265 167 Q274 148 262 136" fill="none" stroke="#347e77" stroke-width="1.8" marker-end="url(#'+id+'-arrow)" opacity="'+flow+'"/><text x="245" y="179" text-anchor="middle" fill="#416c58" font-size="11">'+(n?'口を閉じ、鼻へ':'中央は接触・両側へ')+'</text></g>';
+  return '<g class="kp148-coronal-inset" aria-label="'+(n?'上から：口の前と両側を閉じる':'上から：中央は接触、両側は開く')+'"><rect x="203" y="101" width="85" height="85" rx="10" fill="#fffdf7" stroke="#d7dfd4"/><text x="245" y="115" text-anchor="middle" fill="#65786c" font-size="12">上から</text><path d="M216 166 C207 144 219 127 245 127 C271 127 283 144 274 166" fill="none" stroke="#c8b29d" stroke-width="3"/><path class="kp148-inset-tongue" d="'+coronalTongue(key,s)+'" fill="#dfa296" stroke="#b67e77" stroke-width="1"/><path class="kp148-inset-contact" d="'+(n?'M218 151 Q215 128 245 128 Q275 128 272 151':'M240 128 H250')+'" fill="none" stroke="#3b8261" stroke-width="2.5" opacity="'+s.contact+'"/><path class="kp139-lateral" d="M225 167 Q216 148 228 136 M265 167 Q274 148 262 136" fill="none" stroke="#347e77" stroke-width="1.8" marker-end="url(#'+id+'-arrow)" opacity="'+flow+'"/><text class="kp149-inset-caption" x="245" y="179" text-anchor="middle" fill="#416c58" font-size="11">'+(n?'口を閉じ、鼻へ':'中央は接触・両側へ')+'</text></g>';
  }
  function mechanism(key,id){
   id=(id||'kp-diagram-'+(++serial)).replace(/[^a-zA-Z0-9_-]/g,'');var s=model(key,referenceFrame(key)),lp=lipPaths(s),td=tonguePath(s.tongue,s.jawAngle),contact=s.marker||[64,52];
@@ -236,7 +245,7 @@
    +'<circle cx="20" cy="220" r="3.4" fill="#d8948b"/><text x="29" y="224" font-size="16" fill="#65786c">舌</text><circle cx="65" cy="220" r="3.4" fill="#3b8261"/><text x="74" y="224" font-size="16" fill="#65786c">接触</text><path d="M113 220 H127" fill="none" stroke="#347e77" stroke-width="1.4" marker-end="url(#'+id+'-arrow)"/><text x="136" y="224" font-size="16" fill="#65786c">息</text>'
    +'<g class="kp-voicing" transform="translate(205 211)"><path d="M1 5 Q4 0 7 5 T13 5 T19 5" fill="none" stroke="#aa8243" stroke-width="1.6" opacity="'+(s.voice>.05?1:.18)+'"/><text class="kp-voicing-label" x="26" y="11" font-size="16" fill="#766b51">'+(s.voiced?'声あり':'声なし')+'</text></g></svg>';
  }
- function seek(svg,f,flow,opening){var key=svg.dataset.kp139Key,s=model(key,f);if(typeof opening==='number'&&/^(a|o|e|i|u|ü)$/.test(key)){opening=clamp(opening);s.aperture*=opening;s.jawAngle=(22*(1-clamp(s.aperture/20)))/136;s.tongue=mix(anteriorWithJaw(shapes.schwa,s.jawAngle),s.tongue,opening)}var lp=lipPaths(s),td=tonguePath(s.tongue,s.jawAngle);svg.dataset.motionPhase=String(s.stage);svg.querySelector('.kp145-lower-incisors').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-jaw-bone').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-tongue-shading').setAttribute('transform',jawTransform(s.jawAngle));var band=svg.querySelector('.kp-contact-band');band.setAttribute('d',contactBand(s));band.setAttribute('opacity',String(s.contact*.85));svg.querySelector('.kp139-tongue').setAttribute('d',td);svg.querySelector('.kp141-tongue-clip').setAttribute('d',td);svg.querySelector('.kp140-tongue-edge').setAttribute('d',topPath(s.tongue));svg.querySelector('.kp139-lip-upper').setAttribute('d',lp[0]);svg.querySelector('.kp139-lip-lower').setAttribute('d',lp[1]);var oral=svg.querySelector('.kp139-oral'),allowed=flow!==false;oral.setAttribute('opacity',String(allowed?s.oral*.85:0));oral.setAttribute('stroke-width',s.aspirated?'2.9':'1.8');oral.setAttribute('d',oralArrow(s));var inner=svg.querySelector('.kp141-oral-inner');inner.setAttribute('d',oralPath(s));inner.setAttribute('opacity',String(allowed&&s.oral>.05&&key!=='f'&&key!=='l'?s.oral*.45:0));svg.querySelector('.kp139-nasal').setAttribute('opacity',String(allowed?s.nasal*.85:0));svg.querySelector('.kp141-nasal-wash').setAttribute('opacity',String(s.velum*.25));svg.querySelector('.kp139-velum').setAttribute('d',softPalateBand(s));var leader=svg.querySelector('.kp-soft-palate-leader');if(leader)leader.setAttribute('d','M226 47 L'+(198-22*s.velum)+' '+(43+33*s.velum));var marker=svg.querySelector('.kp139-contact');if(s.marker){marker.setAttribute('cx',s.marker[0]);marker.setAttribute('cy',s.marker[1])}marker.setAttribute('opacity',String(s.marker?s.contact*.85:0));svg.querySelector('.kp139-label').textContent=route(s,key);var voice=svg.querySelector('.kp-voicing');if(voice){voice.querySelector('path').setAttribute('opacity',s.voice>.05?'1':'.18');voice.querySelector('text').textContent=s.voiced?'声あり':'声なし'}var side=svg.querySelector('.kp139-lateral');if(side)side.setAttribute('opacity',String(allowed?s.lateral:0));var inset=svg.querySelector('.kp148-coronal-inset');if(inset){inset.querySelector('.kp148-inset-tongue').setAttribute('d',coronalTongue(key,s));inset.querySelector('.kp148-inset-contact').setAttribute('opacity',String(s.contact))}}
+ function seek(svg,f,flow,opening){var key=svg.dataset.kp139Key,s=model(key,f);if(typeof opening==='number'&&/^(a|o|e|i|u|ü)$/.test(key)){opening=clamp(opening);s.aperture*=opening;s.jawAngle=(22*(1-clamp(s.aperture/20)))/136;s.tongue=mix(anteriorWithJaw(shapes.schwa,s.jawAngle),s.tongue,opening)}var lp=lipPaths(s),td=tonguePath(s.tongue,s.jawAngle);svg.dataset.motionPhase=String(s.stage);svg.querySelector('.kp145-lower-incisors').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-jaw-bone').setAttribute('transform',jawTransform(s.jawAngle));svg.querySelector('.kp-tongue-shading').setAttribute('transform',jawTransform(s.jawAngle));var band=svg.querySelector('.kp-contact-band');band.setAttribute('d',contactBand(s));band.setAttribute('opacity',String(s.contact*.85));svg.querySelector('.kp139-tongue').setAttribute('d',td);svg.querySelector('.kp141-tongue-clip').setAttribute('d',td);svg.querySelector('.kp140-tongue-edge').setAttribute('d',topPath(s.tongue));svg.querySelector('.kp139-lip-upper').setAttribute('d',lp[0]);svg.querySelector('.kp139-lip-lower').setAttribute('d',lp[1]);var oral=svg.querySelector('.kp139-oral'),allowed=flow!==false;oral.setAttribute('opacity',String(allowed?s.oral*.85:0));oral.setAttribute('stroke-width',s.aspirated?'2.9':'1.8');oral.setAttribute('d',oralArrow(s));var inner=svg.querySelector('.kp141-oral-inner');inner.setAttribute('d',oralPath(s));inner.setAttribute('opacity',String(allowed&&s.oral>.05&&key!=='f'&&key!=='l'?s.oral*.45:0));svg.querySelector('.kp139-nasal').setAttribute('opacity',String(allowed?s.nasal*.85:0));svg.querySelector('.kp141-nasal-wash').setAttribute('opacity',String(s.velum*.25));svg.querySelector('.kp139-velum').setAttribute('d',softPalateBand(s));var leader=svg.querySelector('.kp-soft-palate-leader');if(leader)leader.setAttribute('d','M226 47 L'+(198-22*s.velum)+' '+(43+33*s.velum));var marker=svg.querySelector('.kp139-contact');if(s.marker){marker.setAttribute('cx',s.marker[0]);marker.setAttribute('cy',s.marker[1])}marker.setAttribute('opacity',String(s.marker?s.contact*.85:0));svg.querySelector('.kp139-label').textContent=route(s,key);var voice=svg.querySelector('.kp-voicing');if(voice){voice.querySelector('path').setAttribute('opacity',s.voice>.05?'1':'.18');voice.querySelector('text').textContent=s.voiced?'声あり':'声なし'}var side=svg.querySelector('.kp139-lateral');if(side)side.setAttribute('opacity',String(allowed?s.lateral:0));var inset=svg.querySelector('.kp148-coronal-inset');if(inset){inset.querySelector('.kp148-inset-tongue').setAttribute('d',coronalTongue(key,s));inset.querySelector('.kp148-inset-contact').setAttribute('opacity',String(s.contact));inset.querySelector('.kp149-inset-caption').textContent=s.stage===2?'母音へ・舌を離す':key==='n'?'口を閉じ、鼻へ':'中央は接触・両側へ'}}
  function audioFraction(a){var path=new URL(a.currentSrc||a.src,document.baseURI).pathname,idx=path.indexOf('/assets/'),key=idx<0?'':path.slice(idx+1),w=window.KP139_AUDIO_WINDOWS&&window.KP139_AUDIO_WINDOWS[key];return w?clamp((a.currentTime-w[0])/(w[1]-w[0])):a.duration>0?clamp(a.currentTime/a.duration):0}
- window.KP139={referenceFrame:referenceFrame,audioFraction:audioFraction,mechanism:mechanism,seek:seek,model:model,hasMotion:hasMotion,palate:palate,ceiling:ceiling,surface:surface,motionFraction:motionFraction,spline:curve,jawPoint:jawPoint,label:label,steps:steps,stepFrame:stepFrame};
+ window.KP139={referenceFrame:referenceFrame,audioFraction:audioFraction,mechanism:mechanism,seek:seek,model:model,hasMotion:hasMotion,palate:palate,ceiling:ceiling,surface:surface,motionFraction:motionFraction,carrierFraction:carrierFraction,lipPose:lipPose,spline:curve,jawPoint:jawPoint,label:label,steps:steps,stepFrame:stepFrame};
 })();
