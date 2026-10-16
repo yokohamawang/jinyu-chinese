@@ -143,7 +143,7 @@
       b.innerHTML='<span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span>';
       b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
       var c=document.createElement('button'); c.type='button'; c.dataset.letter=letter;
-      c.innerHTML='<span class="free-letter">'+letter+'</span><span class="free-ipa">'+sounds[letter].mark+'</span>';
+      c.textContent=letter;
       c.addEventListener('click',function(){setStep(3);select(letter);playGuide(letter)}); free.appendChild(c)
     });
     select('b')
@@ -235,7 +235,7 @@
     return ''
   }
   function toggleRecord(){window.KP134.capture(el('kidsInitialsLesson'),el('initialsRecord'),el('initialsPlayback'),selected,el('initialsImitateFeedback'),function(key,url){if(recordings[key]&&recordings[key]!==url)URL.revokeObjectURL(recordings[key]);recordings[key]=url;recordingUrl=url})}
-  async function playRecording(){var url=recordings[selected];if(!url)return;try{await window.KP134.play(selected,{root:el('kidsInitialsLesson'),clipUrl:url,rate:1,referenceVisual:false,onError:function(){el('initialsImitateFeedback').textContent='録音を再生できませんでした。もう一度押してね。'}})}catch(e){}}
+  async function playRecording(){var url=recordings[selected];if(!url)return;var btn=el('initialsPlayback');function clear(){btn.classList.remove('is-playing')}try{await window.KP134.play(selected,{root:el('kidsInitialsLesson'),clipUrl:url,rate:1,referenceVisual:false,button:btn,onPlaying:function(){btn.classList.add('is-playing')},onEnded:clear,onCancel:clear,onError:function(){clear();el('initialsImitateFeedback').textContent='録音を再生できませんでした。もう一度押してね。'}})}catch(e){clear()}}
   function init(){
     if(!el('kidsInitialsLesson'))return;window.KP134.attach(el('kidsInitialsLesson'),letters);
     var initialReward=el('initialsReward'),initialResult=el('initialsResult');
@@ -248,7 +248,7 @@
     el('initialsRecord').addEventListener('click',toggleRecord);
     el('initialsPlayback').addEventListener('click',playRecording);
     el('initialsToQuiz').addEventListener('click',function(){
-      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false; this.closest('.initials-imitate-panel').hidden=true;
+      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false; el('kidsInitialsLesson').querySelector('.initials-imitate-panel').hidden=true;
       quizIndex=0; quizScore=0; quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(4);
       requestAnimationFrame(function(){el('initialsQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})
     });
