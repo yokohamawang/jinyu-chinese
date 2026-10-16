@@ -1,11 +1,11 @@
 {
-  "version": "10.108.165",
-  "base": "10.108.164",
-  "status": "REVIEW—NOT PHONETICALLY CERTIFIED",
+  "version": "10.108.166",
+  "base": "10.108.165",
+  "status": "REVIEW — mobile layout candidate",
   "changed_runtime_files": [
     "index.html",
     "js/30-whole-syllables-p14-163.js",
     "css/93-whole-syllables-p14-163.css"
   ],
-  "generated_at_jst": "2026-10-17T07:46:18+09:00"
+  "generated_at_jst": "2026-10-17T08:30:00+09:00"
 }
