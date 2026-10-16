@@ -1,7 +1,4 @@
-Koepanda 10.108.152
-Built: 2026-10-16T14:51:54+09:00
-Archive root: k152/
-Status: REVIEWED IMPLEMENTATION
-Scope: unified vocabulary cues and articulation
-Audio: unchanged; human recordings planned separately
-Validation: QA_REPORT_152.md
+Koepanda 10.108.154
+Status: DEVELOPMENT — NOT RELEASED
+Built: 2026-10-16T18:56:58+09:00
+Current review completed; overall commercial release acceptance remains open.
