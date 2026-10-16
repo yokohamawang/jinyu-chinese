@@ -1,4 +1,4 @@
-/* Teaching articulation 10.108.152: source-reviewed qualitative schematics.
+/* Teaching articulation 10.108.154: source-reviewed qualitative schematics.
  * These schematic drawing coordinates are NOT measurements from an articulatory
  * recording. Source checks support movement type and contact, not these values.
  * TUFS 1.4/1.5/1.6/1.7; USTS language training IV; SXFTC q training.
@@ -66,6 +66,8 @@
  shapes.dentalVowel=shape([15,24,31,40,46,52,58,64,71],[57,63,70,96,116,136,154,168,186]);
  // Rhotic vowel: raised tip without the narrow fricative constriction of sh.
  shapes.rhotic=shape([12,17,25,32,35,39,46,58,71],[80,88,99,112,127,143,157,170,174]);
+ // er teaching onset: local anterior rise; the posterior tongue stays stable.
+ shapes.rhoticReady=shape([26,28,31,35,36,39,46,58,71],[72,81,94,109,126,143,157,170,186]);
  shapes['ü']=shapes.i;
  function motionFraction(key,f){if(/^(ai|ei|ao|ou)$/.test(key))return smooth((f-.35)/.55);if(/^(ie|üe)$/.test(key))return smooth(f/.45);if(key==='ui'||key==='iu')return curve(clamp(f),[0,.20,.72,1],[0,.42,.57,1]);if(components[key])return smooth(f);if(nasalFinal(key))return key==='un'?smooth(f/.35):smooth((f-.35)/.45);return smooth((f-.14)/.64)}
  function score(key){return window.KP151_ARTICULATION&&window.KP151_ARTICULATION.profiles[key]}
@@ -153,7 +155,7 @@
    asp=!!(q&&q.aspiration&&f>q.aspiration[0]&&f<q.aspiration[1]);if(q&&q.aspiration)aspLevel=smooth((f-q.aspiration[0])/.035)*(1-smooth((f-q.aspiration[1]+.035)/.035));
    stage=cg>.001?2:(/stop|affricate/.test(m)?release===0:f<.16)?0:1;
    event=cg>.001?'vowel':/^(m|n|l)$/.test(key)?(f<.22?'approach':key==='l'?'lateral':'nasal'):/stop|affricate/.test(m)&&release===0?'closure':asp?'aspiration':(/affricate|fricative/.test(m)||key==='f')?'frication':key==='r'?'voiced':'release';
-  }else if(key==='er'){p=shapes.rhotic}
+  }else if(key==='er'){var rhotic=smooth((f-.08)/.42);p=mix(shapes.rhoticReady,shapes.rhotic,rhotic);stage=f<.14?0:f<.5?1:2}
   // Lip opening/rounding share the front-view keyframes. The jaw is left
   // relaxed: lip closure is not a command to clench the teeth.
   var pose=lipPose(d,f),round=pose[2],aperture=pose[1]*20/34;
@@ -190,6 +192,7 @@
   if(s.event){var retro=/^(zh|ch|sh|r)$/.test(key),velar=/^(g|k|h)$/.test(key);if(s.event==='vowel')return retro?'舌先の構えを残して、声へ':/^(z|c|s)$/.test(key)?'前の構えを残して、声へ':'声母から '+data[key].carrier+' へつなぐ';if(s.event==='closure'&&(retro||velar))return velar?'舌の奥で閉じ、息を止める':'舌の前部で閉じ、息を止める';if(s.event==='aspiration')return retro?'少し開き、息を出す':velar?'奥を離して、息を出す':'開放後に、息を出す';if(s.event==='frication'&&(retro||velar))return velar?'奥のすき間から、息を通す':'舌先のすき間から、息を通す';if(s.event==='release'&&velar)return '舌の奥を小さく離す'}
 
   if(data[key]&&data[key].kind==='initial'&&s.stage===2)return '声母から '+(data[key].carrier==='apical'?'後ろの母音':data[key].carrier)+' へ、一息でつなぐ';
+  if(key==='er')return s.stage===0?'軽く開き、声を出す':s.stage===1?'舌先を少し上・後ろへ':'触れずに、響きを保つ';
   if(labels[key])return labels[key];
   if(nasalFinal(key))return /ng$/.test(key)?(s.stage===0?'母音から・舌先は上げない':s.stage===1?'舌の後部を、軟口蓋へ':'奥で収める・g は足さない'):(s.stage===0?'母音の構えから':s.stage===1?'舌先・前縁を、上の前歯の後ろへ':'前で収める・母音を足さない');
   if(key==='l')return s.stage===0?'舌先を、上の前歯の後ろへ':s.stage===1?'中央は接触・息は舌の両側へ':'舌先を保つ・鼻へは通さない';
@@ -208,7 +211,7 @@
  function steps(key){var d=data[key];if(!d)return [];if(score(key))return score(key).steps.slice();if(d.kind!=='initial')return d.phase.slice();if(key==='n')return ['近づける','鼻に響く','母音へ'];if(key==='m')return ['閉じる','鼻に響く','o へ'];if(key==='l')return ['近づける','両側へ','母音へ'];if(/stop|affricate/.test(d.mechanism))return ['閉じる',d.aspirated?'息を出す':'短く開く','母音へ'];return ['構える','息を通す','母音へ']}
  function stepFrame(key,index){if(score(key))return score(key).frames[index];return (/^(ai|ei|ao|ou)$/.test(key)?[0,.625,.98]:/^(ie|üe)$/.test(key)?[0,.225,.92]:nasalFinal(key)?[0,.6,.92]:(data[key]&&data[key].kind==='initial'?[0,.30,.88]:[0,.48,.92]))[index]}
  function referenceFrame(key){var d=data[key]||{};return d.kind==='initial'?(/stop|affricate/.test(d.mechanism)?0:score(key)?score(key).frames[1]:.36):nasalFinal(key)?.9:.6}
- function hasMotion(key){return !!(data[key]&&key!=='r'&&key!=='er'&&(data[key].kind==='initial'||nasalFinal(key)||components[key]))}
+ function hasMotion(key){return !!(data[key]&&(data[key].kind==='initial'||nasalFinal(key)||components[key]||key==='er'))}
  function tonguePath(p,jawAngle){var a=jawAngle||0,x=p[0][0],y=surface(p,x),base=jawPoint(54,107,a),rise=base[1]-y;
   function pt(x,y){var q=jawPoint(x,y,a);return q[0].toFixed(2)+' '+q[1].toFixed(2)}
   var capT=smooth((rise-8)/8),capX=x-.65+(Math.max(55,x-1.6)-(x-.65))*capT,capControl=x-.65+(Math.max(54,x-1.4)-(x-.65))*capT,capY=y+Math.max(1.2,Math.min(4,rise*.16));
