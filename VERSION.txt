@@ -1,7 +1,7 @@
-Koepanda 10.108.151
-Built: 2026-10-16T08:37:25+09:00
-Archive root: k151/
-Base: 10.108.149 FULL (includes 150 checkpoint UI fixes)
-Scope: articulation implementation revision; qualitative teaching schematics
-Audio replacement: deferred by user
-Validation: see QA_REPORT_151.md
+Koepanda 10.108.152
+Built: 2026-10-16T14:51:54+09:00
+Archive root: k152/
+Status: REVIEWED IMPLEMENTATION
+Scope: unified vocabulary cues and articulation
+Audio: unchanged; human recordings planned separately
+Validation: QA_REPORT_152.md
