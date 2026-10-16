@@ -1,4 +1,4 @@
-/* Teaching articulation 10.108.155: source-reviewed qualitative schematics.
+/* Teaching articulation 10.108.160: source-reviewed qualitative schematics.
  * These schematic drawing coordinates are NOT measurements from an articulatory
  * recording. Source checks support movement type and contact, not these values.
  * TUFS 1.4/1.5/1.6/1.7; USTS language training IV; SXFTC q training.
@@ -87,17 +87,39 @@
   // as two independent stop/start transitions at its middle vowel.
   return frames[0].map(function(p,i){return [p[0],curve(t,times,frames.map(function(v){return v[i][1]}))]});
  }
+ // A consonant is followed by its carrier vowel in this teaching recording.
+ // Prepare tongue regions not involved in the consonant for that carrier,
+ // rather than animating the ENTIRE dorsum from a generic neutral pose.
+ // Contact regions retain their closure/constriction; only passive regions
+ // receive anticipatory coarticulation. Drawing parameters, not MRI values.
+ function carrierReady(key,consonant,target){
+  return consonant.map(function(pt){
+   var x=pt[0],w=1;
+   // Lip and tooth/lip consonants do not independently pull the tongue body.
+   if(/^(b|p|m|f)$/.test(key))w=0;
+   // Alveolar gestures need a narrow anterior contact, not a broad raised sheet.
+   else if(/^(d|t|n|l)$/.test(key))w=x<=64?1:x<=75?.55:x<=96?.25:0;
+   // Dorsal closure/constriction remains in the back; passive front rests near e.
+   else if(/^(g|k|h)$/.test(key))w=x<=116?0:x<=136?.65:x<=154?1:x<=168?.50:0;
+   // Palatals retain their anterior-blade gesture; back of tongue is stable.
+   else if(/^(j|q|x)$/.test(key))w=x<=96?1:x<=116?.8:x<=136?.4:0;
+   var carrierGap=surface(target,x)-palate(x);
+   return [x,pt[1]*w+carrierGap*(1-w)];
+  });
+ }
  function nasalTarget(start,back){
   if(back){
    var travel=surface(start,154)-ceiling(154,{velum:1});
-   return start.map(function(p){var x=p[0],w=Math.exp(-.5*Math.pow((x-154)/20,2));if(x<=96||x===186)w=0;
+   return start.map(function(p){var x=p[0],w=Math.exp(-.5*Math.pow((x-154)/15,2));if(x<=96||x===186)w=0;
     // The contact is tangent, not an intersection with the descending velum.
     // Keep a local minimum at its contact point; adjacent dorsum stays clear.
     return [x,Math.max(x===136?17:x>=136?ceiling(x,{velum:1})-palate(x):4,p[1]-travel*w)];
    });
   }
-  var xx=[59,64,75,96,116,136,154,168,186],height=surface(start,64)-palate(64);
-  return xx.map(function(x,i){var gap=surface(start,x)-palate(x);return [x,i===0?4:i<3?0:x<=116?Math.max(12,gap-height*Math.exp(-.5*Math.pow((x-64)/22,2))):gap]});
+  var xx=[59,64,75,96,116,136,154,168,186];
+  // Narrow apical n closure; do not lift the whole anterior tongue surface.
+  // Posterior parts of the preceding vowel keep their shape.
+  return xx.map(function(x,i){var gap=surface(start,x)-palate(x);return [x,i===0?4:i===1?0:i===2?Math.min(gap,12):gap]});
  }
  // The hard/soft junction is fixed. The anterior contact region moves only
  // slightly; posterior lowering opens the nasal port without a sweeping flap.
@@ -120,8 +142,8 @@
    p=glide(comp,f,key);stage=/^(ai|ei|ao|ou)$/.test(key)?(f<.35?0:f<.9?1:2):/^(ie|üe)$/.test(key)?(f<.12?0:f<.9?1:2):(f<.25?0:f<.75?1:2);
   }else if(nf){
    var ng=/ng$/.test(key),startKey=key==='an'?'aFront':key==='ang'?'aBack':key==='en'?'schwa':key==='eng'?'engNucleus':key==='ong'?'ongNucleus':/^(in|ing)$/.test(key)?'i':key==='ün'?'ü':'u';
-   var start=posture(startKey),base=key==='un'?shapes.schwa:start,end=nasalTarget(base,ng);
-   var t=smooth((f-.35)/.45);if(key==='un'&&f<.35)p=mix(start,shapes.schwa,smooth(f/.35));else p=mix(base,end,t);
+   var start=posture(startKey),base=key==='un'?mix(shapes.u,shapes.schwa,.64):start,end=nasalTarget(base,ng);
+   var t=smooth((f-.35)/.45);if(key==='un'&&f<.35)p=mix(start,base,smooth(f/.35));else p=mix(base,end,t);
    nasal=smooth((f-.53)/.27);oral=1-nasal;contact=t>=.999999?1:0;marker=ng?[154,ceiling(154,{velum:nasal})]:[64,palate(64)];stage=f<.35?0:f<.8?1:2;
   }else if(initial){
    // Establish the consonant contact, then connect to the recorded carrier.
@@ -157,7 +179,7 @@
    var cg=carrierFraction(key,f),target=d.carrier==='apical'?(/^retroflex/.test(m)?shapes.retroVowel:shapes.dentalVowel):posture(d.carrier);
    // The tongue tip/blade releases its contact into the actual carrier vowel.
    // Lip consonants do not acquire a spurious tongue-palate contact.
-   p=mix(p,target,cg);lip*=1-cg;dental*=1-cg;contact*=1-cg;
+   p=mix(carrierReady(key,p,target),target,cg);lip*=1-cg;dental*=1-cg;contact*=1-cg;
    nasal*=1-cg;lateral*=1-cg;oral=oral*(1-cg)+cg;
    if(cg>.001)voice=1;
    asp=!!(q&&q.aspiration&&f>q.aspiration[0]&&f<q.aspiration[1]);if(q&&q.aspiration)aspLevel=smooth((f-q.aspiration[0])/.035)*(1-smooth((f-q.aspiration[1]+.035)/.035));
