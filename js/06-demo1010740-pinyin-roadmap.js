@@ -158,7 +158,7 @@
     if(unit.id==='P10'){try{return localStorage.getItem('koepandaCompoundP9Complete')!=='1'}catch(e){return true}}
     if(unit.id==='P11'){try{return localStorage.getItem('koepandaCompoundP10Complete')!=='1'}catch(e){return true}}
     if(unit.id==='P12'){try{return localStorage.getItem('koepandaCompoundP11Complete')!=='1'}catch(e){return true}}
-    if(unit.id==='P14'){try{if(localStorage.getItem('koepandaWholeP14Complete')==='1'){b.classList.add('is-complete');note='クリア！ 7つの音を聞き分けよう'}}catch(e){}}
+    /* P14 completion belongs to unitButton, not unitLocked. */
     if(unit.id==='P13'){try{return localStorage.getItem('koepandaCompoundP12Complete')!=='1'}catch(e){return true}}
     return false;
   }
