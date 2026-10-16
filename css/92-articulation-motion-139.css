@@ -321,3 +321,17 @@ body.app-kids-mode .kp148-vowel-header#kp148VowelHeader .kids-vowel-drill-head{p
 .kp141-observe-steps:has(>[data-kp141-step="3"]){grid-template-columns:repeat(4,minmax(0,1fr))!important}
 .kp141-observe-steps:has(>[data-kp141-step="3"])>button{font-size:13px!important;padding:5px 2px!important}
 @media(max-width:360px){.kp141-observe-steps:has(>[data-kp141-step="3"])>button{font-size:12px!important}}
+
+/* 152: readable picture vocabulary for all initials and non-simple finals. */
+#kidsCourse .is-roadmap-lesson-active .kp150-illustrated{height:70px!important;min-height:70px!important}
+.kp150-mnemonic{flex-basis:72px;width:72px;height:62px}
+#kidsCourse .initials-focus-copy.kp150-illustrated{grid-template-columns:72px minmax(0,1fr)}
+.kp150-word mark{color:#21614a;background:none;border-bottom:2px solid #a5c7a4;font-weight:700}
+.kp152-cue-label{font-size:12px}
+@media(max-width:360px){.kp150-mnemonic{flex-basis:62px;width:62px;height:56px}#kidsCourse .initials-focus-copy.kp150-illustrated{grid-template-columns:62px minmax(0,1fr)}}
+@media(max-height:600px) and (max-width:600px){#kidsCourse .is-roadmap-lesson-active .kp150-illustrated{height:64px!important;min-height:64px!important}}
+@media(max-height:500px) and (min-width:601px){#kidsCourse .is-roadmap-lesson-active .kp150-illustrated{height:54px!important;min-height:54px!important}.kp150-mnemonic{height:48px}}
+@media(min-width:320px) and (max-width:360px){.kp134-studio .kp141-observe-steps:has(>[data-kp141-step="3"])>button{padding-left:0!important;padding-right:0!important;letter-spacing:0!important;white-space:nowrap}}
+/* Keep pressed feedback in geometry/shadow; avoid a filtered compositing layer
+   while the nearby canvas/SVG articulation changes in WebKit. */
+#kidsCourse .is-roadmap-lesson-active button:is(:active,.kp-ui-pressed,.is-pressed,.dtnl-is-pressed){filter:none!important}
