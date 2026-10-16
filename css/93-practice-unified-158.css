@@ -1,0 +1,151 @@
+/* Canonical free-practice component for every pinyin lesson. */
+#kidsCourse {
+  --kp-practice-ink:#285f50;
+  --kp-practice-green:#3dac7c;
+  --kp-practice-line:#d5e7dc;
+}
+#kidsCourse .kp-practice {
+  --kp-practice-inset:12px;
+  position:relative;display:block;box-sizing:border-box;
+  margin:16px var(--kp-practice-inset)!important;padding:16px 14px 14px!important;
+  min-width:0;min-height:0!important;max-width:calc(100% - 24px);
+  overflow:hidden;border:1px solid var(--kp-practice-line)!important;
+  border-radius:24px!important;background:linear-gradient(180deg,#fcfefb,#f0f8f2)!important;
+  box-shadow:0 7px 20px rgba(47,94,73,.045)!important;
+  color:var(--kp-practice-ink);
+}
+#kidsCourse .kp-practice[hidden]{display:none!important}
+#kidsCourse .kp-practice:before {
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#69b795,#daeee2);
+}
+#kidsCourse .kp-practice .kp-practice-head {
+  display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:0;min-width:0;
+}
+#kidsCourse .kp-practice-head>div {min-width:0;flex:1}
+#kidsCourse .kp-practice .kp-practice-head h3 {
+  margin:0!important;font-size:20px!important;font-weight:850!important;
+  line-height:1.4!important;letter-spacing:.01em;color:var(--kp-practice-ink);
+}
+#kidsCourse .kp-practice .kp-practice-head p {
+  margin:4px 0 0!important;font-size:15px!important;line-height:1.55!important;
+  font-weight:650!important;color:#607b70;white-space:normal;word-break:normal;line-break:strict;
+}
+#kidsCourse .kp-practice-avatar {
+  background:#edf6ed;box-shadow:0 0 0 2px #fff,0 0 0 3px #dceade;
+}
+#kidsCourse .kp-practice .kp-practice-choices {
+  display:grid!important;grid-template-columns:repeat(var(--kp-practice-columns,4),minmax(0,1fr))!important;
+  gap:8px!important;width:100%;min-width:0;margin:0 0 12px!important;padding:0!important;
+}
+#kidsCourse .kp-practice .kp-practice-choices>button {
+  display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  min-width:0;min-height:64px!important;height:auto!important;width:100%;margin:0!important;
+  padding:8px 3px!important;border:1px solid #c9e0d2!important;border-radius:18px!important;
+  background:#eaf5ed!important;color:#34765f!important;box-shadow:none!important;
+  font-family:inherit;font-size:30px!important;font-weight:800!important;line-height:1.2!important;
+  letter-spacing:0;white-space:normal;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transform:none!important;animation:none!important;
+  transition:transform .1s ease,background-color .1s ease;
+}
+#kidsCourse .kp-practice .kp-practice-choices>button:is(.is-active,.is-selected) {
+  background:var(--kp-practice-green)!important;border-color:var(--kp-practice-green)!important;color:#fff!important;
+}
+#kidsCourse .kp-practice .kp-practice-choices>button:is(:active,.is-pressed,.dtnl-is-pressed,.kp-ui-pressed):not(:disabled){transform:translateY(2px)!important;box-shadow:inset 0 2px 4px #215f4326!important;filter:brightness(.97)}
+#kidsCourse .kp-practice .kp-practice-choices>button:disabled{opacity:.5;cursor:default}
+#kidsCourse .kp-practice .kp-practice-choices>button strong{font-size:32px!important;line-height:1.2!important;font-weight:800!important}
+#kidsCourse .kp-practice .kp-practice-choices>button small{font-size:14px!important;line-height:1.35!important;color:inherit!important;font-weight:700!important}
+#kidsCourse .kp-practice .kp135-practice-art {
+  margin:0 0 10px!important;padding:10px!important;width:100%;min-width:0;
+  border:1px solid #d6e5da!important;border-radius:20px!important;background:#fff!important;
+}
+#kidsCourse .kp-practice .kp-practice-console {
+  margin:0!important;padding:14px 12px!important;min-height:0!important;min-width:0;
+  border:1px solid #e1e7dc!important;border-radius:20px!important;
+  background:linear-gradient(145deg,#fbfdf8,#fffbf3)!important;box-shadow:none!important;
+}
+#kidsCourse .kp-practice .kp-practice-console:before{content:none!important}
+#kidsCourse .kp-practice .kp144-front{width:min(100%,180px)!important;max-height:165px!important}
+#kidsCourse .kp-practice .kp134-front-view{min-height:185px!important}
+#kidsCourse .kp-practice .kp-practice-target {
+  display:block!important;min-height:0!important;margin:0!important;padding:0!important;
+  font-size:16px!important;line-height:1.5!important;font-weight:800!important;color:#355e4d!important;
+  white-space:normal!important;overflow-wrap:anywhere;
+}
+#kidsCourse .kp-practice .kp-practice-record-hint {
+  margin:3px 0 12px!important;padding:0!important;font-size:15px!important;
+  line-height:1.5!important;font-weight:650;color:#697f70;white-space:normal;overflow-wrap:anywhere;
+}
+#kidsCourse .kp-practice .kp-practice-record-row {
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;margin:0!important;padding:0!important;
+}
+#kidsCourse .kp-practice .kp-practice-record-row>button {
+  min-width:0;width:100%;min-height:64px!important;height:auto!important;margin:0!important;
+  padding:11px 7px!important;border:1px solid #f1d6cf!important;border-radius:17px!important;
+  font-family:inherit;font-size:17px!important;line-height:1.45!important;font-weight:800!important;
+  background:linear-gradient(180deg,#fff7f3,#ffebe7)!important;color:#c4645b!important;
+  box-shadow:0 3px 0 #efd6ce!important;white-space:normal;overflow-wrap:anywhere;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+#kidsCourse .kp-practice .kp-practice-record-row>button:last-child {
+  border-color:#dce5ef!important;background:linear-gradient(180deg,#f5f8ff,#eaf0fa)!important;
+  color:#536c91!important;box-shadow:0 3px 0 #d8e1ed!important;
+}
+#kidsCourse .kp-practice .kp-practice-record-row>button:disabled{opacity:.46!important;box-shadow:none!important;cursor:default}
+#kidsCourse .kp-practice .kp-practice-record-row>button:active:not(:disabled),
+#kidsCourse .kp-practice .kp-practice-record-row>button.is-playing{transform:translateY(2px)!important;box-shadow:none!important;filter:brightness(.96)}
+#kidsCourse .kp-practice .kp-practice-record-row>button.is-recording{background:#d97468!important;color:#fff!important;border-color:#d97468!important}
+#kidsCourse .kp-practice .kp-practice-console>[aria-live]:last-child {
+  min-height:0!important;margin:12px 0 0!important;padding:0!important;font-size:15px!important;
+  line-height:1.6!important;white-space:normal;overflow-wrap:anywhere;
+}
+#kidsCourse .kp-practice .kp-practice-console>[aria-live]:last-child:empty{display:none!important;margin:0!important}
+#kidsCourse .kp-practice .kp-practice-note{margin:12px 2px 0;font-size:15px;line-height:1.6;color:#657b6e}
+#kidsCourse .kp-practice-check-entry {
+  margin:16px 12px!important;padding:16px 14px!important;max-width:calc(100% - 24px);
+  border:1px solid #e9ddba!important;border-radius:24px!important;
+  background:linear-gradient(180deg,#fffef9,#fff9e8)!important;box-shadow:none!important;
+}
+#kidsCourse .kp-practice-check-head {display:flex;gap:11px;align-items:center;margin:0 0 13px}
+#kidsCourse .kp-practice-check-head>span {
+  display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;
+  border-radius:13px;background:#f4eacb;color:#806930;font-size:15px;font-weight:800;
+}
+#kidsCourse .kp-practice-check-head>div{min-width:0}
+#kidsCourse .kp-practice-check-head h3{margin:0;font-size:19px!important;line-height:1.4;font-weight:800;color:#705b22}
+#kidsCourse .kp-practice-check-head p{margin:3px 0 0;font-size:15px!important;line-height:1.55;color:#8a7850}
+#kidsCourse .kp-practice-check-entry>button {
+  display:block;width:100%;min-height:56px!important;margin:0!important;padding:12px!important;
+  border:1px solid #e7d79c!important;border-radius:17px!important;
+  background:linear-gradient(180deg,#fffdf3,#fff2c9)!important;color:#705b22!important;
+  font-size:17px!important;line-height:1.4;font-weight:800!important;box-shadow:0 3px 0 #e9dba9!important;
+}
+#kidsCourse .kp-practice-check-entry>button:active{transform:translateY(2px);box-shadow:none!important}
+#kidsCourse .kp-practice button:focus-visible,#kidsCourse .kp-practice-check-entry>button:focus-visible{outline:3px solid #dbab4f;outline-offset:3px}
+@media(max-width:360px){
+  #kidsCourse .kp-practice{--kp-practice-inset:10px}
+  #kidsCourse .kp-practice,#kidsCourse .kp-practice-check-entry{margin-left:10px!important;margin-right:10px!important;max-width:calc(100% - 20px);padding-left:12px!important;padding-right:12px!important}
+  #kidsCourse .kp-practice .kp-practice-head{gap:10px}
+  #kidsCourse .kp-practice .kp-practice-head h3{font-size:19px!important}
+  #kidsCourse .kp-practice .kp-practice-choices{gap:6px!important}
+  #kidsCourse .kp-practice .kp-practice-choices>button{font-size:26px!important}
+  #kidsCourse .kp-practice .kp-practice-record-row>button{font-size:16px!important}
+}
+/* The vowel drill has 19px of existing nested border/padding on each side.
+   Match the common lesson edge without changing its teaching section. */
+@media(max-width:600px){
+  #kidsCourse #kidsVowelDrill .kp-practice,
+  #kidsCourse #kidsVowelDrill .kp-practice-check-entry{
+    margin-left:calc(var(--kp-practice-inset,12px) - 19px)!important;
+    margin-right:calc(var(--kp-practice-inset,12px) - 19px)!important;
+    width:calc(100% + 38px - 2 * var(--kp-practice-inset,12px));max-width:none;
+  }
+  #kidsCourse #kidsVowelDrill .kp-practice-check-entry{--kp-practice-inset:12px}
+}
+@media(max-width:360px){#kidsCourse #kidsVowelDrill .kp-practice-check-entry{--kp-practice-inset:10px}}
+@media(max-height:700px){
+  #kidsCourse .kp-practice .kp144-front{width:min(100%,169px)!important;max-height:155px!important}
+  #kidsCourse .kp-practice .kp134-front-view{min-height:175px!important}
+}
+@media(prefers-reduced-motion:reduce){#kidsCourse .kp-practice button{transition:none!important;transform:none!important}}
