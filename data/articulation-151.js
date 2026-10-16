@@ -1,6 +1,6 @@
 /* Independent gesture scores and replaceable audio alignment. */
 window.KP151_ARTICULATION={
-  "version": "10.108.151",
+  "version": "10.108.152",
   "profiles": {
     "b": {
       "release": [
