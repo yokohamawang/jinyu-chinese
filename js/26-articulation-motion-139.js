@@ -1,4 +1,4 @@
-/* Teaching articulation 10.108.160: source-reviewed qualitative schematics.
+/* Teaching articulation 10.108.162 REVIEW: source-reviewed qualitative schematics.
  * These schematic drawing coordinates are NOT measurements from an articulatory
  * recording. Source checks support movement type and contact, not these values.
  * TUFS 1.4/1.5/1.6/1.7; USTS language training IV; SXFTC q training.
@@ -64,7 +64,16 @@
  shapes.nGap=shape([9,5,5,19,30,43,55,63,71],[59,64,75,96,116,136,154,168,174]);// Velar constriction is a local posterior gesture, not a high mid-tongue
  // plateau. Preserve the low passive tip and the carrier's middle contour.
  // g/k still meet the soft palate; h retains an open dorsal constriction.
- shapes.velarClosed=shape([42,49,48,45,34,14,0,18,71]);shapes.velarGap=shape([42,49,48,45,34,18,7,24,71]);shapes.velarFricative=shape([42,49,48,45,34,18,7,24,71]);
+ // 161 g/k: smooth posterior dorsum leading to a true velar closure.
+ // The tip and blade remain relaxed; h retains an open constriction.
+ // These schematic values are not measured physiological distances.
+ // Posterior-dorsum targets: the closure peaks at the soft palate,
+ // NOT the centre of the hard palate. Both sides of the contact rise and
+ // fall gradually; the far posterior anchor remains lowered and stable.
+ // A schematic teaching contour, pending measured-articulation validation.
+ shapes.velarClosed=shape([42,48,49,44,34,15,0,13,51]);
+ shapes.velarGap=shape([42,48,49,44,35,21,9,20,51]);
+ shapes.velarFricative=shape([42,48,49,44,36,24,11,22,51]);
  shapes.retroVowel=shape([10,12,22,31,39,45,55,65,71],[75,81,91,105,122,141,158,173,186]);shapes.retroApprox=shape([8,10,21,31,39,45,55,65,71],[75,81,91,105,122,141,158,173,186]);
  shapes.dentalVowel=shape([15,24,31,40,46,52,58,64,71],[57,63,70,96,116,136,154,168,186]);
  // Rhotic vowel: raised tip without the narrow fricative constriction of sh.
@@ -165,7 +174,7 @@
     }
     else{p=mix(shapes.n,shapes.nGap,release);contact=1-release;oral=release}
    }else if(/^velar/.test(m)){
-    var closed=m==='velar-stop';p=closed?mix(shapes.velarClosed,shapes.velarGap,release):shapes.velarFricative;marker=[154,palate(154)];contact=closed&&release===0?1:0;oral=closed?release:1;
+    var closed=m==='velar-stop';p=closed?mix(shapes.velarClosed,shapes.velarGap,release):shapes.velarFricative;marker=[154,palate(154)];contact=closed?1-release:0;oral=closed?release:1;
    }else if(/^palatal/.test(m)){
     var aff=/affricate/.test(m);p=aff?mix(shapes.palatal,shapes.palatalGap,release):shapes.palatalGap;marker=[78,palate(78)];contact=aff?1-release:0;oral=aff?release:1;
    }else if(/^dental/.test(m)){
@@ -200,7 +209,7 @@
   // Active coronal contacts stay at the upper articulator; the high dorsum
   // is not lifted wholesale by jaw closure. Angles are drawing parameters.
   var jawAngle=(22*(1-clamp(aperture/20)))/136;p=anteriorWithJaw(p,jawAngle);
-  var contactDegree=contact;if(key==='n'||key==='l')contactDegree=smooth(f/.22)*(1-carrierFraction(key,f));if(initial)contact=contact>=.999999?1:0;
+  var contactDegree=contact;if(key==='n'||key==='l')contactDegree=smooth(f/.22)*(1-carrierFraction(key,f));if(initial&&m!=='velar-stop')contact=contact>=.999999?1:0;
   return {contactDegree:contactDegree,aspirationLevel:aspLevel,progress:f,event:event,stepIndex:q?stepIndex(key,f):stage,aperture:aperture,jawAngle:jawAngle,tongue:p,oral:oral*flowing,nasal:nasal*flowing,velum:nasal,voiced:voice>0,voice:voice*flowing,lip:lip,dental:dental,round:round,contact:contact,marker:marker,stage:stage,lateral:lateral*flowing,aspirated:asp};
  }
  function jawPoint(x,y,a){var dx=x-184,dy=y-132;return [184+dx*Math.cos(a)-dy*Math.sin(a),132+dx*Math.sin(a)+dy*Math.cos(a)]}
