@@ -335,3 +335,19 @@ body.app-kids-mode .kp148-vowel-header#kp148VowelHeader .kids-vowel-drill-head{p
 /* Keep pressed feedback in geometry/shadow; avoid a filtered compositing layer
    while the nearby canvas/SVG articulation changes in WebKit. */
 #kidsCourse .is-roadmap-lesson-active button:is(:active,.kp-ui-pressed,.is-pressed,.dtnl-is-pressed){filter:none!important}
+
+/* 153: use the screen width for legible, uncluttered vowel controls. */
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button .vowel-tone-card-top b::after{content:none!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button.is-heard:not([aria-pressed=true]):not(.is-sounding){background:#fffdf7!important;border-color:#aec5b7!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button[aria-pressed=true]{background:#edf5ef!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button{height:104px!important;min-height:104px!important;max-height:104px!important;padding:5px 2px!important;border-radius:16px!important}
+#kidsVowelDrill .kp135-tones .vowel-tone-card-top b{font-size:15px!important;line-height:1.35!important}
+#kidsVowelDrill .kp135-tones .tone-mark{font-size:38px!important;line-height:1.35!important}
+#kidsVowelDrill .kp135-tones .vowel-tone-contour{width:40px!important;height:22px!important}
+@media(max-width:600px){
+ #kidsCourse>.kids-lesson-card.is-roadmap-lesson-active:has(#kidsVowelGrid){padding:10px!important}
+ #kidsVowelDrill{padding:8px!important}
+ #kidsVowelDrill #kidsVowelMouth{padding:0!important;border:0!important;background:transparent!important}
+ #kidsVowelDrill .kp135-tones #kidsVowelToneGrid{gap:7px!important}
+}
+#kp148VowelHeader .kids-vowel-drill-title small{display:none!important}
