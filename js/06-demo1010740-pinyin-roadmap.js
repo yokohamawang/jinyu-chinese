@@ -150,6 +150,7 @@
 
   function unitLocked(unit,stageStatus){
     if(devUnlockEnabled())return false;
+    if(unit.id==='P15'||unit.id==='P16')return false; /* available for direct practice */
     if(stageStatus==='locked')return true;
     if(unit.id==='P2'&&typeof window.koepandaIsUnitComplete==='function')return !window.koepandaIsUnitComplete('P1');
     if(unit.id==='P4'){
@@ -166,8 +167,8 @@
     if(unit.id==='P12'){try{return localStorage.getItem('koepandaCompoundP11Complete')!=='1'}catch(e){return true}}
     /* P14 completion belongs to unitButton, not unitLocked. */
     if(unit.id==='P13'){try{return localStorage.getItem('koepandaCompoundP12Complete')!=='1'}catch(e){return true}}
-    if(unit.id==='P15'){try{return localStorage.getItem('koepandaWholeP14Complete')!=='1'}catch(e){return true}}
-    if(unit.id==='P16'){try{return localStorage.getItem('koepandaWholeP15Complete')!=='1'}catch(e){return true}}
+    if(unit.id==='P15')return false; /* published lesson stays accessible */
+    if(unit.id==='P16')return false; /* published lesson stays accessible */
     return false;
   }
 
