@@ -176,6 +176,7 @@
     var b=document.createElement('button'); b.type='button'; b.className='pinyin-node'; b.dataset.unitId=unit.id; b.dataset.stageStatus=stageStatus||'';
     var isCurrent=(unit.id==='P0-U1'||unit.id==='P1'||unit.id==='P2');
     var locked=unitLocked(unit,stageStatus),hasBody=!!targetForUnit(unit.id);
+    if(unit.id==='P15'||unit.id==='P16'){hasBody=true;locked=false;}
     if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked'); if(!locked&&!hasBody)b.classList.add('is-upcoming');
     b.disabled=locked||(!hasBody&&!isCurrent);
     var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(locked&&unit.id==='P4'?'b・p・m・f をクリアすると開く':(locked&&unit.id==='P5'?'d・t・n・l をクリアすると開く':(locked&&unit.id==='P6'?'g・k・h をクリアすると開く':(locked&&unit.id==='P7'?'j・q・x をクリアすると開く':(locked&&unit.id==='P8'?'zh・ch・sh・r をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習')))))));
@@ -192,7 +193,7 @@
     if(unit.id==='P16'){try{if(localStorage.getItem('koepandaCompoundP16Complete')==='1'){b.classList.add('is-complete');note='クリア！ 声母と韵母の二拼を復習しよう'}else if(locked){note='整体認読②をクリアすると開く'}}catch(e){}}
     if(unit.id==='P13'){try{if(localStorage.getItem('koepandaCompoundP13Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌の後ろ側と鼻の響きを復習しよう'}else if(locked){note='前鼻韻母をクリアすると開く'}}catch(e){}}
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
-    if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
+    if(!locked&&hasBody)b.addEventListener('click',function(){var target=targetForUnit(unit.id);if(!target){b.querySelector('small').textContent='読み込み中…';setTimeout(function(){if(targetForUnit(unit.id))openLesson(unit,b);else b.querySelector('small').textContent='レッスンの読込を確認してください'},500);return;}openLesson(unit,b)});
     return b;
   }
 
