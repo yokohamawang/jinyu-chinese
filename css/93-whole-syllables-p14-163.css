@@ -67,7 +67,7 @@
 #kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-piece{animation:none}
 #kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-plus{background:#e7f1e7;color:#4b7669;box-shadow:0 1px 0 #d4e2d5;transform:none}
 #kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-arrow{color:#e2ad48;transform:translateX(3px) scale(1.15)}
-#kidsWholeSyllableLesson.kp167 .kp167-connect.is-connector-lit .kp167-plus{background:#f5e2aa;color:#967133;box-shadow:0 0 0 5px rgba(245,226,170,.4);animation:kp169-plus-pulse .45s ease-in-out 2}
+#kidsWholeSyllableLesson.kp167 .kp167-connect.is-connector-lit .kp167-plus{background:#f5e2aa;color:#967133;box-shadow:0 0 0 4px rgba(245,226,170,.32);animation:none}
 #kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-piece,#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-plus,#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-arrow{transition:opacity .2s ease,transform .25s ease}
 #kidsWholeSyllableLesson.kp167 .kp167-instruction{min-height:1em;margin:7px 0 5px;color:#84958b;text-align:center;font-size:.67rem;line-height:1.2}
 #kidsWholeSyllableLesson.kp167 .kp167-listen{display:block;width:100%;min-height:42px;border:0;border-radius:14px;background:#cadbd6;color:#fff;font-size:.88rem;font-weight:850;box-shadow:0 3px 0 #b7cbc4;transition:transform .14s ease,background .18s ease,box-shadow .18s ease}
