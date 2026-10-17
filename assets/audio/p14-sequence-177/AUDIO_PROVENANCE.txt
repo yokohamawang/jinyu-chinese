@@ -1,0 +1,3 @@
+P14 guided audio sequences, version 177.
+Each sequence concatenates the existing reviewed course-134 recordings in this order: initial lesson sample, i-vowel lesson sample (yi1.wav), whole target syllable sample, with 0.38 s pauses.
+The initial samples are the same contextual audio used in pronunciation-134.js (e.g. zhi maps to zhi1.wav); they are not synthesized phonemes.
