@@ -1,1 +1,1 @@
-10.108.178 FULL — 音频内置可靠播放 · yue/ye 联想图调整
+Koepanda 10.108.183 FULL — P16 two-part spelling lesson, automatic syllable playback, recording, quiz, and roadmap integration.
