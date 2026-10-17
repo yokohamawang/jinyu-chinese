@@ -1,0 +1,6 @@
+/* Koepanda 10.108.179 — P15 voiced spelling/final pieces. */
+#kidsWholeSyllableP15.kp175 .kp175-piece[role="button"]{cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+#kidsWholeSyllableP15.kp175 .kp175-piece[role="button"]:active{transform:translateY(2px) scale(.98)}
+#kidsWholeSyllableP15.kp175 .kp175-piece[role="button"]:focus-visible{outline:3px solid #eab860;outline-offset:2px}
+#kidsWholeSyllableP15.kp175 .kp175-piece[role="button"] small{position:absolute;right:6px;bottom:3px;padding:1px 3px;border-radius:5px;background:rgba(226,240,231,.88);color:#62877a;font-size:.49rem;line-height:1;font-weight:900}
+#kidsWholeSyllableP15.kp175 .kp175-piece.kp175-vowel[role="button"] small{background:rgba(255,241,199,.9);color:#a08043}
