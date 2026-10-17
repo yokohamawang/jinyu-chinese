@@ -24,3 +24,8 @@
 #kidsTwoSpellingP16 .kp183-stations{grid-template-columns:repeat(4,minmax(0,1fr))}
 #kidsTwoSpellingP16 button:active{transform:translateY(2px)}
 @media(max-width:420px){#kidsTwoSpellingP16 .kp183-title h2{font-size:1.12rem}#kidsTwoSpellingP16 .kp183-title p{font-size:.78rem}#kidsTwoSpellingP16 .kp183-playfield{padding:11px 9px}#kidsTwoSpellingP16 .kp183-step-title{gap:6px}}
+
+/* 185 responsive title and avoid overflowing 3-column control */
+#kidsTwoSpellingP16 .kp183-step-title{display:flex;flex-wrap:nowrap;align-items:center;min-width:0}
+#kidsTwoSpellingP16 .kp183-step-title strong{overflow-wrap:anywhere}
+#kidsTwoSpellingP16 .kp183-stations button{min-width:0}
