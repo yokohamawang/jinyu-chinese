@@ -1,4 +1,1 @@
-Koepanda 10.108.154
-Status: DEVELOPMENT — NOT RELEASED
-Built: 2026-10-16T18:56:58+09:00
-Current review completed; overall commercial release acceptance remains open.
+10.108.175 FULL — P15 整体認読②
