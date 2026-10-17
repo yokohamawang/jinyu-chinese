@@ -1,0 +1,10 @@
+Koepanda course recordings — 10.108.134
+Speaker: Chen Wang
+Source: https://github.com/hugolpz/audio-cmn
+Pinned commit: ff9ed3d0c631195bd2c06f39450f3264c7124040
+Recording production: Hugo Lopez (PLIDAM, INALCO); software/support: Nicolas Vion.
+License: CC-by-sa, as stated upstream; no version is invented here.
+https://creativecommons.org/licenses/by-sa/
+P15 adds yuan1 from the same pinned source and speaker; source bytes are pinned to commit ff9ed3d0c631195bd2c06f39450f3264c7124040. Adaptations retain upstream CC-by-sa terms. Exact sources, hashes and intervals are in AUDIO_PROVENANCE.json.
+Changes: decode mono PCM, conservative surrounding-silence trim, short fades, normalization and short padding. No phoneme-isolation crop or speech synthesis was applied. The intended trim is surrounding silence; onset completeness remains subject to expert listening.
+The separately retained ong-derived recording remains a review blocker; it is not an original isolated final recording.
