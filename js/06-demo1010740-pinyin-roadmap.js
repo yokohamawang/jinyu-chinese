@@ -55,6 +55,7 @@
     if(id==='P12')return document.getElementById('kidsFrontNasalLesson');
     if(id==='P13')return document.getElementById('kidsBackNasalLesson');
     if(id==='P14')return document.getElementById('kidsWholeSyllableLesson');
+    if(id==='P15')return document.getElementById('kidsWholeSyllableP15');
     return null;
   }
 
@@ -96,6 +97,7 @@
     var lessonBack=document.getElementById('pinyinLessonBack');
     if(lessonBack)lessonBack.remove();var header=document.querySelector('.kp148-lesson-header');if(header)header.remove();
     if(typeof window.koepandaResetVowelGroup==='function')window.koepandaResetVowelGroup();
+    window.dispatchEvent(new Event('koepandaP15Close'));
     showRoadmapChrome(true);
     var y=lessonState.returnY;
     lessonState=null;
@@ -132,6 +134,7 @@
     }else if(typeof window.koepandaResetVowelGroup==='function'){
       window.koepandaResetVowelGroup();
     }
+    if(unit.id==='P15')window.dispatchEvent(new Event('koepandaP15Open'));
 
     var existing=document.getElementById('pinyinLessonBack');
     if(existing)existing.remove();
@@ -160,6 +163,7 @@
     if(unit.id==='P12'){try{return localStorage.getItem('koepandaCompoundP11Complete')!=='1'}catch(e){return true}}
     /* P14 completion belongs to unitButton, not unitLocked. */
     if(unit.id==='P13'){try{return localStorage.getItem('koepandaCompoundP12Complete')!=='1'}catch(e){return true}}
+    if(unit.id==='P15'){try{return localStorage.getItem('koepandaWholeP14Complete')!=='1'}catch(e){return true}}
     return false;
   }
 
@@ -179,6 +183,7 @@
     if(unit.id==='P11'){try{if(localStorage.getItem('koepandaCompoundP11Complete')==='1'){b.classList.add('is-complete');note='クリア！ ie・üe・er の音色を復習しよう'}else if(locked){note='ao・ou・iu をクリアすると開く'}}catch(e){}}
     if(unit.id==='P12'){try{if(localStorage.getItem('koepandaCompoundP12Complete')==='1'){b.classList.add('is-complete');note='クリア！ 前鼻韻母の音色を復習しよう'}else if(locked){note='ie・üe・er をクリアすると開く'}}catch(e){}}
     if(unit.id==='P14'){try{if(localStorage.getItem('koepandaWholeP14Complete')==='1'){b.classList.add('is-complete');note='クリア！ 7つの音を聞き分けよう'}}catch(e){}}
+    if(unit.id==='P15'){try{if(localStorage.getItem('koepandaWholeP15Complete')==='1'){b.classList.add('is-complete');note='クリア！ 9つの音を聞き分けよう'}else if(locked){note='zhi〜si をクリアすると開く'}}catch(e){}}
     if(unit.id==='P13'){try{if(localStorage.getItem('koepandaCompoundP13Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌の後ろ側と鼻の響きを復習しよう'}else if(locked){note='前鼻韻母をクリアすると開く'}}catch(e){}}
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
     if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
