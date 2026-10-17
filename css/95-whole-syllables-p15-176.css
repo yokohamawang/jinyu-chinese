@@ -1,0 +1,111 @@
+/* P14 拼接关卡 — all selectors anchor to the lesson root to avoid legacy cascade. */
+#kidsWholeSyllableP15.kp175{display:block;width:100%;max-width:760px;margin:0 auto;padding:clamp(8px,2.2vw,16px);box-sizing:border-box;color:#315c58;font-family:inherit;isolation:isolate}
+#kidsWholeSyllableP15.kp175[hidden]{display:none!important}
+#kidsWholeSyllableP15.kp175 *{box-sizing:border-box}
+#kidsWholeSyllableP15.kp175 button{font:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
+#kidsWholeSyllableP15.kp175 button:focus-visible{outline:3px solid #eeb66d;outline-offset:2px}
+#kidsWholeSyllableP15.kp175 .kp175-head{padding:2px 2px 9px}
+#kidsWholeSyllableP15.kp175 .kp175-overline{display:flex;justify-content:space-between;align-items:center;color:#76918a;font-size:.67rem;font-weight:850;letter-spacing:.12em}
+#kidsWholeSyllableP15.kp175 .kp175-overline b{padding:4px 8px;border-radius:99px;background:#eff5eb;color:#73886e;font-size:.62rem;letter-spacing:.07em}
+#kidsWholeSyllableP15.kp175 .kp175-title{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#kidsWholeSyllableP15.kp175 .kp175-title h2{margin:3px 0 1px;color:#285b58;font-size:clamp(1.28rem,5vw,1.62rem);line-height:1.18;letter-spacing:.025em}
+#kidsWholeSyllableP15.kp175 .kp175-title p{margin:0;color:#718781;font-size:.78rem;line-height:1.35}
+#kidsWholeSyllableP15.kp175 .kp175-star{display:flex;align-items:center;gap:4px;flex:none;padding:7px 10px;border:1px solid #f0dcaa;border-radius:14px;background:#fff9e9;color:#d19d43;font-size:.8rem;box-shadow:0 2px 0 #f5e9ca}
+#kidsWholeSyllableP15.kp175 .kp175-star b{color:#8e7650;font-size:.7rem}
+#kidsWholeSyllableP15.kp175 .kp175-route{position:relative;margin:6px 0 9px;padding:9px 10px 10px;border:1px solid #dce9df;border-radius:18px;background:linear-gradient(115deg,#f6faf0,#eff7f3);box-shadow:inset 0 1px 0 #fff}
+#kidsWholeSyllableP15.kp175 .kp175-route-head{display:flex;justify-content:space-between;align-items:baseline;margin:0 1px 7px;color:#4e7066;font-size:.75rem;font-weight:850}
+#kidsWholeSyllableP15.kp175 .kp175-route-head small{color:#93a69d;font-size:.62rem;font-weight:650}
+#kidsWholeSyllableP15.kp175 .kp175-stations{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px 8px}
+#kidsWholeSyllableP15.kp175 .kp175-stations:before{content:"";position:absolute;z-index:0;left:9%;right:9%;top:50%;border-top:1px dashed #c5d8cc;pointer-events:none}
+#kidsWholeSyllableP15.kp175 .kp175-stations button{position:relative;z-index:1;min-width:0;min-height:37px;padding:4px 3px;border:1.5px solid #c7d9d1;border-radius:13px;background:#fffefa;color:#416e69;font-size:1rem;font-weight:850;line-height:1;box-shadow:0 2px 0 #d9e5dc;transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease}
+#kidsWholeSyllableP15.kp175 .kp175-stations button.is-active{border-color:#4d9c8c;background:#dff3eb;color:#20675d;box-shadow:0 3px 0 #b8d9cd,0 0 0 2px #fff;transform:translateY(-1px) scale(1.035)}
+#kidsWholeSyllableP15.kp175 .kp175-workbench{overflow:hidden;border:1px solid #dce8dc;border-radius:21px;background:#fffefa;box-shadow:0 7px 20px rgba(46,91,75,.08),inset 0 1px 0 #fff}
+#kidsWholeSyllableP15.kp175 .kp175-worktop{position:relative;display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:11px;min-height:88px;padding:9px 13px;background:radial-gradient(ellipse at 5% 120%,rgba(225,239,209,.8),transparent 62%),linear-gradient(100deg,#f8f5e6,#f0f7ed 55%,#eaf4f1)}
+#kidsWholeSyllableP15.kp175 .kp175-scene{display:grid;place-items:center;width:68px;height:66px;overflow:hidden;border:1px solid #e5e3cf;border-radius:19px;background:#fffdf5;box-shadow:0 3px 0 rgba(127,155,121,.14),inset 0 1px 0 #fff}
+#kidsWholeSyllableP15.kp175 .kp175-scene svg{display:block;width:100%;height:100%;padding:4px}
+#kidsWholeSyllableP15.kp175 .kp175-scene.is-enter svg{animation:kp167-arrive .48s cubic-bezier(.2,.8,.22,1.15) both}
+#kidsWholeSyllableP15.kp175 .kp175-scene[data-motion="1"].is-enter svg{animation-name:kp167-roll}
+#kidsWholeSyllableP15.kp175 .kp175-scene[data-motion="2"].is-enter svg{animation-name:kp167-bounce}
+#kidsWholeSyllableP15.kp175 .kp175-cue{min-width:0;display:flex;flex-direction:column;gap:3px}
+#kidsWholeSyllableP15.kp175 .kp175-kicker{color:#819888;font-size:.62rem;line-height:1.1;font-weight:850;letter-spacing:.07em}
+#kidsWholeSyllableP15.kp175 .kp175-cue strong{overflow:hidden;color:#426e60;font-size:1.02rem;line-height:1.2;white-space:nowrap;text-overflow:ellipsis}
+#kidsWholeSyllableP15.kp175 .kp175-cue strong span{color:#83978b;font-size:.74rem;font-weight:650}
+#kidsWholeSyllableP15.kp175 .kp175-cue small{overflow:hidden;color:#71877b;font-size:.65rem;line-height:1.25;white-space:nowrap;text-overflow:ellipsis}
+#kidsWholeSyllableP15.kp175 .kp175-lesson-tag{align-self:start;padding:5px 7px;border-radius:10px;background:#fff;border:1px solid #e3eadd;color:#6c8977;font-size:.6rem;font-weight:800;white-space:nowrap}
+#kidsWholeSyllableP15.kp175 .kp175-game{padding:10px 13px 11px;border-top:1px solid #e6ece1;background:linear-gradient(180deg,#fffefa,#fbfcf7)}
+#kidsWholeSyllableP15.kp175 .kp175-gamehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#42665f;font-size:.78rem;font-weight:850}
+#kidsWholeSyllableP15.kp175 .kp175-gamehead i{display:inline-grid;place-items:center;width:19px;height:19px;margin-right:4px;border-radius:7px;background:#e6f3eb;color:#4a8c77;font-size:.68rem;font-style:normal}
+#kidsWholeSyllableP15.kp175 .kp175-mission{color:#b4a275;font-size:.55rem;font-weight:900;letter-spacing:.13em}
+#kidsWholeSyllableP15.kp175 .kp175-connect{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,.76fr) 31px minmax(78px,1.14fr);align-items:center;gap:5px;min-height:68px;padding:7px 9px;border:1px solid #e4eadd;border-radius:19px;background:radial-gradient(ellipse at 50% 50%,#fffdf2 0,transparent 72%),#f5f8ef}
+#kidsWholeSyllableP15.kp175 .kp175-piece{position:relative;display:grid;place-items:center;min-width:0;min-height:46px;padding:0 4px;border:1.5px solid #b9d3c8;border-radius:16px;background:#fff;color:#34786e;font-size:1.18rem;font-weight:900;text-align:center;box-shadow:0 3px 0 #d8e7dc;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+#kidsWholeSyllableP15.kp175 .kp175-vowel{border-color:#e8d5aa;background:#fff8e6;color:#a17d43;box-shadow:0 3px 0 #f0e5c9}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-ready-piece{animation:kp167-pulse 1.5s ease-in-out infinite}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-placed{animation:none;background:#dff3eb;border-color:#58a18e;box-shadow:0 1px 0 #c4dfd4;transform:translateY(2px)}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-speaking-left{z-index:2;border-color:#4e9b89;background:linear-gradient(145deg,#e8fff5,#bfe9d8);color:#246b60;box-shadow:0 0 0 4px rgba(80,168,145,.18),0 5px 0 #a9d4c5;animation:kp173-say-left .58s cubic-bezier(.2,.8,.25,1) infinite}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-speaking-right{z-index:2;border-color:#d9ad52;background:linear-gradient(145deg,#fff4c7,#f9db83);color:#87652b;box-shadow:0 0 0 4px rgba(233,190,89,.2),0 5px 0 #e8ca7a;animation:kp173-say-right .62s cubic-bezier(.2,.8,.25,1) infinite}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-hidden-piece{opacity:0;transform:translateX(12px) scale(.82);pointer-events:none}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-appearing-left{animation:kp169-piece-roll .95s cubic-bezier(.18,.78,.2,1.2) both}
+#kidsWholeSyllableP15.kp175 .kp175-piece.is-appearing-right{animation:kp169-piece-hop .9s cubic-bezier(.18,.78,.2,1.22) both}
+#kidsWholeSyllableP15.kp175 .kp175-plus{display:grid;place-items:center;width:24px;height:24px;margin:auto;border-radius:50%;background:#e7f1e7;color:#4b7669;text-align:center;font-size:1.12rem;font-weight:950;line-height:1;box-shadow:0 1px 0 #d4e2d5}
+#kidsWholeSyllableP15.kp175 .kp175-arrow{color:#709d89;text-align:center;font-size:1.28rem;font-weight:900;text-shadow:0 1px 0 #fff}
+#kidsWholeSyllableP15.kp175 .kp175-result{position:relative;display:flex;justify-content:center;align-items:center;min-width:0;min-height:54px;border:0;border-radius:999px;background:transparent;color:#326e68;text-align:center;isolation:isolate}
+#kidsWholeSyllableP15.kp175 .kp175-result:before{content:"";position:absolute;inset:3px 4px;z-index:-1;border:1.5px dashed #b8cdc2;border-radius:999px;background:rgba(255,254,250,.82);transition:all .25s ease}
+#kidsWholeSyllableP15.kp175 .kp175-result small{color:#8c9d91;font-size:.52rem;line-height:1.2}
+#kidsWholeSyllableP15.kp175 .kp175-result b{font-size:1.1rem;line-height:1.1;letter-spacing:.01em}
+#kidsWholeSyllableP15.kp175 .kp175-result.is-waiting:before{border-color:#9fc4b1;background:rgba(255,254,250,.62);transform:scale(.92)}
+#kidsWholeSyllableP15.kp175 .kp175-result.is-waiting small{color:#82958a;font-size:.48rem}
+#kidsWholeSyllableP15.kp175 .kp175-result.is-snapped{min-height:56px;transform:none}
+#kidsWholeSyllableP15.kp175 .kp175-result.is-snapped:before{inset:1px 2px;border:2px solid #f0c866;border-radius:999px;background:radial-gradient(circle at 34% 20%,#fff9da,#ffe78e 58%,#f3c85f);box-shadow:0 3px 0 #d9b35c,0 0 0 4px rgba(255,223,124,.25);animation:kp167-seal .9s cubic-bezier(.2,.85,.2,1.25) both}
+#kidsWholeSyllableP15.kp175 .kp175-result.is-snapped:after{content:"✦";position:absolute;top:-5px;right:0;color:#e2a93b;font-size:.8rem;animation:kp167-spark .82s ease-out both}
+
+#kidsWholeSyllableP15.kp175 .kp175-result .kp175-syllable{display:flex;align-items:baseline;justify-content:center;white-space:nowrap;color:#255f58;font-size:1.32rem;font-weight:950;line-height:1.06;letter-spacing:-.035em;text-shadow:0 1px 0 #fff8d8}
+#kidsWholeSyllableP15.kp175 .kp175-result .kp175-syllable span:first-child{animation:kp167-merge-left .65s cubic-bezier(.15,.8,.2,1.3) both}
+#kidsWholeSyllableP15.kp175 .kp175-result .kp175-syllable span:last-child{color:#9a7125;animation:kp167-merge-right .65s cubic-bezier(.15,.8,.2,1.3) both}
+#kidsWholeSyllableP15.kp175 .kp175-connect.is-complete .kp175-piece{animation:none}
+#kidsWholeSyllableP15.kp175 .kp175-connect.is-complete .kp175-plus{background:#e7f1e7;color:#4b7669;box-shadow:0 1px 0 #d4e2d5;transform:none}
+#kidsWholeSyllableP15.kp175 .kp175-connect.is-complete .kp175-arrow{color:#e2ad48;transform:translateX(3px) scale(1.15)}
+#kidsWholeSyllableP15.kp175 .kp175-connect.is-connector-lit .kp175-plus{background:#f5e2aa;color:#967133;box-shadow:0 0 0 4px rgba(245,226,170,.32);animation:none}
+#kidsWholeSyllableP15.kp175 .kp175-connect.is-complete .kp175-piece,#kidsWholeSyllableP15.kp175 .kp175-connect.is-complete .kp175-plus,#kidsWholeSyllableP15.kp175 .kp175-connect.is-complete .kp175-arrow{transition:opacity .2s ease,transform .25s ease}
+#kidsWholeSyllableP15.kp175 .kp175-instruction{min-height:1em;margin:7px 0 5px;color:#84958b;text-align:center;font-size:.67rem;line-height:1.2}
+#kidsWholeSyllableP15.kp175 .kp175-listen{display:block;width:100%;min-height:42px;border:0;border-radius:14px;background:#cadbd6;color:#fff;font-size:.88rem;font-weight:850;box-shadow:0 3px 0 #b7cbc4;transition:transform .14s ease,background .18s ease,box-shadow .18s ease}
+#kidsWholeSyllableP15.kp175 .kp175-listen:disabled{cursor:default;opacity:.8}
+#kidsWholeSyllableP15.kp175 .kp175-listen.is-ready{background:linear-gradient(110deg,#398985,#3a787a);box-shadow:0 3px 0 #bfd8ce,0 6px 13px rgba(49,119,111,.15)}
+#kidsWholeSyllableP15.kp175 .kp175-listen:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 #b7cbc4}
+#kidsWholeSyllableP15.kp175 .kp163-state{min-height:1.1em;margin:5px 0 0;color:#607c73;font-size:.68rem;line-height:1.25;text-align:center}
+#kidsWholeSyllableP15.kp175 .kp175-extra{margin-top:8px;overflow:hidden;border:1px solid #dce8df;border-radius:15px;background:#f9fbf6}
+#kidsWholeSyllableP15.kp175 .kp175-extra summary{display:flex;justify-content:space-between;align-items:center;min-height:39px;padding:7px 12px;color:#52766b;font-size:.74rem;font-weight:850;cursor:pointer;list-style:none}
+#kidsWholeSyllableP15.kp175 .kp175-extra summary::-webkit-details-marker{display:none}
+#kidsWholeSyllableP15.kp175 .kp175-extra summary span{color:#85a397;font-size:1rem;transition:transform .18s ease}
+#kidsWholeSyllableP15.kp175 .kp175-extra[open] summary span{transform:rotate(45deg)}
+#kidsWholeSyllableP15.kp175 .kp175-extra-body{padding:2px 12px 12px;border-top:1px solid #e5ede4}
+#kidsWholeSyllableP15.kp175 .kp175-extra-copy{margin:9px 0;color:#758a80;font-size:.7rem;line-height:1.4}
+#kidsWholeSyllableP15.kp175 .kp163-actions{display:flex;gap:8px}
+#kidsWholeSyllableP15.kp175 .kp163-actions button,#kidsWholeSyllableP15.kp175 .kp175-check,#kidsWholeSyllableP15.kp175 #kp163Quiz>button{flex:1;min-height:40px;padding:6px 8px;border:1px solid #bfd4cb;border-radius:12px;background:#fff;color:#376d65;font-size:.77rem;font-weight:800}
+#kidsWholeSyllableP15.kp175 button:disabled{opacity:.52;cursor:default}
+#kidsWholeSyllableP15.kp175 .kp175-check{width:100%;margin-top:7px;background:#e7f3eb}
+#kidsWholeSyllableP15.kp175 .kp163-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0}
+#kidsWholeSyllableP15.kp175 .kp163-options button{min-height:42px;border:1px solid #bdd5cb;border-radius:12px;background:#fff;color:#34776d;font-size:1rem;font-weight:850}
+#kidsWholeSyllableP15.kp175 .kp163-options button.is-correct{background:#dff3eb;border-color:#56a18d}
+#kidsWholeSyllableP15.kp175 #kp163Quiz[hidden]{display:none!important}
+@keyframes kp167-arrive{0%{opacity:.3;transform:scale(.68) rotate(-9deg)}70%{opacity:1;transform:scale(1.08) rotate(2deg)}100%{transform:scale(1)}}
+@keyframes kp167-roll{0%{opacity:.3;transform:translateX(-14px) rotate(-18deg)}72%{opacity:1;transform:translateX(3px) rotate(3deg)}100%{transform:translateX(0) rotate(0)}}
+@keyframes kp167-bounce{0%{opacity:.3;transform:translateY(12px) scale(.82)}67%{opacity:1;transform:translateY(-4px) scale(1.07)}100%{transform:translateY(0) scale(1)}}
+@keyframes kp167-snap{0%{transform:scale(.82);opacity:.65}72%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes kp167-pulse{0%,100%{box-shadow:0 3px 0 #d8e7dc,0 0 0 0 rgba(72,158,137,0)}50%{box-shadow:0 3px 0 #d8e7dc,0 0 0 4px rgba(72,158,137,.13)}}
+@keyframes kp167-seal{0%{opacity:.25;transform:scale(.45) rotate(-20deg)}75%{opacity:1;transform:scale(1.11) rotate(5deg)}100%{transform:rotate(3deg)}}
+@keyframes kp167-spark{0%{opacity:0;transform:translate(4px,7px) scale(.2) rotate(-30deg)}55%{opacity:1;transform:translate(-3px,-4px) scale(1.35) rotate(15deg)}100%{opacity:.9;transform:translate(0,0) scale(1)}}
+@keyframes kp167-merge-left{0%{opacity:.4;transform:translateX(9px) scale(.78)}70%{transform:translateX(-2px) scale(1.12)}100%{transform:none}}
+@keyframes kp167-merge-right{0%{opacity:.4;transform:translateX(-9px) scale(.78)}70%{transform:translateX(2px) scale(1.12)}100%{transform:none}}
+@keyframes kp167-piece-merge{0%{transform:translateY(0) scale(1)}62%{transform:translateY(-6px) scale(1.1)}100%{transform:translateY(0) scale(1);opacity:1}}
+@keyframes kp173-say-left{0%,100%{transform:translateY(0) rotate(0) scale(1)}34%{transform:translateY(-4px) rotate(-3deg) scale(1.08)}68%{transform:translateY(1px) rotate(2deg) scale(1.02)}}
+@keyframes kp173-say-right{0%,100%{transform:translateY(0) rotate(0) scale(1)}32%{transform:translateY(-5px) rotate(3deg) scale(1.1)}66%{transform:translateY(1px) rotate(-2deg) scale(1.02)}}
+@keyframes kp169-piece-roll{0%{opacity:0;transform:translateX(-20px) rotate(-8deg) scale(.78)}68%{opacity:1;transform:translateX(3px) rotate(2deg) scale(1.08)}100%{opacity:1;transform:none}}
+@keyframes kp169-piece-hop{0%{opacity:0;transform:translateY(15px) scale(.75)}68%{opacity:1;transform:translateY(-5px) scale(1.1)}100%{opacity:1;transform:none}}
+@keyframes kp169-plus-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@media(max-width:370px){#kidsWholeSyllableP15.kp175{padding:6px}#kidsWholeSyllableP15.kp175 .kp175-worktop{grid-template-columns:60px minmax(0,1fr) auto;gap:8px;padding:8px 9px;min-height:78px}#kidsWholeSyllableP15.kp175 .kp175-scene{width:58px;height:57px;border-radius:16px}#kidsWholeSyllableP15.kp175 .kp175-route{padding:8px}#kidsWholeSyllableP15.kp175 .kp175-stations{gap:6px}#kidsWholeSyllableP15.kp175 .kp175-stations button{min-height:35px;font-size:.94rem}#kidsWholeSyllableP15.kp175 .kp175-connect{grid-template-columns:minmax(0,1fr) 25px minmax(0,.76fr) 27px minmax(70px,1.14fr);gap:3px;padding:5px}#kidsWholeSyllableP15.kp175 .kp175-piece{min-height:40px}#kidsWholeSyllableP15.kp175 .kp175-result{min-height:44px}}
+@media(prefers-reduced-motion:reduce){#kidsWholeSyllableP15.kp175 *,#kidsWholeSyllableP15.kp175 *:before,#kidsWholeSyllableP15.kp175 *:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+/* P15 shares P14 components; three columns keep all nine syllables together. */
+#kidsWholeSyllableP15.kp175 .kp175-stations{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px 8px}
+#kidsWholeSyllableP15.kp175 .kp175-scene{display:grid;place-items:center;color:#47756b;font-family:serif;font-size:2.15rem;font-weight:900}
+#kidsWholeSyllableP15.kp175 .kp175-scene.is-enter{animation:kp167-arrive .58s cubic-bezier(.2,.85,.2,1.2) both}
+@media(max-width:370px){#kidsWholeSyllableP15.kp175 .kp175-stations{gap:6px}}
