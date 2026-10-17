@@ -4,13 +4,13 @@ var data=[
  {s:'bo',a:'b',f:'o',tone:'bō',cue:'波の「波」',file:'bo1.wav'},
  {s:'po',a:'p',f:'o',tone:'pō',cue:'坂道の「坡」',file:'po1.wav'},
  {s:'mo',a:'m',f:'o',tone:'mō',cue:'さわる「摸」',file:'mo1.wav'},
- {s:'fo',a:'f',f:'o',tone:'fō',cue:'拼音の練習：f + o',file:'fo1.wav'},
- {s:'de',a:'d',f:'e',tone:'dē',cue:'拼音の練習：d + e',file:'de1.wav'},
- {s:'te',a:'t',f:'e',tone:'tē',cue:'拼音の練習：t + e',file:'te1.wav'},
- {s:'ne',a:'n',f:'e',tone:'nē',cue:'拼音の練習：n + e',file:'ne1.wav'},
- {s:'le',a:'l',f:'e',tone:'lē',cue:'拼音の練習：l + e',file:'le1.wav'},
+ {s:'fo',a:'f',f:'o',tone:'fō',cue:'声母 f と韻母 o',file:'fo1.wav'},
+ {s:'de',a:'d',f:'e',tone:'dē',cue:'声母 d と韻母 e',file:'de1.wav'},
+ {s:'te',a:'t',f:'e',tone:'tē',cue:'声母 t と韻母 e',file:'te1.wav'},
+ {s:'ne',a:'n',f:'e',tone:'nē',cue:'声母 n と韻母 e',file:'ne1.wav'},
+ {s:'le',a:'l',f:'e',tone:'lē',cue:'声母 l と韻母 e',file:'le1.wav'},
  {s:'ge',a:'g',f:'e',tone:'gē',cue:'お兄さんの「哥」',file:'ge1.wav'},
- {s:'ke',a:'k',f:'e',tone:'kē',cue:'拼音の練習：k + e',file:'ke1.wav'},
+ {s:'ke',a:'k',f:'e',tone:'kē',cue:'声母 k と韻母 e',file:'ke1.wav'},
  {s:'he',a:'h',f:'e',tone:'hē',cue:'水を飲む「喝」',file:'he1.wav'},
  {s:'ji',a:'j',f:'i',tone:'jī',cue:'にわとりの「鶏」',file:'ji1.wav'},
  {s:'qi',a:'q',f:'i',tone:'qī',cue:'七つの「七」',file:'qi1.wav'},
@@ -28,10 +28,10 @@ function audioFallback(item,token){if(token!==sequence)return;var build=el('kp18
 function play(item){stop();var token=sequence,build=el('kp183Build');
 var wav=KP185_WAV[item.file];
 if(!wav){audioFallback(item,token);return}
-audio=new Audio('data:audio/wav;base64,'+wav);
+audio=new Audio('./assets/audio/course-134/'+item.file);
 audio.preload='auto';el('kp183Status').textContent='お手本を再生中…';el('kp183Listen').disabled=true;build.classList.add('is-speaking-onset');
-var first=setTimeout(function(){if(token!==sequence)return;build.classList.remove('is-speaking-onset');build.classList.add('is-speaking-final')},350);
-function fail(){clearTimeout(first);if(token!==sequence)return;audio=null;audioFallback(item,token)}
+var first=setTimeout(function(){if(token!==sequence)return;build.classList.remove('is-speaking-onset');build.classList.add('is-speaking-final')},680);
+function fail(){clearTimeout(first);if(token!==sequence)return;audio=null;var backup=new Audio('data:audio/wav;base64,'+wav);audio=backup;backup.onended=function(){if(token!==sequence)return;build.classList.remove('is-speaking-onset','is-speaking-final');build.classList.add('is-united');el('kp183Listen').disabled=false;el('kp183Status').textContent='「'+item.tone+'」が聞こえたね。';audio=null};backup.onerror=function(){audio=null;audioFallback(item,token)};backup.play().catch(function(){audio=null;audioFallback(item,token)})}
 audio.onended=function(){clearTimeout(first);if(token!==sequence)return;build.classList.remove('is-speaking-final');build.classList.add('is-united');el('kp183Status').textContent='「'+item.tone+'」が聞こえたね。';el('kp183Listen').disabled=false;audio=null};audio.onerror=fail;audio.play().catch(fail)}
 function renderGroups(){el('kp183Groups').innerHTML=groups.map(function(g){return '<button type="button" role="tab" aria-selected="'+(group===g.id)+'" class="'+(group===g.id?'is-active':'')+'" data-group="'+g.id+'">'+g.label+'</button>'}).join('');el('kp183Groups').querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){group=b.dataset.group;renderGroups();renderStations()})})}
 function renderStations(){var g=groups.find(function(x){return x.id===group});el('kp183Stations').innerHTML=g.keys.map(function(k){var item=data.find(function(x){return x.s===k});return '<button type="button" aria-pressed="'+(selected.s===k)+'" class="'+(selected.s===k?'is-active':'')+'" data-syllable="'+k+'">'+k+'</button>'}).join('');el('kp183Stations').querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){selected=data.find(function(x){return x.s===b.dataset.syllable});renderStations();update();play(selected,true)})})}

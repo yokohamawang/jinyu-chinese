@@ -25,6 +25,8 @@
 
   function effectiveStageStatus(stage){
     if(devUnlockEnabled())return 'next';
+    /* Released chapters must stay navigable independently of previous scores. */
+    if(stage && stage.id==='P14-P18')return 'next';
     if(stage && stage.id==='P3-P8' && allSingleVowelsComplete())return 'next';
     if(stage && stage.id==='P9-P13' && allInitialsComplete())return 'next';
     if(stage && stage.id==='P14-P18'){try{if(['P9','P10','P11','P12','P13'].every(function(id){return localStorage.getItem('koepandaCompound'+id+'Complete')==='1'}))return 'next'}catch(e){}}
