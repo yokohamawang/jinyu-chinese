@@ -39,29 +39,33 @@
 #kidsWholeSyllableLesson.kp167 .kp167-gamehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#42665f;font-size:.78rem;font-weight:850}
 #kidsWholeSyllableLesson.kp167 .kp167-gamehead i{display:inline-grid;place-items:center;width:19px;height:19px;margin-right:4px;border-radius:7px;background:#e6f3eb;color:#4a8c77;font-size:.68rem;font-style:normal}
 #kidsWholeSyllableLesson.kp167 .kp167-mission{color:#b4a275;font-size:.55rem;font-weight:900;letter-spacing:.13em}
-#kidsWholeSyllableLesson.kp167 .kp167-connect{position:relative;display:grid;grid-template-columns:minmax(54px,1fr) 15px minmax(42px,.75fr) 25px minmax(82px,1.2fr);align-items:center;gap:5px;min-height:59px;padding:6px 8px;border:1px solid #e4eadd;border-radius:17px;background:radial-gradient(ellipse at 87% 50%,#edf8ed 0,transparent 36%),#f5f8ef}
-#kidsWholeSyllableLesson.kp167 .kp167-piece{position:relative;min-height:43px;border:1.5px solid #b9d3c8;border-radius:13px;background:#fff;color:#34786e;font-size:1.18rem;font-weight:900;box-shadow:0 3px 0 #d8e7dc;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+#kidsWholeSyllableLesson.kp167 .kp167-connect{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,.76fr) 31px minmax(78px,1.14fr);align-items:center;gap:5px;min-height:68px;padding:7px 9px;border:1px solid #e4eadd;border-radius:19px;background:radial-gradient(ellipse at 50% 50%,#fffdf2 0,transparent 72%),#f5f8ef}
+#kidsWholeSyllableLesson.kp167 .kp167-piece{position:relative;display:grid;place-items:center;min-width:0;min-height:46px;padding:0 4px;border:1.5px solid #b9d3c8;border-radius:16px;background:#fff;color:#34786e;font-size:1.18rem;font-weight:900;text-align:center;box-shadow:0 3px 0 #d8e7dc;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
 #kidsWholeSyllableLesson.kp167 .kp167-vowel{border-color:#e8d5aa;background:#fff8e6;color:#a17d43;box-shadow:0 3px 0 #f0e5c9}
 #kidsWholeSyllableLesson.kp167 .kp167-piece.is-ready-piece{animation:kp167-pulse 1.5s ease-in-out infinite}
 #kidsWholeSyllableLesson.kp167 .kp167-piece.is-placed{animation:kp167-snap .34s cubic-bezier(.2,.8,.2,1.2) both;background:#dff3eb;border-color:#58a18e;box-shadow:0 1px 0 #c4dfd4;transform:translateY(2px)}
-#kidsWholeSyllableLesson.kp167 .kp167-plus{color:#9bad9e;text-align:center;font-size:.9rem;font-weight:850}
-#kidsWholeSyllableLesson.kp167 .kp167-arrow{color:#82a89a;text-align:center;font-size:1.12rem;font-weight:800}
-#kidsWholeSyllableLesson.kp167 .kp167-result{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:0;min-height:48px;border:0;border-radius:14px;background:transparent;color:#326e68;text-align:center;isolation:isolate}
-#kidsWholeSyllableLesson.kp167 .kp167-result:before{content:"";position:absolute;inset:3px 7px;z-index:-1;border:1.5px dashed #b8cdc2;border-radius:18px 12px 18px 12px;background:rgba(255,254,250,.82);transform:rotate(-2deg);transition:all .25s ease}
+#kidsWholeSyllableLesson.kp167 .kp167-piece.is-hidden-piece{opacity:0;transform:translateX(12px) scale(.82);pointer-events:none}
+#kidsWholeSyllableLesson.kp167 .kp167-piece.is-appearing-left{animation:kp169-piece-roll .56s cubic-bezier(.18,.78,.2,1.2) both}
+#kidsWholeSyllableLesson.kp167 .kp167-piece.is-appearing-right{animation:kp169-piece-hop .5s cubic-bezier(.18,.78,.2,1.22) both}
+#kidsWholeSyllableLesson.kp167 .kp167-plus{display:grid;place-items:center;width:24px;height:24px;margin:auto;border-radius:50%;background:#e7f1e7;color:#4b7669;text-align:center;font-size:1.12rem;font-weight:950;line-height:1;box-shadow:0 1px 0 #d4e2d5}
+#kidsWholeSyllableLesson.kp167 .kp167-arrow{color:#709d89;text-align:center;font-size:1.28rem;font-weight:900;text-shadow:0 1px 0 #fff}
+#kidsWholeSyllableLesson.kp167 .kp167-result{position:relative;display:flex;justify-content:center;align-items:center;min-width:0;min-height:54px;border:0;border-radius:999px;background:transparent;color:#326e68;text-align:center;isolation:isolate}
+#kidsWholeSyllableLesson.kp167 .kp167-result:before{content:"";position:absolute;inset:3px 4px;z-index:-1;border:1.5px dashed #b8cdc2;border-radius:999px;background:rgba(255,254,250,.82);transition:all .25s ease}
 #kidsWholeSyllableLesson.kp167 .kp167-result small{color:#8c9d91;font-size:.52rem;line-height:1.2}
 #kidsWholeSyllableLesson.kp167 .kp167-result b{font-size:1.1rem;line-height:1.1;letter-spacing:.01em}
-#kidsWholeSyllableLesson.kp167 .kp167-result.is-waiting:before{border-color:#d4dfd4;background:rgba(255,254,250,.42);transform:rotate(2deg) scale(.88)}
+#kidsWholeSyllableLesson.kp167 .kp167-result.is-waiting:before{border-color:#9fc4b1;background:rgba(255,254,250,.62);transform:scale(.92)}
 #kidsWholeSyllableLesson.kp167 .kp167-result.is-waiting small{color:#82958a;font-size:.48rem}
-#kidsWholeSyllableLesson.kp167 .kp167-result.is-snapped{min-height:52px;transform:scale(1.03)}
-#kidsWholeSyllableLesson.kp167 .kp167-result.is-snapped:before{inset:1px 3px;border:2px solid #f0c866;border-radius:17px 11px 17px 11px;background:linear-gradient(145deg,#fff4bf,#ffe58f 50%,#f4c966);box-shadow:0 3px 0 #d9b35c,0 0 0 4px rgba(255,223,124,.25);transform:rotate(3deg);animation:kp167-seal .5s cubic-bezier(.2,.85,.2,1.25) both}
+#kidsWholeSyllableLesson.kp167 .kp167-result.is-snapped{min-height:56px;transform:none}
+#kidsWholeSyllableLesson.kp167 .kp167-result.is-snapped:before{inset:1px 2px;border:2px solid #f0c866;border-radius:999px;background:radial-gradient(circle at 34% 20%,#fff9da,#ffe78e 58%,#f3c85f);box-shadow:0 3px 0 #d9b35c,0 0 0 4px rgba(255,223,124,.25);animation:kp167-seal .5s cubic-bezier(.2,.85,.2,1.25) both}
 #kidsWholeSyllableLesson.kp167 .kp167-result.is-snapped:after{content:"✦";position:absolute;top:-5px;right:0;color:#e2a93b;font-size:.8rem;animation:kp167-spark .6s ease-out both}
-#kidsWholeSyllableLesson.kp167 .kp167-result.is-snapped small{color:#8c6827;font-size:.42rem;font-weight:900;letter-spacing:.04em}
-#kidsWholeSyllableLesson.kp167 .kp167-result .kp167-syllable{display:flex;align-items:baseline;justify-content:center;white-space:nowrap;color:#255f58;font-size:1.24rem;font-weight:950;line-height:1.06;letter-spacing:-.035em;text-shadow:0 1px 0 #fff8d8}
+
+#kidsWholeSyllableLesson.kp167 .kp167-result .kp167-syllable{display:flex;align-items:baseline;justify-content:center;white-space:nowrap;color:#255f58;font-size:1.32rem;font-weight:950;line-height:1.06;letter-spacing:-.035em;text-shadow:0 1px 0 #fff8d8}
 #kidsWholeSyllableLesson.kp167 .kp167-result .kp167-syllable span:first-child{animation:kp167-merge-left .42s cubic-bezier(.15,.8,.2,1.3) both}
 #kidsWholeSyllableLesson.kp167 .kp167-result .kp167-syllable span:last-child{color:#9a7125;animation:kp167-merge-right .42s cubic-bezier(.15,.8,.2,1.3) both}
-#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-piece{animation:kp167-piece-merge .36s cubic-bezier(.2,.8,.2,1.1) both}
-#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-plus{opacity:.28;transform:scale(.7)}
+#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-piece{animation:kp167-piece-merge .42s cubic-bezier(.2,.8,.2,1.1) both}
+#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-plus{background:#f5e2aa;color:#967133;box-shadow:0 0 0 4px rgba(245,226,170,.34);transform:scale(1.1)}
 #kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-arrow{color:#e2ad48;transform:translateX(3px) scale(1.15)}
+#kidsWholeSyllableLesson.kp167 .kp167-connect.is-connector-lit .kp167-plus{background:#f5e2aa;color:#967133;box-shadow:0 0 0 5px rgba(245,226,170,.4);animation:kp169-plus-pulse .45s ease-in-out 2}
 #kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-piece,#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-plus,#kidsWholeSyllableLesson.kp167 .kp167-connect.is-complete .kp167-arrow{transition:opacity .2s ease,transform .25s ease}
 #kidsWholeSyllableLesson.kp167 .kp167-instruction{min-height:1em;margin:7px 0 5px;color:#84958b;text-align:center;font-size:.67rem;line-height:1.2}
 #kidsWholeSyllableLesson.kp167 .kp167-listen{display:block;width:100%;min-height:42px;border:0;border-radius:14px;background:#cadbd6;color:#fff;font-size:.88rem;font-weight:850;box-shadow:0 3px 0 #b7cbc4;transition:transform .14s ease,background .18s ease,box-shadow .18s ease}
@@ -93,6 +97,9 @@
 @keyframes kp167-spark{0%{opacity:0;transform:translate(4px,7px) scale(.2) rotate(-30deg)}55%{opacity:1;transform:translate(-3px,-4px) scale(1.35) rotate(15deg)}100%{opacity:.9;transform:translate(0,0) scale(1)}}
 @keyframes kp167-merge-left{0%{opacity:.4;transform:translateX(9px) scale(.78)}70%{transform:translateX(-2px) scale(1.12)}100%{transform:none}}
 @keyframes kp167-merge-right{0%{opacity:.4;transform:translateX(-9px) scale(.78)}70%{transform:translateX(2px) scale(1.12)}100%{transform:none}}
-@keyframes kp167-piece-merge{0%{transform:translateY(0) scale(1)}68%{transform:translateY(-5px) scale(1.08)}100%{transform:translateY(1px) scale(.94);opacity:.72}}
-@media(max-width:370px){#kidsWholeSyllableLesson.kp167{padding:6px}#kidsWholeSyllableLesson.kp167 .kp167-worktop{grid-template-columns:60px minmax(0,1fr) auto;gap:8px;padding:8px 9px;min-height:78px}#kidsWholeSyllableLesson.kp167 .kp167-scene{width:58px;height:57px;border-radius:16px}#kidsWholeSyllableLesson.kp167 .kp167-route{padding:8px}#kidsWholeSyllableLesson.kp167 .kp167-stations{gap:6px}#kidsWholeSyllableLesson.kp167 .kp167-stations button{min-height:35px;font-size:.94rem}#kidsWholeSyllableLesson.kp167 .kp167-connect{grid-template-columns:minmax(48px,1fr) 11px minmax(35px,.72fr) 19px minmax(71px,1.1fr);gap:3px;padding:5px}#kidsWholeSyllableLesson.kp167 .kp167-piece{min-height:40px}#kidsWholeSyllableLesson.kp167 .kp167-result{min-height:44px}}
+@keyframes kp167-piece-merge{0%{transform:translateY(0) scale(1)}62%{transform:translateY(-6px) scale(1.1)}100%{transform:translateY(0) scale(1);opacity:1}}
+@keyframes kp169-piece-roll{0%{opacity:0;transform:translateX(-20px) rotate(-8deg) scale(.78)}68%{opacity:1;transform:translateX(3px) rotate(2deg) scale(1.08)}100%{opacity:1;transform:none}}
+@keyframes kp169-piece-hop{0%{opacity:0;transform:translateY(15px) scale(.75)}68%{opacity:1;transform:translateY(-5px) scale(1.1)}100%{opacity:1;transform:none}}
+@keyframes kp169-plus-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@media(max-width:370px){#kidsWholeSyllableLesson.kp167{padding:6px}#kidsWholeSyllableLesson.kp167 .kp167-worktop{grid-template-columns:60px minmax(0,1fr) auto;gap:8px;padding:8px 9px;min-height:78px}#kidsWholeSyllableLesson.kp167 .kp167-scene{width:58px;height:57px;border-radius:16px}#kidsWholeSyllableLesson.kp167 .kp167-route{padding:8px}#kidsWholeSyllableLesson.kp167 .kp167-stations{gap:6px}#kidsWholeSyllableLesson.kp167 .kp167-stations button{min-height:35px;font-size:.94rem}#kidsWholeSyllableLesson.kp167 .kp167-connect{grid-template-columns:minmax(0,1fr) 25px minmax(0,.76fr) 27px minmax(70px,1.14fr);gap:3px;padding:5px}#kidsWholeSyllableLesson.kp167 .kp167-piece{min-height:40px}#kidsWholeSyllableLesson.kp167 .kp167-result{min-height:44px}}
 @media(prefers-reduced-motion:reduce){#kidsWholeSyllableLesson.kp167 *,#kidsWholeSyllableLesson.kp167 *:before,#kidsWholeSyllableLesson.kp167 *:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
