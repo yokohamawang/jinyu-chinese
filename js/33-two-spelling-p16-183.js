@@ -1,5 +1,7 @@
 /* Koepanda 10.108.183 — P16 two-part spelling lesson. */
 (function(){'use strict';
+/* P16 reuses P15 completed-course stage timing, not a new animation cadence. */
+var KP187_P15_STAGE_MS=1137+380;
 var data=[
  {s:'bo',a:'b',f:'o',tone:'bō',cue:'波の「波」',file:'bo1.wav'},
  {s:'po',a:'p',f:'o',tone:'pō',cue:'坂道の「坡」',file:'po1.wav'},
@@ -30,7 +32,7 @@ var wav=KP185_WAV[item.file];
 if(!wav){audioFallback(item,token);return}
 audio=new Audio('./assets/audio/course-134/'+item.file);
 audio.preload='auto';el('kp183Status').textContent='お手本を再生中…';el('kp183Listen').disabled=true;build.classList.add('is-speaking-onset');
-var first=setTimeout(function(){if(token!==sequence)return;build.classList.remove('is-speaking-onset');build.classList.add('is-speaking-final')},680);
+var first=setTimeout(function(){if(token!==sequence)return;build.classList.remove('is-speaking-onset');build.classList.add('is-speaking-final')},KP187_P15_STAGE_MS);
 function fail(){clearTimeout(first);if(token!==sequence)return;audio=null;var backup=new Audio('data:audio/wav;base64,'+wav);audio=backup;backup.onended=function(){if(token!==sequence)return;build.classList.remove('is-speaking-onset','is-speaking-final');build.classList.add('is-united');el('kp183Listen').disabled=false;el('kp183Status').textContent='「'+item.tone+'」が聞こえたね。';audio=null};backup.onerror=function(){audio=null;audioFallback(item,token)};backup.play().catch(function(){audio=null;audioFallback(item,token)})}
 audio.onended=function(){clearTimeout(first);if(token!==sequence)return;build.classList.remove('is-speaking-final');build.classList.add('is-united');el('kp183Status').textContent='「'+item.tone+'」が聞こえたね。';el('kp183Listen').disabled=false;audio=null};audio.onerror=fail;audio.play().catch(fail)}
 function renderGroups(){el('kp183Groups').innerHTML=groups.map(function(g){return '<button type="button" role="tab" aria-selected="'+(group===g.id)+'" class="'+(group===g.id?'is-active':'')+'" data-group="'+g.id+'">'+g.label+'</button>'}).join('');el('kp183Groups').querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){group=b.dataset.group;renderGroups();renderStations()})})}
