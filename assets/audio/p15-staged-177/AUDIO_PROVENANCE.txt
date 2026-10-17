@@ -1,0 +1,2 @@
+P15 gesture-started whole-syllable playback, version 177.
+Each file prepends 1.18 s of digital silence to the existing reviewed course-134 whole-syllable recording. The browser starts playback synchronously on the station tap; speech begins alongside the completed visual merge.
