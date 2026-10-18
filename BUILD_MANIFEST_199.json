@@ -1,0 +1,62 @@
+{
+  "version": "199_CONSOLIDATED_RC4",
+  "base": "Koepanda_195_FULL_SpaciousFinale.zip + Koepanda_197_from_195_DIFF.zip + Koepanda_198_CONSOLIDATED_RC3_DIFF.zip",
+  "excluded": "196 DIFF",
+  "status": "candidate_not_stable",
+  "change": "Load P15/P16 before the roadmap initializer; bump cache query versions to 10.108.199.",
+  "design_scope": "Preserve existing nine-island illustration, map layout, and fixed green clear labels on islands 1 and 2.",
+  "files": [
+    {
+      "path": "index.html",
+      "size_bytes": 681588,
+      "sha256": "91c6a4a17546a704a8554e6f595b030711d7211841534bd1781ebd3c47da0615",
+      "modified_jst": "2026-10-19T01:35:02+09:00"
+    },
+    {
+      "path": "css/99-nine-islands-196.css",
+      "size_bytes": 8768,
+      "sha256": "f5c03c642eb7cdc70eaf4056bbf4233ae9003ef50dba4d724db34e0fc646feb0",
+      "modified_jst": null
+    },
+    {
+      "path": "js/06-demo1010740-pinyin-roadmap.js",
+      "size_bytes": 31764,
+      "sha256": "fc91a8f310be765abfbb0845526f259323ede7d8dd04fbbb8893f374c8d90109",
+      "modified_jst": null
+    },
+    {
+      "path": "assets/pinyin/roadmap-nine-islands-197.webp",
+      "size_bytes": 322860,
+      "sha256": "eaea9da1373270b978ae0dca869e31ebce9f156c50c93651d5b841d220fdd929",
+      "modified_jst": null
+    },
+    {
+      "path": "README_199.txt",
+      "size_bytes": 1610,
+      "sha256": "7b7a9c38f99b05ce2ea7a850e9f8395fc8adf4cb6a512a02648f6ad29812f8fa",
+      "modified_jst": null
+    },
+    {
+      "path": "QA_REPORT_199.md",
+      "size_bytes": 1229,
+      "sha256": "c9b339b088c133d498e8df83dc02ee14f134d821f4d25ec58c154fdefeded4bb",
+      "modified_jst": null
+    }
+  ],
+  "tests_passed": [
+    "44 JavaScript syntax checks",
+    "127 local script/CSS references resolved",
+    "9 island specs and P15/P16 DOM target mapping",
+    "fixed island 1/2 clear markers",
+    "source ZIP CRC",
+    "198 manifest SHA-256",
+    "output ZIP CRC and manifest SHA-256"
+  ],
+  "not_tested": [
+    "Full browser rendered click-through: workspace-local server unavailable to cloud browser and file URL rejected by browser policy",
+    "iPhone Safari",
+    "audio playback",
+    "microphone recording"
+  ],
+  "created_jst": "2026-10-19T01:35:02+09:00"
+}
