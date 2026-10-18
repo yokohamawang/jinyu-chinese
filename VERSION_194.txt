@@ -1,0 +1,3 @@
+194 IMAGE ROUTE revision from 193 FULL
+New asset: roadmap-islands-194.webp
+Image navigation icons removed; real site navigation retained. Hotspot placement updated and no permanent initialization disable.
