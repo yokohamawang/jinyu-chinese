@@ -1,0 +1,38 @@
+{
+  "version": "198_CONSOLIDATED_RC3",
+  "base": "195 FULL + 197 DIFF",
+  "excluded": "196 DIFF",
+  "status": "candidate_unverified_full_site",
+  "tested": [
+    "9 island opening and return in isolated Chromium simulated mobile",
+    "two unique clear labels",
+    "JS syntax"
+  ],
+  "not_tested": [
+    "full site due to net::ERR_BLOCKED_BY_ADMINISTRATOR",
+    "iOS Safari",
+    "audio and recording"
+  ],
+  "files": [
+    {
+      "path": "README_198.txt",
+      "sha256": "3571b938f0b0b5b83056fcf9dc20b390c2efa6fbe045ad37d46fa29fbef52a2c"
+    },
+    {
+      "path": "index.html",
+      "sha256": "2b5a5a8bfe62f7bae25c2159b2f3ff82716b53ce6d52764b85feaedd11dcc091"
+    },
+    {
+      "path": "css/99-nine-islands-196.css",
+      "sha256": "f5c03c642eb7cdc70eaf4056bbf4233ae9003ef50dba4d724db34e0fc646feb0"
+    },
+    {
+      "path": "js/06-demo1010740-pinyin-roadmap.js",
+      "sha256": "fc91a8f310be765abfbb0845526f259323ede7d8dd04fbbb8893f374c8d90109"
+    },
+    {
+      "path": "assets/pinyin/roadmap-nine-islands-197.webp",
+      "sha256": "eaea9da1373270b978ae0dca869e31ebce9f156c50c93651d5b841d220fdd929"
+    }
+  ]
+}
