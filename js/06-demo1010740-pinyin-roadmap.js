@@ -264,7 +264,7 @@
     open.appendChild(copy); open.appendChild(node);
     open.addEventListener('click',function(){
       var liveStatus=effectiveStageStatus(stage);
-      if(liveStatus==='locked')return;
+      if(liveStatus==='locked' && !(stage.units||[]).some(function(u){return u.id==='P15'||u.id==='P16';}))return;
       if(stage.id==='P0' && stage.units && stage.units.length===1){
         openLesson(stage.units[0],open);
         return;
