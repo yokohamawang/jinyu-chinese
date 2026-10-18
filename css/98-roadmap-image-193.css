@@ -9,3 +9,29 @@
 #pinyinRoadmap:has(.kp193-map)>.pinyin-stage-detail:not([hidden]){display:block}
 #pinyinRoadmap:has(.kp193-map)>.kp193-map:has(~ .pinyin-stage-detail:not([hidden])){display:none}
 @media(prefers-reduced-motion:reduce){#pinyinRoadmap .kp193-hit{transition:none}}
+
+/* 195: generous continuation below the illustrated seven-stop map */
+#pinyinRoadmap .kp193-map{overflow:hidden;margin-bottom:0;border-radius:24px 24px 0 0;background:#f7faf7}
+#pinyinRoadmap .kp193-map:has(~ .pinyin-stage-detail:not([hidden])){display:none}
+#pinyinRoadmap .kp195-finale:has(~ .pinyin-stage-detail:not([hidden])){display:none}
+#pinyinRoadmap .kp193-map>img{border-radius:24px 24px 0 0}
+#pinyinRoadmap .kp195-finale{position:relative;width:100%;max-width:650px;margin:0 auto 20px;padding:55px clamp(24px,7%,58px) 115px;background:linear-gradient(180deg,#e9f4ef 0%,#f6faf5 40%,#eef7f2 100%);border-radius:0 0 24px 24px}
+#pinyinRoadmap .kp195-stop{position:relative;width:85%;max-width:380px;margin:0 auto;z-index:1}
+#pinyinRoadmap .kp195-stop:nth-of-type(1){transform:translateX(-8%)}
+#pinyinRoadmap .kp195-stop:nth-of-type(3){transform:translateX(9%)}
+#pinyinRoadmap .kp195-island{display:flex;align-items:center;gap:12px;width:100%;min-height:116px;padding:18px;border:2px solid #d5e5d9;border-radius:43% 50% 42% 47%/35% 37% 41% 42%;background:linear-gradient(160deg,#f5f5de,#e7f1dc);box-shadow:0 9px 0 #bcd5c3,0 15px 22px #527a6524;text-align:left;color:#365f58;font:inherit;cursor:pointer}
+#pinyinRoadmap .kp195-number{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff9de;border:2px solid #d8cb98;font-size:1.35rem;font-weight:900}
+#pinyinRoadmap .kp195-island-copy{min-width:0;display:grid;gap:5px;flex:1}
+#pinyinRoadmap .kp195-island-copy b{font-size:clamp(1rem,4.5vw,1.35rem);line-height:1.25}
+#pinyinRoadmap .kp195-island-copy small{font-size:.75rem;color:#78938a;line-height:1.35}
+#pinyinRoadmap .kp195-state{font-size:1.25rem}
+#pinyinRoadmap .kp195-exam .kp195-island,#pinyinRoadmap .kp195-graduate .kp195-island{background:linear-gradient(160deg,#f6f8f3,#e6ece9);border-color:#dee7e1;box-shadow:0 9px 0 #d1e0d7,0 15px 22px #527a6514}
+#pinyinRoadmap .kp195-island:disabled{opacity:.82;cursor:default}
+#pinyinRoadmap .kp195-waterway{height:165px;width:55%;max-width:260px;margin:0 auto;background:transparent;position:relative}
+#pinyinRoadmap .kp195-waterway:before{content:"";display:block;position:absolute;left:8%;right:8%;top:0;bottom:0;border-left:10px dotted #e2d9b9;transform:skewX(-16deg);opacity:.65}
+#pinyinRoadmap .kp195-practice-panel{margin:55px auto 0;padding:22px;max-width:400px;border-radius:25px;background:#fffefa;border:1px solid #dce9de;box-shadow:0 8px 18px #526f5c18;color:#42675e}
+#pinyinRoadmap .kp195-practice-panel[hidden]{display:none}
+#pinyinRoadmap .kp195-practice-panel strong{display:block;font-size:1.05rem}
+#pinyinRoadmap .kp195-practice-panel p{font-size:.84rem}
+#pinyinRoadmap .kp195-practice-panel button{margin:5px 6px 5px 0;padding:10px 13px;border-radius:14px;border:1px solid #cde2d4;background:#eaf4ed;color:#366a5e;font:inherit;font-weight:800}
+@media(max-width:390px){#pinyinRoadmap .kp195-finale{padding-inline:15px}#pinyinRoadmap .kp195-stop{width:96%}#pinyinRoadmap .kp195-island{padding:14px;min-height:108px}#pinyinRoadmap .kp195-number{width:39px;height:39px}#pinyinRoadmap .kp195-waterway{height:155px}}
