@@ -25,8 +25,6 @@
 
   function effectiveStageStatus(stage){
     if(devUnlockEnabled())return 'next';
-    /* Released chapters must stay navigable independently of previous scores. */
-    if(stage && stage.id==='P14-P18')return 'next';
     if(stage && stage.id==='P3-P8' && allSingleVowelsComplete())return 'next';
     if(stage && stage.id==='P9-P13' && allInitialsComplete())return 'next';
     if(stage && stage.id==='P14-P18'){try{if(['P9','P10','P11','P12','P13'].every(function(id){return localStorage.getItem('koepandaCompound'+id+'Complete')==='1'}))return 'next'}catch(e){}}
@@ -152,7 +150,7 @@
 
   function unitLocked(unit,stageStatus){
     if(devUnlockEnabled())return false;
-    if(unit.id==='P15'||unit.id==='P16')return false; /* available for direct practice */
+    if(unit.id==='P15'||unit.id==='P16')return false;
     if(stageStatus==='locked')return true;
     if(unit.id==='P2'&&typeof window.koepandaIsUnitComplete==='function')return !window.koepandaIsUnitComplete('P1');
     if(unit.id==='P4'){
@@ -169,8 +167,7 @@
     if(unit.id==='P12'){try{return localStorage.getItem('koepandaCompoundP11Complete')!=='1'}catch(e){return true}}
     /* P14 completion belongs to unitButton, not unitLocked. */
     if(unit.id==='P13'){try{return localStorage.getItem('koepandaCompoundP12Complete')!=='1'}catch(e){return true}}
-    if(unit.id==='P15')return false; /* published lesson stays accessible */
-    if(unit.id==='P16')return false; /* published lesson stays accessible */
+    if(unit.id==='P15'){try{return localStorage.getItem('koepandaWholeP14Complete')!=='1'}catch(e){return true}}
     return false;
   }
 
@@ -178,7 +175,6 @@
     var b=document.createElement('button'); b.type='button'; b.className='pinyin-node'; b.dataset.unitId=unit.id; b.dataset.stageStatus=stageStatus||'';
     var isCurrent=(unit.id==='P0-U1'||unit.id==='P1'||unit.id==='P2');
     var locked=unitLocked(unit,stageStatus),hasBody=!!targetForUnit(unit.id);
-    if(unit.id==='P15'||unit.id==='P16'){hasBody=true;locked=false;}
     if(isCurrent)b.classList.add('is-current'); if(locked)b.classList.add('is-locked'); if(!locked&&!hasBody)b.classList.add('is-upcoming');
     b.disabled=locked||(!hasBody&&!isCurrent);
     var note=locked&&unit.id==='P2'?'a・o・e をクリアすると開く':(locked&&unit.id==='P4'?'b・p・m・f をクリアすると開く':(locked&&unit.id==='P5'?'d・t・n・l をクリアすると開く':(locked&&unit.id==='P6'?'g・k・h をクリアすると開く':(locked&&unit.id==='P7'?'j・q・x をクリアすると開く':(locked&&unit.id==='P8'?'zh・ch・sh・r をクリアすると開く':(!locked&&!hasBody?'次に学ぶレッスン':(unit.reward?'クリアで「'+unit.reward+'」':'音・口・声調をいっしょに練習')))))));
@@ -192,10 +188,9 @@
     if(unit.id==='P12'){try{if(localStorage.getItem('koepandaCompoundP12Complete')==='1'){b.classList.add('is-complete');note='クリア！ 前鼻韻母の音色を復習しよう'}else if(locked){note='ie・üe・er をクリアすると開く'}}catch(e){}}
     if(unit.id==='P14'){try{if(localStorage.getItem('koepandaWholeP14Complete')==='1'){b.classList.add('is-complete');note='クリア！ 7つの音を聞き分けよう'}}catch(e){}}
     if(unit.id==='P15'){try{if(localStorage.getItem('koepandaWholeP15Complete')==='1'){b.classList.add('is-complete');note='クリア！ 9つの音を聞き分けよう'}else if(locked){note='zhi〜si をクリアすると開く'}}catch(e){}}
-    if(unit.id==='P16'){try{if(localStorage.getItem('koepandaCompoundP16Complete')==='1'){b.classList.add('is-complete');note='クリア！ 声母と韵母の二拼を復習しよう'}else if(locked){note='整体認読②をクリアすると開く'}}catch(e){}}
     if(unit.id==='P13'){try{if(localStorage.getItem('koepandaCompoundP13Complete')==='1'){b.classList.add('is-complete');note='クリア！ 舌の後ろ側と鼻の響きを復習しよう'}else if(locked){note='前鼻韻母をクリアすると開く'}}catch(e){}}
     b.innerHTML='<span class="pinyin-node-icon" aria-hidden="true">'+iconFor(unit.id)+'</span><span class="pinyin-node-copy"><b>'+unit.title+'</b><small>'+note+'</small></span><span class="pinyin-node-go">'+(locked?'🔒':(!hasBody?'○':'›'))+'</span>';
-    if(!locked&&hasBody)b.addEventListener('click',function(){var target=targetForUnit(unit.id);if(!target){b.querySelector('small').textContent='読み込み中…';setTimeout(function(){if(targetForUnit(unit.id))openLesson(unit,b);else b.querySelector('small').textContent='レッスンの読込を確認してください'},500);return;}openLesson(unit,b)});
+    if(!locked&&hasBody)b.addEventListener('click',function(){openLesson(unit,b)});
     return b;
   }
 
@@ -232,7 +227,7 @@
     stage.units.forEach(function(unit){path.appendChild(unitButton(unit,stageStatus))});
     detail.appendChild(head); detail.appendChild(path);
 
-    if(stageStatus==='locked'){
+    if(stageStatus==='locked' && !(stage.units||[]).some(function(u){return u.id==='P15'||u.id==='P16'})){
       var note=document.createElement('div'); note.className='pinyin-stage-locked-note'; note.textContent='🔒 ここは前のステージを進めると開くよ。'; detail.appendChild(note);
     }
     requestAnimationFrame(function(){detail.scrollIntoView({block:'start',behavior:'auto'})});
@@ -264,7 +259,7 @@
     open.appendChild(copy); open.appendChild(node);
     open.addEventListener('click',function(){
       var liveStatus=effectiveStageStatus(stage);
-      if(liveStatus==='locked' && !(stage.units||[]).some(function(u){return u.id==='P15'||u.id==='P16';}))return;
+      if(liveStatus==='locked' && !(stage.units||[]).some(function(u){return u.id==='P15'||u.id==='P16'}))return;
       if(stage.id==='P0' && stage.units && stage.units.length===1){
         openLesson(stage.units[0],open);
         return;
@@ -278,6 +273,17 @@
   function render(){
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
+    /* 193: real illustrated route asset with actual course-action hit targets. */
+    var picture=document.createElement('div'); picture.className='kp193-map';
+    picture.setAttribute('aria-label','イラストの学習ルート');
+    var artwork=document.createElement('img');artwork.src='./assets/pinyin/roadmap-islands-193.webp';artwork.alt='小音とめぐるピンイン学習ルート';artwork.decoding='async';picture.appendChild(artwork);
+    [{unit:'P1',y:14.0,x:34.0,w:39},{unit:'P3',y:28.5,x:62.0,w:39},{unit:'P16',y:45.4,x:54.0,w:45},{unit:'P17',y:61.1,x:66.0,w:40},{unit:'P14',y:70.8,x:29.0,w:43},{unit:'P15',y:80.6,x:69.0,w:42},{unit:'P19',y:91.7,x:55.0,w:39}].forEach(function(spec){
+      var u=null,st=null;course.stages.forEach(function(stage){stage.units.forEach(function(item){if(item.id===spec.unit){u=item;st=stage;}})});if(!u)return;
+      var b=document.createElement('button');b.type='button';b.className='kp193-hit';b.style.top=spec.y+'%';b.style.left=spec.x+'%';b.style.width=spec.w+'%';b.setAttribute('aria-label',u.title+' を開く');b.title=u.title;
+      var live=!!targetForUnit(u.id);if(!live){b.disabled=true;b.setAttribute('aria-disabled','true')}
+      b.addEventListener('click',function(){if(targetForUnit(u.id))openLesson(u,b)});picture.appendChild(b);
+    });
+    root.insertBefore(picture,root.firstChild);
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
     setLessonBodiesHidden();
   }
@@ -295,15 +301,6 @@
       if(!locked&&reward)reward.remove();
     });
   }
-
-  window.addEventListener('koepandaCompoundProgressChanged',function(){
-    if(!root)return;
-    refreshRoadmapLocks();
-    if(!detail||detail.hidden||lastStageId!=='P14-P18')return;
-    var world=document.querySelector('.pinyin-world[data-stage-id="P14-P18"]');
-    var stage=course.stages.find(function(item){return item.id==='P14-P18'});
-    if(world&&stage)openStage(stage,world,effectiveStageStatus(stage));
-  });
 
   window.addEventListener('koepandaDevModeChanged',function(){
     if(lessonState)return;
