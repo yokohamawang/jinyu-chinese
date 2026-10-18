@@ -323,7 +323,8 @@
       button.dataset.island=String(spec.n);
       button.setAttribute('aria-label','島'+spec.n+' '+spec.title+' '+state);
       var sr=document.createElement('span');sr.className='kp197-screenreader';sr.textContent=spec.title+' '+state;button.appendChild(sr);
-      /* The 197 artwork already contains the completion graphics. Do not duplicate. */
+      if(spec.done){var clear=document.createElement('span');clear.className='kp197-clear';clear.textContent='✓ クリア';clear.setAttribute('aria-hidden','true');button.appendChild(clear)}
+      /* The original 197 WebP has NO green clear badges; CSS owns exactly one per completed island. */
       if(available&&spec.kind==='exam'){button.addEventListener('click',function(){openLesson({id:'P21',title:'最終テスト'},button)})}
       else if(spec.n===6){
         /* P15 is already a finished lesson. Resolve its node at CLICK time, not
