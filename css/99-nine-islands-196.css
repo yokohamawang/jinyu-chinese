@@ -1,0 +1,38 @@
+/* 196: spacious nine-island roadmap, responsive mobile first. */
+#pinyinRoadmap .kp196-archipelago{max-width:650px;margin:auto;padding:25px 18px 95px;border-radius:26px;background:linear-gradient(180deg,#f3fcf7 0%,#e4f4eb 46%,#effaf2 100%);box-sizing:border-box;overflow:hidden}
+#pinyinRoadmap .kp196-stop{width:92%;max-width:455px;margin:0 auto;position:relative}
+#pinyinRoadmap .kp196-stop:nth-of-type(4n+1){transform:translateX(-3%)}
+#pinyinRoadmap .kp196-stop:nth-of-type(4n+3){transform:translateX(3%)}
+#pinyinRoadmap .kp196-island{font:inherit;display:flex;align-items:center;text-align:left;box-sizing:border-box;width:100%;min-height:168px;gap:16px;padding:26px 23px;border-radius:48% 45% 45% 44%/33% 38% 33% 36%;border:3px solid #d4dcbb;background:linear-gradient(165deg,#fff1c9 0%,#fff4d8 55%,#d9e9cb 100%);box-shadow:0 11px 0 #adcfbb,0 18px 25px #5e918b22;color:#315d55;cursor:pointer;touch-action:manipulation}
+#pinyinRoadmap .kp196-island:active:not(:disabled){transform:translateY(3px);box-shadow:0 8px 0 #adcfbb,0 10px 16px #5e918b22}
+#pinyinRoadmap .kp196-island:focus-visible{outline:4px solid #388cb5;outline-offset:3px}
+#pinyinRoadmap .kp196-number{display:grid;place-items:center;flex:none;width:56px;height:56px;border:3px solid #f8e5b9;background:#fffaf0;border-radius:50%;font-weight:900;font-size:1.7rem;box-shadow:0 4px 0 #e1cda6}
+#pinyinRoadmap .kp196-copy{display:grid;gap:7px;min-width:0;flex:1}
+#pinyinRoadmap .kp196-copy strong{font-weight:900;font-size:clamp(1.25rem,5.7vw,1.7rem);line-height:1.2;letter-spacing:-.02em;overflow-wrap:anywhere}
+#pinyinRoadmap .kp196-copy small{font-size:clamp(.86rem,3.5vw,1.03rem);color:#628076;font-weight:650}
+#pinyinRoadmap .kp196-status{font-weight:900;font-size:.95rem;color:#52877c}
+#pinyinRoadmap .kp196-cleared .kp196-status{color:#278d53}
+#pinyinRoadmap .kp196-coming{filter:saturate(.78)}
+#pinyinRoadmap .kp196-island:disabled{cursor:default}
+#pinyinRoadmap .kp196-bridge{width:46px;height:104px;margin:1px auto 12px;border-radius:22px;background:repeating-linear-gradient(180deg,#c9a77c 0 12px,#e9d3ab 12px 26px);border-left:6px solid #b69c7a;border-right:6px solid #b69c7a;box-shadow:0 4px 0 #649a8b17;transform:rotate(6deg);opacity:.9}
+#pinyinRoadmap .kp196-stop[data-island="9"] .kp196-island{background:linear-gradient(140deg,#fff3ce,#f8dfaa);border-color:#e3c990}
+#pinyinRoadmap .kp196-practice-panel{max-width:470px;margin:45px auto 0;background:#fffdf7;border:1px solid #d9e7d9;border-radius:22px;padding:23px;text-align:center}
+#pinyinRoadmap .kp196-practice-panel[hidden]{display:none}
+#pinyinRoadmap .kp196-practice-panel strong{display:block;margin-bottom:14px}
+#pinyinRoadmap .kp196-practice-panel button{font:inherit;border:1px solid #a9d6c4;border-radius:13px;background:#eff8f2;color:#305e51;padding:12px;margin:5px;font-weight:800}
+#pinyinRoadmap:has(.kp196-archipelago)>.pinyin-world{display:none}
+#pinyinRoadmap:has(.kp196-archipelago)>.kp196-archipelago:has(~.pinyin-stage-detail:not([hidden])){display:none}
+@media(max-width:390px){#pinyinRoadmap .kp196-archipelago{padding-inline:10px}#pinyinRoadmap .kp196-stop{width:98%}#pinyinRoadmap .kp196-island{min-height:158px;padding:23px 17px;gap:11px}#pinyinRoadmap .kp196-number{width:46px;height:46px;font-size:1.4rem}#pinyinRoadmap .kp196-bridge{height:95px}}
+
+/* 197 actual art layer and registered island click regions */
+#pinyinRoadmap .kp196-archipelago{padding:0 0 18px;background:transparent;max-width:700px;border-radius:0;overflow:visible}
+#pinyinRoadmap .kp197-artwork{position:relative;width:100%;aspect-ratio:941 / 1672;isolation:isolate}
+#pinyinRoadmap .kp197-map-image{display:block;width:100%;height:auto;object-fit:contain;pointer-events:none;user-select:none;border-radius:17px}
+#pinyinRoadmap .kp197-hotspot{position:absolute;z-index:2;background:transparent;border:0;border-radius:30%;cursor:pointer;touch-action:manipulation;color:transparent;font:inherit;overflow:visible}
+#pinyinRoadmap .kp197-hotspot:disabled{cursor:default}
+#pinyinRoadmap .kp197-hotspot:active:not(:disabled){background:#ffffff2b}
+#pinyinRoadmap .kp197-hotspot:focus-visible{outline:3px solid #ffb332;outline-offset:-3px;background:#ffffff28}
+#pinyinRoadmap .kp197-screenreader{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#pinyinRoadmap .kp197-clear{position:absolute;top:35%;right:0;font-weight:900;font-size:clamp(8px,2.6vw,16px);padding:.15em .38em;border:1px solid #d3f4cd;border-radius:99px;background:#178a48;color:white;white-space:nowrap;box-shadow:0 2px 4px #03471845}
+#pinyinRoadmap .kp197-hotspot[data-island="2"] .kp197-clear{top:46%;right:0}
+@media(max-width:390px){#pinyinRoadmap .kp196-archipelago{padding:0 0 16px}#pinyinRoadmap .kp197-map-image{border-radius:9px}}
