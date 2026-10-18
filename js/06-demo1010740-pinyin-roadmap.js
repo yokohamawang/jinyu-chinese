@@ -276,12 +276,12 @@
     /* 193: real illustrated route asset with actual course-action hit targets. */
     var picture=document.createElement('div'); picture.className='kp193-map';
     picture.setAttribute('aria-label','イラストの学習ルート');
-    var artwork=document.createElement('img');artwork.src='./assets/pinyin/roadmap-islands-193.webp';artwork.alt='小音とめぐるピンイン学習ルート';artwork.decoding='async';picture.appendChild(artwork);
-    [{unit:'P1',y:14.0,x:34.0,w:39},{unit:'P3',y:28.5,x:62.0,w:39},{unit:'P16',y:45.4,x:54.0,w:45},{unit:'P17',y:61.1,x:66.0,w:40},{unit:'P14',y:70.8,x:29.0,w:43},{unit:'P15',y:80.6,x:69.0,w:42},{unit:'P19',y:91.7,x:55.0,w:39}].forEach(function(spec){
+    var artwork=document.createElement('img');artwork.src='./assets/pinyin/roadmap-islands-194.webp';artwork.alt='小音とめぐるピンイン学習ルート';artwork.decoding='async';picture.appendChild(artwork);
+    [{unit:'P1',y:13.9,x:35,w:37},{unit:'P3',y:24.5,x:76,w:41},{unit:'P16',y:37.0,x:46,w:43},{unit:'P17',y:50.7,x:74,w:44},{unit:'P14',y:62.9,x:29,w:43},{unit:'P15',y:76.3,x:79,w:40},{unit:'P19',y:89.2,x:54,w:45}].forEach(function(spec){
       var u=null,st=null;course.stages.forEach(function(stage){stage.units.forEach(function(item){if(item.id===spec.unit){u=item;st=stage;}})});if(!u)return;
       var b=document.createElement('button');b.type='button';b.className='kp193-hit';b.style.top=spec.y+'%';b.style.left=spec.x+'%';b.style.width=spec.w+'%';b.setAttribute('aria-label',u.title+' を開く');b.title=u.title;
-      var live=!!targetForUnit(u.id);if(!live){b.disabled=true;b.setAttribute('aria-disabled','true')}
-      b.addEventListener('click',function(){if(targetForUnit(u.id))openLesson(u,b)});picture.appendChild(b);
+      b.setAttribute('aria-disabled','false')
+      b.addEventListener('click',function(){if(targetForUnit(u.id))openLesson(u,b);else { b.title='このレッスンは準備中です'; }});picture.appendChild(b);
     });
     root.insertBefore(picture,root.firstChild);
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
