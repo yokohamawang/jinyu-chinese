@@ -283,7 +283,36 @@
       b.setAttribute('aria-disabled','false')
       b.addEventListener('click',function(){if(targetForUnit(u.id))openLesson(u,b);else { b.title='このレッスンは準備中です'; }});picture.appendChild(b);
     });
+    /* 195: three spacious continuation stops. Lesson pages are never faked as complete. */
+    var finale=document.createElement('section');finale.className='kp195-finale';finale.setAttribute('aria-label','学習ルートの続き');
+    var segments=[
+      {num:'8',name:'総合練習',detail:'復習しながら、もう一歩',kind:'practice'},
+      {num:'9',name:'卒業チャレンジ',detail:'総合テスト · 準備中',kind:'exam'},
+      {num:'★',name:'ピンイン卒業',detail:'すべての挑戦を終えたら',kind:'graduate'}
+    ];
+    segments.forEach(function(step,i){
+      var spot=document.createElement('div');spot.className='kp195-stop kp195-'+step.kind;
+      var island=document.createElement('button');island.type='button';island.className='kp195-island';
+      island.innerHTML='<span class="kp195-number">'+step.num+'</span><span class="kp195-island-copy"><b>'+step.name+'</b><small>'+step.detail+'</small></span><span class="kp195-state" aria-hidden="true">'+(i?'🔒':'›')+'</span>';
+      island.setAttribute('aria-label',step.name+(i?'、準備中':'、練習する'));
+      if(i){island.disabled=true;island.title='このコースは準備中です'}
+      if(!i)island.addEventListener('click',function(){
+        var box=finale.querySelector('.kp195-practice-panel');
+        box.hidden=!box.hidden;
+        if(!box.hidden)box.scrollIntoView({block:'nearest',behavior:'smooth'});
+      });
+      spot.appendChild(island);finale.appendChild(spot);
+      if(i<2){var path=document.createElement('div');path.className='kp195-waterway';path.setAttribute('aria-hidden','true');finale.appendChild(path)}
+    });
+    var panel=document.createElement('div');panel.className='kp195-practice-panel';panel.hidden=true;
+    panel.innerHTML='<strong>復習するレッスンを選ぼう</strong><p>好きなコースをもう一度練習できるよ。</p>';
+    [{id:'P14',title:'整体認読①'},{id:'P15',title:'整体認読②'},{id:'P16',title:'二拼'}].forEach(function(opt){
+      var b=document.createElement('button');b.type='button';b.textContent=opt.title;
+      b.addEventListener('click',function(){var u=null;course.stages.forEach(function(st){st.units.forEach(function(z){if(z.id===opt.id)u=z})});if(u&&targetForUnit(opt.id))openLesson(u,b);else panel.querySelector('p').textContent='このレッスンの読み込みを確認してください。'});
+      panel.appendChild(b);
+    });finale.appendChild(panel);
     root.insertBefore(picture,root.firstChild);
+    root.insertBefore(finale,picture.nextSibling);
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
     setLessonBodiesHidden();
   }
