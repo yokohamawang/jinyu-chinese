@@ -1,0 +1,15 @@
+/* 196: unify the surrounding course shell, prevent extra panels under the image. */
+#kidsCourse .kids-course-head{border-radius:26px!important;padding:18px 20px!important;margin-bottom:14px!important}
+#kidsCourse .pinyin-roadmap-intro{border-radius:22px!important;margin-bottom:14px!important;padding:14px 19px!important;background:linear-gradient(145deg,#f6fcf5,#fffefa)!important}
+#kidsCourse .pinyin-roadmap-intro strong{font-size:18px!important}
+#kidsCourse .pinyin-roadmap-intro p{font-size:13px!important}
+#pinyinRoadmap .kp193-map{border-radius:23px 23px 0 0;box-shadow:none}
+#pinyinRoadmap .kp195-finale{padding-top:24px;padding-bottom:34px;margin-bottom:16px;box-shadow:0 12px 26px #42695a17}
+#pinyinRoadmap .kp195-waterway{height:50px}
+#pinyinRoadmap .kp195-stop{max-width:410px}
+#pinyinRoadmap .kp195-island{min-height:105px;border-radius:32px;padding:15px 19px}
+#pinyinRoadmap .kp195-practice-panel{display:none!important}
+#pinyinRoadmap .kp196-map-notice{padding:10px 15px;text-align:center;border-radius:14px;background:#fff8e8;color:#6a583f;font-weight:700}
+#kidsCourse>.kids-lesson-card.is-roadmap-lesson-active:not([hidden]){display:block!important;position:relative!important;z-index:2}
+#pinyinRoadmap .kp193-hit{z-index:4}
+@media(max-width:430px){#kidsCourse .kids-course-head{padding:15px!important}#pinyinRoadmap .kp195-island{min-height:92px}#pinyinRoadmap .kp195-waterway{height:40px}}
