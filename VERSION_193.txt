@@ -1,0 +1,4 @@
+193 IMAGE ASSET MAP - built on 192 FULL (182 base)
+Artwork: assets/pinyin/roadmap-islands-193.webp
+The original lesson code remains unchanged; artwork click hotspots call existing openLesson.
+WARNING: visual stars/locks within the illustration are static; authoritative live course status is in the lesson detail.
