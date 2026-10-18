@@ -1,1 +1,2 @@
-Koepanda 10.108.183 FULL — P16 two-part spelling lesson, automatic syllable playback, recording, quiz, and roadmap integration.
+Koepanda 197 FULL — Nine Island Illustrated Roadmap
+Base: 195 FULL → 196 routing → 197 artwork integration
