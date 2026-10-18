@@ -57,6 +57,10 @@
     if(id==='P14')return document.getElementById('kidsWholeSyllableLesson');
     if(id==='P15')return document.getElementById('kidsWholeSyllableP15');
     if(id==='P16')return document.getElementById('kidsTwoSpellingP16');
+    if(id==='P18')return document.getElementById('kidsIslandReviewLesson');
+    if(id==='P17')return document.getElementById('kidsThreeSpellingLesson');
+    if(id==='P19')return document.getElementById('kidsNeutralToneLesson');
+    if(id==='P21')return document.getElementById('kidsFinalPinyinExam');
     return null;
   }
 
@@ -108,8 +112,13 @@
 
   function openLesson(unit,button){
     var target=targetForUnit(unit.id);
-    if(!target)return;
-    var rect=(button||detail).getBoundingClientRect();
+    if(!target){
+      console.error('[Koepanda roadmap] Missing lesson body:',unit.id);
+      if(unit.id==='P15')window.alert('整体認読②の読み込みに失敗しました。ページを再読み込みしてください。');
+      return false;
+    }
+    if(lessonState)closeLesson();
+    var rect=(button||detail||root).getBoundingClientRect();
     lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top};
     showRoadmapChrome(false);
     setLessonBodiesHidden();
@@ -128,7 +137,13 @@
       else courseRoot.insertBefore(target,courseRoot.firstChild);
     }
     target.hidden=false;
+    target.style.removeProperty('display');
     target.classList.add('is-roadmap-lesson-active');
+    /* Do not let any older accordion or hidden-style rule bury an opened P15. */
+    if(unit.id==='P15'){
+      target.removeAttribute('aria-hidden');
+      target.setAttribute('data-roadmap-open','true');
+    }
     if(unit.id==='P1'||unit.id==='P2'){
       if(typeof window.koepandaOpenVowelGroup==='function'){
         window.koepandaOpenVowelGroup(unit.lessons||[],unit.title);
@@ -145,7 +160,8 @@
     back.type='button'; back.id='pinyinLessonBack'; back.className='pinyin-lesson-back';
     back.textContent='← 戻る　レッスン一覧'; back.addEventListener('click',closeLesson);
     var previousHeader=document.querySelector('.kp148-lesson-header');if(previousHeader)previousHeader.remove();var header=document.createElement('div');header.className='kp148-lesson-header';header.appendChild(back);var lessonName=document.createElement('span');lessonName.className='kp148-lesson-name';lessonName.textContent=unit.title;header.appendChild(lessonName);target.parentNode.insertBefore(header,target);
-    requestAnimationFrame(function(){if(unit.id==='P1'||unit.id==='P2'){window.koepandaPlaceVowelEntry(document.getElementById('kidsVowelGrid'));return}var grid=target.querySelector('[id$="LetterGrid"]');if(grid){var y=grid.getBoundingClientRect().top+window.scrollY-58;window.scrollTo({top:Math.max(0,y),left:0,behavior:'auto'})}else back.scrollIntoView({block:'start',behavior:'auto'})});
+    requestAnimationFrame(function(){if(unit.id==='P1'||unit.id==='P2'){if(typeof window.koepandaPlaceVowelEntry==='function')window.koepandaPlaceVowelEntry(document.getElementById('kidsVowelGrid'));return}var grid=target.querySelector('[id$="LetterGrid"]');if(grid){var y=grid.getBoundingClientRect().top+window.scrollY-58;window.scrollTo({top:Math.max(0,y),left:0,behavior:'auto'})}else back.scrollIntoView({block:'start',behavior:'auto'})});
+    return true;
   }
 
   function unitLocked(unit,stageStatus){
@@ -273,67 +289,138 @@
   function render(){
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
-    /* 193: real illustrated route asset with actual course-action hit targets. */
-    var picture=document.createElement('div'); picture.className='kp193-map';
-    picture.setAttribute('aria-label','イラストの学習ルート');
-    var artwork=document.createElement('img');artwork.src='./assets/pinyin/roadmap-islands-194.webp';artwork.alt='小音とめぐるピンイン学習ルート';artwork.decoding='async';picture.appendChild(artwork);
-    /* 196: Hit targets correspond to the visible seven illustrated islands.
-       Lessons 1/2 stay visually complete; later lessons follow real targets. */
-    var islandTargets=[
-      {id:'P1',y:13.9,x:35,w:37},
-      {id:'P3',y:24.5,x:76,w:41},
-      {id:'P16',y:37.0,x:46,w:43},
-      {id:'P17',y:50.7,x:74,w:44},
-      {id:'P14',y:62.9,x:29,w:43},
-      {id:'P15',y:76.3,x:79,w:40},
-      {id:'P19',y:89.2,x:54,w:45}
+    /* 197: Nine-island illustration with DOM hit targets and fixed clear states. */
+    var map=document.createElement('section');map.className='kp196-archipelago';map.setAttribute('aria-label','9つの島をめぐるピンインコース');
+    makeExtraLessons();
+    var islandSpecs=[
+      {n:1,title:'単韻母',sample:'a · o · e · i · u · ü',unit:'P1',done:true},
+      {n:2,title:'声母',sample:'b · p · m · f …',unit:'P3',done:true},
+      {n:3,title:'二拼',sample:'声母 ＋ 韻母',unit:'P16'},
+      {n:4,title:'三拼',sample:'拼読ステップアップ',unit:'P17'},
+      {n:5,title:'整体認読①',sample:'zhi · chi · shi …',unit:'P14'},
+      {n:6,title:'整体認読②',sample:'yi · wu · yu …',unit:'P15'},
+      {n:7,title:'軽声のひみつ',sample:'短く、軽く、自然に',unit:'P19'},
+      {n:8,title:'総合練習',sample:'これまでの音を復習',kind:'practice'},
+      {n:9,title:'最終テスト',sample:'ピンインマスターへ！',kind:'exam'}
     ];
-    islandTargets.forEach(function(spec,index){
-      var u=findCourseUnit(spec.id);
-      var b=document.createElement('button');b.type='button';b.className='kp193-hit';
-      b.style.top=spec.y+'%';b.style.left=spec.x+'%';b.style.width=spec.w+'%';
-      b.setAttribute('aria-label','島'+(index+1)+'：'+(u?u.title:'準備中'));
-      if(u&&targetForUnit(u.id)){
-        b.addEventListener('click',function(){openLesson(u,b)});
-      }else{
-        b.setAttribute('aria-disabled','true');b.title='このレッスンは準備中です';
-        b.addEventListener('click',function(){showMapNotice('このレッスンは準備中です。')});
+    function getUnit(id){var result=null;course.stages.forEach(function(st){(st.units||[]).forEach(function(u){if(u.id===id)result=u})});return result}
+    var artwork=document.createElement('div');artwork.className='kp197-artwork';
+    var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-nine-islands-197.webp';picture.alt='';picture.className='kp197-map-image';picture.width=941;picture.height=1672;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
+    /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
+    var positions=[
+      {x:15,y:5,w:42,h:11},{x:55,y:13,w:41,h:11},
+      {x:10,y:23,w:42,h:13},{x:55,y:33,w:42,h:12},
+      {x:10,y:43,w:42,h:12},{x:54,y:52,w:43,h:12},
+      {x:9,y:62,w:44,h:12},{x:54,y:71,w:43,h:12},
+      {x:26,y:83,w:49,h:13}
+    ];
+    islandSpecs.forEach(function(spec,index){
+      var unit=spec.unit?getUnit(spec.unit):null;
+      var available=!!((unit&&targetForUnit(unit.id))||(spec.unit&&targetForUnit(spec.unit))||spec.kind==='exam');
+      var state=spec.done?'クリア':spec.kind==='practice'?'練習へ':available?'レッスンへ':'準備中';
+      var button=document.createElement('button');button.type='button';button.className='kp197-hotspot';
+      var loc=positions[index];button.style.left=loc.x+'%';button.style.top=loc.y+'%';button.style.width=loc.w+'%';button.style.height=loc.h+'%';
+      button.dataset.island=String(spec.n);
+      button.setAttribute('aria-label','島'+spec.n+' '+spec.title+' '+state);
+      var sr=document.createElement('span');sr.className='kp197-screenreader';sr.textContent=spec.title+' '+state;button.appendChild(sr);
+      /* The 197 artwork already contains the completion graphics. Do not duplicate. */
+      if(available&&spec.kind==='exam'){button.addEventListener('click',function(){openLesson({id:'P21',title:'最終テスト'},button)})}
+      else if(spec.n===6){
+        /* P15 is already a finished lesson. Resolve its node at CLICK time, not
+           during the roadmap render, to avoid a permanently dead sixth island
+           when the separately bundled P15 script initializes later. */
+        button.disabled=false;button.removeAttribute('aria-disabled');
+        button.addEventListener('click',function(){
+          try{openLesson({id:'P15',title:'整体認読②'},button)}
+          catch(err){console.error('[Koepanda P15 island entry]',err);window.alert('整体認読②を開けませんでした。再読み込みしてください。')}
+        });
       }
-      picture.appendChild(b);
+      else if(available&&spec.kind!=='practice'){button.addEventListener('click',function(){try{openLesson(unit||{id:spec.unit,title:spec.title},button)}catch(err){console.error('Koepanda island '+spec.n,err);alert('レッスンを開けません。もう一度お試しください。')}})}
+      else if(spec.kind==='practice'){button.addEventListener('click',function(){openLesson({id:'P18',title:'総合練習'},button)})}
+      else{button.disabled=true;button.setAttribute('aria-disabled','true')}
+      artwork.appendChild(button);
     });
-    function findCourseUnit(id){var result=null;course.stages.forEach(function(st){st.units.forEach(function(u){if(u.id===id)result=u})});return result}
-    function showMapNotice(message){
-      var note=document.getElementById('kp196MapNotice');
-      if(!note){note=document.createElement('p');note.id='kp196MapNotice';note.className='kp196-map-notice';picture.after(note)}
-      note.textContent=message;
-    }
-    /* 195: three spacious continuation stops. Lesson pages are never faked as complete. */
-    var finale=document.createElement('section');finale.className='kp195-finale';finale.setAttribute('aria-label','学習ルートの続き');
-    var segments=[
-      {num:'8',name:'総合練習',detail:'復習しながら、もう一歩',kind:'practice'},
-      {num:'9',name:'卒業チャレンジ',detail:'総合テスト · 準備中',kind:'exam'},
-      {num:'★',name:'ピンイン卒業',detail:'すべての挑戦を終えたら',kind:'graduate'}
-    ];
-    segments.forEach(function(step,i){
-      var spot=document.createElement('div');spot.className='kp195-stop kp195-'+step.kind;
-      var island=document.createElement('button');island.type='button';island.className='kp195-island';
-      island.innerHTML='<span class="kp195-number">'+step.num+'</span><span class="kp195-island-copy"><b>'+step.name+'</b><small>'+step.detail+'</small></span><span class="kp195-state" aria-hidden="true">'+(i?'🔒':'›')+'</span>';
-      island.setAttribute('aria-label',step.name+(i?'、準備中':'、練習する'));
-      if(i){island.disabled=true;island.title='このコースは準備中です'}
-      if(!i)island.addEventListener('click',function(){
-        var stage=course.stages.find(function(st){return st.id==='P14-P18'});
-        if(stage)openStage(stage,island,'next');
-        else showMapNotice('総合練習は準備中です。');
+    map.appendChild(artwork);
+    /* 198: review is a standalone lesson screen (not content opening below the map). */
+    var review=document.getElementById('kidsIslandReviewLesson');
+    if(!review){
+      review=document.createElement('section');review.id='kidsIslandReviewLesson';review.className='kids-lesson-card kp198-review';review.hidden=true;
+      var heading=document.createElement('h2');heading.textContent='総合練習';review.appendChild(heading);
+      var intro=document.createElement('p');intro.textContent='学んだ音をもう一度練習しよう。';review.appendChild(intro);
+      var options=document.createElement('div');options.className='kp198-review-choices';review.appendChild(options);
+      [{id:'P14',title:'整体認読①'},{id:'P15',title:'整体認読②'},{id:'P16',title:'二拼'}].forEach(function(item){
+        var u=getUnit(item.id);if(!u||!targetForUnit(item.id))return;
+        var btn=document.createElement('button');btn.type='button';btn.textContent=item.title+' →';
+        btn.addEventListener('click',function(){closeLesson();openLesson(u,btn)});options.appendChild(btn);
       });
-      spot.appendChild(island);finale.appendChild(spot);
-      if(i<2){var path=document.createElement('div');path.className='kp195-waterway';path.setAttribute('aria-hidden','true');finale.appendChild(path)}
-    });
-    root.insertBefore(picture,root.firstChild);
-    root.insertBefore(finale,picture.nextSibling);
+      document.getElementById('kidsCourse').appendChild(review);
+    }
+    root.insertBefore(map,root.firstChild);
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
     setLessonBodiesHidden();
   }
 
+
+
+  /* 198 supplemental learning screens: real entries, not placeholders. */
+  function makeExtraLessons(){
+    var courseRoot=document.getElementById('kidsCourse');if(!courseRoot)return;
+    function make(id,title,lead){
+      var el=document.getElementById(id);if(el)return el;
+      el=document.createElement('section');el.id=id;el.className='kids-lesson-card kp198-exercise';el.hidden=true;
+      var h=document.createElement('h2');h.textContent=title;el.appendChild(h);
+      var p=document.createElement('p');p.textContent=lead;el.appendChild(p);
+      courseRoot.appendChild(el);return el;
+    }
+    function question(el,questions,storageKey){
+      if(el.querySelector('.kp198-quiz'))return;
+      var wrap=document.createElement('div');wrap.className='kp198-quiz';el.appendChild(wrap);
+      var prompt=document.createElement('div');prompt.className='kp198-question';wrap.appendChild(prompt);
+      var answers=document.createElement('div');answers.className='kp198-answers';wrap.appendChild(answers);
+      var feedback=document.createElement('p');feedback.className='kp198-feedback';feedback.setAttribute('aria-live','polite');wrap.appendChild(feedback);
+      var score=document.createElement('p');score.className='kp198-score';wrap.appendChild(score);
+      var next=document.createElement('button');next.type='button';next.className='kp198-next';next.textContent='次へ →';next.hidden=true;wrap.appendChild(next);
+      var index=0,correct=0,answered=false;
+      function draw(){
+        var q=questions[index];answered=false;prompt.textContent=q.q;feedback.textContent='';next.hidden=true;
+        score.textContent=(index+1)+' / '+questions.length;answers.replaceChildren();
+        q.a.forEach(function(val,i){var b=document.createElement('button');b.type='button';b.textContent=val;
+          b.addEventListener('click',function(){if(answered)return;answered=true;
+            if(i===q.ok){correct++;feedback.textContent='正解！ '+(q.note||'')}else{feedback.textContent='もう一度覚えよう。正解：'+q.a[q.ok]+'。 '+(q.note||'')}
+            Array.prototype.forEach.call(answers.children,function(x,j){x.disabled=true;if(j===q.ok)x.classList.add('is-answer')});
+            next.hidden=false;next.textContent=index===questions.length-1?'結果を見る':'次へ →';
+          });answers.appendChild(b)});
+      }
+      next.addEventListener('click',function(){if(next.dataset.restart==='1'){delete next.dataset.restart;index=0;correct=0;draw();return}if(index<questions.length-1){index++;draw();return}
+        prompt.textContent='結果：'+correct+' / '+questions.length;answers.replaceChildren();feedback.textContent=correct===questions.length?'やった！ 全問正解！':'間違えたところをもう一度練習しよう。';score.textContent='';next.textContent='もう一度チャレンジ';next.hidden=false;
+        try{if(correct===questions.length&&storageKey)localStorage.setItem(storageKey,'1')}catch(e){}
+        next.dataset.restart='1';
+      });draw();
+    }
+    var three=make('kidsThreeSpellingLesson','三拼（拼読）','声母＋介音＋韻母を組み合わせて、ひとつの音節にしよう。');
+    question(three,[
+      {q:'g ＋ u ＋ a をつなぐと？',a:['gua','gao','ga'],ok:0,note:'g-u-a → gua（瓜）'},
+      {q:'h ＋ u ＋ o をつなぐと？',a:['hou','huo','hao'],ok:1,note:'h-u-o → huo（火）'},
+      {q:'j ＋ i ＋ a をつなぐと？',a:['jia','jai','ja'],ok:0,note:'j-i-a → jia（家）'},
+      {q:'q ＋ i ＋ ao をつなぐと？',a:['qao','qiao','qiaoü'],ok:1,note:'q-i-ao → qiao（桥）'}
+    ],'koepandaThreeP17Complete');
+    var neutral=make('kidsNeutralToneLesson','軽声のひみつ','軽声は「第五声」ではなく、前の音節に続く短く軽い音。音の高さは前の音節により変わるよ。');
+    question(neutral,[
+      {q:'「妈妈（māma）」の二つ目の ma は？',a:['第一声','軽声','第四声'],ok:1,note:'短く、軽く発音するよ。'},
+      {q:'「爸爸（bàba）」の二つ目の ba は？',a:['軽声','第二声','第三声'],ok:0,note:'bà のあとに自然に続けよう。'},
+      {q:'軽声の音の高さは？',a:['常に高い','前の音節によって変わる','必ず低い'],ok:1,note:'第五声として固定しないよ。'},
+      {q:'「好吗（hǎo ma）」の ma は？',a:['第三声','第四声','軽声'],ok:2,note:'疑問を表す ma は軽声。'}
+    ],'koepandaNeutralP19Complete');
+    var exam=make('kidsFinalPinyinExam','最終テスト','これまでの拼音、声調、拼読、軽声をまとめて確認しよう。');
+    question(exam,[
+      {q:'第三声の基本の動きは？',a:['平ら','下がってから上がる','一気に下がる'],ok:1},
+      {q:'「b ＋ a」の拼読は？',a:['ba','pa','ma'],ok:0},
+      {q:'「g ＋ u ＋ a」は？',a:['gao','gua','guo'],ok:1},
+      {q:'「鱼（yú）」の ü の点は？',a:['y の後で省略','必ず書く','声調による'],ok:0},
+      {q:'「妈妈」の二つ目の ma は？',a:['第四声','第一声','軽声'],ok:2},
+      {q:'「yi」は？',a:['整体認読音節','単独の声母','声調名'],ok:0}
+    ],'koepandaFinalP21Complete');
+  }
 
   function refreshRoadmapLocks(){
     if(!root)return;
