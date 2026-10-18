@@ -36,3 +36,42 @@
 #pinyinRoadmap .kp197-clear{position:absolute;top:35%;right:0;font-weight:900;font-size:clamp(8px,2.6vw,16px);padding:.15em .38em;border:1px solid #d3f4cd;border-radius:99px;background:#178a48;color:white;white-space:nowrap;box-shadow:0 2px 4px #03471845}
 #pinyinRoadmap .kp197-hotspot[data-island="2"] .kp197-clear{top:46%;right:0}
 @media(max-width:390px){#pinyinRoadmap .kp196-archipelago{padding:0 0 16px}#pinyinRoadmap .kp197-map-image{border-radius:9px}}
+
+/* 198: true overlay instead of invisible content expanding below the roadmap */
+#pinyinRoadmap .kp196-practice-panel:not([hidden]){position:fixed;inset:0;z-index:99990;max-width:none;margin:0;border:0;border-radius:0;background:#163e3bb3;display:flex;align-items:center;justify-content:center;flex-flow:column;gap:10px;padding:24px;box-sizing:border-box;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+#pinyinRoadmap .kp196-practice-panel:not([hidden]) strong{color:#fff;font-size:clamp(1.2rem,5vw,1.6rem);text-shadow:0 2px 6px #214a50}
+#pinyinRoadmap .kp196-practice-panel:not([hidden]) button{width:min(80vw,340px);padding:14px 18px;font-size:1rem;box-shadow:0 4px 9px #062c3022}
+#pinyinRoadmap .kp196-practice-panel .kp198-practice-close{background:#fff;color:#285f55;border-color:#d1e5dd}
+#pinyinRoadmap .kp197-clear{top:36%;right:-1%;font-size:clamp(8px,2.5vw,15px)}
+#pinyinRoadmap .kp197-hotspot[data-island="2"] .kp197-clear{top:45%;right:-1%}
+#pinyinRoadmap .kp197-map-image{display:block}
+
+/* 198 visual continuity and integrated lesson navigation */
+#kidsCourse .pinyin-roadmap-intro{margin:10px auto 12px!important;padding:17px 20px!important;border:1px solid #d7e5db!important;border-radius:22px!important;background:#fffdf8d9!important;box-shadow:0 8px 22px #436f5c0b!important}
+#kidsCourse .pinyin-roadmap-intro strong{font-size:clamp(19px,5vw,25px)!important;color:#2d6157!important}
+#kidsCourse .pinyin-roadmap-intro p{font-size:clamp(13px,3.5vw,16px)!important;line-height:1.5!important}
+#pinyinRoadmap .kp196-archipelago{margin-top:8px!important;padding-bottom:6px!important}
+#pinyinRoadmap .kp197-hotspot:disabled{pointer-events:auto;cursor:not-allowed}
+#kidsCourse > .kp198-review{max-width:650px;margin-inline:auto;padding:28px 20px 80px!important;background:#f6fbf5;border:1px solid #dfebe1;border-radius:22px}
+#kidsCourse .kp198-review h2{color:#295f55;font-size:clamp(26px,6vw,32px)}
+#kidsCourse .kp198-review p{color:#5e7b73;line-height:1.6}
+#kidsCourse .kp198-review-choices{display:grid;gap:14px;margin-top:23px}
+#kidsCourse .kp198-review-choices button{border:2px solid #b6dcca;background:#fffdf8;color:#285d54;border-radius:20px;min-height:68px;font:800 19px/1.4 inherit;box-shadow:0 5px 0 #c4dfd3;cursor:pointer}
+#kidsCourse .kp198-review-choices button:active{transform:translateY(3px);box-shadow:0 2px 0 #c4dfd3}
+/* 198 interactive learning activities — shared Koepanda typography */
+#kidsCourse .kp198-exercise{max-width:650px;margin-inline:auto;padding:26px 20px 75px;background:#fffdf8;border:1px solid #dbe7d9;border-radius:24px;color:#315d55}
+#kidsCourse .kp198-exercise h2{font-size:clamp(24px,6vw,32px);margin:4px 0 12px}
+#kidsCourse .kp198-exercise>p{line-height:1.65;color:#52796e;margin-bottom:24px}
+#kidsCourse .kp198-question{font-size:clamp(19px,5vw,25px);font-weight:850;line-height:1.5;margin-bottom:17px}
+#kidsCourse .kp198-answers{display:grid;gap:12px}
+#kidsCourse .kp198-answers button,#kidsCourse .kp198-next{font:800 18px/1.4 inherit;min-height:58px;border:2px solid #b5dacc;border-radius:16px;background:#fff;color:#275e54;box-shadow:0 4px 0 #d6e7d9;padding:10px 17px;cursor:pointer}
+#kidsCourse .kp198-answers button.is-answer{border-color:#328e6f;background:#e4f6e8}
+#kidsCourse .kp198-answers button:disabled{opacity:.82}
+#kidsCourse .kp198-feedback{min-height:3em;font-size:16px;font-weight:750;color:#285e55;line-height:1.5}
+#kidsCourse .kp198-next{background:#3b9577;color:white;display:block;width:100%;margin-top:12px}
+#kidsCourse .kp198-next[hidden]{display:none}
+
+/* 198 consolidated: clear markers belong to DOM, never to the untouched original WebP. */
+#pinyinRoadmap .kp197-hotspot[data-island="1"] .kp197-clear{top:68%;right:5%;font-size:clamp(10px,2.8vw,17px)}
+#pinyinRoadmap .kp197-hotspot[data-island="2"] .kp197-clear{top:70%;right:9%;font-size:clamp(10px,2.8vw,17px)}
+#pinyinRoadmap .kp197-hotspot .kp197-clear{pointer-events:none;display:inline-flex;align-items:center;gap:.15em;line-height:1.35;z-index:3;}
