@@ -273,50 +273,63 @@
   function render(){
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
-    /* 197: Nine-island illustration with DOM hit targets and fixed clear states. */
-    var map=document.createElement('section');map.className='kp196-archipelago';map.setAttribute('aria-label','9つの島をめぐるピンインコース');
-    var islandSpecs=[
-      {n:1,title:'単韻母',sample:'a · o · e · i · u · ü',unit:'P1',done:true},
-      {n:2,title:'声母',sample:'b · p · m · f …',unit:'P3',done:true},
-      {n:3,title:'二拼',sample:'声母 ＋ 韻母',unit:'P16'},
-      {n:4,title:'三拼',sample:'拼読ステップアップ',unit:'P17'},
-      {n:5,title:'整体認読①',sample:'zhi · chi · shi …',unit:'P14'},
-      {n:6,title:'整体認読②',sample:'yi · wu · yu …',unit:'P15'},
-      {n:7,title:'軽声のひみつ',sample:'短く、軽く、自然に',unit:'P19'},
-      {n:8,title:'総合練習',sample:'これまでの音を復習',kind:'practice'},
-      {n:9,title:'最終テスト',sample:'ピンインマスターへ！',kind:'exam'}
+    /* 193: real illustrated route asset with actual course-action hit targets. */
+    var picture=document.createElement('div'); picture.className='kp193-map';
+    picture.setAttribute('aria-label','イラストの学習ルート');
+    var artwork=document.createElement('img');artwork.src='./assets/pinyin/roadmap-islands-194.webp';artwork.alt='小音とめぐるピンイン学習ルート';artwork.decoding='async';picture.appendChild(artwork);
+    /* 196: Hit targets correspond to the visible seven illustrated islands.
+       Lessons 1/2 stay visually complete; later lessons follow real targets. */
+    var islandTargets=[
+      {id:'P1',y:13.9,x:35,w:37},
+      {id:'P3',y:24.5,x:76,w:41},
+      {id:'P16',y:37.0,x:46,w:43},
+      {id:'P17',y:50.7,x:74,w:44},
+      {id:'P14',y:62.9,x:29,w:43},
+      {id:'P15',y:76.3,x:79,w:40},
+      {id:'P19',y:89.2,x:54,w:45}
     ];
-    function getUnit(id){var result=null;course.stages.forEach(function(st){(st.units||[]).forEach(function(u){if(u.id===id)result=u})});return result}
-    var artwork=document.createElement('div');artwork.className='kp197-artwork';
-    var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-nine-islands-197.webp';picture.alt='';picture.className='kp197-map-image';picture.width=941;picture.height=1672;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
-    /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
-    var positions=[
-      {x:15,y:5,w:42,h:11},{x:55,y:13,w:41,h:11},
-      {x:10,y:23,w:42,h:13},{x:55,y:33,w:42,h:12},
-      {x:10,y:43,w:42,h:12},{x:54,y:52,w:43,h:12},
-      {x:9,y:62,w:44,h:12},{x:54,y:71,w:43,h:12},
-      {x:26,y:83,w:49,h:13}
-    ];
-    islandSpecs.forEach(function(spec,index){
-      var unit=spec.unit?getUnit(spec.unit):null;
-      var available=!!(unit&&targetForUnit(unit.id));
-      var state=spec.done?'クリア':spec.kind==='practice'?'練習へ':available?'レッスンへ':'準備中';
-      var button=document.createElement('button');button.type='button';button.className='kp197-hotspot';
-      var loc=positions[index];button.style.left=loc.x+'%';button.style.top=loc.y+'%';button.style.width=loc.w+'%';button.style.height=loc.h+'%';
-      button.dataset.island=String(spec.n);
-      button.setAttribute('aria-label','島'+spec.n+' '+spec.title+' '+state);
-      var sr=document.createElement('span');sr.className='kp197-screenreader';sr.textContent=spec.title+' '+state;button.appendChild(sr);
-      if(spec.done){var clear=document.createElement('span');clear.className='kp197-clear';clear.textContent='✓ クリア';button.appendChild(clear)}
-      if(available){button.addEventListener('click',function(){openLesson(unit,button)})}
-      else if(spec.kind==='practice'){button.addEventListener('click',function(){var panel=map.querySelector('.kp196-practice-panel');panel.hidden=!panel.hidden;if(!panel.hidden)panel.scrollIntoView({block:'nearest',behavior:'smooth'})})}
-      else{button.disabled=true;button.setAttribute('aria-disabled','true')}
-      artwork.appendChild(button);
+    islandTargets.forEach(function(spec,index){
+      var u=findCourseUnit(spec.id);
+      var b=document.createElement('button');b.type='button';b.className='kp193-hit';
+      b.style.top=spec.y+'%';b.style.left=spec.x+'%';b.style.width=spec.w+'%';
+      b.setAttribute('aria-label','島'+(index+1)+'：'+(u?u.title:'準備中'));
+      if(u&&targetForUnit(u.id)){
+        b.addEventListener('click',function(){openLesson(u,b)});
+      }else{
+        b.setAttribute('aria-disabled','true');b.title='このレッスンは準備中です';
+        b.addEventListener('click',function(){showMapNotice('このレッスンは準備中です。')});
+      }
+      picture.appendChild(b);
     });
-    map.appendChild(artwork);
-    var panel=document.createElement('div');panel.className='kp196-practice-panel';panel.hidden=true;
-    var pt=document.createElement('strong');pt.textContent='復習するレッスンを選ぼう';panel.appendChild(pt);
-    [{id:'P14',title:'整体認読①'},{id:'P15',title:'整体認読②'},{id:'P16',title:'二拼'}].forEach(function(item){var u=getUnit(item.id);if(!u||!targetForUnit(item.id))return;var btn=document.createElement('button');btn.type='button';btn.textContent=item.title;btn.addEventListener('click',function(){openLesson(u,btn)});panel.appendChild(btn)});
-    map.appendChild(panel);root.insertBefore(map,root.firstChild);
+    function findCourseUnit(id){var result=null;course.stages.forEach(function(st){st.units.forEach(function(u){if(u.id===id)result=u})});return result}
+    function showMapNotice(message){
+      var note=document.getElementById('kp196MapNotice');
+      if(!note){note=document.createElement('p');note.id='kp196MapNotice';note.className='kp196-map-notice';picture.after(note)}
+      note.textContent=message;
+    }
+    /* 195: three spacious continuation stops. Lesson pages are never faked as complete. */
+    var finale=document.createElement('section');finale.className='kp195-finale';finale.setAttribute('aria-label','学習ルートの続き');
+    var segments=[
+      {num:'8',name:'総合練習',detail:'復習しながら、もう一歩',kind:'practice'},
+      {num:'9',name:'卒業チャレンジ',detail:'総合テスト · 準備中',kind:'exam'},
+      {num:'★',name:'ピンイン卒業',detail:'すべての挑戦を終えたら',kind:'graduate'}
+    ];
+    segments.forEach(function(step,i){
+      var spot=document.createElement('div');spot.className='kp195-stop kp195-'+step.kind;
+      var island=document.createElement('button');island.type='button';island.className='kp195-island';
+      island.innerHTML='<span class="kp195-number">'+step.num+'</span><span class="kp195-island-copy"><b>'+step.name+'</b><small>'+step.detail+'</small></span><span class="kp195-state" aria-hidden="true">'+(i?'🔒':'›')+'</span>';
+      island.setAttribute('aria-label',step.name+(i?'、準備中':'、練習する'));
+      if(i){island.disabled=true;island.title='このコースは準備中です'}
+      if(!i)island.addEventListener('click',function(){
+        var stage=course.stages.find(function(st){return st.id==='P14-P18'});
+        if(stage)openStage(stage,island,'next');
+        else showMapNotice('総合練習は準備中です。');
+      });
+      spot.appendChild(island);finale.appendChild(spot);
+      if(i<2){var path=document.createElement('div');path.className='kp195-waterway';path.setAttribute('aria-hidden','true');finale.appendChild(path)}
+    });
+    root.insertBefore(picture,root.firstChild);
+    root.insertBefore(finale,picture.nextSibling);
     detail=document.createElement('section'); detail.id='pinyinStageDetail'; detail.className='pinyin-stage-detail'; detail.hidden=true; root.appendChild(detail);
     setLessonBodiesHidden();
   }
