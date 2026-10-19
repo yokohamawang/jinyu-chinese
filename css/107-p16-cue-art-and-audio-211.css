@@ -1,0 +1,5 @@
+/* 211 — cue illustrations and component-to-syllable audio sequence. */
+#kidsTwoSpellingP16.kp205 .kp192-cue-art{grid-column:2;grid-row:1/span 3;align-self:center;justify-self:end;width:clamp(82px,23vw,112px);aspect-ratio:1284/1225;border:1px solid rgba(205,218,199,.72);border-radius:19px;background-color:#f6f7ef;background-image:url('../assets/pinyin/p16-mnemonic-sprite-211.png');background-repeat:no-repeat;background-size:400% 400%;box-shadow:0 3px 10px rgba(58,97,76,.07)}
+#kidsTwoSpellingP16.kp205 .kp192-status{transition:color .18s ease}
+#kidsTwoSpellingP16.kp205 .kp192-blend.is-onset strong:first-child,#kidsTwoSpellingP16.kp205 .kp192-blend.is-vowel strong:nth-child(2){filter:drop-shadow(0 0 7px rgba(88,179,143,.38))}
+@media(max-width:380px){#kidsTwoSpellingP16.kp205 .kp192-cue-art{width:78px;border-radius:16px}}
