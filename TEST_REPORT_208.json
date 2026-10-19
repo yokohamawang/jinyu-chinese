@@ -1,0 +1,11 @@
+{
+  "version": "208",
+  "base_version": "206",
+  "checks": {
+    "js_syntax": "passed",
+    "illustration_reference": "passed",
+    "p16_audio_wavs": "14 present and valid RIFF/WAVE",
+    "zip_integrity": "passed"
+  },
+  "browser_render_test": "not run: no local browser engine"
+}

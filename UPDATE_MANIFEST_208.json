@@ -1,0 +1,116 @@
+{
+  "version": "208",
+  "base_version": "206",
+  "payload_files": [
+    {
+      "path": "KOEPANDA_208_RELEASE_NOTES.md",
+      "size_bytes": 729,
+      "sha256": "9f1fd7715ffbd7abf7108b03fdf5ac2ff76d9c9ed7623ac79eb301c0bbf8409c"
+    },
+    {
+      "path": "TEST_REPORT_208.json",
+      "size_bytes": 281,
+      "sha256": "30cd878fe6b7892ee09bbe50bc83184d11bd5303236413eaabd466c99a226274"
+    },
+    {
+      "path": "VERSION_208.txt",
+      "size_bytes": 108,
+      "sha256": "228cea52a476689bcd0a6539ff973cd7737e1a1497dc7909424a693a579cf1bf"
+    },
+    {
+      "path": "assets/audio/p16/bo1.wav",
+      "size_bytes": 46654,
+      "sha256": "27edba47114787583f627d581e0ee0326438d19468dfe2a5d7f9a483404850bb"
+    },
+    {
+      "path": "assets/audio/p16/de1.wav",
+      "size_bytes": 46364,
+      "sha256": "a67552bd6f6cd16a5120d7c8664a581e415a23c83c2f533d6c9daca1ad6662d0"
+    },
+    {
+      "path": "assets/audio/p16/fo1.wav",
+      "size_bytes": 48572,
+      "sha256": "f7df2bd728d43ebe65c945ab19298cc663dedd5def2ef4b505e75efa2e0696ed"
+    },
+    {
+      "path": "assets/audio/p16/ge1.wav",
+      "size_bytes": 49004,
+      "sha256": "55b316636cbab37a4182f40f66b8b74cb334b5fd0715f8eb38c9613c768b65ca"
+    },
+    {
+      "path": "assets/audio/p16/he1.wav",
+      "size_bytes": 57644,
+      "sha256": "98e92b13e24c74b5317001e4b8937c2dc19e0d1bad3110573bb64edff5f10ec1"
+    },
+    {
+      "path": "assets/audio/p16/ji1.wav",
+      "size_bytes": 54620,
+      "sha256": "2c39802adb720a552b625218a9ebf05606bdd9f3c650ca4e8587ed7835f21e3a"
+    },
+    {
+      "path": "assets/audio/p16/ke1.wav",
+      "size_bytes": 53804,
+      "sha256": "3ce4b9af051d0b3e103946bfb06b45e45210debe68d9b62fb61fd8348bb54e9c"
+    },
+    {
+      "path": "assets/audio/p16/le1.wav",
+      "size_bytes": 34604,
+      "sha256": "5a2d273d01866be5feba4f8155c6205eacedea8dd9bd343f8293e83ec5c98ef8"
+    },
+    {
+      "path": "assets/audio/p16/mo1.wav",
+      "size_bytes": 26444,
+      "sha256": "5e74f2251c37760e26ed65b63f918d4246be50b380b9dbbe413a7475f4184fbe"
+    },
+    {
+      "path": "assets/audio/p16/ne1.wav",
+      "size_bytes": 43244,
+      "sha256": "b6893af770f13102cb17bf5b41df3ea16038fe9497ee9591c73468c4b092c614"
+    },
+    {
+      "path": "assets/audio/p16/po1.wav",
+      "size_bytes": 42956,
+      "sha256": "2133decf533cab33e5a27dafe4e5185aa1e121fc549311e4fb78fc4974f97c7d"
+    },
+    {
+      "path": "assets/audio/p16/qi1.wav",
+      "size_bytes": 59228,
+      "sha256": "0b392dbf7b1a3b5eaad9bd2d880df005edd7f3ef34311afe59c5255c9e070969"
+    },
+    {
+      "path": "assets/audio/p16/te1.wav",
+      "size_bytes": 56924,
+      "sha256": "205594a4a34970bcc08688b23e65deb62d03699fe04c83d346b74992dbb659d7"
+    },
+    {
+      "path": "assets/audio/p16/xi1.wav",
+      "size_bytes": 53804,
+      "sha256": "1d28c8999b830e1231cd86b927fb870589ca772956fa75411b83e7d6333abb02"
+    },
+    {
+      "path": "assets/pinyin/lesson-illustrations/p16-two-part-panda-208.webp",
+      "size_bytes": 34572,
+      "sha256": "8891a0f239d881bef8d1ade07575df4fa91f85f1021ef5ee72c40734ba95410e"
+    },
+    {
+      "path": "css/104-p16-mascot-visible-208.css",
+      "size_bytes": 852,
+      "sha256": "a9ade0e9488c130ada106664ffce0d0f73b00e21a7c1e6d100b768418add21c4"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 681983,
+      "sha256": "206eb16365facb557142eec16f0027139fa8c3377a42e160e86dbc0383621e0e"
+    },
+    {
+      "path": "js/06-demo1010740-pinyin-roadmap.js",
+      "size_bytes": 36043,
+      "sha256": "798bfc67f61e3b3857bd7caae39b3986319d8d301ae27f078cf51e39eaeb9308"
+    },
+    {
+      "path": "js/33-two-spelling-p16-192.js",
+      "size_bytes": 10069,
+      "sha256": "492c516853ca3134f54a4d9e3f63207259d3a8a0e49eda88a01c587e9ee1d023"
+    }
+  ]
+}

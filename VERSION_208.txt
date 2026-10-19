@@ -1,0 +1,2 @@
+Koepanda 208 — P16 Mascot and Viewport Fix
+Cumulative update base: Koepanda 206 FULL P16AudioAndScrollFix
