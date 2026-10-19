@@ -1,0 +1,3332 @@
+{
+  "version": "201",
+  "base": "195 FULL + 197 DIFF + 198 consolidated RC3 DIFF + 200 P15/P16 delivery repair candidate",
+  "excluded": "196 DIFF branch",
+  "status": "candidate_pending_live_upload",
+  "fixes": [
+    "Load P15 and P16 course scripts before initializing the roadmap, so their lesson roots are present when island availability is computed.",
+    "Ship P15 and P16 resources with the update to avoid missing-resource 404s.",
+    "Bump roadmap CSS and P15/P16/roadmap script URLs to cache revision 10.108.201."
+  ],
+  "verified_startup_order": [
+    "P14",
+    "P15",
+    "P16",
+    "roadmap"
+  ],
+  "tested_assets": [
+    "index.html",
+    "css/99-nine-islands-196.css",
+    "js/06-demo1010740-pinyin-roadmap.js",
+    "js/32-whole-syllables-p15-182.js",
+    "js/33-two-spelling-p16-192.js",
+    "assets/pinyin/roadmap-nine-islands-197.webp"
+  ],
+  "files": [
+    {
+      "path": "ARTICULATION_REVIEW_146.md",
+      "size_bytes": 4695,
+      "sha256": "37d8881d0060963640b20d38703e60fc2d8e95c91d032776a8566672d33de8f5"
+    },
+    {
+      "path": "ARTICULATION_REVIEW_147.md",
+      "size_bytes": 4122,
+      "sha256": "ae1e1e66a643b9485ca72f238e49217f48d476ef1f9e4e28ec1201ceea667f13"
+    },
+    {
+      "path": "ARTICULATION_REVIEW_149.md",
+      "size_bytes": 1451,
+      "sha256": "5f9fa2692f87957bf0239edb39e2323a47e625865810df5fbab37fa8d7a01cf9"
+    },
+    {
+      "path": "ARTICULATION_REVIEW_154.md",
+      "size_bytes": 3815,
+      "sha256": "3dd1dc026ecd0afcc97de7f43867cf860a5860c81e0dac2d97a927a4df6cb9e9"
+    },
+    {
+      "path": "ARTICULATION_REVIEW_155.md",
+      "size_bytes": 2466,
+      "sha256": "e46c144acd148b3496cae542c978f83dcc7c58f47c4fb24d67c877406e2cea9a"
+    },
+    {
+      "path": "ARTICULATION_REVIEW_156.md",
+      "size_bytes": 1364,
+      "sha256": "219cb3394fa5bcb0aa33e8a92956390bb3ca15cdc42a208ba746ec2c9a5e91fc"
+    },
+    {
+      "path": "ARTICULATION_SOURCES_151.md",
+      "size_bytes": 3201,
+      "sha256": "a5f50138e38eabd7673d595f92d5d574bf13baaaf7cb18e80cc60841ee2dd20c"
+    },
+    {
+      "path": "ARTICULATION_SOURCES_152.md",
+      "size_bytes": 2673,
+      "sha256": "f4c1c179ffcb26b0477b8dc3d9e01812d918891c36950ca3f23dbd04c6dc281e"
+    },
+    {
+      "path": "ASSET_PROVENANCE_147.md",
+      "size_bytes": 1189,
+      "sha256": "549776b4ad6540ffc22136cce78807b4b6ce5fe681eaaa7272779ca57d0c08a6"
+    },
+    {
+      "path": "AUDIO_POOL_EAR_FLOW_FIX_10_107_92.txt",
+      "size_bytes": 806,
+      "sha256": "2cd98516bc7a4badc31587ae02552dba2440f1f645a2b52c38d3049f989cf8e8"
+    },
+    {
+      "path": "AUDIO_RACE_FIX_10_107_91.txt",
+      "size_bytes": 895,
+      "sha256": "491bb7a347bd681f983ef71198d48a004dad74df4cea1c95360d79b8f4e7b754"
+    },
+    {
+      "path": "AUDIT_147.csv",
+      "size_bytes": 1967,
+      "sha256": "52dca4471f9c123d63394348eb6ac36897a2a065a12b1b82028ca766fa95cbe8"
+    },
+    {
+      "path": "AZURE_PINYIN_AUDIO_README.txt",
+      "size_bytes": 861,
+      "sha256": "47a6ebf7687c84728b24ffb39df3e04dd1f943a80fe43c52e417c336972feca4"
+    },
+    {
+      "path": "A_SAMPLE_LESSON_10_107_69.txt",
+      "size_bytes": 843,
+      "sha256": "36ca14bfe92410269c66cd52e19c5940b59494c44ede5acefd69328b2dd527bc"
+    },
+    {
+      "path": "BUILD_MANIFEST.json",
+      "size_bytes": 446,
+      "sha256": "9ef9bc0d6d006bfeb0f56499055d596fe68500d0ba5f16f80eae73038881c0d0"
+    },
+    {
+      "path": "CACHE_PROOF_AUDIO_FIX_10_107_93.txt",
+      "size_bytes": 976,
+      "sha256": "e627057ab533e8488e0a84fae44ddd245de15fb6feba4d361650ed1f526e5e67"
+    },
+    {
+      "path": "CLEANUP_NOTES_10_107_85.txt",
+      "size_bytes": 205,
+      "sha256": "a4330fc1654e77b97ccb6f651af3ad6a4ffd9165cdab834eb6412be995a249cd"
+    },
+    {
+      "path": "CODE_AUDIT_10_108_33.txt",
+      "size_bytes": 1164,
+      "sha256": "4eea6f105418ac74de023c7b8304b23ccca284d2b8ae56c2fb53d2db0f1e887c"
+    },
+    {
+      "path": "CODE_AUDIT_10_108_34.txt",
+      "size_bytes": 699,
+      "sha256": "58bc5ed7dc8de93fca806cccde5a90eb2629d7d1d14c26f4c81656ec647a55ad"
+    },
+    {
+      "path": "CODE_AUDIT_10_108_35.txt",
+      "size_bytes": 561,
+      "sha256": "2f8d1597d2e342af92dd6dad5fc5c7794aa1b6b21734768958ac61b2ade32963"
+    },
+    {
+      "path": "CODE_AUDIT_10_108_36.txt",
+      "size_bytes": 455,
+      "sha256": "12e6eab15b6071e2630c891cb80d38c6684f3782e9f8fdb4b5c9bca2818a9e55"
+    },
+    {
+      "path": "DEV_TEST_MODE_10_108_12.txt",
+      "size_bytes": 601,
+      "sha256": "33f7fa24aa0fe4d0bc5134fd2ffb00eb027e37e024ccb0720feab3f5f527ce5c"
+    },
+    {
+      "path": "DTNL_AUDIT_FIX_10_108_21.txt",
+      "size_bytes": 754,
+      "sha256": "f12d89730b3033add930fa1beafc219638f5c0634d268c74267bb4b5805e0b77"
+    },
+    {
+      "path": "DTNL_FIRST_LESSON_10_108_20.txt",
+      "size_bytes": 426,
+      "sha256": "f0cc98d6af68184a2e06b56fb7accc067d86d7049457da95cc631e0020c43b0c"
+    },
+    {
+      "path": "DTNL_STATIC_GUIDES_10_108_99.md",
+      "size_bytes": 2066,
+      "sha256": "650eabcffc2d0efc136546b9be3b6e4ef2353975ada0d9de279e9f8a51332dd4"
+    },
+    {
+      "path": "DTNL_STYLE_RECORDING_FLOW_10_108_23.txt",
+      "size_bytes": 672,
+      "sha256": "db146604d03ff66b23303abfee0fde74c9b647b74df00d9c23cbc98ea0515f8a"
+    },
+    {
+      "path": "DTNL_TEXT_REFERENCES_10_108_98.md",
+      "size_bytes": 2183,
+      "sha256": "ec0c407374bfe1803b82fd85165ddc245fc3a9102adde90650845c58f4f37e46"
+    },
+    {
+      "path": "DTNL_TONGUE_POSITION_FIX_10_108_22.txt",
+      "size_bytes": 452,
+      "sha256": "bdafba2a87256efc836077434af4517ecae682325411aaadb65d1bbf57e30004"
+    },
+    {
+      "path": "EAR_BLIND_CHECK_PRESS_FEEDBACK_10_108_25.txt",
+      "size_bytes": 742,
+      "sha256": "cefd46330ecd5e8d54b01049bebb3553d12672a9a528423b4abdbf2a1fc0717a"
+    },
+    {
+      "path": "EAR_CHOICE_RESET_10_108_05.txt",
+      "size_bytes": 573,
+      "sha256": "aa8150af668edfb54d5874e1d3f396f7d3756ec501565f86ad210083e823fb67"
+    },
+    {
+      "path": "FLOW_CELEBRATION_ROADMAP_FIX_10_108_01.txt",
+      "size_bytes": 577,
+      "sha256": "e03bdbc71b8cdfd30c8c99212f9c9883e608b7300b58f96acef99aa04e076421"
+    },
+    {
+      "path": "FREE_PRACTICE_UNIFIED_10_108_24.txt",
+      "size_bytes": 943,
+      "sha256": "68dee4f4cd8be75f4f542efb389d5a8e3e0f1ad61861e07a46acce4890380d32"
+    },
+    {
+      "path": "HOME_AND_PINYIN_VISUAL_10_107_79.txt",
+      "size_bytes": 427,
+      "sha256": "58b35057eb0dabfa2d21dbe4e8c341974c161b14f684c894ee322cfb48b1adbd"
+    },
+    {
+      "path": "HOME_EFFECT_SWAP_10_107_84.txt",
+      "size_bytes": 173,
+      "sha256": "b2a2aa839ec437894e776b197d04916cee7d18686a751f8a4178bdc0dbd36b38"
+    },
+    {
+      "path": "HOME_ESCAPE_FIX_10_108_07.txt",
+      "size_bytes": 521,
+      "sha256": "7d0bb7f0a53331dcd6fd0ff5b1816f1adce730d647490705e30c9f77a2e05952"
+    },
+    {
+      "path": "HOME_LISTEN_HEADPHONES_10_107_78.txt",
+      "size_bytes": 180,
+      "sha256": "a220e7493423359d9036494b153a0b746fbda7c37c8ba52a10a8421e0727fbf9"
+    },
+    {
+      "path": "HOME_SINGLE_CIRCLE_10_107_82.txt",
+      "size_bytes": 394,
+      "sha256": "cfbf3f54b869837c978dbaa3e89c353eca980069a86339656c6dddb6d69899a8"
+    },
+    {
+      "path": "INITIALS_FOREST_10_108_08.txt",
+      "size_bytes": 896,
+      "sha256": "24135e6ffbab2ef724664bf4b5b574142c9a73a6173d394bd0a8f19d5dee1f47"
+    },
+    {
+      "path": "INITIALS_PRONUNCIATION_FIX_10_108_09.txt",
+      "size_bytes": 188,
+      "sha256": "6ad0146b9b05637b540816bac3d155f39b2075581b5f98bd0b1b33a8fd6e7cc8"
+    },
+    {
+      "path": "INITIAL_AUDIO_EMBED_FIX_10_108_14.txt",
+      "size_bytes": 362,
+      "sha256": "fef82f66e9cb975cb3025eb2d7832e76bd76821fcc33debeeae97b834141d0c2"
+    },
+    {
+      "path": "INITIAL_AUDIO_MOUTH_FIX_10_108_13.txt",
+      "size_bytes": 735,
+      "sha256": "da11a5056ece635b4da45c0f30b30ead1d44ababb19bba326b41bef0e2a0b78a"
+    },
+    {
+      "path": "INITIAL_CARD_VISUAL_SYSTEM_10_108_15.txt",
+      "size_bytes": 751,
+      "sha256": "67a714a1a40fe7dc1b1349dac1d6882141c806213f2882ba6788924c228c17fc"
+    },
+    {
+      "path": "INITIAL_LESSON_POLISH_10_108_11.txt",
+      "size_bytes": 588,
+      "sha256": "d2565d7a533d0d608a6a918b5dee81f527ffb70ec8d7e9b21fd833af97370c4b"
+    },
+    {
+      "path": "INITIAL_READING_TONE_RULE_10_108_16.txt",
+      "size_bytes": 448,
+      "sha256": "92f871ed0ef98404c0b9e69c0aa57f31bb9eb8521d7498b6c0a9600df40b5720"
+    },
+    {
+      "path": "INITIAL_VISUAL_MOUTH_POLISH_10_108_17.txt",
+      "size_bytes": 616,
+      "sha256": "190423421469f2160f89dbd0a0d9b1553ce8bc20f50f527e275277a3246a4b93"
+    },
+    {
+      "path": "INSTALL_177_UPDATE.txt",
+      "size_bytes": 401,
+      "sha256": "7853257197822aa34f24d4ba90b9a9c9ce28288220ce734162949a85f574c09b"
+    },
+    {
+      "path": "INSTALL_178_UPDATE.txt",
+      "size_bytes": 294,
+      "sha256": "df7432661f0c6ffd31ed55d1be9eb01449cee2a989b1d53890fe0226b83fc0df"
+    },
+    {
+      "path": "INSTALL_179_UPDATE.txt",
+      "size_bytes": 389,
+      "sha256": "3d144e61403cc0956201e1933b937d63d690745084b53a39df12ccf95ca46120"
+    },
+    {
+      "path": "INSTALL_180_UPDATE.txt",
+      "size_bytes": 256,
+      "sha256": "9501b7df22fad6875847b513859e4f8b52d1a37de1ce61a85170f970c934ad4d"
+    },
+    {
+      "path": "INSTALL_181_UPDATE.txt",
+      "size_bytes": 253,
+      "sha256": "fe57f18dcae5a3d552f4301811cd1ad8c93370f1762f8a919026d4a6a6e59522"
+    },
+    {
+      "path": "INSTALL_182_UPDATE.txt",
+      "size_bytes": 251,
+      "sha256": "d0c705d15319aa30ade407187885fc1ac65dbed9bc466ee01d3ee3fc902b053b"
+    },
+    {
+      "path": "ISOLATED_INITIAL_PROTOTYPE_10_108_10.txt",
+      "size_bytes": 631,
+      "sha256": "8089f165e6b3af5314c72129384a2c3a443076a36f27c00385a7af93f78dd47e"
+    },
+    {
+      "path": "KIDS_HOME_BACK_UNIFIED_10_107_97.txt",
+      "size_bytes": 468,
+      "sha256": "0ec7fbde5afef26044f5263931fefa173f7ce51b546f440097a3813780bdd335"
+    },
+    {
+      "path": "Koepanda_Articulation_Research_20261016.md",
+      "size_bytes": 7242,
+      "sha256": "c8900e15184d6cbde2bad677007306bd0b3befdf349e3da36cfc5c94837b60f2"
+    },
+    {
+      "path": "LESSON_LAYER_FIX_10_107_90.txt",
+      "size_bytes": 352,
+      "sha256": "9368a2748c61c8bfe75fa6401e730a8aa0d764af0672053ea6a5e9fe628e88e1"
+    },
+    {
+      "path": "LESSON_OVERLAY_AUDIO_BALANCE_10_107_99.txt",
+      "size_bytes": 459,
+      "sha256": "73ae2d35c5a3b44dc659b41801f769f867330716f09e47ac4036362f97409aeb"
+    },
+    {
+      "path": "P15_175_QA.md",
+      "size_bytes": 1163,
+      "sha256": "c1a59b89da4509e91d2ca1ee12a51604a80c6304610d0cdb060f6a2c48aedc10"
+    },
+    {
+      "path": "P15_176_QA.md",
+      "size_bytes": 921,
+      "sha256": "8836a9c57bb52e9effad1673ac2e7405b44b09f7d13847b998d490b47ecb0337"
+    },
+    {
+      "path": "P15_177_QA.md",
+      "size_bytes": 1092,
+      "sha256": "987415b718c53a60526134e340a7c70d1f0abdabc75b47250e31368526ae165e"
+    },
+    {
+      "path": "P15_178_QA.md",
+      "size_bytes": 957,
+      "sha256": "432f7f61ee8f972faea129795c9d2c5df51215c456ac7ed9a82a257a96038a0a"
+    },
+    {
+      "path": "P15_180_QA.md",
+      "size_bytes": 1098,
+      "sha256": "d0d60f6a8019e5829572dd16db2ceda3a0fe96141524db12af327bb1d8229412"
+    },
+    {
+      "path": "P15_181_QA.md",
+      "size_bytes": 598,
+      "sha256": "5703b4ddb98d859bde21f751995370e306ec5735b8910d394cd09029a1a36b8d"
+    },
+    {
+      "path": "P15_182_QA.md",
+      "size_bytes": 368,
+      "sha256": "0a8e96b5e47ca54d0c2f42322c6dddfd4e6835338cd73cc331e321584174f48d"
+    },
+    {
+      "path": "PERFECT_SCORE_STAGE_BOOST_10_108_31.txt",
+      "size_bytes": 630,
+      "sha256": "040a0e9141edbf1e845c2d5704059afb61d16876a3b788a805c5c7603fd6c6e3"
+    },
+    {
+      "path": "PINYIN_AUDIO_FIX_10_107_64.txt",
+      "size_bytes": 558,
+      "sha256": "3a19481e72a441d553c83ab692efbb784070d56a53cbb772ee73c74b51759942"
+    },
+    {
+      "path": "PINYIN_AUDIO_FIX_10_107_65.txt",
+      "size_bytes": 672,
+      "sha256": "3ac72f45db63b36f5a8f95bfcf2570b551fdb5408f9f929268a71fe84d87d354"
+    },
+    {
+      "path": "PINYIN_AUDIO_FIX_10_107_66.txt",
+      "size_bytes": 581,
+      "sha256": "65373c8f19fe132d7f18be4983b8b31a48fb692a0e632eebf537f6f958592ac6"
+    },
+    {
+      "path": "PINYIN_AUDIO_FIX_10_107_67.txt",
+      "size_bytes": 454,
+      "sha256": "68461167771f15506f656dc87e092b3b391c5fe127227d9f4ebfd6ee1cdb2e17"
+    },
+    {
+      "path": "PINYIN_AUDIO_FIX_10_107_68.txt",
+      "size_bytes": 307,
+      "sha256": "3df5811e2e8549e5e6dcc359d2de0d692247f69056a956f89d513e02a5673f7d"
+    },
+    {
+      "path": "PINYIN_TOP_AVATAR_EMBED_FIX_10_107_87.txt",
+      "size_bytes": 187,
+      "sha256": "adb47d07406e85779d8edb67a5d0539e19652ac41554a9aa333b0ce30d190dce"
+    },
+    {
+      "path": "PINYIN_TOP_AVATAR_POLISH_10_107_88.txt",
+      "size_bytes": 286,
+      "sha256": "2ecc04b768aef87b3ed6030bd3d4d5dbfdbd45c03ff7849a0201322e7492fbd9"
+    },
+    {
+      "path": "PREMIUM_TONE_ROAD_10_107_71.txt",
+      "size_bytes": 642,
+      "sha256": "b149b1ba2ed69242af09fc04454750dbe855270ffb706ba5c447527092f0316f"
+    },
+    {
+      "path": "QA_REPORT_145.md",
+      "size_bytes": 3610,
+      "sha256": "6e18064fb92792cb9d0d91f4efcb34a3ad9d56c0518fca85bbe2c64d01b2c663"
+    },
+    {
+      "path": "QA_REPORT_146.md",
+      "size_bytes": 3862,
+      "sha256": "a913d195d76bc06ebbbcb3232ac6b7f1669eb5a1700429e0ceeb6ab712e92915"
+    },
+    {
+      "path": "QA_REPORT_147.md",
+      "size_bytes": 3176,
+      "sha256": "6cc002b42e2ff6eb4e911af13d32c70a394faef82a305f94f5365f6e907592ea"
+    },
+    {
+      "path": "QA_REPORT_148.md",
+      "size_bytes": 4452,
+      "sha256": "151380aef549b34d701e291542245cc4210fa37c3ec241ad42eaf0bff420e13e"
+    },
+    {
+      "path": "QA_REPORT_149.md",
+      "size_bytes": 3444,
+      "sha256": "6a818b6d8db9009112b9946dbe8a66ef1fc4372a6ce97844c32bab64e60a22ab"
+    },
+    {
+      "path": "QA_REPORT_150.md",
+      "size_bytes": 3769,
+      "sha256": "2ce4157638da13be6f262525a7397bc9a77df31ce1b9fb015e25c1a7f26a3732"
+    },
+    {
+      "path": "QA_REPORT_151.md",
+      "size_bytes": 3968,
+      "sha256": "1199de35a473dbecaf32506c64704e1409c57c038e8f2962429b3d27aee885e0"
+    },
+    {
+      "path": "QA_REPORT_153.md",
+      "size_bytes": 1457,
+      "sha256": "3a1fac7f5c43735b93b7221b2cc4635df5fcb008e86c806d6652bce6da0b19ab"
+    },
+    {
+      "path": "QA_REPORT_154.md",
+      "size_bytes": 1699,
+      "sha256": "6876dc8ab8fd5e977548ef8a08456050674dab1b83c3dbbd0039220785b87d65"
+    },
+    {
+      "path": "QA_REPORT_157.md",
+      "size_bytes": 1076,
+      "sha256": "cf08f27b53aa13c4d7b6e48ba5cd48ae7691ebe55948d66bb31f9001a1da191d"
+    },
+    {
+      "path": "QA_REPORT_158.md",
+      "size_bytes": 1845,
+      "sha256": "103462c768254356623b1f82cba945a616ee411eb7ff44925e0708088490094c"
+    },
+    {
+      "path": "QA_REPORT_159.md",
+      "size_bytes": 2121,
+      "sha256": "9b48766855a4efb58eb501d643b8f811ac2000d6d8e48e0790f87c1a80b4c987"
+    },
+    {
+      "path": "QA_REPORT_160.md",
+      "size_bytes": 2852,
+      "sha256": "c73382305f93e58f7584e7adc795920d5018b77b0edb8dd2d941db63fbf77723"
+    },
+    {
+      "path": "QA_REPORT_162.md",
+      "size_bytes": 782,
+      "sha256": "59d0553e16666054487d3d76df3cdb1936d354b1c3b9e581981c5ea39ed944fb"
+    },
+    {
+      "path": "QA_REPORT_165.md",
+      "size_bytes": 510,
+      "sha256": "716a9b2b4cbc1fd5efbe1e5a73b234c9319920fb6514fcd1a41a3da9b00072c1"
+    },
+    {
+      "path": "QA_REPORT_166.md",
+      "size_bytes": 1023,
+      "sha256": "615fa07190e9833107f5c0bf79c0f973341d0ae263b06d739af148586cf52d65"
+    },
+    {
+      "path": "QA_REPORT_179.md",
+      "size_bytes": 830,
+      "sha256": "c161a8008cfa398e64387a0707a38c0fb2099f25d2b5e829618f07d52b096c9a"
+    },
+    {
+      "path": "QUIZ_RESULT_FLOW_MOUTH_VISUAL_10_108_18.txt",
+      "size_bytes": 1151,
+      "sha256": "0500e4d99ea7d925c980312c5a2fa151a5f5d5d3098111e5ce4d9fdfa7d25f9d"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 694,
+      "sha256": "dc9725130665412af578ab6f8e784898702626e4ea5534f2c93963beddaa3cef"
+    },
+    {
+      "path": "README_142.md",
+      "size_bytes": 3256,
+      "sha256": "c93d2c685d23ed76b0844300a8b61da308d67402fe96efffa05a292dea43d7a9"
+    },
+    {
+      "path": "README_143.md",
+      "size_bytes": 1201,
+      "sha256": "dc2855713ff1fd5683e68c3fcfb39f43911f9a7137652c439ca85828e764e89b"
+    },
+    {
+      "path": "README_144.md",
+      "size_bytes": 2447,
+      "sha256": "adcbb3b1f903cb42c47fa06436db3b74017e21de3413b34bc0e9ae61ae31e96f"
+    },
+    {
+      "path": "README_145.md",
+      "size_bytes": 2225,
+      "sha256": "36715b9447e63338300e2a8e11760c3807ba66b5defb1748afbaadc167edaa4d"
+    },
+    {
+      "path": "README_146.md",
+      "size_bytes": 2367,
+      "sha256": "d0aeb9aa235d33427e7e84d331aa63e50e39ff6ce877ba60542979e6c4985b30"
+    },
+    {
+      "path": "README_147.md",
+      "size_bytes": 1377,
+      "sha256": "1d4bee57880caf8b976f495d47e3ad5309890e901298ec2a8cbc86e949f4fbd8"
+    },
+    {
+      "path": "README_148.md",
+      "size_bytes": 1519,
+      "sha256": "45ebdff80a2c0301859210c3ea16f4a0e186d3b9e81c8b7fada8fd9d8b1e3133"
+    },
+    {
+      "path": "README_149.md",
+      "size_bytes": 1500,
+      "sha256": "b6c2cee32a7af9ee028e5f1b43fa72003173bd41f781a02fe47eb7f28c22e3bc"
+    },
+    {
+      "path": "README_150.md",
+      "size_bytes": 3045,
+      "sha256": "c237a671336622da0b2cc69f3b7cf0dda48b987edb27eaec9ad4315d2e0ca33b"
+    },
+    {
+      "path": "README_151.md",
+      "size_bytes": 3079,
+      "sha256": "06fc585a41a7a53c1fbb64eaae5a95baf30754e005008af56189ec10be7aa337"
+    },
+    {
+      "path": "README_152.md",
+      "size_bytes": 3639,
+      "sha256": "48c3a5ce1df7e89a73790cef50e99a2c51bd804ebb1109fb7046208dd2c1f51c"
+    },
+    {
+      "path": "README_P16_192.md",
+      "size_bytes": 205,
+      "sha256": "d20553e9542a9778005d72fee478041eb04aa03cf0caee39f9538cbba2e34e55"
+    },
+    {
+      "path": "RENDER_MATCH_10_107_83.txt",
+      "size_bytes": 192,
+      "sha256": "6a21a8c34fad5fa52e8ae48b03ae9415cfad1365b635a3e2398cdf7c8f4ed489"
+    },
+    {
+      "path": "RESULT_POPUP_LAYOUT_FIX_10_108_29.txt",
+      "size_bytes": 449,
+      "sha256": "dca63fa4a088237931369d5c04554321b3563b8fbea0dc915cd99558f1cd39e2"
+    },
+    {
+      "path": "RESULT_STAGE_CLOSE_VIVID_CONFETTI_10_108_30.txt",
+      "size_bytes": 725,
+      "sha256": "737c19ee409384158068c444bebfb14365cf8e348acce58811d14a718703a8fa"
+    },
+    {
+      "path": "RESULT_STAGE_OVERLAY_10_108_28.txt",
+      "size_bytes": 511,
+      "sha256": "6b36664214d75992bb65f8d01b67da001e82ef95fc66a15177fbe94219448019"
+    },
+    {
+      "path": "REVIEW_10_108_134.md",
+      "size_bytes": 5214,
+      "sha256": "60abc1a405eb61604352ef13033f0e603eedd4172c191cab5579dc90bb17d1a6"
+    },
+    {
+      "path": "REVIEW_10_108_135.md",
+      "size_bytes": 7238,
+      "sha256": "3dc9c56de290cbe4e0399e0bb27eb207b8614029a7c4685c0057791b6842e86f"
+    },
+    {
+      "path": "REVIEW_10_108_136.md",
+      "size_bytes": 6562,
+      "sha256": "2f1b2a86d639d57a7ea55f376adf3de30c21868ebf47a978d1a91bf480ffe0f3"
+    },
+    {
+      "path": "REVIEW_10_108_137.md",
+      "size_bytes": 4181,
+      "sha256": "fdad519bdd48f5f7d2af3cd8517e270fa5f6514c7c6f894076943accdbc143f2"
+    },
+    {
+      "path": "REVIEW_10_108_138.md",
+      "size_bytes": 3140,
+      "sha256": "162666a9e63bc6bc860dd0e79b2217dd797528cd6ee283c1495caaf3beda27eb"
+    },
+    {
+      "path": "REVIEW_10_108_139.md",
+      "size_bytes": 4452,
+      "sha256": "d900a8a1c952ad1809f41ece47825e085206d43faca0c31bf5ea6d3304bf9fe0"
+    },
+    {
+      "path": "REVIEW_10_108_140.md",
+      "size_bytes": 3821,
+      "sha256": "2e6281b1740b3609d2fbc89b2c4543d1ca7e98b6cc209d91a5c6ef40449e89a3"
+    },
+    {
+      "path": "REVIEW_10_108_141.md",
+      "size_bytes": 6245,
+      "sha256": "03f1f133a3b40f788aa83d36df8d1f11d59ed969817bb88774cd27b20121a72d"
+    },
+    {
+      "path": "ROADMAP_OLD_CLEAN_WRAP_RESTORE_10_108_41.txt",
+      "size_bytes": 380,
+      "sha256": "a9d32b647cb112673c0ff527d07e0faf7b7129c54ac8947891e9f5a1a1848165"
+    },
+    {
+      "path": "SAFE_TONE_FLOW_FIX_10_107_95.txt",
+      "size_bytes": 382,
+      "sha256": "d99c6211381f12a855d2d15df179605402da3f2e7257de9ee80a57a26382f9e1"
+    },
+    {
+      "path": "SECTION_HIERARCHY_QUIZ_ACCESS_10_108_27.txt",
+      "size_bytes": 405,
+      "sha256": "5f0d3249478b6c8504bc0895f122e2a2b74491f70050e2b73164005f9d0131be"
+    },
+    {
+      "path": "SERIALIZED_TONE_FIX_10_107_96.txt",
+      "size_bytes": 427,
+      "sha256": "6a9a24ca0c9230d0a0d9c6e2519b195fb2ff14f4d26a361c8059308f110778e9"
+    },
+    {
+      "path": "SIMPLE_LEARNING_PATH_10_107_98.txt",
+      "size_bytes": 499,
+      "sha256": "f34fd6f0dfcd5bf0ab69479b389553ee2f040d725c0a48503370f47be88f1432"
+    },
+    {
+      "path": "STABLE_MOUTH_MOTION_10_108_19.txt",
+      "size_bytes": 538,
+      "sha256": "7ea762b47cd800f8f62f9c008fd8063ea700ce1baa3fc63f99cf112b8f86468d"
+    },
+    {
+      "path": "TONE_ADVENTURE_FIX_10_107_70.txt",
+      "size_bytes": 297,
+      "sha256": "e27c173bc53515a5491670eefe534ab5f723831859ab35b9cd1d5bd9549f1b1a"
+    },
+    {
+      "path": "TONE_ROAD_CHARACTER_CLONE_FIX_10_107_76.txt",
+      "size_bytes": 336,
+      "sha256": "e1e09992b867745dc3f8f91abeacfa0026da2d2417d0f345636618ab83bde571"
+    },
+    {
+      "path": "TONE_ROAD_CHARACTER_EMBED_FIX_10_107_75.txt",
+      "size_bytes": 316,
+      "sha256": "28a9a72cc2d0413b3b395fa469ef84c4c07f3294c618a76b691b0106b438e773"
+    },
+    {
+      "path": "TONE_ROAD_EFFECT_MATCH_10_107_72.txt",
+      "size_bytes": 510,
+      "sha256": "60ec2f31563c54163433ad8e3f733564a21e91542cd23fef80bec1ab068ada1e"
+    },
+    {
+      "path": "TONE_ROAD_FULLBODY_XIAOYIN_10_107_77.txt",
+      "size_bytes": 305,
+      "sha256": "15db357ea8a04a3d46b59ee92e8f6b5b64b4d509284245ad497c7507a21e55f9"
+    },
+    {
+      "path": "TONE_ROAD_POLISH_10_107_89.txt",
+      "size_bytes": 609,
+      "sha256": "6510ec9e8c3bcb00142b7f91fe4b196131ae6c5d0d63626f7549e2096b487688"
+    },
+    {
+      "path": "TONE_ROAD_SCENE_POLISH_10_107_73.txt",
+      "size_bytes": 255,
+      "sha256": "f78e90a4bee62a8cc6c48026322e7d8c1421843ce33f096181271bf9973d0ee7"
+    },
+    {
+      "path": "UMLAUT_SAME_SPEAKER_RESTORE_10_108_04.txt",
+      "size_bytes": 330,
+      "sha256": "7bec21a4789fe018ea6d4b6860f65d025ca7b790e7a80ab87a00638ed4d670f6"
+    },
+    {
+      "path": "UPDATE_10_108_100.md",
+      "size_bytes": 1254,
+      "sha256": "1f8f4a5f5409627bc88a98bf5ee14dd1591943a01943a4037f8a00331c192f16"
+    },
+    {
+      "path": "UPDATE_10_108_101.md",
+      "size_bytes": 3335,
+      "sha256": "52ae5bfc31f4da965a936c0fb0a8f90cfed3c7a9a118dd4351e77c7769000252"
+    },
+    {
+      "path": "UPDATE_10_108_102.md",
+      "size_bytes": 1713,
+      "sha256": "2195f42d9ec389f808e6a2b477043f6c8ce6edaaac8cd690838bff20ef7cf8b3"
+    },
+    {
+      "path": "UPDATE_10_108_103.md",
+      "size_bytes": 3069,
+      "sha256": "4203305ff3f67f23e4724efc08a17e758f793199b14e0d02044f7ef0d13bbbff"
+    },
+    {
+      "path": "UPDATE_10_108_105.md",
+      "size_bytes": 1616,
+      "sha256": "aa8c0d3e9b9bd2d160fcd3f14ff5601fc5f616b7ca66513e762fb7f4a71171fa"
+    },
+    {
+      "path": "UPDATE_10_108_106.md",
+      "size_bytes": 1645,
+      "sha256": "f28c6ba8a965b2918fb06ee1f6d749feee79a5f2f658358d0d354cb78fd92d84"
+    },
+    {
+      "path": "UPDATE_10_108_107.md",
+      "size_bytes": 1732,
+      "sha256": "84ce21946f91f03a9a73f4457ac2a5eadd615b0f96464268c7eef944ff1b8d5f"
+    },
+    {
+      "path": "UPDATE_10_108_108.md",
+      "size_bytes": 1191,
+      "sha256": "dd0956ea1cbbb69f0eff43a97d76423452747547b0907dc3b2ef0ef8277fe222"
+    },
+    {
+      "path": "UPDATE_10_108_109.md",
+      "size_bytes": 1179,
+      "sha256": "ac9c97252a8c5c9596ec847fa5a9d0ba846080b7f0950d2658e8db1a034278fb"
+    },
+    {
+      "path": "UPDATE_10_108_110.md",
+      "size_bytes": 1966,
+      "sha256": "1c583024de70e9038888fe2f7720ac4ba6560e36fdf11b1c1420efe500480827"
+    },
+    {
+      "path": "UPDATE_10_108_111.md",
+      "size_bytes": 1366,
+      "sha256": "b6fc12b77c0fab21416dab811a14c370630fd3a55cafb884bbefc5ca962a6cb4"
+    },
+    {
+      "path": "UPDATE_10_108_112.md",
+      "size_bytes": 1825,
+      "sha256": "b2c1fd4bba6ee0ba62cec0f1ea69c2d1c6711dfaae20d8ebf0f58b9ad984b08b"
+    },
+    {
+      "path": "UPDATE_10_108_113.md",
+      "size_bytes": 2583,
+      "sha256": "a154933975c6cb5da72e0e0bff68d0f1d243b583ccbfc8e2b9d32f2ea37a6cde"
+    },
+    {
+      "path": "UPDATE_10_108_114.md",
+      "size_bytes": 1697,
+      "sha256": "62e90e2a1b844270246271a1726af9044e19ab34adbc69b0737c190e9ed8bd45"
+    },
+    {
+      "path": "UPDATE_10_108_115.md",
+      "size_bytes": 1708,
+      "sha256": "75073b7df04b31151ed450a684590de6f377a48115eb26ad9b63345698882767"
+    },
+    {
+      "path": "UPDATE_10_108_116.md",
+      "size_bytes": 2769,
+      "sha256": "b51a94852a79220318497bacf4547fe93fbcae26fc72b5b013b115d9380f1b6d"
+    },
+    {
+      "path": "UPDATE_10_108_117.md",
+      "size_bytes": 2903,
+      "sha256": "9a22ffc6ee8bc9dc20727d8659b24a7ef702949459fd78f846681741809b4930"
+    },
+    {
+      "path": "UPDATE_10_108_118.md",
+      "size_bytes": 2780,
+      "sha256": "f475df29d5f7edcf4a59220614e2320a9b9f27bfad172d3906804e246174d34d"
+    },
+    {
+      "path": "UPDATE_10_108_119.md",
+      "size_bytes": 3264,
+      "sha256": "e993f96ce19f9a5af30d93959ff228874d98dccb0b62451c2ca33abba1587c65"
+    },
+    {
+      "path": "UPDATE_10_108_120.md",
+      "size_bytes": 887,
+      "sha256": "0e75ffd1aaaa5f49486ae10f7ea61dc971006340a67933fdd1f8ba5302d380d7"
+    },
+    {
+      "path": "UPDATE_10_108_121.md",
+      "size_bytes": 566,
+      "sha256": "12223d736f4abc589877075f2ffaf9c0787c945f7599e980caedefb7d8d14031"
+    },
+    {
+      "path": "UPDATE_10_108_122.md",
+      "size_bytes": 1601,
+      "sha256": "9723acbf820fe629b53ac0770d2b0eed8c73064748916d12f730729aca579ba4"
+    },
+    {
+      "path": "UPDATE_10_108_123.md",
+      "size_bytes": 1791,
+      "sha256": "965c0a259b6e72c1402be6bda8826966c931b3a4a858ac4bed7bd53a99b156af"
+    },
+    {
+      "path": "UPDATE_10_108_124.md",
+      "size_bytes": 1950,
+      "sha256": "79100ba32fffd61c58e1016d86e930670ebf9950d977a99742c3a7045e694834"
+    },
+    {
+      "path": "UPDATE_10_108_125.md",
+      "size_bytes": 1260,
+      "sha256": "7b08e7998ccaec5c19d48eecedeb5adfe8d6150cd9287f65fdf57b8547b94de9"
+    },
+    {
+      "path": "UPDATE_10_108_126.md",
+      "size_bytes": 1433,
+      "sha256": "76151ea1f1a6d7d472a22589a5efb27ec9373f4db1faaa44f6e761633117c113"
+    },
+    {
+      "path": "UPDATE_10_108_127.md",
+      "size_bytes": 844,
+      "sha256": "b4a62983ee0f0adc18e5ff824fcd9866306c060f722327b3a788c68fdc37eeee"
+    },
+    {
+      "path": "UPDATE_10_108_128.md",
+      "size_bytes": 2274,
+      "sha256": "15def9286acb8d05bd401b6602f4150c6997d35956cf89935d360b7ca5e21f36"
+    },
+    {
+      "path": "UPDATE_10_108_129.md",
+      "size_bytes": 2477,
+      "sha256": "4b7c0e5501f772e7b0187af983a6f422ab7ae843793b93a1c37f99c3f9ed006d"
+    },
+    {
+      "path": "UPDATE_10_108_130.md",
+      "size_bytes": 1105,
+      "sha256": "f1a30b23a99f4383baac62c1d6eacccf759884f0cb24f0caf459e015e1fadef9"
+    },
+    {
+      "path": "UPDATE_10_108_131.md",
+      "size_bytes": 1405,
+      "sha256": "50176932b70422716decd501d8500ac0726ba3c1c76def91d735b0189644f72c"
+    },
+    {
+      "path": "UPDATE_10_108_132.md",
+      "size_bytes": 1572,
+      "sha256": "f2da5c85cdac432a7f34ec307dba5d5c1e71b4774c5e2f3dfd13026cd6d56379"
+    },
+    {
+      "path": "UPDATE_10_108_133.md",
+      "size_bytes": 2305,
+      "sha256": "015eac27c25c4fa519d31670831a0e7af6888182950745c7db71b95deed53400"
+    },
+    {
+      "path": "UPDATE_10_108_134.md",
+      "size_bytes": 1610,
+      "sha256": "3f5ccab05d5852bb0bd1423e7340bdfc31f81279ccb9b4bed72161b98c8bb5e5"
+    },
+    {
+      "path": "UPDATE_10_108_135.md",
+      "size_bytes": 784,
+      "sha256": "5b3e173220d8a4f9a361fe3f80e42cfa6047d8f1425e8cf362db591a0dd728d4"
+    },
+    {
+      "path": "UPDATE_10_108_136.md",
+      "size_bytes": 142,
+      "sha256": "ab5f0dbe6ef7bb70802fd29553bfc7eb4f398189e8eb3264a456ba0c61631a4c"
+    },
+    {
+      "path": "UPDATE_10_108_137.md",
+      "size_bytes": 190,
+      "sha256": "c720bf126f3f24f784d73aaa5a212e3f1f917c649bf7d5f34401fbeb9599d9f6"
+    },
+    {
+      "path": "UPDATE_10_108_138.md",
+      "size_bytes": 117,
+      "sha256": "ce0444b075237ebe3c9669b2cac8d243f6e595bfe09bea43f9c92c4fc07563bc"
+    },
+    {
+      "path": "UPLOAD_10_108_139.txt",
+      "size_bytes": 487,
+      "sha256": "ae06d1bc2ca6d789c042411145fd1121e916a1e181e71d39a304ed470a93b3bf"
+    },
+    {
+      "path": "UPLOAD_10_108_140.txt",
+      "size_bytes": 783,
+      "sha256": "92de6f738f4be564ad35236cfac8b74bfc8e86b29a5c633007151e1ba0d72c4f"
+    },
+    {
+      "path": "UPLOAD_10_108_141.txt",
+      "size_bytes": 925,
+      "sha256": "4b3b18d4aa05f3d34585ded631c6ba3038b0978876248e978bf9b1837746c00a"
+    },
+    {
+      "path": "VERSION.txt",
+      "size_bytes": 113,
+      "sha256": "f16bf172f373f33187fd7eb5122e074a65915d2d728dc0bc5a2c37c6a0095466"
+    },
+    {
+      "path": "VERSION_193.txt",
+      "size_bytes": 314,
+      "sha256": "e9fc5701c961dfc0947a56e2fc0ec0f3aba2c4bed8e6d7178d0776a04dbbc782"
+    },
+    {
+      "path": "VERSION_194.txt",
+      "size_bytes": 205,
+      "sha256": "c7a5c075107e5050b39de5c069b257e573baad0a4d1e2a8440bac30a44bc3f88"
+    },
+    {
+      "path": "VERSION_195.txt",
+      "size_bytes": 201,
+      "sha256": "b397e18d5489e5722581a8c0378fa8cf281b463dcc1e60ed47c4c1f39d42944b"
+    },
+    {
+      "path": "VERSION_196.txt",
+      "size_bytes": 150,
+      "sha256": "91523edea0c82bb7793322fdb7aa3dea78699757bac884d73d8754fefd37a508"
+    },
+    {
+      "path": "VERSION_197.txt",
+      "size_bytes": 36,
+      "sha256": "32dd90b396b9a25065aa7a02e14892a0312c49be5d66db0a8f5e45dbefade71c"
+    },
+    {
+      "path": "VISUAL_FIX_10_107_81.txt",
+      "size_bytes": 375,
+      "sha256": "2b1a35aedc16d1801c0323009de57661ebba133174f7fcfb3d80d6bb8e1643f6"
+    },
+    {
+      "path": "VISUAL_TRIM_10_107_80.txt",
+      "size_bytes": 545,
+      "sha256": "1825add693b13e85c56fb2c57fba80eea364d9d74aac91f97ce76a583900c262"
+    },
+    {
+      "path": "VOWEL_AUDIO_CALIBRATION_10_108_02.txt",
+      "size_bytes": 551,
+      "sha256": "45e06b743deace75212b35134c11d1fe427dd9631bd456c3efb09f5470ab19e9"
+    },
+    {
+      "path": "VOWEL_CLEAR_ZONES_10_108_104.txt",
+      "size_bytes": 992,
+      "sha256": "1fa811abfaa8c3304dd2d2ef26c64db461b48e11e84fc63d583ba62c26bbdf33"
+    },
+    {
+      "path": "VOWEL_FULL_4STEP_FLOW_10_108_00.txt",
+      "size_bytes": 433,
+      "sha256": "ce83caf7c109cc7c42803d3e328ee9c498778757b4744cace379dc2c049ef55b"
+    },
+    {
+      "path": "VOWEL_PRACTICE_INTERACTION_FIX_10_108_03.txt",
+      "size_bytes": 451,
+      "sha256": "2669d8d5928e626fceee99f170569b21237cf747c01a3c178c925a865ab83875"
+    },
+    {
+      "path": "VOWEL_QUIZ_RANDOM_ORDER_10_108_26.txt",
+      "size_bytes": 421,
+      "sha256": "82f89fcc17692e4f00eb26404899b7a89765ef486f599f307c48b8cfafd2ecfb"
+    },
+    {
+      "path": "VOWEL_QUIZ_UNIFIED_PREMIUM_10_108_42.txt",
+      "size_bytes": 135,
+      "sha256": "8153e8bdc55c7010816d4043fd60ce7ee2044763987a9d3a2875bc4a6b9408fc"
+    },
+    {
+      "path": "assets/articulation/b-static-raster-94.png",
+      "size_bytes": 1841226,
+      "sha256": "45cd9cc86e62f1b8d781344d1df434703a1cbc16f8a094bc20d3567c9c8528bc"
+    },
+    {
+      "path": "assets/articulation/d-static-guide-99.svg",
+      "size_bytes": 7219,
+      "sha256": "263adec80d50053ad5296028d463adfe06df16f3a537f7e8d85b84b344186836"
+    },
+    {
+      "path": "assets/articulation/f-portrait-147.webp",
+      "size_bytes": 11632,
+      "sha256": "21ae75c020aa56ffd434a1dd28567d582585b840fbebad97cc482b3e6bae0d24"
+    },
+    {
+      "path": "assets/articulation/f-static-front-87.svg",
+      "size_bytes": 18010,
+      "sha256": "9abe4ef566883618170118ed57e7cd70ed322f1cc9e736730fd4f30aa90e35b4"
+    },
+    {
+      "path": "assets/articulation/f-static-raster-91.png",
+      "size_bytes": 1814089,
+      "sha256": "8f78f6c57762cc9f7f85088da5620fbf843c3a57bc770c00de8d0cbcca627d6c"
+    },
+    {
+      "path": "assets/articulation/f-static-side-87.svg",
+      "size_bytes": 4517,
+      "sha256": "604692e522f6579b14ec475f4d3102cb54fdd611b5b74f6c09cb75b4728d4f34"
+    },
+    {
+      "path": "assets/articulation/l-static-guide-99.svg",
+      "size_bytes": 6759,
+      "sha256": "5050761b7a759e5f44f51e7f0334aa9b333b7bdf9c3676aff87b8e42ec864960"
+    },
+    {
+      "path": "assets/articulation/m-static-raster-94.png",
+      "size_bytes": 1845171,
+      "sha256": "4ef1aa0d5d1e511fd54c582bc529958d65744f988a127991be756e7dc37db85d"
+    },
+    {
+      "path": "assets/articulation/n-static-guide-99.svg",
+      "size_bytes": 8562,
+      "sha256": "3d9568671ddedf7053c9bb323c6ce753cc3504b5008dfdb227aa6b8ef0446a01"
+    },
+    {
+      "path": "assets/articulation/p-static-raster-94.png",
+      "size_bytes": 1795847,
+      "sha256": "64e314ef940d84b8bf2ac4f47878c25c06f2ad7cb5a21fa369b253a381665e82"
+    },
+    {
+      "path": "assets/articulation/t-static-guide-99.svg",
+      "size_bytes": 7255,
+      "sha256": "a6803059d77b68fa1560b120e19d1c584d01de9b85dd96536ea78a2378c03cd2"
+    },
+    {
+      "path": "assets/articulation/vowel-mouth-101.png",
+      "size_bytes": 1702546,
+      "sha256": "9ac38741c5f04af4fe93c9dc0afe073bb368d1005e93789d3918405087a9a5d1"
+    },
+    {
+      "path": "assets/articulation/vowel-rest-101.png",
+      "size_bytes": 1692148,
+      "sha256": "66281e7a4cf63bf4efadb7aef48b5316b9fd1d6d69fdab7f22cd2ed0243bc240"
+    },
+    {
+      "path": "assets/audio/PINYIN_AUDIO_SOURCE.txt",
+      "size_bytes": 194,
+      "sha256": "b2ca5055b0d61bf9273c8683f49066e75d52e1e73a8c11ad822aa96924e3d869"
+    },
+    {
+      "path": "assets/audio/README.txt",
+      "size_bytes": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/audio/back-nasal-129/ATTRIBUTION.txt",
+      "size_bytes": 1143,
+      "sha256": "0ba6e6638acd85ffb5d8cade00b0b0222628f15db37581ed6018c7c3ccbd77a8"
+    },
+    {
+      "path": "assets/audio/back-nasal-129/AUDIO_PROVENANCE.json",
+      "size_bytes": 2517,
+      "sha256": "e2e97e19a0e01226399ab49b3a160760166fb83bb6363a98b08c6e6318b3c068"
+    },
+    {
+      "path": "assets/audio/back-nasal-129/ang1.wav",
+      "size_bytes": 25004,
+      "sha256": "a32d9037f6dd13792067c314e46eecd5119ef060de0f3fd723f2916b6d775c84"
+    },
+    {
+      "path": "assets/audio/back-nasal-129/eng1.wav",
+      "size_bytes": 27886,
+      "sha256": "90d3321e59621e894b0844464ea57e9058287214639c15048c261bc4a662e59d"
+    },
+    {
+      "path": "assets/audio/back-nasal-129/ing1.wav",
+      "size_bytes": 31004,
+      "sha256": "f2106fa7ad1d64846ec4ae122e23086c1dee9d10180188ad9ab7a5956d30b7e6"
+    },
+    {
+      "path": "assets/audio/back-nasal-129/ong1.wav",
+      "size_bytes": 20924,
+      "sha256": "f133c83c03e1a040f1c9fc056040b810fc906090fb7847aa53c4fa600d5a302c"
+    },
+    {
+      "path": "assets/audio/course-134/ATTRIBUTION.txt",
+      "size_bytes": 987,
+      "sha256": "ddbbc586abd2c50b4b4de440a810acc41ebdff0689c7487b70938a89dd947949"
+    },
+    {
+      "path": "assets/audio/course-134/AUDIO_PROVENANCE.json",
+      "size_bytes": 25271,
+      "sha256": "ef83179a957b95c463718b11f32d8d836caeadc6deb116ccfbc46d7eda1fdf27"
+    },
+    {
+      "path": "assets/audio/course-134/UPSTREAM_README.md",
+      "size_bytes": 3015,
+      "sha256": "dc2d92441be58c9c6fa8892b8dd5ed7d628eec046f408b0ab8db4bdd9fd24200"
+    },
+    {
+      "path": "assets/audio/course-134/a1.wav",
+      "size_bytes": 33164,
+      "sha256": "d2b11b5fbd37f2a5479c0183522cc97e805c8a272a66ce6c69cc456d3399d596"
+    },
+    {
+      "path": "assets/audio/course-134/a2.wav",
+      "size_bytes": 52316,
+      "sha256": "0dfd58989991b76a8bf833a83e44073bf6c92cd00754f40a26ae3731dd70ad4e"
+    },
+    {
+      "path": "assets/audio/course-134/a3.wav",
+      "size_bytes": 57932,
+      "sha256": "688b4013aef7179f5348ba33e6c1d3b0796184305da1bfbaebb5141e629ce04b"
+    },
+    {
+      "path": "assets/audio/course-134/a4.wav",
+      "size_bytes": 23084,
+      "sha256": "fa22aae7715b82e8023bcc30241d2b478afc59d140fc77762a280828dafa5249"
+    },
+    {
+      "path": "assets/audio/course-134/ai1.wav",
+      "size_bytes": 45358,
+      "sha256": "caa66acb2f87f4b3e635c702f8d0959e0e0cbd59e2ab24c1cdc8e037dfc986c8"
+    },
+    {
+      "path": "assets/audio/course-134/an1.wav",
+      "size_bytes": 42764,
+      "sha256": "8e71d6222db6180401120a7c666456f8362665d59073f844f3bfb221faaf3b67"
+    },
+    {
+      "path": "assets/audio/course-134/ang1.wav",
+      "size_bytes": 37964,
+      "sha256": "f4176d33b4b7f5d691bb74ad6c22621e3013ec4bd0e8361c2cfbbf37150d8b80"
+    },
+    {
+      "path": "assets/audio/course-134/ao1.wav",
+      "size_bytes": 34124,
+      "sha256": "7e2fd8fb5dcf596d8659ddfe872feae2c92617be6b862159be240d585815ea99"
+    },
+    {
+      "path": "assets/audio/course-134/bo1.wav",
+      "size_bytes": 46654,
+      "sha256": "27edba47114787583f627d581e0ee0326438d19468dfe2a5d7f9a483404850bb"
+    },
+    {
+      "path": "assets/audio/course-134/chi1.wav",
+      "size_bytes": 52316,
+      "sha256": "83b77cf00454ac91e29e062541df98d186c8deda31e7de4f34478bbd214a2df8"
+    },
+    {
+      "path": "assets/audio/course-134/ci1.wav",
+      "size_bytes": 56924,
+      "sha256": "e46b44e4670af5b0dea29dc652cb2653003dcb81169c9086f38b0b3b4b31a1c5"
+    },
+    {
+      "path": "assets/audio/course-134/de1.wav",
+      "size_bytes": 46364,
+      "sha256": "a67552bd6f6cd16a5120d7c8664a581e415a23c83c2f533d6c9daca1ad6662d0"
+    },
+    {
+      "path": "assets/audio/course-134/e1.wav",
+      "size_bytes": 33404,
+      "sha256": "1fed6e158d68ce350964daf315506bc970d0f023d0ca13ba2da21dd2647eaca7"
+    },
+    {
+      "path": "assets/audio/course-134/e2.wav",
+      "size_bytes": 52316,
+      "sha256": "1679a92f08915ef6366db230f88f96a9e9b7fdf8c0d7a55802ba0eca73887e26"
+    },
+    {
+      "path": "assets/audio/course-134/e3.wav",
+      "size_bytes": 37724,
+      "sha256": "cccf4f82d14101f080480f25fb79d130da029be6cb3f9f91e30900ed259b90bf"
+    },
+    {
+      "path": "assets/audio/course-134/e4.wav",
+      "size_bytes": 33404,
+      "sha256": "a10d3e6177c98aca2db3fbe5bdfc4ac08967b14ab518669d2c36d877e1cb982a"
+    },
+    {
+      "path": "assets/audio/course-134/ei1.wav",
+      "size_bytes": 50636,
+      "sha256": "ccab50606e550efc575b2f97b4294203b8462e1f90924d5135663eede92c95fc"
+    },
+    {
+      "path": "assets/audio/course-134/en1.wav",
+      "size_bytes": 26924,
+      "sha256": "a671c641f5a980944023ccbdd5dfb4377dfef13b253be36d9658e3da247bc265"
+    },
+    {
+      "path": "assets/audio/course-134/eng1.wav",
+      "size_bytes": 41564,
+      "sha256": "3dff8630c464ed969f025c58ca6c310874240fbd02671dac2a460d85f44e358e"
+    },
+    {
+      "path": "assets/audio/course-134/er2.wav",
+      "size_bytes": 28604,
+      "sha256": "a48eef9a1749b30d118661f6ffdb90a3c9a514c4e981cc6a23ff82720435a45a"
+    },
+    {
+      "path": "assets/audio/course-134/fo1.wav",
+      "size_bytes": 48572,
+      "sha256": "f7df2bd728d43ebe65c945ab19298cc663dedd5def2ef4b505e75efa2e0696ed"
+    },
+    {
+      "path": "assets/audio/course-134/ge1.wav",
+      "size_bytes": 49004,
+      "sha256": "55b316636cbab37a4182f40f66b8b74cb334b5fd0715f8eb38c9613c768b65ca"
+    },
+    {
+      "path": "assets/audio/course-134/he1.wav",
+      "size_bytes": 57644,
+      "sha256": "98e92b13e24c74b5317001e4b8937c2dc19e0d1bad3110573bb64edff5f10ec1"
+    },
+    {
+      "path": "assets/audio/course-134/ji1.wav",
+      "size_bytes": 54620,
+      "sha256": "2c39802adb720a552b625218a9ebf05606bdd9f3c650ca4e8587ed7835f21e3a"
+    },
+    {
+      "path": "assets/audio/course-134/ke1.wav",
+      "size_bytes": 53804,
+      "sha256": "3ce4b9af051d0b3e103946bfb06b45e45210debe68d9b62fb61fd8348bb54e9c"
+    },
+    {
+      "path": "assets/audio/course-134/le1.wav",
+      "size_bytes": 34604,
+      "sha256": "5a2d273d01866be5feba4f8155c6205eacedea8dd9bd343f8293e83ec5c98ef8"
+    },
+    {
+      "path": "assets/audio/course-134/mo1.wav",
+      "size_bytes": 26444,
+      "sha256": "5e74f2251c37760e26ed65b63f918d4246be50b380b9dbbe413a7475f4184fbe"
+    },
+    {
+      "path": "assets/audio/course-134/ne1.wav",
+      "size_bytes": 43244,
+      "sha256": "b6893af770f13102cb17bf5b41df3ea16038fe9497ee9591c73468c4b092c614"
+    },
+    {
+      "path": "assets/audio/course-134/o1.wav",
+      "size_bytes": 19244,
+      "sha256": "bf60840039abdeaabb8bb802efc2372b3176df69d2d881b7dbf4ff2e726dfbdf"
+    },
+    {
+      "path": "assets/audio/course-134/o2.wav",
+      "size_bytes": 50012,
+      "sha256": "64898da0708fe0a27e8cca2b3b8762b2c441a65e91f43361b4b663f4586060a9"
+    },
+    {
+      "path": "assets/audio/course-134/o3.wav",
+      "size_bytes": 45164,
+      "sha256": "ce6d09d607f6453f1447490590518519e3e78d6ef8b1e41314e244912c7bd15e"
+    },
+    {
+      "path": "assets/audio/course-134/o4.wav",
+      "size_bytes": 21404,
+      "sha256": "8a391e80718fe9bedaafc6c1867dcc75e0025a6fa50d6154e55c486ac77df878"
+    },
+    {
+      "path": "assets/audio/course-134/ou1.wav",
+      "size_bytes": 24524,
+      "sha256": "5a3b337899cddab8cd0dc28b200908ef7008e5c9a2a7fb5a3d0cfc725cffdb7d"
+    },
+    {
+      "path": "assets/audio/course-134/po1.wav",
+      "size_bytes": 42956,
+      "sha256": "2133decf533cab33e5a27dafe4e5185aa1e121fc549311e4fb78fc4974f97c7d"
+    },
+    {
+      "path": "assets/audio/course-134/qi1.wav",
+      "size_bytes": 59228,
+      "sha256": "0b392dbf7b1a3b5eaad9bd2d880df005edd7f3ef34311afe59c5255c9e070969"
+    },
+    {
+      "path": "assets/audio/course-134/ri1.wav",
+      "size_bytes": 49484,
+      "sha256": "05ae8686b5e4ef3d402e47e43a1c6babafd87af3632e2ded0451ae0112e53cd5"
+    },
+    {
+      "path": "assets/audio/course-134/shi1.wav",
+      "size_bytes": 58268,
+      "sha256": "6f22ff41eee7d5baa23d342661ef75ef1b262edbefd57f881263e8d005f56255"
+    },
+    {
+      "path": "assets/audio/course-134/si1.wav",
+      "size_bytes": 61532,
+      "sha256": "3dbcc93baa8be70b5027864de2c0b1053ffdfa99e397bce3d926bb5b019ce71f"
+    },
+    {
+      "path": "assets/audio/course-134/te1.wav",
+      "size_bytes": 56924,
+      "sha256": "205594a4a34970bcc08688b23e65deb62d03699fe04c83d346b74992dbb659d7"
+    },
+    {
+      "path": "assets/audio/course-134/wei1.wav",
+      "size_bytes": 48766,
+      "sha256": "fd82b1d3b3f0b31009946154b2620c938bb463d7148a0c23cba208592cd3d794"
+    },
+    {
+      "path": "assets/audio/course-134/wen1.wav",
+      "size_bytes": 35084,
+      "sha256": "9c9e0e80bef3f81aa22b796089a5eb5cc46c538a5a29af4e4ef23098a3c36f2f"
+    },
+    {
+      "path": "assets/audio/course-134/wu1.wav",
+      "size_bytes": 54620,
+      "sha256": "cdc4f9132bd5b3f8d0b76efe32fb191236e00de178fc4fd9d2fb407d29b33522"
+    },
+    {
+      "path": "assets/audio/course-134/wu2.wav",
+      "size_bytes": 50012,
+      "sha256": "c6c5945f0d9c53a40dab68a46f930a9ffe331266a68c5b1aa5108daa06da5db2"
+    },
+    {
+      "path": "assets/audio/course-134/wu3.wav",
+      "size_bytes": 61964,
+      "sha256": "22328e797c88a15d891ad2938f4be94bd52a144c7f7cc4d815cc1b35967e2d65"
+    },
+    {
+      "path": "assets/audio/course-134/wu4.wav",
+      "size_bytes": 29564,
+      "sha256": "4745ea012d88b984ef033a1f54572abc66c2b9f56a9dd3ec1c6cc706b0cc0778"
+    },
+    {
+      "path": "assets/audio/course-134/xi1.wav",
+      "size_bytes": 53804,
+      "sha256": "1d28c8999b830e1231cd86b927fb870589ca772956fa75411b83e7d6333abb02"
+    },
+    {
+      "path": "assets/audio/course-134/ye1.wav",
+      "size_bytes": 55484,
+      "sha256": "85c255802b72b637dd1da3a5b941c3cc78a45dd02aaf2cce2f9b6b88808f919f"
+    },
+    {
+      "path": "assets/audio/course-134/yi1.wav",
+      "size_bytes": 54620,
+      "sha256": "f4ae68642eda10cab9cf1c6270f18f42b3ab5250555ab43efa882227125296fa"
+    },
+    {
+      "path": "assets/audio/course-134/yi2.wav",
+      "size_bytes": 55006,
+      "sha256": "5b5e146e66c1ece20f6f6fbd8cf185a0ebffd2c6ae66f9e8e497b8c3782455d5"
+    },
+    {
+      "path": "assets/audio/course-134/yi3.wav",
+      "size_bytes": 43724,
+      "sha256": "a3be0c8ad9c82a484d4974b33ffd3aa542e61f54665085c2c4768068a9d9f96e"
+    },
+    {
+      "path": "assets/audio/course-134/yi4.wav",
+      "size_bytes": 24284,
+      "sha256": "b99db1bf3cfb9fb0749bbde6860c214ce0af961211e91e309bb491bb73a79663"
+    },
+    {
+      "path": "assets/audio/course-134/yin1.wav",
+      "size_bytes": 35804,
+      "sha256": "f34c28753e4aa05370bf6eb98dfffc6be0aecd5fdba78731eca87fd8c953fbf6"
+    },
+    {
+      "path": "assets/audio/course-134/ying1.wav",
+      "size_bytes": 45934,
+      "sha256": "319a5de4eade843c4a6b1d1dde1fb295a82b91d1256e5d0b0c99fc38cf676bd6"
+    },
+    {
+      "path": "assets/audio/course-134/you1.wav",
+      "size_bytes": 48044,
+      "sha256": "ec9d4b21a1d1d95e21e78eccf4d24a52f1282807be821c624f61430ecdcea63c"
+    },
+    {
+      "path": "assets/audio/course-134/yu1.wav",
+      "size_bytes": 47132,
+      "sha256": "306caabdae805cf34f7114a16926451a5b02ccea631acd9aa1f9ba211dc0e2d1"
+    },
+    {
+      "path": "assets/audio/course-134/yu2.wav",
+      "size_bytes": 44204,
+      "sha256": "964c1451ca4f6c63da50a7f2dcc4044eb9e987dd6a014d72223eee0486f413e6"
+    },
+    {
+      "path": "assets/audio/course-134/yu3.wav",
+      "size_bytes": 38444,
+      "sha256": "035c833add6e25f72fae11f55410cb6d2af13f1841de8b9f668218b3f5e20952"
+    },
+    {
+      "path": "assets/audio/course-134/yu4.wav",
+      "size_bytes": 30284,
+      "sha256": "7bc6573aa02210da40c1a15ebb56aa374d8717f2480bfe8a1d9af490853ba243"
+    },
+    {
+      "path": "assets/audio/course-134/yuan1.wav",
+      "size_bytes": 28124,
+      "sha256": "a59fb091d55290910c0caff738b19e1ec56298e5b596e94d1d952b105cdf4dda"
+    },
+    {
+      "path": "assets/audio/course-134/yue1.wav",
+      "size_bytes": 48094,
+      "sha256": "1c46eb0082204eb6f8cbbc73cf6a2aa9d07a1e2c62430030beaa50787ec9f21f"
+    },
+    {
+      "path": "assets/audio/course-134/yun1.wav",
+      "size_bytes": 53564,
+      "sha256": "6f025769dea7f387d820f1571b2b4862f74bd9f6cc96e856e692527c68b8008d"
+    },
+    {
+      "path": "assets/audio/course-134/zhi1.wav",
+      "size_bytes": 55244,
+      "sha256": "6d567e1891484a8ce56b5879052aadc0a5b74602cc3c555d6389404d69a7831c"
+    },
+    {
+      "path": "assets/audio/course-134/zi1.wav",
+      "size_bytes": 54620,
+      "sha256": "2885baa6dc294c1fd3b636b1967d23d039d9c1bdc3b9dd6ce39dcd22725dc4cb"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/ATTRIBUTION.txt",
+      "size_bytes": 1008,
+      "sha256": "aa15a5df014c5181c39fddb9e9418b47f86883669d2e4ef3a25eb4d704bc8541"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/AUDIO_PROVENANCE.json",
+      "size_bytes": 1570,
+      "sha256": "4bd7b7fb8334f5c5a564af460a53d1e9e3bf49ea074b68825b7e948f0c98a0c6"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/an1.wav",
+      "size_bytes": 25484,
+      "sha256": "d60ea787e8cc99a10de30b1585b2f0718649ed79837e1786211d4f81c167a7a7"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/en1.wav",
+      "size_bytes": 26206,
+      "sha256": "ae1183faa6f26f9b37c116f426b2fbe79b86f8db642701a0e30aa2b56150611d"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/in1.wav",
+      "size_bytes": 24044,
+      "sha256": "c28f0164b605b3fab1bc171436e4fe3d951b952157cae363abce286fb0d5e634"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/un1.wav",
+      "size_bytes": 33164,
+      "sha256": "148bb2a754be36437d0f830e857e7970b0c2e8ace725cf01ac0c947d5ae2b7c3"
+    },
+    {
+      "path": "assets/audio/front-nasal-133/vn1.wav",
+      "size_bytes": 28844,
+      "sha256": "e569b34bbbbe03c702bb9b764145212d7bf998c47913762ecb4a8a476cc69601"
+    },
+    {
+      "path": "assets/audio/initials/b.wav",
+      "size_bytes": 9338,
+      "sha256": "d611aa1f736858f4a4231edeff63a1ce36fecce7281daffbb5d38472cbe1eaee"
+    },
+    {
+      "path": "assets/audio/initials/f.wav",
+      "size_bytes": 33594,
+      "sha256": "e5007e4d6a778a2b5b8ad6ff11142065240f27e724b1b2dfd8b51bc61ffac80f"
+    },
+    {
+      "path": "assets/audio/initials/m.wav",
+      "size_bytes": 30066,
+      "sha256": "a0e7fad3c4fcb40f208206d52b81544aaff81d8c23defff62a520efb6c406c09"
+    },
+    {
+      "path": "assets/audio/initials/p.wav",
+      "size_bytes": 21246,
+      "sha256": "56d452cec90868fa8b4ed9419cf598d925211d026d6c68429a818c27ac68ff2c"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/AUDIO_PROVENANCE.txt",
+      "size_bytes": 376,
+      "sha256": "70422d6e758d201eabaa08ad5dcf98bbed3e3a32e9ab02161516dd1b5a3e440c"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/chi.wav",
+      "size_bytes": 195644,
+      "sha256": "0f330d817ec305551d914077611c4e1a064563f25f70036baee28b32ec5b1d2a"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/ci.wav",
+      "size_bytes": 204860,
+      "sha256": "102c0f4c9537eaac433f741d6a90516cb9ac74603f6c2b59b5dfcecd25b537ff"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/ri.wav",
+      "size_bytes": 189980,
+      "sha256": "b9c5ded051ab4435b069bc76e03fb9c21c78a10564840aea8e432e872781432d"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/shi.wav",
+      "size_bytes": 207548,
+      "sha256": "c043b5b6355f521b54d5f7e184ee4ca7c46ef75478907c68fa250f169db5be26"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/si.wav",
+      "size_bytes": 214076,
+      "sha256": "50765ca2fe7452d4759b617f7ab26ff0ae1828dc5345b7d0772f48752529573c"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/zhi.wav",
+      "size_bytes": 201500,
+      "sha256": "58afc603ca504c5a34b796c1648db0d047944237de77b9bdd602e12de294931f"
+    },
+    {
+      "path": "assets/audio/p14-sequence-177/zi.wav",
+      "size_bytes": 200252,
+      "sha256": "2a553a0689ff38ac261d587ea34c1f266073eec253563873cd30ebad0a060a17"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/AUDIO_PROVENANCE.txt",
+      "size_bytes": 279,
+      "sha256": "5d6ac2c91ce43a6e370b9973fd791426aee8320517eb247f56b6c4b411f81145"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/wu.wav",
+      "size_bytes": 111260,
+      "sha256": "01c828d42ece7c5f5120b30882c7b5910f42a9ad11f9819ecc04a4c16d43cf1f"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/ye.wav",
+      "size_bytes": 112124,
+      "sha256": "d7142bdff62eaab2271f6256c41fb085d4bf5de1409500203b041301e498144b"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/yi.wav",
+      "size_bytes": 111260,
+      "sha256": "dc691891f466948b8141804f378b9b8c0242dad76b606b7b968087fe0c358352"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/yin.wav",
+      "size_bytes": 92444,
+      "sha256": "acdce90f7fab3732050cb72908d0ea2ad3e84fbc389cdc1609dc9831cad1533b"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/ying.wav",
+      "size_bytes": 102574,
+      "sha256": "058f88e5b974758a490ccd3ac8cdc78b4fb0a7c1b5a2ef6f5219fb10a80c0ff2"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/yu.wav",
+      "size_bytes": 103772,
+      "sha256": "c34af89c15a1e8d96eab9c9fa6fa07526a367b208354331d7401fa6783043266"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/yuan.wav",
+      "size_bytes": 84764,
+      "sha256": "a3467bd1c3d15668757ac0c6ababeb3586d52e5150825b9d51e8a3743a0ab6ad"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/yue.wav",
+      "size_bytes": 104734,
+      "sha256": "108c8f724ecf094c4834c468abdded78373e808bdc9f7979fb19fc688fc66db4"
+    },
+    {
+      "path": "assets/audio/p15-staged-177/yun.wav",
+      "size_bytes": 110204,
+      "sha256": "147e97154d049abf32380d6a83ae49ed88e85969ec3b27f0a6dad5ae717cf539"
+    },
+    {
+      "path": "assets/audio/p16/bo1.wav",
+      "size_bytes": 46654,
+      "sha256": "27edba47114787583f627d581e0ee0326438d19468dfe2a5d7f9a483404850bb"
+    },
+    {
+      "path": "assets/audio/p16/de1.wav",
+      "size_bytes": 46364,
+      "sha256": "a67552bd6f6cd16a5120d7c8664a581e415a23c83c2f533d6c9daca1ad6662d0"
+    },
+    {
+      "path": "assets/audio/p16/fo1.wav",
+      "size_bytes": 48572,
+      "sha256": "f7df2bd728d43ebe65c945ab19298cc663dedd5def2ef4b505e75efa2e0696ed"
+    },
+    {
+      "path": "assets/audio/p16/ge1.wav",
+      "size_bytes": 49004,
+      "sha256": "55b316636cbab37a4182f40f66b8b74cb334b5fd0715f8eb38c9613c768b65ca"
+    },
+    {
+      "path": "assets/audio/p16/he1.wav",
+      "size_bytes": 57644,
+      "sha256": "98e92b13e24c74b5317001e4b8937c2dc19e0d1bad3110573bb64edff5f10ec1"
+    },
+    {
+      "path": "assets/audio/p16/ji1.wav",
+      "size_bytes": 54620,
+      "sha256": "2c39802adb720a552b625218a9ebf05606bdd9f3c650ca4e8587ed7835f21e3a"
+    },
+    {
+      "path": "assets/audio/p16/ke1.wav",
+      "size_bytes": 53804,
+      "sha256": "3ce4b9af051d0b3e103946bfb06b45e45210debe68d9b62fb61fd8348bb54e9c"
+    },
+    {
+      "path": "assets/audio/p16/le1.wav",
+      "size_bytes": 34604,
+      "sha256": "5a2d273d01866be5feba4f8155c6205eacedea8dd9bd343f8293e83ec5c98ef8"
+    },
+    {
+      "path": "assets/audio/p16/mo1.wav",
+      "size_bytes": 26444,
+      "sha256": "5e74f2251c37760e26ed65b63f918d4246be50b380b9dbbe413a7475f4184fbe"
+    },
+    {
+      "path": "assets/audio/p16/ne1.wav",
+      "size_bytes": 43244,
+      "sha256": "b6893af770f13102cb17bf5b41df3ea16038fe9497ee9591c73468c4b092c614"
+    },
+    {
+      "path": "assets/audio/p16/po1.wav",
+      "size_bytes": 42956,
+      "sha256": "2133decf533cab33e5a27dafe4e5185aa1e121fc549311e4fb78fc4974f97c7d"
+    },
+    {
+      "path": "assets/audio/p16/qi1.wav",
+      "size_bytes": 59228,
+      "sha256": "0b392dbf7b1a3b5eaad9bd2d880df005edd7f3ef34311afe59c5255c9e070969"
+    },
+    {
+      "path": "assets/audio/p16/te1.wav",
+      "size_bytes": 56924,
+      "sha256": "205594a4a34970bcc08688b23e65deb62d03699fe04c83d346b74992dbb659d7"
+    },
+    {
+      "path": "assets/audio/p16/xi1.wav",
+      "size_bytes": 53804,
+      "sha256": "1d28c8999b830e1231cd86b927fb870589ca772956fa75411b83e7d6333abb02"
+    },
+    {
+      "path": "assets/audio/pinyin/azure/README.txt",
+      "size_bytes": 404,
+      "sha256": "d139dfc353bd36de20712f8ee327261c364783578e0eeac84d16dab792819b9c"
+    },
+    {
+      "path": "assets/backgrounds/README.txt",
+      "size_bytes": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/backgrounds/seasons/README.txt",
+      "size_bytes": 360,
+      "sha256": "3771e6582915bb8d362639b7a6c39f8ad08d223dff3d1052d1b98bbb67814926"
+    },
+    {
+      "path": "assets/home/koepanda-home-bottom-final.webp",
+      "size_bytes": 54012,
+      "sha256": "20c84558da7e864f15c7331745acffb2b167ad3726d609e2974e9efd6ba156d1"
+    },
+    {
+      "path": "assets/home/koepanda-home-top-final.webp",
+      "size_bytes": 122592,
+      "sha256": "8ac2bd0cad2d5b3ba8b2af2aa23fa1a66f7d49fcbe71e4698935a63ed3a13a16"
+    },
+    {
+      "path": "assets/icons/README.txt",
+      "size_bytes": 156,
+      "sha256": "9da90d34282f7a0125a6271ec0db4e183080fcc22a3ce3c7cb6d96fff308ef0f"
+    },
+    {
+      "path": "assets/mouth/README.txt",
+      "size_bytes": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/mouth/xiaoyin-head-p0-clean.png",
+      "size_bytes": 307589,
+      "sha256": "0d16aebc72ae028ac12c57f86118fcad72fd859bf20b8800921a5435ece336c5"
+    },
+    {
+      "path": "assets/mouth/xiaoyin-head-p0-final.webp",
+      "size_bytes": 44468,
+      "sha256": "5a25dc383931872ca5ee0b6d2a5b85b08d6d87e0b30a3e4b7bf12b05933650b2"
+    },
+    {
+      "path": "assets/panda/README.txt",
+      "size_bytes": 125,
+      "sha256": "728a85327fadebc103dc2a902c1d6fcd80e4a3aa50d8d75ab05e899e615c383c"
+    },
+    {
+      "path": "assets/pinyin/a.png",
+      "size_bytes": 77318,
+      "sha256": "76a6f09db08c8975ea3a3fba8717efb1856d26d61c55a5882cde7b4ef16a4131"
+    },
+    {
+      "path": "assets/pinyin/a.svg",
+      "size_bytes": 964,
+      "sha256": "70306f3883f4360bcb3c85475d53d84a25996f02977b62481477b51ec2b55fb0"
+    },
+    {
+      "path": "assets/pinyin/e.png",
+      "size_bytes": 66579,
+      "sha256": "ecad632d7840ce0e6d5eb9561318f35a866b0f3cc71d517f40b780566274711d"
+    },
+    {
+      "path": "assets/pinyin/e.svg",
+      "size_bytes": 834,
+      "sha256": "e8e7fc492c2f257b00c3c56f4fd87eba60266c86fba897dc9c5561c50493c022"
+    },
+    {
+      "path": "assets/pinyin/i.png",
+      "size_bytes": 66262,
+      "sha256": "587f8c7d126802c81219c28a07275e284207ccaad03eadf9ed247efc147891bd"
+    },
+    {
+      "path": "assets/pinyin/i.svg",
+      "size_bytes": 834,
+      "sha256": "5bdd20641949b65bfde744c50d74b82c57855726dc2c245bad45dc69b1ca9466"
+    },
+    {
+      "path": "assets/pinyin/o.png",
+      "size_bytes": 86335,
+      "sha256": "854a14ec2426c70f150c55e9ca852479152a66dc907d561be42cb79e3d274dff"
+    },
+    {
+      "path": "assets/pinyin/o.svg",
+      "size_bytes": 1930,
+      "sha256": "8d2401d405c287bf448134028ac6f48425a54a7cc506f7782dbf4517710a5b27"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/bo-hero.webp",
+      "size_bytes": 14702,
+      "sha256": "9a78befea82313af4029b3179196fc1f8e746fad0fc0e284fbb90d8fdcae378c"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/bo.webp",
+      "size_bytes": 3374,
+      "sha256": "f6d614f75f293ce79defd072a76fce470fa863b39b7c720972e851862aef1f64"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/de.webp",
+      "size_bytes": 4220,
+      "sha256": "57598125079d3702cf854cf383aa0ff2bf24f478016730464d2fecad93970751"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/fo.webp",
+      "size_bytes": 3802,
+      "sha256": "617d164b461e723394563969d0adc659dc1e7242683f169d5adaea7b70eccaee"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/ge.webp",
+      "size_bytes": 3188,
+      "sha256": "569033be83dd58290d26a3636b27dc425a08ae0c542050f4b063fa811a20b80c"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/he.webp",
+      "size_bytes": 3808,
+      "sha256": "60244916c9185ecd36e1104e04d61d6b2d5cda8850dd6b8a3b1a8d1129cbea04"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/ji.webp",
+      "size_bytes": 2976,
+      "sha256": "513921c9241eec3a32884f294e1cf9f2d478e42f8be706cf39c1dd0af8d5cd3a"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/ke.webp",
+      "size_bytes": 2992,
+      "sha256": "a28d3bb7a59be5b48f54f51fe4b2cfc6346c1a56eace243e0a1be04006d43ff8"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/le.webp",
+      "size_bytes": 2932,
+      "sha256": "87fc6a4f43336879a99d467be1aaaf8b1a133dd34a9e96a8b05330e438a781d1"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/mo.webp",
+      "size_bytes": 3886,
+      "sha256": "7ddb2b214216d9cff365e1387c8da7c14aa631360461a4748d4c79be198faea2"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/ne.webp",
+      "size_bytes": 3140,
+      "sha256": "faed9b842967aabb0e5ffd978b7702148c146bd4f5be508f3008107e6e22efe8"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/po.webp",
+      "size_bytes": 3822,
+      "sha256": "5f1c6e7ecffc94ebb760b024874c2d6d880986e581ff1e08e0bbbf89eaaac236"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/qi.webp",
+      "size_bytes": 2454,
+      "sha256": "9c0ae43c0943aaadbb2c40e7928da46ebdafc560c4f673cba22b95d1f2552b01"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/te.webp",
+      "size_bytes": 3324,
+      "sha256": "85ce16106f4d2cf8b730835adc2736fe35a7bb9c3eaa6d1f7d836ae011409b13"
+    },
+    {
+      "path": "assets/pinyin/p16-illustrations/xi.webp",
+      "size_bytes": 3100,
+      "sha256": "1d7a5530f4641f9051093d48d5a6423d9e4d798ea8c4c7068f6371e020491d5c"
+    },
+    {
+      "path": "assets/pinyin/roadmap-islands-193.webp",
+      "size_bytes": 181004,
+      "sha256": "6be02a9779ba9e18769ac5cf1b97ada085b202e8384da1f068847fe84a1aa87c"
+    },
+    {
+      "path": "assets/pinyin/roadmap-islands-194.webp",
+      "size_bytes": 154632,
+      "sha256": "b73d42ca1fa35f594e29eea4a1b75b8821ea7a701558c796b3bd11d22a30e98c"
+    },
+    {
+      "path": "assets/pinyin/roadmap-nine-islands-197.webp",
+      "size_bytes": 322860,
+      "sha256": "eaea9da1373270b978ae0dca869e31ebce9f156c50c93651d5b841d220fdd929"
+    },
+    {
+      "path": "assets/pinyin/u-umlaut.png",
+      "size_bytes": 76145,
+      "sha256": "ef729bb4fcf4f1863a612dffe142871391085aac8ca144e76178ee34741e4574"
+    },
+    {
+      "path": "assets/pinyin/u-umlaut.svg",
+      "size_bytes": 1030,
+      "sha256": "5ec094b8bee82ea0521b84d3988436aa640b7d5510e3472bd25ac0a6503f9f7d"
+    },
+    {
+      "path": "assets/pinyin/u.png",
+      "size_bytes": 72891,
+      "sha256": "ade8fcd53e5dedadae180e184b044302818002925d427f40b47f2db07aa55ed9"
+    },
+    {
+      "path": "assets/pinyin/u.svg",
+      "size_bytes": 1121,
+      "sha256": "ea63a7702bfa186f2962ea8bd0c35a68cfe8eee9719f63174de40ef9879c9543"
+    },
+    {
+      "path": "assets/tone-road/tone-road-scene-1-final.webp",
+      "size_bytes": 13386,
+      "sha256": "ddc3cc5132d9b4f91acb7c72fb1aa1c04810f0f8194a1f4ceb36ac9b4b9785da"
+    },
+    {
+      "path": "assets/tone-road/tone-road-scene-2-final.webp",
+      "size_bytes": 16010,
+      "sha256": "8d547482c2c7ff71f768c5c03e24eb6728be4a609b27874bf29ed908580548b7"
+    },
+    {
+      "path": "assets/tone-road/tone-road-scene-3-final.webp",
+      "size_bytes": 17578,
+      "sha256": "5448bac5a75d13d8f60ac79da80745b0a7ea5585c7f9037438d6c3561d38f052"
+    },
+    {
+      "path": "assets/tone-road/tone-road-scene-4-final.webp",
+      "size_bytes": 14294,
+      "sha256": "c090561967ab76728ed72b5f3afc47452660aac2ec3e0309191a1fd07f510df6"
+    },
+    {
+      "path": "css/00-base.css",
+      "size_bytes": 84419,
+      "sha256": "90368d3f5f4090e85bbb094a6a1832434cbf83c8586fbbcc5e376724509e8621"
+    },
+    {
+      "path": "css/01-ui54-fix.css",
+      "size_bytes": 10501,
+      "sha256": "597c9e3533fa924f64fa79d90fde884b07c00c5d52408be365199cd144c4b6b9"
+    },
+    {
+      "path": "css/02-ui55-home-fix.css",
+      "size_bytes": 6115,
+      "sha256": "c640e9671668a6eb03b1cf8acfdf9b3b0107d247bff5a609dcaa34007890ae1c"
+    },
+    {
+      "path": "css/03-ui56-character-assets.css",
+      "size_bytes": 3411,
+      "sha256": "66c81e7b9ab78357745bdff9cc2b594fde7be09a9a55287dcc2b7358a281a10f"
+    },
+    {
+      "path": "css/04-demo1057-polish.css",
+      "size_bytes": 6047,
+      "sha256": "73c28e9db57935b40614833724b25c5fbc4619b8f51a8d6c2e81631e4a5305f9"
+    },
+    {
+      "path": "css/05-demo1058-path.css",
+      "size_bytes": 3643,
+      "sha256": "5fc902425c526f8a72afd1f9b07f25888be931bdd24e33a5c0b0c1fedfd2dea8"
+    },
+    {
+      "path": "css/06-demo1059-ui-polish.css",
+      "size_bytes": 6404,
+      "sha256": "82673aff894325eb30e58db6ca08fe614b84349074e97b20138548d437f47d7d"
+    },
+    {
+      "path": "css/07-demo1070-brand-effect-match.css",
+      "size_bytes": 397,
+      "sha256": "5e808d533840cc90e0495d727b0bab262871dc01b876264410945f7cc3ba885c"
+    },
+    {
+      "path": "css/08-demo1071-freepreview-fix.css",
+      "size_bytes": 869,
+      "sha256": "17b79cd3e4e42c9315d8cc6d5111459333c25416e11a5690daf2049f829773c7"
+    },
+    {
+      "path": "css/09-demo1072-stepbuttons-fix.css",
+      "size_bytes": 3355,
+      "sha256": "de14bad1accb33c3c36ca35d27b08f25ed023ad1a407c76af2afa2fc016989de"
+    },
+    {
+      "path": "css/10-demo1073-step-image-buttons.css",
+      "size_bytes": 884,
+      "sha256": "019f691a185794b78e38083b80b9ca0613078545ebe79cdc6f3d23f35dff5ec1"
+    },
+    {
+      "path": "css/11-demo1074-audio-mouth-fix.css",
+      "size_bytes": 1831,
+      "sha256": "df1de4cf95e1923a9558bb2cef7e1409933bd7f1219a7b332f370528d781dd44"
+    },
+    {
+      "path": "css/12-demo1087-small-fixes.css",
+      "size_bytes": 589,
+      "sha256": "72772827ec7b001893f838653fce1753ff8f2b50ce6853e174a1bb64ae4190a3"
+    },
+    {
+      "path": "css/13-demo1088-quiz-dots-mascot-fix.css",
+      "size_bytes": 860,
+      "sha256": "41ced63bb0958fa1b600e512c2bf7fbbd6b4086b42775de7e36021ef2914c9bf"
+    },
+    {
+      "path": "css/14-demo1099-home-navigation-clean.css",
+      "size_bytes": 1333,
+      "sha256": "2c5b06987b2815ab9794f1578cc1387f34de287197193318c5964247cc32e384"
+    },
+    {
+      "path": "css/15-demo10105-recording-state-restored.css",
+      "size_bytes": 1629,
+      "sha256": "f79e6032ff5cfa7232138ee76600d8f0d097b5b287fe5bf26921654e56bce014"
+    },
+    {
+      "path": "css/16-demo1077-final-fix.css",
+      "size_bytes": 770,
+      "sha256": "6524c1b5548a020eb2a6b3dce4ac43fe6fda1d80ebda1a7397b46d7999334702"
+    },
+    {
+      "path": "css/17-demo1078-step1-visual-only.css",
+      "size_bytes": 518,
+      "sha256": "733b4de8dde8d6f8ce50e96f9bde59a444d6a1d7bf97a9ccd8a22808abdb9c92"
+    },
+    {
+      "path": "css/18-demo1086-ui-detail-fix.css",
+      "size_bytes": 5464,
+      "sha256": "45df213b23adef11f3b827d3822f27739854023622bc84c5efffd208c30d0970"
+    },
+    {
+      "path": "css/19-demo1092-dynamic-mouth-new-xiaoyin.css",
+      "size_bytes": 2742,
+      "sha256": "f0c515a91bb6f3a1d9fa184282b62a9a3c9add95f9c59c1281172d8c8619d62a"
+    },
+    {
+      "path": "css/20-demo1093-pinyin-left-edge-fix.css",
+      "size_bytes": 1513,
+      "sha256": "06559553418f84244bc924787112c4b2321ff126bfd714e3b22e0d81dca75f9c"
+    },
+    {
+      "path": "css/21-demo1096-pinyin-readable-playback.css",
+      "size_bytes": 1309,
+      "sha256": "2341a02f6ba6c852fccec3f17683b7310572ac97129e7ab4c83e7b382ae879b2"
+    },
+    {
+      "path": "css/22-demo1098-no-fast-letter-switch.css",
+      "size_bytes": 186,
+      "sha256": "6e4b01a1b63d9a296b672ac76bb606c539b6ed3886062b1973718b68ff6aacd3"
+    },
+    {
+      "path": "css/23-demo10100-step23-header-align-fix.css",
+      "size_bytes": 2141,
+      "sha256": "5e208d152c357b23651878223cf492e474718f16e22145b026fbeaf5ada58d44"
+    },
+    {
+      "path": "css/24-demo10101-unified-step-headers.css",
+      "size_bytes": 4408,
+      "sha256": "18799c94e2a4da48df2abf6202a975b116a5383673cd689f68b7efdd2a980946"
+    },
+    {
+      "path": "css/25-demo10103-result-mascot-restored.css",
+      "size_bytes": 1481,
+      "sha256": "84fb411d17b4b4ce00a0cf7a9f480e35fd4c1cebc99a5e50718f9bcc73dd1950"
+    },
+    {
+      "path": "css/26-demo10104-result-celebration.css",
+      "size_bytes": 4232,
+      "sha256": "8f66587e7e0e067db1d9e0d012dd0879faf0053b98cfa2e465f3f2e17cb7570b"
+    },
+    {
+      "path": "css/27-demo10107-home-refresh.css",
+      "size_bytes": 8488,
+      "sha256": "bdb659b7277bf942d38bb18add540d2fa2e7a45a8e377658b6384d0ffb56f6f6"
+    },
+    {
+      "path": "css/28-demo101071-home-layout-fix.css",
+      "size_bytes": 5661,
+      "sha256": "75593adebaf39827704c85214d023b4e4fedc37e8a7410eb64f051e342403062"
+    },
+    {
+      "path": "css/29-demo101072-home-dashboard.css",
+      "size_bytes": 6669,
+      "sha256": "ed0ebad2dd558c2da98e9be3216e58e793296bbe20781d934000e59975bfc1cc"
+    },
+    {
+      "path": "css/30-demo101074-home-effect-faithful.css",
+      "size_bytes": 3364,
+      "sha256": "5b84515ef9e49c9cb4b2950004ff254f5e884c80c2e7c47ae18de7af8e7e4221"
+    },
+    {
+      "path": "css/31-demo101076-function-home-hide.css",
+      "size_bytes": 270,
+      "sha256": "d4070cebec21e667fd7b52a3607619cc0d4578bbe7e9a4c6135900191f230e95"
+    },
+    {
+      "path": "css/32-demo101077-mobile-fit-rounded.css",
+      "size_bytes": 1533,
+      "sha256": "d372d40f26fad18b92183c60ca967363279ffab0fbbf2822c65692ac781c2eb4"
+    },
+    {
+      "path": "css/33-demo101078-premium-season-continuity.css",
+      "size_bytes": 5274,
+      "sha256": "67a3993c36215be1d84ffb1a1ee07ccb337bf7e084c6aead0ad61d68a045bddb"
+    },
+    {
+      "path": "css/34-demo101079-mouth-focus-head.css",
+      "size_bytes": 6008,
+      "sha256": "b5323ca3bc232a53b43608631e32f8a05babb02e0639ed7708953896a420abe3"
+    },
+    {
+      "path": "css/35-demo1010734-kids-first-lesson.css",
+      "size_bytes": 9532,
+      "sha256": "4c0129bb7cf8b48571117fd427eb55499632e348ba4a90cb0437f8c807c778a0"
+    },
+    {
+      "path": "css/36-demo1010735-first-step-home.css",
+      "size_bytes": 2497,
+      "sha256": "666fefda4c080f64204b977ed1cd007ed300c0fedb2856883d573c922eda9495"
+    },
+    {
+      "path": "css/37-demo1010737-first-step-flow.css",
+      "size_bytes": 3296,
+      "sha256": "43b1a034696760fea3082b5c9bf003f3077c254d4f479fb73e3ee113a053d91c"
+    },
+    {
+      "path": "css/38-demo1010738-home-entry-balance.css",
+      "size_bytes": 676,
+      "sha256": "62a136334ca1d3a808a0f218642c3d9a760034e2d9e7d414fb857a46df37e0ae"
+    },
+    {
+      "path": "css/39-demo1010740-pinyin-roadmap.css",
+      "size_bytes": 2743,
+      "sha256": "030ff4361fdbb2d254c03de10d32c07b7909e1544b391c7b10240f31a62dd134"
+    },
+    {
+      "path": "css/40-demo1010741-p0-tone-adventure.css",
+      "size_bytes": 4009,
+      "sha256": "caa8c50be2d54d8649742c1dee8a0ddfb5c43dc3c80527cda86d8779bca46576"
+    },
+    {
+      "path": "css/41-demo1010744-pinyin-visual-audio-fix.css",
+      "size_bytes": 3251,
+      "sha256": "a4e8028698afd93972eda003b746f993853701a6287db89086babe7d974c0d81"
+    },
+    {
+      "path": "css/42-demo1010754-vowel-drill-navigation.css",
+      "size_bytes": 4111,
+      "sha256": "e300458339d06595eb9c685fbb25064c69f61d2eedf1a2917359e2284ac6e1ef"
+    },
+    {
+      "path": "css/43-demo1010755-compact-roadmap-navigation.css",
+      "size_bytes": 3234,
+      "sha256": "ab43da9b3d5006e36c6f654e4d93d30f3556be6a0295d78c47c06422f06e95f9"
+    },
+    {
+      "path": "css/44-demo1010758-visible-back-navigation.css",
+      "size_bytes": 1871,
+      "sha256": "1ed71f38ec5ed031fd8c06e6d35e89b61b47bebe7f6f1790426a806112e3032e"
+    },
+    {
+      "path": "css/45-demo1010759-grouped-lesson-navigation.css",
+      "size_bytes": 589,
+      "sha256": "88c20168802d1580efa088cff548fdd5b6eeabb3518b720ae1439efe72347367"
+    },
+    {
+      "path": "css/46-demo1010762-compact-back-override.css",
+      "size_bytes": 456,
+      "sha256": "16bbb4ea9ec397d15747664fa84279d0db800857a03ad473b29c83e8b349a01a"
+    },
+    {
+      "path": "css/47-demo1010769-a-sample-unlock.css",
+      "size_bytes": 3854,
+      "sha256": "aa37bc359a215c95d6309dd57ce74460709c2f5ffff878d7d3ef32cf3acb26d2"
+    },
+    {
+      "path": "css/48-demo1010770-tone-layer-guide.css",
+      "size_bytes": 1750,
+      "sha256": "433fec94a2da36e915f82a6e040c080dd865184714c120d7b88f8f932de88046"
+    },
+    {
+      "path": "css/49-demo1010771-premium-tone-road-a.css",
+      "size_bytes": 7263,
+      "sha256": "d6e3db76b9319a8fd9576be7b5b8cda77cf902a990c3c18210daf1dfa62db9b6"
+    },
+    {
+      "path": "css/50-demo1010772-tone-road-effect-match.css",
+      "size_bytes": 3510,
+      "sha256": "4749bd869aee3a9cabe79e675a8bec9d1b236a1e587cd20e46c51916c5781229"
+    },
+    {
+      "path": "css/51-demo1010773-tone-road-scene-polish.css",
+      "size_bytes": 3234,
+      "sha256": "31fcf990e748889eaae98b00c744f8340ee040185af5bcc80e135d1ed4f99ee2"
+    },
+    {
+      "path": "css/52-demo1010774-tone-road-character-polish.css",
+      "size_bytes": 1032,
+      "sha256": "5942e6483b36848580066394cea53f3f9dfb28c2db91bc5d91f4ecffa1c786e5"
+    },
+    {
+      "path": "css/53-demo1010777-tone-road-fullbody.css",
+      "size_bytes": 915,
+      "sha256": "97c2ba74ef6442463ed40fe65610738072ee8c5f943197f9d092fbdb56a7e8e6"
+    },
+    {
+      "path": "css/60-demo1010785-clean-release.css",
+      "size_bytes": 1996,
+      "sha256": "dfc3a2d2e0eb58899734dbaf84c67ad610defd17230f592ab3c3ea473ee380f8"
+    },
+    {
+      "path": "css/61-demo1010786-pinyin-avatar-fix.css",
+      "size_bytes": 1166,
+      "sha256": "5d8c99d8a98bba62232417fb2dcb495fad5e7f8e4f6ef5a43129198e869d8559"
+    },
+    {
+      "path": "css/62-demo1010788-pinyin-avatar-polish.css",
+      "size_bytes": 1402,
+      "sha256": "33b8437cc1c853215b25956338038cc15e91108cce73e077ecf4171c3e5c1dc9"
+    },
+    {
+      "path": "css/63-demo1010789-tone-road-polish.css",
+      "size_bytes": 3483,
+      "sha256": "d17df032eb72759a08b26b21aec12c30e42696c6d3ed2a135b692a8c8755e1bd"
+    },
+    {
+      "path": "css/64-demo1010790-lesson-layer-fix.css",
+      "size_bytes": 771,
+      "sha256": "4f82523e6f5ea105e5af1af01bef24fef7709f9a64410445b341bad86aad1531"
+    },
+    {
+      "path": "css/65-demo1010797-kids-home-back-unified.css",
+      "size_bytes": 1935,
+      "sha256": "eab5b7313e2eb25f3dcc75aeb450a6d95bc4d1a0e8ef1d6e010177a6882ae454"
+    },
+    {
+      "path": "css/66-demo1010798-simple-learning-path.css",
+      "size_bytes": 4236,
+      "sha256": "310c0a7f8003c8b9449bacf6b059230c63395216eaa7fbceb63a45b48f7705c4"
+    },
+    {
+      "path": "css/67-demo1010801-flow-celebration-roadmap-fix.css",
+      "size_bytes": 6014,
+      "sha256": "c290e91c4225a12caa0270ad34e988c787d7409f6d62d397b3791f230d6de587"
+    },
+    {
+      "path": "css/68-demo1010872-initials-forest.css",
+      "size_bytes": 47170,
+      "sha256": "2ebd62f5737814a7b2b17f8bb00c926a810fa3f63afb2e04de3edea1cf1c7de9"
+    },
+    {
+      "path": "css/69-demo1010812-dev-test-mode.css",
+      "size_bytes": 1672,
+      "sha256": "a8a66d8e91be2a7a0b23f9072f466b11063f12b0b97d0f4c61d10c695f34c392"
+    },
+    {
+      "path": "css/70-demo1010820-dtnl-first-lesson.css",
+      "size_bytes": 20883,
+      "sha256": "80645dd0eef19e694a6dde51f07e8c6dbe77f6a3cd58774b6873191a6f43be3b"
+    },
+    {
+      "path": "css/71-demo1010824-free-practice-polish.css",
+      "size_bytes": 10708,
+      "sha256": "707f05e27d9001b8a032f683d4b79db91c6535c28c6d4581db7b7eda2ccec985"
+    },
+    {
+      "path": "css/72-demo1010828-result-stage-overlay.css",
+      "size_bytes": 13351,
+      "sha256": "0f4f679e625733ec99510bd0033cc4e573b83eb4a877285e6cb870015f9251e5"
+    },
+    {
+      "path": "css/73-demo1010832-practice-simple-large.css",
+      "size_bytes": 3690,
+      "sha256": "5c87898ce4ef8d88c0e05939a77a9bedbb32995bdde2167c9b537698ebac5a87"
+    },
+    {
+      "path": "css/74-demo1010842-vowel-quiz-unified-premium.css",
+      "size_bytes": 6266,
+      "sha256": "b11edf5e86eaeab841811eaa87b85483a3344f4803d2dd762eee20d010b14778"
+    },
+    {
+      "path": "css/75-demo10108104-vowel-clear-zones.css",
+      "size_bytes": 6968,
+      "sha256": "bc976f071e0c20626e1697ec23ea49a04b10e32fa8b0554b861cea54497bd741"
+    },
+    {
+      "path": "css/76-demo10108105-consonant-illustration.css",
+      "size_bytes": 4309,
+      "sha256": "5d23ee8ca1779d51aa863d0ee15fc19eaa4f24d3d4dfabfb93736512bd888c20"
+    },
+    {
+      "path": "css/77-demo10108106-dental-integration.css",
+      "size_bytes": 1329,
+      "sha256": "cd06720381b45f9c40384b4c4d7b9d96ff2b7e7515141daa0134cd02a2ddf921"
+    },
+    {
+      "path": "css/78-demo10108107-consonant-finish.css",
+      "size_bytes": 1491,
+      "sha256": "1fc54dad0009724704d9ad7a4af2a79e3b9993708194ddfe726d764cec586edb"
+    },
+    {
+      "path": "css/79-demo10108110-f-contact-motion.css",
+      "size_bytes": 1291,
+      "sha256": "e8fa25050b97dd9709a71de2b55bd29561de749d9cb0c9bd1b3ba4a2d1b234ae"
+    },
+    {
+      "path": "css/80-demo10108112-dtnl-texture.css",
+      "size_bytes": 1660,
+      "sha256": "8f8362995c064c887e7388c6e231492b2d031eaff99ebb319703ab1bb448f8e6"
+    },
+    {
+      "path": "css/81-demo10108113-gkh-first-lesson.css",
+      "size_bytes": 17229,
+      "sha256": "b975406885ecef15c26b21f6c48cc5a0e78b92ac2931e15855ce47e51fbf82af"
+    },
+    {
+      "path": "css/82-demo10108116-jqx-first-lesson.css",
+      "size_bytes": 17229,
+      "sha256": "aafc723d91ad52e4090aa915dd5b2135114727c046217f7096b5f448c132621a"
+    },
+    {
+      "path": "css/83-demo10108117-zhr-first-lesson.css",
+      "size_bytes": 18856,
+      "sha256": "b3f7ed17331dc9d35c95d83fb4e25b9ebc87f6a93c7cb0aa07645b811a668519"
+    },
+    {
+      "path": "css/84-demo10108118-zcs-first-lesson.css",
+      "size_bytes": 17230,
+      "sha256": "a0236d43ecddd13a57c37621bc0fa75e209d7fb143a58bb2a1dde8c48d26d3f7"
+    },
+    {
+      "path": "css/85-demo10108119-ai-ei-ui-first-lesson.css",
+      "size_bytes": 20283,
+      "sha256": "390815cfbf2b21cd924f221cc65f23ba4490d973d1a51ef44697fc0c0000a3e3"
+    },
+    {
+      "path": "css/86-demo10108122-ao-ou-iu-first-lesson.css",
+      "size_bytes": 20283,
+      "sha256": "2b315f0020fc79f3cdf27a1018b2e2ea218b319f297abe3a989ed56aeb7db7ca"
+    },
+    {
+      "path": "css/87-demo10108123-ie-ue-er-first-lesson.css",
+      "size_bytes": 20283,
+      "sha256": "ffe963cabe317102c85a540a692ee299fe2032eda12dd297332c23f07685ac26"
+    },
+    {
+      "path": "css/88-demo10108124-front-nasal-first-lesson.css",
+      "size_bytes": 21967,
+      "sha256": "5d6b2589497764d8b9a9657b5507b52e3f175db388c5902fe9bf084c32af7e85"
+    },
+    {
+      "path": "css/89-demo10108128-back-nasal-first-lesson.css",
+      "size_bytes": 21037,
+      "sha256": "44dbe7fedb730a81e02d1474b060f045d94df2cfdc5032678c23a88887583670"
+    },
+    {
+      "path": "css/90-pronunciation-studio-134.css",
+      "size_bytes": 5461,
+      "sha256": "4f18de55b9dd933337ebc63a1d2bc7f0e9b6600ed774a412ddaba5c8641b38d1"
+    },
+    {
+      "path": "css/91-pronunciation-ux-135.css",
+      "size_bytes": 9583,
+      "sha256": "d72be41525157e1afb2ba4abca4fad8269bc8e2772295851419e5e42be084825"
+    },
+    {
+      "path": "css/92-articulation-motion-139.css",
+      "size_bytes": 39456,
+      "sha256": "f9d88a6b36b813ef6dd35240a87f99210fbfdea6b8cc6641baeaba1b9539f34c"
+    },
+    {
+      "path": "css/93-whole-syllables-p14-163.css",
+      "size_bytes": 17500,
+      "sha256": "c3ea0a1440bb733bf317c051496c44ffd788e18330292e20da98c81d909336e9"
+    },
+    {
+      "path": "css/94-whole-syllables-p15-175.css",
+      "size_bytes": 7374,
+      "sha256": "91b12dadadc764b6c15da679c1056f1faa8c6f96550ef4284ef79b3d7b77b008"
+    },
+    {
+      "path": "css/95-whole-syllables-p15-176.css",
+      "size_bytes": 17437,
+      "sha256": "500026cd988bdf855d54d6a9df1ad53ea072b3e93452b6b50053a49805ed5de6"
+    },
+    {
+      "path": "css/96-whole-syllables-p15-179.css",
+      "size_bytes": 761,
+      "sha256": "36e8127b4de1ff38a6c3abdbda5e3a66c553aa1eb5d4d31aae4431ba91a954c1"
+    },
+    {
+      "path": "css/98-roadmap-image-193.css",
+      "size_bytes": 4251,
+      "sha256": "fb3f16e65a935ad869c1b620571184bd1619101cd445471ba1416581c87ea494"
+    },
+    {
+      "path": "css/98-two-spelling-p16-192.css",
+      "size_bytes": 5483,
+      "sha256": "54accedbe69c800d51c1e591f096378aab9211ded317738a0159ae589e83fcc0"
+    },
+    {
+      "path": "css/99-nine-islands-196.css",
+      "size_bytes": 8768,
+      "sha256": "f5c03c642eb7cdc70eaf4056bbf4233ae9003ef50dba4d724db34e0fc646feb0"
+    },
+    {
+      "path": "data/README.txt",
+      "size_bytes": 182,
+      "sha256": "f817a0485cc53ebfa71d9564a2dc0034edfb0f2eb049033d9f139163af43b90b"
+    },
+    {
+      "path": "data/articulation-151.js",
+      "size_bytes": 17323,
+      "sha256": "97d210c7e69fe0dbd28b78e82eace97153c4a0072f574b33174fd6f729752220"
+    },
+    {
+      "path": "data/kids-pinyin.js",
+      "size_bytes": 4513,
+      "sha256": "26b821c43c67d9b98332be7400b4e9da88cdd86066fdd99344e343afc12ce6e3"
+    },
+    {
+      "path": "data/pinyin-course.js",
+      "size_bytes": 3348,
+      "sha256": "06aa71b91a46ba23c56dcaf1448e3071aa42e229c90eba6a8c54f744bd74126f"
+    },
+    {
+      "path": "data/pronunciation-134.js",
+      "size_bytes": 50064,
+      "sha256": "725b5b8fd15845347750b0fd0eefddacb7288bc869c303a0f1b7dd4539a4973d"
+    },
+    {
+      "path": "data/pronunciation-audit-134.json",
+      "size_bytes": 24324,
+      "sha256": "d3657e1fc73ab9e2f7ffe53b2846944bf3a6e2b503a12bbff8a106020308fdc9"
+    },
+    {
+      "path": "data/pronunciation-timing-139.js",
+      "size_bytes": 5024,
+      "sha256": "1c102106a54d80f7434778b5f02e09edbe578d546d871ccfb5ab028992ce0fb8"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 681588,
+      "sha256": "ae1915626d99dc777f3e03bd0a38725d136dd605f8ad2b47c062430ec1ae5e2e"
+    },
+    {
+      "path": "js/00-core.js",
+      "size_bytes": 347147,
+      "sha256": "c0aec897ada82e5f0762bc394ea66ebb400e2c60df7e08cf0a803c5cf2a2c2c0"
+    },
+    {
+      "path": "js/01-features.js",
+      "size_bytes": 572767,
+      "sha256": "5a796ff21046a1c18b53643951d75c8c4cd47fe3aaf23ce7f171755880cc3125"
+    },
+    {
+      "path": "js/02-demo1099-home-navigation-js.js",
+      "size_bytes": 3918,
+      "sha256": "7b2961bdde3b4c071075dc05457175cb84f663379e1693b333cedf345b2157dc"
+    },
+    {
+      "path": "js/03-demo10107-home-refresh.js",
+      "size_bytes": 2258,
+      "sha256": "78af41549d71d4c8036e85d5df60a4410a2e9fc617eb062c4459f58dab2fe40b"
+    },
+    {
+      "path": "js/04-demo101078-season-theme.js",
+      "size_bytes": 466,
+      "sha256": "b32fc40b4b266179c1c336af68967e409b4aa67ee169b2879b4a5a3e64520526"
+    },
+    {
+      "path": "js/06-demo1010740-pinyin-roadmap.js",
+      "size_bytes": 31764,
+      "sha256": "fc91a8f310be765abfbb0845526f259323ede7d8dd04fbbb8893f374c8d90109"
+    },
+    {
+      "path": "js/07-demo1010741-p0-tone-adventure.js",
+      "size_bytes": 2678,
+      "sha256": "c2cd4db3313f8120d5ed193b0881309580a747727211183de7b52c427fa150d3"
+    },
+    {
+      "path": "js/08-demo1010793-kids-audio-cacheproof.js",
+      "size_bytes": 40712,
+      "sha256": "30d5aef93da38fb96927b5afb379a872b69ad8e245cfcdbd9586e70747905320"
+    },
+    {
+      "path": "js/09-demo1010807-home-escape-fix.js",
+      "size_bytes": 2102,
+      "sha256": "a0dfcd6a15f1291baca876e4434f30c6ef4369447d5a72208e6dc6ddba9816d3"
+    },
+    {
+      "path": "js/10-demo1010872-initials-forest.js",
+      "size_bytes": 28793,
+      "sha256": "5b05cdae3baaa389dccbd939367710a79dd7204e1e45c523b1f3c047b7b0d393"
+    },
+    {
+      "path": "js/11-demo1010812-dev-test-mode.js",
+      "size_bytes": 3704,
+      "sha256": "503f85dc51803c908b1e63f1dbdd2ac05d9515a060a5265b490313636c641947"
+    },
+    {
+      "path": "js/12-demo1010820-dtnl-first-lesson.js",
+      "size_bytes": 31608,
+      "sha256": "7c5e954bca24540b405a5286610ec734952cfe22a332dec3755f0ac764eefb8d"
+    },
+    {
+      "path": "js/13-demo1010828-result-stage-overlay.js",
+      "size_bytes": 3587,
+      "sha256": "9ab021cd57172cb695188f81fab41e76420188d17b64d20e3a34b861fc8dab4d"
+    },
+    {
+      "path": "js/14-demo10108113-gkh-first-lesson.js",
+      "size_bytes": 17580,
+      "sha256": "ae3ac17cc1a3d9267578084bff919348ca5e82cba663ebffe2b3ad168d98b787"
+    },
+    {
+      "path": "js/15-demo10108116-jqx-first-lesson.js",
+      "size_bytes": 17598,
+      "sha256": "12f8e19e3cdc93445c2fd56abc55552257b60633e9495ca5d82260f9e180a788"
+    },
+    {
+      "path": "js/16-demo10108117-zhr-first-lesson.js",
+      "size_bytes": 18471,
+      "sha256": "f5254cefa9b0652ff5e16247b05551325d6fa140c3b156ba8a8e1bb408ba7571"
+    },
+    {
+      "path": "js/17-demo10108118-zcs-first-lesson.js",
+      "size_bytes": 17778,
+      "sha256": "82efadaf22e07ef2a1c151567c0f55a0e3ec09c8a1dc1a8a72fd77609b67d34e"
+    },
+    {
+      "path": "js/18-demo10108119-ai-ei-ui-first-lesson.js",
+      "size_bytes": 18269,
+      "sha256": "9e53ed20f34280c3b20e338721fe1603940d08e3a5826421e84555ed23565ac4"
+    },
+    {
+      "path": "js/19-demo10108122-ao-ou-iu-first-lesson.js",
+      "size_bytes": 18348,
+      "sha256": "8e02893dd22991f9106f7b3888ffc51b608fc46cd5a50ea17c27cf76b11792ed"
+    },
+    {
+      "path": "js/20-demo10108123-ie-ue-er-first-lesson.js",
+      "size_bytes": 21441,
+      "sha256": "639055becd947acc460b21d81728c6fc792dcde5422a0da10c4242f133bcc481"
+    },
+    {
+      "path": "js/21-demo10108124-front-nasal-first-lesson.js",
+      "size_bytes": 25020,
+      "sha256": "a00ba6fce0babd9977862483056100a1291dcc70e5e74dc1103e9f118a840f63"
+    },
+    {
+      "path": "js/22-demo10108128-back-nasal-first-lesson.js",
+      "size_bytes": 18536,
+      "sha256": "4435632cc53e2a63cdd4b2f9a1b0b5421e5edbf9931927800a8e29dc9539e501"
+    },
+    {
+      "path": "js/23-demo10108131-lesson-audio-warmup.js",
+      "size_bytes": 982,
+      "sha256": "f1a4fbbfd0b2c8fbdabc78613198e17014660f5e9819562bf9b5a9a68568ede4"
+    },
+    {
+      "path": "js/24-pronunciation-studio-134.js",
+      "size_bytes": 32148,
+      "sha256": "f7d628fdb5f7b6faa1025d7c27be936e6caa44e4cafd69b9f6ed83c490e20600"
+    },
+    {
+      "path": "js/25-pronunciation-ux-135.js",
+      "size_bytes": 7652,
+      "sha256": "2a8d0a60ef2cc4fba8bda16826e835d567cdefdc7f01807ba919100ad4008e57"
+    },
+    {
+      "path": "js/26-articulation-motion-139.js",
+      "size_bytes": 40096,
+      "sha256": "dcdd19cde59499fa02c1dea07cc15bcd02ba2d33650c43f4f897a13cb88c24d9"
+    },
+    {
+      "path": "js/27-vowel-portrait-144.js",
+      "size_bytes": 16793,
+      "sha256": "3a6ed53a75d558c3f40a577ef788ba5da45056d2a013dedb98f99b1496bcd67b"
+    },
+    {
+      "path": "js/28-initial-mnemonics-150.js",
+      "size_bytes": 11316,
+      "sha256": "9c766262d92dff5ad26db30db351f7d7962019ff368689b16e72b55488416e8a"
+    },
+    {
+      "path": "js/29-word-cues-152.js",
+      "size_bytes": 10333,
+      "sha256": "e1deae5ee7323cc5ee9467124d9d04d76c86c8e9db3c94e4d4c16973017ddb79"
+    },
+    {
+      "path": "js/30-whole-syllables-p14-163.js",
+      "size_bytes": 20955,
+      "sha256": "988fb17e523db8646c02e390d13deeff40456b8f44465c8a8eadde2b6b8bab33"
+    },
+    {
+      "path": "js/30-whole-syllables-p14-178.js",
+      "size_bytes": 2424094,
+      "sha256": "ce572e8a1968e7611ffbfc042efd37438526bab884db111d6b44a85cafd44de9"
+    },
+    {
+      "path": "js/31-whole-syllables-p15-175.js",
+      "size_bytes": 12295,
+      "sha256": "782945dba955b66dffba944eb46863dfab035c4675de9b42c794f724926f871a"
+    },
+    {
+      "path": "js/32-whole-syllables-p15-176.js",
+      "size_bytes": 17645,
+      "sha256": "4d891060b0807ab357e830fa3992bbda26fefcdc18c5040645e541a442b3c85b"
+    },
+    {
+      "path": "js/32-whole-syllables-p15-178.js",
+      "size_bytes": 1826927,
+      "sha256": "6d76cbadca89190e3d6d36dbe4575629ecc7bf97e827ac7a7289561e414adb6b"
+    },
+    {
+      "path": "js/32-whole-syllables-p15-179.js",
+      "size_bytes": 2443080,
+      "sha256": "5fc1ebf86ce4448f0fca07a40f4eb037b58ab9bb49a40b285332a53415e8873b"
+    },
+    {
+      "path": "js/32-whole-syllables-p15-180.js",
+      "size_bytes": 2709674,
+      "sha256": "06f3342e212272cfe912cefef4d818e9955d7e7af7f8bf00b62beb89d25b2f62"
+    },
+    {
+      "path": "js/32-whole-syllables-p15-181.js",
+      "size_bytes": 2702468,
+      "sha256": "5745511f910be856ffa80d631bf4424e33e6b413e3ea7b6c5f45e937c20c8be9"
+    },
+    {
+      "path": "js/32-whole-syllables-p15-182.js",
+      "size_bytes": 2702460,
+      "sha256": "ac887fb159527d4d84717b8286eca896b262b6617efe0f7e187dc518c9bf9f53"
+    },
+    {
+      "path": "js/33-two-spelling-p16-192.js",
+      "size_bytes": 9089,
+      "sha256": "b7095073182c8a4aa10ff48cb6ebd0bf02e87e36bd30cfcde6755471935ebdf1"
+    },
+    {
+      "path": "tools/generate_azure_vowels.py",
+      "size_bytes": 3037,
+      "sha256": "393ae526b513687134876b1801b8bb7022ace3e54423847a97da3327cc8f37a6"
+    },
+    {
+      "path": "tools/pronunciation-134/README.md",
+      "size_bytes": 1526,
+      "sha256": "132dd27a0d96cc09ec3d14cb3b8fd0a9ba58e2428f3d38e880cd5c193b198044"
+    },
+    {
+      "path": "tools/pronunciation-134/acceptance-results.json",
+      "size_bytes": 1764,
+      "sha256": "d2a12a4f74c5c6ce2b565ceacbf11a120432f335c05961bb99369f39ca9f1395"
+    },
+    {
+      "path": "tools/pronunciation-134/acceptance.cjs",
+      "size_bytes": 10419,
+      "sha256": "ef6c7757c4135e5949d8cc07464bfe365ec6b1af1632195819b5d23d5bb4d861"
+    },
+    {
+      "path": "tools/pronunciation-134/all-targets.cjs",
+      "size_bytes": 7764,
+      "sha256": "5535cc88fbdb3f8659cf48ccb4fcd5e6daa3e560c03c2d069513482671fc08b9"
+    },
+    {
+      "path": "tools/pronunciation-134/misc-results.json",
+      "size_bytes": 23634,
+      "sha256": "edaff935f4cf534a329293dd226a9bd602065ff95e827e92d256c6fdc2bbd874"
+    },
+    {
+      "path": "tools/pronunciation-134/misc.cjs",
+      "size_bytes": 6259,
+      "sha256": "beaa2546781b9211a27de638574a49d2bd8bbd04ce7240327b52523849f0503d"
+    },
+    {
+      "path": "tools/pronunciation-134/quiz-results.json",
+      "size_bytes": 1676,
+      "sha256": "4ed5c4fc5893d43e08b49a32b7d4d06838358004d1951eb5afe71d50aae68c50"
+    },
+    {
+      "path": "tools/pronunciation-134/registry.json",
+      "size_bytes": 46602,
+      "sha256": "93b28649f7a84b5f10ef51a10d04c1ba4e5ed9066ce235cbe57f3abaa01b828a"
+    },
+    {
+      "path": "tools/pronunciation-134/render.cjs",
+      "size_bytes": 2394,
+      "sha256": "0b641e403e09b681ffa0931eb03feb581e89d84c5332b472bfc4b82a1f0fa473"
+    },
+    {
+      "path": "tools/pronunciation-134/sources.json",
+      "size_bytes": 1109,
+      "sha256": "2b0b90688da4f887ed0f999b41662fbe4d279a3703bcd7de03603d01a0752338"
+    },
+    {
+      "path": "tools/pronunciation-134/target-audit.csv",
+      "size_bytes": 11966,
+      "sha256": "e34af6aa7578a063c5f1f9958cd5b25f8f31766b5d544882b51dfea78b782d0b"
+    },
+    {
+      "path": "tools/pronunciation-134/target-results.json",
+      "size_bytes": 8958,
+      "sha256": "50f8ab5833d61bc33daa0dd070d9aed920e383a60eb8b4b1887a2fd2c39639c1"
+    },
+    {
+      "path": "tools/pronunciation-135/README.md",
+      "size_bytes": 2210,
+      "sha256": "1563d73aed3433061ad57b9c3a315b4a1370aabe0312e7a39a8c8978e7199113"
+    },
+    {
+      "path": "tools/pronunciation-135/acceptance-results.json",
+      "size_bytes": 1765,
+      "sha256": "d8feb3a4ffea7f2a152db2fd658de6424d8a2a4b7b0912069dd217ebc93a5b33"
+    },
+    {
+      "path": "tools/pronunciation-135/acceptance.cjs",
+      "size_bytes": 10482,
+      "sha256": "6997ddcdd9a697df8d24ff31394dce6be8bd9838064f09965fb72ac98ba1075b"
+    },
+    {
+      "path": "tools/pronunciation-135/all-targets.cjs",
+      "size_bytes": 7785,
+      "sha256": "84cff14091c04ee14a3439e506aa005ab7e5c7a0f217198e9ebc908e89b6bc9a"
+    },
+    {
+      "path": "tools/pronunciation-135/control-results.json",
+      "size_bytes": 18248,
+      "sha256": "a052c382fa6c096a53155ba28d6a4f75ae29acf07c317373128001f4e66988b7"
+    },
+    {
+      "path": "tools/pronunciation-135/controls.cjs",
+      "size_bytes": 9473,
+      "sha256": "25ce144f3742de0fc595b2d627b45002fb9a6ff74761b6f582e0018e88f8c17d"
+    },
+    {
+      "path": "tools/pronunciation-135/misc-results.json",
+      "size_bytes": 23634,
+      "sha256": "edaff935f4cf534a329293dd226a9bd602065ff95e827e92d256c6fdc2bbd874"
+    },
+    {
+      "path": "tools/pronunciation-135/misc.cjs",
+      "size_bytes": 6259,
+      "sha256": "88ffc93c2f25ae87318ddceedc550c5649a4e595c3e8153440f2093aa021692c"
+    },
+    {
+      "path": "tools/pronunciation-135/mobile-ux-results.json",
+      "size_bytes": 54565,
+      "sha256": "fe88abc5684e9a6465795cb6941bc60f9f174a7fe587842aeaf329fe5e4133a5"
+    },
+    {
+      "path": "tools/pronunciation-135/mobile-ux.cjs",
+      "size_bytes": 7852,
+      "sha256": "0cb29ee8a875caa4271f6f2fc8a0703e1966d11f1e68ac7efc16111e55ddaeea"
+    },
+    {
+      "path": "tools/pronunciation-135/quiz-results.json",
+      "size_bytes": 1677,
+      "sha256": "438afd34097bf0926050964ef3dd629599fb710301e0f875ad9d5c5e4e1cceeb"
+    },
+    {
+      "path": "tools/pronunciation-135/registry.json",
+      "size_bytes": 46602,
+      "sha256": "93b28649f7a84b5f10ef51a10d04c1ba4e5ed9066ce235cbe57f3abaa01b828a"
+    },
+    {
+      "path": "tools/pronunciation-135/render.cjs",
+      "size_bytes": 2483,
+      "sha256": "70370a0788a4c1b43c6058d2ca61545fa2d9f3f6655f8b680e0e603877de003d"
+    },
+    {
+      "path": "tools/pronunciation-135/sources.json",
+      "size_bytes": 1109,
+      "sha256": "2b0b90688da4f887ed0f999b41662fbe4d279a3703bcd7de03603d01a0752338"
+    },
+    {
+      "path": "tools/pronunciation-135/target-results.json",
+      "size_bytes": 8451,
+      "sha256": "290babd2a6c31eefee256914046f9c01d7de61ac9441ea71751c51093d0631a6"
+    },
+    {
+      "path": "tools/pronunciation-136/README.md",
+      "size_bytes": 2555,
+      "sha256": "0eb170d5a12bf75145a51748a023c65335947db9f514a8a2265114fdcf4e8cc4"
+    },
+    {
+      "path": "tools/pronunciation-136/acceptance-results.json",
+      "size_bytes": 1765,
+      "sha256": "73858c4d33babac98ade5933400ea502214b030ee4d4fc381ac53f1ca1acdd56"
+    },
+    {
+      "path": "tools/pronunciation-136/acceptance.cjs",
+      "size_bytes": 10482,
+      "sha256": "01df748fe243446bbb6472148c79e2b89339279f60c6703cb4fad6e86156cd23"
+    },
+    {
+      "path": "tools/pronunciation-136/all-targets.cjs",
+      "size_bytes": 7785,
+      "sha256": "814b7b2443f538ed2f67fecd5762a5375714ab26e86644b389859982a9588827"
+    },
+    {
+      "path": "tools/pronunciation-136/control-results.json",
+      "size_bytes": 18361,
+      "sha256": "4670835bad4d01595bf5ffc71e45f83af1e480a73346889d95e6fe3da1e2aa6a"
+    },
+    {
+      "path": "tools/pronunciation-136/controls.cjs",
+      "size_bytes": 9473,
+      "sha256": "fe235cfc6f5925aeabc01319cc7a5e4174534a5439c39ca5bab73ffcf494937e"
+    },
+    {
+      "path": "tools/pronunciation-136/expert-signoff.csv",
+      "size_bytes": 6405,
+      "sha256": "18a31baaf46d652ec90462e502428553454cbb8d2425a7659aea5723fdd0d1d4"
+    },
+    {
+      "path": "tools/pronunciation-136/misc-results.json",
+      "size_bytes": 23634,
+      "sha256": "edaff935f4cf534a329293dd226a9bd602065ff95e827e92d256c6fdc2bbd874"
+    },
+    {
+      "path": "tools/pronunciation-136/misc.cjs",
+      "size_bytes": 6259,
+      "sha256": "774a9db4c546df88696e79f2659d7c4c95c9188240d4a9eec284970489382fa3"
+    },
+    {
+      "path": "tools/pronunciation-136/mobile-ux-results.json",
+      "size_bytes": 54565,
+      "sha256": "abaf61b42cee32a6629bc901fe748e296013c95f9b730bc1c088eeff6d019e3f"
+    },
+    {
+      "path": "tools/pronunciation-136/mobile-ux.cjs",
+      "size_bytes": 7852,
+      "sha256": "c030aaad1f82b235427f5d9be68cb2760b5cb8abf885fcc510ecd4dd779822b2"
+    },
+    {
+      "path": "tools/pronunciation-136/quiz-results.json",
+      "size_bytes": 1677,
+      "sha256": "44eb494e13fab7d8aead14a04941c5e283e74c3d2ceca3532bd8b0ba038da4f0"
+    },
+    {
+      "path": "tools/pronunciation-136/registry.json",
+      "size_bytes": 46667,
+      "sha256": "1d1d3a4b749772236bb3f25b1433c66403766727cab081789950f106480ec0f5"
+    },
+    {
+      "path": "tools/pronunciation-136/render.cjs",
+      "size_bytes": 2483,
+      "sha256": "aeaf128222339705b9389b5f9337cd7d942be408fecfe8ba148e3bfef60a5236"
+    },
+    {
+      "path": "tools/pronunciation-136/rounding-results.json",
+      "size_bytes": 8409,
+      "sha256": "85bfe930dd63cc4627deea6cc91bab465132ac9317fccfd67dfc552f1e90b224"
+    },
+    {
+      "path": "tools/pronunciation-136/rounding.cjs",
+      "size_bytes": 5967,
+      "sha256": "9016c7ed704c16e49ba287ffdaa15e38212e64cf2d534397f328ea5947c314ec"
+    },
+    {
+      "path": "tools/pronunciation-136/sources.json",
+      "size_bytes": 1109,
+      "sha256": "2b0b90688da4f887ed0f999b41662fbe4d279a3703bcd7de03603d01a0752338"
+    },
+    {
+      "path": "tools/pronunciation-136/target-results.json",
+      "size_bytes": 8451,
+      "sha256": "290babd2a6c31eefee256914046f9c01d7de61ac9441ea71751c51093d0631a6"
+    },
+    {
+      "path": "tools/pronunciation-137/README.md",
+      "size_bytes": 1304,
+      "sha256": "77e46f6f35234e2162aba4c9b107832b1545c58c7d644091a12c767e1f61e5ac"
+    },
+    {
+      "path": "tools/pronunciation-137/acceptance-results.json",
+      "size_bytes": 1764,
+      "sha256": "82672905c15ee4502add62306323f47e88538544285545fff6d2719ff472db20"
+    },
+    {
+      "path": "tools/pronunciation-137/acceptance.cjs",
+      "size_bytes": 10482,
+      "sha256": "69860b6b5930a0f3fa7ed96096a4d91a1c99ced3d149f1cbdb6d979a7a978b32"
+    },
+    {
+      "path": "tools/pronunciation-137/all-targets.cjs",
+      "size_bytes": 7785,
+      "sha256": "33a43157ac3172c33f8589c6daf7dcc0ca0e28eadf372dbb98708dccc154f1b6"
+    },
+    {
+      "path": "tools/pronunciation-137/mobile-ux.cjs",
+      "size_bytes": 7852,
+      "sha256": "2d103ee1d590d8e383b16f8fc3a378c6689bb1b6b8d59aefbd33d121d1dbcf51"
+    },
+    {
+      "path": "tools/pronunciation-137/ng-results.json",
+      "size_bytes": 78379,
+      "sha256": "33bbaced0b2b82f1e6fac0c6c44cd8fc2014655276904cc0aa7f0aa521fdd93d"
+    },
+    {
+      "path": "tools/pronunciation-137/ng.cjs",
+      "size_bytes": 6198,
+      "sha256": "896cd367b4711f54faafd783e559e4f04aec52e1922f24cc8cebbef498a6e160"
+    },
+    {
+      "path": "tools/pronunciation-137/quiz-results.json",
+      "size_bytes": 1676,
+      "sha256": "c4d1a6b1f3c31cf247d4fece69df2eb827a75f6e11c987bc86bdde76265e29f4"
+    },
+    {
+      "path": "tools/pronunciation-137/registry.json",
+      "size_bytes": 47209,
+      "sha256": "78e37e9fe2619316cc6158113ad90a457648a22ab3f2e2c2c596b3947b503591"
+    },
+    {
+      "path": "tools/pronunciation-137/render.cjs",
+      "size_bytes": 2483,
+      "sha256": "7a96b04e8053ed406cbb79d945bbe5a8a0d7c9a950563bff346d9b80ffb6fe96"
+    },
+    {
+      "path": "tools/pronunciation-137/sources.json",
+      "size_bytes": 1109,
+      "sha256": "2b0b90688da4f887ed0f999b41662fbe4d279a3703bcd7de03603d01a0752338"
+    },
+    {
+      "path": "tools/pronunciation-137/target-results.json",
+      "size_bytes": 8451,
+      "sha256": "290babd2a6c31eefee256914046f9c01d7de61ac9441ea71751c51093d0631a6"
+    },
+    {
+      "path": "tools/pronunciation-138/README.md",
+      "size_bytes": 415,
+      "sha256": "830a8b6995601230e20f21837dcaa20c8e0655982874c2842760ee0131c38189"
+    },
+    {
+      "path": "tools/pronunciation-138/acceptance-results.json",
+      "size_bytes": 1765,
+      "sha256": "6b09d549689f5f99273e48e734d07ef8e844c7ffe1636d5782be1fa3be12b3ee"
+    },
+    {
+      "path": "tools/pronunciation-138/acceptance.cjs",
+      "size_bytes": 10482,
+      "sha256": "69860b6b5930a0f3fa7ed96096a4d91a1c99ced3d149f1cbdb6d979a7a978b32"
+    },
+    {
+      "path": "tools/pronunciation-138/all-targets.cjs",
+      "size_bytes": 7785,
+      "sha256": "33a43157ac3172c33f8589c6daf7dcc0ca0e28eadf372dbb98708dccc154f1b6"
+    },
+    {
+      "path": "tools/pronunciation-138/mobile-ux-results.json",
+      "size_bytes": 54613,
+      "sha256": "1c6554e436fb95987b7cb460c45eb5a64cd7342ecc803fbfb2cbb8a5ad0e5080"
+    },
+    {
+      "path": "tools/pronunciation-138/mobile-ux.cjs",
+      "size_bytes": 7852,
+      "sha256": "2d103ee1d590d8e383b16f8fc3a378c6689bb1b6b8d59aefbd33d121d1dbcf51"
+    },
+    {
+      "path": "tools/pronunciation-138/registry.json",
+      "size_bytes": 47209,
+      "sha256": "78e37e9fe2619316cc6158113ad90a457648a22ab3f2e2c2c596b3947b503591"
+    },
+    {
+      "path": "tools/pronunciation-138/target-results.json",
+      "size_bytes": 8451,
+      "sha256": "290babd2a6c31eefee256914046f9c01d7de61ac9441ea71751c51093d0631a6"
+    },
+    {
+      "path": "tools/pronunciation-138/top-controls-results.json",
+      "size_bytes": 107351,
+      "sha256": "8f83582a66ace3e9b343808c0cf84469a2a64846260c31e9a0bff2d2ca8c0891"
+    },
+    {
+      "path": "tools/pronunciation-138/top-controls.cjs",
+      "size_bytes": 8285,
+      "sha256": "17593be286518c1cddd3fd05d0647f90f0f242218755fd163aa1a6060074824e"
+    },
+    {
+      "path": "tools/pronunciation-138/vowel-short-results.json",
+      "size_bytes": 19920,
+      "sha256": "787a92dabf08972c48af7439ee81204eb86e390274c44a4654948829787491c8"
+    },
+    {
+      "path": "tools/pronunciation-138/vowel-short.cjs",
+      "size_bytes": 7707,
+      "sha256": "03eaa262428d2c58c042a20c65e5e2f123bcc330ccd35c8730f2ede68ace3265"
+    },
+    {
+      "path": "tools/pronunciation-142/README.md",
+      "size_bytes": 780,
+      "sha256": "3dc89252b39c6205aabd34f684dba00119f08b4054869658651453d35a7bc93b"
+    },
+    {
+      "path": "tools/pronunciation-142/acceptance-results.json",
+      "size_bytes": 1764,
+      "sha256": "563726f6963d440af57737074777a664562bbd25bb6b8a72e3fee1ba8863b862"
+    },
+    {
+      "path": "tools/pronunciation-142/acceptance.cjs",
+      "size_bytes": 10482,
+      "sha256": "69860b6b5930a0f3fa7ed96096a4d91a1c99ced3d149f1cbdb6d979a7a978b32"
+    },
+    {
+      "path": "tools/pronunciation-142/all-targets.cjs",
+      "size_bytes": 7576,
+      "sha256": "c802cdbf423836b0a77d4ba91451bc802bc80b182085767f6350b66672a08dbc"
+    },
+    {
+      "path": "tools/pronunciation-142/audio-results.json",
+      "size_bytes": 9746,
+      "sha256": "33cfe9659d14154cf403bf93f85f98cd72fbe3bab6df3e375c42712f959ffa5e"
+    },
+    {
+      "path": "tools/pronunciation-142/geometry-results.json",
+      "size_bytes": 4596,
+      "sha256": "60b984b1f73a073f6879473fa5faf258d15d61dd24e4e1889f850bc97f9a345b"
+    },
+    {
+      "path": "tools/pronunciation-142/geometry.cjs",
+      "size_bytes": 4556,
+      "sha256": "f750d6184ca629eec81385edac5f9c85816b127ab47e72c32b463741ae91d5db"
+    },
+    {
+      "path": "tools/pronunciation-142/interaction.cjs",
+      "size_bytes": 7064,
+      "sha256": "0a16c5243b3af8c5b62d241274f12bf9c456cc6a71fd1fc3ddc512f9c69b0c57"
+    },
+    {
+      "path": "tools/pronunciation-142/layout-results.json",
+      "size_bytes": 195,
+      "sha256": "a0b47eab6d3c13ebd0779d243127d3949659dd45eeb1262d81fe0fb3a45f5cfd"
+    },
+    {
+      "path": "tools/pronunciation-142/motion-results.json",
+      "size_bytes": 4167,
+      "sha256": "95e3fa9744cb57c13ada7c89c829271e80db460db9b0504aba3b82685be7ce49"
+    },
+    {
+      "path": "tools/pronunciation-142/registry.json",
+      "size_bytes": 47209,
+      "sha256": "78e37e9fe2619316cc6158113ad90a457648a22ab3f2e2c2c596b3947b503591"
+    },
+    {
+      "path": "tools/pronunciation-142/target-results.json",
+      "size_bytes": 8451,
+      "sha256": "290babd2a6c31eefee256914046f9c01d7de61ac9441ea71751c51093d0631a6"
+    },
+    {
+      "path": "tools/pronunciation-148/entry-results.json",
+      "size_bytes": 32738,
+      "sha256": "3e577c296e76bcf3c315bfdeab7a4b99cf9a444e0327f5cfe12d84b849854075"
+    },
+    {
+      "path": "tools/pronunciation-148/fresh-results.json",
+      "size_bytes": 349,
+      "sha256": "d5f2c19a1dba03da3da86825c33b2033394e16567602adf0364442a8f7f7309d"
+    },
+    {
+      "path": "tools/pronunciation-148/layout-results.json",
+      "size_bytes": 236102,
+      "sha256": "4c3bf97a2fd34668eb2facb73f941c1a6ede8bcc83e83667fced002faf55321a"
+    },
+    {
+      "path": "tools/pronunciation-148/lifecycle-results.json",
+      "size_bytes": 991,
+      "sha256": "8d2edf3c88d381b2b3b4b8ad6b5bd50640dbbf203d5202fb7f09f8d630ae6ef6"
+    },
+    {
+      "path": "tools/pronunciation-148/nav-results.json",
+      "size_bytes": 1245,
+      "sha256": "6f54468cebdee266e23677eb5a41e60e5a8fa89f59ac0e99b3b0e6367f75137b"
+    },
+    {
+      "path": "tools/pronunciation-148/quiz-results.json",
+      "size_bytes": 1793,
+      "sha256": "b9ad4049b148e94981f00f2aabfc1110b67ca96fc8b3a324877900c330623534"
+    },
+    {
+      "path": "tools/pronunciation-148/regression.cjs",
+      "size_bytes": 20039,
+      "sha256": "327b411e7cc93ca7d38b36f3dbc23df5591304d9d17cbba295617cd2d2ae6d20"
+    },
+    {
+      "path": "tools/pronunciation-148/review-results.json",
+      "size_bytes": 2769,
+      "sha256": "f41c1465ad0a1711fe1c4359c67d00f7cc8e1d5d7c27a776357da47f3029303d"
+    },
+    {
+      "path": "tools/pronunciation-148/routing-results.json",
+      "size_bytes": 16593,
+      "sha256": "701bf73c459613602e7219a445397aa40e965dd8df8278703d7d6e3c29850076"
+    },
+    {
+      "path": "tools/pronunciation-148/targets-results.json",
+      "size_bytes": 10077,
+      "sha256": "9881c72e6888206572d703da7ac416df6e04a86be2339bf7e5c96d1006f861c1"
+    },
+    {
+      "path": "tools/pronunciation-149/direct-results.json",
+      "size_bytes": 5074,
+      "sha256": "1cc28a375aec9c28061cde4e35d66db111c96ec371a66ea0328fbc936bdf2b9d"
+    },
+    {
+      "path": "tools/pronunciation-149/entry-results.json",
+      "size_bytes": 32730,
+      "sha256": "520c237a47e5588cb139e1779be7c17b446c9c895e0a0df44946778cf25f4b37"
+    },
+    {
+      "path": "tools/pronunciation-149/fresh-results.json",
+      "size_bytes": 349,
+      "sha256": "d5f2c19a1dba03da3da86825c33b2033394e16567602adf0364442a8f7f7309d"
+    },
+    {
+      "path": "tools/pronunciation-149/inspect-results.json",
+      "size_bytes": 280,
+      "sha256": "1dcce8a8253d5da515c9a1cf4d692f47f9bf88994e2c1ed4ea043764e3e83323"
+    },
+    {
+      "path": "tools/pronunciation-149/layout-results.json",
+      "size_bytes": 236092,
+      "sha256": "2211768e5c41e47e034b01515c9f1de1cd6ea29efe0f4cd52771300ea8551493"
+    },
+    {
+      "path": "tools/pronunciation-149/lifecycle-results.json",
+      "size_bytes": 991,
+      "sha256": "8d2edf3c88d381b2b3b4b8ad6b5bd50640dbbf203d5202fb7f09f8d630ae6ef6"
+    },
+    {
+      "path": "tools/pronunciation-149/nav-results.json",
+      "size_bytes": 1245,
+      "sha256": "6f54468cebdee266e23677eb5a41e60e5a8fa89f59ac0e99b3b0e6367f75137b"
+    },
+    {
+      "path": "tools/pronunciation-149/observe-initial-100ms-sampling-results.json",
+      "size_bytes": 397,
+      "sha256": "bb716ae3d6dbfa823cb4d02d8bf6cd1169d55ecdc19e87c3c1c67b1908865dc3"
+    },
+    {
+      "path": "tools/pronunciation-149/observe-results.json",
+      "size_bytes": 281,
+      "sha256": "1b548a7219e37bb12fddd140bc7c6cfe75b70ce1e74553de9b99beb21e9babb1"
+    },
+    {
+      "path": "tools/pronunciation-149/quiz-results.json",
+      "size_bytes": 1793,
+      "sha256": "b9ad4049b148e94981f00f2aabfc1110b67ca96fc8b3a324877900c330623534"
+    },
+    {
+      "path": "tools/pronunciation-149/regression.cjs",
+      "size_bytes": 25028,
+      "sha256": "ac98a24b5d2fed3a0ca2bd68eb001680af60f7a036cbcd68c9678becb0b6af09"
+    },
+    {
+      "path": "tools/pronunciation-149/review-results.json",
+      "size_bytes": 2769,
+      "sha256": "f41c1465ad0a1711fe1c4359c67d00f7cc8e1d5d7c27a776357da47f3029303d"
+    },
+    {
+      "path": "tools/pronunciation-149/targets-results.json",
+      "size_bytes": 10077,
+      "sha256": "9881c72e6888206572d703da7ac416df6e04a86be2339bf7e5c96d1006f861c1"
+    },
+    {
+      "path": "tools/pronunciation-150/README.md",
+      "size_bytes": 812,
+      "sha256": "5e72184955c1bcf16819e739f624f18d02c7b793cca7cdfa18f71ae4d99aedec"
+    },
+    {
+      "path": "tools/pronunciation-150/direct-results.json",
+      "size_bytes": 9190,
+      "sha256": "a497a986fbd4e287d52db08703cc201ccda4b60fa0e15a9251014a7fcd32b3b5"
+    },
+    {
+      "path": "tools/pronunciation-150/entry-results.json",
+      "size_bytes": 32738,
+      "sha256": "20713a3ec83d08e8db978fd54cfe5348943228ce107483e365a40c5f6ae9d21f"
+    },
+    {
+      "path": "tools/pronunciation-150/focused-results.json",
+      "size_bytes": 3973,
+      "sha256": "335c8e89eb39f2dd480a7ca3c90777b6201d357111ef8c8c49e0b9b1b5c1aaf0"
+    },
+    {
+      "path": "tools/pronunciation-150/focused.cjs",
+      "size_bytes": 8426,
+      "sha256": "75fadea139a0a2fe06759e67d34ae9c9adf81c8059ffc895de511ff01a466c5a"
+    },
+    {
+      "path": "tools/pronunciation-150/layout-results.json",
+      "size_bytes": 235722,
+      "sha256": "a98064a50ec9b52e9be5b7f39cea1e64ba844e8c3c0a48f150038ec631f204c9"
+    },
+    {
+      "path": "tools/pronunciation-150/lifecycle-results.json",
+      "size_bytes": 991,
+      "sha256": "8d2edf3c88d381b2b3b4b8ad6b5bd50640dbbf203d5202fb7f09f8d630ae6ef6"
+    },
+    {
+      "path": "tools/pronunciation-150/quiz-results.json",
+      "size_bytes": 1793,
+      "sha256": "b9ad4049b148e94981f00f2aabfc1110b67ca96fc8b3a324877900c330623534"
+    },
+    {
+      "path": "tools/pronunciation-150/regression.cjs",
+      "size_bytes": 25030,
+      "sha256": "69b5514c45c794f99144d6bb93b48abab1748e2f518a129b49a1c9f6f1e8ce5e"
+    },
+    {
+      "path": "tools/pronunciation-150/targets-results.json",
+      "size_bytes": 10077,
+      "sha256": "9881c72e6888206572d703da7ac416df6e04a86be2339bf7e5c96d1006f861c1"
+    },
+    {
+      "path": "tools/pronunciation-151/README.md",
+      "size_bytes": 1646,
+      "sha256": "aa5b5142815fb38f673c31476cccab0eb9e517d2c448ddb07af38cfe083eb796"
+    },
+    {
+      "path": "tools/pronunciation-151/focused.cjs",
+      "size_bytes": 8418,
+      "sha256": "80630f714cef9cdbc452933264e835585b02b4213e69a41b7eee171cb7c7638f"
+    },
+    {
+      "path": "tools/pronunciation-151/geometry.cjs",
+      "size_bytes": 3763,
+      "sha256": "afcd035ce6672c168674a6e974fb5ee0f89240d4c99f08c83292ae911f62e63f"
+    },
+    {
+      "path": "tools/pronunciation-151/motion.cjs",
+      "size_bytes": 8224,
+      "sha256": "e06e873bb9eea3ac9c9bff6a0c3a244c180d6a25e113dde4d556a00c04920b6e"
+    },
+    {
+      "path": "tools/pronunciation-151/regression.cjs",
+      "size_bytes": 25030,
+      "sha256": "69b5514c45c794f99144d6bb93b48abab1748e2f518a129b49a1c9f6f1e8ce5e"
+    },
+    {
+      "path": "tools/pronunciation-151/results/direct-results.json",
+      "size_bytes": 9190,
+      "sha256": "a497a986fbd4e287d52db08703cc201ccda4b60fa0e15a9251014a7fcd32b3b5"
+    },
+    {
+      "path": "tools/pronunciation-151/results/entry-results.json",
+      "size_bytes": 32738,
+      "sha256": "20713a3ec83d08e8db978fd54cfe5348943228ce107483e365a40c5f6ae9d21f"
+    },
+    {
+      "path": "tools/pronunciation-151/results/focused-results.json",
+      "size_bytes": 3959,
+      "sha256": "f3d3a28915d0c7308e8f30285b72bf51ef00b992e56b3054e5f82541a7df7617"
+    },
+    {
+      "path": "tools/pronunciation-151/results/geometry-results.json",
+      "size_bytes": 5137,
+      "sha256": "75c6049838173e93750fcd4fbf0da3d976354a2871fa19589bde6f6f5ece8da8"
+    },
+    {
+      "path": "tools/pronunciation-151/results/layout-results.json",
+      "size_bytes": 235740,
+      "sha256": "73364bf5c710298ee391701e67260f9c502d1e762924f6e0eb17879db8e5c3e4"
+    },
+    {
+      "path": "tools/pronunciation-151/results/lifecycle-results.json",
+      "size_bytes": 991,
+      "sha256": "8d2edf3c88d381b2b3b4b8ad6b5bd50640dbbf203d5202fb7f09f8d630ae6ef6"
+    },
+    {
+      "path": "tools/pronunciation-151/results/motion-results.json",
+      "size_bytes": 94464,
+      "sha256": "710c747c8218b07f5972bb882bc03979f97877f7bd0aad69f9b4767ca3746f56"
+    },
+    {
+      "path": "tools/pronunciation-151/results/quiz-results.json",
+      "size_bytes": 1793,
+      "sha256": "b9ad4049b148e94981f00f2aabfc1110b67ca96fc8b3a324877900c330623534"
+    },
+    {
+      "path": "tools/pronunciation-151/results/targets-results.json",
+      "size_bytes": 10077,
+      "sha256": "9881c72e6888206572d703da7ac416df6e04a86be2339bf7e5c96d1006f861c1"
+    },
+    {
+      "path": "tools/pronunciation-152/focused.cjs",
+      "size_bytes": 8464,
+      "sha256": "ff874ba31292df72c4d041c76251ab4490281c7769a5ca3b863db5cea9f57a6a"
+    },
+    {
+      "path": "tools/pronunciation-152/gallery.cjs",
+      "size_bytes": 2444,
+      "sha256": "a1f28008d56b895fcf7a1b6e9eea08a5871d217398702de0369ca1980c199449"
+    },
+    {
+      "path": "tools/pronunciation-152/geometry.cjs",
+      "size_bytes": 4433,
+      "sha256": "b85e15019e6bc4df4fc9ae1eda5cb9d46531d1a8633d8bb926517f8be464ba05"
+    },
+    {
+      "path": "tools/pronunciation-152/motion.cjs",
+      "size_bytes": 8703,
+      "sha256": "a6c8b3013483eac9a44efe339f79043a66548be44258e9b66f012fd6bc168c74"
+    },
+    {
+      "path": "tools/pronunciation-152/regression.cjs",
+      "size_bytes": 27136,
+      "sha256": "07e2002f6dc6ff47e6049b1c74a9bc84bed05265838c2b3e4a0a5bb19fc215b3"
+    },
+    {
+      "path": "tools/pronunciation-153/entry-results.json",
+      "size_bytes": 32867,
+      "sha256": "873d7b2870f18d9ddf0f509b1e4c733f685d02aaa001c31460ac0e067ac90ab4"
+    },
+    {
+      "path": "tools/pronunciation-153/fresh-results.json",
+      "size_bytes": 349,
+      "sha256": "0184f57306a5857b305f244d0708fd8a2f4948f31749ac3f0c588edd5bafaa27"
+    },
+    {
+      "path": "tools/pronunciation-153/geometry-results.json",
+      "size_bytes": 5137,
+      "sha256": "e678d21384be746c22e3795f39b9b9b4ebc6391f020fae41a6e46425948275dc"
+    },
+    {
+      "path": "tools/pronunciation-153/interface.cjs",
+      "size_bytes": 7635,
+      "sha256": "d2955089a58c33a64d0158961fcf28f1dd9fa315aca80a21740fa46a2846afc9"
+    },
+    {
+      "path": "tools/pronunciation-153/slow-results.json",
+      "size_bytes": 1101,
+      "sha256": "ac4b7e337c9df0c14510a43da86afa67c84780c64aeeb0feb240e9d338f3daa1"
+    },
+    {
+      "path": "tools/pronunciation-153/vowels-results.json",
+      "size_bytes": 16512,
+      "sha256": "20d2c03751ed70d3c9774706c5b5d9ad574989cc5e0c4e38b267d5992e1eecf9"
+    },
+    {
+      "path": "tools/pronunciation-154/entry-results.json",
+      "size_bytes": 32774,
+      "sha256": "677fac4994071af5cdaf78a345d1fb203a9a6d0f144f677292c0c755a95db988"
+    },
+    {
+      "path": "tools/pronunciation-154/er-results.json",
+      "size_bytes": 660,
+      "sha256": "2c4316f2c659d76dc6ed4c157b9e2f21ba5d69bd2f9ee3f905925b973b542539"
+    },
+    {
+      "path": "tools/pronunciation-154/er.cjs",
+      "size_bytes": 5386,
+      "sha256": "5aafcc5ca0f63d65ffb59373bb4670b27a25914a1786a7c6eb9b29c927ebbcf9"
+    },
+    {
+      "path": "tools/pronunciation-154/geometry-results.json",
+      "size_bytes": 5154,
+      "sha256": "bb439ab3235b8815d3896a276670463b2862d54d437a87ce75eeec92d921500c"
+    },
+    {
+      "path": "tools/pronunciation-154/mnemonics-results.json",
+      "size_bytes": 36104,
+      "sha256": "3413bbf5ee74c50f7bfb472754bbfea50e009635e2404a228eaedfd868bb791b"
+    },
+    {
+      "path": "tools/pronunciation-154/mnemonics.cjs",
+      "size_bytes": 6176,
+      "sha256": "c134d9f6602eba8767e3fc62ea0c2678a84331d2d9ef80b2ae699cc06d0e27fe"
+    },
+    {
+      "path": "tools/pronunciation-154/targets-results.json",
+      "size_bytes": 10077,
+      "sha256": "0532952c9c0232c7a498d0e13d77e3f9a6e1b64d24afacc9596adaafd8c9d9d2"
+    },
+    {
+      "path": "tools/pronunciation-155/browser-results.json",
+      "size_bytes": 171,
+      "sha256": "f3cb28b1360882a446cab430393f58b9badd82850bb283b8fca7970d18046d60"
+    },
+    {
+      "path": "tools/pronunciation-155/geometry-results.json",
+      "size_bytes": 5151,
+      "sha256": "fb51653d168c32c448c180ef9a52952877d0d270efd48af7b33f2612346f7f3f"
+    },
+    {
+      "path": "tools/pronunciation-155/posterior.cjs",
+      "size_bytes": 6578,
+      "sha256": "7ac3fb218596502e393098a8da407d3707d77e3cb13b41ac36678ded3f88b9b5"
+    },
+    {
+      "path": "tools/pronunciation-155/scope-results.json",
+      "size_bytes": 2864,
+      "sha256": "8b4169e27def1ebe90fb55a3b62d0bb906d76e28bd49b65f65889ed0681aa6dc"
+    },
+    {
+      "path": "tools/pronunciation-156/bpmf-page-results.json",
+      "size_bytes": 780,
+      "sha256": "fb34786885fbb89df00179d732a7a868d631884ed41382f793f05c50e3e0ae30"
+    },
+    {
+      "path": "tools/pronunciation-156/entry-results.json",
+      "size_bytes": 32775,
+      "sha256": "b36682436c43b2cc575a34766429fafe61040f9dccc9b5f1cad3d1f1fb02a3d8"
+    },
+    {
+      "path": "tools/pronunciation-157/layout-results.json",
+      "size_bytes": 116348,
+      "sha256": "9b7216d6026b197bad272f7acc5936deb916df559f0934b1402a9be191cbe697"
+    },
+    {
+      "path": "tools/pronunciation-158/interface-results.json",
+      "size_bytes": 97333,
+      "sha256": "9abe20258b2c74c069d7fd8c072e83ce9a127f3766a7fccc9af6f94161ab1060"
+    },
+    {
+      "path": "tools/pronunciation-159/chromium.json",
+      "size_bytes": 95984,
+      "sha256": "c24ee9cef8efbc8e52254bf05363f451e909d08c4bfab6ef5b3a7f75296c1c5b"
+    },
+    {
+      "path": "tools/pronunciation-159/view-tabs.json",
+      "size_bytes": 11003,
+      "sha256": "727e608c4e4c0c705dc6cac640e49f034d42af6323d38228a0fd96f4bbb6607b"
+    },
+    {
+      "path": "tools/pronunciation-159/webkit.json",
+      "size_bytes": 98112,
+      "sha256": "753a74a0bee00837ea166fd4ab2c1c6bbc1a096ae12777fd56fd54d3418f7608"
+    },
+    {
+      "path": "tools/pronunciation-159/wide.json",
+      "size_bytes": 3944,
+      "sha256": "83dd3de68717f781b18150cd11330c9d6f0d0b5693c11010f2b906248c137eb5"
+    },
+    {
+      "path": "tools/pronunciation-160/geometry-results.json",
+      "size_bytes": 5150,
+      "sha256": "a25e5d4415919a3c03640430e08d5dab25edecc1c81943acd3bd574bf6c78c4f"
+    },
+    {
+      "path": "tools/pronunciation-160/motion-comparison.json",
+      "size_bytes": 8015,
+      "sha256": "060a9dc935a98bd507ebce063fbf46beb4235d520e0db31a7e7e99f9d9127bea"
+    },
+    {
+      "path": "tools/validate_pinyin_audio.py",
+      "size_bytes": 979,
+      "sha256": "b1fdf01c23dc6821d603f5a196feb7ea0114a6536ad5304b6606aea57c3d9506"
+    }
+  ]
+}
