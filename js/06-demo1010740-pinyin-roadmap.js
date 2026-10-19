@@ -398,13 +398,26 @@
         next.dataset.restart='1';
       });draw();
     }
-    var three=make('kidsThreeSpellingLesson','三拼（拼読）','声母＋介音＋韻母を組み合わせて、ひとつの音節にしよう。');
-    question(three,[
-      {q:'g ＋ u ＋ a をつなぐと？',a:['gua','gao','ga'],ok:0,note:'g-u-a → gua（瓜）'},
-      {q:'h ＋ u ＋ o をつなぐと？',a:['hou','huo','hao'],ok:1,note:'h-u-o → huo（火）'},
-      {q:'j ＋ i ＋ a をつなぐと？',a:['jia','jai','ja'],ok:0,note:'j-i-a → jia（家）'},
-      {q:'q ＋ i ＋ ao をつなぐと？',a:['qao','qiao','qiaoü'],ok:1,note:'q-i-ao → qiao（桥）'}
-    ],'koepandaThreeP17Complete');
+    var three=make('kidsThreeSpellingLesson','三拼 · 音をつなごう','声母・介音・韻母を順につなげて、一つの音節を作ろう。');
+    three.classList.add('kp202-three-spelling');
+    if(!three.querySelector('.kp202-three-game')){
+      var questions=[
+        {parts:['g','u','a'],syllable:'guā',word:'瓜',options:['guā','gāo','guǒ'],ok:0},
+        {parts:['h','u','o'],syllable:'huǒ',word:'火',options:['hóu','huǒ','hǎo'],ok:1},
+        {parts:['j','i','a'],syllable:'jiā',word:'家',options:['jiā','jiāo','juā'],ok:0},
+        {parts:['q','i','ao'],syllable:'qiáo',word:'桥',options:['qiáo','qiāo','qiǎo'],ok:0}
+      ];
+      var game=document.createElement('div');game.className='kp202-three-game';
+      game.innerHTML='<div class="kp202-step-label">小音陪你一步一步读</div><div class="kp202-three-count" aria-live="polite"></div><div class="kp202-question"></div><div class="kp202-blend-board" aria-label="拼音组成"><span></span><i>+</i><span></span><i>+</i><span></span><i>→</i><strong></strong></div><div class="kp202-three-tip" aria-live="polite">先听一听，再选出连起来的音节。</div><div class="kp202-three-answers"></div><button type="button" class="kp202-sound">▶ お手本を聞く</button><button type="button" class="kp202-next" hidden>次へ →</button>';
+      three.appendChild(game);
+      var count=game.querySelector('.kp202-three-count'),prompt=game.querySelector('.kp202-question'),board=game.querySelector('.kp202-blend-board'),tip=game.querySelector('.kp202-three-tip'),answers=game.querySelector('.kp202-three-answers'),sound=game.querySelector('.kp202-sound'),next=game.querySelector('.kp202-next'),idx=0,score=0,answered=false,finished=false,steps=[];
+      function say(text){if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance)return;try{window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.82;window.speechSynthesis.speak(u)}catch(e){}}
+      function animate(q){steps.forEach(function(t){window.clearTimeout(t)});board.classList.remove('is-part-1','is-part-2','is-part-3','is-whole');steps=[];steps.push(window.setTimeout(function(){board.classList.add('is-part-1')},120));steps.push(window.setTimeout(function(){board.classList.remove('is-part-1');board.classList.add('is-part-2')},520));steps.push(window.setTimeout(function(){board.classList.remove('is-part-2');board.classList.add('is-part-3')},920));steps.push(window.setTimeout(function(){board.classList.remove('is-part-3');board.classList.add('is-whole')},1320));}
+      function draw(){var q=questions[idx];answered=false;finished=false;count.textContent=(idx+1)+' / '+questions.length;prompt.textContent='この三つの音をつなぐと？';var spans=board.querySelectorAll('span');q.parts.forEach(function(x,i){spans[i].textContent=x});board.querySelector('strong').textContent=q.syllable;board.className='kp202-blend-board';tip.textContent='声母 → 介音 → 韻母。音をつないでみよう。';next.hidden=true;answers.replaceChildren();q.options.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.textContent=v;b.addEventListener('click',function(){if(answered)return;answered=true;if(i===q.ok){score++;tip.textContent='正解！ '+q.syllable+' は「'+q.word+'」の音だよ。';say(q.word)}else{tip.textContent='正解は '+q.syllable+'。いっしょにもう一度聞こう。';say(q.word)}animate(q);Array.prototype.forEach.call(answers.children,function(x,j){x.disabled=true;if(j===q.ok)x.classList.add('is-correct')});next.hidden=false;next.textContent=idx===questions.length-1?'結果を見る':'次へ →'});answers.appendChild(b)});}
+      sound.addEventListener('click',function(){var q=questions[idx];say(q.word);animate(q);tip.textContent='聞きながら、三つの音がつながる動きを見よう。'});
+      next.addEventListener('click',function(){if(finished){idx=0;score=0;draw();return}if(idx<questions.length-1){idx++;draw();return}finished=true;count.textContent='練習完了 · '+score+' / '+questions.length;prompt.textContent=score===questions.length?'ぜんぶできたね！':'もう一度ゆっくり練習しよう。';board.classList.add('is-whole');answers.replaceChildren();tip.textContent=score===questions.length?'小音といっしょに、よくできました。':'音をつなぐ順番を思い出して再挑戦しよう。';next.textContent='もう一度練習';if(score===questions.length){try{localStorage.setItem('koepandaThreeP17Complete','1')}catch(e){}window.dispatchEvent(new Event('koepandaCompoundProgressChanged'))}});
+      draw();
+    }
     var neutral=make('kidsNeutralToneLesson','軽声のひみつ','軽声は「第五声」ではなく、前の音節に続く短く軽い音。音の高さは前の音節により変わるよ。');
     question(neutral,[
       {q:'「妈妈（māma）」の二つ目の ma は？',a:['第一声','軽声','第四声'],ok:1,note:'短く、軽く発音するよ。'},
