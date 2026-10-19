@@ -1,0 +1,5 @@
+/* 210 — slightly larger P16 board text; retain the illustration scale and layout. */
+#kidsTwoSpellingP16.kp205 .kp192-blend strong{font-size:clamp(1.22rem,5.95vw,1.98rem)!important}
+#kidsTwoSpellingP16.kp205 .kp192-blend strong:last-child{font-size:clamp(1.48rem,7.15vw,2.42rem)!important}
+#kidsTwoSpellingP16.kp205 .kp205-picker-chevron{display:inline-block;transition:transform .18s ease}
+#kidsTwoSpellingP16.kp205 .kp205-picker[open] .kp205-picker-chevron{transform:rotate(180deg)}
