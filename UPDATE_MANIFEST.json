@@ -1,12 +1,14 @@
 {
-  "version": "10.108.202",
-  "base_package": "Koepanda_201_FULL_P15_P16_OrderAndDeliveryFix",
+  "version": "10.108.203",
+  "base_package": "Koepanda_202_FULL_ForestLessonDesign",
   "files": [
     "index.html",
     "js/06-demo1010740-pinyin-roadmap.js",
     "js/33-two-spelling-p16-192.js",
-    "css/100-forest-learning-202.css",
-    "KOEPANDA_202_RELEASE_NOTES.md"
+    "css/101-pinyin-lesson-illustrations-203.css",
+    "assets/pinyin/lesson-illustrations/p16-two-part-panda.webp",
+    "assets/pinyin/lesson-illustrations/p17-three-part-panda.webp",
+    "KOEPANDA_203_RELEASE_NOTES.md"
   ],
-  "install": "Replace/add the listed files at the site root. Keep the existing assets and all other site files."
+  "install": "Add/replace the listed files at the site root; keep all existing assets and other files."
 }
