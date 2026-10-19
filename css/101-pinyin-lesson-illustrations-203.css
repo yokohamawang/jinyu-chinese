@@ -1,0 +1,6 @@
+/* 203 — lesson-specific transparent art; page surfaces stay quiet and low contrast. */
+#kidsTwoSpellingP16 .kp203-two-art{min-height:0!important;padding:4px 8px 9px!important;background:transparent!important}
+#kidsTwoSpellingP16 .kp203-lesson-art{display:block!important;width:min(100%,440px)!important;height:auto!important;max-height:194px!important;object-fit:contain!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+#kidsCourse .kp202-three-game{padding-top:12px!important}
+#kidsCourse .kp203-three-art{display:block;width:min(100%,420px);height:auto;max-height:174px;object-fit:contain;margin:0 auto 9px}
+@media(max-width:380px){#kidsTwoSpellingP16 .kp203-lesson-art{max-height:164px!important}#kidsCourse .kp203-three-art{max-height:148px}}
