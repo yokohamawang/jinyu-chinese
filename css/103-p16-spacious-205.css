@@ -1,0 +1,82 @@
+/* 205 — spacious, calm lesson cards; clear the fixed lesson toolbar. */
+#kidsCourse>.kids-map:not([hidden]){display:flex!important;align-items:center!important;max-width:520px;margin:2px auto 6px;padding:10px 8px 7px!important}
+#kidsCourse>.kids-map .kids-map-node{width:74px!important;font-size:10px!important;line-height:1.2!important;color:#71877d!important}
+#kidsCourse>.kids-map .kids-map-node b{width:38px!important;height:38px!important;border-width:3px!important;font-size:16px!important}
+#kidsCourse>.kids-map .kids-map-line{margin-top:17px!important}
+body.app-kids-mode:has(.is-roadmap-lesson-active) .kp148-lesson-header{padding:6px max(12px,calc((100vw - 650px)/2))!important}
+body.app-kids-mode:has(.is-roadmap-lesson-active) .kp148-lesson-header #pinyinLessonBack{width:auto!important;max-width:68vw!important;min-height:42px!important;margin:0!important;padding:8px 12px!important;font-size:13px!important;line-height:1.2!important;flex:0 0 auto!important}
+body.app-kids-mode:has(.is-roadmap-lesson-active) .kp148-lesson-header .kp148-lesson-name{font-size:15px!important}
+
+#kidsCourse>#kidsTwoSpellingP16.kp205{max-width:650px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 68px) 14px 28px!important;border-radius:0;background:transparent;color:#315b52}
+#kidsTwoSpellingP16.kp205[hidden],#kidsTwoSpellingP16.kp205 [hidden]{display:none!important}
+#kidsTwoSpellingP16.kp205 *{box-sizing:border-box}
+#kidsTwoSpellingP16.kp205 button{font:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+#kidsTwoSpellingP16.kp205 .kp192-title{margin:0 0 12px;padding:15px 16px 14px;border:1px solid #dbe8df;border-radius:23px;background:linear-gradient(145deg,#f4f8f0,#fffefa);text-align:left;box-shadow:0 4px 14px rgba(58,97,76,.06)}
+#kidsTwoSpellingP16.kp205 .kp192-title>span{display:inline-block;padding:5px 10px;border-radius:999px;background:#e7f1e7;color:#66876e;font-size:.72rem;font-weight:850;letter-spacing:.02em}
+#kidsTwoSpellingP16.kp205 .kp192-title h2{margin:8px 0 5px;color:#315b52;font-size:clamp(1.42rem,6vw,1.8rem);line-height:1.18;letter-spacing:.01em}
+#kidsTwoSpellingP16.kp205 .kp192-title p{margin:0;color:#74877e;font-size:.9rem;font-weight:650;line-height:1.5}
+
+#kidsTwoSpellingP16.kp205 .kp192-progress{display:flex;align-items:center;gap:12px;margin:0 3px 11px;color:#678277;font-size:.78rem;font-weight:850}
+#kidsTwoSpellingP16.kp205 .kp205-progress-track{height:7px;flex:1;overflow:hidden;border-radius:99px;background:#e2ebe2}
+#kidsTwoSpellingP16.kp205 .kp205-progress-track i{display:block;width:7.2%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#79bc9d,#a8d5b0);transition:width .35s ease}
+
+#kidsTwoSpellingP16.kp205 .kp205-picker{margin:0 0 13px;overflow:hidden;border:1px solid #dce8dd;border-radius:18px;background:#fffefa;box-shadow:0 3px 10px rgba(58,97,76,.045)}
+#kidsTwoSpellingP16.kp205 .kp205-picker summary{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;min-height:52px;padding:8px 13px;color:#55766b;cursor:pointer;list-style:none}
+#kidsTwoSpellingP16.kp205 .kp205-picker summary::-webkit-details-marker{display:none}
+#kidsTwoSpellingP16.kp205 .kp205-picker summary>span{font-size:.86rem;font-weight:800}
+#kidsTwoSpellingP16.kp205 .kp205-picker summary>strong{min-width:52px;padding:5px 9px;border:1px solid #e8d7aa;border-radius:12px;background:#fff8e6;color:#846a33;text-align:center;font-size:1rem}
+#kidsTwoSpellingP16.kp205 .kp205-picker summary>small{color:#8a9b91;font-size:.68rem;font-weight:750;white-space:nowrap}
+#kidsTwoSpellingP16.kp205 .kp192-picker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:2px 11px 12px}
+#kidsTwoSpellingP16.kp205 .kp192-picker button{min-height:46px;padding:5px;border:1px solid #dce8dc;border-radius:14px;background:#fff;color:#4f7568;font-size:1rem;font-weight:850;box-shadow:0 2px 0 #e5ece3}
+#kidsTwoSpellingP16.kp205 .kp192-picker button.is-selected{border:2px solid #d8bc69;background:#fff6d8;color:#755f2b;box-shadow:0 2px 0 #eadfbf}
+
+#kidsTwoSpellingP16.kp205 .kp192-lesson{overflow:hidden;border:1px solid #dce8df;border-radius:25px;background:#fffefa;box-shadow:0 6px 18px rgba(49,87,70,.07)}
+#kidsTwoSpellingP16.kp205 .kp192-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 10px;padding:14px 16px 12px;background:#f8faf5;text-align:left}
+#kidsTwoSpellingP16.kp205 .kp192-reading{display:flex;align-items:center;gap:11px;min-width:0}
+#kidsTwoSpellingP16.kp205 .kp192-reading>span{color:#315b52;font-size:clamp(2.7rem,12vw,4rem);font-weight:900;line-height:1;letter-spacing:-.035em}
+#kidsTwoSpellingP16.kp205 .kp192-reading button{display:grid;place-items:center;width:46px;height:46px;border:1px solid #e8d7a6;border-radius:50%;background:#fff4d1;color:#8b713a;font-size:1.02rem;box-shadow:0 2px 0 #eee2c3}
+#kidsTwoSpellingP16.kp205 .kp192-reading button:active{transform:translateY(1px);box-shadow:none}
+#kidsTwoSpellingP16.kp205 .kp192-top p{grid-column:1;margin:3px 0 0;color:#527767;font-size:.87rem;font-weight:800;line-height:1.35}
+#kidsTwoSpellingP16.kp205 .kp192-top small{grid-column:1;color:#89988f;font-size:.7rem;font-weight:700;line-height:1.3}
+
+#kidsTwoSpellingP16.kp205 .kp205-hero{position:relative;width:100%;overflow:hidden;background:#f7f8f2;line-height:0}
+#kidsTwoSpellingP16.kp205 .kp205-lesson-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#f7f8f2}
+#kidsTwoSpellingP16.kp205 .kp192-blend{position:absolute;inset:0;display:block!important;padding:0!important;gap:0!important;pointer-events:none}
+#kidsTwoSpellingP16.kp205 .kp192-blend strong{position:absolute;display:grid;place-items:center;min-width:0;min-height:0;padding:0;border:0;border-radius:8px;background:transparent;color:#365f54;font-size:clamp(1.12rem,5.4vw,1.8rem);font-weight:900;line-height:1;text-shadow:0 1px 0 rgba(255,255,255,.8);transition:transform .32s ease,color .24s ease,text-shadow .24s ease}
+#kidsTwoSpellingP16.kp205 .kp192-blend strong:first-child{left:56.5%;top:27%;transform:translate(-50%,-50%)}
+#kidsTwoSpellingP16.kp205 .kp192-blend strong:nth-child(2){left:78%;top:27%;transform:translate(-50%,-50%)}
+#kidsTwoSpellingP16.kp205 .kp192-blend strong:last-child{left:67.5%;top:61.7%;transform:translate(-50%,-50%);font-size:clamp(1.35rem,6.5vw,2.2rem);color:#315f52}
+#kidsTwoSpellingP16.kp205 .kp192-blend.is-onset strong:first-child,#kidsTwoSpellingP16.kp205 .kp192-blend.is-vowel strong:nth-child(2){color:#347e68;text-shadow:0 0 12px rgba(88,179,143,.5);transform:translate(-50%,-54%) scale(1.13)}
+#kidsTwoSpellingP16.kp205 .kp192-blend.is-complete strong:last-child{color:#89651f;text-shadow:0 0 12px rgba(235,194,89,.55);transform:translate(-50%,-50%) scale(1.1)}
+#kidsTwoSpellingP16.kp205 .kp192-status{min-height:37px;margin:0;padding:9px 13px 2px;color:#71877d;text-align:center;font-size:.78rem;font-weight:700;line-height:1.45}
+
+#kidsTwoSpellingP16.kp205 .kp205-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:9px 13px 4px}
+#kidsTwoSpellingP16.kp205 .kp205-controls button{min-height:47px;padding:8px 10px;border:1px solid #dce8de;border-radius:15px;background:#f4f7f0;color:#557469;font-size:.84rem;font-weight:850;box-shadow:0 2px 0 #e6ece2}
+#kidsTwoSpellingP16.kp205 .kp205-controls button:last-child{border-color:#cbe1d3;background:#eaf5ed;color:#397761}
+#kidsTwoSpellingP16.kp205 .kp205-controls button:disabled{opacity:.46;box-shadow:none}
+#kidsTwoSpellingP16.kp205 .kp192-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:10px 13px 0}
+#kidsTwoSpellingP16.kp205 .kp192-actions button{min-height:47px;padding:8px 6px;border:1px solid #eadbdd;border-radius:15px;background:#fbf0f0;color:#93656b;font-size:.8rem;font-weight:850}
+#kidsTwoSpellingP16.kp205 .kp192-actions button+button{border-color:#d9e7dc;background:#f0f6ef;color:#5c7e68}
+#kidsTwoSpellingP16.kp205 .kp192-actions button:disabled{opacity:.46}
+#kidsTwoSpellingP16.kp205 .kp192-record-state{min-height:24px;padding-top:4px;color:#72877d;text-align:center;font-size:.74rem}
+#kidsTwoSpellingP16.kp205 .kp192-quiz-entrance{padding:5px 13px 15px}
+#kidsTwoSpellingP16.kp205 .kp192-quiz-entrance button{width:100%;min-height:50px;border:0;border-radius:16px;background:#4b8e75;color:#fff;font-size:.9rem;font-weight:900;box-shadow:0 3px 0 #d1e6d8}
+#kidsTwoSpellingP16.kp205 .kp192-quiz{margin:0 13px 15px;padding:14px;border-radius:18px;background:#f5f8f2}
+#kidsTwoSpellingP16.kp205 .kp192-quiz>b{display:block;margin-bottom:10px;color:#3c6558;text-align:center}
+#kidsTwoSpellingP16.kp205 .kp192-quiz>button{display:block;min-height:42px;margin:8px auto;border:1px solid #d6e3d8;border-radius:13px;padding:8px 14px;background:#fff;color:#527568}
+#kidsTwoSpellingP16.kp205 .kp192-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsTwoSpellingP16.kp205 .kp192-choices button{min-height:48px;border:1px solid #dce7db;border-radius:14px;background:#fff;color:#416e60;font-size:1.08rem;font-weight:850}
+#kidsTwoSpellingP16.kp205 .kp192-choices button.is-correct{border-color:#84b99a;background:#e4f4e7}
+#kidsTwoSpellingP16.kp205 .kp192-quiz p{min-height:1.3em;color:#4d8067;text-align:center;font-weight:800}
+
+@media(max-width:380px){
+ #kidsCourse>#kidsTwoSpellingP16.kp205{padding-right:11px!important;padding-left:11px!important}
+ #kidsTwoSpellingP16.kp205 .kp192-title{padding:13px 13px 12px}
+ #kidsTwoSpellingP16.kp205 .kp192-title p{font-size:.84rem}
+ #kidsTwoSpellingP16.kp205 .kp205-picker summary{gap:6px;padding-inline:10px}
+ #kidsTwoSpellingP16.kp205 .kp205-picker summary>small{font-size:.62rem}
+ #kidsTwoSpellingP16.kp205 .kp192-picker{gap:6px;padding-inline:8px}
+ #kidsTwoSpellingP16.kp205 .kp192-picker button{min-height:44px;font-size:.94rem}
+}
+@media(prefers-reduced-motion:reduce){#kidsTwoSpellingP16.kp205 .kp192-blend strong,#kidsTwoSpellingP16.kp205 .kp205-progress-track i{transition:none!important}}
