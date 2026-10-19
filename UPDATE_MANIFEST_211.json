@@ -1,0 +1,106 @@
+{
+  "version": "211",
+  "base_version": "210",
+  "runtime_files": [
+    {
+      "path": "assets/audio/p16-sequence/bo.wav",
+      "size_bytes": 133584,
+      "sha256": "6e13e20718f23203111dd7edf28903bb7b3606f2a2ef4c00deafe34f56d8f533"
+    },
+    {
+      "path": "assets/audio/p16-sequence/de.wav",
+      "size_bytes": 147164,
+      "sha256": "a625f0b1cdaef56103272c455f1b293edf13251694a675605ac75c0c2211b83d"
+    },
+    {
+      "path": "assets/audio/p16-sequence/fo.wav",
+      "size_bytes": 137420,
+      "sha256": "cf31584bc37bb7c30f25dece30016d34f0f5b65bf8ff2ab96e16a7b5dbb70026"
+    },
+    {
+      "path": "assets/audio/p16-sequence/ge.wav",
+      "size_bytes": 152444,
+      "sha256": "eb428579171e643e37beec04a523e851756bfefba7decf870eac085b7802f829"
+    },
+    {
+      "path": "assets/audio/p16-sequence/he.wav",
+      "size_bytes": 169724,
+      "sha256": "88b755f03c1e954a12c3c982dc03e621114b41c06b65185fae9d6682c40e7773"
+    },
+    {
+      "path": "assets/audio/p16-sequence/ji.wav",
+      "size_bytes": 184892,
+      "sha256": "f7f378f4c3a4338692ac6f5ea4049620e7622c17b8f9f51a22efd97f87704b69"
+    },
+    {
+      "path": "assets/audio/p16-sequence/ke.wav",
+      "size_bytes": 162044,
+      "sha256": "e3108eb6ff9f08db2613f6f792af4b0887330185135e81f776d9c693853caa1f"
+    },
+    {
+      "path": "assets/audio/p16-sequence/le.wav",
+      "size_bytes": 123644,
+      "sha256": "05145a76a4e7995e3ad6ce2047746a1590c846e2a2e81ad3b4aa17797c2e8dc7"
+    },
+    {
+      "path": "assets/audio/p16-sequence/mo.wav",
+      "size_bytes": 93164,
+      "sha256": "3eb1f6188756fc3e3d9332d8333c186cffb1a648c96fd99b43b66938aa33ad32"
+    },
+    {
+      "path": "assets/audio/p16-sequence/ne.wav",
+      "size_bytes": 140924,
+      "sha256": "5ab1cfb9968c3986e20966209a3f905a39e20b52e3436844d6a51499b8ecc76a"
+    },
+    {
+      "path": "assets/audio/p16-sequence/po.wav",
+      "size_bytes": 126188,
+      "sha256": "d9446b18d792bcc4c450e6fdc5e2d7e8b27156016d0e86150c5dd9000e5d3113"
+    },
+    {
+      "path": "assets/audio/p16-sequence/qi.wav",
+      "size_bytes": 194108,
+      "sha256": "ba06a132b5c3caff2cc7643edb0389e3b1e16b06682c0de571ec91d25f4741e0"
+    },
+    {
+      "path": "assets/audio/p16-sequence/te.wav",
+      "size_bytes": 168284,
+      "sha256": "26c9e1dd253824cb90f115d53846dc7756685ba2e2e383c8145c05a4b9ef631e"
+    },
+    {
+      "path": "assets/audio/p16-sequence/xi.wav",
+      "size_bytes": 183260,
+      "sha256": "f379d819e59af6c833e29f1647fb749f9bb1001ff92be9969b149f44731e0edf"
+    },
+    {
+      "path": "assets/pinyin/p16-mnemonic-sprite-211.png",
+      "size_bytes": 1396445,
+      "sha256": "f2551fc25eb33968400f272c3da3e18fe8faaf890e917e81e4623140f9008221"
+    },
+    {
+      "path": "css/107-p16-cue-art-and-audio-211.css",
+      "size_bytes": 832,
+      "sha256": "613f6e4b397056e31568d748c51ea27d31bdbfd2ec7c8846cf411af3387d07c4"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 682236,
+      "sha256": "58a519c18eb32dc7efbb73041ebba55805e63c32d58745ee004588c98a4c1fe8"
+    },
+    {
+      "path": "js/33-two-spelling-p16-192.js",
+      "size_bytes": 11241,
+      "sha256": "b7c5f990c5aafd77a6937232e9920aa75f4e6712fbea4779b9357ba3911e23d2"
+    }
+  ],
+  "checks": {
+    "audio_sequences": "14 PCM WAV sequences verified byte-for-byte: teaching onset sample + 220ms silence + standalone rime + 220ms silence + full syllable",
+    "cue_art": "RGBA sprite sheet has 14 ordered illustrations; CSS maps each syllable to its corresponding sprite cell",
+    "selector": "Node DOM interaction harness passed for all 14 options: syllable selection, picker close, current text, art cell and audio source",
+    "javascript_syntax": "node --check passed for P16 and roadmap scripts",
+    "css_scope_and_balance": "P16-scoped cue-art CSS and balanced braces passed",
+    "update_archive": "210-based working candidate update has 18 runtime files and passes ZIP integrity",
+    "browser_render": "not completed: CUA browser cannot reach workspace localhost; no local browser binary installed",
+    "iphone_safari_device_test": "not run"
+  }
+}
