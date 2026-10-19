@@ -1,0 +1,12 @@
+{
+  "version": "10.108.202",
+  "base_package": "Koepanda_201_FULL_P15_P16_OrderAndDeliveryFix",
+  "files": [
+    "index.html",
+    "js/06-demo1010740-pinyin-roadmap.js",
+    "js/33-two-spelling-p16-192.js",
+    "css/100-forest-learning-202.css",
+    "KOEPANDA_202_RELEASE_NOTES.md"
+  ],
+  "install": "Replace/add the listed files at the site root. Keep the existing assets and all other site files."
+}
