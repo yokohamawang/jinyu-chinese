@@ -1,0 +1,27 @@
+{
+  "version": "206",
+  "base_version": "205",
+  "checks": {
+    "P16 root scroll branch": true,
+    "audio resolves from site root": true,
+    "P16 script cache version 206": true,
+    "roadmap cache version 206": true,
+    "14 P16 audio resources": true,
+    "valid WAV bo1.wav": true,
+    "valid WAV de1.wav": true,
+    "valid WAV fo1.wav": true,
+    "valid WAV ge1.wav": true,
+    "valid WAV he1.wav": true,
+    "valid WAV ji1.wav": true,
+    "valid WAV ke1.wav": true,
+    "valid WAV le1.wav": true,
+    "valid WAV mo1.wav": true,
+    "valid WAV ne1.wav": true,
+    "valid WAV po1.wav": true,
+    "valid WAV qi1.wav": true,
+    "valid WAV te1.wav": true,
+    "valid WAV xi1.wav": true
+  },
+  "browser_render_test": "not run: browser engine unavailable in workspace",
+  "zip_test": "passed: full and update archives"
+}
