@@ -1,0 +1,31 @@
+{
+  "version": "209",
+  "base_version": "208",
+  "base_archive": "Koepanda_206_FULL_P16AudioAndScrollFix.zip + Koepanda_208_UPDATE_FROM_206_MascotAndScrollFix.zip",
+  "scope": [
+    "index.html",
+    "css/105-p16-layout-art-fix-209.css"
+  ],
+  "checks": {
+    "index_reference": "passed",
+    "p16_scope": "passed",
+    "asset_paths": "passed",
+    "javascript_syntax": "passed",
+    "css_balance": "passed",
+    "archive_integrity": "passed",
+    "mobile_browser_render": "not run: no browser executable available",
+    "iphone_safari_device_test": "not run"
+  },
+  "files": [
+    {
+      "path": "index.html",
+      "size_bytes": 682064,
+      "sha256": "1c01eee0cff720fa7fbefe8a947c73a7b0082121898b1708bf780b66312f7896"
+    },
+    {
+      "path": "css/105-p16-layout-art-fix-209.css",
+      "size_bytes": 3313,
+      "sha256": "06f7629c19648eb2d554b324de977e18ab645bc3c72a78fbdc82ec6a53d5574c"
+    }
+  ]
+}
