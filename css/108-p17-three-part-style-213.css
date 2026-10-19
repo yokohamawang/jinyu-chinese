@@ -1,0 +1,21 @@
+/* 213 — P17 extends P16's calm lesson card language with a three-beat blend. */
+#kidsCourse .kp202-three-spelling{max-width:700px!important;padding:18px 15px 28px!important;background:#f7f8f2!important;border:1px solid #e1e8dc!important;border-radius:24px!important;box-shadow:0 5px 18px #496c5510!important;color:#355b50!important}
+#kidsCourse .kp202-three-game{padding:14px 13px 18px;border:1px solid #e5e8dc;border-radius:20px;background:#fffdf8}
+#kidsCourse .kp203-three-art{width:min(100%,380px);max-height:156px;object-fit:contain;margin:0 auto 7px}
+#kidsCourse .kp202-step-label{background:#edf3e8;color:#637c67}
+#kidsCourse .kp202-blend-board{gap:clamp(4px,2vw,10px);padding:15px 6px;background:#f6f4e9}
+#kidsCourse .kp202-blend-board span,#kidsCourse .kp202-blend-board strong{min-width:clamp(44px,14vw,68px);height:58px;border:1px solid #d8d7c7;border-radius:14px;background:#fffdf8;color:#496d5d;font-size:clamp(24px,7vw,32px);font-weight:850;transition:transform .28s ease,background .28s ease,box-shadow .28s ease}
+#kidsCourse .kp202-blend-board strong{border-color:#d9c995;background:#f5efd9;color:#365c4f}
+#kidsCourse .kp202-blend-board.is-part-1 span:nth-of-type(1),#kidsCourse .kp202-blend-board.is-part-2 span:nth-of-type(2),#kidsCourse .kp202-blend-board.is-part-3 span:nth-of-type(3){background:#e7f0e3;transform:translateY(-3px);box-shadow:0 4px 10px #496c5520}
+#kidsCourse .kp202-blend-board.is-whole strong{transform:scale(1.04);background:#e9f0e1;box-shadow:0 4px 12px #496c5520}
+#kidsCourse .kp202-three-tip{min-height:3.4em;padding:12px 5px 7px;text-align:center;color:#6f8275;font-weight:700;line-height:1.5}
+#kidsCourse .kp202-three-answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#kidsCourse .kp202-three-answers button,#kidsCourse .kp202-sound,#kidsCourse .kp202-next{min-height:58px;border:1px solid #dfe5d9;border-radius:16px;background:#fff;color:#466b5b;font-family:inherit;font-weight:800;font-size:clamp(16px,4.4vw,20px);line-height:1.25;box-shadow:0 3px 0 #e5e8dd;cursor:pointer;touch-action:manipulation;transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
+#kidsCourse .kp202-three-answers button:active,#kidsCourse .kp202-sound:active,#kidsCourse .kp202-next:active{transform:translateY(2px);box-shadow:0 1px 0 #e5e8dd}
+#kidsCourse .kp202-three-answers button.is-correct{border-color:#b7ccb6;background:#edf4e9}
+#kidsCourse .kp202-three-answers button:disabled{opacity:.85}
+#kidsCourse .kp202-sound{width:100%;margin:7px 0 10px;padding:10px 14px;background:#edf4ed;color:#456c5c;border-color:#d0e2d5}
+#kidsCourse .kp202-next{width:100%;margin-top:10px;padding:10px 14px;background:#587e68;color:#fff;border-color:#587e68}
+#kidsCourse .kp202-next[hidden]{display:none!important}
+@media(max-width:380px){#kidsCourse .kp202-three-game{padding:12px 9px 16px}#kidsCourse .kp203-three-art{max-height:142px}#kidsCourse .kp202-blend-board{gap:4px}#kidsCourse .kp202-blend-board span,#kidsCourse .kp202-blend-board strong{min-width:41px;height:52px}}
+@media(prefers-reduced-motion:reduce){#kidsCourse .kp202-blend-board span,#kidsCourse .kp202-blend-board strong,#kidsCourse .kp202-three-answers button,#kidsCourse .kp202-sound,#kidsCourse .kp202-next{transition:none!important}#kidsCourse .kp202-blend-board.is-part-1 span,#kidsCourse .kp202-blend-board.is-part-2 span,#kidsCourse .kp202-blend-board.is-part-3 span,#kidsCourse .kp202-blend-board.is-whole strong{transform:none!important}}
