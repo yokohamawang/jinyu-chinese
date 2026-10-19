@@ -1,4 +1,4 @@
-/* Koepanda 205 — spacious P16 lesson card, tone marked choices and automatic connected reading. */
+/* Koepanda 206 — spaced P16 lessons with reliable audio paths. */
 (function(){'use strict';
 var items=[
  {s:'bo',tone:'bō',a:'b',f:'o',cue:'波の「波」',file:'bo1.wav'},
@@ -21,7 +21,7 @@ var current=0,token=0,audio=null,timers=[],rec=null,stream=null,clips={},urlCach
 function q(id){return root.querySelector('#'+id)}
 function stop(){token++;timers.forEach(clearTimeout);timers=[];if(audio){audio.pause();audio.onended=null;audio.onerror=null;audio=null}var blend=q('kp192Blend');if(blend)blend.className='kp192-blend'}
 function timer(fn,ms){timers.push(setTimeout(fn,ms))}
-function source(it){return './assets/audio/p16/'+it.file}
+function source(it){return new URL('/assets/audio/p16/'+it.file,window.location.origin).href}
 function play(it,animate){stop();var t=token;audio=new Audio(source(it));audio.preload='auto';
  q('kp192Status').textContent='音を聞きながら、二つの音のつながりを見よう。';
  if(animate){timer(function(){if(t!==token)return;q('kp192Blend').classList.add('is-onset')},120);timer(function(){if(t!==token)return;q('kp192Blend').classList.remove('is-onset');q('kp192Blend').classList.add('is-vowel')},560);timer(function(){if(t!==token)return;q('kp192Blend').classList.remove('is-vowel');q('kp192Blend').classList.add('is-complete')},1080)}
