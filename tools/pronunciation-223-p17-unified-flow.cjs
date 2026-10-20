@@ -14,7 +14,7 @@ class El{
  querySelector(sel){return this.querySelectorAll(sel)[0]||null}
  scrollIntoView(){}
 }
-const html=fs.readFileSync('index.html','utf8');assert(html.includes('01-features.js?v=10.108.223'));assert(html.includes('06-demo1010740-pinyin-roadmap.js?v=10.108.223'));assert(html.includes('109-p17-p16-consistent-223.css?v=10.108.223'));
+const html=fs.readFileSync('index.html','utf8');assert(html.includes('06-demo1010740-pinyin-roadmap.js?v=10.108.228'));assert(html.includes('109-p17-p16-consistent-223.css?v=10.108.223'));assert(html.includes('113-p16-p17-audio-cue-polish-228.css?v=10.108.228'));
 const source=fs.readFileSync('js/06-demo1010740-pinyin-roadmap.js','utf8'),a=source.indexOf("    var three=make('kidsThreeSpellingLesson'"),b=source.indexOf("    var neutral=make(",a);assert(a>0&&b>a);
 const audios=[],events={},timers=new Map();let timerId=0;const URLMock=class extends URL{};URLMock.createObjectURL=()=>`blob:recorded-${Math.random()}`;URLMock.revokeObjectURL=()=>{};
 class RecorderMock{constructor(stream){this.stream=stream;this.state='inactive';this.mimeType='audio/webm'}start(){this.state='recording'}stop(){this.state='inactive';if(this.ondataavailable)this.ondataavailable({data:{size:4}});if(this.onstop)this.onstop()}}
