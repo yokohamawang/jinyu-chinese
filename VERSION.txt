@@ -1,2 +1,2 @@
-Koepanda 221 FULL — P17 同 P16 的自动拼读与答题流程修正
-基于：Koepanda 218 FULL
+Koepanda 223 UPDATE — P17 follows tested P16 lesson flow
+适用基线：Koepanda 221 FULL
