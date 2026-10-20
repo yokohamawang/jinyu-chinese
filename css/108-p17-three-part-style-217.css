@@ -27,3 +27,5 @@
 @media(prefers-reduced-motion:reduce){#kidsCourse .kp202-blend-board span,#kidsCourse .kp202-blend-board strong,#kidsCourse .kp202-three-answers button,#kidsCourse .kp202-sound,#kidsCourse .kp202-next{transition:none!important}#kidsCourse .kp202-blend-board.is-part-1 span,#kidsCourse .kp202-blend-board.is-part-2 span,#kidsCourse .kp202-blend-board.is-part-3 span,#kidsCourse .kp202-blend-board.is-whole strong{transform:translate(-50%,-50%)!important}}
 
 #kidsCourse .kp202-three-answers button.is-selected{border-color:#8eaf94;background:#e7f0e3;box-shadow:0 2px 0 #c8d8c4;transform:translateY(-1px)}
+#kidsCourse .kp202-next:disabled{opacity:.55;cursor:not-allowed;filter:saturate(.65);box-shadow:0 2px 0 #e5e8dd}
+#kidsCourse .kp202-sound:disabled{opacity:.78;cursor:wait}
