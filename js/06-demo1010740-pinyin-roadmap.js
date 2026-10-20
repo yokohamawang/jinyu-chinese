@@ -1,4 +1,4 @@
-/* DEMO 10.108.10 — dynamic roadmap unlock after all six single vowels are mastered.
+/* DEMO 10.108.233 — live island completion badges and progress refresh.
    Keeps later lesson content honest: the next stage opens on the roadmap, while not-yet-built unit bodies are marked as next lessons.
    Based on the layered navigation from 10.107.71.
    Chapter list, unit list, and lesson body never remain visually stacked.
@@ -22,6 +22,25 @@
   }
 
   function allInitialsComplete(){try{return ['P3','P4','P5','P6','P7','P8'].every(function(id){return localStorage.getItem('koepandaInitial'+id+'Complete')==='1'})}catch(e){return false}}
+
+  function islandComplete(island){
+    if(island===1)return typeof window.koepandaIsUnitComplete==='function' && window.koepandaIsUnitComplete('P1') && window.koepandaIsUnitComplete('P2');
+    if(island===2)return allInitialsComplete();
+    return false;
+  }
+
+  function refreshIslandCompletion(){
+    if(!root)return;
+    root.querySelectorAll('.kp197-hotspot[data-island]').forEach(function(button){
+      var island=Number(button.dataset.island),complete=islandComplete(island),title=button.dataset.islandTitle||'',fallback=button.dataset.incompleteLabel||'';
+      var state=complete?'クリア':fallback;
+      button.setAttribute('aria-label','島'+island+' '+title+' '+state);
+      var sr=button.querySelector('.kp197-screenreader');if(sr)sr.textContent=title+' '+state;
+      var badge=button.querySelector('.kp197-clear');
+      if(complete&&!badge){badge=document.createElement('span');badge.className='kp197-clear';badge.textContent='✓ クリア';badge.setAttribute('aria-hidden','true');button.appendChild(badge)}
+      else if(!complete&&badge)badge.remove();
+    });
+  }
 
   function effectiveStageStatus(stage){
     if(devUnlockEnabled())return 'next';
@@ -291,12 +310,12 @@
   function render(){
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
-    /* 197: Nine-island illustration with DOM hit targets and fixed clear states. */
+    /* 233: Nine-island status is derived from persisted lesson completion. */
     var map=document.createElement('section');map.className='kp196-archipelago';map.setAttribute('aria-label','9つの島をめぐるピンインコース');
     makeExtraLessons();
     var islandSpecs=[
-      {n:1,title:'単韻母',sample:'a · o · e · i · u · ü',unit:'P1',done:true},
-      {n:2,title:'声母',sample:'b · p · m · f …',unit:'P3',done:true},
+      {n:1,title:'単韻母',sample:'a · o · e · i · u · ü',unit:'P1'},
+      {n:2,title:'声母',sample:'b · p · m · f …',unit:'P3'},
       {n:3,title:'二拼',sample:'声母 ＋ 韻母',unit:'P16'},
       {n:4,title:'三拼',sample:'拼読ステップアップ',unit:'P17'},
       {n:5,title:'整体認読①',sample:'zhi · chi · shi …',unit:'P14'},
@@ -319,13 +338,14 @@
     islandSpecs.forEach(function(spec,index){
       var unit=spec.unit?getUnit(spec.unit):null;
       var available=!!((unit&&targetForUnit(unit.id))||(spec.unit&&targetForUnit(spec.unit))||spec.kind==='exam');
-      var state=spec.done?'クリア':spec.kind==='practice'?'練習へ':available?'レッスンへ':'準備中';
+      var fallback=spec.kind==='practice'?'練習へ':available?'レッスンへ':'準備中';
+      var state=islandComplete(spec.n)?'クリア':fallback;
       var button=document.createElement('button');button.type='button';button.className='kp197-hotspot';
       var loc=positions[index];button.style.left=loc.x+'%';button.style.top=loc.y+'%';button.style.width=loc.w+'%';button.style.height=loc.h+'%';
-      button.dataset.island=String(spec.n);
+      button.dataset.island=String(spec.n);button.dataset.islandTitle=spec.title;button.dataset.incompleteLabel=fallback;
       button.setAttribute('aria-label','島'+spec.n+' '+spec.title+' '+state);
       var sr=document.createElement('span');sr.className='kp197-screenreader';sr.textContent=spec.title+' '+state;button.appendChild(sr);
-      if(spec.done){var clear=document.createElement('span');clear.className='kp197-clear';clear.textContent='✓ クリア';clear.setAttribute('aria-hidden','true');button.appendChild(clear)}
+      if(islandComplete(spec.n)){var clear=document.createElement('span');clear.className='kp197-clear';clear.textContent='✓ クリア';clear.setAttribute('aria-hidden','true');button.appendChild(clear)}
       /* The original 197 WebP has NO green clear badges; CSS owns exactly one per completed island. */
       if(available&&spec.kind==='exam'){button.addEventListener('click',function(){openLesson({id:'P21',title:'最終テスト'},button)})}
       else if(spec.n===6){
@@ -481,6 +501,7 @@
 
   window.addEventListener('koepandaInitialProgressChanged',function(){
     if(!root)return;
+    refreshIslandCompletion();
     refreshRoadmapLocks();
     var world=document.querySelector('.pinyin-world[data-stage-id="'+lastStageId+'"]');
     if(detail && !detail.hidden && (lastStageId==='P3-P8'||lastStageId==='P9-P13') && world){
@@ -490,6 +511,7 @@
   });
 
   window.addEventListener('koepandaVowelProgressChanged',function(){
+    refreshIslandCompletion();
     refreshRoadmapLocks();
     if(!detail||detail.hidden)return;
     var p2=detail.querySelector('.pinyin-node[data-unit-id="P2"]');
