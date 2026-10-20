@@ -1,0 +1,66 @@
+/* 223 — P17 carries forward P16's calm lesson shell, picker, practice and mini-test flow. */
+#kidsCourse>#kidsThreeSpellingLesson.kp223-three-spelling{max-width:650px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 68px) 14px 28px!important;border-radius:0;background:transparent;color:#315b52}
+#kidsThreeSpellingLesson.kp223-three-spelling[hidden],#kidsThreeSpellingLesson.kp223-three-spelling [hidden]{display:none!important}
+#kidsThreeSpellingLesson.kp223-three-spelling *{box-sizing:border-box}
+#kidsThreeSpellingLesson.kp223-three-spelling button{font:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-title{margin:0 0 12px;padding:15px 16px 14px;border:1px solid #dbe8df;border-radius:23px;background:linear-gradient(145deg,#f4f8f0,#fffefa);text-align:left;box-shadow:0 4px 14px rgba(58,97,76,.06)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-title>span{display:inline-block;padding:5px 10px;border-radius:999px;background:#e7f1e7;color:#66876e;font-size:.72rem;font-weight:850;letter-spacing:.02em}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-title h2{margin:8px 0 5px;color:#315b52;font-size:clamp(1.42rem,6vw,1.8rem);line-height:1.18;letter-spacing:.01em}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-title p{margin:0;color:#74877e;font-size:.9rem;font-weight:650;line-height:1.5}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-progress{display:flex;align-items:center;gap:12px;margin:0 3px 11px;color:#678277;font-size:.78rem;font-weight:850}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-track{height:7px;flex:1;overflow:hidden;border-radius:99px;background:#e2ebe2}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-track i{display:block;width:25%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#79bc9d,#a8d5b0);transition:width .35s ease}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker{margin:0 0 13px;overflow:hidden;border:1px solid #dce8dd;border-radius:18px;background:#fffefa;box-shadow:0 3px 10px rgba(58,97,76,.045)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;min-height:52px;padding:8px 13px;color:#55766b;cursor:pointer;list-style:none}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary::-webkit-details-marker{display:none}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary>span{font-size:.86rem;font-weight:800}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary>strong{min-width:52px;padding:5px 9px;border:1px solid #e8d7aa;border-radius:12px;background:#fff8e6;color:#846a33;text-align:center;font-size:1rem}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary>small{color:#8a9b91;font-size:.68rem;font-weight:750;white-space:nowrap}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:2px 11px 12px}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-list button{min-height:46px;padding:5px;border:1px solid #dce8dc;border-radius:14px;background:#fff;color:#4f7568;font-size:1rem;font-weight:850;box-shadow:0 2px 0 #e5ece3}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-list button.is-selected{border:2px solid #d8bc69;background:#fff6d8;color:#755f2b;box-shadow:0 2px 0 #eadfbf}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-lesson{overflow:hidden;border:1px solid #dce8df;border-radius:25px;background:#fffefa;box-shadow:0 6px 18px rgba(49,87,70,.07)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 10px;padding:14px 16px 12px;background:#f8faf5;text-align:left}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading>div{display:flex;align-items:center;gap:11px;min-width:0}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-syllable{color:#315b52;font-size:clamp(2.7rem,12vw,4rem);font-weight:900;line-height:1;letter-spacing:-.035em}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hear{display:grid;place-items:center;width:46px;height:46px;border:1px solid #e8d7a6;border-radius:50%;background:#fff4d1;color:#8b713a;font-size:1.02rem;box-shadow:0 2px 0 #eee2c3}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hear:disabled,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-hear:disabled{opacity:.7;cursor:wait}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue{grid-column:1;margin:3px 0 0;color:#527767;font-size:.87rem;font-weight:800;line-height:1.35}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-parts-label{grid-column:1;color:#89988f;font-size:.7rem;font-weight:700;line-height:1.3}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hero{position:relative;width:100%;overflow:hidden;background:#f7f8f2;line-height:0}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;background:#f7f8f2}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board{position:absolute;inset:0;display:block;pointer-events:none}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board strong{position:absolute;display:grid;place-items:center;min-width:0;min-height:0;margin:0;padding:0;border:0;border-radius:8px;background:transparent;color:#365f54;font-size:clamp(1.15rem,5.4vw,1.8rem);font-weight:900;line-height:1;text-shadow:0 1px 0 rgba(255,255,255,.8);transform:translate(-50%,-50%);transition:transform .32s ease,color .24s ease,text-shadow .24s ease}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-part-1{left:12.2%;top:79%}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-part-2{left:32.5%;top:81%}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-part-3{left:51%;top:83%}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-result{left:81.5%;top:81%;font-size:clamp(1.35rem,6.5vw,2.2rem)!important;color:#315f52!important}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board.is-part-1 .kp223-part-1,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board.is-part-2 .kp223-part-2,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board.is-part-3 .kp223-part-3{color:#347e68;text-shadow:0 0 12px rgba(88,179,143,.5);transform:translate(-50%,-54%) scale(1.13)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board.is-complete .kp223-result{color:#89651f;text-shadow:0 0 12px rgba(235,194,89,.55);transform:translate(-50%,-50%) scale(1.1)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-status{min-height:37px;margin:0;padding:9px 13px 2px;color:#71877d;text-align:center;font-size:.78rem;font-weight:700;line-height:1.45}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:9px 13px 4px}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button{min-height:47px;padding:8px 10px;border:1px solid #dce8de;border-radius:15px;background:#f4f7f0;color:#557469;font-size:.84rem;font-weight:850;box-shadow:0 2px 0 #e6ece2}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button:last-child{border-color:#cbe1d3;background:#eaf5ed;color:#397761}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button:disabled{opacity:.46;box-shadow:none;cursor:default}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-actions{padding-top:10px}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-actions button{min-height:47px;padding:8px 6px;border:1px solid #eadbdd;border-radius:15px;background:#fbf0f0;color:#93656b;font-size:.8rem;font-weight:850}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-actions button+button{border-color:#d9e7dc;background:#f0f6ef;color:#5c7e68}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-actions button:disabled{opacity:.46;cursor:default}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-record-state{min-height:24px;padding-top:4px;color:#72877d;text-align:center;font-size:.74rem}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-entry{padding:5px 13px 15px}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-go{width:100%;min-height:50px;border:0;border-radius:16px;background:#4b8e75;color:#fff;font-size:.9rem;font-weight:900;box-shadow:0 3px 0 #d1e6d8}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test{margin:0 13px 15px;padding:14px;border:1px solid #e0eade;border-radius:18px;background:#f5f8f2}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-head{text-align:center}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-label{display:inline-block;color:#789080;font-size:.75rem;font-weight:850}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-question{margin:6px 0 10px;color:#3c6558;font-size:1.05rem;line-height:1.4}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-hear,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-back{display:block;min-height:42px;margin:8px auto;padding:8px 14px;border:1px solid #d6e3d8;border-radius:13px;background:#fff;color:#527568;font-weight:800}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-options button{min-height:48px;border:1px solid #dce7db;border-radius:14px;background:#fff;color:#416e60;font-size:1.08rem;font-weight:850}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-options button.is-correct{border-color:#84b99a;background:#e4f4e7}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-options button.is-wrong{border-color:#dda8a0;background:#fff0ec;color:#9a5149}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-feedback{min-height:1.3em;color:#4d8067;text-align:center;font-weight:800;line-height:1.45}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-selected{min-height:1.5em;color:#71877d;text-align:center;font-size:.85rem;font-weight:750}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-next{display:block;width:100%;min-height:48px;margin:8px 0;border:0;border-radius:15px;background:#587e68;color:#fff;font-weight:900}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-next[hidden]{display:none!important}
+@media(max-width:380px){#kidsCourse>#kidsThreeSpellingLesson.kp223-three-spelling{padding-right:11px!important;padding-left:11px!important}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-title{padding:13px}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary{gap:6px;padding-inline:10px}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker summary>small{font-size:.62rem}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-list{gap:6px;padding-inline:8px}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-list button{min-height:44px;font-size:.94rem}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board strong{font-size:clamp(1rem,5.1vw,1.55rem)}}
+@media(prefers-reduced-motion:reduce){#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board strong,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-track i{transition:none!important}}
