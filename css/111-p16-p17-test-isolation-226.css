@@ -1,0 +1,2 @@
+/* Keep active practice and quiz as mutually exclusive screens. */
+#kidsTwoSpellingP16.kp205 .kp192-practice[hidden],#kidsTwoSpellingP16.kp205 .kp192-quiz[hidden],#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker[hidden],#kidsThreeSpellingLesson.kp223-three-spelling .kp223-practice-core[hidden],#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test[hidden]{display:none!important}
