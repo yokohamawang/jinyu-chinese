@@ -1,2 +1,2 @@
-Koepanda 220 FULL — P17 同一播放器拼合音修正
+Koepanda 221 FULL — P17 同 P16 的自动拼读与答题流程修正
 基于：Koepanda 218 FULL
