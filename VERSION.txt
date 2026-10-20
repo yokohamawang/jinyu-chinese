@@ -1,2 +1,2 @@
-Koepanda 197 FULL — Nine Island Illustrated Roadmap
-Base: 195 FULL → 196 routing → 197 artwork integration
+Koepanda 220 FULL — P17 同一播放器拼合音修正
+基于：Koepanda 218 FULL
