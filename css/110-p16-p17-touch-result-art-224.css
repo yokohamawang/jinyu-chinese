@@ -1,0 +1,21 @@
+/* 224 — align P16/P17 pressed states, cue art and isolated mini-test views. */
+#kidsTwoSpellingP16.kp205 .kp205-controls button,
+#kidsTwoSpellingP16.kp205 .kp192-quiz button,
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button,
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test button,
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-options button{transition:transform .11s ease,box-shadow .11s ease,filter .11s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#kidsTwoSpellingP16.kp205 .kp205-controls button:active:not(:disabled),
+#kidsTwoSpellingP16.kp205 .kp192-quiz button:active:not(:disabled),
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button:active:not(:disabled),
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test button:active:not(:disabled),
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test-options button:active:not(:disabled){transform:translateY(3px) scale(.985);box-shadow:0 0 0 transparent;filter:brightness(.97)}
+#kidsTwoSpellingP16.kp205 .kp205-controls button:focus-visible,
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button:focus-visible,
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test button:focus-visible{outline:3px solid #e5c66e;outline-offset:2px}
+#kidsTwoSpellingP16.kp205 #kp192QuizBack{display:block;width:100%;min-height:46px;margin:10px 0 0;border:1px solid #d5e2d8;border-radius:14px;background:#fff;color:#527568;font-weight:850}
+#kidsTwoSpellingP16.kp205 #kp192QuizBack[hidden]{display:none!important}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading{grid-template-columns:minmax(0,1fr) auto}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue-art{grid-column:2;grid-row:1/span 3;align-self:center;justify-self:end;width:clamp(82px,23vw,112px);aspect-ratio:1284/1225;object-fit:cover;border:1px solid rgba(205,218,199,.72);border-radius:19px;background:#f6f7ef;box-shadow:0 3px 10px rgba(58,97,76,.07)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-test[hidden],#kidsThreeSpellingLesson.kp223-three-spelling .kp223-picker[hidden]{display:none!important}
+@media(max-width:380px){#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue-art{width:78px;border-radius:16px}}
+@media(prefers-reduced-motion:reduce){#kidsTwoSpellingP16.kp205 .kp205-controls button,#kidsThreeSpellingLesson.kp223-three-spelling .kp223-controls button{transition:none}}
