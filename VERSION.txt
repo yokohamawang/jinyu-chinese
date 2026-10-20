@@ -1,2 +1,2 @@
-Koepanda 228 UPDATE — P16/P17 quiz isolation and playback cue state
-Base: Koepanda 221 FULL
+Koepanda 229 — P16/P17 Cue Artwork Restore
+適用基線：Koepanda 221 FULL
