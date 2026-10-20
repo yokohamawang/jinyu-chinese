@@ -416,6 +416,11 @@ async function playMachine(t,feedbackTargetId,showMouthPopup=true){
   }
 }
 function speak(t,exampleIndex){activeMouthExample=Number.isInteger(exampleIndex)?exampleIndex:-1;playMachine(t)}
+/* P17 uses the same site TTS audio pipeline as the main pronunciation exercises.
+   Export only the small bridge it needs so it does not silently depend on the
+   browser's optional Web Speech API. */
+window.koepandaWarmP17Speech=function(text){return fetchTTSBlobUrl(text).catch(function(){return null})};
+window.koepandaSpeakP17=function(text){return playMachine(text,null,false)};
 function playQuestion(){audioDiag('① playQuestion 実行','ok');activeMouthExample=-1;try{if(!round||!round[idx]){audioDiag('問題データ未初期化 → newRound() を再実行','err');newRound()}const q=round&&round[idx];audioDiag('問題データ: '+JSON.stringify(q));if(!q||!q.cn)throw new Error('問題データを取得できません');playMachine(q.cn)}catch(e){audioDiag('playQuestion ERROR: '+e.message,'err')}}
 function nextQuestion(){if(isRecording){stopRecording();return}if(!answered)return;dismissCelebration();if(idx<round.length-1){idx++;render();document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'})}else{showScore()}}
 function hideResultScreen(){const screen=getEl('resultScreen');if(!screen)return;if(screen.classList.contains('visible'))stopStandardAudio();screen.classList.remove('visible');screen.setAttribute('aria-hidden','true');document.body.classList.remove('showing-result');const count=getEl('count');if(count&&round.length)count.textContent=(idx+1)+' / '+round.length}
