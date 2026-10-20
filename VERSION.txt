@@ -1,2 +1,2 @@
-Koepanda 230 — P16/P17 Consistent Illustration System
-适用基线：Koepanda 221 FULL
+Koepanda 231 — Dynamic Island Completion Status
+適用基線：Koepanda 230 FULL
