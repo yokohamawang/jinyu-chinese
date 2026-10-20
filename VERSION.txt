@@ -1,3 +1,2 @@
-Koepanda version 227
-Built 2026-10-20 20:52 JST
-Base version 221
+Koepanda 228 UPDATE — P16/P17 quiz isolation and playback cue state
+Base: Koepanda 221 FULL
