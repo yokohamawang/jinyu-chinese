@@ -348,6 +348,16 @@
       if(islandComplete(spec.n)){var clear=document.createElement('span');clear.className='kp197-clear';clear.textContent='✓ クリア';clear.setAttribute('aria-hidden','true');button.appendChild(clear)}
       /* The original 197 WebP has NO green clear badges; CSS owns exactly one per completed island. */
       if(available&&spec.kind==='exam'){button.addEventListener('click',function(){openLesson({id:'P21',title:'最終テスト'},button)})}
+      else if(spec.n===2){
+        /* 240: the consonant island opens the full P3–P8 unit picker, not only b·p·m·f. */
+        button.addEventListener('click',function(){
+          var stage=course.stages.find(function(item){return item.id==='P3-P8'});
+          var world=root.querySelector('.pinyin-world[data-stage-id="P3-P8"]');
+          if(!stage)return;
+          /* Island 2 has always been an entry point; preserve that access while keeping per-unit progression locks. */
+          openStage(stage,world||button,'next');
+        });
+      }
       else if(spec.n===6){
         /* P15 is already a finished lesson. Resolve its node at CLICK time, not
            during the roadmap render, to avoid a permanently dead sixth island
