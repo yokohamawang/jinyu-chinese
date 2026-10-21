@@ -1,20 +1,20 @@
-/* Koepanda 233 — targeted P16 articulation cue replacements. */
+/* Koepanda 234 — targeted P16 articulation cue replacements. */
 (function(){'use strict';
 var items=[
- {s:'bo',tone:'bō',a:'b',f:'o',cue:'波の「波」',art:'bo',file:'bo1.wav',timings:[971,400,971]},
- {s:'po',tone:'pō',a:'p',f:'o',cue:'坂道の「坡」',art:'po',file:'po1.wav',timings:[894,400,894]},
- {s:'mo',tone:'mō',a:'m',f:'o',cue:'さわる「摸」',art:'mo',file:'mo1.wav',timings:[550,400,550]},
- {s:'fo',tone:'fō',a:'f',f:'o',cue:'声母 f と韻母 o',art:'fo',file:'fo1.wav',timings:[1011,400,1011]},
+ {s:'bo',tone:'bō',a:'b',f:'o',cue:'波の「波」',art:'bo',cell:[0,0],file:'bo1.wav',timings:[971,400,971]},
+ {s:'po',tone:'pō',a:'p',f:'o',cue:'坂道の「坡」',art:'po',cell:[1,0],file:'po1.wav',timings:[894,400,894]},
+ {s:'mo',tone:'mō',a:'m',f:'o',cue:'さわる「摸」',art:'mo',cell:[2,0],file:'mo1.wav',timings:[550,400,550]},
+ {s:'fo',tone:'fō',a:'f',f:'o',cue:'声母 f と韻母 o',art:'fo',cell:[3,0],file:'fo1.wav',timings:[1011,400,1011]},
  {s:'de',tone:'dē',a:'d',f:'e',cue:'声母 d と韻母 e',art:'de',file:'de1.wav',timings:[965,695,965]},
  {s:'te',tone:'tē',a:'t',f:'e',cue:'声母 t と韻母 e',art:'te',file:'te1.wav',timings:[1185,695,1185]},
  {s:'ne',tone:'nē',a:'n',f:'e',cue:'声母 n と韻母 e',art:'ne',file:'ne1.wav',timings:[900,695,900]},
  {s:'le',tone:'lē',a:'l',f:'e',cue:'声母 l と韻母 e',art:'le',file:'le1.wav',timings:[720,695,720]},
- {s:'ge',tone:'gē',a:'g',f:'e',cue:'お兄さんの「哥」',art:'ge',file:'ge1.wav',timings:[1020,695,1020]},
- {s:'ke',tone:'kē',a:'k',f:'e',cue:'科学の「科」',art:'ke',file:'ke1.wav',timings:[1120,695,1120]},
- {s:'he',tone:'hē',a:'h',f:'e',cue:'水を飲む「喝」',art:'he',file:'he1.wav',timings:[1200,695,1200]},
- {s:'ji',tone:'jī',a:'j',f:'i',cue:'にわとりの「鶏」',art:'ji',file:'ji1.wav',timings:[1137,1137,1137]},
- {s:'qi',tone:'qī',a:'q',f:'i',cue:'七つの「七」',art:'qi',file:'qi1.wav',timings:[1233,1137,1233]},
- {s:'xi',tone:'xī',a:'x',f:'i',cue:'西の「西」',art:'xi',file:'xi1.wav',timings:[1120,1137,1120]}
+ {s:'ge',tone:'gē',a:'g',f:'e',cue:'お兄さんの「哥」',art:'ge',cell:[0,2],file:'ge1.wav',timings:[1020,695,1020]},
+ {s:'ke',tone:'kē',a:'k',f:'e',cue:'科学の「科」',art:'ke',cell:[1,2],file:'ke1.wav',timings:[1120,695,1120]},
+ {s:'he',tone:'hē',a:'h',f:'e',cue:'水を飲む「喝」',art:'he',cell:[2,2],file:'he1.wav',timings:[1200,695,1200]},
+ {s:'ji',tone:'jī',a:'j',f:'i',cue:'にわとりの「鶏」',art:'ji',cell:[3,2],file:'ji1.wav',timings:[1137,1137,1137]},
+ {s:'qi',tone:'qī',a:'q',f:'i',cue:'七つの「七」',art:'qi',cell:[0,3],file:'qi1.wav',timings:[1233,1137,1233]},
+ {s:'xi',tone:'xī',a:'x',f:'i',cue:'西の「西」',art:'xi',cell:[1,3],file:'xi1.wav',timings:[1120,1137,1120]}
 ],root=document.createElement('section');
 root.id='kidsTwoSpellingP16';root.className='kids-lesson-card kp192 kp205';root.hidden=true;
 var current=0,token=0,audio=null,timers=[],rec=null,stream=null,clips={},urlCache={},quiz=[],qi=0,score=0,answered=false;
@@ -34,7 +34,7 @@ root.innerHTML='<div class="kp192-title"><span>二拼 · 1つずつ音をつな�
 var host=document.getElementById('kidsCourse');if(!host)return;host.appendChild(root);q('kp205Picker').addEventListener('toggle',function(){var label=q('kp192PickerToggleLabel');if(label)label.textContent=q('kp205Picker').open?'一覧を閉じる':'一覧をひらく'});
 items.forEach(function(it,i){var b=document.createElement('button');b.type='button';b.textContent=it.tone;b.dataset.s=it.s;b.addEventListener('click',function(){q('kp205Picker').open=false;select(i,true)});q('kp192Picker').appendChild(b)});
 function select(i,auto){stop();current=(i+items.length)%items.length;var it=items[current];
- q('kp192Count').textContent=(current+1)+' / '+items.length;q('kp192ProgressFill').style.width=((current+1)/items.length*100)+'%';q('kp192CurrentChoice').textContent=it.tone;q('kp192Syllable').textContent=it.tone;q('kp192Cue').textContent=it.cue;var cueArt=q('kp192CueArt');if(cueArt){if(current>=4&&current<=7){cueArt.style.backgroundImage='url(./assets/pinyin/p16-word-cues/'+it.art+'.svg?v=10.108.233)';cueArt.style.backgroundSize='contain';cueArt.style.backgroundPosition='center'}else{cueArt.style.backgroundImage='url(./assets/pinyin/p16-mnemonic-sprite-211.png?v=10.108.233)';cueArt.style.backgroundSize='400% 400%';cueArt.style.backgroundPosition=(current%4*100/3)+'% '+(Math.floor(current/4)*100/3)+'%'}cueArt.setAttribute('aria-label',it.cue+'のイラスト')}q('kp192Parts').textContent='声母 '+it.a+' ＋ 韻母 '+it.f;q('kp192Onset').textContent=it.a;q('kp192Final').textContent=it.f;q('kp192Together').textContent=it.tone;
+ q('kp192Count').textContent=(current+1)+' / '+items.length;q('kp192ProgressFill').style.width=((current+1)/items.length*100)+'%';q('kp192CurrentChoice').textContent=it.tone;q('kp192Syllable').textContent=it.tone;q('kp192Cue').textContent=it.cue;var cueArt=q('kp192CueArt');if(cueArt){if(!it.cell){cueArt.style.backgroundImage='url(./assets/pinyin/p16-word-cues/'+it.art+'.svg?v=10.108.234)';cueArt.style.backgroundSize='contain';cueArt.style.backgroundPosition='center'}else{cueArt.style.backgroundImage='url(./assets/pinyin/p16-mnemonic-sprite-211.png?v=10.108.234)';cueArt.style.backgroundSize='400% 400%';cueArt.style.backgroundPosition=(it.cell[0]*100/3)+'% '+(it.cell[1]*100/3)+'%'}cueArt.setAttribute('aria-label',it.cue+'のイラスト')}q('kp192Parts').textContent='声母 '+it.a+' ＋ 韻母 '+it.f;q('kp192Onset').textContent=it.a;q('kp192Final').textContent=it.f;q('kp192Together').textContent=it.tone;
  q('kp192Picker').querySelectorAll('button').forEach(function(b,j){b.classList.toggle('is-selected',current===j);b.setAttribute('aria-pressed',String(current===j))});q('kp192Prev').disabled=current===0;q('kp192Next').disabled=current===items.length-1;q('kp192Replay').disabled=!clips[it.s];q('kp192Status').textContent='音を聞きながら、二つの音のつながりを見よう。';q('kp192RecordState').textContent='';if(auto)play(it,true)
 }
 q('kp192Hear').addEventListener('click',function(){play(items[current],true)});q('kp192Prev').addEventListener('click',function(){select(current-1,true)});q('kp192Next').addEventListener('click',function(){select(current+1,true)});

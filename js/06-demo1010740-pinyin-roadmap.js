@@ -1,4 +1,4 @@
-/* DEMO 10.108.233 — live island completion badges and progress refresh.
+/* DEMO 10.108.234 — live island completion badges and progress refresh.
    Keeps later lesson content honest: the next stage opens on the roadmap, while not-yet-built unit bodies are marked as next lessons.
    Based on the layered navigation from 10.107.71.
    Chapter list, unit list, and lesson body never remain visually stacked.
@@ -310,7 +310,7 @@
   function render(){
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
-    /* 233: Nine-island status is derived from persisted lesson completion. */
+    /* 234: Nine-island status is derived from persisted lesson completion. */
     var map=document.createElement('section');map.className='kp196-archipelago';map.setAttribute('aria-label','9つの島をめぐるピンインコース');
     makeExtraLessons();
     var islandSpecs=[
