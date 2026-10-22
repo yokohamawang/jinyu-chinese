@@ -1,0 +1,10 @@
+/* 246 — reserve a real column for each lesson cue image on narrow screens. */
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 76px;grid-template-rows:auto auto auto;align-items:center;gap:4px 10px;padding:14px 13px 12px!important}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading>div{grid-column:1;grid-row:1;min-width:0;gap:8px}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-syllable{font-size:clamp(2.35rem,10.5vw,4rem)}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue-art{position:static;grid-column:2;grid-row:1/span 3;align-self:center;justify-self:end;width:76px;height:76px;transform:none}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue{grid-column:1;grid-row:2;margin:3px 0 0}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-parts-label{grid-column:1;grid-row:3}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hear.is-playing{width:94px;min-width:86px;max-width:94px;height:36px;padding:0 7px;font-size:.64rem;flex:0 0 auto}
+#kidsWholeSyllableLesson.kp240-whole .kp240-whole-hero-label{pointer-events:none}
+@media(max-width:380px){#kidsCourse>#kidsThreeSpellingLesson.kp223-three-spelling{padding-right:11px!important;padding-left:11px!important}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading{grid-template-columns:minmax(0,1fr) 68px;gap:4px 8px;padding:12px 11px 10px!important}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue-art{width:68px;height:68px}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hear.is-playing{width:80px;min-width:76px;max-width:80px;font-size:.59rem}}
