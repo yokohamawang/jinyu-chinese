@@ -1,5 +1,6 @@
 {
-  "version": "10.108.270",
-  "previous": "10.108.269",
-  "release": "2026-10-24"
+  "version": "10.108.271",
+  "previous": "10.108.270",
+  "release": "2026-10-24",
+  "based_on": "Koepanda_270_MixedComprehensivePractice_FULL"
 }
