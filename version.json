@@ -1,6 +1,8 @@
 {
-  "version": "10.108.271",
+  "version": "10.108.272",
   "previous": "10.108.270",
+  "supersedes": "10.108.271",
   "release": "2026-10-24",
-  "based_on": "Koepanda_270_MixedComprehensivePractice_FULL"
+  "status": "candidate",
+  "change": "P18 integrated practice isolated from the roadmap renderer"
 }
