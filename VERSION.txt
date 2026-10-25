@@ -1,4 +1,4 @@
-Koepanda version 10.108.273
-Previous: 10.108.272
+Koepanda version 10.108.274
+Previous: 10.108.273
 Release: 2026-10-25
 Status: candidate

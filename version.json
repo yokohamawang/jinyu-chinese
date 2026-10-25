@@ -1,8 +1,8 @@
 {
-  "version": "10.108.273",
-  "previous": "10.108.272",
+  "version": "10.108.274",
+  "previous": "10.108.273",
   "supersedes": "10.108.271",
   "release": "2026-10-25",
   "status": "candidate",
-  "change": "P18 mobile bottom action accessibility; isolated to narrow-screen layout"
+  "change": "P18 normal page scrolling; remove sticky bottom controls and reserve fixed course header and Safari toolbar space"
 }
