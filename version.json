@@ -1,8 +1,8 @@
 {
-  "version": "10.108.275",
-  "previous": "10.108.274",
+  "version": "10.108.276",
+  "previous": "10.108.275",
   "supersedes": "10.108.272",
   "release": "2026-10-25",
   "status": "candidate",
-  "change": "P18 header-safe entry position, hide structure guide for unrelated question types, remove tone answer cue, improve practice feedback and test restart state; reserve mobile bottom scroll clearance"
+  "change": "P18-only second-frame heading alignment after fixed course header and shared route scroll; no shared course renderer changes"
 }
