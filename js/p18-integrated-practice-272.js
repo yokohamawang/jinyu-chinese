@@ -14,6 +14,21 @@
     review.innerHTML='<h2>総合練習</h2><p class="kp272-intro">聞いて、見分けて、音のつながりを確かめよう。</p><div class="kp272-modes" role="group" aria-label="練習モード"><button type="button" class="is-active" data-mode="practice" aria-pressed="true">自由練習</button><button type="button" data-mode="test" aria-pressed="false">小テスト</button></div><section class="kp272-panel" data-panel="practice"><p class="kp272-mode-note">自分のペースで何度でも。ヒントと解説を見ながら練習できます。</p><article class="kp272-card"><span class="kp272-kind"></span><h3 class="kp272-prompt"></h3><button type="button" class="kp272-audio" hidden>▶ 音を聞く</button><div class="kp272-structure-guide" hidden aria-label="拼读の構成"><span class="kp272-structure-first"></span><b>＋</b><span class="kp272-structure-middle"></span><b>＋</b><span class="kp272-structure-last"></span></div><button type="button" class="kp272-hint-toggle" aria-expanded="false">ヒントを見る</button><p class="kp272-hint" hidden></p><div class="kp272-choices"></div><p class="kp272-feedback" aria-live="polite"></p><div class="kp272-practice-actions"><button type="button" class="kp272-retry">この問題をやり直す</button><button type="button" class="kp272-next">別の問題へ →</button></div></article></section><section class="kp272-panel" data-panel="test" hidden><p class="kp272-mode-note">全10問。解答後に結果をまとめて確認します。</p><div class="kp272-test-progress"><span class="kp272-count"></span><div><i></i></div></div><article class="kp272-card"><span class="kp272-test-kind"></span><h3 class="kp272-test-prompt"></h3><button type="button" class="kp272-test-audio" hidden>▶ 音を聞く</button><div class="kp272-test-structure-guide" hidden aria-label="拼读の構成"><span></span><b>＋</b><span></span><b>＋</b><span></span></div><div class="kp272-test-choices"></div><p class="kp272-test-feedback" aria-live="polite"></p><button type="button" class="kp272-test-next" hidden>次の問題 →</button></article></section>';
     installIntegratedPractice(review);
   }
+  /* Re-align P18 after the shared route has inserted its fixed header and run its own scroll. */
+  window.addEventListener('koepandaP18Reset',function(){
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        var review=document.getElementById('kidsIslandReviewLesson');
+        var title=review&&review.querySelector('h2');
+        var header=document.querySelector('.kp148-lesson-header');
+        if(!review||review.hidden||!title)return;
+        var headerBottom=header&&getComputedStyle(header).display!=='none'?header.getBoundingClientRect().bottom:0;
+        var top=window.scrollY+title.getBoundingClientRect().top-headerBottom-16;
+        window.scrollTo({top:Math.max(0,top),left:0,behavior:'auto'});
+      });
+    });
+  });
+
   function installIntegratedPractice(review){
     if(review.dataset.kp272Ready==='1')return;
     review.dataset.kp272Ready='1';
