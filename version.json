@@ -1,8 +1,8 @@
 {
-  "version": "10.108.280",
-  "previous": "10.108.279",
+  "version": "10.108.281",
+  "previous": "10.108.280",
   "supersedes": "10.108.272",
   "release": "2026-10-26",
   "status": "candidate",
-  "change": "Keep P18 action buttons in view on iPhone Safari; fit mobile labels on one line"
+  "change": "Refine P18 mobile spacing and keep action labels compact without changing lesson logic"
 }
