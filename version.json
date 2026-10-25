@@ -1,8 +1,8 @@
 {
-  "version": "10.108.276",
-  "previous": "10.108.275",
+  "version": "10.108.277",
+  "previous": "10.108.276",
   "supersedes": "10.108.272",
   "release": "2026-10-25",
   "status": "candidate",
-  "change": "P18-only second-frame heading alignment after fixed course header and shared route scroll; no shared course renderer changes"
+  "change": "P18 high-specificity top inset beneath fixed course header; preserve 276 post-layout scroll correction and safe bottom clearance"
 }
