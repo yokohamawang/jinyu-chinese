@@ -1,8 +1,8 @@
 {
-  "version": "10.108.272",
-  "previous": "10.108.270",
+  "version": "10.108.273",
+  "previous": "10.108.272",
   "supersedes": "10.108.271",
-  "release": "2026-10-24",
+  "release": "2026-10-25",
   "status": "candidate",
-  "change": "P18 integrated practice isolated from the roadmap renderer"
+  "change": "P18 mobile bottom action accessibility; isolated to narrow-screen layout"
 }

@@ -1,2 +1,4 @@
-Koepanda 233 — Targeted P16 Cue Art + Dynamic Island Completion
-適用基線：Koepanda 230 FULL
+Koepanda version 10.108.273
+Previous: 10.108.272
+Release: 2026-10-25
+Status: candidate
