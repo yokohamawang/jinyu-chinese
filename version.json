@@ -1,8 +1,8 @@
 {
-  "version": "10.108.277",
-  "previous": "10.108.276",
+  "version": "10.108.278",
+  "previous": "10.108.277",
   "supersedes": "10.108.272",
   "release": "2026-10-25",
   "status": "candidate",
-  "change": "P18 high-specificity top inset beneath fixed course header; preserve 276 post-layout scroll correction and safe bottom clearance"
+  "change": "Mount P18 practice UI when dynamically created kidsCourse appears; keep observer until initialized"
 }

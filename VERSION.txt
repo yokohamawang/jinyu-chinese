@@ -1,5 +1,5 @@
-Koepanda version 10.108.277
-Previous: 10.108.276
-Published baseline: 10.108.272; latest upload confirmed: 10.108.276
+Koepanda version 10.108.278
+Previous: 10.108.277
+Published baseline: 10.108.272; latest upload confirmed: 10.108.277
 Release: 2026-10-25
 Status: candidate
