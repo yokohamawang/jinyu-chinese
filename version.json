@@ -1,8 +1,8 @@
 {
-  "version": "10.108.278",
-  "previous": "10.108.277",
+  "version": "10.108.279",
+  "previous": "10.108.278",
   "supersedes": "10.108.272",
-  "release": "2026-10-25",
+  "release": "2026-10-26",
   "status": "candidate",
-  "change": "Mount P18 practice UI when dynamically created kidsCourse appears; keep observer until initialized"
+  "change": "Keep P18 practice and test action buttons visible above the mobile bottom navigation while scrolling"
 }

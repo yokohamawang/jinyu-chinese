@@ -1,5 +1,6 @@
-Koepanda version 10.108.278
-Previous: 10.108.277
+Koepanda version 10.108.279
+Previous: 10.108.278
 Published baseline: 10.108.272; latest upload confirmed: 10.108.277
-Release: 2026-10-25
+Release: 2026-10-26
 Status: candidate
+Change: Keep P18 practice and test action buttons visible above the mobile bottom navigation while scrolling.
