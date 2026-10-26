@@ -1,6 +1,6 @@
-Koepanda version 10.108.289
-Previous: 10.108.288
-Published baseline: live 10.108.288 script; portrait URL returns 404
+Koepanda version 10.108.291
+Previous: 10.108.289
+Published baseline: live 10.108.289 with embedded Xiaoyin portrait
 Release: 2026-10-27
 Status: candidate
-Change: Embed Xiaoyin portrait in the P18 script to remove dependency on the missing published image path.
+Change: Refine mobile bottom action dock position and size; restore full Japanese action labels.
