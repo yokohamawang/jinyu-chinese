@@ -1,6 +1,6 @@
-Koepanda version 10.108.286
-Previous: 10.108.285
-Published baseline: 10.108.272; latest uploaded candidate: 10.108.285
+Koepanda version 10.108.287
+Previous: 10.108.286
+Published baseline: 10.108.284; latest uploaded candidate: 10.108.286
 Release: 2026-10-26
 Status: candidate
-Change: Redesign P18 as a branded integrated-practice stage with Xiaoyin guidance, clearer learning hierarchy, distinct listening and choice cards, and simplified layered surfaces.
+Change: Restore the missing Xiaoyin portrait asset on the live P18 challenge hero; advance the cache version.

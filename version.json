@@ -1,8 +1,8 @@
 {
-  "version": "10.108.286",
-  "previous": "10.108.285",
+  "version": "10.108.287",
+  "previous": "10.108.286",
   "supersedes": "10.108.272",
   "release": "2026-10-26",
   "status": "candidate",
-  "change": "Redesign the integrated-practice page around a branded Xiaoyin challenge stage with clearer hierarchy and reduced nested card framing"
+  "change": "Restore the missing Xiaoyin portrait asset on the live P18 challenge hero; advance the cache version"
 }
