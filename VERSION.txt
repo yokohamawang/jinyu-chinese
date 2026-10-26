@@ -1,6 +1,6 @@
-Koepanda version 10.108.282
-Previous: 10.108.281
-Published baseline: 10.108.272; latest uploaded candidate: 10.108.281
+Koepanda version 10.108.283
+Previous: 10.108.282
+Published baseline: 10.108.272; latest uploaded candidate: 10.108.282
 Release: 2026-10-26
 Status: candidate
-Change: Place the P18 mobile action bar at the bottom and remove the viewport offset that covered prompt and answers.
+Change: Return P18 mobile practice and test actions to document flow so they do not overlay the question or choices.

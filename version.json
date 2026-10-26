@@ -1,8 +1,8 @@
 {
-  "version": "10.108.282",
-  "previous": "10.108.281",
+  "version": "10.108.283",
+  "previous": "10.108.282",
   "supersedes": "10.108.272",
   "release": "2026-10-26",
   "status": "candidate",
-  "change": "Place P18 mobile action bar at the bottom; remove viewport offset that covered prompt and answers"
+  "change": "Keep P18 action controls in normal document flow on mobile; remove fixed overlay and excess reserved space"
 }
