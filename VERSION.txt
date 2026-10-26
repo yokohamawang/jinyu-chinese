@@ -1,6 +1,6 @@
-Koepanda version 10.108.285
-Previous: 10.108.284
-Published baseline: 10.108.272; latest uploaded candidate: 10.108.284
+Koepanda version 10.108.286
+Previous: 10.108.285
+Published baseline: 10.108.272; latest uploaded candidate: 10.108.285
 Release: 2026-10-26
 Status: candidate
-Change: Fix narrow-screen P18 action button text wrapping and add a clear pressed-state response.
+Change: Redesign P18 as a branded integrated-practice stage with Xiaoyin guidance, clearer learning hierarchy, distinct listening and choice cards, and simplified layered surfaces.
