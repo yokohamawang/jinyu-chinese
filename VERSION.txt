@@ -1,6 +1,6 @@
-Koepanda version 10.108.284
-Previous: 10.108.283
-Published baseline: 10.108.272; latest uploaded candidate: 10.108.283
+Koepanda version 10.108.285
+Previous: 10.108.284
+Published baseline: 10.108.272; latest uploaded candidate: 10.108.284
 Release: 2026-10-26
 Status: candidate
-Change: Use a versioned P18 script filename so the normal-flow mobile action bar cannot be replaced by a stale cached script.
+Change: Fix narrow-screen P18 action button text wrapping and add a clear pressed-state response.

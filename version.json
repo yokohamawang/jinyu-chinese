@@ -1,8 +1,8 @@
 {
-  "version": "10.108.284",
-  "previous": "10.108.283",
+  "version": "10.108.285",
+  "previous": "10.108.284",
   "supersedes": "10.108.272",
   "release": "2026-10-26",
   "status": "candidate",
-  "change": "Load the P18 normal-flow action bar from a new versioned script filename to bypass stale script content"
+  "change": "Wrap P18 action labels on narrow screens and add tactile pressed-state feedback with a versioned script path"
 }
