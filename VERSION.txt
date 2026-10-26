@@ -1,6 +1,6 @@
-Koepanda version 10.108.281
-Previous: 10.108.280
-Published baseline: 10.108.272; latest uploaded candidate: 10.108.280
+Koepanda version 10.108.282
+Previous: 10.108.281
+Published baseline: 10.108.272; latest uploaded candidate: 10.108.281
 Release: 2026-10-26
 Status: candidate
-Change: Refine P18 mobile spacing and keep action labels compact without changing lesson logic.
+Change: Place the P18 mobile action bar at the bottom and remove the viewport offset that covered prompt and answers.

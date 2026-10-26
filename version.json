@@ -1,8 +1,8 @@
 {
-  "version": "10.108.281",
-  "previous": "10.108.280",
+  "version": "10.108.282",
+  "previous": "10.108.281",
   "supersedes": "10.108.272",
   "release": "2026-10-26",
   "status": "candidate",
-  "change": "Refine P18 mobile spacing and keep action labels compact without changing lesson logic"
+  "change": "Place P18 mobile action bar at the bottom; remove viewport offset that covered prompt and answers"
 }
