@@ -1,8 +1,8 @@
 {
-  "version": "10.108.283",
-  "previous": "10.108.282",
+  "version": "10.108.284",
+  "previous": "10.108.283",
   "supersedes": "10.108.272",
   "release": "2026-10-26",
   "status": "candidate",
-  "change": "Keep P18 action controls in normal document flow on mobile; remove fixed overlay and excess reserved space"
+  "change": "Load the P18 normal-flow action bar from a new versioned script filename to bypass stale script content"
 }
