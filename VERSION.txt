@@ -1,6 +1,6 @@
-Koepanda version 10.108.291
-Previous: 10.108.289
-Published baseline: live 10.108.289 with embedded Xiaoyin portrait
+Koepanda version 10.108.293
+Previous: 10.108.292
+Published baseline: live 10.108.289
 Release: 2026-10-27
 Status: candidate
-Change: Refine mobile bottom action dock position and size; restore full Japanese action labels.
+Change: Add ie・üe・er vowel-group entry to the single-vowel overview; route to existing P11 with prerequisite check.

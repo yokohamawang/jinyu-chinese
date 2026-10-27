@@ -1,8 +1,8 @@
 {
-  "version": "10.108.291",
-  "previous": "10.108.289",
-  "supersedes": "10.108.272",
+  "version": "10.108.293",
+  "previous": "10.108.292",
+  "supersedes": "10.108.289",
   "release": "2026-10-27",
   "status": "candidate",
-  "change": "Refine mobile bottom action dock position and size; restore full Japanese action labels."
+  "change": "Add ie・üe・er vowel-group entry to overview; route to P11 with prerequisite check."
 }
