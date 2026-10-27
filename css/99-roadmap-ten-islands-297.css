@@ -1,3 +1,4 @@
-/* 10-island roadmap geometry: match the artwork's 749:2098 aspect ratio so percentage hitboxes share the image coordinate space. */
+/* Match the 749×2098 map coordinate space and keep each tap zone inside its own island. */
 #pinyinRoadmap .kp197-artwork{aspect-ratio:749 / 2098}
 #pinyinRoadmap .kp197-map-image{width:100%;height:100%;object-fit:fill}
+#pinyinRoadmap .kp197-hotspot{box-sizing:border-box;padding:0;margin:0}
