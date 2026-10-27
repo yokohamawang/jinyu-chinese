@@ -328,6 +328,7 @@
       {n:9,title:'最終テスト',sample:'ピンインマスターへ！',kind:'exam'}
     ];
     function getUnit(id){var result=null;course.stages.forEach(function(st){(st.units||[]).forEach(function(u){if(u.id===id)result=u})});return result}
+    window.koepandaOpenUnitFromVowelOverview=function(id){var unit=getUnit(id);if(!unit)return false;var stage=course.stages.find(function(st){return (st.units||[]).some(function(u){return u.id===id})}),status=stage?effectiveStageStatus(stage):'locked';if(unitLocked(unit,status))return false;var button=root.querySelector('.pinyin-node[data-unit-id="'+id+'"]');return openLesson(unit,button||root)};
     var artwork=document.createElement('div');artwork.className='kp197-artwork';
     var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-nine-islands-197.webp';picture.alt='';picture.className='kp197-map-image';picture.width=941;picture.height=1672;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
     /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
