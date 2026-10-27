@@ -1,6 +1,7 @@
-Koepanda version 10.108.297
-Previous: 10.108.294
-Published baseline: live 10.108.293 upload observed
+Koepanda version 10.108.298
+Previous: 10.108.297
+Supersedes: 10.108.297
+Published baseline: user-provided 10.108.297 candidate FULL
 Release: 2026-10-27
 Status: candidate
-Change: Restore spacious illustrated compound-vowel task island; audit all roadmap routes.
+Change: Restore the unified automatic celebration and replay control on the final Pinyin test; reserve space below the fixed lesson header. Preserve the 297 ten-island roadmap.
