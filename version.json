@@ -1,8 +1,8 @@
 {
-  "version": "10.108.298",
-  "previous": "10.108.297",
-  "supersedes": "10.108.297",
+  "version": "10.108.299",
+  "previous": "10.108.298",
+  "supersedes": "10.108.298",
   "release": "2026-10-27",
   "status": "candidate",
-  "change": "Restore unified final-test celebration and replay; add fixed-header clearance while preserving the 297 ten-island roadmap."
+  "change": "Raise final-test difficulty with 10 integrated questions spanning tones, tone sandhi, initials, finals, spelling rules, whole syllables, and light tone; move the question counter directly above the prompt."
 }

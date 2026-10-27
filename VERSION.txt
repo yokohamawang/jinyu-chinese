@@ -1,7 +1,7 @@
-Koepanda version 10.108.298
-Previous: 10.108.297
-Supersedes: 10.108.297
-Published baseline: user-provided 10.108.297 candidate FULL
+Koepanda version 10.108.299
+Previous: 10.108.298
+Supersedes: 10.108.298
+Published baseline: 10.108.298 candidate FULL
 Release: 2026-10-27
 Status: candidate
-Change: Restore the unified automatic celebration and replay control on the final Pinyin test; reserve space below the fixed lesson header. Preserve the 297 ten-island roadmap.
+Change: Increase final-test difficulty and move question progress beside the prompt; preserve final-test celebration and the 297 ten-island roadmap.
