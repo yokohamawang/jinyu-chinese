@@ -1,6 +1,6 @@
-Koepanda version 10.108.293
-Previous: 10.108.292
-Published baseline: live 10.108.289
+Koepanda version 10.108.294
+Previous: 10.108.293
+Published baseline: live 10.108.293 upload observed
 Release: 2026-10-27
 Status: candidate
-Change: Add ie・üe・er vowel-group entry to the single-vowel overview; route to existing P11 with prerequisite check.
+Change: Fix ie・üe・er overview route in the roadmap script actually loaded by the live index; bump caches.
