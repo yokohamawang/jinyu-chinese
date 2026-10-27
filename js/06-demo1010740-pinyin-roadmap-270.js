@@ -314,7 +314,7 @@
     root=document.getElementById('pinyinRoadmap'); if(!root)return; root.replaceChildren();
     course.stages.forEach(function(stage,index){root.appendChild(stageCard(stage,index))});
     /* 234: Nine-island status is derived from persisted lesson completion. */
-    var map=document.createElement('section');map.className='kp196-archipelago';map.setAttribute('aria-label','9つの島をめぐるピンインコース');
+    var map=document.createElement('section');map.className='kp196-archipelago';map.setAttribute('aria-label','10の島をめぐるピンインコース');
     makeExtraLessons();
     var islandSpecs=[
       {n:1,title:'単韻母',sample:'a · o · e · i · u · ü',unit:'P1'},
@@ -332,7 +332,7 @@
     var artwork=document.createElement('div');artwork.className='kp197-artwork';
     var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-ten-islands-297.png';picture.alt='';picture.className='kp197-map-image';picture.width=749;picture.height=2098;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
     /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
-    var positions=[{x:8,y:2,w:63,h:7},{x:29,y:12,w:63,h:7},{x:8,y:21,w:63,h:7},{x:29,y:31,w:63,h:7},{x:8,y:40,w:63,h:7},{x:29,y:50,w:63,h:7},{x:8,y:59,w:63,h:7},{x:29,y:69,w:63,h:7},{x:8,y:78,w:63,h:7},{x:29,y:88,w:63,h:7}];
+    var positions=[{x:5,y:5.5,w:63,h:7},{x:34,y:12.5,w:63,h:7},{x:4,y:20.5,w:63,h:7},{x:34,y:28.5,w:63,h:7},{x:4,y:36.5,w:63,h:7},{x:34,y:45.5,w:63,h:7},{x:4,y:53.5,w:63,h:7},{x:34,y:63.5,w:63,h:7},{x:4,y:73.5,w:63,h:7},{x:28,y:85.5,w:64,h:7}];
     islandSpecs.forEach(function(spec,index){
       var unit=spec.unit?getUnit(spec.unit):null;
       var available=!!((unit&&targetForUnit(unit.id))||(spec.unit&&targetForUnit(spec.unit))||spec.kind==='exam');
