@@ -1,0 +1,3 @@
+/* 10-island roadmap geometry: match the artwork's 749:2098 aspect ratio so percentage hitboxes share the image coordinate space. */
+#pinyinRoadmap .kp197-artwork{aspect-ratio:749 / 2098}
+#pinyinRoadmap .kp197-map-image{width:100%;height:100%;object-fit:fill}
