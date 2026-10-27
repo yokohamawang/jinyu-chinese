@@ -332,14 +332,14 @@
     var artwork=document.createElement('div');artwork.className='kp197-artwork';
     var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-ten-islands-297.png';picture.alt='';picture.className='kp197-map-image';picture.width=749;picture.height=2098;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
     /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
-    var positions=[{x:5,y:5.5,w:63,h:7},{x:34,y:12.5,w:63,h:7},{x:4,y:20.5,w:63,h:7},{x:34,y:28.5,w:63,h:7},{x:4,y:36.5,w:63,h:7},{x:34,y:45.5,w:63,h:7},{x:4,y:53.5,w:63,h:7},{x:34,y:63.5,w:63,h:7},{x:4,y:73.5,w:63,h:7},{x:28,y:85.5,w:64,h:7}];
+    var positions=[{x:6,y:6,w:60,h:5.5},{x:35,y:13,w:60,h:5.5},{x:5,y:21.5,w:60,h:5.5},{x:35,y:29.5,w:60,h:5.5},{x:5,y:37.5,w:60,h:5.5},{x:35,y:46,w:60,h:5.5},{x:5,y:54.5,w:60,h:5.5},{x:35,y:64,w:60,h:5.5},{x:5,y:74,w:60,h:5.5},{x:30,y:86,w:60,h:5.5}];
     islandSpecs.forEach(function(spec,index){
       var unit=spec.unit?getUnit(spec.unit):null;
       var available=!!((unit&&targetForUnit(unit.id))||(spec.unit&&targetForUnit(spec.unit))||spec.kind==='exam');
       var fallback=spec.kind==='practice'?'練習へ':available?'レッスンへ':'準備中';
       var state=islandComplete(spec.n)?'クリア':fallback;
       var button=document.createElement('button');button.type='button';button.className='kp197-hotspot';
-      var loc=positions[index];button.style.left=loc.x+'%';button.style.top=loc.y+'%';button.style.width=loc.w+'%';button.style.height=loc.h+'%';
+      var loc=positions[index];button.style.left=loc.x+'%';button.style.top=loc.y+'%';button.style.width=loc.w+'%';button.style.height=loc.h+'%';button.style.boxSizing='border-box';button.style.padding='0';button.style.margin='0';
       button.dataset.island=String(spec.n);button.dataset.islandTitle=spec.title;button.dataset.incompleteLabel=fallback;
       button.setAttribute('aria-label','島'+spec.n+' '+spec.title+' '+state);
       var sr=document.createElement('span');sr.className='kp197-screenreader';sr.textContent=spec.title+' '+state;button.appendChild(sr);
