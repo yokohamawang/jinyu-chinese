@@ -1,8 +1,8 @@
 {
-  "version": "10.108.299",
-  "previous": "10.108.298",
-  "supersedes": "10.108.298",
+  "version": "10.108.300",
+  "previous": "10.108.299",
+  "supersedes": "10.108.299",
   "release": "2026-10-27",
   "status": "candidate",
-  "change": "Raise final-test difficulty with 10 integrated questions spanning tones, tone sandhi, initials, finals, spelling rules, whole syllables, and light tone; move the question counter directly above the prompt."
+  "change": "Place the final-test question counter beside the in-card title to save vertical space; specify the first tone in the sh+u+ang item and correct the aspiration question to b/p."
 }
