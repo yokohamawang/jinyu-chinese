@@ -1,0 +1,25 @@
+/* Koepanda 10.108.300 — title-row progress and unambiguous prompt. */
+#kidsCourse>#kidsFinalPinyinExam.is-roadmap-lesson-active{
+  box-sizing:border-box!important;
+  padding:calc(env(safe-area-inset-top) + 76px) 20px 82px!important;
+  scroll-margin-top:64px!important;
+}
+#kidsCourse>#kidsFinalPinyinExam.is-roadmap-lesson-active>.kp198-exam-title-row h2{
+  margin-top:0!important;
+  padding-top:2px;
+  color:#315f53;
+  line-height:1.22;
+}
+#kidsCourse>#kidsFinalPinyinExam .kp198-quiz{max-width:600px;margin-inline:auto}
+#kidsCourse>#kidsFinalPinyinExam .kp198-question{line-height:1.55}
+#kidsCourse>#kidsFinalPinyinExam .kp198-feedback{margin-top:12px}
+#kidsCourse>#kidsFinalPinyinExam .koepanda-result-reopen{margin-top:12px}
+@media(max-width:390px){
+  #kidsCourse>#kidsFinalPinyinExam.is-roadmap-lesson-active{padding:calc(env(safe-area-inset-top) + 72px) 14px 82px!important}
+}
+
+/* Keep the question count attached to the prompt as a compact progress marker. */
+#kidsCourse>#kidsFinalPinyinExam .kp198-exam-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 12px}
+#kidsCourse>#kidsFinalPinyinExam .kp198-exam-title-row h2{margin:0!important;min-width:0}
+#kidsCourse>#kidsFinalPinyinExam .kp198-exam-title-row .kp198-score{display:inline-flex;align-items:center;flex:0 0 auto;width:max-content;margin:0;padding:5px 12px;border-radius:999px;background:#e7f4ec;color:#39715f;font-size:14px;font-weight:800;line-height:1.25;letter-spacing:.02em}
+#kidsCourse>#kidsFinalPinyinExam .kp198-question{margin-top:0}
