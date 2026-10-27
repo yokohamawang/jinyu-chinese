@@ -319,26 +319,20 @@
     var islandSpecs=[
       {n:1,title:'単韻母',sample:'a · o · e · i · u · ü',unit:'P1'},
       {n:2,title:'声母',sample:'b · p · m · f …',unit:'P3'},
-      {n:3,title:'二拼',sample:'声母 ＋ 韻母',unit:'P16'},
-      {n:4,title:'三拼',sample:'拼読ステップアップ',unit:'P17'},
-      {n:5,title:'整体認読①',sample:'zhi · chi · shi …',unit:'P14'},
-      {n:6,title:'整体認読②',sample:'yi · wu · yu …',unit:'P15'},
-      {n:7,title:'軽声のひみつ',sample:'短く、軽く、自然に',unit:'P19'},
-      {n:8,title:'総合練習',sample:'これまでの音を復習',kind:'practice'},
-      {n:9,title:'最終テスト',sample:'ピンインマスターへ！',kind:'exam'}
+      {n:3,title:'複韻母',sample:'ai · ei · ui · ao · ou · iu · ie · üe · er',unit:'P9'},
+      {n:4,title:'二拼',sample:'声母 ＋ 韻母',unit:'P16'},
+      {n:5,title:'三拼',sample:'拼読ステップアップ',unit:'P17'},
+      {n:6,title:'整体認読①',sample:'zhi · chi · shi …',unit:'P14'},
+      {n:7,title:'整体認読②',sample:'yi · wu · yu …',unit:'P15'},
+      {n:8,title:'軽声のひみつ',sample:'短く、軽く、自然に',unit:'P19'},
+      {n:9,title:'総合練習',sample:'これまでの音を復習',kind:'practice'},
+      {n:10,title:'最終テスト',sample:'ピンインマスターへ！',kind:'exam'}
     ];
     function getUnit(id){var result=null;course.stages.forEach(function(st){(st.units||[]).forEach(function(u){if(u.id===id)result=u})});return result}
-    window.koepandaOpenUnitFromVowelOverview=function(id){var unit=getUnit(id);if(!unit)return false;var stage=course.stages.find(function(st){return (st.units||[]).some(function(u){return u.id===id})}),status=stage?effectiveStageStatus(stage):'locked';if(unitLocked(unit,status))return false;var button=root.querySelector('.pinyin-node[data-unit-id="'+id+'"]');return openLesson(unit,button||root)};
     var artwork=document.createElement('div');artwork.className='kp197-artwork';
-    var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-nine-islands-197.webp';picture.alt='';picture.className='kp197-map-image';picture.width=941;picture.height=1672;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
+    var picture=document.createElement('img');picture.src='./assets/pinyin/roadmap-ten-islands-297.png';picture.alt='';picture.className='kp197-map-image';picture.width=749;picture.height=2098;picture.loading='eager';picture.decoding='async';artwork.appendChild(picture);
     /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
-    var positions=[
-      {x:15,y:5,w:42,h:11},{x:55,y:13,w:41,h:11},
-      {x:10,y:23,w:42,h:13},{x:55,y:33,w:42,h:12},
-      {x:10,y:43,w:42,h:12},{x:54,y:52,w:43,h:12},
-      {x:9,y:62,w:44,h:12},{x:54,y:71,w:43,h:12},
-      {x:26,y:83,w:49,h:13}
-    ];
+    var positions=[{x:8,y:2,w:63,h:7},{x:29,y:12,w:63,h:7},{x:8,y:21,w:63,h:7},{x:29,y:31,w:63,h:7},{x:8,y:40,w:63,h:7},{x:29,y:50,w:63,h:7},{x:8,y:59,w:63,h:7},{x:29,y:69,w:63,h:7},{x:8,y:78,w:63,h:7},{x:29,y:88,w:63,h:7}];
     islandSpecs.forEach(function(spec,index){
       var unit=spec.unit?getUnit(spec.unit):null;
       var available=!!((unit&&targetForUnit(unit.id))||(spec.unit&&targetForUnit(spec.unit))||spec.kind==='exam');
@@ -362,7 +356,8 @@
           openStage(stage,world||button,'next');
         });
       }
-      else if(spec.n===6){
+      else if(spec.n===3){button.addEventListener('click',function(){var stage=course.stages.find(function(item){return item.id==='P9-P13'});if(!stage)return;var world=root.querySelector('.pinyin-world[data-stage-id="P9-P13"]');openStage(stage,world||button,effectiveStageStatus(stage))})}
+      else if(spec.n===7){
         /* P15 is already a finished lesson. Resolve its node at CLICK time, not
            during the roadmap render, to avoid a permanently dead sixth island
            when the separately bundled P15 script initializes later. */
