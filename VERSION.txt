@@ -1,6 +1,6 @@
-Koepanda version 10.108.294
-Previous: 10.108.293
+Koepanda version 10.108.297
+Previous: 10.108.294
 Published baseline: live 10.108.293 upload observed
 Release: 2026-10-27
 Status: candidate
-Change: Fix ie・üe・er overview route in the roadmap script actually loaded by the live index; bump caches.
+Change: Restore spacious illustrated compound-vowel task island; audit all roadmap routes.

@@ -1,8 +1,8 @@
 {
-  "version": "10.108.294",
-  "previous": "10.108.293",
+  "version": "10.108.297",
+  "previous": "10.108.294",
   "supersedes": "10.108.293",
   "release": "2026-10-27",
   "status": "candidate",
-  "change": "Fix ie・üe・er overview route in loaded roadmap script; bump caches."
+  "change": "Restore spacious illustrated compound-vowel task island; audit all roadmap routes."
 }
