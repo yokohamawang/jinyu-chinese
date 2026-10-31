@@ -1,10 +1,10 @@
 {
-  "version": "301.12",
+  "version": "301.14",
   "base": "301",
-  "update_from": "301.11",
-  "previous_revision": "301.11",
-  "status": "candidate",
-  "feature": "hanzi-practice",
-  "change": "Entering tracing resets stale stroke and canvas state; tracing uses a dedicated enlarged board, full faint model guide, and single-row fixed controls. Stroke headers and buttons no longer wrap.",
-  "audio_status": "Shared TTS worker was observed returning HTTP 502 because upstream Azure returned HTTP 401; worker credentials are outside this static package."
+  "update_from": "301.13",
+  "previous_revision": "301.13",
+  "status": "候选版",
+  "feature": "汉字练习日文化",
+  "change": "汉字练习的标题、步骤、按钮、操作提示、无障碍标签、读音释义及语音提示改为日文；主页设备语音提示同步日文化。",
+  "audio_status": "语音播放逻辑未改动。在线语音状态沿用 301.13。"
 }

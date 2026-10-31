@@ -1,7 +1,7 @@
-Koepanda 301.12 Hanzi Practice candidate
-Base: 301 (from 300)
-Update package base: 301.11
-Revision: 301.12; reset tracing state on entry, enlarge focused writing board, prevent control and stroke-count wrapping
-Previous code revision: 301.11
-Status: candidate; not production-approved
-Audio note: shared TTS worker returned HTTP 502 (upstream Azure HTTP 401) during review; this front-end package cannot repair worker credentials.
+Koepanda 301.14 汉字练习日文界面候选版
+基线：301（源自 300）
+更新包基于：301.13
+版本：301.14；汉字练习用户界面和操作说明改为日文
+上一代码版本：301.13
+状态：候选版，尚未批准用于正式环境
+
