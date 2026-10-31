@@ -1,8 +1,8 @@
 {
-  "version": "301.6",
+  "version": "301.8",
   "base": "301",
-  "previous_revision": "301.5",
+  "previous_revision": "301.7",
   "status": "candidate",
   "feature": "hanzi-practice",
-  "change": "Add device speech fallback, preserve vertical page scrolling from writing board, and fit teacher/stroke count on mobile"
+  "change": "Add focused writing mode with viewport-filling canvas and fixed thumb-reachable controls"
 }

@@ -1,5 +1,5 @@
-Koepanda 301.6 Hanzi Practice candidate
+Koepanda 301.8 Hanzi Practice candidate
 Base: 301 (from 300)
-Revision: 301.6; voice fallback, scrollable writing area, right-aligned teacher and two-digit stroke counter fit
-Previous revision: 301.5
+Revision: 301.8; focused writing mode with pinned controls
+Previous revision: 301.7
 Status: candidate; not production-approved
