@@ -1,7 +1,3 @@
-Koepanda version 10.108.301
-Previous: 10.108.300
-Supersedes: 10.108.300
-Published baseline: 10.108.300 candidate FULL
-Release: 2026-10-31
-Status: candidate
-Change: Use approved full-height roadmap artwork with transparent hotspots linking to existing Listening, Speaking, Mimic, and Pinyin roadmap routes.
+Koepanda 301 Hanzi Practice pilot
+Base: 301 (from 300)
+Status: candidate; not production-approved

@@ -1,8 +1,1 @@
-{
-  "version": "10.108.301",
-  "previous": "10.108.300",
-  "supersedes": "10.108.300",
-  "release": "2026-10-31",
-  "status": "candidate",
-  "change": "Replace the home artwork with the approved full-height roadmap image and add transparent hotspots for the three existing home functions and the existing Pinyin roadmap."
-}
+{"version":"301-hanzi-pilot","base":"301","status":"candidate","feature":"hanzi-practice"}
