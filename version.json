@@ -1,8 +1,8 @@
 {
-  "version": "301.5",
+  "version": "301.6",
   "base": "301",
-  "previous_revision": "301.4",
+  "previous_revision": "301.5",
   "status": "candidate",
   "feature": "hanzi-practice",
-  "change": "Use verified homepage on-demand TTS for Hanzi pronunciation"
+  "change": "Add device speech fallback, preserve vertical page scrolling from writing board, and fit teacher/stroke count on mobile"
 }

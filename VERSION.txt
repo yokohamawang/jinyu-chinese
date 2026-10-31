@@ -1,5 +1,5 @@
-Koepanda 301.5 Hanzi Practice candidate
+Koepanda 301.6 Hanzi Practice candidate
 Base: 301 (from 300)
-Revision: 301.5; use the verified on-demand homepage TTS service for Hanzi pronunciation
-Previous revision: 301.4
+Revision: 301.6; voice fallback, scrollable writing area, right-aligned teacher and two-digit stroke counter fit
+Previous revision: 301.5
 Status: candidate; not production-approved
