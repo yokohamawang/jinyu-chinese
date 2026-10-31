@@ -1,5 +1,6 @@
-Koepanda 301.8 Hanzi Practice candidate
+Koepanda 301.11 Hanzi Practice candidate
 Base: 301 (from 300)
-Revision: 301.8; focused writing mode with pinned controls
-Previous revision: 301.7
+Update package base: 301.8
+Revision: 301.11; consolidated step controls and synchronized pronunciation with stroke playback
+Previous code revision: 301.10
 Status: candidate; not production-approved

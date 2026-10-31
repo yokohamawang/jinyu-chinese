@@ -1,8 +1,9 @@
 {
-  "version": "301.8",
+  "version": "301.11",
   "base": "301",
-  "previous_revision": "301.7",
+  "update_from": "301.8",
+  "previous_revision": "301.10",
   "status": "candidate",
   "feature": "hanzi-practice",
-  "change": "Add focused writing mode with viewport-filling canvas and fixed thumb-reachable controls"
+  "change": "Consolidate missing step-button fixes and play Hanzi pronunciation from stroke play/replay actions"
 }
