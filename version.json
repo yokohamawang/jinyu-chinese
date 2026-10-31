@@ -1,1 +1,7 @@
-{"version":"301-hanzi-pilot","base":"301","status":"candidate","feature":"hanzi-practice"}
+{
+  "version": "301.2",
+  "base": "301",
+  "previous_revision": "301.1",
+  "status": "candidate",
+  "feature": "hanzi-practice"
+}

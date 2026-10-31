@@ -1,3 +1,4 @@
-Koepanda 301 Hanzi Practice pilot
+Koepanda 301.2 Hanzi Practice candidate
 Base: 301 (from 300)
+Revision: 301.2; follows 301.1
 Status: candidate; not production-approved
