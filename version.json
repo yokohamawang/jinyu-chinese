@@ -1,9 +1,10 @@
 {
-  "version": "301.11",
+  "version": "301.12",
   "base": "301",
-  "update_from": "301.8",
-  "previous_revision": "301.10",
+  "update_from": "301.11",
+  "previous_revision": "301.11",
   "status": "candidate",
   "feature": "hanzi-practice",
-  "change": "Consolidate missing step-button fixes and play Hanzi pronunciation from stroke play/replay actions"
+  "change": "Entering tracing resets stale stroke and canvas state; tracing uses a dedicated enlarged board, full faint model guide, and single-row fixed controls. Stroke headers and buttons no longer wrap.",
+  "audio_status": "Shared TTS worker was observed returning HTTP 502 because upstream Azure returned HTTP 401; worker credentials are outside this static package."
 }
