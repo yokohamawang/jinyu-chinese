@@ -1,10 +1,10 @@
 {
-  "version": "301.18",
+  "version": "301.19",
   "base": "301",
-  "update_from": "301.17",
-  "previous_revision": "301.17",
+  "update_from": "301.18",
+  "previous_revision": "301.18",
   "status": "候选版",
-  "feature": "汉字练习界面整理",
-  "change": "移除练习页面底部的笔顺数据出处折叠说明；授权文本 ARPHICPL.TXT 继续随完整包保留。",
-  "audio_status": "沿用 301.17 语音行为；本次没有修改音频逻辑。"
+  "feature": "汉字选择与笔顺布局修正",
+  "change": "汉字卡片略微上移并与选择条拉开间距；读取步骤滚动回页面顶部；笔顺卡片标题和画数状态改为短文本，避免窄屏挤压。",
+  "audio_status": "语音逻辑沿用 301.18。"
 }
