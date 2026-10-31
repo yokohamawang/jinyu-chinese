@@ -1,7 +1,7 @@
-Koepanda version 10.108.300
-Previous: 10.108.299
-Supersedes: 10.108.299
-Published baseline: 10.108.299 candidate FULL
-Release: 2026-10-27
+Koepanda version 10.108.301
+Previous: 10.108.300
+Supersedes: 10.108.300
+Published baseline: 10.108.300 candidate FULL
+Release: 2026-10-31
 Status: candidate
-Change: Place the question counter beside the final-test title and clarify ambiguous answer conditions; preserve the 299 ten-question test and celebration.
+Change: Use approved full-height roadmap artwork with transparent hotspots linking to existing Listening, Speaking, Mimic, and Pinyin roadmap routes.

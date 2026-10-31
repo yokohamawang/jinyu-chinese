@@ -289,21 +289,12 @@ window.koepandaEnterKidsCourse=function(ev){
 <div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.107.97</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 <!-- DEMO 10.107.61 visible Back navigation; roadmap stays compact and Back remains available while scrolling. -->
-<section class="home-effect-live" id="homeEffect" aria-label="Koepanda ホーム">
-  <div class="home-effect-top">
-    <img class="home-effect-reference home-effect-top-image" src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="今日のステップ。聞く・話す・まねるの3つの練習">
-    <a class="home-effect-hotspot hs-listen" href="#listeningGame" aria-label="聞く：声調を聞き分ける"></a>
-    <a class="home-effect-hotspot hs-talk" href="#pandaChat" aria-label="話す：自由に練習する"></a>
-    <a class="home-effect-hotspot hs-repeat" href="#examplePractice" aria-label="まねる：例文を声に出す"></a>
-  </div>
-  <section class="kids-entry-card" id="kidsEntry" aria-label="はじめの一歩">
-    <button type="button" class="kids-entry-button" id="kidsEntryButton" onclick="return window.koepandaEnterKidsCourse(event)">
-      <span class="kids-entry-icon" aria-hidden="true">🐼</span>
-      <span class="kids-entry-copy"><strong>はじめの一歩</strong><small>音と口の形から、やさしく中国語</small></span>
-      <span class="kids-entry-arrow" aria-hidden="true">›</span>
-    </button>
-  </section>
-  <img class="home-effect-reference home-effect-bottom-image" src="./assets/home/koepanda-home-bottom-final.webp?v=10.108.159" alt="学習の記録と集めたスタンプ">
+<section class="home-effect-live roadmap-home-301" id="homeEffect" aria-label="Koepanda 学びのホーム">
+  <img class="home-effect-reference roadmap-home-image" src="./assets/home/koepanda-home-roadmap-300.png?v=10.108.301" alt="声調コーチのホームと、拼音・漢字・中国語検定の学習ロード">
+  <a class="home-effect-hotspot roadmap-hs-listen" href="#listeningGame" aria-label="聞く：物語を聞く"></a>
+  <a class="home-effect-hotspot roadmap-hs-talk" href="#pandaChat" aria-label="話す：場面で話す"></a>
+  <a class="home-effect-hotspot roadmap-hs-repeat" href="#examplePractice" aria-label="まねる：発音と声調を練習"></a>
+  <a class="home-effect-hotspot roadmap-hs-pinyin" href="#kidsCourse" onclick="return window.koepandaEnterKidsCourse(event)" aria-label="ピンインのぼうけん：既存の拼音学習ロードを開く"></a>
 </section>
 
 <section class="kids-course" id="kidsCourse" aria-labelledby="kidsCourseTitle" aria-hidden="true">
@@ -1290,25 +1281,16 @@ body.app-home-mode #homeEffect > a.home-effect-hotspot{
   text-decoration:none!important;
   -webkit-tap-highlight-color:rgba(0,0,0,.06)!important;
 }
-/* Current artwork button rectangles, measured as percentages of the full homepage image. */
-body.app-home-mode #homeEffect > a.hs-listen{
-  left:4.2%!important;
-  top:33.5%!important;
-  width:29.2%!important;
-  height:23.4%!important;
-}
-body.app-home-mode #homeEffect > a.hs-talk{
-  left:35.4%!important;
-  top:33.5%!important;
-  width:29.2%!important;
-  height:23.4%!important;
-}
-body.app-home-mode #homeEffect > a.hs-repeat{
-  left:66.6%!important;
-  top:33.5%!important;
-  width:29.2%!important;
-  height:23.4%!important;
-}
+/* 10.108.301: transparent link zones measured against the supplied 739×2129 artwork. */
+body.app-home-mode #homeEffect > a.roadmap-hs-listen,
+body.app-home-mode #homeEffect > a.roadmap-hs-talk,
+body.app-home-mode #homeEffect > a.roadmap-hs-repeat,
+body.app-home-mode #homeEffect > a.roadmap-hs-pinyin{border-radius:18%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-listen{left:6%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-talk{left:36%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-repeat{left:66%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-pinyin{left:16%!important;top:36.5%!important;width:43%!important;height:6.8%!important}
+body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;height:auto!important;display:block!important}
 </style>
 
 <script id="demo1010717-week-stats">
