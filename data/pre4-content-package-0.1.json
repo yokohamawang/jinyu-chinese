@@ -1,0 +1,3863 @@
+{
+  "schema_version": "koepanda-hanzi-content-0.1",
+  "package_id": "koepanda-pre4-hanzi-candidate",
+  "level": "準4級",
+  "status": "candidate_not_release_ready",
+  "based_on": {
+    "vocabulary_seed": "Koepanda_Pre4_Vocabulary_Data_Seed_0.2.json",
+    "practice_framework": "work301/Koepanda_301.21_Hanzi/hanzi-practice.html",
+    "framework_version": "301.21"
+  },
+  "summary": {
+    "vocabulary_entries": 105,
+    "units": 11,
+    "distinct_characters": 135,
+    "character_occurrences": 186,
+    "characters_with_reusable_stroke_data": 1,
+    "characters_requiring_stroke_data": 134
+  },
+  "learning_flow": [
+    {
+      "step_id": "read",
+      "label_ja": "読む",
+      "source": "vocabulary_entry",
+      "description_ja": "単語の発音・意味を確認する"
+    },
+    {
+      "step_id": "strokes",
+      "label_ja": "筆順",
+      "source": "character_sequence",
+      "description_ja": "単語を構成する漢字を一字ずつ練習する。筆順データがある字だけ実習可能"
+    },
+    {
+      "step_id": "trace",
+      "label_ja": "なぞる",
+      "source": "character_sequence",
+      "description_ja": "確認済みの字形・筆順データに沿って練習する"
+    }
+  ],
+  "units": [
+    {
+      "unit_id": "pre4-u01",
+      "title_ja": "あいさつと基本のやりとり",
+      "topics": [
+        "问候"
+      ],
+      "entry_ids": [
+        "pre4-001",
+        "pre4-002",
+        "pre4-003",
+        "pre4-004",
+        "pre4-005"
+      ]
+    },
+    {
+      "unit_id": "pre4-u02",
+      "title_ja": "人・家族・国",
+      "topics": [
+        "人物与关系",
+        "人物と仕事",
+        "人物"
+      ],
+      "entry_ids": [
+        "pre4-024",
+        "pre4-025",
+        "pre4-026",
+        "pre4-027",
+        "pre4-028",
+        "pre4-097",
+        "pre4-098",
+        "pre4-103",
+        "pre4-105"
+      ]
+    },
+    {
+      "unit_id": "pre4-u03",
+      "title_ja": "時刻・日付",
+      "topics": [
+        "时间"
+      ],
+      "entry_ids": [
+        "pre4-006",
+        "pre4-007",
+        "pre4-008",
+        "pre4-009",
+        "pre4-059",
+        "pre4-063",
+        "pre4-093",
+        "pre4-102"
+      ]
+    },
+    {
+      "unit_id": "pre4-u04",
+      "title_ja": "場所と移動",
+      "topics": [
+        "地点",
+        "地点问答",
+        "交通",
+        "工作与地点"
+      ],
+      "entry_ids": [
+        "pre4-018",
+        "pre4-019",
+        "pre4-020",
+        "pre4-071",
+        "pre4-072",
+        "pre4-087"
+      ]
+    },
+    {
+      "unit_id": "pre4-u05",
+      "title_ja": "食事・服・買い物",
+      "topics": [
+        "衣食住",
+        "饮食",
+        "服饰",
+        "买卖"
+      ],
+      "entry_ids": [
+        "pre4-031",
+        "pre4-032",
+        "pre4-033",
+        "pre4-034",
+        "pre4-061",
+        "pre4-064",
+        "pre4-069",
+        "pre4-078",
+        "pre4-090",
+        "pre4-094"
+      ]
+    },
+    {
+      "unit_id": "pre4-u06",
+      "title_ja": "学校・学習・ことば",
+      "topics": [
+        "学习",
+        "学校",
+        "发音与学习",
+        "语言",
+        "国とことば",
+        "音乐"
+      ],
+      "entry_ids": [
+        "pre4-013",
+        "pre4-014",
+        "pre4-015",
+        "pre4-016",
+        "pre4-017",
+        "pre4-029",
+        "pre4-030",
+        "pre4-055",
+        "pre4-058",
+        "pre4-066",
+        "pre4-073",
+        "pre4-077",
+        "pre4-088"
+      ]
+    },
+    {
+      "unit_id": "pre4-u07",
+      "title_ja": "身近なもの・持ち物",
+      "topics": [
+        "生活",
+        "随身物品"
+      ],
+      "entry_ids": [
+        "pre4-054",
+        "pre4-056",
+        "pre4-060",
+        "pre4-070",
+        "pre4-074",
+        "pre4-100"
+      ]
+    },
+    {
+      "unit_id": "pre4-u08",
+      "title_ja": "行動と日常生活",
+      "topics": [
+        "日常动作",
+        "动作",
+        "意愿",
+        "运动",
+        "休闲",
+        "频率"
+      ],
+      "entry_ids": [
+        "pre4-021",
+        "pre4-022",
+        "pre4-023",
+        "pre4-040",
+        "pre4-041",
+        "pre4-042",
+        "pre4-043",
+        "pre4-044",
+        "pre4-052",
+        "pre4-057",
+        "pre4-075",
+        "pre4-089",
+        "pre4-096",
+        "pre4-101"
+      ]
+    },
+    {
+      "unit_id": "pre4-u09",
+      "title_ja": "気持ち・様子・天気",
+      "topics": [
+        "基础形容词",
+        "身体状态",
+        "自然"
+      ],
+      "entry_ids": [
+        "pre4-035",
+        "pre4-036",
+        "pre4-037",
+        "pre4-038",
+        "pre4-039",
+        "pre4-067",
+        "pre4-068",
+        "pre4-091",
+        "pre4-092",
+        "pre4-095"
+      ]
+    },
+    {
+      "unit_id": "pre4-u10",
+      "title_ja": "文を組み立てる基本語",
+      "topics": [
+        "基础表达",
+        "否定",
+        "日常"
+      ],
+      "entry_ids": [
+        "pre4-045",
+        "pre4-046",
+        "pre4-047",
+        "pre4-048",
+        "pre4-049",
+        "pre4-050",
+        "pre4-051",
+        "pre4-053",
+        "pre4-076",
+        "pre4-082",
+        "pre4-083",
+        "pre4-084",
+        "pre4-085",
+        "pre4-086",
+        "pre4-099"
+      ]
+    },
+    {
+      "unit_id": "pre4-u11",
+      "title_ja": "疑問・助詞・量詞",
+      "topics": [
+        "问答",
+        "语气",
+        "量词"
+      ],
+      "entry_ids": [
+        "pre4-010",
+        "pre4-011",
+        "pre4-012",
+        "pre4-062",
+        "pre4-065",
+        "pre4-079",
+        "pre4-080",
+        "pre4-081",
+        "pre4-104"
+      ]
+    }
+  ],
+  "vocabulary_entries": [
+    {
+      "entry_id": "pre4-001",
+      "unit_id": "pre4-u01",
+      "simplified": "你好",
+      "pinyin": "nǐ hǎo",
+      "ja_meaning": "こんにちは",
+      "character_sequence": [
+        "你",
+        "好"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-002",
+      "unit_id": "pre4-u01",
+      "simplified": "谢谢",
+      "pinyin": "xièxie",
+      "ja_meaning": "ありがとう",
+      "character_sequence": [
+        "谢"
+      ],
+      "source_evidence": [
+        "中検準4級问候语资料例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-003",
+      "unit_id": "pre4-u01",
+      "simplified": "不客气",
+      "pinyin": "bú kèqi",
+      "ja_meaning": "どういたしまして",
+      "character_sequence": [
+        "不",
+        "客",
+        "气"
+      ],
+      "source_evidence": [
+        "中検準4級问候语资料例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-004",
+      "unit_id": "pre4-u01",
+      "simplified": "对不起",
+      "pinyin": "duìbuqǐ",
+      "ja_meaning": "すみません",
+      "character_sequence": [
+        "对",
+        "不",
+        "起"
+      ],
+      "source_evidence": [
+        "中検準4級问候语资料例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-005",
+      "unit_id": "pre4-u01",
+      "simplified": "再见",
+      "pinyin": "zàijiàn",
+      "ja_meaning": "さようなら",
+      "character_sequence": [
+        "再",
+        "见"
+      ],
+      "source_evidence": [
+        "中検準4級问候语资料例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-006",
+      "unit_id": "pre4-u03",
+      "simplified": "今天",
+      "pinyin": "jīntiān",
+      "ja_meaning": "今日",
+      "character_sequence": [
+        "今",
+        "天"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-007",
+      "unit_id": "pre4-u03",
+      "simplified": "星期一",
+      "pinyin": "xīngqīyī",
+      "ja_meaning": "月曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "一"
+      ],
+      "source_evidence": [
+        "中検準4級官方备考题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-008",
+      "unit_id": "pre4-u03",
+      "simplified": "两点半",
+      "pinyin": "liǎng diǎn bàn",
+      "ja_meaning": "2時半",
+      "character_sequence": [
+        "两",
+        "点",
+        "半"
+      ],
+      "source_evidence": [
+        "中検準4級官方备考题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-009",
+      "unit_id": "pre4-u03",
+      "simplified": "什么时候",
+      "pinyin": "shénme shíhou",
+      "ja_meaning": "いつ",
+      "character_sequence": [
+        "什",
+        "么",
+        "时",
+        "候"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-010",
+      "unit_id": "pre4-u11",
+      "simplified": "几",
+      "pinyin": "jǐ",
+      "ja_meaning": "いくつ／何",
+      "character_sequence": [
+        "几"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-011",
+      "unit_id": "pre4-u11",
+      "simplified": "呢",
+      "pinyin": "ne",
+      "ja_meaning": "～は／～呢",
+      "character_sequence": [
+        "呢"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确选项"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-012",
+      "unit_id": "pre4-u11",
+      "simplified": "还是",
+      "pinyin": "háishi",
+      "ja_meaning": "それとも",
+      "character_sequence": [
+        "还",
+        "是"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确选项"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-013",
+      "unit_id": "pre4-u06",
+      "simplified": "热",
+      "pinyin": "rè",
+      "ja_meaning": "暑い／熱い",
+      "character_sequence": [
+        "热"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-014",
+      "unit_id": "pre4-u06",
+      "simplified": "钟",
+      "pinyin": "zhōng",
+      "ja_meaning": "時計",
+      "character_sequence": [
+        "钟"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-015",
+      "unit_id": "pre4-u06",
+      "simplified": "学习",
+      "pinyin": "xuéxí",
+      "ja_meaning": "勉強する",
+      "character_sequence": [
+        "学",
+        "习"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-016",
+      "unit_id": "pre4-u06",
+      "simplified": "音乐",
+      "pinyin": "yīnyuè",
+      "ja_meaning": "音楽",
+      "character_sequence": [
+        "音",
+        "乐"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-017",
+      "unit_id": "pre4-u06",
+      "simplified": "下课",
+      "pinyin": "xiàkè",
+      "ja_meaning": "授業が終わる",
+      "character_sequence": [
+        "下",
+        "课"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-018",
+      "unit_id": "pre4-u04",
+      "simplified": "商店",
+      "pinyin": "shāngdiàn",
+      "ja_meaning": "店",
+      "character_sequence": [
+        "商",
+        "店"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-019",
+      "unit_id": "pre4-u04",
+      "simplified": "公园",
+      "pinyin": "gōngyuán",
+      "ja_meaning": "公園",
+      "character_sequence": [
+        "公",
+        "园"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-020",
+      "unit_id": "pre4-u04",
+      "simplified": "哪儿",
+      "pinyin": "nǎr",
+      "ja_meaning": "どこ",
+      "character_sequence": [
+        "哪",
+        "儿"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确选项"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-021",
+      "unit_id": "pre4-u08",
+      "simplified": "买东西",
+      "pinyin": "mǎi dōngxi",
+      "ja_meaning": "買い物をする",
+      "character_sequence": [
+        "买",
+        "东",
+        "西"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-022",
+      "unit_id": "pre4-u08",
+      "simplified": "吃晚饭",
+      "pinyin": "chī wǎnfàn",
+      "ja_meaning": "夕食を食べる",
+      "character_sequence": [
+        "吃",
+        "晚",
+        "饭"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-023",
+      "unit_id": "pre4-u08",
+      "simplified": "去",
+      "pinyin": "qù",
+      "ja_meaning": "行く",
+      "character_sequence": [
+        "去"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-024",
+      "unit_id": "pre4-u02",
+      "simplified": "朋友",
+      "pinyin": "péngyou",
+      "ja_meaning": "友達",
+      "character_sequence": [
+        "朋",
+        "友"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-025",
+      "unit_id": "pre4-u02",
+      "simplified": "爸爸",
+      "pinyin": "bàba",
+      "ja_meaning": "お父さん",
+      "character_sequence": [
+        "爸"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-026",
+      "unit_id": "pre4-u02",
+      "simplified": "妈妈",
+      "pinyin": "māma",
+      "ja_meaning": "お母さん",
+      "character_sequence": [
+        "妈"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-027",
+      "unit_id": "pre4-u02",
+      "simplified": "医生",
+      "pinyin": "yīshēng",
+      "ja_meaning": "医者",
+      "character_sequence": [
+        "医",
+        "生"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-028",
+      "unit_id": "pre4-u02",
+      "simplified": "老师",
+      "pinyin": "lǎoshī",
+      "ja_meaning": "先生",
+      "character_sequence": [
+        "老",
+        "师"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-029",
+      "unit_id": "pre4-u06",
+      "simplified": "中国",
+      "pinyin": "zhōngguó",
+      "ja_meaning": "中国",
+      "character_sequence": [
+        "中",
+        "国"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-030",
+      "unit_id": "pre4-u06",
+      "simplified": "日本",
+      "pinyin": "rìběn",
+      "ja_meaning": "日本",
+      "character_sequence": [
+        "日",
+        "本"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-031",
+      "unit_id": "pre4-u05",
+      "simplified": "喝水",
+      "pinyin": "hē shuǐ",
+      "ja_meaning": "水を飲む",
+      "character_sequence": [
+        "喝",
+        "水"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-032",
+      "unit_id": "pre4-u05",
+      "simplified": "米饭",
+      "pinyin": "mǐfàn",
+      "ja_meaning": "ご飯",
+      "character_sequence": [
+        "米",
+        "饭"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-033",
+      "unit_id": "pre4-u05",
+      "simplified": "茶",
+      "pinyin": "chá",
+      "ja_meaning": "お茶",
+      "character_sequence": [
+        "茶"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-034",
+      "unit_id": "pre4-u05",
+      "simplified": "苹果",
+      "pinyin": "píngguǒ",
+      "ja_meaning": "りんご",
+      "character_sequence": [
+        "苹",
+        "果"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-035",
+      "unit_id": "pre4-u09",
+      "simplified": "高兴",
+      "pinyin": "gāoxìng",
+      "ja_meaning": "うれしい",
+      "character_sequence": [
+        "高",
+        "兴"
+      ],
+      "source_evidence": [
+        "中検準4級官方备考题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-036",
+      "unit_id": "pre4-u09",
+      "simplified": "大",
+      "pinyin": "dà",
+      "ja_meaning": "大きい",
+      "character_sequence": [
+        "大"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-037",
+      "unit_id": "pre4-u09",
+      "simplified": "小",
+      "pinyin": "xiǎo",
+      "ja_meaning": "小さい",
+      "character_sequence": [
+        "小"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-038",
+      "unit_id": "pre4-u09",
+      "simplified": "冷",
+      "pinyin": "lěng",
+      "ja_meaning": "寒い／冷たい",
+      "character_sequence": [
+        "冷"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-039",
+      "unit_id": "pre4-u09",
+      "simplified": "贵",
+      "pinyin": "guì",
+      "ja_meaning": "高い（値段）",
+      "character_sequence": [
+        "贵"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-040",
+      "unit_id": "pre4-u08",
+      "simplified": "看",
+      "pinyin": "kàn",
+      "ja_meaning": "見る",
+      "character_sequence": [
+        "看"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-041",
+      "unit_id": "pre4-u08",
+      "simplified": "听",
+      "pinyin": "tīng",
+      "ja_meaning": "聞く",
+      "character_sequence": [
+        "听"
+      ],
+      "source_evidence": [
+        "主题补充候选",
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-042",
+      "unit_id": "pre4-u08",
+      "simplified": "说",
+      "pinyin": "shuō",
+      "ja_meaning": "話す",
+      "character_sequence": [
+        "说"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-043",
+      "unit_id": "pre4-u08",
+      "simplified": "写",
+      "pinyin": "xiě",
+      "ja_meaning": "書く",
+      "character_sequence": [
+        "写"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-044",
+      "unit_id": "pre4-u08",
+      "simplified": "读",
+      "pinyin": "dú",
+      "ja_meaning": "読む",
+      "character_sequence": [
+        "读"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-045",
+      "unit_id": "pre4-u10",
+      "simplified": "我",
+      "pinyin": "wǒ",
+      "ja_meaning": "私",
+      "character_sequence": [
+        "我"
+      ],
+      "source_evidence": [
+        "主题补充候选"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-046",
+      "unit_id": "pre4-u10",
+      "simplified": "你",
+      "pinyin": "nǐ",
+      "ja_meaning": "あなた",
+      "character_sequence": [
+        "你"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-047",
+      "unit_id": "pre4-u10",
+      "simplified": "我们",
+      "pinyin": "wǒmen",
+      "ja_meaning": "私たち",
+      "character_sequence": [
+        "我",
+        "们"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-048",
+      "unit_id": "pre4-u10",
+      "simplified": "是",
+      "pinyin": "shì",
+      "ja_meaning": "～です",
+      "character_sequence": [
+        "是"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-049",
+      "unit_id": "pre4-u10",
+      "simplified": "有",
+      "pinyin": "yǒu",
+      "ja_meaning": "いる／ある",
+      "character_sequence": [
+        "有"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-050",
+      "unit_id": "pre4-u10",
+      "simplified": "在",
+      "pinyin": "zài",
+      "ja_meaning": "～にいる／ある",
+      "character_sequence": [
+        "在"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-051",
+      "unit_id": "pre4-u10",
+      "simplified": "不",
+      "pinyin": "bù",
+      "ja_meaning": "～ない",
+      "character_sequence": [
+        "不"
+      ],
+      "source_evidence": [
+        "中検準4級自测题例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-052",
+      "unit_id": "pre4-u08",
+      "simplified": "走",
+      "pinyin": "zǒu",
+      "ja_meaning": "歩く、行く",
+      "character_sequence": [
+        "走"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-053",
+      "unit_id": "pre4-u10",
+      "simplified": "对",
+      "pinyin": "duì",
+      "ja_meaning": "正しい、～に対して",
+      "character_sequence": [
+        "对"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-054",
+      "unit_id": "pre4-u07",
+      "simplified": "钱",
+      "pinyin": "qián",
+      "ja_meaning": "お金",
+      "character_sequence": [
+        "钱"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-055",
+      "unit_id": "pre4-u06",
+      "simplified": "词典",
+      "pinyin": "cídiǎn",
+      "ja_meaning": "辞書",
+      "character_sequence": [
+        "词",
+        "典"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-056",
+      "unit_id": "pre4-u07",
+      "simplified": "电视",
+      "pinyin": "diànshì",
+      "ja_meaning": "テレビ",
+      "character_sequence": [
+        "电",
+        "视"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-057",
+      "unit_id": "pre4-u08",
+      "simplified": "想",
+      "pinyin": "xiǎng",
+      "ja_meaning": "～したい、思う",
+      "character_sequence": [
+        "想"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-058",
+      "unit_id": "pre4-u06",
+      "simplified": "汉语",
+      "pinyin": "Hànyǔ",
+      "ja_meaning": "中国語",
+      "character_sequence": [
+        "汉",
+        "语"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-059",
+      "unit_id": "pre4-u03",
+      "simplified": "晚上",
+      "pinyin": "wǎnshang",
+      "ja_meaning": "夜",
+      "character_sequence": [
+        "晚",
+        "上"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-060",
+      "unit_id": "pre4-u07",
+      "simplified": "一起",
+      "pinyin": "yìqǐ",
+      "ja_meaning": "一緒に",
+      "character_sequence": [
+        "一",
+        "起"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-061",
+      "unit_id": "pre4-u05",
+      "simplified": "吃饭",
+      "pinyin": "chīfàn",
+      "ja_meaning": "食事をする",
+      "character_sequence": [
+        "吃",
+        "饭"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-062",
+      "unit_id": "pre4-u11",
+      "simplified": "吧",
+      "pinyin": "ba",
+      "ja_meaning": "勧誘・提案などを表す語気助詞",
+      "character_sequence": [
+        "吧"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-063",
+      "unit_id": "pre4-u03",
+      "simplified": "昨天",
+      "pinyin": "zuótiān",
+      "ja_meaning": "昨日",
+      "character_sequence": [
+        "昨",
+        "天"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-064",
+      "unit_id": "pre4-u05",
+      "simplified": "衣服",
+      "pinyin": "yīfu",
+      "ja_meaning": "服",
+      "character_sequence": [
+        "衣",
+        "服"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-065",
+      "unit_id": "pre4-u11",
+      "simplified": "件",
+      "pinyin": "jiàn",
+      "ja_meaning": "衣服などを数える量詞",
+      "character_sequence": [
+        "件"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本",
+        "样题标准句及解说出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-066",
+      "unit_id": "pre4-u06",
+      "simplified": "书",
+      "pinyin": "shū",
+      "ja_meaning": "本",
+      "character_sequence": [
+        "书"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-067",
+      "unit_id": "pre4-u09",
+      "simplified": "风",
+      "pinyin": "fēng",
+      "ja_meaning": "風",
+      "character_sequence": [
+        "风"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-068",
+      "unit_id": "pre4-u09",
+      "simplified": "累",
+      "pinyin": "lèi",
+      "ja_meaning": "疲れている",
+      "character_sequence": [
+        "累"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-069",
+      "unit_id": "pre4-u05",
+      "simplified": "卖",
+      "pinyin": "mài",
+      "ja_meaning": "売る",
+      "character_sequence": [
+        "卖"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-070",
+      "unit_id": "pre4-u07",
+      "simplified": "包",
+      "pinyin": "bāo",
+      "ja_meaning": "かばん",
+      "character_sequence": [
+        "包"
+      ],
+      "source_evidence": [
+        "2026準4級試题见本"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-071",
+      "unit_id": "pre4-u04",
+      "simplified": "北京",
+      "pinyin": "Běijīng",
+      "ja_meaning": "北京",
+      "character_sequence": [
+        "北",
+        "京"
+      ],
+      "source_evidence": [
+        "样题听力选项/解说出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-072",
+      "unit_id": "pre4-u04",
+      "simplified": "开车",
+      "pinyin": "kāichē",
+      "ja_meaning": "車を運転する",
+      "character_sequence": [
+        "开",
+        "车"
+      ],
+      "source_evidence": [
+        "样题例句/解说出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-073",
+      "unit_id": "pre4-u06",
+      "simplified": "法语",
+      "pinyin": "Fǎyǔ",
+      "ja_meaning": "フランス語",
+      "character_sequence": [
+        "法",
+        "语"
+      ],
+      "source_evidence": [
+        "样题听力选项出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-074",
+      "unit_id": "pre4-u07",
+      "simplified": "手机",
+      "pinyin": "shǒujī",
+      "ja_meaning": "携帯電話",
+      "character_sequence": [
+        "手",
+        "机"
+      ],
+      "source_evidence": [
+        "样题听力选项出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-075",
+      "unit_id": "pre4-u08",
+      "simplified": "经常",
+      "pinyin": "jīngcháng",
+      "ja_meaning": "よく、しばしば",
+      "character_sequence": [
+        "经",
+        "常"
+      ],
+      "source_evidence": [
+        "样题听力选项出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-076",
+      "unit_id": "pre4-u10",
+      "simplified": "没有",
+      "pinyin": "méiyǒu",
+      "ja_meaning": "～しなかった／～がない",
+      "character_sequence": [
+        "没",
+        "有"
+      ],
+      "source_evidence": [
+        "样题标准句出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-077",
+      "unit_id": "pre4-u06",
+      "simplified": "听音乐",
+      "pinyin": "tīng yīnyuè",
+      "ja_meaning": "音楽を聴く",
+      "character_sequence": [
+        "听",
+        "音",
+        "乐"
+      ],
+      "source_evidence": [
+        "样题标准句出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-078",
+      "unit_id": "pre4-u05",
+      "simplified": "不贵",
+      "pinyin": "bú guì",
+      "ja_meaning": "高くない",
+      "character_sequence": [
+        "不",
+        "贵"
+      ],
+      "source_evidence": [
+        "样题标准句出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-079",
+      "unit_id": "pre4-u11",
+      "simplified": "张",
+      "pinyin": "zhāng",
+      "ja_meaning": "平たい物を数える量詞",
+      "character_sequence": [
+        "张"
+      ],
+      "source_evidence": [
+        "样题解说/选项出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-080",
+      "unit_id": "pre4-u11",
+      "simplified": "条",
+      "pinyin": "tiáo",
+      "ja_meaning": "細長い物を数える量詞",
+      "character_sequence": [
+        "条"
+      ],
+      "source_evidence": [
+        "样题解说/选项出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-081",
+      "unit_id": "pre4-u11",
+      "simplified": "本",
+      "pinyin": "běn",
+      "ja_meaning": "本を数える量詞",
+      "character_sequence": [
+        "本"
+      ],
+      "source_evidence": [
+        "样题解说/选项出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-082",
+      "unit_id": "pre4-u10",
+      "simplified": "你的",
+      "pinyin": "nǐ de",
+      "ja_meaning": "あなたのもの",
+      "character_sequence": [
+        "你",
+        "的"
+      ],
+      "source_evidence": [
+        "样题标准句出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-083",
+      "unit_id": "pre4-u10",
+      "simplified": "他",
+      "pinyin": "tā",
+      "ja_meaning": "彼",
+      "character_sequence": [
+        "他"
+      ],
+      "source_evidence": [
+        "样题标准句出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-084",
+      "unit_id": "pre4-u10",
+      "simplified": "也是",
+      "pinyin": "yě shì",
+      "ja_meaning": "～もそうです",
+      "character_sequence": [
+        "也",
+        "是"
+      ],
+      "source_evidence": [
+        "样题选项/解说出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-085",
+      "unit_id": "pre4-u10",
+      "simplified": "不是",
+      "pinyin": "bú shì",
+      "ja_meaning": "～ではない",
+      "character_sequence": [
+        "不",
+        "是"
+      ],
+      "source_evidence": [
+        "样题选项/解说出现",
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-086",
+      "unit_id": "pre4-u10",
+      "simplified": "就是",
+      "pinyin": "jiùshì",
+      "ja_meaning": "まさに～だ／つまり～だ",
+      "character_sequence": [
+        "就",
+        "是"
+      ],
+      "source_evidence": [
+        "样题选项/解说出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-087",
+      "unit_id": "pre4-u04",
+      "simplified": "在餐厅打工",
+      "pinyin": "zài cāntīng dǎgōng",
+      "ja_meaning": "レストランでアルバイトをする",
+      "character_sequence": [
+        "在",
+        "餐",
+        "厅",
+        "打",
+        "工"
+      ],
+      "source_evidence": [
+        "样题解说中的语境例"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-088",
+      "unit_id": "pre4-u06",
+      "simplified": "作业",
+      "pinyin": "zuòyè",
+      "ja_meaning": "宿題",
+      "character_sequence": [
+        "作",
+        "业"
+      ],
+      "source_evidence": [
+        "样题中訳题出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-089",
+      "unit_id": "pre4-u08",
+      "simplified": "运动",
+      "pinyin": "yùndòng",
+      "ja_meaning": "運動する",
+      "character_sequence": [
+        "运",
+        "动"
+      ],
+      "source_evidence": [
+        "样题中訳题出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-090",
+      "unit_id": "pre4-u05",
+      "simplified": "买书",
+      "pinyin": "mǎi shū",
+      "ja_meaning": "本を買う",
+      "character_sequence": [
+        "买",
+        "书"
+      ],
+      "source_evidence": [
+        "样题中訳题出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-091",
+      "unit_id": "pre4-u09",
+      "simplified": "刮风",
+      "pinyin": "guā fēng",
+      "ja_meaning": "風が吹く",
+      "character_sequence": [
+        "刮",
+        "风"
+      ],
+      "source_evidence": [
+        "样题中訳题出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-092",
+      "unit_id": "pre4-u09",
+      "simplified": "我累了",
+      "pinyin": "wǒ lèi le",
+      "ja_meaning": "私は疲れた",
+      "character_sequence": [
+        "我",
+        "累",
+        "了"
+      ],
+      "source_evidence": [
+        "样题中訳题出现"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-093",
+      "unit_id": "pre4-u03",
+      "simplified": "几点",
+      "pinyin": "jǐ diǎn",
+      "ja_meaning": "何時",
+      "character_sequence": [
+        "几",
+        "点"
+      ],
+      "source_evidence": [
+        "準4級自测题题干/正确选项"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-094",
+      "unit_id": "pre4-u05",
+      "simplified": "红茶",
+      "pinyin": "hóngchá",
+      "ja_meaning": "紅茶",
+      "character_sequence": [
+        "红",
+        "茶"
+      ],
+      "source_evidence": [
+        "準4級自测题句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-095",
+      "unit_id": "pre4-u09",
+      "simplified": "便宜",
+      "pinyin": "piányi",
+      "ja_meaning": "安い",
+      "character_sequence": [
+        "便",
+        "宜"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-096",
+      "unit_id": "pre4-u08",
+      "simplified": "来",
+      "pinyin": "lái",
+      "ja_meaning": "来る",
+      "character_sequence": [
+        "来"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-097",
+      "unit_id": "pre4-u02",
+      "simplified": "日本人",
+      "pinyin": "Rìběnrén",
+      "ja_meaning": "日本人",
+      "character_sequence": [
+        "日",
+        "本",
+        "人"
+      ],
+      "source_evidence": [
+        "準4級自测题句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-098",
+      "unit_id": "pre4-u02",
+      "simplified": "中国人",
+      "pinyin": "Zhōngguórén",
+      "ja_meaning": "中国人",
+      "character_sequence": [
+        "中",
+        "国",
+        "人"
+      ],
+      "source_evidence": [
+        "準4級自测题句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-099",
+      "unit_id": "pre4-u10",
+      "simplified": "这",
+      "pinyin": "zhè",
+      "ja_meaning": "これ／この",
+      "character_sequence": [
+        "这"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-100",
+      "unit_id": "pre4-u07",
+      "simplified": "书包",
+      "pinyin": "shūbāo",
+      "ja_meaning": "通学かばん",
+      "character_sequence": [
+        "书",
+        "包"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-101",
+      "unit_id": "pre4-u08",
+      "simplified": "玩儿",
+      "pinyin": "wánr",
+      "ja_meaning": "遊ぶ",
+      "character_sequence": [
+        "玩",
+        "儿"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-102",
+      "unit_id": "pre4-u03",
+      "simplified": "星期天",
+      "pinyin": "xīngqītiān",
+      "ja_meaning": "日曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "天"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-103",
+      "unit_id": "pre4-u02",
+      "simplified": "中国朋友",
+      "pinyin": "Zhōngguó péngyou",
+      "ja_meaning": "中国人の友達",
+      "character_sequence": [
+        "中",
+        "国",
+        "朋",
+        "友"
+      ],
+      "source_evidence": [
+        "準4級自测题题干"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-104",
+      "unit_id": "pre4-u11",
+      "simplified": "个",
+      "pinyin": "gè",
+      "ja_meaning": "人・物を数える基本量詞",
+      "character_sequence": [
+        "个"
+      ],
+      "source_evidence": [
+        "準4級自测题正确句子"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-105",
+      "unit_id": "pre4-u02",
+      "simplified": "咱们",
+      "pinyin": "zánmen",
+      "ja_meaning": "私たち（聞き手を含む）",
+      "character_sequence": [
+        "咱",
+        "们"
+      ],
+      "source_evidence": [
+        "準4級自测题题干"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    }
+  ],
+  "characters": [
+    {
+      "character_id": "hanzi-4e0d",
+      "character": "不",
+      "word_occurrence_count": 5,
+      "entry_ids": [
+        "pre4-003",
+        "pre4-004",
+        "pre4-051",
+        "pre4-078",
+        "pre4-085"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-662f",
+      "character": "是",
+      "word_occurrence_count": 5,
+      "entry_ids": [
+        "pre4-012",
+        "pre4-048",
+        "pre4-084",
+        "pre4-085",
+        "pre4-086"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e2d",
+      "character": "中",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-029",
+        "pre4-098",
+        "pre4-103"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e66",
+      "character": "书",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-066",
+        "pre4-090",
+        "pre4-100"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4f60",
+      "character": "你",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-001",
+        "pre4-046",
+        "pre4-082"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-56fd",
+      "character": "国",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-029",
+        "pre4-098",
+        "pre4-103"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5929",
+      "character": "天",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-006",
+        "pre4-063",
+        "pre4-102"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6211",
+      "character": "我",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-045",
+        "pre4-047",
+        "pre4-092"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-672c",
+      "character": "本",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-030",
+        "pre4-081",
+        "pre4-097"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-996d",
+      "character": "饭",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-022",
+        "pre4-032",
+        "pre4-061"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e00",
+      "character": "一",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-007",
+        "pre4-060"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e50",
+      "character": "乐",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-016",
+        "pre4-077"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e70",
+      "character": "买",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-021",
+        "pre4-090"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4eba",
+      "character": "人",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-097",
+        "pre4-098"
+      ],
+      "stroke_practice": {
+        "status": "available_in_shared_framework",
+        "lesson_id": "ren",
+        "source_version": "301.21"
+      }
+    },
+    {
+      "character_id": "hanzi-4eec",
+      "character": "们",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-047",
+        "pre4-105"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-513f",
+      "character": "儿",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-020",
+        "pre4-101"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-51e0",
+      "character": "几",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-010",
+        "pre4-093"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5305",
+      "character": "包",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-070",
+        "pre4-100"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-53cb",
+      "character": "友",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-024",
+        "pre4-103"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5403",
+      "character": "吃",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-022",
+        "pre4-061"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-542c",
+      "character": "听",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-041",
+        "pre4-077"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5728",
+      "character": "在",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-050",
+        "pre4-087"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5bf9",
+      "character": "对",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-004",
+        "pre4-053"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-65e5",
+      "character": "日",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-030",
+        "pre4-097"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-661f",
+      "character": "星",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-007",
+        "pre4-102"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-665a",
+      "character": "晚",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-022",
+        "pre4-059"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6709",
+      "character": "有",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-049",
+        "pre4-076"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-670b",
+      "character": "朋",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-024",
+        "pre4-103"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-671f",
+      "character": "期",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-007",
+        "pre4-102"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-70b9",
+      "character": "点",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-008",
+        "pre4-093"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7d2f",
+      "character": "累",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-068",
+        "pre4-092"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8336",
+      "character": "茶",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-033",
+        "pre4-094"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8bed",
+      "character": "语",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-058",
+        "pre4-073"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8d35",
+      "character": "贵",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-039",
+        "pre4-078"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8d77",
+      "character": "起",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-004",
+        "pre4-060"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-97f3",
+      "character": "音",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-016",
+        "pre4-077"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-98ce",
+      "character": "风",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-067",
+        "pre4-091"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e0a",
+      "character": "上",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-059"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e0b",
+      "character": "下",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-017"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e1a",
+      "character": "业",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-088"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e1c",
+      "character": "东",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-021"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e24",
+      "character": "两",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-008"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e2a",
+      "character": "个",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-104"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e48",
+      "character": "么",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-009"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e5f",
+      "character": "也",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-084"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e60",
+      "character": "习",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-015"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e86",
+      "character": "了",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-092"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4eac",
+      "character": "京",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-071"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4ec0",
+      "character": "什",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-009"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4eca",
+      "character": "今",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-006"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4ed6",
+      "character": "他",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-083"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4ef6",
+      "character": "件",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-065"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4f5c",
+      "character": "作",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-088"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4fbf",
+      "character": "便",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-095"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5019",
+      "character": "候",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-009"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-516c",
+      "character": "公",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-019"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5174",
+      "character": "兴",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-035"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5178",
+      "character": "典",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-055"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-518d",
+      "character": "再",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-005"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5199",
+      "character": "写",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-043"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-51b7",
+      "character": "冷",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-038"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-522e",
+      "character": "刮",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-091"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-52a8",
+      "character": "动",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-089"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5317",
+      "character": "北",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-071"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-533b",
+      "character": "医",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-027"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-534a",
+      "character": "半",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-008"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5356",
+      "character": "卖",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-069"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5385",
+      "character": "厅",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-087"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-53bb",
+      "character": "去",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-023"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5427",
+      "character": "吧",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-062"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5462",
+      "character": "呢",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-011"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-54b1",
+      "character": "咱",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-105"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-54ea",
+      "character": "哪",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-020"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5546",
+      "character": "商",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-018"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-559d",
+      "character": "喝",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-031"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-56ed",
+      "character": "园",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-019"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5927",
+      "character": "大",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-036"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-597d",
+      "character": "好",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-001"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5988",
+      "character": "妈",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-026"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5b66",
+      "character": "学",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-015"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5b9c",
+      "character": "宜",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-095"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5ba2",
+      "character": "客",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-003"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5c0f",
+      "character": "小",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-037"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5c31",
+      "character": "就",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-086"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5de5",
+      "character": "工",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-087"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5e08",
+      "character": "师",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-028"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5e38",
+      "character": "常",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-075"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5e97",
+      "character": "店",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-018"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5f00",
+      "character": "开",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-072"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5f20",
+      "character": "张",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-079"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-60f3",
+      "character": "想",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-057"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-624b",
+      "character": "手",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-074"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6253",
+      "character": "打",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-087"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-65f6",
+      "character": "时",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-009"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6628",
+      "character": "昨",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-063"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-670d",
+      "character": "服",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-064"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-673a",
+      "character": "机",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-074"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6761",
+      "character": "条",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-080"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6765",
+      "character": "来",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-096"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-679c",
+      "character": "果",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-034"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6c14",
+      "character": "气",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-003"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6c34",
+      "character": "水",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-031"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6c49",
+      "character": "汉",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-058"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6ca1",
+      "character": "没",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-076"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6cd5",
+      "character": "法",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-073"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-70ed",
+      "character": "热",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-013"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7238",
+      "character": "爸",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-025"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-73a9",
+      "character": "玩",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-101"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-751f",
+      "character": "生",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-027"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7535",
+      "character": "电",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-056"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7684",
+      "character": "的",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-082"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-770b",
+      "character": "看",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-040"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7c73",
+      "character": "米",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-032"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7ea2",
+      "character": "红",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-094"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-7ecf",
+      "character": "经",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-075"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8001",
+      "character": "老",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-028"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-82f9",
+      "character": "苹",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-034"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8863",
+      "character": "衣",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-064"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-897f",
+      "character": "西",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-021"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-89c1",
+      "character": "见",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-005"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-89c6",
+      "character": "视",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-056"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8bcd",
+      "character": "词",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-055"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8bf4",
+      "character": "说",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-042"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8bfb",
+      "character": "读",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-044"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8bfe",
+      "character": "课",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-017"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8c22",
+      "character": "谢",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-002"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8d70",
+      "character": "走",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-052"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8f66",
+      "character": "车",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-072"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8fd0",
+      "character": "运",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-089"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8fd8",
+      "character": "还",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-012"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-8fd9",
+      "character": "这",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-099"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-949f",
+      "character": "钟",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-014"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-94b1",
+      "character": "钱",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-054"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-9910",
+      "character": "餐",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-087"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-9ad8",
+      "character": "高",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-035"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    }
+  ],
+  "framework_adapter": {
+    "word_card_fields": [
+      "simplified",
+      "pinyin",
+      "ja_meaning"
+    ],
+    "character_order": "character_sequence",
+    "write_action_gate": "characters[*].stroke_practice.status == available_in_shared_framework",
+    "never_fallback_to_font_glyph_for_stroke": "true"
+  }
+}
