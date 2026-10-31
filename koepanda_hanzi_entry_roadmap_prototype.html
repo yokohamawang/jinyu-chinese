@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e6f8ff">
+<title>声調コーチ | 学習ロード</title>
+<style>
+*{box-sizing:border-box}
+html{background:#dff4fa;scroll-behavior:smooth}
+body{margin:0;color:#183847;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+.page{width:min(100%,739px);margin:0 auto;position:relative;line-height:0;background:#78d5ee;overflow:hidden}
+.page img{display:block;width:100%;height:auto}
+.hotspots{position:absolute;inset:0;pointer-events:none}
+.hotspot{position:absolute;display:block;pointer-events:auto;border:0;border-radius:22%;background:transparent;color:transparent;text-decoration:none;line-height:normal;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hotspot:focus-visible{outline:3px solid #fff;box-shadow:0 0 0 6px #176c88;z-index:2}
+.hotspot:hover{background:#ffffff08}
+.notice{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#163e4c;color:#fff;padding:12px 18px;border-radius:14px;font:600 14px/1.4 system-ui,sans-serif;box-shadow:0 8px 28px #12374655;transition:.18s;z-index:5;text-align:center;max-width:calc(100vw - 32px)}
+.notice.show{opacity:1;transform:translate(-50%,0)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+<main class="page" aria-label="声調コーチ 学習ホーム">
+  <img src="assets/koepanda-home-roadmap.png" width="739" height="2129" alt="声調コーチの学習ホーム。聞く・話す・まねる、学習記録、賞品、ピンインと漢字、準4級から1級までの縦型ルート">
+  <nav class="hotspots" aria-label="ホームと学習ロードの入口">
+    <!-- 既存ホームの3ボタン。リンク先は現在のホーム内アンカー。 -->
+    <a class="hotspot" style="left:6%;top:13.4%;width:28.2%;height:10.8%" href="https://koepanda.com/#listeningGame" aria-label="聞く：物語を聞く、おはなし広場"></a>
+    <a class="hotspot" style="left:36%;top:13.4%;width:28.2%;height:10.8%" href="https://koepanda.com/#pandaChat" aria-label="話す：場面別会話を練習"></a>
+    <a class="hotspot" style="left:66%;top:13.4%;width:28.2%;height:10.8%" href="https://koepanda.com/#examplePractice" aria-label="まねる：発音と声調を練習"></a>
+
+    <!-- 拼音入口直达现有十岛路线，不复制或重做拼音地图。 -->
+    <a class="hotspot" style="left:16%;top:36.5%;width:43%;height:6.8%" href="https://koepanda.com/#kidsCourse" aria-label="拼音探险：打开现有拼音十岛学习路线"></a>
+    <button class="hotspot pending" style="left:40%;top:43.6%;width:48%;height:5.0%" type="button" data-label="汉字探险" aria-label="汉字探险入口"></button>
+
+    <button class="hotspot pending" style="left:25%;top:52.3%;width:43%;height:4.2%" type="button" data-label="准四级" aria-label="准四级入口"></button>
+    <button class="hotspot pending" style="left:40%;top:58.0%;width:42%;height:4.8%" type="button" data-label="四级" aria-label="四级入口"></button>
+    <button class="hotspot pending" style="left:23%;top:63.8%;width:42%;height:4.8%" type="button" data-label="三级" aria-label="三级入口"></button>
+    <button class="hotspot pending" style="left:40%;top:69.0%;width:42%;height:4.8%" type="button" data-label="二级" aria-label="二级入口"></button>
+    <button class="hotspot pending" style="left:20%;top:74.2%;width:43%;height:5.0%" type="button" data-label="准一级" aria-label="准一级入口"></button>
+    <button class="hotspot pending" style="left:35%;top:81.0%;width:49%;height:7.8%" type="button" data-label="一级" aria-label="一级入口"></button>
+  </nav>
+</main>
+<div id="notice" class="notice" role="status" aria-live="polite"></div>
+<script>
+const notice=document.getElementById('notice');let noticeTimer;
+document.querySelectorAll('.pending').forEach((hotspot)=>hotspot.addEventListener('click',()=>{
+  notice.textContent=`${hotspot.dataset.label}入口已定位；课程页面接入后即可跳转。`;
+  notice.classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>notice.classList.remove('show'),2600);
+}));
+</script>
+</body>
+</html>
