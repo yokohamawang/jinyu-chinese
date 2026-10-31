@@ -1,7 +1,8 @@
 {
-  "version": "301.2",
+  "version": "301.5",
   "base": "301",
-  "previous_revision": "301.1",
+  "previous_revision": "301.4",
   "status": "candidate",
-  "feature": "hanzi-practice"
+  "feature": "hanzi-practice",
+  "change": "Use verified homepage on-demand TTS for Hanzi pronunciation"
 }
