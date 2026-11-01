@@ -1,23 +1,23 @@
 {
-  "release": "301.33 汉字临写按钮字号覆盖修正",
-  "base": "301.32",
+  "release": "301.34 汉字临写写字板显示与页面移动修正",
+  "base": "301.33",
   "files": [
     "hanzi-practice.html",
     "VERSION.txt",
     "version.json",
     "BUILD_MANIFEST_HANZI_301.json",
-    "UPDATE_10_108_301_33.md",
-    "QA_301_33.md"
+    "UPDATE_10_108_301_34.md",
+    "QA_301_34.md"
   ],
   "status": "候选修复版，待iPhone Safari复核",
-  "change_summary": "删除copy-mode对清除按钮设置16px的字号覆盖，统一使用已验证练习架构的手机字号。",
-  "previous_revision": "301.32",
+  "change_summary": "复制临写模式恢复页面自然滚动和方形完整画板；书写触控仍限定在画布。",
+  "previous_revision": "301.33",
   "iphone_device_validation": "not_performed",
   "sha256": {
-    "hanzi-practice.html": "d350f95a8f1a8707216ae6236e86f4f30b021f9b3b3361438d129da7b6f849d2",
-    "VERSION.txt": "8300b3928d7f9e4adbbc19be2aee2e9108d9f37a42682a2df1ee20222b5736f6",
-    "version.json": "6e0fabecd409fd5aab5f3b25a1b0d60f5d9dd6c384c53f8087ce13bdb9a277dc",
-    "UPDATE_10_108_301_33.md": "b6faeef1cf3d4ae60e0e64dd482cee472909d8148487501a4a6b2598553c8192",
-    "QA_301_33.md": "7588cb367b7b4d0326f24c5cafbcb83955b1c6d2802d251343db6efade5afad1"
+    "hanzi-practice.html": "aa11f6bf428fa115c5525088600dfcb1b9d5cc8f4818ae24ac09df0fa56c6742",
+    "VERSION.txt": "9ea600c997e6aab7c36601d92cf9400e09ace0b15a523c9010ff4f1a32bd98f2",
+    "version.json": "080f067e1400800aabad569d6d6b089c0748a5e8a282ac6fe1d410724e30a551",
+    "UPDATE_10_108_301_34.md": "5de70c2b1b854226e42408c8431cc4efe13a5216c1283d5f8313cb4e3764dffe",
+    "QA_301_34.md": "e9574de5075edbb8c89321e4c2530604afccfe80b6e9881514ef66fc677163c4"
   }
 }
