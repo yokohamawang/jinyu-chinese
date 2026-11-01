@@ -13,10 +13,13 @@
     "units": 11,
     "distinct_characters": 150,
     "character_occurrences": 231,
-    "characters_with_reusable_stroke_data": 4,
-    "characters_requiring_stroke_data": 146,
+    "characters_with_reusable_stroke_data": 150,
+    "characters_requiring_stroke_data": 0,
     "vocabulary_entries_are_complete_official_list": false,
-    "note": "候補学習セット。中検準4級公式の完全語彙一覧として検証済みではない。筆順データ未収録字は書き写し練習を提供するが、筆順アニメーション・判定ではない。"
+    "note": "候補学習セット。中検準4級公式の完全語彙一覧として検証済みではない。筆順はhanzi-writer-data@2.0.1由来の標準データを再利用。",
+    "stroke_data_available": 150,
+    "stroke_data_needed": 0,
+    "stroke_data_source": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
   },
   "learning_flow": [
     {
@@ -2422,9 +2425,13 @@
         "pre4-085"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e0d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-003"
       }
     },
     {
@@ -2439,9 +2446,13 @@
         "pre4-086"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-662f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-012"
       }
     },
     {
@@ -2455,9 +2466,13 @@
         "pre4-116"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e2d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-029"
       }
     },
     {
@@ -2470,9 +2485,13 @@
         "pre4-100"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e66",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "shū",
+        "entry_id": "pre4-066"
       }
     },
     {
@@ -2485,9 +2504,13 @@
         "pre4-082"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4f60",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "nǐ",
+        "entry_id": "pre4-001"
       }
     },
     {
@@ -2500,9 +2523,13 @@
         "pre4-103"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-56fd",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-029"
       }
     },
     {
@@ -2518,9 +2545,13 @@
         "pre4-108"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5929",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-006"
       }
     },
     {
@@ -2533,9 +2564,13 @@
         "pre4-092"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6211",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "wǒ",
+        "entry_id": "pre4-045"
       }
     },
     {
@@ -2548,9 +2583,13 @@
         "pre4-097"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-672c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-030"
       }
     },
     {
@@ -2563,9 +2602,13 @@
         "pre4-061"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-996d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-022"
       }
     },
     {
@@ -2577,9 +2620,13 @@
         "pre4-060"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e00",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-007"
       }
     },
     {
@@ -2591,9 +2638,13 @@
         "pre4-077"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e50",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-016"
       }
     },
     {
@@ -2605,9 +2656,13 @@
         "pre4-090"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e70",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-021"
       }
     },
     {
@@ -2619,9 +2674,13 @@
         "pre4-098"
       ],
       "stroke_practice": {
-        "status": "available_in_shared_framework",
-        "lesson_id": "ren",
-        "source_version": "301.25 shared HANZI_LESSONS"
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4eba",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-097"
       }
     },
     {
@@ -2633,9 +2692,13 @@
         "pre4-105"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4eec",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-047"
       }
     },
     {
@@ -2647,9 +2710,13 @@
         "pre4-101"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-513f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-020"
       }
     },
     {
@@ -2662,9 +2729,13 @@
         "pre4-123"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-51e0",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "jǐ",
+        "entry_id": "pre4-010"
       }
     },
     {
@@ -2676,9 +2747,13 @@
         "pre4-100"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5305",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "bāo",
+        "entry_id": "pre4-070"
       }
     },
     {
@@ -2690,9 +2765,13 @@
         "pre4-103"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-53cb",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-024"
       }
     },
     {
@@ -2704,9 +2783,13 @@
         "pre4-061"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5403",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-022"
       }
     },
     {
@@ -2718,9 +2801,13 @@
         "pre4-077"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-542c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "tīng",
+        "entry_id": "pre4-041"
       }
     },
     {
@@ -2733,9 +2820,13 @@
         "pre4-114"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5728",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "zài",
+        "entry_id": "pre4-050"
       }
     },
     {
@@ -2747,9 +2838,13 @@
         "pre4-053"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5bf9",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-004"
       }
     },
     {
@@ -2762,9 +2857,13 @@
         "pre4-118"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-65e5",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-030"
       }
     },
     {
@@ -2782,9 +2881,13 @@
         "pre4-118"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-661f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-007"
       }
     },
     {
@@ -2796,9 +2899,13 @@
         "pre4-059"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-665a",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-022"
       }
     },
     {
@@ -2810,9 +2917,13 @@
         "pre4-076"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6709",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "yǒu",
+        "entry_id": "pre4-049"
       }
     },
     {
@@ -2824,9 +2935,13 @@
         "pre4-103"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-670b",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-024"
       }
     },
     {
@@ -2844,9 +2959,13 @@
         "pre4-118"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-671f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-007"
       }
     },
     {
@@ -2858,9 +2977,13 @@
         "pre4-093"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-70b9",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "diǎn",
+        "entry_id": "pre4-008"
       }
     },
     {
@@ -2872,9 +2995,13 @@
         "pre4-092"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7d2f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "lèi",
+        "entry_id": "pre4-068"
       }
     },
     {
@@ -2886,9 +3013,13 @@
         "pre4-094"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8336",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "chá",
+        "entry_id": "pre4-033"
       }
     },
     {
@@ -2900,9 +3031,13 @@
         "pre4-073"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8bed",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-058"
       }
     },
     {
@@ -2914,9 +3049,13 @@
         "pre4-078"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8d35",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "guì",
+        "entry_id": "pre4-039"
       }
     },
     {
@@ -2928,9 +3067,13 @@
         "pre4-060"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8d77",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-004"
       }
     },
     {
@@ -2942,9 +3085,13 @@
         "pre4-077"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-97f3",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-016"
       }
     },
     {
@@ -2956,9 +3103,13 @@
         "pre4-091"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-98ce",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "fēng",
+        "entry_id": "pre4-067"
       }
     },
     {
@@ -2971,9 +3122,13 @@
         "pre4-119"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e0a",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-059"
       }
     },
     {
@@ -2985,9 +3140,13 @@
         "pre4-117"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e0b",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-017"
       }
     },
     {
@@ -2998,9 +3157,13 @@
         "pre4-088"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e1a",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-088"
       }
     },
     {
@@ -3011,9 +3174,13 @@
         "pre4-021"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e1c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-021"
       }
     },
     {
@@ -3024,9 +3191,13 @@
         "pre4-008"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e24",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "liǎng",
+        "entry_id": "pre4-008"
       }
     },
     {
@@ -3037,9 +3208,13 @@
         "pre4-104"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e2a",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "gè",
+        "entry_id": "pre4-104"
       }
     },
     {
@@ -3050,9 +3225,13 @@
         "pre4-009"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e48",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-009"
       }
     },
     {
@@ -3063,9 +3242,13 @@
         "pre4-084"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e5f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "yě",
+        "entry_id": "pre4-084"
       }
     },
     {
@@ -3076,9 +3259,13 @@
         "pre4-015"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e60",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-015"
       }
     },
     {
@@ -3089,9 +3276,13 @@
         "pre4-092"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e86",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "le",
+        "entry_id": "pre4-092"
       }
     },
     {
@@ -3102,9 +3293,13 @@
         "pre4-071"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4eac",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-071"
       }
     },
     {
@@ -3115,9 +3310,13 @@
         "pre4-009"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4ec0",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-009"
       }
     },
     {
@@ -3128,9 +3327,13 @@
         "pre4-006"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4eca",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-006"
       }
     },
     {
@@ -3141,9 +3344,13 @@
         "pre4-083"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4ed6",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "tā",
+        "entry_id": "pre4-083"
       }
     },
     {
@@ -3154,9 +3361,13 @@
         "pre4-065"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4ef6",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "jiàn",
+        "entry_id": "pre4-065"
       }
     },
     {
@@ -3167,9 +3378,13 @@
         "pre4-088"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4f5c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-088"
       }
     },
     {
@@ -3180,9 +3395,13 @@
         "pre4-095"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4fbf",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-095"
       }
     },
     {
@@ -3193,9 +3412,13 @@
         "pre4-009"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5019",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-009"
       }
     },
     {
@@ -3206,9 +3429,13 @@
         "pre4-019"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-516c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-019"
       }
     },
     {
@@ -3219,9 +3446,13 @@
         "pre4-035"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5174",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-035"
       }
     },
     {
@@ -3232,9 +3463,13 @@
         "pre4-055"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5178",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-055"
       }
     },
     {
@@ -3245,9 +3480,13 @@
         "pre4-005"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-518d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-005"
       }
     },
     {
@@ -3258,9 +3497,13 @@
         "pre4-043"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5199",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "xiě",
+        "entry_id": "pre4-043"
       }
     },
     {
@@ -3271,9 +3514,13 @@
         "pre4-038"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-51b7",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "lěng",
+        "entry_id": "pre4-038"
       }
     },
     {
@@ -3284,9 +3531,13 @@
         "pre4-091"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-522e",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "guā",
+        "entry_id": "pre4-091"
       }
     },
     {
@@ -3297,9 +3548,13 @@
         "pre4-089"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-52a8",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-089"
       }
     },
     {
@@ -3310,9 +3565,13 @@
         "pre4-071"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5317",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-071"
       }
     },
     {
@@ -3323,9 +3582,13 @@
         "pre4-027"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-533b",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-027"
       }
     },
     {
@@ -3336,9 +3599,13 @@
         "pre4-008"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-534a",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "bàn",
+        "entry_id": "pre4-008"
       }
     },
     {
@@ -3349,9 +3616,13 @@
         "pre4-069"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5356",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "mài",
+        "entry_id": "pre4-069"
       }
     },
     {
@@ -3362,9 +3633,13 @@
         "pre4-087"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5385",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-087"
       }
     },
     {
@@ -3375,9 +3650,13 @@
         "pre4-023"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-53bb",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "qù",
+        "entry_id": "pre4-023"
       }
     },
     {
@@ -3388,9 +3667,13 @@
         "pre4-062"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5427",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "ba",
+        "entry_id": "pre4-062"
       }
     },
     {
@@ -3401,9 +3684,13 @@
         "pre4-011"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5462",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "ne",
+        "entry_id": "pre4-011"
       }
     },
     {
@@ -3414,9 +3701,13 @@
         "pre4-105"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-54b1",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-105"
       }
     },
     {
@@ -3427,9 +3718,13 @@
         "pre4-020"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-54ea",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-020"
       }
     },
     {
@@ -3440,9 +3735,13 @@
         "pre4-018"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5546",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-018"
       }
     },
     {
@@ -3453,9 +3752,13 @@
         "pre4-031"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-559d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "hē",
+        "entry_id": "pre4-031"
       }
     },
     {
@@ -3466,9 +3769,13 @@
         "pre4-019"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-56ed",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-019"
       }
     },
     {
@@ -3479,9 +3786,13 @@
         "pre4-036"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5927",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "dà",
+        "entry_id": "pre4-036"
       }
     },
     {
@@ -3492,9 +3803,13 @@
         "pre4-001"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-597d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "hǎo",
+        "entry_id": "pre4-001"
       }
     },
     {
@@ -3505,9 +3820,13 @@
         "pre4-026"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5988",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "māma",
+        "entry_id": "pre4-026"
       }
     },
     {
@@ -3518,9 +3837,13 @@
         "pre4-015"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5b66",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-015"
       }
     },
     {
@@ -3531,9 +3854,13 @@
         "pre4-095"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5b9c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-095"
       }
     },
     {
@@ -3544,9 +3871,13 @@
         "pre4-003"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5ba2",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-003"
       }
     },
     {
@@ -3558,9 +3889,13 @@
         "pre4-124"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5c0f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "xiǎo",
+        "entry_id": "pre4-037"
       }
     },
     {
@@ -3571,9 +3906,13 @@
         "pre4-086"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5c31",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-086"
       }
     },
     {
@@ -3584,9 +3923,13 @@
         "pre4-087"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5de5",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-087"
       }
     },
     {
@@ -3597,9 +3940,13 @@
         "pre4-028"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5e08",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-028"
       }
     },
     {
@@ -3610,9 +3957,13 @@
         "pre4-075"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5e38",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-075"
       }
     },
     {
@@ -3623,9 +3974,13 @@
         "pre4-018"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5e97",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-018"
       }
     },
     {
@@ -3636,9 +3991,13 @@
         "pre4-072"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5f00",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-072"
       }
     },
     {
@@ -3649,9 +4008,13 @@
         "pre4-079"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5f20",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "zhāng",
+        "entry_id": "pre4-079"
       }
     },
     {
@@ -3662,9 +4025,13 @@
         "pre4-057"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-60f3",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "xiǎng",
+        "entry_id": "pre4-057"
       }
     },
     {
@@ -3675,9 +4042,13 @@
         "pre4-074"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-624b",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-074"
       }
     },
     {
@@ -3688,9 +4059,13 @@
         "pre4-087"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6253",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-087"
       }
     },
     {
@@ -3702,9 +4077,13 @@
         "pre4-124"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-65f6",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-009"
       }
     },
     {
@@ -3715,9 +4094,13 @@
         "pre4-063"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6628",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-063"
       }
     },
     {
@@ -3728,9 +4111,13 @@
         "pre4-064"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-670d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-064"
       }
     },
     {
@@ -3741,9 +4128,13 @@
         "pre4-074"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-673a",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-074"
       }
     },
     {
@@ -3754,9 +4145,13 @@
         "pre4-080"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6761",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "tiáo",
+        "entry_id": "pre4-080"
       }
     },
     {
@@ -3767,9 +4162,13 @@
         "pre4-096"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6765",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "lái",
+        "entry_id": "pre4-096"
       }
     },
     {
@@ -3780,9 +4179,13 @@
         "pre4-034"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-679c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-034"
       }
     },
     {
@@ -3793,9 +4196,13 @@
         "pre4-003"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6c14",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-003"
       }
     },
     {
@@ -3806,9 +4213,13 @@
         "pre4-031"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6c34",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "shuǐ",
+        "entry_id": "pre4-031"
       }
     },
     {
@@ -3819,9 +4230,13 @@
         "pre4-058"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6c49",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-058"
       }
     },
     {
@@ -3832,9 +4247,13 @@
         "pre4-076"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6ca1",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-076"
       }
     },
     {
@@ -3845,9 +4264,13 @@
         "pre4-073"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6cd5",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-073"
       }
     },
     {
@@ -3858,9 +4281,13 @@
         "pre4-013"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-70ed",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "rè",
+        "entry_id": "pre4-013"
       }
     },
     {
@@ -3871,9 +4298,13 @@
         "pre4-025"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7238",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "bàba",
+        "entry_id": "pre4-025"
       }
     },
     {
@@ -3884,9 +4315,13 @@
         "pre4-101"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-73a9",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-101"
       }
     },
     {
@@ -3897,9 +4332,13 @@
         "pre4-027"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-751f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-027"
       }
     },
     {
@@ -3910,9 +4349,13 @@
         "pre4-056"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7535",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-056"
       }
     },
     {
@@ -3923,9 +4366,13 @@
         "pre4-082"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7684",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "de",
+        "entry_id": "pre4-082"
       }
     },
     {
@@ -3936,9 +4383,13 @@
         "pre4-040"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-770b",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "kàn",
+        "entry_id": "pre4-040"
       }
     },
     {
@@ -3949,9 +4400,13 @@
         "pre4-032"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7c73",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-032"
       }
     },
     {
@@ -3962,9 +4417,13 @@
         "pre4-094"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7ea2",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-094"
       }
     },
     {
@@ -3975,9 +4434,13 @@
         "pre4-075"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-7ecf",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-075"
       }
     },
     {
@@ -3988,9 +4451,13 @@
         "pre4-028"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8001",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-028"
       }
     },
     {
@@ -4001,9 +4468,13 @@
         "pre4-034"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-82f9",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-034"
       }
     },
     {
@@ -4014,9 +4485,13 @@
         "pre4-064"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8863",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-064"
       }
     },
     {
@@ -4027,9 +4502,13 @@
         "pre4-021"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-897f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-021"
       }
     },
     {
@@ -4040,9 +4519,13 @@
         "pre4-005"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-89c1",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-005"
       }
     },
     {
@@ -4053,9 +4536,13 @@
         "pre4-056"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-89c6",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-056"
       }
     },
     {
@@ -4066,9 +4553,13 @@
         "pre4-055"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8bcd",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-055"
       }
     },
     {
@@ -4079,9 +4570,13 @@
         "pre4-042"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8bf4",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "shuō",
+        "entry_id": "pre4-042"
       }
     },
     {
@@ -4092,9 +4587,13 @@
         "pre4-044"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8bfb",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "dú",
+        "entry_id": "pre4-044"
       }
     },
     {
@@ -4105,9 +4604,13 @@
         "pre4-017"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8bfe",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-017"
       }
     },
     {
@@ -4118,9 +4621,13 @@
         "pre4-002"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8c22",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "xièxie",
+        "entry_id": "pre4-002"
       }
     },
     {
@@ -4131,9 +4638,13 @@
         "pre4-052"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8d70",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "zǒu",
+        "entry_id": "pre4-052"
       }
     },
     {
@@ -4144,9 +4655,13 @@
         "pre4-072"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8f66",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-072"
       }
     },
     {
@@ -4157,9 +4672,13 @@
         "pre4-089"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8fd0",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-089"
       }
     },
     {
@@ -4170,9 +4689,13 @@
         "pre4-012"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8fd8",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-012"
       }
     },
     {
@@ -4183,9 +4706,13 @@
         "pre4-099"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-8fd9",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "zhè",
+        "entry_id": "pre4-099"
       }
     },
     {
@@ -4197,9 +4724,13 @@
         "pre4-125"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-949f",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "zhōng",
+        "entry_id": "pre4-014"
       }
     },
     {
@@ -4210,9 +4741,13 @@
         "pre4-054"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-94b1",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "qián",
+        "entry_id": "pre4-054"
       }
     },
     {
@@ -4223,9 +4758,13 @@
         "pre4-087"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-9910",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-087"
       }
     },
     {
@@ -4236,9 +4775,13 @@
         "pre4-035"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-9ad8",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-035"
       }
     },
     {
@@ -4249,9 +4792,13 @@
         "pre4-106"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-660e",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-106"
       }
     },
     {
@@ -4262,9 +4809,13 @@
         "pre4-107"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-540e",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-107"
       }
     },
     {
@@ -4275,9 +4826,13 @@
         "pre4-108"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-524d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-108"
       }
     },
     {
@@ -4288,9 +4843,13 @@
         "pre4-109"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e8c",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-109"
       }
     },
     {
@@ -4301,9 +4860,13 @@
         "pre4-110"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e09",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-110"
       }
     },
     {
@@ -4314,9 +4877,13 @@
         "pre4-111"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-56db",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-111"
       }
     },
     {
@@ -4327,9 +4894,13 @@
         "pre4-112"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-4e94",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-112"
       }
     },
     {
@@ -4340,9 +4911,13 @@
         "pre4-113"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-516d",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-113"
       }
     },
     {
@@ -4353,9 +4928,13 @@
         "pre4-114"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-73b0",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-114"
       }
     },
     {
@@ -4368,9 +4947,13 @@
         "pre4-117"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5348",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-115"
       }
     },
     {
@@ -4381,9 +4964,13 @@
         "pre4-119"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-65e9",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-119"
       }
     },
     {
@@ -4394,9 +4981,13 @@
         "pre4-120"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5e74",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "nián",
+        "entry_id": "pre4-120"
       }
     },
     {
@@ -4408,9 +4999,13 @@
         "pre4-123"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-6708",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "yuè",
+        "entry_id": "pre4-121"
       }
     },
     {
@@ -4422,9 +5017,13 @@
         "pre4-123"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-53f7",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "hào",
+        "entry_id": "pre4-122"
       }
     },
     {
@@ -4435,9 +5034,13 @@
         "pre4-125"
       ],
       "stroke_practice": {
-        "status": "data_needed",
-        "lesson_id": null,
-        "source_version": null
+        "status": "available",
+        "lesson_id": "pre4-hanzi-5206",
+        "source_version": "hanzi-writer-data@2.0.1 / Make Me a Hanzi"
+      },
+      "pronunciation_reference": {
+        "pinyin": "",
+        "entry_id": "pre4-125"
       }
     }
   ],
