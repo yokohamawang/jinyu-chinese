@@ -1,12 +1,12 @@
 {
-  "version": "301.32",
-  "base": "301.31",
+  "version": "301.33",
+  "base": "301.32",
   "status": "hotfix_candidate",
-  "feature": "汉字临写共用操作栏手机布局修正",
+  "feature": "汉字临写共用操作栏字号冲突修正",
   "changes": [
-    "沿用已验证的汉字练习共用画板与底部固定操作栏",
-    "修正focus-write共用规则：三个操作按钮等宽并允许标签换行",
-    "按钮触控高度保持56px，底部位置保留iPhone安全区"
+    "沿用已验证汉字练习共用画板和固定操作栏",
+    "移除copy-mode规则对前两枚按钮强制16px的覆盖",
+    "三按钮统一使用focus-write移动端字号，避免日文标签被拆行"
   ],
   "limitations": [
     "尚未在iPhone Safari实机验证"

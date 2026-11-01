@@ -1,23 +1,23 @@
 {
-  "release": "301.32 汉字临写共用操作栏手机修正",
-  "base": "301.31",
+  "release": "301.33 汉字临写按钮字号覆盖修正",
+  "base": "301.32",
   "files": [
     "hanzi-practice.html",
     "VERSION.txt",
     "version.json",
     "BUILD_MANIFEST_HANZI_301.json",
-    "UPDATE_10_108_301_32.md",
-    "QA_301_32.md"
+    "UPDATE_10_108_301_33.md",
+    "QA_301_33.md"
   ],
   "status": "候选修复版，待iPhone Safari复核",
-  "change_summary": "复用汉字练习共用画板和固定操作栏，修正窄屏三按钮列宽、标签换行和触控高度。",
-  "previous_revision": "301.31",
+  "change_summary": "删除copy-mode对清除按钮设置16px的字号覆盖，统一使用已验证练习架构的手机字号。",
+  "previous_revision": "301.32",
   "iphone_device_validation": "not_performed",
   "sha256": {
-    "hanzi-practice.html": "72cea1748ed8cd18beefd147ca38f71ef96ff3d4fd0f6008299c5554bb7f6353",
-    "VERSION.txt": "43752a42820a9969c2065bb7c0f166f3c2d05b57bb7a21fdc5fb560171033ad6",
-    "version.json": "a8a71d3567a33a6fc01e0bc9b3603da143b692a9b585fb822898133cf7b5468b",
-    "UPDATE_10_108_301_32.md": "fddce1a08b0218836b23f23692c04faf28e251a4c19e0acdff270bdce8839b2a",
-    "QA_301_32.md": "6bfcce6a384cf06e4d96f4621dee7e7f776c7aed7ebd6ac9fc16faa0f13b9f4e"
+    "hanzi-practice.html": "d350f95a8f1a8707216ae6236e86f4f30b021f9b3b3361438d129da7b6f849d2",
+    "VERSION.txt": "8300b3928d7f9e4adbbc19be2aee2e9108d9f37a42682a2df1ee20222b5736f6",
+    "version.json": "6e0fabecd409fd5aab5f3b25a1b0d60f5d9dd6c384c53f8087ce13bdb9a277dc",
+    "UPDATE_10_108_301_33.md": "b6faeef1cf3d4ae60e0e64dd482cee472909d8148487501a4a6b2598553c8192",
+    "QA_301_33.md": "7588cb367b7b4d0326f24c5cafbcb83955b1c6d2802d251343db6efade5afad1"
   }
 }
