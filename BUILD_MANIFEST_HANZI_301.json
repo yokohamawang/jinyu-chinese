@@ -1,23 +1,23 @@
 {
-  "release": "301.31 汉字临写手机布局与触控撤回修正",
-  "base": "301.30",
+  "release": "301.32 汉字临写共用操作栏手机修正",
+  "base": "301.31",
   "files": [
     "hanzi-practice.html",
     "VERSION.txt",
     "version.json",
     "BUILD_MANIFEST_HANZI_301.json",
-    "UPDATE_10_108_301_31.md",
-    "QA_301_31.md"
+    "UPDATE_10_108_301_32.md",
+    "QA_301_32.md"
   ],
-  "status": "候选修复版，待手机复核",
-  "change_summary": "增强临写字形可见度，收紧手机布局并修复取消触控后的撤回记录。",
-  "previous_revision": "301.30",
+  "status": "候选修复版，待iPhone Safari复核",
+  "change_summary": "复用汉字练习共用画板和固定操作栏，修正窄屏三按钮列宽、标签换行和触控高度。",
+  "previous_revision": "301.31",
   "iphone_device_validation": "not_performed",
   "sha256": {
-    "hanzi-practice.html": "35bed1efe371dec90a5fb968a4aedabffb4ac01cd63a94995b476032abd7132a",
-    "VERSION.txt": "bb95f22b0c566ec46bf4adf5d1f131291d8e107b11c891ff128d95600ba83c3d",
-    "version.json": "fcd7bba97c9dd627c188684b6c180c11b272346d867aac84683b24a991d4c3d3",
-    "UPDATE_10_108_301_31.md": "31c44b566fb27a7b79ff5593732b759f94d481c664e7bab44ce14fcdad312e01",
-    "QA_301_31.md": "8a35c32f541240d7872981244cbadc8bbd412ada90ca1440f180f173e05771a0"
+    "hanzi-practice.html": "72cea1748ed8cd18beefd147ca38f71ef96ff3d4fd0f6008299c5554bb7f6353",
+    "VERSION.txt": "43752a42820a9969c2065bb7c0f166f3c2d05b57bb7a21fdc5fb560171033ad6",
+    "version.json": "a8a71d3567a33a6fc01e0bc9b3603da143b692a9b585fb822898133cf7b5468b",
+    "UPDATE_10_108_301_32.md": "fddce1a08b0218836b23f23692c04faf28e251a4c19e0acdff270bdce8839b2a",
+    "QA_301_32.md": "6bfcce6a384cf06e4d96f4621dee7e7f776c7aed7ebd6ac9fc16faa0f13b9f4e"
   }
 }
