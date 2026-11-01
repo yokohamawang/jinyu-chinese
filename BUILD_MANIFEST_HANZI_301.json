@@ -1,0 +1,23 @@
+{
+  "release": "301.31 汉字临写手机布局与触控撤回修正",
+  "base": "301.30",
+  "files": [
+    "hanzi-practice.html",
+    "VERSION.txt",
+    "version.json",
+    "BUILD_MANIFEST_HANZI_301.json",
+    "UPDATE_10_108_301_31.md",
+    "QA_301_31.md"
+  ],
+  "status": "候选修复版，待手机复核",
+  "change_summary": "增强临写字形可见度，收紧手机布局并修复取消触控后的撤回记录。",
+  "previous_revision": "301.30",
+  "iphone_device_validation": "not_performed",
+  "sha256": {
+    "hanzi-practice.html": "35bed1efe371dec90a5fb968a4aedabffb4ac01cd63a94995b476032abd7132a",
+    "VERSION.txt": "bb95f22b0c566ec46bf4adf5d1f131291d8e107b11c891ff128d95600ba83c3d",
+    "version.json": "fcd7bba97c9dd627c188684b6c180c11b272346d867aac84683b24a991d4c3d3",
+    "UPDATE_10_108_301_31.md": "31c44b566fb27a7b79ff5593732b759f94d481c664e7bab44ce14fcdad312e01",
+    "QA_301_31.md": "8a35c32f541240d7872981244cbadc8bbd412ada90ca1440f180f173e05771a0"
+  }
+}

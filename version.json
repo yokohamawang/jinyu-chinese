@@ -1,14 +1,15 @@
 {
-  "version": "301.30",
-  "base": "301.29",
+  "version": "301.31",
+  "base": "301.30",
   "status": "hotfix_candidate",
-  "feature": "汉字练习单元临写脚本通信修复",
+  "feature": "汉字临写手机显示与触控修复",
   "changes": [
-    "修复主练习脚本跨作用域访问单元临写状态导致的 copyMode is not defined",
-    "通过显式 window.KP_COPY_BOARD 接口同步临写笔迹、清空和示例显隐",
-    "保留301.29字形对比度与单元路线功能"
+    "增强iOS临写示例字形显色并调整字号",
+    "压缩单元练习书写区与固定操作栏之间的留白",
+    "缩短单元返回按钮文字并调整标题字号，避免单字孤行",
+    "pointercancel时提交当前笔迹，使逐笔撤回可识别该笔"
   ],
   "limitations": [
-    "尚未完成iPhone实机验证"
+    "尚未在iPhone Safari实机验证"
   ]
 }
