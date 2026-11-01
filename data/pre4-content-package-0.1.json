@@ -9,12 +9,14 @@
     "framework_version": "301.21"
   },
   "summary": {
-    "vocabulary_entries": 105,
+    "vocabulary_entries": 125,
     "units": 11,
-    "distinct_characters": 135,
-    "character_occurrences": 186,
-    "characters_with_reusable_stroke_data": 1,
-    "characters_requiring_stroke_data": 134
+    "distinct_characters": 150,
+    "character_occurrences": 231,
+    "characters_with_reusable_stroke_data": 4,
+    "characters_requiring_stroke_data": 146,
+    "vocabulary_entries_are_complete_official_list": false,
+    "note": "候補学習セット。中検準4級公式の完全語彙一覧として検証済みではない。筆順データ未収録字は書き写し練習を提供するが、筆順アニメーション・判定ではない。"
   },
   "learning_flow": [
     {
@@ -85,7 +87,27 @@
         "pre4-059",
         "pre4-063",
         "pre4-093",
-        "pre4-102"
+        "pre4-102",
+        "pre4-106",
+        "pre4-107",
+        "pre4-108",
+        "pre4-109",
+        "pre4-110",
+        "pre4-111",
+        "pre4-112",
+        "pre4-113",
+        "pre4-114",
+        "pre4-115",
+        "pre4-116",
+        "pre4-117",
+        "pre4-118",
+        "pre4-119",
+        "pre4-120",
+        "pre4-121",
+        "pre4-122",
+        "pre4-123",
+        "pre4-124",
+        "pre4-125"
       ]
     },
     {
@@ -2040,6 +2062,351 @@
       "review_status": "candidate",
       "learning_targets": [],
       "writing_required": null
+    },
+    {
+      "entry_id": "pre4-106",
+      "unit_id": "pre4-u03",
+      "simplified": "明天",
+      "pinyin": "míngtiān",
+      "ja_meaning": "明日",
+      "character_sequence": [
+        "明",
+        "天"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-107",
+      "unit_id": "pre4-u03",
+      "simplified": "后天",
+      "pinyin": "hòutiān",
+      "ja_meaning": "明後日",
+      "character_sequence": [
+        "后",
+        "天"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-108",
+      "unit_id": "pre4-u03",
+      "simplified": "前天",
+      "pinyin": "qiántiān",
+      "ja_meaning": "一昨日",
+      "character_sequence": [
+        "前",
+        "天"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-109",
+      "unit_id": "pre4-u03",
+      "simplified": "星期二",
+      "pinyin": "xīngqīèr",
+      "ja_meaning": "火曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "二"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-110",
+      "unit_id": "pre4-u03",
+      "simplified": "星期三",
+      "pinyin": "xīngqīsān",
+      "ja_meaning": "水曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "三"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-111",
+      "unit_id": "pre4-u03",
+      "simplified": "星期四",
+      "pinyin": "xīngqīsì",
+      "ja_meaning": "木曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "四"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-112",
+      "unit_id": "pre4-u03",
+      "simplified": "星期五",
+      "pinyin": "xīngqīwǔ",
+      "ja_meaning": "金曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "五"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-113",
+      "unit_id": "pre4-u03",
+      "simplified": "星期六",
+      "pinyin": "xīngqīliù",
+      "ja_meaning": "土曜日",
+      "character_sequence": [
+        "星",
+        "期",
+        "六"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-114",
+      "unit_id": "pre4-u03",
+      "simplified": "现在",
+      "pinyin": "xiànzài",
+      "ja_meaning": "今、現在",
+      "character_sequence": [
+        "现",
+        "在"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-115",
+      "unit_id": "pre4-u03",
+      "simplified": "上午",
+      "pinyin": "shàngwǔ",
+      "ja_meaning": "午前",
+      "character_sequence": [
+        "上",
+        "午"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-116",
+      "unit_id": "pre4-u03",
+      "simplified": "中午",
+      "pinyin": "zhōngwǔ",
+      "ja_meaning": "正午",
+      "character_sequence": [
+        "中",
+        "午"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-117",
+      "unit_id": "pre4-u03",
+      "simplified": "下午",
+      "pinyin": "xiàwǔ",
+      "ja_meaning": "午後",
+      "character_sequence": [
+        "下",
+        "午"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-118",
+      "unit_id": "pre4-u03",
+      "simplified": "星期日",
+      "pinyin": "xīngqīrì",
+      "ja_meaning": "日曜日（星期天）",
+      "character_sequence": [
+        "星",
+        "期",
+        "日"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-119",
+      "unit_id": "pre4-u03",
+      "simplified": "早上",
+      "pinyin": "zǎoshang",
+      "ja_meaning": "朝",
+      "character_sequence": [
+        "早",
+        "上"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-120",
+      "unit_id": "pre4-u03",
+      "simplified": "年",
+      "pinyin": "nián",
+      "ja_meaning": "年",
+      "character_sequence": [
+        "年"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-121",
+      "unit_id": "pre4-u03",
+      "simplified": "月",
+      "pinyin": "yuè",
+      "ja_meaning": "月、月間",
+      "character_sequence": [
+        "月"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-122",
+      "unit_id": "pre4-u03",
+      "simplified": "号",
+      "pinyin": "hào",
+      "ja_meaning": "日付",
+      "character_sequence": [
+        "号"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-123",
+      "unit_id": "pre4-u03",
+      "simplified": "几月几号",
+      "pinyin": "jǐ yuè jǐ hào",
+      "ja_meaning": "何月何日",
+      "character_sequence": [
+        "几",
+        "月",
+        "几",
+        "号"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-124",
+      "unit_id": "pre4-u03",
+      "simplified": "小时",
+      "pinyin": "xiǎoshí",
+      "ja_meaning": "時間、〜時間",
+      "character_sequence": [
+        "小",
+        "时"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
+    },
+    {
+      "entry_id": "pre4-125",
+      "unit_id": "pre4-u03",
+      "simplified": "分钟",
+      "pinyin": "fēnzhōng",
+      "ja_meaning": "分、〜分間",
+      "character_sequence": [
+        "分",
+        "钟"
+      ],
+      "source_evidence": [
+        "時間單元の基礎語彙補完（候補追加）"
+      ],
+      "review_status": "candidate",
+      "learning_targets": [],
+      "writing_required": null
     }
   ],
   "characters": [
@@ -2080,11 +2447,12 @@
     {
       "character_id": "hanzi-4e2d",
       "character": "中",
-      "word_occurrence_count": 3,
+      "word_occurrence_count": 4,
       "entry_ids": [
         "pre4-029",
         "pre4-098",
-        "pre4-103"
+        "pre4-103",
+        "pre4-116"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2140,11 +2508,14 @@
     {
       "character_id": "hanzi-5929",
       "character": "天",
-      "word_occurrence_count": 3,
+      "word_occurrence_count": 6,
       "entry_ids": [
         "pre4-006",
         "pre4-063",
-        "pre4-102"
+        "pre4-102",
+        "pre4-106",
+        "pre4-107",
+        "pre4-108"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2250,7 +2621,7 @@
       "stroke_practice": {
         "status": "available_in_shared_framework",
         "lesson_id": "ren",
-        "source_version": "301.21"
+        "source_version": "301.25 shared HANZI_LESSONS"
       }
     },
     {
@@ -2284,10 +2655,11 @@
     {
       "character_id": "hanzi-51e0",
       "character": "几",
-      "word_occurrence_count": 2,
+      "word_occurrence_count": 4,
       "entry_ids": [
         "pre4-010",
-        "pre4-093"
+        "pre4-093",
+        "pre4-123"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2354,10 +2726,11 @@
     {
       "character_id": "hanzi-5728",
       "character": "在",
-      "word_occurrence_count": 2,
+      "word_occurrence_count": 3,
       "entry_ids": [
         "pre4-050",
-        "pre4-087"
+        "pre4-087",
+        "pre4-114"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2382,10 +2755,11 @@
     {
       "character_id": "hanzi-65e5",
       "character": "日",
-      "word_occurrence_count": 2,
+      "word_occurrence_count": 3,
       "entry_ids": [
         "pre4-030",
-        "pre4-097"
+        "pre4-097",
+        "pre4-118"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2396,10 +2770,16 @@
     {
       "character_id": "hanzi-661f",
       "character": "星",
-      "word_occurrence_count": 2,
+      "word_occurrence_count": 8,
       "entry_ids": [
         "pre4-007",
-        "pre4-102"
+        "pre4-102",
+        "pre4-109",
+        "pre4-110",
+        "pre4-111",
+        "pre4-112",
+        "pre4-113",
+        "pre4-118"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2452,10 +2832,16 @@
     {
       "character_id": "hanzi-671f",
       "character": "期",
-      "word_occurrence_count": 2,
+      "word_occurrence_count": 8,
       "entry_ids": [
         "pre4-007",
-        "pre4-102"
+        "pre4-102",
+        "pre4-109",
+        "pre4-110",
+        "pre4-111",
+        "pre4-112",
+        "pre4-113",
+        "pre4-118"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2578,9 +2964,11 @@
     {
       "character_id": "hanzi-4e0a",
       "character": "上",
-      "word_occurrence_count": 1,
+      "word_occurrence_count": 3,
       "entry_ids": [
-        "pre4-059"
+        "pre4-059",
+        "pre4-115",
+        "pre4-119"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -2591,9 +2979,10 @@
     {
       "character_id": "hanzi-4e0b",
       "character": "下",
-      "word_occurrence_count": 1,
+      "word_occurrence_count": 2,
       "entry_ids": [
-        "pre4-017"
+        "pre4-017",
+        "pre4-117"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -3163,9 +3552,10 @@
     {
       "character_id": "hanzi-5c0f",
       "character": "小",
-      "word_occurrence_count": 1,
+      "word_occurrence_count": 2,
       "entry_ids": [
-        "pre4-037"
+        "pre4-037",
+        "pre4-124"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -3306,9 +3696,10 @@
     {
       "character_id": "hanzi-65f6",
       "character": "时",
-      "word_occurrence_count": 1,
+      "word_occurrence_count": 2,
       "entry_ids": [
-        "pre4-009"
+        "pre4-009",
+        "pre4-124"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -3800,9 +4191,10 @@
     {
       "character_id": "hanzi-949f",
       "character": "钟",
-      "word_occurrence_count": 1,
+      "word_occurrence_count": 2,
       "entry_ids": [
-        "pre4-014"
+        "pre4-014",
+        "pre4-125"
       ],
       "stroke_practice": {
         "status": "data_needed",
@@ -3848,6 +4240,205 @@
         "lesson_id": null,
         "source_version": null
       }
+    },
+    {
+      "character_id": "hanzi-660e",
+      "character": "明",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-106"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-540e",
+      "character": "后",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-107"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-524d",
+      "character": "前",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-108"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e8c",
+      "character": "二",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-109"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e09",
+      "character": "三",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-110"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-56db",
+      "character": "四",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-111"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-4e94",
+      "character": "五",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-112"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-516d",
+      "character": "六",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-113"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-73b0",
+      "character": "现",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-114"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5348",
+      "character": "午",
+      "word_occurrence_count": 3,
+      "entry_ids": [
+        "pre4-115",
+        "pre4-116",
+        "pre4-117"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-65e9",
+      "character": "早",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-119"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5e74",
+      "character": "年",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-120"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-6708",
+      "character": "月",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-121",
+        "pre4-123"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-53f7",
+      "character": "号",
+      "word_occurrence_count": 2,
+      "entry_ids": [
+        "pre4-122",
+        "pre4-123"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
+    },
+    {
+      "character_id": "hanzi-5206",
+      "character": "分",
+      "word_occurrence_count": 1,
+      "entry_ids": [
+        "pre4-125"
+      ],
+      "stroke_practice": {
+        "status": "data_needed",
+        "lesson_id": null,
+        "source_version": null
+      }
     }
   ],
   "framework_adapter": {
@@ -3857,7 +4448,7 @@
       "ja_meaning"
     ],
     "character_order": "character_sequence",
-    "write_action_gate": "characters[*].stroke_practice.status == available_in_shared_framework",
+    "write_action_gate": "characters[*].stroke_practice.status == available_in_shared_framework enables stroke animation; otherwise provide explicitly labeled freehand copy practice without stroke-order claims.",
     "never_fallback_to_font_glyph_for_stroke": "true"
   }
 }
