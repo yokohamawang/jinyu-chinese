@@ -1,14 +1,17 @@
 {
-  "version": "301.34",
-  "base": "301.33",
-  "status": "hotfix_candidate",
-  "feature": "汉字临写画板完整显示与页面移动修正",
+  "version": "301.35",
+  "base": "301.34",
+  "status": "candidate",
+  "feature": "准四级150字标准笔顺补齐与单字读音修正",
   "changes": [
-    "临写模式不再锁定整个视口，页面可正常上下移动",
-    "写字板恢复正方形比例，示范字不再被画板边界裁切",
-    "保留画布触控书写及现有汉字练习架构"
+    "为准四级150/150个汉字提供离线标准笔顺轮廓与逐笔中心轨迹",
+    "所有汉字统一进入认读→笔顺→临摹共用流程",
+    "单字朗读改为读取当前显示字形",
+    "你、好分别显示 nǐ、hǎo",
+    "保留既有练习页视觉与交互"
   ],
+  "stroke_data_source": "hanzi-writer-data@2.0.1 / Make Me a Hanzi; license ARPHICPL.TXT",
   "limitations": [
-    "未在实体 iPhone Safari 上验证"
+    "待 iPhone Safari 实机触控与线上部署/缓存复核"
   ]
 }
