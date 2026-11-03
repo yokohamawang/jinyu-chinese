@@ -38,7 +38,7 @@
  function placeResult(mode){const result=$('result');if(mode==='write')$('boardStatus').parentElement.after(result);else $('voiceForm').after(result)}
  function switchMode(i){const next=i===0?'write':'voice';if(next!==activeMode){lookupId++;$('explanation').classList.remove('show');$('candidates').classList.remove('show')}activeMode=next;tabs.forEach((t,n)=>t.setAttribute('aria-selected',n===i?'true':'false'));panels.forEach((p,n)=>p.hidden=n!==i);placeResult(activeMode)}
  tabs.forEach((t,i)=>t.addEventListener('click',()=>switchMode(i)));
- $('backHome').addEventListener('click',()=>{if(history.length>1)history.back();else location.href='./index.html?v=10.108.301.58'});
+ $('backHome').addEventListener('click',()=>{if(history.length>1)history.back();else location.href='./index.html?v=10.108.301.59'});
  const board=$('writeBoard'),ctx=board.getContext('2d'),ink=[];
  function sizeBoard(){const r=board.getBoundingClientRect(),dpr=Math.max(1,window.devicePixelRatio||1);board.width=Math.round(r.width*dpr);board.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineCap='round';ctx.lineJoin='round';ctx.fillStyle='#fff';ctx.fillRect(0,0,r.width,r.height);ctx.strokeStyle='#c9ded4';ctx.lineWidth=1.6;ctx.setLineDash([6,7]);ctx.beginPath();ctx.moveTo(r.width/2,12);ctx.lineTo(r.width/2,r.height-12);ctx.moveTo(12,r.height/2);ctx.lineTo(r.width-12,r.height/2);ctx.stroke();ctx.setLineDash([])}
  function redrawBoard(){sizeBoard();ink.forEach(st=>{ctx.beginPath();ctx.strokeStyle='#111';ctx.lineWidth=5;st.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke()});$('boardHint').hidden=ink.length>0}
@@ -63,6 +63,7 @@
   '学校':{pinyin:'xuéxiào',meaning:'学校。'}
  };
  const localLexicon={
+  '三':{pinyin:'sān',meaning:'数字の3。順番では3番目。'},
   '中':{pinyin:'zhōng; zhòng',meaning:'なか、中央。文脈により「当たる」などの意味と読み方もあります。',words:[['中国','zhōngguó','中国'],['中国人','zhōngguórén','中国人'],['中心','zhōngxīn','中心'],['中间','zhōngjiān','真ん中・間'],['中午','zhōngwǔ','正午'],['中学','zhōngxué','中学校']]},
   '国':{pinyin:'guó',meaning:'国、国家。',words:[['中国','zhōngguó','中国'],['国家','guójiā','国家'],['外国','wàiguó','外国']]},
   '学':{pinyin:'xué',meaning:'学ぶ、学問。',words:[['学生','xuésheng','学生'],['学校','xuéxiào','学校'],['学习','xuéxí','学習']]},
