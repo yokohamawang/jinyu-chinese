@@ -27,7 +27,7 @@
 <p class="mode-help">字を書くと候補が自動で表示されます。選んだ字の読み方と意味を確認できます。下の候補から、その字を使う言葉も探せます。</p>
 <div class="board-wrap"><canvas class="write-board" id="writeBoard" aria-label="手書き入力ボード"></canvas><div class="board-hint" id="boardHint">ここに手書きする<br>候補は書きながら自動で更新されます</div><div class="board-tools"><button class="board-tool" id="undoWrite" type="button" aria-label="最後の一画を戻す">↶</button><button class="board-tool" id="clearWrite" type="button" aria-label="すべて消す">⌫</button></div></div>
 <div class="board-actions"><span class="sr-only" id="boardStatus" aria-live="polite">書き始めてください</span></div>
-<section class="result" id="result" aria-live="polite"><div class="candidates" id="candidates"><p class="candidate-title" id="candidateTitle">認識した候補を選んでください</p><div class="candidate-list" id="candidateList"></div></div><form class="searchrow direct-search" id="writeForm"><input class="query" id="writeQuery" type="search" inputmode="text" autocomplete="off" enterkeyhint="search" placeholder="漢字や言葉を入力して查词" aria-label="検索する漢字や言葉"><button class="search" type="submit">查词</button></form><div class="explanation" id="explanation"><div class="meaning-label">基本の意味</div><div class="meaning-word"><strong id="explainWord"></strong><span class="pronunciation" id="explainPinyin"></span></div><p id="explainText">外部の辞書から調べています。</p><div class="explain-actions"><button id="speakCandidate" type="button">🔊 発音</button><a id="webLookup" target="_blank" rel="noopener noreferrer">外部辞書で詳しく見る ↗</a></div></div><p class="loading" id="lookupStatus" aria-live="polite"></p><p class="external-note">词条、简繁体字形与拼音来源：<a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener noreferrer">CC-CEDICT</a>（CC BY-SA 4.0）。词条释义原文会发送至在线日语翻译；手写笔迹会发送至手写识别服务。</p></section>
+<section class="result" id="result" aria-live="polite"><div class="candidates" id="candidates"><p class="candidate-title" id="candidateTitle">認識した候補を選んでください</p><div class="candidate-list" id="candidateList"></div></div><form class="searchrow direct-search" id="writeForm"><input class="query" id="writeQuery" type="search" inputmode="text" autocomplete="off" enterkeyhint="search" placeholder="漢字や言葉を入力して查词" aria-label="検索する漢字や言葉"><button class="search" type="submit">查词</button></form><div class="explanation" id="explanation"><div class="meaning-label">基本の意味</div><div class="meaning-word"><strong id="explainWord"></strong><span class="pronunciation" id="explainPinyin"></span></div><p id="explainText">外部の辞書から調べています。</p><div class="explain-actions"><button id="speakCandidate" type="button">🔊 発音</button><a id="webLookup" target="_blank" rel="noopener noreferrer">外部辞書で詳しく見る ↗</a></div></div><p class="loading" id="lookupStatus" aria-live="polite"></p><p class="external-note">词条、简繁体字形与拼音来源：<a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener noreferrer">CC-CEDICT</a>（CC BY-SA 4.0）。未命中时会尝试<a href="https://www.taiwanmandarin.com/api" target="_blank" rel="noopener noreferrer">在线补充辞典</a>；词条释义原文会发送至在线日语翻译，手写笔迹会发送至手写识别服务。</p></section>
 </section>
 <section class="panel" id="voicePanel" role="tabpanel" aria-labelledby="tabVoice" hidden><h2 class="mode-title">聞こえた漢字や言葉を話す</h2><p class="mode-help">マイクをタップして中国語を話してください。認識した言葉を外部サービスで調べられます。</p><div class="voicebox"><button class="mic" id="micButton" type="button" aria-label="音声検索を開始" aria-pressed="false">🎙</button><div class="voicecopy"><strong id="voiceHeadline">マイクをタップして話す</strong><span>初回はマイクの使用を許可してください。</span></div></div><p class="status" id="voiceStatus" aria-live="polite"></p><form class="searchrow" id="voiceForm"><input class="query" id="voiceQuery" type="search" inputmode="text" autocomplete="off" enterkeyhint="search" placeholder="聞き取った言葉を入力" aria-label="音声検索する言葉"><button class="search" type="submit">外部で調べる</button></form></section>
 <div class="footer">小音と一緒に、少しずつ言葉を増やしていこう。</div>
@@ -38,7 +38,7 @@
  function placeResult(mode){const result=$('result');if(mode==='write')$('boardStatus').parentElement.after(result);else $('voiceForm').after(result)}
  function switchMode(i){const next=i===0?'write':'voice';if(next!==activeMode){lookupId++;$('explanation').classList.remove('show');$('candidates').classList.remove('show')}activeMode=next;tabs.forEach((t,n)=>t.setAttribute('aria-selected',n===i?'true':'false'));panels.forEach((p,n)=>p.hidden=n!==i);placeResult(activeMode)}
  tabs.forEach((t,i)=>t.addEventListener('click',()=>switchMode(i)));
- $('backHome').addEventListener('click',()=>{if(history.length>1)history.back();else location.href='./index.html?v=10.108.301.59'});
+ $('backHome').addEventListener('click',()=>{if(history.length>1)history.back();else location.href='./index.html?v=10.108.301.62'});
  const board=$('writeBoard'),ctx=board.getContext('2d'),ink=[];
  function sizeBoard(){const r=board.getBoundingClientRect(),dpr=Math.max(1,window.devicePixelRatio||1);board.width=Math.round(r.width*dpr);board.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineCap='round';ctx.lineJoin='round';ctx.fillStyle='#fff';ctx.fillRect(0,0,r.width,r.height);ctx.strokeStyle='#c9ded4';ctx.lineWidth=1.6;ctx.setLineDash([6,7]);ctx.beginPath();ctx.moveTo(r.width/2,12);ctx.lineTo(r.width/2,r.height-12);ctx.moveTo(12,r.height/2);ctx.lineTo(r.width-12,r.height/2);ctx.stroke();ctx.setLineDash([])}
  function redrawBoard(){sizeBoard();ink.forEach(st=>{ctx.beginPath();ctx.strokeStyle='#111';ctx.lineWidth=5;st.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke()});$('boardHint').hidden=ink.length>0}
@@ -46,22 +46,6 @@
  board.addEventListener('pointerdown',e=>{e.preventDefault();board.setPointerCapture(e.pointerId);activeStroke=[point(e)];ink.push(activeStroke);$('boardHint').hidden=true});
  board.addEventListener('pointermove',e=>{if(!activeStroke)return;e.preventDefault();const p=point(e),prev=activeStroke[activeStroke.length-1];ctx.beginPath();ctx.strokeStyle='#111';ctx.lineWidth=5;ctx.lineCap='round';ctx.moveTo(prev[0],prev[1]);ctx.lineTo(p[0],p[1]);ctx.stroke();activeStroke.push(p)});
  ['pointerup','pointercancel','lostpointercapture'].forEach(n=>board.addEventListener(n,()=>{if(!activeStroke)return;activeStroke=null;clearTimeout(recognitionTimer);recognitionTimer=setTimeout(recognizeInk,700)}));
- const localWordLexicon={
-  '口中':{pinyin:'kǒuzhōng',meaning:'口の中。口腔内。'},
-  '手腕':{pinyin:'shǒuwàn',meaning:'手首。手の働きや能力を指すこともあります。'},
-  '人手':{pinyin:'rénshǒu',meaning:'人手、働き手。'},
-  '双手':{pinyin:'shuāngshǒu',meaning:'両手。'},
-  '手指':{pinyin:'shǒuzhǐ',meaning:'手の指。'},
-  '手机':{pinyin:'shǒujī',meaning:'携帯電話。'},
-  '手心':{pinyin:'shǒuxīn',meaning:'手のひら。'},
-  '人口':{pinyin:'rénkǒu',meaning:'人口、人の数。'},
-  '门口':{pinyin:'ménkǒu',meaning:'門の前、入口。'},
-  '中国':{pinyin:'zhōngguó',meaning:'中国。'},
-  '中国人':{pinyin:'zhōngguórén',meaning:'中国人。'},
-  '你好':{pinyin:'nǐhǎo',meaning:'こんにちは。'},
-  '学生':{pinyin:'xuésheng',meaning:'学生。'},
-  '学校':{pinyin:'xuéxiào',meaning:'学校。'}
- };
  const localLexicon={
   '三':{pinyin:'sān',meaning:'数字の3。順番では3番目。'},
   '中':{pinyin:'zhōng; zhòng',meaning:'なか、中央。文脈により「当たる」などの意味と読み方もあります。',words:[['中国','zhōngguó','中国'],['中国人','zhōngguórén','中国人'],['中心','zhōngxīn','中心'],['中间','zhōngjiān','真ん中・間'],['中午','zhōngwǔ','正午'],['中学','zhōngxué','中学校']]},
@@ -79,6 +63,8 @@
  const toSimplified=s=>[...s].map(c=>tradMap[c]||c).join('');
  async function fetchJson(url,timeout=7000){const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),timeout);try{const r=await fetch(url,{signal:ctl.signal,headers:{Accept:'application/json'}});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(timer)}}
  async function translateGloss(text){if(!text)return '';try{const d=await fetchJson('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text.slice(0,450))+'&langpair=en|ja',6000);return String(d?.responseData?.translatedText||'').trim()}catch{return ''}}
+ async function onlineDictionary(term){const isChar=[...term].length===1,variants=[...new Set([term,toTraditional(term)])];for(const value of variants){try{const path=isChar?'characters/':'words/';return await fetchJson('https://api.taiwanmandarin.com/'+path+encodeURIComponent(value),7000)}catch(e){if(String(e).includes('404'))continue;return null}}return null}
+ async function onlineCharacter(char){for(const value of [...new Set([char,toTraditional(char)])]){try{return await fetchJson('https://api.taiwanmandarin.com/characters/'+encodeURIComponent(value),7000)}catch(e){if(String(e).includes('404'))continue;return null}}return null}
  function showCandidates(items,title='認識した候補を選んでください',onPick=null,keepExplanation=false){const list=$('candidateList');list.replaceChildren();$('candidateTitle').textContent=title;const unique=[...new Set((items||[]).map(x=>String(x||'').trim()).filter(Boolean))].slice(0,10);if(!unique.length){$('lookupStatus').textContent='候補が見つかりません。別の書き方を試すか、キーボードで入力してください。';$('result').classList.add('show');$('candidates').classList.remove('show');return}unique.forEach(term=>{const b=document.createElement('button');b.type='button';b.className='candidate';b.textContent=term;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>onPick?onPick(term,b):selectCandidate(term,b,activeMode));list.append(b)});$('lookupStatus').textContent='';$('result').classList.add('show');$('candidates').classList.add('show');if(!keepExplanation)$('explanation').classList.remove('show')}
  let cedictPromise=null,cedictRows=null,cedictByForm=null;
  function numberedPinyin(text){return String(text||'').split(/\s+/).filter(Boolean).map(token=>{const m=token.match(/^([a-züv:]+)([0-5])?$/i);if(!m)return token;let syllable=m[1].toLowerCase().replace(/u:|v/g,'ü'),tone=Number(m[2]||0);if(!tone||tone===5)return syllable;let target=-1;if(syllable.includes('a'))target=syllable.indexOf('a');else if(syllable.includes('e'))target=syllable.indexOf('e');else if(syllable.includes('ou'))target=syllable.indexOf('o');else if(syllable.includes('iu'))target=syllable.indexOf('u');else if(syllable.includes('ui'))target=syllable.indexOf('i');else{for(let i=syllable.length-1;i>=0;i--)if('aeiouü'.includes(syllable[i])){target=i;break}}if(target<0)return syllable;const marks={a:['ā','á','ǎ','à'],e:['ē','é','ě','è'],i:['ī','í','ǐ','ì'],o:['ō','ó','ǒ','ò'],u:['ū','ú','ǔ','ù'],'ü':['ǖ','ǘ','ǚ','ǜ']};return syllable.slice(0,target)+(marks[syllable[target]]?.[tone-1]||syllable[target])+syllable.slice(target+1)}).join('')}
@@ -87,14 +73,44 @@
  function rowFor(term){const rows=cedictByForm?.get(term)||[];return rows[0]||null}
  function relatedFromCedict(char,localWords=[]){if(!cedictRows)return[];const seen=new Set(localWords.map(x=>x[0]));const rows=cedictRows.filter(r=>r[1]!==char&&([...r[1]].includes(char)||[...r[0]].includes(char))&&[...r[1]].length>1);rows.sort((a,b)=>{const la=[...a[1]].length,lb=[...b[1]].length;if(la!==lb)return la-lb;return a[1].localeCompare(b[1],'zh-CN')});return rows.filter(r=>!seen.has(r[1])&&(seen.add(r[1]),true)).slice(0,10).map(r=>({display:r[1],pinyin:numberedPinyin(r[2]),gloss:cedictGloss(r),cedict:r}))}
  function paintRelated(char,words,token){if(token!==lookupId)return;showCandidates(words.map(w=>w.display),'「'+char+'」を使う言葉',(display,button)=>{document.querySelectorAll('.candidate').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');const item=words.find(w=>w.display===display);lookupMeaning(display,{entry:item?.cedict||null,fromRelated:true})},true)}
- async function lookupMeaning(term,opts={}){const thisLookup=++lookupId,clean=String(term||'').trim();if(!clean)return;const isChar=[...clean].length===1,local=isChar?localLexicon[clean]:localWordLexicon[clean]||null;$('explainWord').textContent=clean;$('webLookup').href='https://www.google.com/search?q='+encodeURIComponent(clean+' 汉语词典 拼音 日本語 意味');$('explanation').classList.add('show');$('lookupStatus').textContent='';$('explainPinyin').textContent=local?.pinyin||'辞書を検索しています…';$('explainText').textContent=local?.meaning||'辞書を検索しています。';if(isChar&&local?.words){const words=local.words.map(x=>({display:x[0],pinyin:x[1],gloss:x[2],local:true}));paintRelated(clean,words,thisLookup)}
-  let rows=[];try{rows=await loadCedict()}catch(e){if(thisLookup!==lookupId)return;if(!local){$('explainPinyin').textContent='';$('explainText').textContent='辞書データを読み込めませんでした。外部辞書でも確認できます。';$('lookupStatus').textContent='詞庫を利用できません。通信状態を確認してください。'}return}if(thisLookup!==lookupId)return;
-  const entry=opts.entry||rowFor(clean),baseForm=entry?.[1]||toSimplified(clean),isBaseChar=[...baseForm].length===1;let display=entry?.[1]||clean;$('explainWord').textContent=display;
-  const pinyin=local?.pinyin||numberedPinyin(entry?.[2]||'');const english=entry?cedictGloss(entry):'';if(pinyin)$('explainPinyin').textContent=pinyin;else if(!local)$('explainPinyin').textContent='拼音未收录';
-  let translated='';if(!local&&english)translated=await translateGloss(english);if(thisLookup!==lookupId)return;
-  if(local)$('explainText').textContent=local.meaning;else if(translated)$('explainText').textContent=translated;else if(english)$('explainText').textContent='辞書原文（英語）：'+english;else $('explainText').textContent='この語は収録語から見つかりません。外部辞書で確認できます。';
-  if(isBaseChar&&!opts.fromRelated){const seeded=local?.words||[];const merged=seeded.map(x=>({display:x[0],pinyin:x[1],gloss:x[2],local:true}));const remoteLocal=relatedFromCedict(baseForm,seeded);const all=[...merged,...remoteLocal];if(all.length)paintRelated(baseForm,all,thisLookup);else showCandidates([], '「'+baseForm+'」を使う言葉')}
-  else if(opts.fromRelated)$('candidateTitle').textContent='「'+display+'」の意味';
+ function primaryGloss(row){const parts=String(row?.[3]||'').split('/').filter(Boolean);return parts.find(x=>/possessive particle/i.test(x))||parts[0]||''}
+ async function lookupMeaning(term,opts={}){
+  const thisLookup=++lookupId,clean=String(term||'').trim();if(!clean)return;
+  const isChar=[...clean].length===1,local=isChar?localLexicon[clean]||null:null;
+  $('explainWord').textContent=clean;$('webLookup').href='https://www.google.com/search?q='+encodeURIComponent(clean+' 汉语词典 拼音 日本語 意味');
+  $('explanation').classList.add('show');$('lookupStatus').textContent='';$('explainPinyin').textContent=local?.pinyin||'辞書を検索しています…';$('explainText').textContent=local?.meaning||'辞書を検索しています。';
+  if(isChar&&local?.words){const words=local.words.map(x=>({display:x[0],pinyin:x[1],gloss:x[2],local:true}));paintRelated(clean,words,thisLookup)}
+  let entry=opts.entry||rowFor(clean),online=null;
+  if(!entry&&!local){try{online=await onlineDictionary(clean)}catch(e){online=null}if(thisLookup!==lookupId)return}
+  if(thisLookup!==lookupId)return;
+  const baseForm=entry?.[1]||online?.word||online?.char||toSimplified(clean),isBaseChar=[...toSimplified(clean)].length===1;
+  let parts=[];
+  if(online?.characters?.length===[...clean].length){parts=online.characters.map((data,i)=>({char:[...clean][i],data,row:null}))}
+  else if(!entry&&!local&&[...clean].length>1){
+   const chars=[...clean];const fetched=await Promise.all(chars.map(c=>onlineCharacter(c).catch(()=>null)));if(thisLookup!==lookupId)return;
+   parts=chars.map((char,i)=>({char,data:fetched[i],row:rowFor(char)}));
+  }
+  if(!entry&&!online&&!local&&(!parts.length||parts.some(part=>!part.data&&!part.row))){try{await loadCedict();entry=rowFor(clean);parts.forEach(part=>{if(!part.row)part.row=rowFor(part.char)})}catch(e){}}
+  const apiPinyin=online?.pinyin||'',partPinyin=parts.map(part=>part.data?.pinyin||(part.row?numberedPinyin(part.row[2]):'')).filter(Boolean);
+  const pinyin=local?.pinyin||(entry?numberedPinyin(entry[2]):apiPinyin)||(parts.length=== [...clean].length&&partPinyin.length===parts.length?partPinyin.join(' '):'');
+  if(pinyin)$('explainPinyin').textContent=pinyin;else if(!local)$('explainPinyin').textContent='拼音未収録';
+  const english=entry?cedictGloss(entry):String(online?.english||'').trim();let translated='';if(!local&&english)translated=await translateGloss(english);if(thisLookup!==lookupId)return;
+  if(local)$('explainText').textContent=local.meaning;
+  else if(translated)$('explainText').textContent=translated;
+  else if(english)$('explainText').textContent='辞書原文（英語）：'+english;
+  else if(parts.length&&parts.every(part=>part.data||part.row)){
+   const glosses=parts.map(part=>String(part.data?.english||primaryGloss(part.row)||'').trim());
+   const ja=await Promise.all(glosses.map(gloss=>translateGloss(gloss)));if(thisLookup!==lookupId)return;
+   const final=parts.at(-1),finalGloss=String(final.data?.english||final.row?.[3]||'');
+   const possessive=/possessive particle|indicating possession|possession/i.test(finalGloss);
+   if(possessive&&parts.length===2){const first=parts[0];const firstMeaning=ja[0]||first.data?.english||primaryGloss(first.row)||first.char;$('explainText').textContent='辞書に語全体の項目がないため、構成字から説明します。「'+first.char+'」は「'+firstMeaning+'」。「'+final.char+'」は所有・所属を表す助詞で、日本語の「〜の」に当たります。全体は「'+firstMeaning+'の」という意味です。'}
+   else $('explainText').textContent='単語全体の項目は見つからないため、辞書の構成字データから説明します：'+parts.map((part,i)=>part.char+'（'+(ja[i]||glosses[i]||'意味情報なし')+'）').join('＋');
+  }else $('explainText').textContent='手元とオンラインの辞書で語全体を確認できませんでした。外部辞書で確認できます。';
+  if(isBaseChar&&!opts.fromRelated){
+   const seeded=local?.words||[];const merged=seeded.map(x=>({display:x[0],pinyin:x[1],gloss:x[2],local:true}));
+   if(!cedictRows){try{await loadCedict()}catch(e){}}
+   const remoteLocal=relatedFromCedict(baseForm,seeded),all=[...merged,...remoteLocal];if(all.length)paintRelated(baseForm,all,thisLookup);else showCandidates([], '「'+baseForm+'」を使う言葉')
+  }else if(opts.fromRelated)$('candidateTitle').textContent='「'+(entry?.[1]||online?.word||clean)+'」の意味';
  }
  function selectCandidate(term,button,source){if(button){document.querySelectorAll('.candidate').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true')}ink.length=0;redrawBoard();$('boardStatus').textContent='候補を選ぶと、読み方と意味が表示されます';lookupMeaning(term);if(source==='voice')$('voiceStatus').textContent='選択中：'+term}
  async function recognizeInk(){if(!ink.length)return;const thisRequest=++requestId,size=board.getBoundingClientRect(),payload={app_version:.4,api_level:'537.36',device:navigator.userAgent,input_type:0,options:'enable_pre_space',requests:[{writing_guide:{writing_area_width:Math.round(size.width),writing_area_height:Math.round(size.height)},pre_context:'',max_num_results:8,max_completions:0,language:'zh',ink:ink.map(st=>[st.map(p=>Math.round(p[0])),st.map(p=>Math.round(p[1])),st.map(p=>p[2]-st[0][2])])}]};$('lookupStatus').textContent='识别中…';$('result').classList.add('show');try{const res=await fetch('https://inputtools.google.com/request?ime=handwriting&app=demopage&cs=1&oe=UTF-8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!res.ok)throw Error('recognition');const data=await res.json();if(thisRequest!==requestId)return;showCandidates(data?.[1]?.[0]?.[1]||[])}catch(e){if(thisRequest!==requestId)return;$('lookupStatus').textContent='手写识别暂时不可用。可以直接输入，或使用外部词典查询。';$('candidates').classList.remove('show')}}
