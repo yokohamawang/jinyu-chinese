@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" viewBox="0 0 320 200" role="img" aria-label="玩儿">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a9e6f7"/><stop offset="1" stop-color="#6ac8e7"/></linearGradient></defs>
+<rect width="320" height="200" rx="24" fill="url(#g)"/>
+<circle cx="267" cy="48" r="32" fill="#fff" opacity=".38"/>
+<path d="M0 160 Q66 132 126 160 T252 156 T320 154 V200 H0Z" fill="#fff" opacity=".18"/>
+<ellipse cx="158" cy="166" rx="57" ry="10" fill="#237a9b" opacity=".12"/>
+<text x="158" y="137" text-anchor="middle" font-size="92" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">🎮</text>
+<g transform="translate(254 118)"><circle cx="24" cy="24" r="24" fill="#fff" opacity=".86"/><text x="24" y="34" text-anchor="middle" font-size="27" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">🧸</text></g>
+<path d="M30 45l5 10 11 2-8 7 2 11-10-5-10 5 2-11-8-7 11-2z" fill="#fff" opacity=".78"/>
+</svg>
