@@ -1,18 +1,15 @@
 {
-  "version": "301.84",
-  "base": "301.83",
-  "previous_candidate": "301.83",
-  "status": "candidate; not deployed",
-  "feature": "準4級漢字認読の音声回帰修正",
+  "version": "301.85",
+  "base": "301.84 candidate",
+  "previous_candidate": "301.84",
+  "status": "visual trial; not deployed",
+  "feature": "漢字練習の第1単元・選択画像比率試作",
   "changes": [
-    "认读的自动播放、下一题自动播放和手动喇叭恢复为301.81第一单元验证过的调用方式：朗读认读卡片上的单个目标汉字。",
-    "301.83的章节图片、内嵌图片兜底、选项卡、反馈和界面调整全部保留。"
-  ],
-  "diagnosis": [
-    "逐版比对确认：301.81第一单元由playTargetCharacter读取认读卡片汉字并调用playHanziSystemVoice；301.82改为词语；301.83又切换到Azure Worker，Worker当前返回Azure上游401，导致自动及手动认读播音失效。",
-    "301.84将播放回调恢复为301.81的处理方式，并沿用301.83为各章节加入的targetChar，保证读单字。"
+    "第1单元（pre4-u01）的手机端认读选项图改用独立固定图片框，比例试作4:3；原比例与后续章节保持原样。",
+    "图片素材、选项、音频、回答处理均未修改。"
   ],
   "limitations": [
-    "代码语法与播放回调调用参数已本地验证；iPhone Safari实际出声需部署后由设备确认。"
+    "301.84は未配備の候補版。今回の試作は比較用であり、安定版への採用・配備はしていない。",
+    "iPhone Safariでの実機表示確認は未実施。添付の比較HTMLは代表素材を使った静的プレビュー。"
   ]
 }
