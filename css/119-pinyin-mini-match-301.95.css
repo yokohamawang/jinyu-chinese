@@ -1,13 +1,11 @@
-/* 10.108 / 301.95 — playful, touch-friendly audio matching for pinyin mini-checks. */
+/* 10.108 / 301.96 — aligned, touch-friendly audio matching for pinyin mini-checks. */
 .kp-match-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:12px 0 4px;align-items:start}
 .kp-match-column{min-width:0;padding:9px;border:1px solid rgba(82,126,99,.12);border-radius:21px;background:linear-gradient(180deg,#fffefa,#f7faf5);box-shadow:0 5px 14px rgba(47,86,60,.045)}
 .kp-match-column h3{display:flex;align-items:center;justify-content:center;min-height:30px;margin:0 0 8px;color:#567969;font-size:12px;font-weight:950;letter-spacing:.035em}
 .kp-match-audio-list,.initials-quiz-choices,#kidsAQuizChoices{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin:0!important}
-.kp-match-audio,.kp-match-answer{position:relative;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;min-width:0;min-height:62px;padding:7px;border:2px solid #e3eae3;border-radius:17px;background:linear-gradient(180deg,#fff,#fbfdf9);color:#39644f;box-shadow:0 4px 0 #e8eee8,0 6px 12px rgba(53,92,64,.055);font-weight:950;touch-action:manipulation;transition:transform .15s ease,border-color .15s ease,background .15s ease,box-shadow .15s ease,opacity .15s ease}
-.kp-match-audio{justify-content:flex-start;padding:7px 9px}
-.kp-match-number{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:9px;background:#edf4e9;color:#729078;font-size:12px;font-weight:950}
-.kp-match-speaker{display:grid;place-items:center;flex:0 0 25px;width:25px;height:25px;border-radius:9px;background:#fff2d7;font-size:16px;line-height:1}
-.kp-match-audio-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:900;color:#587767}
+.kp-match-audio,.kp-match-answer{position:relative;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;min-width:0;box-sizing:border-box;height:74px;min-height:74px;max-height:74px;padding:7px;border:2px solid #e3eae3;border-radius:17px;background:linear-gradient(180deg,#fff,#fbfdf9);color:#39644f;box-shadow:0 4px 0 #e8eee8,0 6px 12px rgba(53,92,64,.055);font-weight:950;touch-action:manipulation;transition:transform .15s ease,border-color .15s ease,background .15s ease,box-shadow .15s ease,opacity .15s ease}
+.kp-match-audio{justify-content:center;padding:7px 9px}
+.kp-match-speaker{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,#fff1ca,#fff9e8);font-size:29px;line-height:1;box-shadow:inset 0 0 0 1px rgba(221,175,71,.12)}
 .kp-match-answer{font-size:32px;line-height:1}
 .kp-match-answer small{display:block;color:#799084;font-size:10px;line-height:1.25;font-weight:850}
 .kp-match-audio:active,.kp-match-answer:active{transform:translateY(2px);box-shadow:0 2px 0 #e8eee8}
@@ -20,7 +18,7 @@
 .kp-match-audio:disabled,.kp-match-answer:disabled{cursor:default}
 #initialsQuizPanel .kp-match-board,#kidsAQuizStage .kp-match-board{max-width:540px;margin-left:auto;margin-right:auto}
 #initialsQuizPanel .initials-quiz-count,#kidsAQuizStage .kids-a-quiz-count{margin:0 0 6px!important}
-#initialsQuizPanel .initials-quiz-choices button,#kidsAQuizStage .kids-a-tone-choice{min-height:62px!important;width:100%;margin:0!important;padding:6px!important;border:2px solid #e3eae3!important;border-radius:17px!important;background:linear-gradient(180deg,#fff,#fbfdf9)!important;color:#39644f!important;box-shadow:0 4px 0 #e8eee8,0 6px 12px rgba(53,92,64,.055)!important}
+#initialsQuizPanel .initials-quiz-choices button,#kidsAQuizStage .kids-a-tone-choice{box-sizing:border-box!important;height:74px!important;min-height:74px!important;max-height:74px!important;width:100%;margin:0!important;padding:6px!important;border:2px solid #e3eae3!important;border-radius:17px!important;background:linear-gradient(180deg,#fff,#fbfdf9)!important;color:#39644f!important;box-shadow:0 4px 0 #e8eee8,0 6px 12px rgba(53,92,64,.055)!important}
 #initialsQuizPanel .initials-quiz-choices button{font-size:32px!important}
 #kidsAQuizStage .kids-a-tone-choice strong{font-size:27px!important}
 #kidsAQuizStage .kids-a-tone-choice small{font-size:10px!important}
@@ -30,12 +28,15 @@
 @keyframes kpMatchPulse{50%{transform:translateY(-1px)}}
 @keyframes kpMatchSound{to{transform:scale(1.12)}}
 @keyframes kpMatchShake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-@media(max-width:390px){.kp-match-board{gap:8px}.kp-match-column{padding:7px;border-radius:18px}.kp-match-audio,.kp-match-answer{min-height:58px;border-radius:15px}.kp-match-audio{padding:6px}.kp-match-number{flex-basis:21px;width:21px;height:21px}.kp-match-speaker{flex-basis:23px;width:23px;height:23px;font-size:15px}.kp-match-audio-label{font-size:11px}}
+@media(max-width:390px){.kp-match-board{gap:8px}.kp-match-column{padding:7px;border-radius:18px}.kp-match-audio,.kp-match-answer{height:68px;min-height:68px;max-height:68px;border-radius:15px}.kp-match-audio{padding:6px}.kp-match-speaker{flex-basis:44px;width:44px;height:44px;font-size:27px}}
+@media(max-width:390px){#initialsQuizPanel .initials-quiz-choices button,#kidsAQuizStage .kids-a-tone-choice{height:68px!important;min-height:68px!important;max-height:68px!important}}
 @media(max-width:350px){.kp-match-board{gap:6px}.kp-match-column{padding:5px}.kp-match-audio-list,.initials-quiz-choices,#kidsAQuizChoices{gap:6px}.kp-match-audio,.kp-match-answer{min-height:54px;padding:5px}.kp-match-column h3{font-size:11px}.kp-match-answer{font-size:29px}}
 @media(prefers-reduced-motion:reduce){.kp-match-audio,.kp-match-answer{transition:none}.kp-match-audio.is-active,.kp-match-audio.is-playing .kp-match-speaker,.kp-match-answer.is-wrong{animation:none}}
 /* Specificity guard: the legacy vowel quiz forces four answer columns with !important. */
 #kidsVowelDrill #kidsAQuizStage .kids-a-choice-row{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;margin:0!important}
-#kidsVowelDrill #kidsAQuizStage .kids-a-tone-choice{width:100%!important;margin:0!important;border:2px solid #e3eae3!important;border-radius:17px!important;background:linear-gradient(180deg,#fff,#fbfdf9)!important;color:#39644f!important;box-shadow:0 4px 0 #e8eee8,0 6px 12px rgba(53,92,64,.055)!important}
+#kidsVowelDrill #kidsAQuizStage .kids-a-tone-choice{box-sizing:border-box!important;height:74px!important;min-height:74px!important;max-height:74px!important;width:100%!important;margin:0!important;border:2px solid #e3eae3!important;border-radius:17px!important;background:linear-gradient(180deg,#fff,#fbfdf9)!important;color:#39644f!important;box-shadow:0 4px 0 #e8eee8,0 6px 12px rgba(53,92,64,.055)!important}
 #kidsVowelDrill #kidsAQuizStage .kids-a-tone-choice.is-matched{border-color:#79c197!important;background:linear-gradient(145deg,#e3f7e9,#f4fae7)!important;color:#2e8b60!important;box-shadow:0 4px 0 #cde8d2,0 7px 13px rgba(46,139,96,.09)!important}
 #kidsVowelDrill #kidsAQuizStage .kids-a-tone-choice.is-wrong{border-color:#e99688!important;background:#fff0ed!important;color:#bd6559!important}
 #initialsQuizPanel .kp-match-board .initials-quiz-choices{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;margin:0!important}
+
+@media(max-width:390px){#kidsVowelDrill #kidsAQuizStage .kids-a-tone-choice{height:68px!important;min-height:68px!important;max-height:68px!important}}
