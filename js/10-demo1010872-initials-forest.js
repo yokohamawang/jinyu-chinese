@@ -59,7 +59,7 @@
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.301.95',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.301.96',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -151,7 +151,7 @@
   function renderQuiz(){
     var box=el('initialsQuizChoices'),audio=el('initialsQuizAudioCards');if(!box||!audio)return;box.replaceChildren();audio.replaceChildren();
     window.KP134.shuffle(letters.slice()).forEach(function(letter){var b=document.createElement('button');b.type='button';b.className='kp-match-answer';b.textContent=letter;b.dataset.answer=letter;b.disabled=true;b.setAttribute('aria-label','発音 '+letter);b.addEventListener('click',function(){answerQuiz(letter,b)});box.appendChild(b)});
-    quizOrder.forEach(function(letter,i){var b=document.createElement('button');b.type='button';b.className='kp-match-audio';b.dataset.letter=letter;b.innerHTML='<span class="kp-match-number">'+(i+1)+'</span><span class="kp-match-speaker" aria-hidden="true">🔊</span><span class="kp-match-audio-label">音を聞く</span>';b.setAttribute('aria-label','音声カード '+(i+1)+' を聞く');b.addEventListener('click',function(){if(quizMatched[letter])return;quizActiveLetter=letter;activeQuizButton=b;audio.querySelectorAll('.kp-match-audio').forEach(function(x){x.classList.toggle('is-active',x===b);x.classList.remove('is-try-again')});var fb=el('initialsQuizFeedback');if(fb){fb.textContent='聞こえた音と同じ発音を左から選ぼう';fb.className='initials-feedback'}playGuide(letter,true)});audio.appendChild(b)});
+    quizOrder.forEach(function(letter){var b=document.createElement('button');b.type='button';b.className='kp-match-audio';b.dataset.letter=letter;b.innerHTML='<span class="kp-match-speaker" aria-hidden="true">🔊</span>';b.setAttribute('aria-label','音声を聞く');b.addEventListener('click',function(){if(quizMatched[letter])return;quizActiveLetter=letter;activeQuizButton=b;audio.querySelectorAll('.kp-match-audio').forEach(function(x){x.classList.toggle('is-active',x===b);x.classList.remove('is-try-again')});var fb=el('initialsQuizFeedback');if(fb){fb.textContent='聞こえた音と同じ発音を左から選ぼう';fb.className='initials-feedback'}playGuide(letter,true)});audio.appendChild(b)});
     var count=el('initialsQuizCount');if(count)count.textContent='0 / 4 ペア · 初回 0 正解';quizHeard=false;quizActiveLetter=null;activeQuizButton=null;quizAnswered=false;var fb=el('initialsQuizFeedback');if(fb){fb.textContent='右の音声カードを押して、左から同じ音を選ぼう';fb.className='initials-feedback'}var next=el('initialsQuizNext');if(next)next.hidden=true
   }
   function answerQuiz(letter,button){
