@@ -27,7 +27,7 @@
   };
   var quizHeard=false,recordings={};var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null, modelAudio=null;
   var soundFiles={};
-  var quizOrder=['p','m','b','f'], quizIndex=0, quizAnswered=false, quizScore=0;
+  var quizOrder=['p','m','b','f'], quizIndex=0, quizAnswered=false, quizScore=0, quizMatched={}, quizFirst={}, quizActiveLetter=null, activeQuizButton=null;
 
   function el(id){return document.getElementById(id)}
   
@@ -42,7 +42,7 @@
   
   
   function play(letter){return playGuide(letter)}
-  function playGuide(letter,forQuiz){stopAudio();var root=el('kidsInitialsLesson'),button=el(forQuiz?'initialsQuizListen':'initialsToneButtons');if(button&&button.tagName!=='BUTTON')button=button.querySelector('button');function clear(){if(button){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}}if(forQuiz){quizHeard=false;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true})}return window.KP134.play(letter,{root:root,button:button,onPlaying:function(){if(button)button.classList.add('is-playing')},onCancel:clear,onEnded:function(){clear();if(forQuiz){quizHeard=true;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false})}},onError:function(){clear();var fb=el(forQuiz?'initialsQuizFeedback':'initialsImitateFeedback');if(fb)fb.textContent='音声を読み込めませんでした。もう一度押してね。'}}).catch(function(){return null})}
+  function playGuide(letter,forQuiz){stopAudio();var root=el('kidsInitialsLesson'),button=forQuiz?(activeQuizButton||el('initialsQuizListen')):el('initialsToneButtons');if(button&&button.tagName!=='BUTTON')button=button.querySelector('button');function clear(){if(button){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}}if(forQuiz){quizHeard=false;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true})}return window.KP134.play(letter,{root:root,button:button,onPlaying:function(){if(button)button.classList.add('is-playing')},onCancel:clear,onEnded:function(){clear();if(forQuiz){quizHeard=true;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')})}},onError:function(){clear();var fb=el(forQuiz?'initialsQuizFeedback':'initialsImitateFeedback');if(fb)fb.textContent='音声を読み込めませんでした。もう一度押してね。'}}).catch(function(){return null})}
   function setStep(n){
     document.querySelectorAll('.initials-progress span').forEach(function(x){
       var k=Number(x.dataset.initialStep);
@@ -59,7 +59,7 @@
   }
   // 10.108.96: versioned stylesheet and renderer-owned static layout fallback.
   var lessonScriptUrl=document.currentScript?document.currentScript.src:document.baseURI;
-  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.110',lessonScriptUrl).href;
+  var lessonCssUrl=new URL('../css/68-demo1010872-initials-forest.css?v=10.108.301.95',lessonScriptUrl).href;
   var lessonCss=document.getElementById('demo1010808-initials-forest');
   if(!lessonCss){lessonCss=document.createElement('link');lessonCss.id='demo1010808-initials-forest';lessonCss.rel='stylesheet';document.head.appendChild(lessonCss)}
   if(lessonCss.href!==lessonCssUrl)lessonCss.href=lessonCssUrl;
@@ -149,38 +149,15 @@
     select('b')
   }
   function renderQuiz(){
-    var box=el('initialsQuizChoices'); if(!box)return; box.replaceChildren();
-    letters.forEach(function(letter){
-      var b=document.createElement('button'); b.type='button'; b.textContent=letter;
-      b.addEventListener('click',function(){answerQuiz(letter,b)}); box.appendChild(b)
-    });
-    var count=el('initialsQuizCount'); if(count)count.textContent=(quizIndex+1)+' / '+quizOrder.length;
-    box.querySelectorAll('button').forEach(function(b){b.disabled=true});quizHeard=false;var fb=el('initialsQuizFeedback'); if(fb){fb.textContent='';fb.className='initials-feedback'}
-    var next=el('initialsQuizNext'); if(next)next.hidden=true; quizAnswered=false
+    var box=el('initialsQuizChoices'),audio=el('initialsQuizAudioCards');if(!box||!audio)return;box.replaceChildren();audio.replaceChildren();
+    window.KP134.shuffle(letters.slice()).forEach(function(letter){var b=document.createElement('button');b.type='button';b.className='kp-match-answer';b.textContent=letter;b.dataset.answer=letter;b.disabled=true;b.setAttribute('aria-label','発音 '+letter);b.addEventListener('click',function(){answerQuiz(letter,b)});box.appendChild(b)});
+    quizOrder.forEach(function(letter,i){var b=document.createElement('button');b.type='button';b.className='kp-match-audio';b.dataset.letter=letter;b.innerHTML='<span class="kp-match-number">'+(i+1)+'</span><span class="kp-match-speaker" aria-hidden="true">🔊</span><span class="kp-match-audio-label">音を聞く</span>';b.setAttribute('aria-label','音声カード '+(i+1)+' を聞く');b.addEventListener('click',function(){if(quizMatched[letter])return;quizActiveLetter=letter;activeQuizButton=b;audio.querySelectorAll('.kp-match-audio').forEach(function(x){x.classList.toggle('is-active',x===b);x.classList.remove('is-try-again')});var fb=el('initialsQuizFeedback');if(fb){fb.textContent='聞こえた音と同じ発音を左から選ぼう';fb.className='initials-feedback'}playGuide(letter,true)});audio.appendChild(b)});
+    var count=el('initialsQuizCount');if(count)count.textContent='0 / 4 ペア · 初回 0 正解';quizHeard=false;quizActiveLetter=null;activeQuizButton=null;quizAnswered=false;var fb=el('initialsQuizFeedback');if(fb){fb.textContent='右の音声カードを押して、左から同じ音を選ぼう';fb.className='initials-feedback'}var next=el('initialsQuizNext');if(next)next.hidden=true
   }
-  function playQuiz(){playGuide(quizOrder[quizIndex],true)}
   function answerQuiz(letter,button){
-    if(quizAnswered||!quizHeard)return; quizAnswered=true;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true});
-    var right=quizOrder[quizIndex],fb=el('initialsQuizFeedback');
-    if(letter===right){
-      quizScore++; button.classList.add('is-correct');
-      if(fb){fb.textContent='いい耳！ '+right+' のお手本だよ ✓';fb.className='initials-feedback is-good'}
-    }else{
-      button.classList.add('is-wrong');
-      var rb=Array.prototype.find.call(el('initialsQuizChoices').children,function(x){return x.textContent===right});
-      if(rb)rb.classList.add('is-correct');
-      if(fb){fb.textContent='今回は '+right+'。呼読音の最初の音と、息の出方をもう一度比べよう';fb.className='initials-feedback is-bad'}
-    }
-    var next=el('initialsQuizNext');
-    if(quizIndex===quizOrder.length-1){
-      if(next)next.hidden=true;
-      window.setTimeout(function(){if(quizAnswered)finishQuiz()},650)
-    }else if(next){next.hidden=false;next.textContent='次の問題へ →'}
-  }
-  function nextQuiz(){
-    if(!quizAnswered)return;
-    if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz();playQuiz();return}
-    finishQuiz()
+    if(!quizHeard||!quizActiveLetter||quizMatched[quizActiveLetter])return;var correct=quizActiveLetter===letter,fb=el('initialsQuizFeedback'),card=Array.prototype.find.call(el('initialsQuizAudioCards').children,function(x){return x.dataset.letter===quizActiveLetter});if(!Object.prototype.hasOwnProperty.call(quizFirst,quizActiveLetter))quizFirst[quizActiveLetter]=correct;
+    el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true});quizHeard=false;
+    if(correct){quizMatched[quizActiveLetter]=true;if(quizFirst[quizActiveLetter])quizScore++;button.classList.add('is-matched');button.disabled=true;if(card){card.classList.remove('is-active','is-playing');card.classList.add('is-matched');card.disabled=true}quizIndex++;var count=el('initialsQuizCount');if(count)count.textContent=quizIndex+' / 4 ペア · 初回 '+quizScore+' 正解';if(fb){fb.textContent='いい耳！ペアがつながったよ ✨';fb.className='initials-feedback is-good'}quizActiveLetter=null;activeQuizButton=null;if(quizIndex===quizOrder.length)window.setTimeout(finishQuiz,520)}else{button.classList.add('is-wrong');window.setTimeout(function(){button.classList.remove('is-wrong')},460);if(fb){fb.textContent='おしい！同じ音声カードをもう一度聞いてみよう 👂';fb.className='initials-feedback is-bad'}if(card)card.classList.add('is-try-again')}
   }
   function goBackToInitialRoad(){
     var back=document.getElementById('pinyinLessonBack');
@@ -198,7 +175,7 @@
   function retryQuiz(){
     var panel=el('initialsQuizPanel'),result=el('initialsResult'),reward=el('initialsReward');
     if(result)result.hidden=true;if(reward)reward.hidden=true;if(panel)panel.hidden=false;
-    quizIndex=0;quizScore=0;renderQuiz();setStep(4);
+    quizIndex=0;quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz();setStep(4);
     requestAnimationFrame(function(){if(panel)panel.scrollIntoView({block:'start',behavior:'smooth'})});
   }
   function finishQuiz(){
@@ -249,11 +226,10 @@
     el('initialsPlayback').addEventListener('click',playRecording);
     el('initialsToQuiz').addEventListener('click',function(){
       el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false; el('kidsInitialsLesson').querySelector('.initials-imitate-panel').hidden=true;
-      quizIndex=0; quizScore=0; quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(4);
+      quizIndex=0; quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(4);
       requestAnimationFrame(function(){el('initialsQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})
     });
-    el('initialsQuizListen').addEventListener('click',playQuiz);
-    el('initialsQuizNext').addEventListener('click',nextQuiz)
+    el('initialsQuizListen').hidden=true;el('initialsQuizNext').hidden=true;
   }
   window.koepandaIsInitialUnitComplete=function(id){
     if(id==='P3'){try{return localStorage.getItem('koepandaInitialP3Complete')==='1'}catch(e){return false}}
