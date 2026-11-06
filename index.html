@@ -273,6 +273,7 @@ html body.app-home-mode #kidsEntryButton *{pointer-events:none!important;}
 </style>
 <script id="demo1010751-pinyin-entry-hard-fallback">
 window.koepandaEnterKidsCourse=function(ev){
+  var options=arguments[1]||{};
   try{ if(ev){ev.preventDefault();ev.stopPropagation();} }catch(e){}
   try{
     var b=document.body;
@@ -280,7 +281,16 @@ window.koepandaEnterKidsCourse=function(ev){
     b.classList.add('app-kids-mode');
     var c=document.getElementById('kidsCourse');
     if(c)c.setAttribute('aria-hidden','false');
-    try{history.replaceState(null,'',location.pathname+location.search+'#kidsCourse')}catch(e){}
+    /* Keep a real in-app history step so Android browser Back returns home. */
+    if(!options.restore){
+      try{
+        var currentState=history.state||{};
+        if(!currentState.koepandaPinyinEntry){
+          var pinyinState=Object.assign({},currentState,{koepandaPinyinEntry:true});
+          history.pushState(pinyinState,'',location.pathname+location.search+'#kidsCourse');
+        }
+      }catch(e){}
+    }
     setTimeout(function(){try{window.scrollTo(0,0)}catch(e){}},0);
   }catch(e){console.error('pinyin entry fallback failed',e);}
   return false;
@@ -1076,7 +1086,7 @@ SOFTWARE.
 <script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof-297.js?v=10.108.301.96"></script>
 <script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.108.159"></script>
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.159"></script>
-<script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.159"></script>
+<script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.301.100"></script>
 <script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.159"></script>
 <script id="demo1010808-initials-forest-js" src="./js/10-demo1010872-initials-forest.js?v=10.108.301.96"></script>
 <script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.301.97"></script>
