@@ -36,10 +36,10 @@
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
     stopSound();var token=modelToken,index=quiz.index,fb=forQuiz?'bnvQuizFeedback':'bnvModelFeedback';
     button.classList.add('is-playing');button.setAttribute('aria-busy','true');
-    if(forQuiz&&!quiz.answered){quiz.heard=false;el('bnvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true})}
+    if(forQuiz&&!quiz.answered){quiz.heard=false;el('bnvMatchAnswers').querySelectorAll('button').forEach(function(b){b.disabled=true})}
     feedback(fb,'お手本を準備しています…');
     function clear(){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}
-    try{await window.KP134.play(letter,{root:root,button:button,onCancel:clear,onPlaying:function(){if(token===modelToken&&!forQuiz){feedback(fb,'聞いて・見て・まねよう。')}},onEnded:function(){if(token!==modelToken)return;clear();if(forQuiz&&quiz.active&&quiz.index===index&&!quiz.answered){quiz.heard=true;el('bnvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=false});feedback(fb,'聞こえた音を選ぼう。')}},onError:function(){if(token===modelToken){clear();feedback(fb,'音声を読み込めませんでした。もう一度押してね。','bad')}}})}
+    try{await window.KP134.play(letter,{root:root,button:button,onCancel:clear,onPlaying:function(){if(token===modelToken&&!forQuiz){feedback(fb,'聞いて・見て・まねよう。')}},onEnded:function(){if(token!==modelToken)return;clear();if(forQuiz&&quiz.active&&quiz.index===index&&!quiz.answered){quiz.heard=true;el('bnvMatchAnswers').querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')});feedback(fb,'聞こえた音を選ぼう。')}},onError:function(){if(token===modelToken){clear();feedback(fb,'音声を読み込めませんでした。もう一度押してね。','bad')}}})}
     catch(e){if(e&&e.name==='AbortError')return;if(token===modelToken){clear();feedback(fb,'音声を再生できませんでした。もう一度押してね。','bad')}}
   }
   function renderArt(){window.KP135.park(root,'bnv');
@@ -91,20 +91,30 @@
     function visit(prefix,left){if(!left.length){var key=prefix.join('');if(!seen[key]){seen[key]=true;orders.push(prefix)}return}left.forEach(function(l,i){if(prefix[prefix.length-1]!==l)visit(prefix.concat(l),left.slice(0,i).concat(left.slice(i+1)))})}
     visit([],source);return orders[Math.floor(Math.random()*orders.length)];
   }
+  var kpMatchState={active:null,matched:{},first:{},firstScore:0};
   function renderQuestion(){
-    var box=el('bnvQuizChoices');box.replaceChildren();letters.forEach(function(letter){var b=document.createElement('button');b.type='button';b.textContent=letter;b.dataset.bnvAnswer=letter;b.disabled=true;b.onclick=function(){answer(letter,b)};box.appendChild(b)});
-    el('bnvQuizCount').textContent=(quiz.index+1)+' / '+quizTotal;feedback('bnvQuizFeedback','音を聞いてから選ぼう。');el('bnvQuizNext').hidden=true;quiz.answered=false;quiz.heard=false;
+    var box=el('bnvQuizChoices');if(!box)return;box.replaceChildren();
+    var panel=el('bnvQuizPanel');var board=panel.querySelector('.kp-match-board');
+    if(!board){board=document.createElement('div');board.className='kp-match-board';board.setAttribute('aria-label','音声と発音のペア合わせ');
+      var left=document.createElement('section');left.className='kp-match-column';left.innerHTML='<h3>発音を選ぶ</h3>';var right=document.createElement('section');right.className='kp-match-column';right.innerHTML='<h3>音を聞く</h3>';
+      var answers=document.createElement('div');answers.className='kp-match-answer-list';answers.id='bnvMatchAnswers';var audio=document.createElement('div');audio.className='kp-match-audio-list';audio.id='bnvMatchAudio';left.appendChild(answers);right.appendChild(audio);board.append(left,right);box.parentNode.insertBefore(board,box);box.hidden=true;
+    }
+    var answers=el('bnvMatchAnswers'),audio=el('bnvMatchAudio');answers.replaceChildren();audio.replaceChildren();
+    window.KP134.shuffle(letters.slice()).forEach(function(letter){var b=document.createElement('button');b.type='button';b.className='kp-match-answer';b.textContent=letter;b.dataset.answer=letter;b.disabled=true;b.setAttribute('aria-label','発音 '+letter);b.addEventListener('click',function(){answer(letter,b)});answers.appendChild(b)});
+    quiz.order.forEach(function(letter,i){var b=document.createElement('button');b.type='button';b.className='kp-match-audio';b.dataset.letter=letter;b.innerHTML='<span class="kp-match-speaker" aria-hidden="true">🔊</span>';b.setAttribute('aria-label','音声 '+(i+1)+' を聞く');b.addEventListener('click',function(){if(kpMatchState.matched[i])return;kpMatchState.active=i;quiz.index=i;quiz.answered=false;audio.querySelectorAll('button').forEach(function(x){x.classList.toggle('is-active',x===b);x.classList.remove('is-try-again')});el('bnvMatchAnswers').querySelectorAll('button').forEach(function(x){x.disabled=true});playModel(letter,b,true)});audio.appendChild(b)});
+    var oldListen=el('bnvQuizListen');if(oldListen)oldListen.hidden=true;var count=el('bnvQuizCount');if(count)count.textContent='0 / '+quiz.order.length+' ペア · 初回 0 正解';var next=el('bnvQuizNext');if(next)next.hidden=true;feedback('bnvQuizFeedback','右の音声カードを押して、左から同じ音を選ぼう。');
   }
+  
   function startQuiz(){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
-    stopSound();clearTimeout(quizTimer);clearTimeout(resultTimer);quiz={active:true,order:quizOrder(),index:0,score:0,answered:false};el('bnvToQuiz').hidden=true;el('bnvResult').hidden=true;el('bnvQuizPanel').hidden=false;root.querySelector('.bnv-practice').hidden=true;renderQuestion();
+    stopSound();clearTimeout(quizTimer);clearTimeout(resultTimer);quiz={active:true,order:window.KP134.shuffle(letters.slice()),index:0,score:0,answered:false,heard:false};kpMatchState={active:null,matched:{},first:{},firstScore:0};el('bnvToQuiz').hidden=true;el('bnvResult').hidden=true;el('bnvQuizPanel').hidden=false;root.querySelector('.bnv-practice').hidden=true;renderQuestion();
     el('bnvQuizPanel').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   }
   function answer(letter,button){
-    if(!quiz.active||quiz.answered||!quiz.heard)return;quiz.answered=true;var right=quiz.order[quiz.index],correct=letter===right;
-    el('bnvQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true;if(b.dataset.bnvAnswer===right)b.classList.add('is-correct')});
-    if(correct){quiz.score++;feedback('bnvQuizFeedback','いい耳！ '+right+' だよ。','good')}else{button.classList.add('is-wrong');feedback('bnvQuizFeedback','今回は '+right+'。もう一度音を聞いて確かめよう。','bad')}
-    if(quiz.index===quizTotal-1)quizTimer=setTimeout(function(){if(quiz.active&&quiz.answered&&quiz.index===quizTotal-1)finishQuiz()},650);else el('bnvQuizNext').hidden=false;
+    var i=kpMatchState.active;if(i===null||!quiz.heard||kpMatchState.matched[i])return;var correct=quiz.order[i]===letter,answers=el('bnvMatchAnswers'),audio=el('bnvMatchAudio'),card=audio.children[i];quiz.heard=false;answers.querySelectorAll('button').forEach(function(b){b.disabled=true});
+    if(!Object.prototype.hasOwnProperty.call(kpMatchState.first,i))kpMatchState.first[i]=correct;
+    if(correct){kpMatchState.matched[i]=true;if(kpMatchState.first[i])kpMatchState.firstScore++;button.classList.add('is-matched');button.disabled=true;card.classList.remove('is-active','is-playing');card.classList.add('is-matched');card.disabled=true;var done=Object.keys(kpMatchState.matched).length;var count=el('bnvQuizCount');if(count)count.textContent=done+' / '+quiz.order.length+' ペア · 初回 '+kpMatchState.firstScore+' 正解';feedback('bnvQuizFeedback','ぴったり！ペアがつながったよ ✨','good');kpMatchState.active=null;if(done===quiz.order.length){quiz.score=kpMatchState.firstScore;quiz.active=true;setTimeout(finishQuiz,520)}else answers.querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')})}
+    else{button.classList.add('is-wrong');setTimeout(function(){button.classList.remove('is-wrong')},460);card.classList.add('is-try-again');feedback('bnvQuizFeedback','おしい！同じ音声カードをもう一度聞いてみよう 👂','bad')}
   }
   function nextQuestion(){if(!quiz.active||!quiz.answered||quiz.index>=quizTotal-1)return;quiz.index++;renderQuestion();playModel(quiz.order[quiz.index],el('bnvQuizListen'),true)}
   function showResultStage(){
@@ -112,11 +122,11 @@
     var stage=window.koepandaShowResultCelebration(celebration);if(stage)stage.classList.add('is-bnv-result');
   }
   function finishQuiz(){
-    quiz.active=false;stopSound();var passed=quiz.score>=passScore;el('bnvQuizPanel').hidden=true;el('bnvResult').hidden=false;el('bnvRetry').hidden=passed;el('bnvReturn').hidden=!passed;
-    el('bnvResultMark').textContent=passed?'✓':'↻';el('bnvResultTitle').textContent=passed?'ミニチェック合格！':'もう一度、聞き比べよう';el('bnvResultScore').textContent=quizTotal+'問中 '+quiz.score+'問正解';
+    quiz.active=false;stopSound();var passed=quiz.score>=Math.ceil(quiz.order.length*passScore/quizTotal);el('bnvQuizPanel').hidden=true;el('bnvResult').hidden=false;el('bnvRetry').hidden=passed;el('bnvReturn').hidden=!passed;
+    el('bnvResultMark').textContent=passed?'✓':'↻';el('bnvResultTitle').textContent=passed?'ミニチェック合格！':'もう一度、聞き比べよう';el('bnvResultScore').textContent=quiz.order.length+'問中 '+quiz.score+'問正解';
     var message=passed?'ang・eng・ing・ong の音色を聞き分けられたね。':'はじめの口形と、音のつながりを聞き比べよう。';el('bnvResultMessage').textContent=message;
     if(passed){try{localStorage.setItem('koepandaCompoundP13Complete','1')}catch(e){}el('bnvCompleteBadge').hidden=false}
-    celebration={score:quiz.score,total:quizTotal,passed:passed,title:passed?'後鼻韻母 クリア！':'あと一歩！',message:message};
+    celebration={score:quiz.score,total:quiz.order.length,passed:passed,title:passed?'後鼻韻母 クリア！':'あと一歩！',message:message};
     if(window.koepandaAttachResultReplay){window.koepandaAttachResultReplay(el('bnvResult'),celebration);var replay=el('bnvResult').querySelector('.koepanda-result-reopen');if(replay)replay.onclick=showResultStage}
     resultTimer=setTimeout(showResultStage,90);
     el('bnvResult').scrollIntoView({block:'center',behavior:'smooth'});
