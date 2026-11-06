@@ -40,3 +40,6 @@
 #initialsQuizPanel .kp-match-board .initials-quiz-choices{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;margin:0!important}
 
 @media(max-width:390px){#kidsVowelDrill #kidsAQuizStage .kids-a-tone-choice{height:68px!important;min-height:68px!important;max-height:68px!important}}
+/* Shared matching board for the remaining consonant and final mini-checks. */
+.kp-match-answer-list{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin:0!important}
+.kp-match-answer-list button{font-family:inherit}
