@@ -1,9 +1,20 @@
 /* Koepanda DEMO 10.108.07 — reliable Home escape from the pinyin/kids course.
    Navigation-only hotfix. Audio, lesson progress, scoring and unlock logic are unchanged. */
 (function(){
-  function closeCourseLayers(){
+  var returnPending=false;
+
+  function closeCourseLayers(fromBrowserBack){
     var body=document.body;
     if(!body)return;
+
+    /* The explicit Home control consumes the same history step as browser Back. */
+    if(!fromBrowserBack&&history.state&&history.state.koepandaPinyinEntry){
+      if(!returnPending){
+        returnPending=true;
+        try{history.back();return}catch(e){returnPending=false}
+      }
+    }
+    returnPending=false;
 
     /* Stop course-only visual layers before returning home. */
     body.classList.remove('app-kids-mode');
@@ -30,6 +41,19 @@
   }
 
   window.koepandaReturnHomeFromCourse=closeCourseLayers;
+
+  /* Android Back first pops the in-app pinyin entry and restores the homepage. */
+  window.addEventListener('popstate',function(ev){
+    var body=document.body;
+    if(!body)return;
+    if(ev.state&&ev.state.koepandaPinyinEntry){
+      if(!body.classList.contains('app-kids-mode')&&typeof window.koepandaEnterKidsCourse==='function'){
+        window.koepandaEnterKidsCourse(null,{restore:true});
+      }
+      return;
+    }
+    if(body.classList.contains('app-kids-mode'))closeCourseLayers(true);
+  });
 
   function bind(){
     var home=document.getElementById('kidsBackHome');
