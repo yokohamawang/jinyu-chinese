@@ -192,7 +192,7 @@
     if(score)score.textContent=total+'問中 '+quizScore+'問正解';
     if(msg)msg.textContent=passed?'b・p・m・f の違いを聞き分けられたよ。':'3問以上でクリア。苦手な音をもう一度聞いて挑戦しよう。';
     if(action){
-      action.textContent=passed?'声母の森へ戻る →':'もう一度やってみる';
+      action.textContent=passed?'← 戻る　学習ロード':'もう一度やってみる';
       action.onclick=passed?goBackToInitialRoad:retryQuiz;
     }
 

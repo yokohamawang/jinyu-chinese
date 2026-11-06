@@ -125,7 +125,7 @@
       +'<section class="kids-a-result" id="kidsAResult" hidden aria-live="polite"><div class="kids-a-result-badge" id="kidsAResultBadge">✓</div><div class="kids-a-result-copy"><strong id="kidsAResultTitle">ミニチェック結果</strong><span id="kidsAResultScore">4問中 0問正解</span><small id="kidsAResultMessage"></small></div><button type="button" class="kids-a-result-action" id="kidsAResultAction"></button></section>'
       +'<section class="kids-a-reward" id="kidsAReward" hidden><div class="kids-a-reward-icon">🌱</div><div><strong>a クリア！</strong><span>「はじめての音」バッジをゲット</span><small>o のレッスンが開いたよ</small></div></section>'
       +'<div class="kids-vowel-write" hidden><b>✍️ 声調記号もいっしょに覚えよう</b><div class="kids-vowel-trace-row" id="kidsVowelTraceRow"></div></div><div class="kids-vowel-special-note" id="kidsVowelSpecialNote" hidden></div>'
-      +'<div class="kids-vowel-drill-actions"><button type="button" class="kids-vowel-complete" id="kidsVowelComplete" hidden>この母音、できた！</button><button type="button" class="kids-vowel-back-bottom" id="kidsVowelBackBottom">戻る</button></div>';
+      +'<div class="kids-vowel-drill-actions"><button type="button" class="kids-vowel-complete" id="kidsVowelComplete" hidden>この母音、できた！</button><button type="button" class="kids-vowel-back-bottom" id="kidsVowelBackBottom">← 戻る　母音一覧</button></div>';
     progress.insertAdjacentElement('afterend',d);
     el('kidsVowelDrillBack').addEventListener('click',closeDrill);el('kidsVowelBackBottom').addEventListener('click',closeDrill);el('kidsVowelComplete').addEventListener('click',completeCurrent);
     el('kidsAEarListen').addEventListener('click',function(){if(!aFlow)return;var btn=this;pulseButton(btn);aFlow.earPlayed=true;btn.textContent='▶ もう一度聞く';setEarChoicesEnabled(true);playLocalPinyin(aFlow.letter,aFlow.earTone)});
@@ -237,14 +237,14 @@
     if(msg)msg.textContent=passed?'4つの声調を聞き分けられたよ。':'3問以上でクリア。苦手な声調をもう一度聞いて挑戦しよう。';
     var list=visibleVowels(),pos=list.findIndex(function(v){return v.letter===letter}),nextVowel=(pos>=0&&pos+1<list.length)?list[pos+1]:null;
     if(action){
-      action.textContent=passed?(nextVowel?('次へ：'+nextVowel.letter+' →'):'母音一覧へ戻る →'):'もう一度やってみる';
+      action.textContent=passed?(nextVowel?('次へ：'+nextVowel.letter+' →'):'← 戻る　母音一覧'):'もう一度やってみる';
       action.onclick=passed?function(){completeCurrent()}:retryAQuiz;
     }
     if(passed){
       mastery[letter]={passed:true,score:aFlow.quizCorrect,total:4,updatedAt:Date.now()};completed[letter]=true;saveProgress();
       var rewardStrong=reward?reward.querySelector('strong'):null,rewardSpan=reward?reward.querySelector('span'):null,rewardSmall=reward?reward.querySelector('small'):null;
       if(reward){if(rewardStrong)rewardStrong.textContent=letter+' クリア！';if(rewardSpan)rewardSpan.textContent=letter==='a'?'「はじめての音」バッジをゲット':'4つの声調チェック、よくできた！';if(rewardSmall)rewardSmall.textContent=nextVowel?(nextVowel.letter+' のレッスンが開いたよ'):(activeGroupTitle?activeGroupTitle+' クリア！':'母音レッスン、ここまでクリア！')}
-      var complete=el('kidsVowelComplete');if(complete){complete.disabled=false;complete.textContent=nextVowel?('次へ：'+nextVowel.letter+' を見てみる'):'母音一覧へ戻る'};markAProgress();updateProgress()
+      var complete=el('kidsVowelComplete');if(complete){complete.disabled=false;complete.textContent=nextVowel?('次へ：'+nextVowel.letter+' を見てみる'):'← 戻る　母音一覧'};markAProgress();updateProgress()
     }
     var celebration={score:aFlow.quizCorrect,total:4,passed:passed,title:passed?(letter+' のミニチェック合格！'):'あと一歩！',message:passed?(aFlow.quizCorrect===4?'4つの声調をぜんぶ聞き分けられたね！':'4つの声調を聞き分けられたよ。あと1問で満点！'):'苦手な声調だけ確認して、もう一度挑戦しよう。'};
     if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
