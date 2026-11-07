@@ -1,0 +1,2 @@
+/* 301.136 — restore the shared horizontal letter + IPA row for the two repaired compound-final groups. */
+html body.app-kids-mode #kidsCourse :is(#kidsCompoundAOOUIULesson,#kidsCompoundIEUEERLesson).is-roadmap-lesson-active :is(#cpoLetterGrid,#cpnLetterGrid)>button:not([hidden]) .compound-main-row{flex-direction:row!important;flex-wrap:nowrap!important}
