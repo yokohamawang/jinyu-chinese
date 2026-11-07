@@ -1,0 +1,13 @@
+/* 301.116 — clear playback target and restored recording practice. */
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid{position:relative!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>.tone-audio-label{
+  position:absolute!important;z-index:5!important;top:8px!important;right:10px!important;
+  display:grid!important;place-items:center!important;width:48px!important;height:48px!important;
+  min-width:48px!important;min-height:48px!important;padding:0!important;margin:0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  color:inherit!important;font:400 clamp(32px,8vw,40px)/1 system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif!important;
+  cursor:pointer!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;
+}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>.tone-audio-label:focus-visible{outline:3px solid #347757!important;outline-offset:1px!important;border-radius:8px!important}
+#kidsVowelDrill .kids-a-imitate-stage{display:block!important}
+#kidsVowelDrill .kids-a-imitate-stage[hidden]{display:none!important}

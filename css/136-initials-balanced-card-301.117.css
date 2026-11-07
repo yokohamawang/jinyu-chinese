@@ -1,0 +1,37 @@
+/* 301.117 — center one initial with its phonetic cue and compact its explanation. */
+body.app-kids-mode:has(.is-roadmap-lesson-active .initials-letter-navigation) #kidsCourse>.kids-lesson-card.is-roadmap-lesson-active{padding-top:124px!important}
+#kidsInitialsLesson .initials-source-note{display:none!important}
+#kidsInitialsLesson .initials-letter-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+#kidsInitialsLesson .initials-letter-card{
+  display:grid!important;grid-template-columns:minmax(76px,.42fr) minmax(0,1fr)!important;
+  align-items:center!important;justify-content:stretch!important;gap:14px!important;
+  box-sizing:border-box!important;width:100%!important;min-height:124px!important;height:auto!important;
+  margin:0!important;padding:12px 18px!important;border:1px solid #c5d8cb!important;border-radius:22px!important;
+  background:linear-gradient(135deg,#f4fff7,#e9f5ed)!important;
+  box-shadow:inset 0 0 0 2px #51906f,0 5px 0 #bfd5c5,0 10px 20px rgba(49,90,67,.08)!important;
+  color:#205c49!important;transform:none!important;text-align:center!important;
+}
+#kidsInitialsLesson .initials-card-symbol{display:grid;justify-items:center;align-content:center;gap:2px;min-width:0}
+#kidsInitialsLesson .initials-letter-card .big{display:block;margin:0!important;font-size:64px!important;line-height:.98!important;font-weight:850!important;color:#205c49!important}
+#kidsInitialsLesson .initials-letter-card .initial-ipa{display:block;min-height:0!important;margin:4px 0 0!important;font-size:16px!important;line-height:1.3!important;font-weight:850!important;color:#456a59!important}
+#kidsInitialsLesson .initial-card-info{display:grid;align-content:center;justify-items:start;gap:5px;min-width:0;text-align:left}
+#kidsInitialsLesson .initial-card-reading{display:flex;align-items:center;flex-wrap:wrap;gap:7px;min-width:0}
+#kidsInitialsLesson .initial-card-reading strong{font-size:20px;line-height:1.25;font-weight:850;color:#315f50}
+#kidsInitialsLesson .initial-card-reading em{display:inline-flex;align-items:center;min-height:22px;padding:2px 8px;border-radius:999px;background:#e1f1e7;color:#39765d;font-size:11px;line-height:1.2;font-style:normal;font-weight:800}
+#kidsInitialsLesson .initial-card-info small{display:block;min-height:0!important;margin:0!important;color:#566f61!important;font-size:12px!important;line-height:1.45!important;font-weight:650!important;white-space:normal!important;text-align:left!important}
+#kidsInitialsLesson .initial-card-info .initial-card-contrast{color:#315f50!important;font-weight:800!important}
+#kidsInitialsLesson .initials-letter-card:focus-visible{outline:3px solid #51906f!important;outline-offset:3px}
+#kidsInitialsLesson .initials-tone-ribbon .initials-focus-copy,#kidsInitialsLesson .initials-tone-mini-note{display:none!important}
+#kidsInitialsLesson .initials-tone-ribbon{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;margin-top:10px!important;padding:12px!important}
+#kidsInitialsLesson .initials-tone-buttons{grid-template-columns:minmax(0,1fr)!important}
+#kidsInitialsLesson .initials-focus-visual{grid-column:1!important;grid-template-columns:88px minmax(0,1fr)!important;gap:10px!important;min-height:0!important;padding:10px!important}
+#kidsInitialsLesson .focus-mouth{width:84px;height:66px}
+@media(max-width:390px){
+ #kidsInitialsLesson .initials-letter-card{grid-template-columns:76px minmax(0,1fr)!important;gap:10px!important;min-height:116px!important;padding:10px 12px!important}
+ #kidsInitialsLesson .initials-letter-card .big{font-size:58px!important}
+ #kidsInitialsLesson .initials-letter-card .initial-ipa{font-size:15px!important}
+ #kidsInitialsLesson .initial-card-reading strong{font-size:18px}
+ #kidsInitialsLesson .initial-card-info small{font-size:11px!important}
+ #kidsInitialsLesson .initials-focus-visual{grid-template-columns:80px minmax(0,1fr)!important}
+ #kidsInitialsLesson .focus-mouth{width:76px;height:62px}
+}
