@@ -1,0 +1,11 @@
+/* 301.133 — visually join the selected compound-final card to its live mouth guide without nesting controls inside a button. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsCompoundAOOUIULesson .cpo-focus,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsCompoundIEUEERLesson .cpn-focus{display:none!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpoLetterGrid>button:not([hidden]),
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpnLetterGrid>button:not([hidden]){margin-bottom:0!important;border-radius:20px 20px 0 0!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpoLetterGrid>.cpo-articulation,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpnLetterGrid>.cpn-articulation{display:grid!important;grid-column:1!important;grid-template-columns:minmax(0,1fr)!important;width:min(100%,560px)!important;max-width:100%!important;min-width:0!important;margin:0 auto 14px!important;padding:10px!important;gap:8px!important;box-sizing:border-box!important;border:1px solid #d5e9df!important;border-top:0!important;border-radius:0 0 20px 20px!important;background:linear-gradient(180deg,#fbfffc,#f5faf6)!important;overflow:visible!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpoLetterGrid>.cpo-articulation svg,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpnLetterGrid>.cpn-articulation svg{display:block!important;width:min(100%,250px)!important;height:auto!important;margin-inline:auto!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpoLetterGrid>.cpo-articulation :is(p,small,strong,span),
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpnLetterGrid>.cpn-articulation :is(p,small,strong,span){max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.45!important}
