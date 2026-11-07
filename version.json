@@ -1,18 +1,14 @@
 {
-  "version": "301.125",
-  "base": "301.112 deployed candidate",
-  "previous_candidate": "301.124",
+  "version": "301.126",
+  "base": "301.125 candidate",
+  "previous_candidate": "301.125",
   "status": "candidate",
-  "feature": "Simplify consonant lessons and return them to their own stage directory.",
+  "feature": "Align consonant and compound-final IPA to the right of each letter and remove the confusing IPA arc.",
   "changes": [
-    "Remove the lesson flow strips from BPMF and DTNL.",
-    "Remove helper-reading explanation panels from BPMF and DTNL and equivalent model-reading explanations from GKH, JQX, ZHR, and ZCS.",
-    "Remove redundant pronunciation-comparison sublines from BPMF and DTNL.",
-    "Return P3-P8 consonant lessons to the 声母の森 stage directory and P9-P13 finals lessons to the 韻母の湖 stage directory.",
-    "Label the lesson back control with the destination stage name.",
-    "Preserve per-letter readings, IPA, articulation tips, audio, practice, quizzes, and unlock behavior."
+    "Display compound-final IPA to the right of its letter, matching consonant cards.",
+    "Remove U+032F from ai/ei/ui displayed transcriptions."
   ],
   "unchanged": [
-    "Vowel and other non-consonant lesson return behavior."
+    "Prior 301.125 changes, including stage-directory return behavior and simplified lesson-card content."
   ]
 }
