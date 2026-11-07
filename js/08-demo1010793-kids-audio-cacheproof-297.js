@@ -128,8 +128,8 @@
     progress.insertAdjacentElement('afterend',d);
     el('kidsVowelDrillBack').addEventListener('click',closeDrill);el('kidsVowelBackBottom').addEventListener('click',closeDrill);el('kidsVowelComplete').addEventListener('click',completeCurrent);
     el('kidsAEarListen').addEventListener('click',function(){if(!aFlow)return;var btn=this;pulseButton(btn);aFlow.earPlayed=true;btn.textContent='▶ もう一度聞く';setEarChoicesEnabled(true);playLocalPinyin(aFlow.letter,aFlow.earTone)});
-    el('kidsVowelTonePrev').addEventListener('click',function(){if(!activeDrillVowel||toneCursor<=1)return;toneCursor--;renderVowelToneCard(activeDrillVowel,toneCursor)});
-    el('kidsVowelToneNext').addEventListener('click',function(){if(!activeDrillVowel||toneCursor>=4)return;toneCursor++;renderVowelToneCard(activeDrillVowel,toneCursor)});
+    el('kidsVowelTonePrev').addEventListener('click',function(){if(!activeDrillVowel||toneCursor<=1)return;toneCursor--;renderVowelToneCard(activeDrillVowel,toneCursor);playVowelToneCard(activeDrillVowel,toneCursor)});
+    el('kidsVowelToneNext').addEventListener('click',function(){if(!activeDrillVowel||toneCursor>=4)return;toneCursor++;renderVowelToneCard(activeDrillVowel,toneCursor);playVowelToneCard(activeDrillVowel,toneCursor)});
     el('kidsAToQuiz').addEventListener('click',startAQuiz);
     el('kidsAQuizListen').addEventListener('click',playCurrentQuizTone);
     el('kidsAQuizNext').addEventListener('click',nextQuizQuestion);
@@ -258,6 +258,8 @@
       var header=document.getElementById('kp148VowelHeader');
       if(!header||!header.getClientRects().length)header=document.querySelector('.kp148-lesson-header');
       var bottom=header&&header.getClientRects().length?header.getBoundingClientRect().bottom:0;
+      var nav=document.querySelector('#kidsVowelDrill:not([hidden]) .kids-vowel-tone-navigation');
+      if(nav&&nav.getClientRects().length)bottom=Math.max(bottom,nav.getBoundingClientRect().bottom);
       window.scrollTo({top:Math.max(0,anchor.getBoundingClientRect().top+window.scrollY-bottom-10),left:0,behavior:'instant'});
     }
     align();requestAnimationFrame(align);
@@ -271,11 +273,15 @@
     var tr=el('kidsVowelTraceRow');if(tr){tr.replaceChildren();toneMarks(v.letter).forEach(function(mark){var x=document.createElement('div');x.className='kids-vowel-trace';x.textContent=mark;tr.appendChild(x)})}
     var sp=el('kidsVowelSpecialNote');if(v.letter==='ü'){sp.hidden=false;sp.innerHTML='<strong>u と ü は別の音。</strong> ü は u の上に点が2つ。<br>j・q・x ＋ ü は <strong>ju・qu・xu</strong> と書くけれど、点を省くだけで発音は ü のまま。'}else{sp.hidden=true;sp.textContent=''}
     var complete=el('kidsVowelComplete');resetAFlow(v.letter);renderMouth(v.letter);renderAEarChoices();if(complete){complete.disabled=true;complete.textContent='ミニチェックでクリア'};markAProgress()
-    el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;var header=document.getElementById('kp148VowelHeader');if(!header){header=document.createElement('div');header.id='kp148VowelHeader';header.className='kp148-vowel-header';document.body.appendChild(header)}var head=d.querySelector('.kids-vowel-drill-head');if(head)header.appendChild(head);var toneGrid=el('kidsVowelToneGrid');if(toneGrid){var firstTone=toneGrid.querySelector('button');if(firstTone)firstTone.click();placeVowelEntry(toneGrid)}
+    el('kidsVowelGrid').hidden=true;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=true;var prog=el('kidsVowelOverviewProgress');if(prog)prog.hidden=true;d.hidden=false;var header=document.getElementById('kp148VowelHeader');if(!header){header=document.createElement('div');header.id='kp148VowelHeader';header.className='kp148-vowel-header';document.body.appendChild(header)}var head=d.querySelector('.kids-vowel-drill-head');if(head)header.appendChild(head);var toneGrid=el('kidsVowelToneGrid');if(toneGrid){playVowelToneCard(v,1);placeVowelEntry(toneGrid)}
+  }
+  function playVowelToneCard(v,tone){
+    if(!v)return;var session=aFlow,mark=toneMarks(v.letter)[tone-1],card=el('kidsVowelToneGrid')&&el('kidsVowelToneGrid').querySelector('[data-tone="'+tone+'"]');
+    playIntroToneSerialized(v,tone,function(){if(aFlow===session&&aFlow.letter===v.letter){heard[tone]=true;markAProgress()}},function(){if(aFlow===session&&aFlow.letter===v.letter&&card)card.classList.add('is-heard')});
   }
   function renderVowelToneCard(v,tone){
     var marks=toneMarks(v.letter),labels=['高く、平らに','低めから、上へ','下げてから、上へ','高い音から、下へ'],g=el('kidsVowelToneGrid');if(!g)return;toneCursor=tone;g.replaceChildren();
-    var k=tone-1,mark=marks[k],b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="vowel-tone-card-top"><b>'+tone+'声</b><span class="tone-mark">'+mark+'</span></span>'+toneContour(tone)+'<small>'+labels[k]+'</small>';b.dataset.tone=tone;b.setAttribute('aria-label',mark+' '+tone+'声を聞く');b.setAttribute('aria-pressed','true');b.addEventListener('click',function(){var session=aFlow;var hint=el('kidsVowelToneHint');if(hint)hint.textContent=tone+'声：'+labels[k];playIntroToneSerialized(v,tone,function(){if(aFlow===session&&aFlow.letter===v.letter){heard[tone]=true;markAProgress()}},function(){if(aFlow===session&&aFlow.letter===v.letter)b.classList.add('is-heard')})});g.appendChild(b);
+    var k=tone-1,mark=marks[k],b=document.createElement('button');b.type='button';b.className='kids-vowel-tone-btn';b.innerHTML='<span class="vowel-tone-card-top"><b>'+tone+'声</b><span class="tone-audio-label" aria-hidden="true">🔊 聞く</span></span><span class="tone-mark">'+mark+'</span>'+toneContour(tone)+'<small>'+labels[k]+'</small>';b.dataset.tone=tone;b.setAttribute('aria-label',tone+'声 '+mark+'。音声を聞く');b.setAttribute('aria-pressed','true');b.addEventListener('click',function(){playVowelToneCard(v,tone)});g.appendChild(b);
     var count=el('kidsVowelToneCount'),navCount=el('kidsVowelToneNavCount'),prev=el('kidsVowelTonePrev'),next=el('kidsVowelToneNext');if(count)count.textContent=tone+' / 4';if(navCount)navCount.textContent=tone+' / 4';if(prev)prev.disabled=tone===1;if(next)next.disabled=tone===4;
   }
   function closeDrill(){var header=document.getElementById('kp148VowelHeader'),drill=el('kidsVowelDrill');if(header){if(drill&&header.firstElementChild)drill.prepend(header.firstElementChild);header.remove()}cancelIntroTones();stopAudio();clearImitateRecording();aFlow=null;var d=el('kidsVowelDrill');if(d)d.hidden=true;var grid=el('kidsVowelGrid');if(grid)grid.hidden=false;var title=document.querySelector('.kids-lesson-card:has(#kidsVowelGrid) .kids-lesson-title');if(title)title.hidden=false;var p=el('kidsVowelOverviewProgress');if(p)p.hidden=false;renderVowels();placeVowelEntry(grid)}
