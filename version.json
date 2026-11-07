@@ -1,15 +1,16 @@
 {
-  "version": "301.128",
-  "base": "301.127 candidate",
-  "previous_candidate": "301.127",
+  "version": "301.129",
+  "base": "301.128 candidate",
+  "previous_candidate": "301.128",
   "status": "candidate",
-  "feature": "Correct the active nasal-final lesson selectors so right-side IPA card layout actually applies.",
+  "feature": "Unify IPA position in all consonant groups",
   "changes": [
-    "Fix selector scope for front and back nasal-final cards; the active class is on the lesson article itself.",
-    "Refresh asset cache keys for the AO lesson, shared pronunciation data, and unified pinyin card CSS."
+    "Fix selector specificity conflict that kept DTNL, GKH, JQX, ZHR, and ZCS in a one-column card layout.",
+    "Place each group IPA immediately to the right of its letter on the same row.",
+    "Retain the preceding 301.128 nasal lesson selector fix and 301.127 AO IPA mark removal."
   ],
   "unchanged": [
-    "IPA arc removal for ai/ei/ui and ao/ou/iu.",
-    "Right-side IPA layout for consonant and compound-final lessons."
+    "BPMF layout remains the visual reference.",
+    "Return navigation and lesson interactions are untouched."
   ]
 }
