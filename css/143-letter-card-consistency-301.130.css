@@ -1,0 +1,21 @@
+/* 301.130 — keep the consonant card container stays full width while its selected sound changes. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid),
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid),
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid),
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid),
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid){
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:stretch!important;justify-items:stretch!important;justify-content:stretch!important;width:100%!important;min-width:0!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button{
+ grid-template-rows:auto auto auto auto auto!important;min-height:218px!important;padding:12px 14px 14px!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-tip{
+ grid-column:1/-1!important;display:block!important;width:100%!important;max-width:36em!important;min-width:0!important;margin:2px auto 0!important;
+ color:#566f61!important;font-size:13px!important;line-height:1.42!important;font-weight:650!important;text-align:center!important;white-space:normal!important;overflow-wrap:anywhere!important
+}
+/* The full pronunciation tip now sits with its letter and IPA; remove its duplicate below. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#kidsCompoundAIEIUILesson,#kidsCompoundAOOUIULesson,#kidsCompoundIEUEERLesson) :is(.cpv-focus-copy,.cpo-focus-copy,.cpn-focus-copy){display:none!important}
+@media(max-width:390px){
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button{min-height:206px!important;padding:10px 12px 12px!important}
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-tip{font-size:12px!important;line-height:1.4!important}
+}
