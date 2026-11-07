@@ -81,3 +81,42 @@ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:no
  html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>small,
  html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .ipa{font-size:18px!important}
 }
+
+
+/* 301.123 — show the full articulation cue in each initial-letter card. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid>button{grid-template-rows:auto auto auto auto auto!important;min-height:210px!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid>button .cue,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button .initial-tip{
+  display:block!important;width:100%!important;max-width:36em!important;height:auto!important;max-height:none!important;min-height:0!important;margin:0!important;padding:0!important;
+  color:#566f61!important;font-size:13px!important;line-height:1.45!important;font-weight:650!important;white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;text-align:center!important
+}
+
+/* Compound finals use three compact information rows below the teaching header. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpvLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpoLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #cpnLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button{
+  display:grid!important;grid-template-columns:max-content max-content!important;grid-template-rows:auto auto auto auto!important;
+  justify-content:center!important;align-content:center!important;align-items:baseline!important;column-gap:10px!important;row-gap:4px!important;
+  min-height:184px!important;padding:11px 14px 12px!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-card-top,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-model,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-cue{grid-column:1/-1}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-card-top{align-self:center}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-main-row{display:contents}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button>span.compound-main-row>strong{display:block!important;margin:0!important;font-size:clamp(40px,11vw,54px)!important;line-height:1.05!important;font-weight:850!important;color:#205c49!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-ipa{display:block!important;margin:0!important;font-size:17px!important;line-height:1.35!important;font-weight:800!important;color:#416b58!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-model,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button .compound-cue{width:100%!important;max-width:36em!important;height:auto!important;max-height:none!important;margin:0!important;white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;text-align:center!important}
+@media(max-width:390px){
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid>button,
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid>button,
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid>button,
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid>button,
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid>button{min-height:198px!important}
+ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid,#cpoLetterGrid,#cpnLetterGrid)>button{min-height:174px!important;padding:10px 12px!important;column-gap:8px!important}
+}
