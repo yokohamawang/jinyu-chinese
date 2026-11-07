@@ -1,16 +1,18 @@
 {
-  "version": "301.124",
+  "version": "301.125",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.123",
+  "previous_candidate": "301.124",
   "status": "candidate",
-  "feature": "Unify the letter display cards across all consonant chapters, including inline IPA, example reading, mnemonic illustration and caption, and articulation tip.",
+  "feature": "Simplify consonant lessons and return them to their own stage directory.",
   "changes": [
-    "Use one shared selected-letter card layout for b/p/m/f, d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s.",
-    "Put the consonant and its IPA on the same row in every consonant chapter.",
-    "Move the selected letter’s mnemonic illustration and word caption into the letter card, and remove the duplicate lower focus row.",
-    "Keep the example reading and articulation tip inside the same card with wrapping and phone-width spacing."
+    "Remove the lesson flow strips from BPMF and DTNL.",
+    "Remove helper-reading explanation panels from BPMF and DTNL and equivalent model-reading explanations from GKH, JQX, ZHR, and ZCS.",
+    "Remove redundant pronunciation-comparison sublines from BPMF and DTNL.",
+    "Return P3-P8 consonant lessons to the 声母の森 stage directory and P9-P13 finals lessons to the 韻母の湖 stage directory.",
+    "Label the lesson back control with the destination stage name.",
+    "Preserve per-letter readings, IPA, articulation tips, audio, practice, quizzes, and unlock behavior."
   ],
   "unchanged": [
-    "Audio, recording, course navigation, quizzes, progression, and unlock behavior."
+    "Vowel and other non-consonant lesson return behavior."
   ]
 }
