@@ -1,16 +1,12 @@
 {
-  "version": "301.130",
-  "base": "301.129 candidate",
-  "previous_candidate": "301.129",
+  "version": "301.131",
+  "base": "301.130 candidate",
+  "previous_candidate": "301.130",
   "status": "candidate",
-  "feature": "Stabilize consonant paging and combine compound-final explanations with letter cards",
+  "feature": "Make consonant cards match the proven BPMF layout and keep compound-final letter and pronunciation guidance together",
   "changes": [
-    "Keep the five non-BPMF consonant letter-grid containers at full width so card geometry does not change when paging between letters.",
-    "Show each compound-final letter, IPA, example, concise cue, and full pronunciation tip together in the same selectable card across P9-P11.",
-    "Remove the duplicate full-tip block below the compound-final card; keep the mouth demonstration controls and visuals below for practice."
-  ],
-  "unchanged": [
-    "BPMF layout remains unchanged.",
-    "Audio, paging, recording, quiz, return navigation, and articulation controls retain their existing handlers."
+    "Rebuilt the five non-BPMF consonant card grids with bounded two-column letter/IPA rows and wrapping full-width reading and tip rows.",
+    "Reflowed all three compound-final cards so the letter, IPA, example, cue, and full tip stay together inside the card at narrow widths.",
+    "Kept BPMF markup, audio, paging, lesson behavior, and other course content unchanged."
   ]
 }
