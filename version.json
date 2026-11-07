@@ -1,14 +1,15 @@
 {
-  "version": "301.126",
-  "base": "301.125 candidate",
-  "previous_candidate": "301.125",
+  "version": "301.127",
+  "base": "301.126 candidate",
+  "previous_candidate": "301.126",
   "status": "candidate",
-  "feature": "Align consonant and compound-final IPA to the right of each letter and remove the confusing IPA arc.",
+  "feature": "Normalize IPA placement and remove subscripts/arc marks across later final groups.",
   "changes": [
-    "Display compound-final IPA to the right of its letter, matching consonant cards.",
-    "Remove U+032F from ai/ei/ui displayed transcriptions."
+    "Remove U+032F from ao/ou/iu IPA display and shared pronunciation data.",
+    "Keep compound-final IPA to the right of letters across ai/ei/ui, ao/ou/iu, and ie/üe/er.",
+    "Expand front- and back-nasal final letter cards into a wide single row with IPA to the right."
   ],
   "unchanged": [
-    "Prior 301.125 changes, including stage-directory return behavior and simplified lesson-card content."
+    "Consonant IPA layout and 301.126 lesson changes."
   ]
 }
