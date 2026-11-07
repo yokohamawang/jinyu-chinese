@@ -1,19 +1,17 @@
 {
-  "version": "301.118",
+  "version": "301.119",
   "base": "301.112 deployed candidate",
   "previous_candidate": "301.117",
   "status": "candidate",
-  "feature": "声母と複韻母を読みやすい一音カードにまとめ、自由録音・再生を各練習画面に復元。",
+  "feature": "Restore the intended single-sound lesson layout and playback-only free practice.",
   "changes": [
-    "声母カードを2列の安定した構成に整理し、字母・IPA・呼読音・短い調音のコツを一体化。長文の切れと二重説明を解消。",
-    "声母に自由練習区を追加。選択中の声母を録音・停止・再生でき、画面に口型図や模倣文言を置かない。",
-    "複韻母を一音ずつ大きなカードで表示。IPA・例音・短い発音のコツを同じカードにまとめ、カード自体から音声を再生。",
-    "単韻母・複韻母の練習見出しを「自由練習」に統一。録音・再生のみとし、模倣専用表示、比較模倣の文言、練習区の重複口型画像を除去。",
-    "共通録音メッセージを中立な自由発音・再生確認に変更。既存の一音ページ送り・テスト・進捗ロジックは維持。"
+    "Return the existing sound pager to normal page flow so it no longer overlays lesson content or forces excess top spacing.",
+    "Consonants: center the selected letter and integrate IPA, model syllable, aspiration/nasal/friction cue, and speaker affordance in one complete card; add recording, stop, and playback for the selected initial.",
+    "Compound vowels: put the selected spelling, IPA, model syllable, pronunciation cue, and speaker affordance together in its single card.",
+    "Free practice across the targeted initials, finals, and vowels contains only the current sound target with recording, stop, and playback; remove selector grids, mascot, mouth artwork, and imitation/comparison prompts from that area.",
+    "Single-vowel recording follows the currently selected tone and clears the old clip when the user changes tone."
   ],
-  "verification": [
-    "Changed JavaScript files pass node --check.",
-    "HTML parser confirms required free-practice IDs and no duplicate IDs.",
-    "Chromium visual and microphone tests could not launch in this environment; no physical iPhone test or production deployment was performed."
+  "unchanged": [
+    "Course order, teaching illustrations, sound assets, quizzes, progression, and unlock logic."
   ]
 }
