@@ -52,6 +52,7 @@
   }
   function renderArt(){window.KP135.park(root,'cpo');
     el('cpoArticulation').innerHTML=window.KP134.panel(selected,'cpo');window.KP135.mount(root,'cpo',selected);
+    var activeCard=root.querySelector('[data-cpo-letter=\"'+selected+'\"]');if(activeCard)el('cpoLetterGrid').appendChild(el('cpoArticulation'));
     var item=guide[selected];el('cpoStaticGuide').innerHTML='<div class="cpo-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+cpoDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('cpoStaticLetter').textContent=selected;
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.cpo-art-svg,.cpo-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }

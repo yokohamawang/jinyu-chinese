@@ -58,6 +58,7 @@
   }
   function renderArt(){window.KP135.park(root,'cpn');
     el('cpnArticulation').innerHTML=window.KP134.panel(selected,'cpn');window.KP135.mount(root,'cpn',selected);
+    var activeCard=root.querySelector('[data-cpn-letter=\"'+selected+'\"]');if(activeCard)el('cpnLetterGrid').appendChild(el('cpnArticulation'));
     var item=guide[selected];el('cpnStaticGuide').innerHTML='<div class="cpn-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+cpnDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('cpnStaticLetter').textContent=selected;el('cpnStaticTitle').textContent=selected==='er'?'er の口唇と舌の位置':'スタートから ê の口形へ';el('cpnStaticNote').textContent=selected==='er'?'左は口形、右は舌位の模式図です。舌先を軽く上・後ろへ向け、上あごに押しつけずに声を続けます。':'口形の図は目安です。ie・üe の最後の e は前寄りの ê（[ɛ]）で、単母音 e とは違います。途中で音を切らずにつなぎます。';
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.cpn-art-svg,.cpn-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }
