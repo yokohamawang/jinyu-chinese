@@ -1,13 +1,14 @@
 {
-  "version": "301.121",
+  "version": "301.122",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.120",
+  "previous_candidate": "301.121",
   "status": "candidate",
-  "feature": "Fix the final CSS cascade that compressed initials and compound-vowel letter cards to 72px; render complete centered cards at intrinsic height.",
+  "feature": "Extend the centered, full-width, naturally sized single-sound display to every initials chapter beyond b/p/m/f, including d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s.",
   "changes": [
-    "Add a final-loaded, narrowly scoped override for the initials and compound-vowel letter cards, after the later shared fixed-height styles.",
-    "Keep each letter centered with its IPA, example/model, concise pronunciation cue, and audio affordance inside a card that grows to fit.",
-    "Preserve existing single-item previous/next navigation and record/replay-only free practice."
+    "Extend the final CSS override to all consonant lessons: d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s, in addition to b/p/m/f.",
+    "Make each consonant sound grid one full-width column so the existing previous/next control shows one centered item at a time.",
+    "Clear inherited 72px height limits, enlarge the selected consonant, and keep its IPA fully visible; d/t/n/l also retains its breath/nasal cue within the card.",
+    "Keep the 301.121 compound-vowel card improvements and the existing record/replay-only free-practice panel."
   ],
   "unchanged": [
     "Teaching illustrations and audio, course order, quizzes, progression, and unlock behavior."
