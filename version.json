@@ -1,14 +1,13 @@
 {
-  "version": "301.120",
+  "version": "301.121",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.119",
+  "previous_candidate": "301.120",
   "status": "candidate",
-  "feature": "Correct the mobile layouts shown in the 17:37 screenshots: playback-only practice, complete centered sound cards, and non-overlapping navigation.",
+  "feature": "Fix the final CSS cascade that compressed initials and compound-vowel letter cards to 72px; render complete centered cards at intrinsic height.",
   "changes": [
-    "Keep every sound pager in normal document flow with compact controls so it cannot cover lesson headings or crop the selected sound card.",
-    "Free practice is limited to the current sound target, record/stop, playback, and status; hide selector grids, mascot, and any extra content inside that panel. Teaching mouth guidance remains in the teaching section.",
-    "Initials: center one complete card with its letter, IPA, model syllable, concise articulation cue, and speaker; remove the repeated lower text copy.",
-    "Compound vowels: keep the spelling, IPA, model syllable, and cue fully visible inside the centered selected-sound card on phone screens."
+    "Add a final-loaded, narrowly scoped override for the initials and compound-vowel letter cards, after the later shared fixed-height styles.",
+    "Keep each letter centered with its IPA, example/model, concise pronunciation cue, and audio affordance inside a card that grows to fit.",
+    "Preserve existing single-item previous/next navigation and record/replay-only free practice."
   ],
   "unchanged": [
     "Teaching illustrations and audio, course order, quizzes, progression, and unlock behavior."
