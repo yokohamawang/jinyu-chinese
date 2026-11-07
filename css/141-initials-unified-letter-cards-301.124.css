@@ -1,0 +1,49 @@
+/* 301.124 — one consonant card: letter+IPA, reading, illustrated cue, pronunciation tip. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button{
+ display:grid!important;grid-template-columns:max-content max-content!important;grid-template-rows:auto auto auto auto auto!important;
+ justify-content:center!important;align-content:center!important;align-items:baseline!important;column-gap:9px!important;row-gap:4px!important;
+ box-sizing:border-box!important;width:min(100%,560px)!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;
+ margin:0 auto!important;padding:12px clamp(12px,3vw,20px)!important;overflow:visible!important;border:1px solid #b9d1c1!important;border-radius:25px!important;
+ background:linear-gradient(145deg,#f5fcf6,#e8f4eb)!important;box-shadow:inset 0 0 0 2px #579171,0 5px 0 #c6d9ca,0 11px 24px rgba(49,90,67,.08)!important;
+ color:#285f4e!important;text-align:center!important;white-space:normal!important;transform:none!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button::before,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button .initial-card-top{
+ grid-column:1/-1!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;width:100%!important;min-width:0!important;
+ color:#668174!important;font-size:12px!important;line-height:1.3!important;font-weight:750!important;text-align:left!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button::after{
+ content:"🔊";position:absolute!important;top:12px!important;right:14px!important;display:block!important;font-size:23px!important;line-height:1!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button :is(.initial-card-symbol,.initial-card-info){display:contents!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button .big,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button>strong{
+ grid-column:1!important;grid-row:2!important;display:block!important;justify-self:end!important;align-self:baseline!important;margin:0!important;color:#205c49!important;
+ font-size:clamp(48px,13vw,64px)!important;line-height:1!important;font-weight:850!important;text-align:right!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button .initial-ipa,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button>small,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid>button .ipa{
+ grid-column:2!important;grid-row:2!important;display:block!important;align-self:baseline!important;margin:0!important;padding:0!important;color:#416b58!important;
+ font-size:19px!important;line-height:1.3!important;font-weight:800!important;white-space:normal!important;overflow:visible!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button :is(.initial-card-reading,.initial-reading){
+ grid-column:1/-1!important;display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important;min-width:0!important;
+ color:#315f50!important;font-size:14px!important;line-height:1.35!important;font-weight:750!important;text-align:center!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button :is(.initial-card-reading,.initial-reading){grid-row:3!important}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button .kp150-card-assoc{grid-row:4!important;
+ grid-column:1/-1!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:100%!important;min-width:0!important;min-height:40px!important;margin:0!important
+}
+.kp150-card-illustration{display:grid;place-items:center;flex:0 0 52px;width:52px;height:40px;overflow:hidden;border-radius:12px;background:#fffdf4;box-shadow:inset 0 0 0 1px #e7e8d7}
+.kp150-card-illustration svg{display:block;width:100%;height:100%}
+.kp150-card-caption{min-width:0;color:#526759;font-size:13px;line-height:1.35;font-weight:700;text-align:left;overflow-wrap:anywhere}
+.kp150-card-caption mark{color:#21614a;background:none;border-bottom:2px solid #a5c7a4;font-weight:800}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid)>button :is(.initial-card-tip,.cue,.initial-tip){grid-row:5!important;
+ grid-column:1/-1!important;display:block!important;width:100%!important;max-width:36em!important;min-width:0!important;min-height:0!important;height:auto!important;max-height:none!important;
+ margin:0!important;padding:0!important;color:#566f61!important;font-size:13px!important;line-height:1.4!important;font-weight:650!important;
+ white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;text-align:center!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#initialsLetterGrid,#dtnlLetterGrid,#gkhLetterGrid,#jqxLetterGrid,#zhrLetterGrid,#zcsLetterGrid) .kp150-illustrated{display:none!important}
+/* The reading and picture now live in the selected card; remove their former duplicate row. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#kidsInitialsLesson .initials-focus-copy,#kidsInitialsDTNLLesson .dtnl-focus-copy,#kidsInitialsGKHLesson .gkh-focus-copy,#kidsInitialsJQXLesson .jqx-focus-copy,#kidsInitialsZHRLesson .zhr-focus-copy,#kidsInitialsZCSLesson .zcs-focus-copy){display:none!important}
