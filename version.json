@@ -1,13 +1,14 @@
 {
-  "version": "301.136",
-  "base": "301.134 candidate",
-  "previous_candidate": "301.135",
+  "version": "301.138",
+  "base": "301.136 deployed",
+  "previous_candidate": "301.136",
   "status": "candidate",
-  "feature": "Fix horizontal letter and IPA alignment in the final two compound-final groups",
+  "feature": "Restore shared compound-final card and view visibility rules",
   "changes": [
-    "Keep the existing 301.135 full-width stacked lesson layout.",
-    "Reset the inherited vertical direction on the ao/ou/iu and ie/üe/er letter-plus-IPA rows using one shared selector, matching ai/ei/ui.",
-    "Scope the correction to chapters 10 and 11; leave the other three vowel chapters and earlier completed chapter unchanged."
+    "Remove the 301.134–301.136 lesson-specific layout stylesheet links and their obsolete files.",
+    "Let chapters 9–11 use the shared 301.132 compound-letter-card rules.",
+    "Retain the shared 301.133 mouth-guide layout, restoring the native hidden state so only the selected mouth/tongue view appears.",
+    "No new CSS override layer is added."
   ],
-  "validation": "Root cause confirmed on the live site: 301.134 set compound-main-row to flex-direction:column; 301.135 changed display to flex without resetting that direction. Fix prepared; verify all five vowel chapters at phone width before release."
+  "validation": "Live 301.136 inspection confirmed chapters 10 and 11 still displayed the hidden position view because a generic figure display rule overrode the hidden state. Candidate not deployed; post-change visual confirmation remains pending."
 }
