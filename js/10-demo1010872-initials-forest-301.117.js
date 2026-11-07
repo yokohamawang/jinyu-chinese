@@ -25,7 +25,7 @@
     m:{title:'くちびるは閉じたまま',sub:'音は鼻へ響かせる',kind:'m',air:'鼻に響く'},
     f:{title:'上の歯を下くちびるへ',sub:'軽くふれたまま、細い息を流す',kind:'f',air:'細い息'}
   };
-  var quizHeard=false;var selected='b',selectedIndex=0, ctx=null, activeNodes=[], modelAudio=null;
+  var quizHeard=false,recordings={},recordingUrl='';var selected='b',selectedIndex=0, ctx=null, activeNodes=[], modelAudio=null;
   var soundFiles={};
   var quizOrder=['p','m','b','f'], quizIndex=0, quizAnswered=false, quizScore=0, quizMatched={}, quizFirst={}, quizActiveLetter=null, activeQuizButton=null;
 
@@ -42,7 +42,7 @@
   
   
   function play(letter){return playGuide(letter)}
-  function playGuide(letter,forQuiz){stopAudio();var root=el('kidsInitialsLesson'),button=forQuiz?(activeQuizButton||el('initialsQuizListen')):el('initialsToneButtons');if(button&&button.tagName!=='BUTTON')button=button.querySelector('button');function clear(){if(button){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}}if(forQuiz){quizHeard=false;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true})}return window.KP134.play(letter,{root:root,button:button,onPlaying:function(){if(button)button.classList.add('is-playing')},onCancel:clear,onEnded:function(){clear();if(forQuiz){quizHeard=true;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')})}},onError:function(){clear();var fb=el(forQuiz?'initialsQuizFeedback':'initialsImitateFeedback');if(fb)fb.textContent='音声を読み込めませんでした。もう一度押してね。'}}).catch(function(){return null})}
+  function playGuide(letter,forQuiz){stopAudio();var root=el('kidsInitialsLesson'),button=forQuiz?(activeQuizButton||el('initialsQuizListen')):document.querySelector('.initials-letter-card.is-active');if(button&&button.tagName!=='BUTTON')button=button.querySelector('button');function clear(){if(button){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}}if(forQuiz){quizHeard=false;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true})}return window.KP134.play(letter,{root:root,button:button,onPlaying:function(){if(button)button.classList.add('is-playing')},onCancel:clear,onEnded:function(){clear();if(forQuiz){quizHeard=true;el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')})}},onError:function(){clear();var fb=el(forQuiz?'initialsQuizFeedback':'initialsImitateFeedback');if(fb)fb.textContent='音声を読み込めませんでした。もう一度押してね。'}}).catch(function(){return null})}
   function setStep(n){
     document.querySelectorAll('.initials-progress span').forEach(function(x){
       var k=Number(x.dataset.initialStep);
@@ -96,7 +96,7 @@
     selected=letter;
     selectedIndex=letters.indexOf(letter);
     document.querySelectorAll('.initials-letter-card').forEach(function(b){
-      b.classList.toggle('is-active',b.dataset.letter===letter)
+      b.classList.toggle('is-active',b.dataset.letter===letter);b.setAttribute('aria-pressed',String(b.dataset.letter===letter))
     });
     var count=el('initialsLetterCount'),prev=el('initialsLetterPrev'),next=el('initialsLetterNext');
     if(count)count.textContent=(selectedIndex+1)+' / '+letters.length;
@@ -107,7 +107,7 @@
     if(s)s.textContent=window.KP134.data[letter].roman+'（1声・呼読音） · '+sounds[letter].mark;
     if(t)t.textContent=window.KP134.data[letter].tip;
     var card=document.querySelector('.initials-letter-card.is-active');
-    if(card){var roman=card.querySelector('.initial-card-roman'),contrast=card.querySelector('.initial-card-contrast'),tip=card.querySelector('.initial-card-tip');if(roman)roman.textContent=window.KP134.data[letter].roman+' · 1声';if(contrast)contrast.textContent=letter==='b'?'[p] 不送气：息をほとんど出さない。p [pʰ] は息を強く出す':letter==='p'?'[pʰ] 送气：b [p] より息を強く出す':'';if(tip)tip.textContent=window.KP134.data[letter].tip;card.setAttribute('aria-label',letter+' '+sounds[letter].mark+'。'+window.KP134.data[letter].roman+'、呼読音。'+window.KP134.data[letter].tip+'。音声を聞く')}
+    if(card){var roman=card.querySelector('.initial-card-roman'),tip=card.querySelector('.initial-card-tip');if(roman)roman.textContent=window.KP134.data[letter].roman+' · 1声';if(tip)tip.textContent=letter==='b'?'唇を閉じ、息をほとんど出さずに開く':letter==='p'?'唇を閉じ、開く瞬間に息を強く出す':letter==='m'?'唇を閉じたまま、鼻に響かせる':'上の歯を下唇に軽く当て、細く息を流す';card.setAttribute('aria-label',letter+' '+sounds[letter].mark+'。'+window.KP134.data[letter].roman+'。'+tip.textContent+'。タップして音声を聞く')}var practice=el('initialsPracticeTarget'),playbackButton=el('initialsPlayback');if(practice)practice.textContent='練習する音：'+letter+' · '+window.KP134.data[letter].roman;if(playbackButton)playbackButton.disabled=!recordings[letter];recordingUrl=recordings[letter]||'';
     renderFocusVisual(letter);
     renderStaticExplainer(letter);
     renderToneButtons()
@@ -147,7 +147,7 @@
       var icon=letter==='m'
         ? '<span class="initial-cue-icon kp71-nose-cue" aria-hidden="true">'+noseSvg('kp71-cue-',true)+'</span>'
         : '<span class="initial-cue-icon '+cue.kind+'" aria-hidden="true"><i></i><i></i><i></i></span>';
-      b.innerHTML='<span class="initial-card-symbol"><span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span></span><span class="initial-card-info"><span class="initial-card-reading"><strong class="initial-card-roman"></strong><em>呼読音</em></span><small class="initial-card-contrast"></small><small class="initial-card-tip"></small></span>';
+      b.innerHTML='<span class="initial-card-symbol"><span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span></span><span class="initial-card-info"><span class="initial-card-reading"><strong class="initial-card-roman"></strong><em>'+sounds[letter].label+'</em></span><small class="initial-card-tip"></small><span class="initial-card-sound" aria-hidden="true">🔊 音声を聞く</span></span>';
       b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
     select(letter)
   }
@@ -177,7 +177,7 @@
   }
   function retryQuiz(){
     var panel=el('initialsQuizPanel'),result=el('initialsResult'),reward=el('initialsReward');
-    if(result)result.hidden=true;if(reward)reward.hidden=true;if(panel)panel.hidden=false;
+    if(result)result.hidden=true;if(reward)reward.hidden=true;if(el('initialsFreePractice'))el('initialsFreePractice').hidden=true;if(panel)panel.hidden=false;
     quizIndex=0;quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz();setStep(3);
     requestAnimationFrame(function(){if(panel)panel.scrollIntoView({block:'start',behavior:'smooth'})});
   }
@@ -185,6 +185,7 @@
     var panel=el('initialsQuizPanel'),result=el('initialsResult'),reward=el('initialsReward');
     var passed=quizScore>=3,total=quizOrder.length;
     if(panel)panel.hidden=true;
+    if(el('initialsFreePractice'))el('initialsFreePractice').hidden=false;
     if(result)result.hidden=false;
     if(reward)reward.hidden=!passed;
     setStep(3);
@@ -215,7 +216,7 @@
     return ''
   }
   function toggleRecord(){window.KP134.capture(el('kidsInitialsLesson'),el('initialsRecord'),el('initialsPlayback'),selected,el('initialsImitateFeedback'),function(key,url){if(recordings[key]&&recordings[key]!==url)URL.revokeObjectURL(recordings[key]);recordings[key]=url;recordingUrl=url})}
-  async function playRecording(){var url=recordings[selected];if(!url)return;var btn=el('initialsPlayback');function clear(){btn.classList.remove('is-playing')}try{await window.KP134.play(selected,{root:el('kidsInitialsLesson'),clipUrl:url,rate:1,referenceVisual:false,button:btn,onPlaying:function(){btn.classList.add('is-playing')},onEnded:clear,onCancel:clear,onError:function(){clear();el('initialsImitateFeedback').textContent='録音を再生できませんでした。もう一度押してね。'}})}catch(e){clear()}}
+  async function playRecording(){var url=recordings[selected];if(!url)return;var btn=el('initialsPlayback');function clear(){btn.classList.remove('is-playing')}try{await window.KP134.play(selected,{root:el('kidsInitialsLesson'),clipUrl:url,rate:1,referenceVisual:false,button:btn,onPlaying:function(){btn.classList.add('is-playing')},onEnded:clear,onCancel:clear,onError:function(){clear();(el('initialsImitateFeedback')&&(el('initialsImitateFeedback').textContent='録音を再生できませんでした。もう一度押してね。'))}})}catch(e){clear()}}
   function init(){
     if(!el('kidsInitialsLesson'))return;window.KP134.attach(el('kidsInitialsLesson'),letters);
     var initialReward=el('initialsReward'),initialResult=el('initialsResult');
@@ -225,10 +226,11 @@
     document.querySelectorAll('.air-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.air)})});
     document.querySelectorAll('.mouth-sound-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.mouth)})});
     el('initialsToQuiz').disabled=false;
+    el('initialsRecord').addEventListener('click',toggleRecord);el('initialsPlayback').addEventListener('click',playRecording);
     el('initialsLetterPrev').addEventListener('click',function(){if(selectedIndex>0){selectedIndex--;renderLetters();playGuide(selected)}});
     el('initialsLetterNext').addEventListener('click',function(){if(selectedIndex<letters.length-1){selectedIndex++;renderLetters();playGuide(selected)}});
     el('initialsToQuiz').addEventListener('click',function(){
-      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false;
+      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsFreePractice').hidden=true;el('initialsQuizPanel').hidden=false;
       quizIndex=0; quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(3);
       requestAnimationFrame(function(){el('initialsQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})
     });
