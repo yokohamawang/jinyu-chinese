@@ -1,12 +1,13 @@
 {
-  "version": "301.131",
-  "base": "301.130 candidate",
-  "previous_candidate": "301.130",
+  "version": "301.132",
+  "base": "301.131 candidate",
+  "previous_candidate": "301.131",
   "status": "candidate",
-  "feature": "Make consonant cards match the proven BPMF layout and keep compound-final letter and pronunciation guidance together",
+  "feature": "Make all non-BPMF consonant and compound-final card overrides take effect",
   "changes": [
-    "Rebuilt the five non-BPMF consonant card grids with bounded two-column letter/IPA rows and wrapping full-width reading and tip rows.",
-    "Reflowed all three compound-final cards so the letter, IPA, example, cue, and full tip stay together inside the card at narrow widths.",
-    "Kept BPMF markup, audio, paging, lesson behavior, and other course content unchanged."
+    "Raised the specificity of the final responsive card rules to exceed the stale 301.129 overrides that had silently won the cascade.",
+    "Applied bounded widths and wrapping text to all five non-BPMF consonant groups.",
+    "Applied one-card letter, IPA, example, cue and explanation layout to all three compound-final groups.",
+    "Kept BPMF, lesson logic, audio and navigation unchanged."
   ]
 }
