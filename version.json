@@ -1,16 +1,16 @@
 {
-  "version": "301.129",
-  "base": "301.128 candidate",
-  "previous_candidate": "301.128",
+  "version": "301.130",
+  "base": "301.129 candidate",
+  "previous_candidate": "301.129",
   "status": "candidate",
-  "feature": "Unify IPA position in all consonant groups",
+  "feature": "Stabilize consonant paging and combine compound-final explanations with letter cards",
   "changes": [
-    "Fix selector specificity conflict that kept DTNL, GKH, JQX, ZHR, and ZCS in a one-column card layout.",
-    "Place each group IPA immediately to the right of its letter on the same row.",
-    "Retain the preceding 301.128 nasal lesson selector fix and 301.127 AO IPA mark removal."
+    "Keep the five non-BPMF consonant letter-grid containers at full width so card geometry does not change when paging between letters.",
+    "Show each compound-final letter, IPA, example, concise cue, and full pronunciation tip together in the same selectable card across P9-P11.",
+    "Remove the duplicate full-tip block below the compound-final card; keep the mouth demonstration controls and visuals below for practice."
   ],
   "unchanged": [
-    "BPMF layout remains the visual reference.",
-    "Return navigation and lesson interactions are untouched."
+    "BPMF layout remains unchanged.",
+    "Audio, paging, recording, quiz, return navigation, and articulation controls retain their existing handlers."
   ]
 }
