@@ -1,0 +1,5 @@
+/* 301.115 — a pager must show only its current sound card on every phone. */
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active :is(.dtnl-letter-grid,.gkh-letter-grid,.jqx-letter-grid,.zhr-letter-grid,.zcs-letter-grid,.cpv-letter-grid,.cpo-letter-grid,.cpn-letter-grid,.nsv-letter-grid,.bnv-letter-grid)>button[hidden]{display:none!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active :is(.dtnl-letter-grid,.gkh-letter-grid,.jqx-letter-grid,.zhr-letter-grid,.zcs-letter-grid,.cpv-letter-grid,.cpo-letter-grid,.cpn-letter-grid,.nsv-letter-grid,.bnv-letter-grid)>button:not([hidden]){display:flex!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-single-item-nav{margin:2px 0 12px!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active :is(.dtnl-letter-grid,.gkh-letter-grid,.jqx-letter-grid,.zhr-letter-grid,.zcs-letter-grid,.cpv-letter-grid,.cpo-letter-grid,.cpn-letter-grid,.nsv-letter-grid,.bnv-letter-grid){min-height:0!important}
