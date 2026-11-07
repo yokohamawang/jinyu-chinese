@@ -42,7 +42,9 @@
   function effectiveStageStatus(stage){
     if(devUnlockEnabled())return 'next';
     if(stage && stage.id==='P3-P8' && allSingleVowelsComplete())return 'next';
-    if(stage && stage.id==='P9-P13' && allInitialsComplete())return 'next';
+    /* Each learning island is an independent entry point: keep its first unit open.
+       P10–P13 still unlock sequentially through unitLocked() after the prior lesson. */
+    if(stage && stage.id==='P9-P13')return 'next';
     if(stage && stage.id==='P14-P18'){try{if(['P9','P10','P11','P12','P13'].every(function(id){return localStorage.getItem('koepandaCompound'+id+'Complete')==='1'}))return 'next'}catch(e){}}
     return stage ? stage.status : 'locked';
   }
