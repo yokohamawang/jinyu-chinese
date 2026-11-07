@@ -1,16 +1,16 @@
 {
-  "version": "301.122",
+  "version": "301.123",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.121",
+  "previous_candidate": "301.122",
   "status": "candidate",
-  "feature": "Extend the centered, full-width, naturally sized single-sound display to every initials chapter beyond b/p/m/f, including d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s.",
+  "feature": "Show full pronunciation tips in all consonant lesson sound cards and compact compound-final cards to three information lines.",
   "changes": [
-    "Extend the final CSS override to all consonant lessons: d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s, in addition to b/p/m/f.",
-    "Make each consonant sound grid one full-width column so the existing previous/next control shows one centered item at a time.",
-    "Clear inherited 72px height limits, enlarge the selected consonant, and keep its IPA fully visible; d/t/n/l also retains its breath/nasal cue within the card.",
-    "Keep the 301.121 compound-vowel card improvements and the existing record/replay-only free-practice panel."
+    "Add each sound-specific articulation explanation to the selected letter card for d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s.",
+    "Keep the card header and letter/IPA prominent; allow the explanation to wrap completely without clipping.",
+    "Place each compound final and its IPA on one row, with the example reading and articulation cue on the next two rows.",
+    "Apply the compact three-line card consistently to ai/ei/ui, ao/ou/iu, and ie/üe/er."
   ],
   "unchanged": [
-    "Teaching illustrations and audio, course order, quizzes, progression, and unlock behavior."
+    "Audio playback, recording, lesson navigation, course order, quizzes, progress, and unlock behavior."
   ]
 }
