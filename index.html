@@ -103,6 +103,7 @@
 <link rel="stylesheet" href="./css/90-pronunciation-studio-134.css?v=10.108.159">
 <link rel="stylesheet" href="./css/91-pronunciation-ux-135.css?v=10.108.159">
 <link rel="stylesheet" href="./css/92-articulation-motion-139.css?v=10.108.159">
+<link rel="stylesheet" href="./css/128-single-sound-focus-301.107.css?v=10.108.301.107">
 <style id="kp-practice-layout-159">
 /* Shared practice layout; kept in the head so it is available with the content. */
 #kidsCourse {
@@ -530,8 +531,7 @@ window.koepandaEnterKidsCourse=function(ev){
     <div class="initials-progress" aria-label="このレッスンの流れ">
       <span class="is-current" data-initial-step="1"><b>1</b>音</span>
       <i></i><span data-initial-step="2"><b>2</b>息</span>
-      <i></i><span data-initial-step="3"><b>3</b>まねる</span>
-      <i></i><span data-initial-step="4"><b>4</b>チェック</span>
+      <i></i><span data-initial-step="3"><b>3</b>チェック</span>
     </div>
 
     <aside class="initials-tone-rule" aria-label="声母と声調のルール">
@@ -549,7 +549,8 @@ window.koepandaEnterKidsCourse=function(ev){
     <section class="initials-panel initials-sound-panel">
       <div class="initials-panel-head"><span>👂</span><div><b>まず、4つの声母に会おう</b><small>呼読音で聞き、唇・息・鼻への響きを比べよう</small></div></div>
       <div class="initials-source-note"><span>🎙️</span><div><b>お手本は聞き取りやすい呼読音</b><small>bō・pō・mō・fō（1声）は練習用の補助音です。声母そのものには四声をつけません。</small></div></div>
-      <div class="initials-letter-grid" id="initialsLetterGrid"></div>
+      <div class="initials-letter-navigation" aria-label="声母を選ぶ"><button type="button" id="initialsLetterPrev" aria-label="前の声母">←</button><span id="initialsLetterCount" aria-live="polite">1 / 4</span><button type="button" id="initialsLetterNext" aria-label="次の声母">→</button></div>
+      <div class="initials-letter-grid" id="initialsLetterGrid" aria-live="polite"></div>
       <div class="initials-tone-ribbon" id="initialsToneRibbon" aria-live="polite">
         <div class="initials-focus-copy"><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">[p] · 短い音</strong><small id="initialsFocusTip">くちびるを閉じる → 一瞬だけ開く。母音を足さない</small></div>
         <div class="initials-tone-buttons" id="initialsToneButtons"></div>
@@ -560,10 +561,7 @@ window.koepandaEnterKidsCourse=function(ev){
 
     
 
-    <section class="initials-panel initials-imitate-panel kp-practice" aria-labelledby="initialsPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="initialsPracticeTitle">小音とまねよう</h3><p>好きな音を、何度でも練習</p></div></header><div class="initials-free-choice kp-practice-choices" id="initialsFreeChoice" style="--kp-practice-columns:4"></div><div class="practice-console initials-practice-console kp-practice-console"><p class="kp-practice-target" id="initialsPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、聞きくらべよう</p><div class="initials-record-row kp-practice-record-row">
-          <button type="button" class="initials-record" id="initialsRecord">● 録音する</button>
-          <button type="button" class="initials-playback" id="initialsPlayback" disabled>▶ 自分の声を聞く</button>
-        </div><div class="initials-feedback" id="initialsImitateFeedback" aria-live="polite"></div></div></section><section class="kp-practice-check-entry" aria-label="ミニチェック"><button type="button" class="initials-to-quiz" id="initialsToQuiz">ミニチェックへ →</button></section>
+    <section class="kp-practice-check-entry" aria-label="ミニチェック"><button type="button" class="initials-to-quiz" id="initialsToQuiz">ミニチェックへ →</button></section>
 
     <section class="initials-panel initials-quiz-panel" id="initialsQuizPanel" hidden>
       <div class="initials-panel-head"><span>⭐</span><div><b>森のミニチェック</b><small>音を聞いて、b・p・m・f から選ぼう</small></div></div>
@@ -1083,7 +1081,7 @@ SOFTWARE.
 <script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.108.159"></script>
 <script src="./data/pinyin-course.js?v=10.108.176"></script>
 <script src="./data/kids-pinyin.js?v=10.108.159"></script>
-<script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof-297.js?v=10.108.301.104"></script>
+<script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof-297.js?v=10.108.301.107"></script>
 <script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.108.159"></script>
 <script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.159"></script>
 <script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.301.100"></script>
@@ -1356,6 +1354,7 @@ body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;hei
 <link rel="stylesheet" href="./css/115-p21-final-exam-result-polish-300.css?v=10.108.300">
 <script src="./js/koepanda-update-check.js?v=10.108.301.83" defer></script>
 <script src="./js/35-course-switch-press-259.js?v=10.108.259"></script>
+<script src="./js/129-pinyin-single-item-navigation-301.107.js?v=10.108.301.107"></script>
 
 <style id="roadmap-help-station-30147">
 body.app-home-mode #homeEffect > .roadmap-help-station{
