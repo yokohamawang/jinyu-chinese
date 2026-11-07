@@ -1,13 +1,13 @@
 {
-  "version": "301.135",
+  "version": "301.136",
   "base": "301.134 candidate",
-  "previous_candidate": "301.134",
+  "previous_candidate": "301.135",
   "status": "candidate",
-  "feature": "Restore the full-width single-item teaching layout for compound-final chapters 10 and 11",
+  "feature": "Fix horizontal letter and IPA alignment in the final two compound-final groups",
   "changes": [
-    "Match ao/ou/iu and ie/üe/er to the established ai/ei/ui layout: one full-width selected letter card followed by a full-width mouth and articulation card.",
-    "Remove the narrow side-by-side columns that squeezed letter text on mobile.",
-    "Scope all layout overrides to lesson 10 and 11 roots; do not change earlier chapters or course scripts."
+    "Keep the existing 301.135 full-width stacked lesson layout.",
+    "Reset the inherited vertical direction on the ao/ou/iu and ie/üe/er letter-plus-IPA rows using one shared selector, matching ai/ei/ui.",
+    "Scope the correction to chapters 10 and 11; leave the other three vowel chapters and earlier completed chapter unchanged."
   ],
-  "validation": "Compared live mobile layouts for ai/ei/ui, ao/ou/iu, and ie/üe/er with the site's test unlock. Candidate patch not deployed; post-fix visual verification remains pending."
+  "validation": "Root cause confirmed on the live site: 301.134 set compound-main-row to flex-direction:column; 301.135 changed display to flex without resetting that direction. Fix prepared; verify all five vowel chapters at phone width before release."
 }
