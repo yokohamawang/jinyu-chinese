@@ -1,16 +1,16 @@
 {
-  "version": "301.123",
+  "version": "301.124",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.122",
+  "previous_candidate": "301.123",
   "status": "candidate",
-  "feature": "Show full pronunciation tips in all consonant lesson sound cards and compact compound-final cards to three information lines.",
+  "feature": "Unify the letter display cards across all consonant chapters, including inline IPA, example reading, mnemonic illustration and caption, and articulation tip.",
   "changes": [
-    "Add each sound-specific articulation explanation to the selected letter card for d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s.",
-    "Keep the card header and letter/IPA prominent; allow the explanation to wrap completely without clipping.",
-    "Place each compound final and its IPA on one row, with the example reading and articulation cue on the next two rows.",
-    "Apply the compact three-line card consistently to ai/ei/ui, ao/ou/iu, and ie/üe/er."
+    "Use one shared selected-letter card layout for b/p/m/f, d/t/n/l, g/k/h, j/q/x, zh/ch/sh/r, and z/c/s.",
+    "Put the consonant and its IPA on the same row in every consonant chapter.",
+    "Move the selected letter’s mnemonic illustration and word caption into the letter card, and remove the duplicate lower focus row.",
+    "Keep the example reading and articulation tip inside the same card with wrapping and phone-width spacing."
   ],
   "unchanged": [
-    "Audio playback, recording, lesson navigation, course order, quizzes, progress, and unlock behavior."
+    "Audio, recording, course navigation, quizzes, progression, and unlock behavior."
   ]
 }
