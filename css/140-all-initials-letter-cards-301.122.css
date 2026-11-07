@@ -122,23 +122,23 @@ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active :is(#cpvLetterGrid
 }
 
 /* 301.127 — use one spacious letter/IPA row for both nasal-final lessons. */
-html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsFrontNasalLesson .nsv-letter-grid>button,
-html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsBackNasalLesson .bnv-letter-grid>button{
+html body.app-kids-mode #kidsCourse #kidsFrontNasalLesson.is-roadmap-lesson-active .nsv-letter-grid>button,
+html body.app-kids-mode #kidsCourse #kidsBackNasalLesson.is-roadmap-lesson-active .bnv-letter-grid>button{
  grid-column:1/-1!important;display:flex!important;flex-direction:row!important;justify-content:center!important;align-items:baseline!important;gap:clamp(16px,5vw,28px)!important;
  box-sizing:border-box!important;width:min(100%,560px)!important;max-width:560px!important;min-width:0!important;min-height:158px!important;height:auto!important;
  margin:8px auto 14px!important;padding:18px clamp(16px,5vw,28px)!important;border:1px solid #b9d1c1!important;border-radius:26px!important;
  background:linear-gradient(145deg,#f5fcf6,#e8f4eb)!important;box-shadow:inset 0 0 0 2px #579171,0 5px 0 #c6d9ca,0 11px 24px rgba(49,90,67,.08)!important;
  color:#285f4e!important;text-align:center!important;white-space:normal!important
 }
-html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsFrontNasalLesson .nsv-letter-grid>button>strong,
-html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsBackNasalLesson .bnv-letter-grid>button>strong{
+html body.app-kids-mode #kidsCourse #kidsFrontNasalLesson.is-roadmap-lesson-active .nsv-letter-grid>button>strong,
+html body.app-kids-mode #kidsCourse #kidsBackNasalLesson.is-roadmap-lesson-active .bnv-letter-grid>button>strong{
  display:block!important;flex:0 1 auto!important;margin:0!important;font-size:clamp(48px,14vw,64px)!important;line-height:1!important;font-weight:850!important;color:#205c49!important;text-align:right!important
 }
-html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsFrontNasalLesson .nsv-letter-grid>button>small,
-html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsBackNasalLesson .bnv-letter-grid>button>small{
+html body.app-kids-mode #kidsCourse #kidsFrontNasalLesson.is-roadmap-lesson-active .nsv-letter-grid>button>small,
+html body.app-kids-mode #kidsCourse #kidsBackNasalLesson.is-roadmap-lesson-active .bnv-letter-grid>button>small{
  display:block!important;flex:0 0 auto!important;margin:0!important;font-size:19px!important;line-height:1.3!important;font-weight:800!important;color:#416b58!important;text-align:left!important
 }
 @media(max-width:390px){
- html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsFrontNasalLesson .nsv-letter-grid>button,
- html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #kidsBackNasalLesson .bnv-letter-grid>button{min-height:142px!important;padding:16px 12px!important;gap:14px!important}
+ html body.app-kids-mode #kidsCourse #kidsFrontNasalLesson.is-roadmap-lesson-active .nsv-letter-grid>button,
+ html body.app-kids-mode #kidsCourse #kidsBackNasalLesson.is-roadmap-lesson-active .bnv-letter-grid>button{min-height:142px!important;padding:16px 12px!important;gap:14px!important}
 }
