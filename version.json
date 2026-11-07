@@ -1,15 +1,15 @@
 {
-  "version": "301.127",
-  "base": "301.126 candidate",
-  "previous_candidate": "301.126",
+  "version": "301.128",
+  "base": "301.127 candidate",
+  "previous_candidate": "301.127",
   "status": "candidate",
-  "feature": "Normalize IPA placement and remove subscripts/arc marks across later final groups.",
+  "feature": "Correct the active nasal-final lesson selectors so right-side IPA card layout actually applies.",
   "changes": [
-    "Remove U+032F from ao/ou/iu IPA display and shared pronunciation data.",
-    "Keep compound-final IPA to the right of letters across ai/ei/ui, ao/ou/iu, and ie/üe/er.",
-    "Expand front- and back-nasal final letter cards into a wide single row with IPA to the right."
+    "Fix selector scope for front and back nasal-final cards; the active class is on the lesson article itself.",
+    "Refresh asset cache keys for the AO lesson, shared pronunciation data, and unified pinyin card CSS."
   ],
   "unchanged": [
-    "Consonant IPA layout and 301.126 lesson changes."
+    "IPA arc removal for ai/ei/ui and ao/ou/iu.",
+    "Right-side IPA layout for consonant and compound-final lessons."
   ]
 }
