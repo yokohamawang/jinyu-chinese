@@ -1,13 +1,12 @@
 {
-  "version": "301.132",
-  "base": "301.131 candidate",
-  "previous_candidate": "301.131",
+  "version": "301.133",
+  "base": "301.132 candidate",
+  "previous_candidate": "301.132",
   "status": "candidate",
-  "feature": "Make all non-BPMF consonant and compound-final card overrides take effect",
+  "feature": "Join live mouth guidance with the active card for compound-final groups 10 and 11",
   "changes": [
-    "Raised the specificity of the final responsive card rules to exceed the stale 301.129 overrides that had silently won the cascade.",
-    "Applied bounded widths and wrapping text to all five non-BPMF consonant groups.",
-    "Applied one-card letter, IPA, example, cue and explanation layout to all three compound-final groups.",
-    "Kept BPMF, lesson logic, audio and navigation unchanged."
+    "Move each lesson’s live articulation panel into its single-item letter grid, immediately after the visible active card.",
+    "Style the active letter card and articulation panel as one continuous teaching card on groups 10 and 11.",
+    "Keep the panel outside the letter button so its own controls remain valid and operable."
   ]
 }
