@@ -7,7 +7,7 @@ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid),
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid),
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid){
-  display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:stretch!important;justify-items:stretch!important;
+  display:grid!important;grid-template-columns:max-content max-content!important;align-items:baseline!important;justify-content:center!important;justify-items:center!important;
   gap:0!important;width:100%!important;min-width:0!important;margin:8px auto 14px!important;overflow:visible!important
 }
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
@@ -15,7 +15,7 @@ html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
 html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button{
-  position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto auto auto!important;
+  position:relative!important;display:grid!important;grid-template-columns:max-content max-content!important;grid-template-rows:auto auto auto auto auto!important;
   align-content:center!important;justify-items:center!important;align-items:center!important;gap:5px!important;
   box-sizing:border-box!important;width:min(100%,560px)!important;min-width:0!important;height:auto!important;min-height:184px!important;max-height:none!important;
   margin:0 auto!important;padding:18px clamp(14px,4vw,24px) 16px!important;overflow:visible!important;

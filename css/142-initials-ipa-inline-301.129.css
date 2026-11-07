@@ -1,0 +1,45 @@
+/* 301.129 — break the stale one-column override for the five non-BPMF consonant lessons.
+   Match the 301.122 selector specificity so the intended letter/IPA row wins the cascade. */
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button{
+  grid-template-columns:max-content max-content!important;
+  grid-template-rows:auto auto auto auto auto!important;
+  justify-content:center!important;justify-items:center!important;align-items:baseline!important;
+  column-gap:9px!important;row-gap:4px!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>strong,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>strong,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>strong,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>strong,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>strong,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>.big{
+  grid-column:1!important;grid-row:2!important;justify-self:end!important;align-self:baseline!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>small,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>small,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>small,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>small,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button>small,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .ipa{
+  grid-column:2!important;grid-row:2!important;justify-self:start!important;align-self:baseline!important;text-align:left!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-reading,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-reading,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-reading,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-reading,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-reading,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .cue,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-tip,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-tip,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-tip,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button .initial-tip{
+  grid-column:1/-1!important
+}
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #dtnlLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button::before,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #gkhLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button::before,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #jqxLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button::before,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zhrLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button::before,
+html body.app-kids-mode #kidsCourse .is-roadmap-lesson-active #zcsLetterGrid:not(#nsvLetterGrid):not(#bnvLetterGrid)>button::before{grid-column:1/-1!important}
