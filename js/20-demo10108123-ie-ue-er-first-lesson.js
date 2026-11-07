@@ -24,7 +24,7 @@
     root.querySelectorAll('[data-cpn-letter]').forEach(function(b){b.disabled=busy});
     el('cpnModel').disabled=busy;el('cpnToQuiz').disabled=busy;
     el('cpnPlayback').disabled=busy||!recordings[selected];
-    el('cpnPracticeTarget').textContent='練習する音：'+selected;
+    el('cpnPracticeTarget').textContent='練習する音：'+selected+'（'+guide[selected].hanzi+' '+guide[selected].pinyin+(guide[selected].pinyin.indexOf('声')<0?'・1声':'')+'）';
     if(!busy){el('cpnRecord').textContent=recordings[selected]?'↻ もう一度録音':'● 録音する';el('cpnRecord').disabled=false;el('cpnRecord').classList.remove('is-recording');el('cpnRecord').removeAttribute('aria-busy')}
   }
   function stopSound(){
@@ -85,7 +85,7 @@
         clearTimeout(recordTimer);window.KP134.releaseMicrophone(media);if(stream===media)stream=null;if(recorder===rec)recorder=null;
         if(token!==recordToken)return;
         var blob=new Blob(chunks,{type:rec.mimeType||mt||'audio/mp4'});
-        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('cpnPracticeFeedback','録音できたよ。お手本と聞きくらべてみよう。','good')}else feedback('cpnPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
+        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('cpnPracticeFeedback','録音を保存しました。再生ボタンで聞き返せます。','good')}else feedback('cpnPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
         redrawRecordingControls();
       };
       rec.onerror=function(){feedback('cpnPracticeFeedback','録音を続けられませんでした。もう一度試してね。','bad');try{rec.stop()}catch(e){}window.KP134.releaseMicrophone(media)};
@@ -154,7 +154,7 @@
   }
   function init(){
     root=el('kidsCompoundIEUEERLesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpn-letter-card';button.dataset.cpnLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('cpnLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpn-letter-card';button.dataset.cpnLetter=letter;button.innerHTML='<span class="compound-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span><strong>'+letter+'</strong><small class="compound-ipa">'+item.ipa+'</small><span class="compound-model">'+item.hanzi+' '+item.pinyin+(item.pinyin.indexOf('声')<0?' · 1声':'')+'</span><span class="compound-cue">'+item.cue+'</span>';button.onclick=function(){select(letter,true)};el('cpnLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.cpnLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('cpnFreeChoice').appendChild(free)});
     el('cpnModel').onclick=function(){playModel(selected,this,false)};el('cpnRecord').onclick=toggleRecord;el('cpnPlayback').onclick=playRecording;el('cpnToQuiz').onclick=startQuiz;el('cpnRetry').onclick=startQuiz;
     el('cpnQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('cpnQuizNext').onclick=nextQuestion;

@@ -79,7 +79,7 @@
         clearTimeout(recordTimer);window.KP134.releaseMicrophone(media);if(stream===media)stream=null;if(recorder===rec)recorder=null;
         if(token!==recordToken)return;
         var blob=new Blob(chunks,{type:rec.mimeType||mt||'audio/mp4'});
-        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('zhrPracticeFeedback','録音できたよ。お手本と聞きくらべてみよう。','good')}else feedback('zhrPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
+        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('zhrPracticeFeedback','録音を保存しました。再生ボタンで聞き返せます。','good')}else feedback('zhrPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
         redrawRecordingControls();
       };
       rec.onerror=function(){feedback('zhrPracticeFeedback','録音を続けられませんでした。もう一度試してね。','bad');try{rec.stop()}catch(e){}window.KP134.releaseMicrophone(media)};

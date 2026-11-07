@@ -17,7 +17,7 @@
     root.querySelectorAll('[data-cpv-letter]').forEach(function(b){b.disabled=busy});
     el('cpvModel').disabled=busy;el('cpvToQuiz').disabled=busy;
     el('cpvPlayback').disabled=busy||!recordings[selected];
-    el('cpvPracticeTarget').textContent='練習する音：'+selected;
+    el('cpvPracticeTarget').textContent='練習する音：'+selected+'（'+guide[selected].hanzi+' '+guide[selected].pinyin+(guide[selected].pinyin.indexOf('声')<0?'・1声':'')+'）';
     if(!busy){el('cpvRecord').textContent=recordings[selected]?'↻ もう一度録音':'● 録音する';el('cpvRecord').disabled=false;el('cpvRecord').classList.remove('is-recording');el('cpvRecord').removeAttribute('aria-busy')}
   }
   function stopSound(){
@@ -46,7 +46,7 @@
     if(forQuiz&&!quiz.answered){quiz.heard=false;el('cpvMatchAnswers').querySelectorAll('button').forEach(function(b){b.disabled=true})}
     feedback(fb,'お手本を準備しています…');
     function clear(){button.classList.remove('is-playing');button.removeAttribute('aria-busy')}
-    try{await window.KP134.play(letter,{root:root,button:button,onCancel:clear,onPlaying:function(){if(token===modelToken&&!forQuiz){feedback(fb,'音のつながりを聞いてください。')}},onEnded:function(){if(token!==modelToken)return;clear();if(forQuiz&&quiz.active&&quiz.index===index&&!quiz.answered){quiz.heard=true;el('cpvMatchAnswers').querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')});feedback(fb,'聞こえた音を選ぼう。')}},onError:function(){if(token===modelToken){clear();feedback(fb,'音声を読み込めませんでした。もう一度押してね。','bad')}}})}
+    try{await window.KP134.play(letter,{root:root,button:button,onCancel:clear,onPlaying:function(){if(token===modelToken&&!forQuiz){feedback(fb,'聞いて・見て・まねよう。')}},onEnded:function(){if(token!==modelToken)return;clear();if(forQuiz&&quiz.active&&quiz.index===index&&!quiz.answered){quiz.heard=true;el('cpvMatchAnswers').querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')});feedback(fb,'聞こえた音を選ぼう。')}},onError:function(){if(token===modelToken){clear();feedback(fb,'音声を読み込めませんでした。もう一度押してね。','bad')}}})}
     catch(e){if(e&&e.name==='AbortError')return;if(token===modelToken){clear();feedback(fb,'音声を再生できませんでした。もう一度押してね。','bad')}}
   }
   function renderArt(){window.KP135.park(root,'cpv');
@@ -59,7 +59,7 @@
     selected=letter;root.querySelectorAll('[data-cpv-letter]').forEach(function(b){var active=b.dataset.cpvLetter===letter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
     var item=guide[letter];el('cpvFocusLetter').textContent=letter;el('cpvFocusGuide').textContent=item.hanzi+' '+item.pinyin+' · '+item.ipa;el('cpvFocusTip').textContent=item.tip;
     el('cpvModel').textContent='▶ '+letter+' のお手本を聞く';feedback('cpvModelFeedback','');feedback('cpvPracticeFeedback',recordings[letter]?'この音の録音を聞き返せます。':'');
-    renderArt();redrawRecordingControls();if(listen)playModel(letter,root.querySelector('.cpv-letter-card.is-active')||el('cpvModel'),false);
+    renderArt();redrawRecordingControls();if(listen)playModel(letter,el('cpvModel'),false);
   }
   function mimeType(){var types=['audio/mp4','audio/webm;codecs=opus','audio/webm'];for(var i=0;i<types.length;i++)try{if(MediaRecorder.isTypeSupported(types[i]))return types[i]}catch(e){}return ''}
   async function toggleRecord(){
@@ -78,7 +78,7 @@
         clearTimeout(recordTimer);window.KP134.releaseMicrophone(media);if(stream===media)stream=null;if(recorder===rec)recorder=null;
         if(token!==recordToken)return;
         var blob=new Blob(chunks,{type:rec.mimeType||mt||'audio/mp4'});
-        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('cpvPracticeFeedback','録音できました。再生して自分の声を確認できます。','good')}else feedback('cpvPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
+        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('cpvPracticeFeedback','録音を保存しました。再生ボタンで聞き返せます。','good')}else feedback('cpvPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
         redrawRecordingControls();
       };
       rec.onerror=function(){feedback('cpvPracticeFeedback','録音を続けられませんでした。もう一度試してね。','bad');try{rec.stop()}catch(e){}window.KP134.releaseMicrophone(media)};
@@ -147,7 +147,7 @@
   }
   function init(){
     root=el('kidsCompoundAIEIUILesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpv-letter-card';button.dataset.cpvLetter=letter;button.innerHTML='<span class="cpv-card-main"><strong>'+letter+'</strong><small>'+item.ipa+'</small></span><span class="cpv-card-copy"><em>'+item.hanzi+' '+item.pinyin+'</em><span>'+item.cue+'</span><small>'+item.tip+'</small></span><span class="cpv-card-audio" aria-hidden="true">🔊</span>';button.setAttribute('aria-label',letter+' '+item.ipa+'。'+item.hanzi+' '+item.pinyin+'。'+item.cue+'。タップして音声を聞く');button.onclick=function(){select(letter,true)};el('cpvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpv-letter-card';button.dataset.cpvLetter=letter;button.innerHTML='<span class="compound-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span><strong>'+letter+'</strong><small class="compound-ipa">'+item.ipa+'</small><span class="compound-model">'+item.hanzi+' '+item.pinyin+(item.pinyin.indexOf('声')<0?' · 1声':'')+'</span><span class="compound-cue">'+item.cue+'</span>';button.onclick=function(){select(letter,true)};el('cpvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.cpvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('cpvFreeChoice').appendChild(free)});
     el('cpvModel').onclick=function(){playModel(selected,this,false)};el('cpvRecord').onclick=toggleRecord;el('cpvPlayback').onclick=playRecording;el('cpvToQuiz').onclick=startQuiz;el('cpvRetry').onclick=startQuiz;
     el('cpvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('cpvQuizNext').onclick=nextQuestion;

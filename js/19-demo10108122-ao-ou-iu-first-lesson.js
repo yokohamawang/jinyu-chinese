@@ -18,7 +18,7 @@
     root.querySelectorAll('[data-cpo-letter]').forEach(function(b){b.disabled=busy});
     el('cpoModel').disabled=busy;el('cpoToQuiz').disabled=busy;
     el('cpoPlayback').disabled=busy||!recordings[selected];
-    el('cpoPracticeTarget').textContent='練習する音：'+selected;
+    el('cpoPracticeTarget').textContent='練習する音：'+selected+'（'+guide[selected].hanzi+' '+guide[selected].pinyin+(guide[selected].pinyin.indexOf('声')<0?'・1声':'')+'）';
     if(!busy){el('cpoRecord').textContent=recordings[selected]?'↻ もう一度録音':'● 録音する';el('cpoRecord').disabled=false;el('cpoRecord').classList.remove('is-recording');el('cpoRecord').removeAttribute('aria-busy')}
   }
   function stopSound(){
@@ -79,7 +79,7 @@
         clearTimeout(recordTimer);window.KP134.releaseMicrophone(media);if(stream===media)stream=null;if(recorder===rec)recorder=null;
         if(token!==recordToken)return;
         var blob=new Blob(chunks,{type:rec.mimeType||mt||'audio/mp4'});
-        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('cpoPracticeFeedback','録音できたよ。お手本と聞きくらべてみよう。','good')}else feedback('cpoPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
+        if(blob.size){if(recordings[letter])URL.revokeObjectURL(recordings[letter]);recordings[letter]=URL.createObjectURL(blob);feedback('cpoPracticeFeedback','録音を保存しました。再生ボタンで聞き返せます。','good')}else feedback('cpoPracticeFeedback','録音を保存できませんでした。もう一度録音してね。','bad');
         redrawRecordingControls();
       };
       rec.onerror=function(){feedback('cpoPracticeFeedback','録音を続けられませんでした。もう一度試してね。','bad');try{rec.stop()}catch(e){}window.KP134.releaseMicrophone(media)};
@@ -148,7 +148,7 @@
   }
   function init(){
     root=el('kidsCompoundAOOUIULesson');if(!root)return;window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpo-letter-card';button.dataset.cpoLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true)};el('cpoLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='cpo-letter-card';button.dataset.cpoLetter=letter;button.innerHTML='<span class="compound-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span><strong>'+letter+'</strong><small class="compound-ipa">'+item.ipa+'</small><span class="compound-model">'+item.hanzi+' '+item.pinyin+(item.pinyin.indexOf('声')<0?' · 1声':'')+'</span><span class="compound-cue">'+item.cue+'</span>';button.onclick=function(){select(letter,true)};el('cpoLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.cpoLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('cpoFreeChoice').appendChild(free)});
     el('cpoModel').onclick=function(){playModel(selected,this,false)};el('cpoRecord').onclick=toggleRecord;el('cpoPlayback').onclick=playRecording;el('cpoToQuiz').onclick=startQuiz;el('cpoRetry').onclick=startQuiz;
     el('cpoQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('cpoQuizNext').onclick=nextQuestion;

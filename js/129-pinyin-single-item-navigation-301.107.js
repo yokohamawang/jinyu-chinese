@@ -21,7 +21,7 @@
         if(active)button.style.removeProperty('display');
         else button.style.setProperty('display','none','important');
       });
-      count.textContent=(current+1)+' / '+buttons.length;prev.disabled=current===0;next.disabled=current===buttons.length-1;
+      count.textContent=(current+1)+' / '+buttons.length;var busy=buttons.some(function(button){return button.disabled});prev.disabled=current===0||busy;next.disabled=current===buttons.length-1||busy;
     }
     nav.addEventListener('click',function(event){
       var control=event.target.closest('button[data-step]');if(!control)return;
@@ -32,7 +32,7 @@
       var button=event.target.closest('button');if(!button||button.parentElement!==grid)return;
       var index=buttons.indexOf(button);if(index>=0){current=index;refresh()}
     });
-    new MutationObserver(refresh).observe(grid,{childList:true});
+    new MutationObserver(refresh).observe(grid,{childList:true,attributes:true,attributeFilter:['disabled']});
     refresh();
     card.querySelectorAll('section').forEach(function(section){var heading=section.querySelector('header h3, h3');if(heading&&heading.textContent.trim()==='小音とまねよう')section.classList.add('kp-imitation-retired')});
     card.querySelectorAll('[class*="progress"]').forEach(function(progress){Array.prototype.slice.call(progress.querySelectorAll('span')).forEach(function(step){if(/まねる/.test(step.textContent))step.innerHTML=step.innerHTML.replace('まねる','音を確かめる');if(/チェック/.test(step.textContent))step.innerHTML=step.innerHTML.replace('チェック','ミニチェック')})});
