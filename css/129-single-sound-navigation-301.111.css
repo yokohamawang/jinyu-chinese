@@ -1,0 +1,92 @@
+/* 301.111 — clear tone shape and keep one-item navigation reachable on phones. */
+
+/* Keep vowel controls directly below the fixed lesson header while the lesson scrolls. */
+body.app-kids-mode:has(.is-roadmap-lesson-active #kidsVowelDrill:not([hidden])) #kidsVowelDrill .kids-vowel-tone-navigation,
+body.app-kids-mode:has(.is-roadmap-lesson-active .kp-single-item-nav) .kp-single-item-nav,
+body.app-kids-mode:has(.is-roadmap-lesson-active .initials-letter-navigation) .initials-letter-navigation{
+  position:fixed!important;
+  top:56px!important;
+  left:max(12px,calc((100vw - 830px)/2))!important;
+  right:max(12px,calc((100vw - 830px)/2))!important;
+  z-index:49!important;
+  box-sizing:border-box;
+  min-height:58px;
+  margin:0!important;
+  padding:6px 10px!important;
+  border:1px solid #dce5dc;
+  border-radius:0 0 16px 16px;
+  background:#f7faf3!important;
+  box-shadow:0 3px 10px rgba(35,72,52,.10);
+}
+
+/* The fixed bar is 56px high; reserve space so the first lesson content clears it. */
+body.app-kids-mode:has(.is-roadmap-lesson-active #kidsVowelDrill:not([hidden])) #kidsVowelDrill{padding-top:74px!important}
+body.app-kids-mode:has(.is-roadmap-lesson-active .kp-single-item-nav) #kidsCourse>.kids-lesson-card.is-roadmap-lesson-active,
+body.app-kids-mode:has(.is-roadmap-lesson-active .initials-letter-navigation) #kidsCourse>.kids-lesson-card.is-roadmap-lesson-active{padding-top:72px!important}
+
+#kidsVowelDrill .kids-vowel-tone-navigation{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;align-items:center;gap:10px!important}
+#kidsVowelDrill .kids-vowel-tone-navigation button,
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav button,
+#kidsCourse .is-roadmap-lesson-active .initials-letter-navigation button{
+  min-width:0;min-height:44px!important;padding:7px 12px!important;border:1px solid #c7d8cc!important;
+  border-radius:13px!important;background:#fffef9!important;color:#315f50!important;
+  font-size:15px!important;font-weight:750!important;white-space:nowrap;touch-action:manipulation;
+}
+#kidsVowelDrill .kids-vowel-tone-navigation span,
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav span{
+  min-width:44px;text-align:center;color:#577366;font-size:14px;font-weight:750;white-space:nowrap;
+}
+#kidsVowelDrill .kids-vowel-tone-navigation button:disabled,
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav button:disabled,
+#kidsCourse .is-roadmap-lesson-active .initials-letter-navigation button:disabled{opacity:.4}
+#kidsVowelDrill .kids-vowel-tone-navigation button:focus-visible,
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav button:focus-visible,
+#kidsCourse .is-roadmap-lesson-active .initials-letter-navigation button:focus-visible{outline:3px solid #4b8b6d!important;outline-offset:2px}
+
+/* Replace the narrow, tall tone tile with one wide card: written tone plus its pitch path. */
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;
+  width:100%!important;max-width:none!important;margin:0!important;
+}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(100px,.75fr)!important;
+  grid-template-rows:minmax(80px,auto) auto!important;align-items:center!important;justify-items:center!important;
+  width:100%!important;height:auto!important;min-height:150px!important;max-height:none!important;
+  box-sizing:border-box!important;margin:0!important;padding:14px 18px!important;
+  border:1px solid #cbd9cf!important;border-radius:22px!important;
+  background:linear-gradient(140deg,#fffefb,#f2f7f1)!important;
+  box-shadow:0 4px 0 #d5e0d7!important;overflow:visible!important;text-align:center!important;
+}
+#kidsVowelDrill .kp135-tones .vowel-tone-card-top{
+  grid-column:1!important;grid-row:1!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;gap:2px!important;min-width:0!important;
+}
+#kidsVowelDrill .kp135-tones .vowel-tone-card-top b{
+  margin:0!important;color:#547267!important;font-size:14px!important;font-weight:700!important;line-height:1.35!important;
+}
+#kidsVowelDrill .kp135-tones .tone-mark{
+  display:block!important;margin:0!important;color:#234b3d!important;font-family:ui-serif,Georgia,"Times New Roman",serif!important;
+  font-size:clamp(64px,16vw,84px)!important;font-weight:600!important;line-height:1.08!important;letter-spacing:-.03em!important;
+}
+#kidsVowelDrill .kp135-tones .vowel-tone-contour{
+  grid-column:2!important;grid-row:1!important;display:block!important;width:min(100%,138px)!important;
+  height:72px!important;margin:0!important;overflow:visible!important;
+}
+#kidsVowelDrill .kp135-tones .contour-guide{stroke:#dce6dd!important;stroke-width:2!important}
+#kidsVowelDrill .kp135-tones .contour-line{stroke:#347757!important;stroke-width:6!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#kidsVowelDrill .kp135-tones .contour-start{fill:#fff!important;stroke:#347757!important;stroke-width:2.5!important}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid small{
+  grid-column:1/-1!important;grid-row:2!important;display:block!important;min-height:0!important;
+  margin:3px 0 0!important;color:#425b4e!important;font-size:16px!important;font-weight:500!important;
+  line-height:1.45!important;text-align:center!important;white-space:normal!important;
+}
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button[aria-pressed=true],
+#kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button.is-sounding{
+  background:linear-gradient(140deg,#f0f8f1,#e8f3eb)!important;border-color:#77a187!important;
+}
+#kidsVowelDrill .kids-vowel-tone-title{margin-top:16px!important}
+@media(max-width:390px){
+  #kidsVowelDrill .kp135-tones #kidsVowelToneGrid>button{grid-template-columns:minmax(0,1fr) 94px!important;min-height:138px!important;padding:12px 12px!important}
+  #kidsVowelDrill .kp135-tones .vowel-tone-contour{width:92px!important;height:64px!important}
+  #kidsVowelDrill .kp135-tones #kidsVowelToneGrid small{font-size:15px!important}
+}
