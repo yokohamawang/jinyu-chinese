@@ -1,17 +1,16 @@
 {
-  "version": "301.119",
+  "version": "301.120",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.117",
+  "previous_candidate": "301.119",
   "status": "candidate",
-  "feature": "Restore the intended single-sound lesson layout and playback-only free practice.",
+  "feature": "Correct the mobile layouts shown in the 17:37 screenshots: playback-only practice, complete centered sound cards, and non-overlapping navigation.",
   "changes": [
-    "Return the existing sound pager to normal page flow so it no longer overlays lesson content or forces excess top spacing.",
-    "Consonants: center the selected letter and integrate IPA, model syllable, aspiration/nasal/friction cue, and speaker affordance in one complete card; add recording, stop, and playback for the selected initial.",
-    "Compound vowels: put the selected spelling, IPA, model syllable, pronunciation cue, and speaker affordance together in its single card.",
-    "Free practice across the targeted initials, finals, and vowels contains only the current sound target with recording, stop, and playback; remove selector grids, mascot, mouth artwork, and imitation/comparison prompts from that area.",
-    "Single-vowel recording follows the currently selected tone and clears the old clip when the user changes tone."
+    "Keep every sound pager in normal document flow with compact controls so it cannot cover lesson headings or crop the selected sound card.",
+    "Free practice is limited to the current sound target, record/stop, playback, and status; hide selector grids, mascot, and any extra content inside that panel. Teaching mouth guidance remains in the teaching section.",
+    "Initials: center one complete card with its letter, IPA, model syllable, concise articulation cue, and speaker; remove the repeated lower text copy.",
+    "Compound vowels: keep the spelling, IPA, model syllable, and cue fully visible inside the centered selected-sound card on phone screens."
   ],
   "unchanged": [
-    "Course order, teaching illustrations, sound assets, quizzes, progression, and unlock logic."
+    "Teaching illustrations and audio, course order, quizzes, progression, and unlock behavior."
   ]
 }
