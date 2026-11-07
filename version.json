@@ -1,16 +1,17 @@
 {
-  "version": "301.114",
+  "version": "301.115",
   "base": "301.112 deployed candidate",
-  "previous_candidate": "301.113",
-  "candidate_source": "301.113 playback changes are integrated because 301.113 has not been uploaded.",
+  "previous_candidate": "301.114",
+  "candidate_source": "Includes 301.113 playback candidate integrated in 301.114; 301.113 was not uploaded.",
   "status": "candidate",
-  "feature": "右上角の声調再生を維持し、口形・舌息タブでも再生できるようにする。",
+  "feature": "複韻母と他の拼音章を一音ずつ前後切替し、画面には現在の一枚だけを表示する。",
   "changes": [
-    "実際のアップロード基準301.112から構成し、未アップロードの301.113に含まれる口形・舌息タブ再生と全カード再生を取り込む。",
-    "声調カードの再生表示を右上に配置し、左上の声調表示とのバランスを整える。",
-    "301.112の入頁再生、前後声調切替、スクロール位置、発音コツの展開表示を維持する。"
+    "复韵母 ai・ei・ui 的三张纵向卡片不再同时显示；单音导航控制当前显示卡片。",
+    "同一单音导航修正覆盖声母及其他复韵母、前鼻音、后鼻音的十个课程网格。",
+    "为延迟渲染的课程卡片加入同步处理，并强制隐藏非当前卡片，避免长列表回归。",
+    "保留301.114的无文字放大喇叭与声调标识并排布局。"
   ],
   "unchanged": [
-    "音源、テスト、進度與解锁规则不变。"
+    "音源、课程教学、测试、进度与解锁规则。"
   ]
 }
