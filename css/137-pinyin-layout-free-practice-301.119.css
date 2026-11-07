@@ -1,0 +1,72 @@
+/* 301.119 — restore normal document flow and make the current sound the clear focal point. */
+body.app-kids-mode:has(.is-roadmap-lesson-active #kidsVowelDrill:not([hidden])) #kidsVowelDrill .kids-vowel-tone-navigation,
+body.app-kids-mode:has(.is-roadmap-lesson-active .kp-single-item-nav) .kp-single-item-nav,
+body.app-kids-mode:has(.is-roadmap-lesson-active .initials-letter-navigation) .initials-letter-navigation{
+  position:relative!important;inset:auto!important;top:auto!important;left:auto!important;right:auto!important;z-index:auto!important;
+  width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;margin:10px 0 14px!important;
+  padding:6px!important;border:1px solid #dce5dc!important;border-radius:18px!important;background:#f7faf3!important;
+  box-shadow:0 3px 10px rgba(35,72,52,.08)!important;
+}
+body.app-kids-mode:has(.is-roadmap-lesson-active #kidsVowelDrill:not([hidden])) #kidsVowelDrill,
+body.app-kids-mode:has(.is-roadmap-lesson-active .kp-single-item-nav) #kidsCourse>.kids-lesson-card.is-roadmap-lesson-active,
+body.app-kids-mode:has(.is-roadmap-lesson-active .initials-letter-navigation) #kidsCourse>.kids-lesson-card.is-roadmap-lesson-active{padding-top:0!important}
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;gap:8px!important}
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav button,
+#kidsCourse .is-roadmap-lesson-active .initials-letter-navigation button,
+#kidsVowelDrill .kids-vowel-tone-navigation button{min-width:0!important;min-height:46px!important;height:auto!important;max-height:none!important;padding:8px 10px!important;border-radius:14px!important;font-size:15px!important;white-space:nowrap!important}
+#kidsCourse .is-roadmap-lesson-active .kp-single-item-nav span,
+#kidsCourse .is-roadmap-lesson-active .initials-letter-navigation span,
+#kidsVowelDrill .kids-vowel-tone-navigation span{font-size:14px!important}
+/* Free practice has one target and two actions only. */
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice .kp-practice-choices,
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice .kp-practice-avatar,
+#kidsVowelDrill .kp-practice-choices,#kidsVowelDrill .kp-practice-avatar{display:none!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice-head{display:flex!important;gap:0!important;align-items:flex-start!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice-head h3{margin:0!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice-head p{margin:3px 0 0!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice .kp-practice-record-row,
+#kidsVowelDrill .kp-practice .kp-practice-record-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice .kp-practice-record-row>button,
+#kidsVowelDrill .kp-practice .kp-practice-record-row>button{min-width:0!important;min-height:52px!important;font-size:15px!important;line-height:1.25!important;white-space:normal!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .initials-free-practice{margin-top:18px!important}
+#kidsCourse .kids-lesson-card.is-roadmap-lesson-active .initials-free-practice .kp-practice-target{font-size:16px!important;font-weight:800!important}
+/* Initials: a centered, complete card, with all pronunciation information inside it. */
+#kidsInitialsLesson .initials-letter-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+#kidsInitialsLesson .initials-letter-card{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;justify-items:center!important;align-content:center!important;gap:8px!important;
+  box-sizing:border-box!important;width:min(100%,560px)!important;min-width:0!important;height:auto!important;min-height:0!important;margin:0 auto!important;padding:14px 18px 16px!important;
+  overflow:visible!important;border:1px solid #c5d8cb!important;border-radius:24px!important;background:linear-gradient(145deg,#f7fff8,#e8f4ec)!important;
+  box-shadow:inset 0 0 0 2px #51906f,0 5px 0 #bfd5c5,0 10px 20px rgba(49,90,67,.08)!important;color:#205c49!important;text-align:center!important}
+#kidsInitialsLesson .initial-card-top{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;color:#7a9184!important;font-size:12px!important;font-weight:750!important;line-height:1.3!important}
+#kidsInitialsLesson .initial-card-speaker{font-size:23px!important;line-height:1!important}
+#kidsInitialsLesson .initial-card-symbol{display:grid!important;justify-items:center!important;gap:0!important;min-width:0!important}
+#kidsInitialsLesson .initials-letter-card .big{margin:0!important;color:#205c49!important;font-size:clamp(68px,19vw,88px)!important;font-weight:800!important;line-height:1!important}
+#kidsInitialsLesson .initials-letter-card .initial-ipa{display:block!important;min-height:0!important;margin:1px 0 0!important;color:#416b58!important;font-size:22px!important;line-height:1.3!important;font-weight:800!important}
+#kidsInitialsLesson .initial-card-info{display:grid!important;justify-items:center!important;gap:6px!important;min-width:0!important;width:100%!important;text-align:center!important}
+#kidsInitialsLesson .initial-card-reading{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;min-width:0!important}
+#kidsInitialsLesson .initial-card-reading strong{font-size:18px!important;line-height:1.3!important;font-weight:850!important;color:#315f50!important}
+#kidsInitialsLesson .initial-card-reading em,#kidsInitialsLesson .initial-card-class{display:inline-flex!important;align-items:center!important;min-height:25px!important;padding:3px 9px!important;border-radius:999px!important;background:#e1f1e7!important;color:#39765d!important;font-size:12px!important;line-height:1.2!important;font-style:normal!important;font-weight:800!important}
+#kidsInitialsLesson .initial-card-info .initial-card-tip{display:block!important;min-height:0!important;max-width:34em!important;margin:0!important;color:#566f61!important;font-size:14px!important;line-height:1.55!important;font-weight:650!important;white-space:normal!important;text-align:center!important;overflow-wrap:anywhere!important}
+#kidsInitialsLesson .initials-tone-ribbon{margin-top:12px!important}
+#kidsInitialsLesson #initialsToneButtons{display:none!important}
+/* Compound-vowel: the current card holds the cue and example; the lower stage is for mouth movement only. */
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-letter-card,.cpo-letter-card,.cpn-letter-card){
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;justify-items:center!important;align-content:center!important;gap:5px!important;
+  box-sizing:border-box!important;width:100%!important;min-height:0!important;height:auto!important;padding:14px 16px!important;overflow:visible!important;
+  border-radius:23px!important;border:1px solid #b9d1c1!important;background:linear-gradient(145deg,#f5fcf6,#e8f4eb)!important;
+  box-shadow:inset 0 0 0 2px #579171,0 5px 0 #c6d9ca!important;text-align:center!important;color:#285f4e!important}
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-letter-card,.cpo-letter-card,.cpn-letter-card) .compound-card-top{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;color:#7a9184!important;font-size:12px!important;font-weight:750!important}
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-letter-card,.cpo-letter-card,.cpn-letter-card)>strong{font-size:clamp(42px,12vw,58px)!important;line-height:1.05!important}
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-letter-card,.cpo-letter-card,.cpn-letter-card) .compound-ipa{font-size:17px!important;font-weight:800!important}
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-letter-card,.cpo-letter-card,.cpn-letter-card) .compound-model{font-size:15px!important;font-weight:800!important}
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-letter-card,.cpo-letter-card,.cpn-letter-card) .compound-cue{max-width:36em!important;color:#5d7568!important;font-size:13px!important;line-height:1.45!important;white-space:normal!important;text-align:center!important}
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-focus-copy,.cpo-focus-copy,.cpn-focus-copy),
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-model,.cpo-model,.cpn-model),
+#kidsCourse .is-roadmap-lesson-active :is(.cpv-model-feedback,.cpo-model-feedback,.cpn-model-feedback){display:none!important}
+@media(max-width:390px){
+ #kidsInitialsLesson .initials-letter-card{padding:12px 12px 14px!important}
+ #kidsInitialsLesson .initial-card-info .initial-card-tip{font-size:13px!important}
+ #kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice .kp-practice-record-row,
+ #kidsVowelDrill .kp-practice .kp-practice-record-row{gap:7px!important}
+ #kidsCourse .kids-lesson-card.is-roadmap-lesson-active .kp-practice .kp-practice-record-row>button,
+ #kidsVowelDrill .kp-practice .kp-practice-record-row>button{font-size:14px!important}
+}
