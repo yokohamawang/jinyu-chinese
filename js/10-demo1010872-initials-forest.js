@@ -25,7 +25,7 @@
     m:{title:'くちびるは閉じたまま',sub:'音は鼻へ響かせる',kind:'m',air:'鼻に響く'},
     f:{title:'上の歯を下くちびるへ',sub:'軽くふれたまま、細い息を流す',kind:'f',air:'細い息'}
   };
-  var quizHeard=false,recordings={};var selected='b', ctx=null, activeNodes=[], recorder=null, stream=null, chunks=[], recordingUrl='', playback=null, modelAudio=null;
+  var quizHeard=false;var selected='b',selectedIndex=0, ctx=null, activeNodes=[], modelAudio=null;
   var soundFiles={};
   var quizOrder=['p','m','b','f'], quizIndex=0, quizAnswered=false, quizScore=0, quizMatched={}, quizFirst={}, quizActiveLetter=null, activeQuizButton=null;
 
@@ -92,11 +92,16 @@
   }
 
   function renderFocusVisual(letter){window.KP135.park(el('kidsInitialsLesson'),'initials');var box=el('initialsFocusVisual');box.className='initials-focus-visual';box.innerHTML=window.KP134.panel(letter,'initials');window.KP135.mount(el('kidsInitialsLesson'),'initials',letter)}
-  function select(letter){if(window.KP134.isRecording(el('kidsInitialsLesson')))return;recordingUrl=recordings[letter]||'';el('initialsPlayback').disabled=!recordingUrl;
+  function select(letter){
     selected=letter;
-    document.querySelectorAll('.initials-letter-card,.initials-free-choice button').forEach(function(b){
+    selectedIndex=letters.indexOf(letter);
+    document.querySelectorAll('.initials-letter-card').forEach(function(b){
       b.classList.toggle('is-active',b.dataset.letter===letter)
     });
+    var count=el('initialsLetterCount'),prev=el('initialsLetterPrev'),next=el('initialsLetterNext');
+    if(count)count.textContent=(selectedIndex+1)+' / '+letters.length;
+    if(prev)prev.disabled=selectedIndex<=0;
+    if(next)next.disabled=selectedIndex>=letters.length-1;
     var f=el('initialsFocusLetter'),s=el('initialsFocusSyllable'),t=el('initialsFocusTip');
     if(f)f.textContent=letter;
     if(s)s.textContent=window.KP134.data[letter].roman+'（1声・呼読音） · '+sounds[letter].mark;
@@ -127,9 +132,9 @@
     box.appendChild(b);
   }
   function renderLetters(){
-    var g=el('initialsLetterGrid'),free=el('initialsFreeChoice'); if(!g||!free)return;
-    g.replaceChildren(); free.replaceChildren();
-    letters.forEach(function(letter,i){
+    var g=el('initialsLetterGrid'); if(!g)return;
+    g.replaceChildren();
+    var letter=letters[selectedIndex]||letters[0];
       var b=document.createElement('button'); b.type='button'; b.className='initials-letter-card'; b.dataset.letter=letter;
       var cue={
         b:{ipa:'[p]',kind:'air air-soft',label:'息は弱く'},
@@ -142,11 +147,7 @@
         : '<span class="initial-cue-icon '+cue.kind+'" aria-hidden="true"><i></i><i></i><i></i></span>';
       b.innerHTML='<span class="big">'+letter+'</span><span class="initial-ipa">'+cue.ipa+'</span>';
       b.addEventListener('click',function(){select(letter);playGuide(letter)}); g.appendChild(b);
-      var c=document.createElement('button'); c.type='button'; c.dataset.letter=letter;
-      c.textContent=letter;
-      c.addEventListener('click',function(){setStep(3);select(letter);playGuide(letter)}); free.appendChild(c)
-    });
-    select('b')
+    select(letter)
   }
   function renderQuiz(){
     var box=el('initialsQuizChoices'),audio=el('initialsQuizAudioCards');if(!box||!audio)return;box.replaceChildren();audio.replaceChildren();
@@ -175,7 +176,7 @@
   function retryQuiz(){
     var panel=el('initialsQuizPanel'),result=el('initialsResult'),reward=el('initialsReward');
     if(result)result.hidden=true;if(reward)reward.hidden=true;if(panel)panel.hidden=false;
-    quizIndex=0;quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz();setStep(4);
+    quizIndex=0;quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz();setStep(3);
     requestAnimationFrame(function(){if(panel)panel.scrollIntoView({block:'start',behavior:'smooth'})});
   }
   function finishQuiz(){
@@ -184,7 +185,7 @@
     if(panel)panel.hidden=true;
     if(result)result.hidden=false;
     if(reward)reward.hidden=!passed;
-    setStep(4);
+    setStep(3);
 
     var badge=el('initialsResultBadge'),title=el('initialsResultTitle'),score=el('initialsResultScore'),msg=el('initialsResultMessage'),action=el('initialsResultAction');
     if(badge){badge.textContent=passed?'✓':'↻';badge.className='initials-result-badge '+(passed?'is-pass':'is-retry')}
@@ -222,11 +223,11 @@
     document.querySelectorAll('.air-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.air)})});
     document.querySelectorAll('.mouth-sound-card').forEach(function(b){b.addEventListener('click',function(){setStep(2);play(b.dataset.mouth)})});
     el('initialsToQuiz').disabled=false;
-    el('initialsRecord').addEventListener('click',toggleRecord);
-    el('initialsPlayback').addEventListener('click',playRecording);
+    el('initialsLetterPrev').addEventListener('click',function(){if(selectedIndex>0){selectedIndex--;renderLetters();playGuide(selected)}});
+    el('initialsLetterNext').addEventListener('click',function(){if(selectedIndex<letters.length-1){selectedIndex++;renderLetters();playGuide(selected)}});
     el('initialsToQuiz').addEventListener('click',function(){
-      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false; el('kidsInitialsLesson').querySelector('.initials-imitate-panel').hidden=true;
-      quizIndex=0; quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(4);
+      el('initialsResult').hidden=true;el('initialsReward').hidden=true;el('initialsQuizPanel').hidden=false;
+      quizIndex=0; quizScore=0;quizMatched={};quizFirst={};quizOrder=window.KP134.shuffle(letters);renderQuiz(); setStep(3);
       requestAnimationFrame(function(){el('initialsQuizPanel').scrollIntoView({block:'start',behavior:'smooth'})})
     });
     el('initialsQuizListen').hidden=true;el('initialsQuizNext').hidden=true;
