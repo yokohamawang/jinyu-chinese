@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.143",
-  "base": "301.142 candidate",
-  "previous_candidate": "301.142",
+  "version": "10.108.301.144",
+  "base": "301.143 candidate",
+  "previous_candidate": "301.143",
   "status": "candidate",
-  "feature": "Match nasal finals P12/P13 to the proven compound letter-card pattern",
+  "feature": "Round P12/P13 combined letter cards and stabilize switching height",
   "changes": [
-    "Put each P12/P13 letter, IPA, model reading, pronunciation cue, and full explanation in its own single-item card.",
-    "Attach the selected articulation panel immediately below the active letter card, matching the established P10/P11 layout.",
-    "Remove the separate duplicate teaching-focus panel from P12/P13; preserve practice, recording, quiz, and progression behavior."
+    "Restore full rounded lower corners on the P12/P13 letter cards and separate articulation panels with rounded borders.",
+    "Reserve equal explanation space per chapter so changing letters does not change card height.",
+    "Use dark readable pronunciation tip text on the selected green card."
   ],
-  "validation": "Pending responsive browser review and per-sound content checks; not deployed.",
-  "build": "301.143"
+  "validation": "Live 301.143 P12/P13 inspected. Confirmed 301.143 computed card radius is 20px 20px 0 0; P12 changes from 214.7px to 195.5px, and P13 ing is 234.0px while other cards are 214.7px at the inspected viewport. New candidate CSS and package checks pending visual device review; not deployed.",
+  "build": "301.144"
 }
