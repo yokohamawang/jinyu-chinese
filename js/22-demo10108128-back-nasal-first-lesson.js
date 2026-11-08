@@ -51,7 +51,7 @@
   function select(letter,listen){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
     selected=letter;root.querySelectorAll('[data-bnv-letter]').forEach(function(b){var active=b.dataset.bnvLetter===letter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
-    var item=guide[letter];el('bnvFocusLetter').textContent=letter;el('bnvFocusGuide').textContent=item.hanzi?item.hanzi+' '+item.pinyin+' · '+item.ipa:'韻母の音 '+item.ipa;el('bnvFocusTip').textContent=item.tip;
+    var item=guide[letter];el('bnvFocusLetter').textContent=letter;el('bnvFocusGuide').textContent=item.hanzi?item.hanzi+' '+item.pinyin+' · '+item.ipa:'韻母の音 '+item.ipa;el('bnvFocusTip').textContent=item.cue+'。'+item.tip;
     el('bnvModel').textContent='▶ '+letter+' のお手本を聞く';feedback('bnvModelFeedback','');feedback('bnvPracticeFeedback',recordings[letter]?'この音の録音を聞き返せます。':'');
     renderArt();redrawRecordingControls();if(listen)playModel(letter,el('bnvModel'),false);
   }
@@ -141,7 +141,7 @@
   }
   function init(){
     root=el('kidsBackNasalLesson');if(!root)return;root.querySelectorAll('.bnv-group-nav,[data-bnv-group]').forEach(function(n){n.remove()});['bnvLetterGrid','bnvFreeChoice'].forEach(function(id){el(id).removeAttribute('data-group')});root.querySelectorAll('.bnv-zone-head p').forEach(function(p){p.textContent=p.textContent.replace('両グループの','').replace('グループを選び、好きな音をタップして聞こう。','好きな音を選び、お手本を聞こう。')});window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='bnv-letter-card kp-nasal-letter-card';button.dataset.bnvLetter=letter;button.innerHTML='<span class="nasal-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span><span class="nasal-main-row"><strong>'+letter+'</strong><small>'+item.ipa+'</small></span><span class="nasal-model">'+(item.hanzi?item.hanzi+' '+item.pinyin:'韻母の音 '+item.ipa)+'</span><span class="nasal-cue">'+item.cue+'</span><span class="nasal-tip">'+item.tip+'</span>button.onclick=function(){select(letter,true);revealTeachingArt()};el('bnvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='bnv-letter-card';button.dataset.bnvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('bnvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.bnvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('bnvFreeChoice').appendChild(free)});
     el('bnvModel').onclick=function(){playModel(selected,this,false)};el('bnvRecord').onclick=toggleRecord;el('bnvPlayback').onclick=playRecording;el('bnvToQuiz').onclick=startQuiz;el('bnvRetry').onclick=startQuiz;
     el('bnvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('bnvQuizNext').onclick=nextQuestion;

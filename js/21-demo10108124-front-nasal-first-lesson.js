@@ -86,7 +86,7 @@
   function select(letter,listen){
     if(pendingRecord||(recorder&&recorder.state==='recording'))return;
     selected=letter;root.querySelectorAll('[data-nsv-letter]').forEach(function(b){var active=b.dataset.nsvLetter===letter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
-    var item=guide[letter];el('nsvFocusLetter').textContent=letter;el('nsvFocusGuide').textContent=item.hanzi+' '+item.pinyin+' · '+item.ipa;el('nsvFocusTip').textContent=item.tip;
+    var item=guide[letter];el('nsvFocusLetter').textContent=letter;el('nsvFocusGuide').textContent=item.hanzi+' '+item.pinyin+' · '+item.ipa;el('nsvFocusTip').textContent=item.cue+'。'+item.tip;
     el('nsvModel').textContent='▶ '+letter+' のお手本を聞く';feedback('nsvModelFeedback','');feedback('nsvPracticeFeedback',recordings[letter]?'この音の録音を聞き返せます。':'');
     renderArt();redrawRecordingControls();if(listen)playModel(letter,el('nsvModel'),false);
   }
@@ -176,7 +176,7 @@
   }
   function init(){
     root=el('kidsFrontNasalLesson');if(!root)return;root.querySelectorAll('.nsv-group-nav,[data-nsv-group]').forEach(function(n){n.remove()});['nsvLetterGrid','nsvFreeChoice'].forEach(function(id){el(id).removeAttribute('data-group')});root.querySelectorAll('.nsv-zone-head p').forEach(function(p){p.textContent=p.textContent.replace('両グループの','').replace('グループを選び、好きな音をタップして聞こう。','好きな音を選び、お手本を聞こう。')});window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card kp-nasal-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<span class="nasal-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span><span class="nasal-main-row"><strong>'+letter+'</strong><small>'+item.ipa+'</small></span><span class="nasal-model">'+item.hanzi+' '+item.pinyin+'</span><span class="nasal-cue">'+item.cue+'</span><span class="nasal-tip">'+item.tip+'</span>button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.nsvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('nsvFreeChoice').appendChild(free)});
     el('nsvModel').onclick=function(){playModel(selected,this,false)};el('nsvRecord').onclick=toggleRecord;el('nsvPlayback').onclick=playRecording;el('nsvToQuiz').onclick=startQuiz;el('nsvRetry').onclick=startQuiz;
     el('nsvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('nsvQuizNext').onclick=nextQuestion;
