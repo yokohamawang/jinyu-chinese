@@ -1,0 +1,14 @@
+/* 301.147 — make the fixed Pinyin sound switcher clear and polished. */
+body.app-kids-mode .kp148-lesson-header.kp145-has-stepper,
+body.app-kids-mode #kp148VowelHeader .kids-vowel-drill-head.kp145-has-stepper{gap:8px!important}
+body.app-kids-mode .kp145-header-stepper{display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-width:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+body.app-kids-mode .kp145-header-stepper button{display:grid!important;place-items:center!important;flex:0 0 44px!important;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;margin:0!important;padding:0!important;border:1px solid #34785f!important;border-radius:50%!important;background:#478b70!important;color:#fff!important;box-shadow:0 3px 0 #cbded2!important;transition:transform .14s ease,background-color .14s ease,box-shadow .14s ease!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
+body.app-kids-mode .kp145-header-stepper button svg{display:block!important;width:23px!important;height:23px!important;fill:none!important;stroke:currentColor!important;stroke-width:3!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+body.app-kids-mode .kp145-header-stepper button svg path{fill:none!important;stroke:currentColor!important;stroke-width:3!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+body.app-kids-mode .kp145-header-stepper button:disabled{border-color:#c2d3c9!important;background:#e7f0eb!important;color:#6e8579!important;opacity:1!important;box-shadow:0 2px 0 #d7e3dc!important}
+body.app-kids-mode .kp145-header-stepper button:active:not(:disabled){transform:translateY(2px)!important;background:#36775e!important;box-shadow:0 1px 0 #c4d9cc!important}
+body.app-kids-mode .kp145-header-stepper button:focus-visible{outline:3px solid rgba(67,139,103,.5)!important;outline-offset:2px!important}
+body.app-kids-mode .kp145-header-stepper span{display:block!important;min-width:38px!important;color:#315f50!important;font-size:14px!important;line-height:1!important;font-weight:800!important;text-align:center!important;white-space:nowrap!important}
+body.app-kids-mode .kp145-header-stepper span[hidden]{display:none!important}
+@media(max-width:360px){body.app-kids-mode .kp145-header-stepper{gap:2px!important}body.app-kids-mode .kp145-header-stepper span{min-width:34px!important;font-size:13px!important}}
+@media(prefers-reduced-motion:reduce){body.app-kids-mode .kp145-header-stepper button{transition:none!important}}
