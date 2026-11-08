@@ -1,0 +1,13 @@
+/* 301.145 — replace the fixed chapter label with always-reachable sound controls. */
+body.app-kids-mode .kp148-lesson-header.kp145-has-stepper,
+body.app-kids-mode #kp148VowelHeader .kids-vowel-drill-head.kp145-has-stepper{gap:8px!important}
+body.app-kids-mode .kp145-header-stepper{display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:center!important;gap:4px!important;min-width:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+body.app-kids-mode .kp145-header-stepper button{display:grid!important;place-items:center!important;flex:0 0 44px!important;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;margin:0!important;padding:0!important;border:1px solid #cbded1!important;border-radius:14px!important;background:#fffef9!important;color:#315f50!important;box-shadow:0 2px 0 #e1e9df!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
+body.app-kids-mode .kp145-header-stepper button svg{display:block!important;width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.7!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+body.app-kids-mode .kp145-header-stepper button:disabled{opacity:.36!important;box-shadow:none!important}
+body.app-kids-mode .kp145-header-stepper button:active:not(:disabled){transform:translateY(2px)!important;box-shadow:inset 0 2px 3px rgba(35,76,55,.14)!important}
+body.app-kids-mode .kp145-header-stepper button:focus-visible{outline:3px solid rgba(67,139,103,.5)!important;outline-offset:2px!important}
+body.app-kids-mode .kp145-header-stepper span{display:block!important;min-width:34px!important;color:#567366!important;font-size:12px!important;line-height:1!important;font-weight:800!important;text-align:center!important;white-space:nowrap!important}
+body.app-kids-mode .kp145-header-stepper span[hidden]{display:none!important}
+@media(max-width:360px){body.app-kids-mode .kp145-header-stepper{gap:2px!important}body.app-kids-mode .kp145-header-stepper span{display:none!important}}
+@media(prefers-reduced-motion:reduce){body.app-kids-mode .kp145-header-stepper button{transition:none!important}}
