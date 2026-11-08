@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.150",
+  "version": "10.108.301.151",
   "base": "301.148 candidate",
-  "previous_candidate": "301.148",
+  "previous_candidate": "301.150",
   "status": "candidate",
-  "feature": "P16 Xiaoyin points through onset, vowel, and syllable with matching broad mouth poses",
+  "feature": "P16 single-layer pose changes reuse existing 301.150 art assets to reduce flicker",
   "changes": [
-    "Additive full-scene pose frames of the existing standing Xiaoyin: point to initial, final, then combined syllable.",
-    "Select basic closed, labiodental, rounded, mid-open, and spread mouth poses by consonant/vowel group, using the existing P16 audio clock and lesson timing markers.",
-    "Only standard P16 playback triggers the pose sequence. Existing illustration is restored when idle; board text remains HTML and all other chapters are untouched."
+    "Keep one pose image element and replace its frame directly; remove overlapping full-scene crossfades that caused board/background flicker.",
+    "Reuse the existing p16-pose-301.150 directory and all nine image files; do not add a p16-pose-301.151 folder.",
+    "Preserve P16 audio-clock timing, mouth groups, pointing sequence, and stop/restore behavior."
   ],
-  "validation": "JavaScript syntax, JSON, asset dimensions, baseline-scope comparison, and ZIP integrity checks completed. Browser-level mobile playback remains unverified because the local Chromium runtime cannot start under current socket restrictions.",
-  "build": "301.150"
+  "validation": "Static source review completed; verify the updated candidate in iPhone Safari after upload.",
+  "build": "301.148"
 }
