@@ -1,1 +1,4 @@
-Koepanda 10.108.301.152
+Koepanda 301.153
+Base: 301.152 candidate
+Status: Candidate, not deployed
+Scope: Correct P17 right-hand pointing target to g with synchronized mouth poses

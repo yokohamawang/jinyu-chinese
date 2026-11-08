@@ -1,15 +1,14 @@
 {
-  "version": "10.108.301.152",
-  "base": "301.151 candidate",
-  "previous_candidate": "301.151",
+  "version": "10.108.301.153",
+  "base": "301.152 candidate",
+  "previous_candidate": "301.152",
   "status": "candidate",
-  "feature": "P17 three-pin panda pointing and mouth pose animation; preserve DOM-rendered pinyin labels",
+  "feature": "Corrected P17 Xiaoyin right-hand pointing to the first g tile with audio-stage mouth poses; dynamic pinyin overlay retained",
   "changes": [
-    "Follow existing pinyin audio stages: raise the right paw, shape the mouth, point to the third tile, then briefly return to the neutral pose.",
-    "Follow the existing practice audio stages for a natural lift, speaking, point, and return gesture.",
-    "Keep the pinyin labels as live text above the artwork so each syllable and tone remains selectable/readable.",
-    "Leave the two-pin 301.151 animation unchanged."
+    "Animate Xiaoyin’s screen-left paw (the panda’s right paw) lifting and pointing to the first g tile, then returning naturally.",
+    "Synchronize small mouth pose changes with the existing three-part audio stages.",
+    "Keep pinyin as live DOM text above the animation; preserve the two-pin 301.151 animation."
   ],
-  "validation": "JavaScript syntax, version JSON, asset paths, pinyin overlay placement preview, and ZIP integrity passed; browser and iPhone Safari visual playback remain unverified.",
-  "build": "301.151"
+  "validation": "JavaScript syntax, version JSON, referenced assets, frame dimensions, contact-sheet target alignment, and ZIP integrity passed; real browser and iPhone Safari playback remain unverified.",
+  "build": "301.152"
 }
