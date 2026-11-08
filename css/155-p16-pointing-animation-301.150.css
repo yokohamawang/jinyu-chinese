@@ -1,0 +1,4 @@
+/* 301.150 — pose overlays are confined to the P16 lesson art. */
+#kidsTwoSpellingP16.kp205 .kp205-hero.kp150-animating .kp205-lesson-art{visibility:hidden!important}
+#kidsTwoSpellingP16.kp205 .kp205-hero .kp150-pose-frame{position:absolute!important;inset:0!important;z-index:1!important;display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;opacity:0;transition:opacity .14s ease-in-out!important;pointer-events:none!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+@media(prefers-reduced-motion:reduce){#kidsTwoSpellingP16.kp205 .kp205-hero .kp150-pose-frame{transition:none!important}}
