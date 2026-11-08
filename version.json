@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.147",
-  "base": "301.146 candidate",
-  "previous_candidate": "301.146",
+  "version": "10.108.301.148",
+  "base": "301.147 candidate",
+  "previous_candidate": "301.147",
   "status": "candidate",
-  "feature": "Improve fixed Pinyin previous/next button visibility and appearance",
+  "feature": "Keep Pinyin header arrows contained and correct return labels after direct chapter navigation",
   "changes": [
-    "Use high-contrast round arrow buttons in the fixed shared Pinyin header.",
-    "Keep the disabled arrow legible with a muted mint treatment instead of fading the whole button.",
-    "Increase arrow stroke and position-counter contrast while preserving the 44px touch targets and narrow-screen counter."
+    "Keep the shared Pinyin arrows within their 44px touch targets and reduce the visible circle and shadow so the controls no longer look oversized in the fixed header.",
+    "Bind chapter-directory return labels and destinations to the lesson's actual entry context, preventing 二拼 and later island lessons from inheriting a stale 韻母の湖 label.",
+    "Preserve chapter-directory returns for 声母 and 韻母 lessons opened from their own directories; return all other island lessons to 学習ロード."
   ],
-  "validation": "Static package and CSS scope review completed. No chapter content or navigation JavaScript changed. Not deployed; verify on iPhone after upload.",
-  "build": "301.147"
+  "validation": "Static source review completed; verify the updated candidate in iPhone Safari after upload.",
+  "build": "301.148"
 }
