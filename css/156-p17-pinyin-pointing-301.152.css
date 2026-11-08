@@ -1,0 +1,6 @@
+/* Keep the live pinyin labels above each generated pose frame. */
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hero{isolation:isolate}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-motion-frame{position:absolute!important;inset:0!important;z-index:1!important;display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;visibility:hidden;pointer-events:none!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;transition:none!important}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hero.kp223-motion-active .kp223-art{visibility:hidden!important}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hero.kp223-motion-active .kp223-motion-frame{visibility:visible!important}
+#kidsThreeSpellingLesson.kp223-three-spelling .kp223-board{z-index:2!important}
