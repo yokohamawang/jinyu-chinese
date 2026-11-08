@@ -1,14 +1,15 @@
 {
-  "version": "10.108.301.151",
-  "base": "301.148 candidate",
-  "previous_candidate": "301.150",
+  "version": "10.108.301.152",
+  "base": "301.151 candidate",
+  "previous_candidate": "301.151",
   "status": "candidate",
-  "feature": "P16 single-layer pose changes reuse existing 301.150 art assets to reduce flicker",
+  "feature": "P17 three-pin panda pointing and mouth pose animation; preserve DOM-rendered pinyin labels",
   "changes": [
-    "Keep one pose image element and replace its frame directly; remove overlapping full-scene crossfades that caused board/background flicker.",
-    "Reuse the existing p16-pose-301.150 directory and all nine image files; do not add a p16-pose-301.151 folder.",
-    "Preserve P16 audio-clock timing, mouth groups, pointing sequence, and stop/restore behavior."
+    "Follow existing pinyin audio stages: raise the right paw, shape the mouth, point to the third tile, then briefly return to the neutral pose.",
+    "Follow the existing practice audio stages for a natural lift, speaking, point, and return gesture.",
+    "Keep the pinyin labels as live text above the artwork so each syllable and tone remains selectable/readable.",
+    "Leave the two-pin 301.151 animation unchanged."
   ],
-  "validation": "Static source review completed; verify the updated candidate in iPhone Safari after upload.",
-  "build": "301.148"
+  "validation": "JavaScript syntax, version JSON, asset paths, pinyin overlay placement preview, and ZIP integrity passed; browser and iPhone Safari visual playback remain unverified.",
+  "build": "301.151"
 }
