@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.148",
-  "base": "301.147 candidate",
-  "previous_candidate": "301.147",
+  "version": "10.108.301.150",
+  "base": "301.148 candidate",
+  "previous_candidate": "301.148",
   "status": "candidate",
-  "feature": "Keep Pinyin header arrows contained and correct return labels after direct chapter navigation",
+  "feature": "P16 Xiaoyin points through onset, vowel, and syllable with matching broad mouth poses",
   "changes": [
-    "Keep the shared Pinyin arrows within their 44px touch targets and reduce the visible circle and shadow so the controls no longer look oversized in the fixed header.",
-    "Bind chapter-directory return labels and destinations to the lesson's actual entry context, preventing 二拼 and later island lessons from inheriting a stale 韻母の湖 label.",
-    "Preserve chapter-directory returns for 声母 and 韻母 lessons opened from their own directories; return all other island lessons to 学習ロード."
+    "Additive full-scene pose frames of the existing standing Xiaoyin: point to initial, final, then combined syllable.",
+    "Select basic closed, labiodental, rounded, mid-open, and spread mouth poses by consonant/vowel group, using the existing P16 audio clock and lesson timing markers.",
+    "Only standard P16 playback triggers the pose sequence. Existing illustration is restored when idle; board text remains HTML and all other chapters are untouched."
   ],
-  "validation": "Static source review completed; verify the updated candidate in iPhone Safari after upload.",
-  "build": "301.148"
+  "validation": "JavaScript syntax, JSON, asset dimensions, baseline-scope comparison, and ZIP integrity checks completed. Browser-level mobile playback remains unverified because the local Chromium runtime cannot start under current socket restrictions.",
+  "build": "301.150"
 }
