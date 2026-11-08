@@ -111,7 +111,7 @@
 
   function closeLesson(){
     if(!lessonState)return;
-    var returnToOwnDirectory=!!(detail&&!detail.hidden&&(lastStageId==='P3-P8'||lastStageId==='P9-P13'));
+    var returnToOwnDirectory=!!lessonState.returnToOwnDirectory;
     var target=lessonState.target;
     if(target){
       target.hidden=true; target.classList.remove('is-roadmap-lesson-active');
@@ -147,7 +147,10 @@
     }
     if(lessonState)closeLesson();
     var rect=(button||detail||root).getBoundingClientRect();
-    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top,p19PaddingTop:unit.id==='P19'?target.style.paddingTop:undefined};
+    var fromInitialsDirectory=!!(detail&&!detail.hidden&&lastStageId==='P3-P8'&&/^P[3-8]$/.test(unit.id));
+    var fromFinalsDirectory=!!(detail&&!detail.hidden&&lastStageId==='P9-P13'&&/^P(9|1[0-3])$/.test(unit.id));
+    var returnToOwnDirectory=fromInitialsDirectory||fromFinalsDirectory;
+    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top,returnToOwnDirectory:returnToOwnDirectory,p19PaddingTop:unit.id==='P19'?target.style.paddingTop:undefined};
     showRoadmapChrome(false);
     setLessonBodiesHidden();
 
@@ -188,7 +191,7 @@
     if(existing)existing.remove();
     var back=document.createElement('button');
     back.type='button'; back.id='pinyinLessonBack'; back.className='pinyin-lesson-back';
-    back.textContent=lastStageId==='P3-P8'?'← 戻る　声母の森':lastStageId==='P9-P13'?'← 戻る　韻母の湖':'← 戻る　学習ロード';
+    back.textContent=fromInitialsDirectory?'← 戻る　声母の森':fromFinalsDirectory?'← 戻る　韻母の湖':'← 戻る　学習ロード';
     back.addEventListener('click',closeLesson);
     var previousHeader=document.querySelector('.kp148-lesson-header');if(previousHeader)previousHeader.remove();var header=document.createElement('div');header.className='kp148-lesson-header';header.appendChild(back);var lessonName=document.createElement('span');lessonName.className='kp148-lesson-name';lessonName.textContent=unit.title;header.appendChild(lessonName);target.parentNode.insertBefore(header,target);
     requestAnimationFrame(function(){if(unit.id==='P16'){var p16Anchor=target.querySelector('.kp192-title')||target;var p16Header=document.querySelector('.kp148-lesson-header');var p16HeaderBottom=p16Header&&getComputedStyle(p16Header).display!=='none'?p16Header.getBoundingClientRect().bottom:0;var p16Top=window.scrollY+p16Anchor.getBoundingClientRect().top-p16HeaderBottom-12;window.scrollTo({top:Math.max(0,p16Top),left:0,behavior:'auto'});return}if(unit.id==='P17'){var p17Anchor=target;var p17Header=document.querySelector('.kp148-lesson-header');var p17HeaderBottom=p17Header&&getComputedStyle(p17Header).display!=='none'?p17Header.getBoundingClientRect().bottom:0;var p17Top=window.scrollY+p17Anchor.getBoundingClientRect().top-p17HeaderBottom-12;window.scrollTo({top:Math.max(0,p17Top),left:0,behavior:'auto'});return}if(unit.id==='P14'){var p14Anchor=target.querySelector('.kp240-head')||target;var p14Header=document.querySelector('.kp148-lesson-header');var p14HeaderBottom=p14Header&&getComputedStyle(p14Header).display!=='none'?p14Header.getBoundingClientRect().bottom:0;var p14Top=window.scrollY+p14Anchor.getBoundingClientRect().top-p14HeaderBottom-12;window.scrollTo({top:Math.max(0,p14Top),left:0,behavior:'auto'});return}if(unit.id==='P18'){var p18Anchor=target.querySelector('h2')||target;var p18Header=document.querySelector('.kp148-lesson-header');var p18HeaderBottom=p18Header&&getComputedStyle(p18Header).display!=='none'?p18Header.getBoundingClientRect().bottom:0;var p18Top=window.scrollY+p18Anchor.getBoundingClientRect().top-p18HeaderBottom-12;window.scrollTo({top:Math.max(0,p18Top),left:0,behavior:'auto'});return}if(unit.id==='P19'){var p19Anchor=target.querySelector('h2'),p19Header=document.querySelector('.kp148-lesson-header');if(p19Anchor&&p19Header&&getComputedStyle(p19Header).display!=='none'){var p19Gap=12,p19HeaderBottom=p19Header.getBoundingClientRect().bottom,p19HeadingTop=p19Anchor.getBoundingClientRect().top,p19Shortfall=p19HeaderBottom+p19Gap-p19HeadingTop;if(p19Shortfall>0){var p19CurrentPadding=parseFloat(getComputedStyle(target).paddingTop)||0;target.style.paddingTop=(p19CurrentPadding+p19Shortfall)+'px'}}return}if(unit.id==='P1'||unit.id==='P2'){if(typeof window.koepandaPlaceVowelEntry==='function')window.koepandaPlaceVowelEntry(document.getElementById('kidsVowelGrid'));return}var grid=target.querySelector('[id$="LetterGrid"]');if(grid){var y=grid.getBoundingClientRect().top+window.scrollY-58;window.scrollTo({top:Math.max(0,y),left:0,behavior:'auto'})}else back.scrollIntoView({block:'start',behavior:'auto'})});
