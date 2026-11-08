@@ -1,15 +1,14 @@
 {
-  "version": "10.108.301.145",
-  "base": "301.144 candidate",
-  "previous_candidate": "301.144",
+  "version": "10.108.301.146",
+  "base": "301.145 candidate",
+  "previous_candidate": "301.145",
   "status": "candidate",
-  "feature": "Fixed header arrows for all Pinyin lesson sound navigation",
+  "feature": "Keep position counter visible in fixed Pinyin header at narrow widths",
   "changes": [
-    "Replace the fixed chapter sound list with icon-only previous/next controls and the existing position counter.",
-    "Connect the shared header controls to the existing sound navigation in vowel tones, initials, finals, whole syllables, and two/three-part spelling lessons.",
-    "Keep the selected pronunciation out of the fixed bar; preserve the lesson scroll position and existing audio, selection, and end-of-list behavior.",
-    "Leave chapter headers unchanged on sections that do not have a previous/next sound control."
+    "Keep current item/total count visible at all viewport widths.",
+    "At <=360px, slightly tighten spacing and counter typography instead of hiding the counter.",
+    "Preserve the 44px arrow touch targets and existing navigation behavior."
   ],
-  "validation": "Static mapping, syntax, package checks, and live current-page selector inspection pending. Candidate not deployed.",
-  "build": "301.145"
+  "validation": "Live deployed 301.145 confirmed count source values exist; root cause identified in max-width:360px CSS hiding the count. Candidate updated; static validation pending.",
+  "build": "301.146"
 }
