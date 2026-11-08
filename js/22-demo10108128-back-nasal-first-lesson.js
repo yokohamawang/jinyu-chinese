@@ -44,6 +44,7 @@
   }
   function renderArt(){window.KP135.park(root,'bnv');
     el('bnvArticulation').innerHTML=window.KP134.panel(selected,'bnv');window.KP135.mount(root,'bnv',selected);
+    var activeCard=root.querySelector('[data-bnv-letter=\"'+selected+'\"]');if(activeCard)el('bnvLetterGrid').appendChild(el('bnvArticulation'));
     var item=guide[selected];el('bnvStaticGuide').innerHTML='<div class="bnv-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+bnvDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('bnvStaticLetter').textContent=selected;
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.bnv-art-svg,.bnv-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }
@@ -141,7 +142,7 @@
   }
   function init(){
     root=el('kidsBackNasalLesson');if(!root)return;root.querySelectorAll('.bnv-group-nav,[data-bnv-group]').forEach(function(n){n.remove()});['bnvLetterGrid','bnvFreeChoice'].forEach(function(id){el(id).removeAttribute('data-group')});root.querySelectorAll('.bnv-zone-head p').forEach(function(p){p.textContent=p.textContent.replace('両グループの','').replace('グループを選び、好きな音をタップして聞こう。','好きな音を選び、お手本を聞こう。')});window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='bnv-letter-card';button.dataset.bnvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('bnvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='bnv-letter-card';button.dataset.bnvLetter=letter;button.innerHTML='<span class="compound-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span>'+'<span class="compound-main-row"><strong>'+letter+'</strong><small class="compound-ipa">'+item.ipa+'</small></span>'+'<span class="compound-model">'+(item.hanzi?(item.hanzi+' '+item.pinyin):('韻母の音 '+item.pinyin))+'</span>'+'<span class="compound-cue">'+item.cue+'</span><span class="compound-tip">'+item.tip+'</span>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('bnvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.bnvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('bnvFreeChoice').appendChild(free)});
     el('bnvModel').onclick=function(){playModel(selected,this,false)};el('bnvRecord').onclick=toggleRecord;el('bnvPlayback').onclick=playRecording;el('bnvToQuiz').onclick=startQuiz;el('bnvRetry').onclick=startQuiz;
     el('bnvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('bnvQuizNext').onclick=nextQuestion;

@@ -79,6 +79,7 @@
   }
   function renderArt(){window.KP135.park(root,'nsv');
     el('nsvArticulation').innerHTML=window.KP134.panel(selected,'nsv');window.KP135.mount(root,'nsv',selected);
+    var activeCard=root.querySelector('[data-nsv-letter=\"'+selected+'\"]');if(activeCard)el('nsvLetterGrid').appendChild(el('nsvArticulation'));
     var item=guide[selected];el('nsvStaticGuide').innerHTML='<div class="nsv-static-views">'+item.labels.map(function(label,i){return '<figure><strong>'+label+'</strong>'+nsvDiagram(selected,i===0?'contact':'release','static'+i)+'<figcaption>'+item.notes[i]+'</figcaption></figure>'}).join('')+'</div>';el('nsvStaticLetter').textContent=selected;el('nsvStaticNote').textContent='左は口形、右は調音部位と息の基本図です。図を大きな舌の動きとしてまねせず、お手本と録音を聞きくらべよう。自然な発話には個人差があります。';
     if(root.hidden||!root.classList.contains('is-roadmap-lesson-active')||matchMedia('(prefers-reduced-motion: reduce)').matches)root.querySelectorAll('.nsv-art-svg,.nsv-route').forEach(function(svg){svg.pauseAnimations();svg.setCurrentTime(0)})
   }
@@ -176,7 +177,7 @@
   }
   function init(){
     root=el('kidsFrontNasalLesson');if(!root)return;root.querySelectorAll('.nsv-group-nav,[data-nsv-group]').forEach(function(n){n.remove()});['nsvLetterGrid','nsvFreeChoice'].forEach(function(id){el(id).removeAttribute('data-group')});root.querySelectorAll('.nsv-zone-head p').forEach(function(p){p.textContent=p.textContent.replace('両グループの','').replace('グループを選び、好きな音をタップして聞こう。','好きな音を選び、お手本を聞こう。')});window.KP134.attach(root,letters);
-    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<strong>'+letter+'</strong><small>'+item.ipa+'</small>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
+    letters.forEach(function(letter){var item=guide[letter],button=document.createElement('button');button.type='button';button.className='nsv-letter-card';button.dataset.nsvLetter=letter;button.innerHTML='<span class="compound-card-top"><span>音をつなぐ · タップしてお手本を聞く</span><span aria-hidden="true">🔊</span></span>'+'<span class="compound-main-row"><strong>'+letter+'</strong><small class="compound-ipa">'+item.ipa+'</small></span>'+'<span class="compound-model">'+(item.hanzi?(item.hanzi+' '+item.pinyin):('韻母の音 '+item.pinyin))+'</span>'+'<span class="compound-cue">'+item.cue+'</span><span class="compound-tip">'+item.tip+'</span>';button.onclick=function(){select(letter,true);revealTeachingArt()};el('nsvLetterGrid').appendChild(button);
       var free=document.createElement('button');free.type='button';free.dataset.nsvLetter=letter;free.textContent=letter;free.onclick=function(){select(letter,true)};el('nsvFreeChoice').appendChild(free)});
     el('nsvModel').onclick=function(){playModel(selected,this,false)};el('nsvRecord').onclick=toggleRecord;el('nsvPlayback').onclick=playRecording;el('nsvToQuiz').onclick=startQuiz;el('nsvRetry').onclick=startQuiz;
     el('nsvQuizListen').onclick=function(){if(quiz.active)playModel(quiz.order[quiz.index],this,true)};el('nsvQuizNext').onclick=nextQuestion;
