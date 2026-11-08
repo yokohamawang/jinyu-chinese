@@ -1,15 +1,14 @@
 {
-  "version": "10.108.301.142",
-  "base": "301.136 deployed",
-  "previous_candidate": "301.136",
+  "version": "10.108.301.143",
+  "base": "301.142 candidate",
+  "previous_candidate": "301.142",
   "status": "candidate",
-  "feature": "Restore shared compound-final card and view visibility rules",
+  "feature": "Match nasal finals P12/P13 to the proven compound letter-card pattern",
   "changes": [
-    "Remove the 301.134–301.136 lesson-specific layout stylesheet links and their obsolete files.",
-    "Let chapters 9–11 use the shared 301.132 compound-letter-card rules.",
-    "Retain the shared 301.133 mouth-guide layout, restoring the native hidden state so only the selected mouth/tongue view appears.",
-    "No new CSS override layer is added."
+    "Put each P12/P13 letter, IPA, model reading, pronunciation cue, and full explanation in its own single-item card.",
+    "Attach the selected articulation panel immediately below the active letter card, matching the established P10/P11 layout.",
+    "Remove the separate duplicate teaching-focus panel from P12/P13; preserve practice, recording, quiz, and progression behavior."
   ],
-  "validation": "Live 301.136 inspection confirmed chapters 10 and 11 still displayed the hidden position view because a generic figure display rule overrode the hidden state. Candidate not deployed; post-change visual confirmation remains pending.",
-  "build": "301.142"
+  "validation": "Pending responsive browser review and per-sound content checks; not deployed.",
+  "build": "301.143"
 }
