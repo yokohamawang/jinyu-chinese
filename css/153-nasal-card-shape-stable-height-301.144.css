@@ -1,0 +1,43 @@
+/* 301.144 — give P12/P13 complete rounded cards and reserve equal copy space. */
+html body.app-kids-mode #kidsCourse>#kidsFrontNasalLesson.is-roadmap-lesson-active #nsvLetterGrid>button,
+html body.app-kids-mode #kidsCourse>#kidsBackNasalLesson.is-roadmap-lesson-active #bnvLetterGrid>button{
+  border-radius:20px!important;
+  margin:8px auto 12px!important;
+}
+
+html body.app-kids-mode #kidsCourse>#kidsFrontNasalLesson.is-roadmap-lesson-active #nsvLetterGrid>button .compound-tip,
+html body.app-kids-mode #kidsCourse>#kidsBackNasalLesson.is-roadmap-lesson-active #bnvLetterGrid>button .compound-tip{
+  color:#566f61!important;
+  text-align:center!important;
+}
+
+html body.app-kids-mode #kidsCourse>#kidsFrontNasalLesson.is-roadmap-lesson-active #nsvLetterGrid>button.is-active .compound-tip,
+html body.app-kids-mode #kidsCourse>#kidsBackNasalLesson.is-roadmap-lesson-active #bnvLetterGrid>button.is-active .compound-tip{
+  color:#173f33!important;
+}
+
+/* P12 explanations need room for three lines on phone widths. */
+html body.app-kids-mode #kidsCourse>#kidsFrontNasalLesson.is-roadmap-lesson-active #nsvLetterGrid>button .compound-tip{
+  min-height:4.44em!important;
+}
+
+/* P13's longest explanation is longer; reserve four lines for every sound. */
+html body.app-kids-mode #kidsCourse>#kidsBackNasalLesson.is-roadmap-lesson-active #bnvLetterGrid>button .compound-tip{
+  min-height:5.92em!important;
+}
+
+html body.app-kids-mode #kidsCourse>#kidsFrontNasalLesson.is-roadmap-lesson-active #nsvLetterGrid>.nsv-articulation,
+html body.app-kids-mode #kidsCourse>#kidsBackNasalLesson.is-roadmap-lesson-active #bnvLetterGrid>.bnv-articulation{
+  border:1px solid #d5e9df!important;
+  border-radius:20px!important;
+}
+
+@media(max-width:390px){
+  html body.app-kids-mode #kidsCourse>#kidsFrontNasalLesson.is-roadmap-lesson-active #nsvLetterGrid>button .compound-tip{
+    min-height:4.26em!important;
+  }
+  /* The narrowest phones wrap P13's longest cue onto five lines. */
+  html body.app-kids-mode #kidsCourse>#kidsBackNasalLesson.is-roadmap-lesson-active #bnvLetterGrid>button .compound-tip{
+    min-height:7.1em!important;
+  }
+}
