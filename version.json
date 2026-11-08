@@ -1,14 +1,15 @@
 {
-  "version": "10.108.301.144",
-  "base": "301.143 candidate",
-  "previous_candidate": "301.143",
+  "version": "10.108.301.145",
+  "base": "301.144 candidate",
+  "previous_candidate": "301.144",
   "status": "candidate",
-  "feature": "Round P12/P13 combined letter cards and stabilize switching height",
+  "feature": "Fixed header arrows for all Pinyin lesson sound navigation",
   "changes": [
-    "Restore full rounded lower corners on the P12/P13 letter cards and separate articulation panels with rounded borders.",
-    "Reserve equal explanation space per chapter so changing letters does not change card height.",
-    "Use dark readable pronunciation tip text on the selected green card."
+    "Replace the fixed chapter sound list with icon-only previous/next controls and the existing position counter.",
+    "Connect the shared header controls to the existing sound navigation in vowel tones, initials, finals, whole syllables, and two/three-part spelling lessons.",
+    "Keep the selected pronunciation out of the fixed bar; preserve the lesson scroll position and existing audio, selection, and end-of-list behavior.",
+    "Leave chapter headers unchanged on sections that do not have a previous/next sound control."
   ],
-  "validation": "Live 301.143 P12/P13 inspected. Confirmed 301.143 computed card radius is 20px 20px 0 0; P12 changes from 214.7px to 195.5px, and P13 ing is 234.0px while other cards are 214.7px at the inspected viewport. New candidate CSS and package checks pending visual device review; not deployed.",
-  "build": "301.144"
+  "validation": "Static mapping, syntax, package checks, and live current-page selector inspection pending. Candidate not deployed.",
+  "build": "301.145"
 }
