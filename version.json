@@ -1,5 +1,5 @@
 {
-  "version": "301.138",
+  "version": "10.108.301.139",
   "base": "301.136 deployed",
   "previous_candidate": "301.136",
   "status": "candidate",
@@ -10,5 +10,6 @@
     "Retain the shared 301.133 mouth-guide layout, restoring the native hidden state so only the selected mouth/tongue view appears.",
     "No new CSS override layer is added."
   ],
-  "validation": "Live 301.136 inspection confirmed chapters 10 and 11 still displayed the hidden position view because a generic figure display rule overrode the hidden state. Candidate not deployed; post-change visual confirmation remains pending."
+  "validation": "Live 301.136 inspection confirmed chapters 10 and 11 still displayed the hidden position view because a generic figure display rule overrode the hidden state. Candidate not deployed; post-change visual confirmation remains pending.",
+  "build": "301.139"
 }
