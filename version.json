@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.154",
-  "base": "301.153 candidate",
-  "previous_candidate": "301.153",
+  "version": "10.108.301.155",
+  "base": "301.154 candidate",
+  "previous_candidate": "301.154",
   "status": "candidate",
-  "feature": "P17 panda gestures point to each component g/u/a and then the combined syllable, with synchronized mouth poses and correct pinyin overlay",
+  "feature": "P17 gesture timing follows the measured g/u/a/combined-syllable audio onsets; combined syllable pointing begins before the final audio segment ends",
   "changes": [
-    "Animate a clear target gesture for the first, second, and third pinyin tiles, then for the combined syllable plaque.",
-    "Keep stage transitions synchronized to existing audio highlights; show the combined-syllable gesture when playback ends, then return to neutral.",
-    "Keep the pinyin DOM text above the art so tone marks remain live and correct; leave the two-pin lesson unchanged."
+    "Use actual audio currentTime and per-audio cue positions for g, u, a, and the merged syllable.",
+    "Show the guā/huǒ/jiā/qiáo target when the merged segment begins, hold through that segment, then return after a short pause.",
+    "Preserve four target pose images and live pinyin text layer; no two-pin changes."
   ],
-  "validation": "JavaScript syntax, version JSON, referenced assets, frame dimensions, target alignment preview, live pinyin layer order, and ZIP integrity passed; live browser and iPhone Safari playback remain unverified.",
-  "build": "301.153"
+  "validation": "Audio onset timings sampled from each P17 sequence WAV; JS syntax, version JSON, stage/event mapping, and package integrity passed. Live browser and iPhone Safari playback remain unverified.",
+  "build": "301.154"
 }

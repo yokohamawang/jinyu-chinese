@@ -1,4 +1,4 @@
-Koepanda 301.154
-Base: 301.153 candidate
+Koepanda 301.155
+Base: 301.154 candidate
 Status: Candidate, not deployed
-Scope: P17 pointing poses for g, u, a, and the combined syllable
+Scope: Align all P17 pointing gestures to actual audio cue onsets
