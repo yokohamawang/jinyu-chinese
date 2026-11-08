@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.146",
-  "base": "301.145 candidate",
-  "previous_candidate": "301.145",
+  "version": "10.108.301.147",
+  "base": "301.146 candidate",
+  "previous_candidate": "301.146",
   "status": "candidate",
-  "feature": "Keep position counter visible in fixed Pinyin header at narrow widths",
+  "feature": "Improve fixed Pinyin previous/next button visibility and appearance",
   "changes": [
-    "Keep current item/total count visible at all viewport widths.",
-    "At <=360px, slightly tighten spacing and counter typography instead of hiding the counter.",
-    "Preserve the 44px arrow touch targets and existing navigation behavior."
+    "Use high-contrast round arrow buttons in the fixed shared Pinyin header.",
+    "Keep the disabled arrow legible with a muted mint treatment instead of fading the whole button.",
+    "Increase arrow stroke and position-counter contrast while preserving the 44px touch targets and narrow-screen counter."
   ],
-  "validation": "Live deployed 301.145 confirmed count source values exist; root cause identified in max-width:360px CSS hiding the count. Candidate updated; static validation pending.",
-  "build": "301.146"
+  "validation": "Static package and CSS scope review completed. No chapter content or navigation JavaScript changed. Not deployed; verify on iPhone after upload.",
+  "build": "301.147"
 }
