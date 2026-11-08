@@ -1,0 +1,19 @@
+/* 301.155 — hold the combined-syllable gesture through the final audio segment, then return. */
+(function(){
+ 'use strict';
+ function init(){
+  var root=document.getElementById('kidsThreeSpellingLesson'),hero=root&&root.querySelector('.kp223-hero'),base=hero&&hero.querySelector('.kp223-art'),board=hero&&hero.querySelector('.kp223-board');
+  if(!root||!hero||!base||!board)return;
+  var assetBase='./assets/pinyin/lesson-illustrations/',files=['p17-four-target-301.154-0.webp','p17-four-target-301.154-1.webp','p17-four-target-301.154-2.webp','p17-four-target-301.154-3.webp'];
+  var urls=files.map(function(file){var url=new URL(assetBase+file,document.baseURI);url.searchParams.set('v','10.108.301.154');return url.href});
+  var layer=document.createElement('img');layer.className='kp223-motion-frame';layer.alt='';layer.setAttribute('aria-hidden','true');layer.draggable=false;hero.insertBefore(layer,board);
+  var loaded=0,failed=false,pending=0,current=0,returnTimer=0;
+  var phaseFrame={1:0,2:1,3:2,4:3};
+  function reset(){if(returnTimer){window.clearTimeout(returnTimer);returnTimer=0}pending=0;current=0;hero.classList.remove('kp223-motion-active');layer.removeAttribute('src')}
+  function setPhase(phase){phase=Math.max(0,Math.min(4,Number(phase)||0));if(!phase||failed){reset();return}if(current===phase)return;if(returnTimer){window.clearTimeout(returnTimer);returnTimer=0}if(loaded<files.length){pending=phase;return}current=phase;layer.src=urls[phaseFrame[phase]];hero.classList.add('kp223-motion-active');if(phase===4)returnTimer=window.setTimeout(reset,1600)}
+  files.forEach(function(file,index){var image=new Image();image.onload=function(){loaded++;if(loaded===files.length&&pending){var phase=pending;pending=0;setPhase(phase)}};image.onerror=function(){failed=true;pending=0;reset()};image.src=urls[index]});
+  window.addEventListener('koepandaP17MotionPhase',function(event){setPhase(event.detail&&event.detail.phase)});
+  window.KP_P17_POINTING_ANIM={stop:reset};
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
