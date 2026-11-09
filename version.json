@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.158",
-  "base": "301.157 candidate",
-  "previous_candidate": "301.157",
+  "version": "10.108.301.159",
+  "base": "301.158 candidate",
+  "previous_candidate": "301.158",
   "status": "candidate",
-  "feature": "Explicit three-state Xiao Yin mouth transitions for P14/P15",
+  "feature": "Correct P14/P15 mouth overlay alignment and preserve whiteboard centering during playback",
   "changes": [
-    "Add an explicit open-mouth overlay sourced pixel-for-pixel from the established P14/P15 lesson illustration, alongside the existing closed and rounded states.",
-    "Make both P14 and P15 use a matched open-mouth overlay during ordinary syllable playback; preserve rounded-mouth mapping for wu/yu/yue/yuan/yun and closed-mouth idle state.",
-    "Keep the existing P14/P15 layout stability and playback touch feedback from 301.157."
+    "Correct the shared P14/P15 mouth-state crop position and vertical coverage using the source illustration geometry.",
+    "Preserve the syllable label's translate centering transform in both keyframes of the playback pulse.",
+    "Keep the existing audio, rounded-mouth mapping, P14/P15 layout stability, playback touch feedback, recording, quiz, and routing from 301.158."
   ],
-  "validation": "Static source checks, resource existence, version JSON parsing, and package archive integrity checked. iPhone Safari visual/device validation requires deployment and remains pending.",
-  "build": "301.158"
+  "validation": "Static scope, resource, syntax, and package checks; iPhone Safari visual/device validation requires deployment and remains pending.",
+  "build": "301.159"
 }
