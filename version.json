@@ -1,13 +1,14 @@
 {
-  "version": "10.108.301.157",
-  "base": "301.156 candidate",
-  "previous_candidate": "301.156",
+  "version": "10.108.301.158",
+  "base": "301.157 candidate",
+  "previous_candidate": "301.157",
   "status": "candidate",
-  "feature": "P14/P15 vertical switching stability and tactile audio button feedback",
+  "feature": "Explicit three-state Xiao Yin mouth transitions for P14/P15",
   "changes": [
-    "Disable browser scroll anchoring in P14/P15 lesson cards so changing syllable examples does not automatically move the viewport; reserve consistent space for their example copy.",
-    "Increase the standalone playback button target from 46×46 to 54×54 pixels and add a visible pressed state without making the teaching area clickable."
+    "Add an explicit open-mouth overlay sourced pixel-for-pixel from the established P14/P15 lesson illustration, alongside the existing closed and rounded states.",
+    "Make both P14 and P15 use a matched open-mouth overlay during ordinary syllable playback; preserve rounded-mouth mapping for wu/yu/yue/yuan/yun and closed-mouth idle state.",
+    "Keep the existing P14/P15 layout stability and playback touch feedback from 301.157."
   ],
-  "validation": "Static source and package checks passed. Live iPhone Safari validation requires deployment and device access; this candidate is not deployed.",
-  "build": "301.157"
+  "validation": "Static source checks, resource existence, version JSON parsing, and package archive integrity checked. iPhone Safari visual/device validation requires deployment and remains pending.",
+  "build": "301.158"
 }
