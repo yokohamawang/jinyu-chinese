@@ -1,3 +1,2 @@
-Koepanda 301.156
-Base: 301.155 candidate
-Status: Candidate, not deployed
+Koepanda 10.108.301.157
+Candidate derived from 301.156. Not deployed.

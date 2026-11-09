@@ -1,14 +1,13 @@
 {
-  "version": "10.108.301.156",
-  "base": "301.155 candidate",
-  "previous_candidate": "301.155",
+  "version": "10.108.301.157",
+  "base": "301.156 candidate",
+  "previous_candidate": "301.156",
   "status": "candidate",
-  "feature": "P14/P15 Xiao Yin mouth shapes and syllable focus synchronized to full-syllable playback",
+  "feature": "P14/P15 vertical switching stability and tactile audio button feedback",
   "changes": [
-    "Reuse the existing standing Xiao Yin artwork and pointing pose; keep the lesson layout and navigation unchanged.",
-    "Add localized closed, open, and rounded mouth states synchronized with each selected syllable audio; map P15 rounded vowels to the rounded mouth state.",
-    "Briefly emphasize the complete syllable on the wooden board during playback; return to a neutral mouth and target state on audio end, stop, error, or lesson change."
+    "Disable browser scroll anchoring in P14/P15 lesson cards so changing syllable examples does not automatically move the viewport; reserve consistent space for their example copy.",
+    "Increase the standalone playback button target from 46×46 to 54×54 pixels and add a visible pressed state without making the teaching area clickable."
   ],
-  "validation": "Pending final package validation. Real iPhone Safari playback not available in this workspace.",
-  "build": "301.156"
+  "validation": "Static source and package checks passed. Live iPhone Safari validation requires deployment and device access; this candidate is not deployed.",
+  "build": "301.157"
 }
