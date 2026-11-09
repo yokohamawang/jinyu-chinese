@@ -1,4 +1,3 @@
-Koepanda 301.155
-Base: 301.154 candidate
+Koepanda 301.156
+Base: 301.155 candidate
 Status: Candidate, not deployed
-Scope: Align all P17 pointing gestures to actual audio cue onsets

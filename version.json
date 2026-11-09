@@ -1,14 +1,14 @@
 {
-  "version": "10.108.301.155",
-  "base": "301.154 candidate",
-  "previous_candidate": "301.154",
+  "version": "10.108.301.156",
+  "base": "301.155 candidate",
+  "previous_candidate": "301.155",
   "status": "candidate",
-  "feature": "P17 gesture timing follows the measured g/u/a/combined-syllable audio onsets; combined syllable pointing begins before the final audio segment ends",
+  "feature": "P14/P15 Xiao Yin mouth shapes and syllable focus synchronized to full-syllable playback",
   "changes": [
-    "Use actual audio currentTime and per-audio cue positions for g, u, a, and the merged syllable.",
-    "Show the guā/huǒ/jiā/qiáo target when the merged segment begins, hold through that segment, then return after a short pause.",
-    "Preserve four target pose images and live pinyin text layer; no two-pin changes."
+    "Reuse the existing standing Xiao Yin artwork and pointing pose; keep the lesson layout and navigation unchanged.",
+    "Add localized closed, open, and rounded mouth states synchronized with each selected syllable audio; map P15 rounded vowels to the rounded mouth state.",
+    "Briefly emphasize the complete syllable on the wooden board during playback; return to a neutral mouth and target state on audio end, stop, error, or lesson change."
   ],
-  "validation": "Audio onset timings sampled from each P17 sequence WAV; JS syntax, version JSON, stage/event mapping, and package integrity passed. Live browser and iPhone Safari playback remain unverified.",
-  "build": "301.154"
+  "validation": "Pending final package validation. Real iPhone Safari playback not available in this workspace.",
+  "build": "301.156"
 }
