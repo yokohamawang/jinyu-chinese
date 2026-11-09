@@ -1,0 +1,17 @@
+/* 301.160 — keep the full-frame mouth overlays aligned on narrow screens. */
+#kidsWholeSyllableLesson .kp240-visual .kp156-mouth-frame,
+#kidsWholeSyllableP15 .kp240-visual .kp156-mouth-frame{
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+/* Do not animate transform: both lessons use it to center the board label. */
+@keyframes kp156-target-pulse{
+  from{
+    filter:drop-shadow(0 0 0 rgba(224,177,83,0));
+  }
+  to{
+    filter:drop-shadow(0 0 5px rgba(224,177,83,.38));
+  }
+}
