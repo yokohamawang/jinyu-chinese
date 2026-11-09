@@ -1,14 +1,15 @@
 {
-  "version": "10.108.301.159",
+  "version": "10.108.301.160",
   "base": "301.158 candidate",
   "previous_candidate": "301.158",
+  "supersedes": "301.159",
   "status": "candidate",
-  "feature": "Correct P14/P15 mouth overlay alignment and preserve whiteboard centering during playback",
+  "feature": "Correct narrow-screen mouth overlay sizing and preserve board-label centering in P14/P15",
   "changes": [
-    "Correct the shared P14/P15 mouth-state crop position and vertical coverage using the source illustration geometry.",
-    "Preserve the syllable label's translate centering transform in both keyframes of the playback pulse.",
-    "Keep the existing audio, rounded-mouth mapping, P14/P15 layout stability, playback touch feedback, recording, quiz, and routing from 301.158."
+    "Keep P14/P15 mouth overlay images at the full visual-frame size so the narrow-screen lesson-image rule cannot place a miniature mouth patch on Xiao Yin's cheek.",
+    "Animate only the syllable-label shadow during playback; do not override the transform used to center the text on the board.",
+    "Keep P14/P15 lesson scripts, audio, recording, quiz, routing, mouth states, image assets, and mouth crop coordinates from 301.158 unchanged."
   ],
-  "validation": "Static scope, resource, syntax, and package checks; iPhone Safari visual/device validation requires deployment and remains pending.",
-  "build": "301.159"
+  "validation": "P14/P15 scope, stylesheet precedence, unchanged lesson scripts, version/resource assertions, SHA256, and archive integrity checked. iPhone Safari device validation requires deployment and remains pending.",
+  "build": "301.160"
 }
