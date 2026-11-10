@@ -1,16 +1,14 @@
 {
-  "version": "10.108.301.161",
-  "base": "301.160 candidate",
-  "previous_candidate": "301.160",
-  "supersedes": "301.160",
+  "version": "10.108.301.162",
+  "base": "301.161 candidate",
+  "previous_candidate": "301.161",
+  "supersedes": "301.161",
   "status": "candidate",
-  "feature": "P14/P15 Xiao Yin pointing-hand playback pose and feathered mouth restoration mask",
+  "feature": "P14/P15 pointing fingertip fully visible inside board writing area",
   "changes": [
-    "Add a generated pose image showing only the lower forearm and paw pointing toward the board; activate it only while lesson audio is playing.",
-    "Keep the board syllable label on its existing independent overlay and do not apply transforms to the lesson image or label.",
-    "Replace the hard elliptical mouth crop with a localized feathered alpha mask to reduce the triangular seam when the closed/rounded mouth overlays restore.",
-    "Apply the playback pose to both overall-recognition lessons P14 and P15."
+    "Replace the P14/P15 speaking pose with a refined image whose pointing finger reaches clearly into the board writing area and no longer ends at the wooden frame.",
+    "Keep the existing 301.161 playback toggle, mouth feather mask, board label overlay, and all other lesson behavior unchanged."
   ],
-  "validation": "P14/P15 scripts pass Node syntax checks; asset alpha alignment and overlay/board layering reviewed. Live iPhone Safari validation remains pending because this candidate is not deployed.",
-  "build": "301.161"
+  "validation": "Live page inspection confirmed the prior fingertip appeared clipped at the board edge. New pose composite was reviewed at presentation size; both lesson scripts pass Node syntax checks; source alpha silhouette matches the base image. Live iPhone Safari validation remains pending after deployment.",
+  "build": "301.162"
 }
