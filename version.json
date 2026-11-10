@@ -1,15 +1,16 @@
 {
-  "version": "10.108.301.160",
-  "base": "301.158 candidate",
-  "previous_candidate": "301.158",
-  "supersedes": "301.159",
+  "version": "10.108.301.161",
+  "base": "301.160 candidate",
+  "previous_candidate": "301.160",
+  "supersedes": "301.160",
   "status": "candidate",
-  "feature": "Correct narrow-screen mouth overlay sizing and preserve board-label centering in P14/P15",
+  "feature": "P14/P15 Xiao Yin pointing-hand playback pose and feathered mouth restoration mask",
   "changes": [
-    "Keep P14/P15 mouth overlay images at the full visual-frame size so the narrow-screen lesson-image rule cannot place a miniature mouth patch on Xiao Yin's cheek.",
-    "Animate only the syllable-label shadow during playback; do not override the transform used to center the text on the board.",
-    "Keep P14/P15 lesson scripts, audio, recording, quiz, routing, mouth states, image assets, and mouth crop coordinates from 301.158 unchanged."
+    "Add a generated pose image showing only the lower forearm and paw pointing toward the board; activate it only while lesson audio is playing.",
+    "Keep the board syllable label on its existing independent overlay and do not apply transforms to the lesson image or label.",
+    "Replace the hard elliptical mouth crop with a localized feathered alpha mask to reduce the triangular seam when the closed/rounded mouth overlays restore.",
+    "Apply the playback pose to both overall-recognition lessons P14 and P15."
   ],
-  "validation": "P14/P15 scope, stylesheet precedence, unchanged lesson scripts, version/resource assertions, SHA256, and archive integrity checked. iPhone Safari device validation requires deployment and remains pending.",
-  "build": "301.160"
+  "validation": "P14/P15 scripts pass Node syntax checks; asset alpha alignment and overlay/board layering reviewed. Live iPhone Safari validation remains pending because this candidate is not deployed.",
+  "build": "301.161"
 }
