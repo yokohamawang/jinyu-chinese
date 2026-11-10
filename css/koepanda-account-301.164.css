@@ -1,0 +1,43 @@
+/* 10.108.301.164 — account surfaces are isolated from existing lesson components. */
+.kp-account-trigger{
+  display:block;width:min(520px,calc(100% - 24px));min-height:48px;margin:0 auto 18px;padding:11px 18px;
+  border:1px solid rgba(98,143,106,.25);border-radius:18px;background:linear-gradient(135deg,#fffefa,#f5f9e9);
+  color:#365440;font:700 15px/1.35 system-ui,-apple-system,"Noto Sans JP",sans-serif;box-shadow:0 5px 18px rgba(55,80,64,.09);
+  touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,.06)
+}
+body.app-function-mode .kp-account-trigger,body.app-kids-mode .kp-account-trigger{display:none}
+.kp-account-dialog{width:min(480px,calc(100vw - 24px));max-height:min(86dvh,780px);padding:0;border:0;border-radius:26px;background:#fffdf8;color:#30483a;box-shadow:0 24px 80px rgba(25,48,35,.28);overflow:auto}
+.kp-account-dialog::backdrop{background:rgba(25,43,33,.46);backdrop-filter:blur(3px)}
+.kp-account-shell{padding:clamp(18px,5vw,28px);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif}
+.kp-account-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}
+.kp-account-eyebrow{margin:0 0 5px;color:#82977b;font-size:10px;font-weight:800;letter-spacing:.15em}
+.kp-account-header h2{margin:0;color:#345540;font-size:24px;line-height:1.25}
+.kp-account-close,.kp-account-secondary{border:1px solid #dfe8d9;border-radius:13px;background:#fff;color:#48634c;font:700 13px system-ui,sans-serif;min-height:42px;padding:8px 14px;touch-action:manipulation}
+.kp-account-content{display:grid;gap:14px}
+.kp-account-form{display:grid;gap:13px}
+.kp-account-field{display:grid;gap:7px;color:#526a57;font-size:13px;font-weight:700}
+.kp-account-field input{width:100%;box-sizing:border-box;min-height:48px;border:1px solid #d8e3d3;border-radius:13px;padding:10px 13px;background:#fff;color:#293c30;font:16px system-ui,sans-serif;outline:none}
+.kp-account-field input:focus{border-color:#78a883;box-shadow:0 0 0 3px rgba(120,168,131,.16)}
+.kp-account-primary{min-height:50px;border:0;border-radius:15px;background:linear-gradient(120deg,#6da981,#8bb873);color:white;font:800 16px system-ui,sans-serif;box-shadow:0 6px 16px rgba(85,139,95,.2);touch-action:manipulation}
+.kp-account-primary:disabled{opacity:.65}
+.kp-account-link{justify-self:center;border:0;background:none;padding:8px;color:#4b7858;font:700 13px system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px}
+.kp-account-reset{margin-top:-10px}
+.kp-account-status{min-height:22px;margin:14px 0 0;color:#687a6b;font-size:13px;line-height:1.5}
+.kp-account-status[data-kind="error"]{color:#9c4d43}
+.kp-account-status[data-kind="success"]{color:#3e7650}
+.kp-account-user{padding:15px 16px;border-radius:17px;background:#f3f7eb}
+.kp-account-user h3{margin:0 0 5px;color:#385b42;font-size:18px}
+.kp-account-user p{margin:0 0 3px;color:#7c8d7d;font-size:11px;font-weight:700}
+.kp-account-user strong{display:block;overflow-wrap:anywhere;font-size:14px}
+.kp-account-profile-form{display:grid;gap:9px;padding:12px;border:1px solid #e3eadc;border-radius:15px;background:#fff}
+.kp-account-profile-form .kp-account-secondary{justify-self:start}
+.kp-account-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kp-account-stat{display:grid;align-content:center;min-height:75px;padding:10px 8px;border:1px solid #e3eadc;border-radius:15px;background:white;text-align:center}
+.kp-account-stat span{color:#71816f;font-size:11px;line-height:1.3}
+.kp-account-stat strong{margin-top:5px;color:#3c6f4b;font-size:21px}
+.kp-account-list-section{padding:14px;border:1px solid #e5ebdf;border-radius:16px;background:#fff}
+.kp-account-list-section h3{margin:0 0 8px;color:#47654b;font-size:14px}
+.kp-account-list{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+.kp-account-list li{padding:9px 10px;border-radius:10px;background:#f7f9f3;color:#46564a;font-size:12px;line-height:1.45;overflow-wrap:anywhere}
+.kp-account-empty,.kp-account-loading{margin:0;color:#7a897d;font-size:13px;line-height:1.5}
+@media (max-width:360px){.kp-account-stats{gap:5px}.kp-account-stat{padding-inline:4px}.kp-account-stat span{font-size:10px}.kp-account-stat strong{font-size:19px}}
