@@ -1,0 +1,21 @@
+/* 301.161: playback gesture uses an isolated pose frame; board label stays fixed. */
+#kidsWholeSyllableLesson .kp240-visual,
+#kidsWholeSyllableP15 .kp240-visual{position:relative}
+#kidsWholeSyllableLesson .kp240-visual .kp240-panda-gesture,
+#kidsWholeSyllableP15 .kp240-visual .kp240-panda-gesture{
+  z-index:1!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  transition:opacity .12s ease-out!important;
+}
+#kidsWholeSyllableLesson .kp240-visual.kp161-animating .kp240-panda-gesture,
+#kidsWholeSyllableP15 .kp240-visual.kp161-animating .kp240-panda-gesture{opacity:1!important}
+#kidsWholeSyllableLesson .kp240-visual.kp161-animating .kp240-whole-panda:not(.kp240-panda-gesture),
+#kidsWholeSyllableP15 .kp240-visual.kp161-animating .kp240-whole-panda:not(.kp240-panda-gesture){opacity:0!important}
+/* Feather the mouth restoration edge so it cannot leave a hard triangular seam. */
+#kidsWholeSyllableLesson .kp240-visual .kp156-mouth-frame,
+#kidsWholeSyllableP15 .kp240-visual .kp156-mouth-frame{
+  clip-path:none!important;
+  -webkit-mask-image:radial-gradient(ellipse 4.8% 4.6% at 28.2% 41.5%,#000 72%,transparent 100%);
+  mask-image:radial-gradient(ellipse 4.8% 4.6% at 28.2% 41.5%,#000 72%,transparent 100%);
+}
