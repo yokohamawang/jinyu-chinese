@@ -1,14 +1,16 @@
 {
-  "version": "10.108.301.162",
-  "base": "301.161 candidate",
-  "previous_candidate": "301.161",
-  "supersedes": "301.161",
-  "status": "candidate",
-  "feature": "P14/P15 pointing fingertip fully visible inside board writing area",
-  "changes": [
-    "Replace the P14/P15 speaking pose with a refined image whose pointing finger reaches clearly into the board writing area and no longer ends at the wooden frame.",
-    "Keep the existing 301.161 playback toggle, mouth feather mask, board label overlay, and all other lesson behavior unchanged."
+  "version": "10.108.301.163",
+  "base": "301.162 candidate",
+  "status": "candidate-not-deployed",
+  "scope": "P14/P15 pointing-pose internal wrist alpha seam",
+  "changed_files": [],
+  "validation": [
+    "Confirmed the white wrist line is an internal transparent gap in the 301.162 pose asset, not a CSS layout or whiteboard issue",
+    "Filled only 602 pixels inside the gap where both sides are the dark forearm; all source pixels outside the mask remain byte-decoded identical",
+    "PNG retains 1536x1024 canvas and the same outer alpha bounding box",
+    "P14 and P15 scripts differ from 301.162 only by the pointing asset path and pass Node syntax check",
+    "Mobile-scale composite preview shows the wrist connected; audio, mouth, board, letter placement, navigation and reset behavior are untouched",
+    "Live iPhone Safari validation remains pending deployment"
   ],
-  "validation": "Live page inspection confirmed the prior fingertip appeared clipped at the board edge. New pose composite was reviewed at presentation size; both lesson scripts pass Node syntax checks; source alpha silhouette matches the base image. Live iPhone Safari validation remains pending after deployment.",
-  "build": "301.162"
+  "build": "301.163"
 }
