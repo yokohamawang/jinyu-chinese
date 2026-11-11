@@ -1,2 +1,3 @@
-Koepanda 10.108.301.163
-Candidate based on 301.162. Repairs only the transparent wrist seam in the P14/P15 pointing pose. Not deployed.
+Koepanda 10.108.301.166
+Base: 301.165
+Status: candidate, not deployed
