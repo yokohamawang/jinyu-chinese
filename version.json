@@ -1,23 +1,11 @@
 {
-  "version": "10.108.301.166",
-  "base": "301.165",
-  "status": "candidate-not-deployed",
-  "scope": "Practice hub, Friends, sticker book and rewards prototype",
+  "version": "301.167",
+  "base_version": "301.166",
+  "status": "candidate",
+  "entry": "index.html",
   "changed_files": [
     "index.html",
-    "css/166-community-stickers-practice-301.166.css",
-    "js/koepanda-community-stickers-301.166.js",
-    "assets/brand/koepanda-wordmark-301166.png",
-    "assets/brand/xiaoyin-brand-mascot-301166.png",
-    "assets/stickers/a.svg",
-    "assets/stickers/e.svg",
-    "assets/stickers/hao.svg",
-    "assets/stickers/limited-autumn.svg",
-    "assets/stickers/n.svg",
-    "assets/stickers/o.svg",
-    "assets/stickers/ren.svg",
-    "assets/stickers/shan.svg",
-    "assets/stickers/shui.svg"
-  ],
-  "build": "301.166"
+    "css/koepanda-app-shell.css",
+    "js/koepanda-app-shell.js"
+  ]
 }

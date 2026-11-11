@@ -1,94 +1,28 @@
 {
-  "version": "301.166",
-  "source_candidate": "301.165",
-  "built_at_local": "2026-11-11T22:00:00+09:00",
+  "version": "301.167",
+  "base_version": "301.166",
+  "built_at_jst": "2026-11-11T22:41:04+09:00",
   "status": "candidate",
   "entry": "index.html",
+  "summary": "Shared branded header and primary navigation across learning, practice, friends, stories, and profile. The learning home keeps the existing pinyin-to-hanzi-to-exam roadmap; listening, speaking, and imitation actions are grouped in Practice.",
   "changed_files": [
     {
       "path": "index.html",
-      "size_bytes": 686455,
-      "sha256": "b571172c7adf0c207eb41f19540f4c49c9736f9c6cae0a1826220ec31e5658a9"
+      "size_bytes": 686417,
+      "sha256": "49dbdae4ebaec7dda95ca8188fda138521f050d181156343986679b53a1ca130",
+      "modified_at_jst": "2026-11-11T22:41:04+09:00"
     },
     {
-      "path": "css/166-community-stickers-practice-301.166.css",
-      "size_bytes": 17316,
-      "sha256": "90674d439830e38a35cfdd64fe0770201e113fd52d5b2273951725266e3f991d"
+      "path": "css/koepanda-app-shell.css",
+      "size_bytes": 27512,
+      "sha256": "d2038a7a6d216314445c998b1ad1684a9f9a4d57c78592e5839a06ea76f731d8",
+      "modified_at_jst": "2026-11-11T22:41:04+09:00"
     },
     {
-      "path": "js/koepanda-community-stickers-301.166.js",
-      "size_bytes": 28311,
-      "sha256": "5499babffc47352b401fd8acd7856e2886cd887273c95138c9d6d12fb158dbac"
-    },
-    {
-      "path": "assets/brand/koepanda-wordmark-301166.png",
-      "size_bytes": 224673,
-      "sha256": "479850dc016520364e20e5abb9172bd2452ba0f9f26f2b83c0b74679d825ce4a"
-    },
-    {
-      "path": "assets/brand/xiaoyin-brand-mascot-301166.png",
-      "size_bytes": 259971,
-      "sha256": "abae4d7444a801e0265670ce67f10b03fc4e5391bfdeb2cd0373e514056b42a1"
-    },
-    {
-      "path": "assets/stickers/a.svg",
-      "size_bytes": 2196,
-      "sha256": "40a5d2c9103309fd67c1541b8b55ba479f2613896ace84a6144f4a513b15c1fb"
-    },
-    {
-      "path": "assets/stickers/e.svg",
-      "size_bytes": 2196,
-      "sha256": "c025cedbddef51ed03b28e56ea510ca8e60d10cd6a0d5a265fdaf60ab39e69f0"
-    },
-    {
-      "path": "assets/stickers/hao.svg",
-      "size_bytes": 2200,
-      "sha256": "e7db179142fd970fa98e505125767eff5e731db07a56cec41e9470fe8e87f412"
-    },
-    {
-      "path": "assets/stickers/limited-autumn.svg",
-      "size_bytes": 3394,
-      "sha256": "5c88e31b9256701d3afc54efdde2f624dd26ebcec58b7c53e6c6277ac4609253"
-    },
-    {
-      "path": "assets/stickers/n.svg",
-      "size_bytes": 2196,
-      "sha256": "eec0e9826b46e228ac7aa913e487ac239f313f5ee1343212db5e13404cee34bd"
-    },
-    {
-      "path": "assets/stickers/o.svg",
-      "size_bytes": 2196,
-      "sha256": "9d0c2667e37a8c2c64c1441ed274991796692c41f703be37d59f4b0b436fe9f9"
-    },
-    {
-      "path": "assets/stickers/ren.svg",
-      "size_bytes": 2200,
-      "sha256": "0ebc53e5d56b95f5535df0fa14cd4872615c7ae98a1ff419d056148a8dc61d2e"
-    },
-    {
-      "path": "assets/stickers/shan.svg",
-      "size_bytes": 2200,
-      "sha256": "c61665339b3346af7968650c115334e200c4349fdc0f35267603a6502f6ad142"
-    },
-    {
-      "path": "assets/stickers/shui.svg",
-      "size_bytes": 2200,
-      "sha256": "6d6ac8e5873c7af05468a8cd64cef25937511dd9ef99510cfb04f01a5b6193b4"
-    },
-    {
-      "path": "VERSION.txt",
-      "size_bytes": 70,
-      "sha256": "da6b69e6eb98a60a5ae0f4c07fd74799754357a5fa268dff3fb45a0abb4fe080"
-    },
-    {
-      "path": "version.json",
-      "size_bytes": 719,
-      "sha256": "c624cdb8d8dc410bed69e7a486838192c97f2ce8c57e8109d7ede89236c1809c"
+      "path": "js/koepanda-app-shell.js",
+      "size_bytes": 33383,
+      "sha256": "173ee706f2a6c292ce3dc3bc1a96bca99ca6dc860216fb3ab97e09af6941ce9e",
+      "modified_at_jst": "2026-11-11T22:41:04+09:00"
     }
-  ],
-  "validation": {
-    "automated_tests": "not run",
-    "database": "SQL proposal is separate and has not been applied",
-    "deployment": "Not deployed"
-  }
+  ]
 }
