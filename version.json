@@ -1,13 +1,12 @@
 {
-  "version": "301.168",
-  "base_version": "301.167",
+  "version": "301.169",
+  "base_version": "301.168",
   "status": "candidate",
   "entry": "index.html",
   "changed_files": [
     "index.html",
     "css/koepanda-app-shell.css",
     "js/koepanda-app-shell.js",
-    "version.json",
-    "assets/brand/koepanda-logo-301.168.jpeg"
+    "version.json"
   ]
 }
