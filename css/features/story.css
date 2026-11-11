@@ -1,0 +1,7 @@
+/* Feature styles: story */
+.kp-story-card{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px 16px;padding:20px;border:1px solid #e8eee7;border-radius:24px;background:linear-gradient(125deg,#fff4e7,#f8f4ff);box-shadow:0 10px 26px #34483a0c}
+.kp-story-art{display:grid;place-items:center;grid-row:span 2;width:76px;height:76px;border-radius:24px;background:#fff;font-size:35px}
+.kp-story-card h2{margin:4px 0;font-size:19px;color:#354b40}
+.kp-story-card p{margin:0;color:#7b8980;font-size:13px;line-height:1.55}
+.kp-story-card>.kp-primary{grid-column:1/-1;justify-self:stretch;min-height:48px}
+.kp-story-practice{width:100%;border:1px solid #edf1ed;text-align:left;cursor:pointer}

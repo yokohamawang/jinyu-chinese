@@ -1,0 +1,16 @@
+/* Feature styles: self */
+.kp-self-account{display:grid;grid-template-columns:64px 1fr;align-items:center;gap:10px 13px;padding:18px;border-radius:25px;background:linear-gradient(135deg,#e6f7f4,#eef6ff);box-shadow:0 10px 25px #34483a0c}
+.kp-self-account>img{grid-row:span 2;width:64px;height:64px;object-fit:contain}
+.kp-self-account b,.kp-self-account small{display:block}
+.kp-self-account b{font-size:15px;color:#3e584d}
+.kp-self-account small{margin-top:4px;color:#78877f;font-size:11px;line-height:1.55}
+.kp-self-account>.kp-primary{grid-column:1/-1;min-height:46px}
+.kp-self-collection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.kp-self-collection button{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:2px 9px;padding:14px 12px;border:1px solid #e9efe9;border-radius:20px;background:#fff;text-align:left;color:#486052;cursor:pointer;box-shadow:0 7px 18px #34483a0a}
+.kp-self-collection button>span{grid-row:span 3;display:grid;place-items:center;width:36px;height:36px;border-radius:13px;background:#eef8f1;font-size:20px}
+.kp-self-collection button>b{font-size:13px}
+.kp-self-collection button>small{color:#89958d;font-size:10px;line-height:1.45}
+.kp-self-collection button>strong{color:#159373;font-size:11px}
+.kp-self-record{display:flex;align-items:center;gap:12px;padding:16px;border-radius:19px;background:#f2f8f0;color:#597362}
+.kp-self-record>span{font-size:27px}
+.kp-self-record p{margin:0;font-size:13px;line-height:1.55}

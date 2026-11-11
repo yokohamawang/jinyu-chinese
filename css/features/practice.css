@@ -1,0 +1,15 @@
+/* Practice page */
+.kp-welcome-card{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid #e7f1e8;border-radius:22px;background:linear-gradient(120deg,#e9f9f1,#f5fbff)}
+.kp-welcome-card>div{flex:1;min-width:0}.kp-welcome-card strong,.kp-welcome-card small{display:block}.kp-welcome-card small{margin-top:4px;color:#7e8d83;font-size:12px;line-height:1.5}
+.kp-spark{display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:#fff;color:#e2aa48;font-size:22px}
+.kp-mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:18px 0 24px}
+.kp-mode-card{display:grid;justify-items:start;align-content:start;gap:7px;min-height:126px;padding:15px;border:1px solid #edf0eb;border-radius:21px;background:#fff;text-align:left;box-shadow:0 7px 18px #3044380a}
+.kp-mode-card>span{display:grid;place-items:center;width:35px;height:35px;border-radius:13px;background:#fff;font-size:19px}
+.kp-mode-card b{font-size:15px;color:#3b5146}.kp-mode-card small{color:#839087;font-size:11px;line-height:1.4}
+.kp-mode-card.pink{background:#fff0f4}.kp-mode-card.blue{background:#eff6ff}.kp-mode-card.green{background:#eefaf4}.kp-mode-card.gold{background:#fff6e7}
+.kp-review-card{display:flex;align-items:center;gap:11px;min-width:0;padding:14px;border:1px solid #edf1ed;border-radius:18px;background:#fff}
+.kp-review-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:14px;background:#f3f6ed;font-size:18px}
+.kp-grow{flex:1;min-width:0}.kp-grow b,.kp-grow small{display:block}.kp-grow b{font-size:13px;color:#41564a}.kp-grow small{margin-top:4px;color:#859087;font-size:11px;line-height:1.5}
+.kp-round-arrow{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border:0;border-radius:50%;background:#edf8f2;color:#159373;font-size:24px}
+.kp-mistake-list{display:grid;gap:7px}.kp-mistake-list>div{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:15px;background:#fff}.kp-mistake-list small{margin-left:auto;color:#849287;font-size:10px}
+@media(max-width:420px){.kp-mode-grid{gap:8px}.kp-mode-card{min-height:116px;padding:12px}.kp-mode-card b{font-size:13px}.kp-mode-card small{font-size:10px}}
