@@ -37,11 +37,18 @@ body.kp-feature-active #homeEffect,body.kp-feature-active #kpAccountTrigger,body
 .kp-roadmap-title{margin-bottom:3px!important}
 .kp-roadmap-title h2{font-size:24px!important;color:#30463b!important}
 .kp-roadmap-copy{margin:0 0 12px;color:#7d8b81;font-size:13px}
-.kp-roadmap-window{position:relative;width:100%;aspect-ratio:.64;overflow:hidden;border:1px solid #e4eee5;border-radius:25px;background:#dff6fa;box-shadow:0 12px 30px #294b4314;isolation:isolate}
-.kp-roadmap-window>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 82%}
-.kp-roadmap-link{position:absolute;z-index:2;display:block;border-radius:30px;background:transparent;-webkit-tap-highlight-color:transparent}
-.kp-roadmap-link-pinyin{top:2%;left:13%;width:55%;height:18%}
-.kp-roadmap-link-hanzi{top:21%;left:42%;width:50%;height:16%}
+.kp-roadmap-window{position:relative;width:100%;aspect-ratio:739 / 2129;overflow:hidden;border:1px solid #e4eee5;border-radius:25px;background:#dff6fa;box-shadow:0 12px 30px #294b4314;isolation:isolate;touch-action:pan-y}
+.kp-roadmap-window>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+.kp-roadmap-link{position:absolute;z-index:2;display:block;border:0;padding:0;border-radius:35%;background:transparent;-webkit-tap-highlight-color:transparent;cursor:pointer;touch-action:manipulation}
+.kp-roadmap-link:focus-visible{outline:3px solid #078c6c;outline-offset:-4px;background:#ffffff24}
+.kp-roadmap-link-pinyin{top:40.4%;left:16%;width:49%;height:7%}
+.kp-roadmap-link-hanzi{top:47.6%;left:43%;width:48%;height:6.8%}
+.kp-roadmap-link-pre4{top:55.2%;left:22%;width:53%;height:6.7%}
+.kp-roadmap-link-grade4{top:62%;left:30%;width:54%;height:6.5%}
+.kp-roadmap-link-grade3{top:68.7%;left:15%;width:53%;height:6.4%}
+.kp-roadmap-link-grade2{top:75.3%;left:37%;width:51%;height:6.7%}
+.kp-roadmap-link-grade-pre1{top:82.1%;left:20%;width:57%;height:6.6%}
+.kp-roadmap-link-grade1{top:89%;left:17%;width:64%;height:10%}
 @media(max-width:520px){
  .kp-feature-header{height:68px!important;padding:4px 10px!important}
  .kp-header-spacer{width:36px;height:36px}
@@ -94,3 +101,10 @@ body.kp-feature-active #homeEffect,body.kp-feature-active #kpAccountTrigger,body
 .kp-learning-title h1{margin:0!important;color:#30463b!important;font-size:24px!important;line-height:1.25!important}
 @media(max-width:520px){.kp-feature-header{height:104px!important;padding:7px 14px!important}.kp-brand{width:min(100%,174px)!important;height:82px!important}.kp-header-mascot{width:38px;height:38px}.kp-feature-nav{top:104px!important;gap:2px!important;padding:6px 8px 7px!important}.kp-feature-nav button{font-size:10px!important}.kp-feature-nav button svg{width:19px!important;height:19px!important}.kp-feature-main{padding:20px 18px 32px!important}}
 @media(max-width:360px){.kp-feature-header{grid-template-columns:36px minmax(0,1fr) 36px!important}.kp-header-mascot{width:34px;height:34px}.kp-brand{width:min(100%,154px)!important;height:76px!important}.kp-profile-shortcut{width:36px!important;height:36px!important}.kp-feature-nav button{font-size:9px!important}}
+
+/* Recoverable page errors and honest local-preview status. */
+.kp-feature-error{max-width:560px;margin:10vh auto;padding:25px;border:1px solid #f1d8cb;border-radius:24px;background:#fffaf7;color:#554238;text-align:center;box-shadow:0 12px 34px #72503d12}
+.kp-feature-error h1{margin:0 0 10px;font-size:22px}
+.kp-feature-error p{margin:0 0 18px;color:#7c6b62;font-size:14px;line-height:1.65}
+.kp-local-status{display:grid;gap:4px;margin:0 0 14px;padding:13px 15px;border:1px solid #f2e1bd;border-radius:17px;background:#fff9e9;color:#75613c;font-size:12px;line-height:1.5}
+.kp-local-status b{font-size:13px;color:#755b29}
