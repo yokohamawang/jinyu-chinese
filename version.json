@@ -1,12 +1,38 @@
 {
-  "version": "301.169",
-  "base_version": "301.168",
+  "version": "301.170",
+  "base_version": "301.169",
   "status": "candidate",
   "entry": "index.html",
   "changed_files": [
     "index.html",
+    "css/app-shell.css",
+    "css/features/learn.css",
+    "css/features/practice.css",
+    "css/features/story.css",
+    "css/features/friends.css",
+    "css/features/self.css",
+    "css/features/collections.css",
+    "js/app-shell.js",
+    "js/features/sticker-data.js",
+    "js/features/learn.js",
+    "js/features/practice.js",
+    "js/features/story.js",
+    "js/features/friends.js",
+    "js/features/self.js",
+    "js/features/sticker-book.js",
+    "js/features/rewards.js",
+    "assets/brand/koepanda-logo.jpeg",
+    "assets/brand/xiaoyin-mascot.png",
+    "VERSION.txt",
+    "version.json",
+    "REMOVE_AFTER_UPDATE.txt"
+  ],
+  "removed_files": [
     "css/koepanda-app-shell.css",
     "js/koepanda-app-shell.js",
-    "version.json"
+    "js/koepanda-community-stickers-301.166.js",
+    "assets/brand/koepanda-logo-301.168.jpeg",
+    "assets/brand/xiaoyin-brand-mascot-301166.png",
+    "assets/brand/koepanda-wordmark-301166.png"
   ]
 }
