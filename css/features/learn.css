@@ -25,25 +25,21 @@
 .kp-study-stamp img{display:block;width:40px;height:40px;object-fit:contain}
 .kp-study-stamp-empty{padding:10px 12px;border-radius:13px;background:#f5f8f6;color:#89958e;font-size:12px}
 .kp-learning-map{position:relative;width:100%;aspect-ratio:739 / 1409;overflow:hidden;border-radius:18px;background:#e9f7f7;isolation:isolate}
-.kp-learning-stage{position:absolute;top:0;left:0;width:100%;aspect-ratio:739 / 1329}
 .kp-learning-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center bottom}
-.kp-learning-art-upper{clip-path:inset(0 0 60% 0)}
-.kp-learning-art-lower{clip-path:inset(40% 0 22% 0);transform:scaleY(1.06);transform-origin:50% 40%}
-.kp-learning-art-tail{clip-path:inset(78% 0 0 0);transform:translateY(30.3px) scaleY(1.17);transform-origin:50% 78%}
 .kp-home-hotspot{position:absolute;z-index:2;display:block;margin:0;padding:0;border:0;border-radius:30%;background:transparent;-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
 .kp-home-hotspot:focus-visible{outline:3px solid #0ba983;outline-offset:-4px;background:#ffffff2b}
-.kp-help-station{top:13.9%;left:5%;z-index:3;display:block;width:136px;height:auto;max-width:23%;min-width:86px;aspect-ratio:5 / 3;padding:0;border:0;border-radius:24px;background:transparent;box-shadow:none;text-decoration:none;overflow:visible}
+.kp-help-station{top:13.11%;left:5%;z-index:3;display:block;width:136px;height:auto;max-width:23%;min-width:86px;aspect-ratio:5 / 3;padding:0;border:0;border-radius:24px;background:transparent;box-shadow:none;text-decoration:none;overflow:visible}
 .kp-help-station img{display:block;width:100%;height:100%;object-fit:contain}
 .kp-help-station:active{transform:scale(.96)}
-/* Hotspots are derived from the original 739×2129 art after cropping its first 800px. */
-.kp-home-pinyin{top:.75%;left:15%;width:53%;height:10.6%}
-.kp-home-hanzi{top:11.8%;left:40%;width:53%;height:9.4%}
-.kp-home-pre4{top:27%;left:23%;width:54%;height:11%}
-.kp-home-grade4{top:37.97%;left:30%;width:56%;height:10.39%}
-.kp-home-grade3{top:48.59%;left:15%;width:54%;height:10.28%}
-.kp-home-grade2{top:59.36%;left:35%;width:53%;height:10.6%}
-.kp-home-grade-pre1{top:70.75%;left:20%;width:60%;height:10.81%}
-.kp-home-grade1{top:82.06%;left:15%;width:68%;height:20.68%}
+/* Hotspots follow the standalone 739×1409 roadmap image in assets/home. */
+.kp-home-pinyin{top:.71%;left:15%;width:53%;height:10%}
+.kp-home-hanzi{top:11.13%;left:40%;width:53%;height:8.87%}
+.kp-home-pre4{top:25.47%;left:23%;width:54%;height:10.38%}
+.kp-home-grade4{top:35.82%;left:30%;width:56%;height:9.8%}
+.kp-home-grade3{top:45.83%;left:15%;width:54%;height:9.7%}
+.kp-home-grade2{top:55.97%;left:35%;width:53%;height:10%}
+.kp-home-grade-pre1{top:66.72%;left:20%;width:60%;height:10.19%}
+.kp-home-grade1{top:77.37%;left:15%;width:68%;height:19.5%}
 @media(max-width:600px){
  .kp-study-record{grid-template-columns:1fr;gap:10px;padding:12px 13px}
  .kp-study-record-main{grid-template-columns:30px 1fr auto;grid-template-rows:auto}
