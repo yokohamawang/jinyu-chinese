@@ -1,21 +1,15 @@
 {
-  "version": "301.195",
-  "base_version": "301.175",
-  "built_at_jst": "2026-11-12T22:20:00+09:00",
+  "version": "301.196",
+  "base_version": "301.195",
+  "built_at_jst": "2026-11-12T22:50:00+09:00",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "301.175 起的首页改版累计更新：明确加载手写字典图片与单张学习路线图，刷新首页脚本缓存版本，防止继续显示旧书本图标和旧路线图。",
+  "summary": "将准1级与1级之间的连接段拉长，扩大两岛间距；字典入口下移避开顶部导航，并同步校准学习岛点击热区。",
   "changed_files": [
-    "assets/brand/koepanda-logo.jpeg",
-    "assets/home/help-station-handwriting-dictionary.svg",
     "assets/home/koepanda-learning-roadmap.png",
-    "css/app-shell.css",
     "css/features/learn.css",
-    "css/features/self.css",
     "index.html",
-    "js/app-shell.js",
-    "js/features/learn.js",
-    "js/features/self.js"
+    "js/features/learn.js"
   ],
   "removed_files": []
 }
