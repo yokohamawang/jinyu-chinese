@@ -1,10 +1,10 @@
 {
-  "version": "301.196",
+  "version": "301.198",
   "base_version": "301.195",
-  "built_at_jst": "2026-11-12T22:50:00+09:00",
+  "built_at_jst": "2026-11-12T23:52:40+09:00",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "将准1级与1级之间的连接段拉长，扩大两岛间距；字典入口下移避开顶部导航，并同步校准学习岛点击热区。",
+  "summary": "移除旧首页重复的字典入口和专属样式；保留当前学习页唯一入口并按路线图宽度18%自适应，移除手机端最小宽度撑大问题；统一版本标记。",
   "changed_files": [
     "assets/home/koepanda-learning-roadmap.png",
     "css/features/learn.css",
