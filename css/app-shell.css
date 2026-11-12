@@ -5,13 +5,12 @@ body.kp-feature-active #homeEffect,body.kp-feature-active #kpAccountTrigger,body
 .kp-feature-root{display:none;position:fixed;inset:0;z-index:9990;overflow:auto;-webkit-overflow-scrolling:touch;background:#f7faf6;color:#25332f;font-family:system-ui,-apple-system,"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif}
 .kp-feature-root.is-open{display:block}
 .kp-feature-frame{position:relative;min-height:100dvh;padding-bottom:24px;background:linear-gradient(180deg,#eff9f4 0,#fbfcf9 32%,#fff 100%)}
-.kp-feature-header{position:sticky;top:0;z-index:10;height:64px;display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:center;gap:8px;padding:6px max(14px,env(safe-area-inset-right)) 6px max(14px,env(safe-area-inset-left));border-bottom:1px solid #edf1ec;background:#fffefaed;backdrop-filter:blur(16px)}
-.kp-header-spacer{grid-column:1;width:40px;height:40px}
-.kp-brand{grid-column:2;justify-self:center;display:block;width:min(100%,210px);height:46px;padding:0;border:0;background:transparent;cursor:pointer}
-.kp-brand img.kp-logo-art{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
-.kp-profile-shortcut{grid-column:3;justify-self:end;display:grid;place-items:center;width:38px;height:38px;border:1px solid #e1eee6;border-radius:50%;background:#fff;color:#198e70;cursor:pointer}
+.kp-feature-header{position:relative;z-index:10;display:grid;grid-template-columns:minmax(0,1fr) 40px;align-items:center;gap:8px;padding:12px max(14px,env(safe-area-inset-right)) 12px max(14px,env(safe-area-inset-left));border-bottom:1px solid #edf1ec;background:#fffefaed;backdrop-filter:blur(16px)}
+.kp-brand{grid-column:1;justify-self:center;display:block;width:min(100%,520px);padding:0;border:0;background:transparent;cursor:pointer}
+.kp-brand img.kp-logo-art{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
+.kp-profile-shortcut{grid-column:2;justify-self:end;display:grid;place-items:center;width:38px;height:38px;border:1px solid #e1eee6;border-radius:50%;background:#fff;color:#198e70;cursor:pointer}
 .kp-profile-shortcut svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.kp-feature-nav{position:sticky;top:64px;z-index:9;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:5px max(10px,calc((100vw - 760px)/2)) 6px;border-bottom:1px solid #e8eee8;background:#ffffffed;backdrop-filter:blur(12px)}
+.kp-feature-nav{position:sticky;top:0;z-index:9;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:5px max(10px,calc((100vw - 760px)/2)) 6px;border-bottom:1px solid #e8eee8;background:#ffffffed;backdrop-filter:blur(12px)}
 .kp-feature-nav button{min-width:0;display:flex;align-items:center;justify-content:center;padding:9px 4px;border:0;border-radius:16px;background:transparent;color:#77827b;font:700 12px/1.2 system-ui,-apple-system,"Noto Sans JP",sans-serif;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .kp-feature-nav button.is-active{background:#e2f7ed;color:#078c6c}
 .kp-feature-main{max-width:760px;margin:0 auto;padding:54px 18px 36px}
@@ -46,20 +45,16 @@ body.kp-feature-active #homeEffect,body.kp-feature-active #kpAccountTrigger,body
 .kp-prototype-note{display:none}
 @media(min-width:700px){.kp-feature-main{padding:54px 26px 40px}}
 @media(max-width:520px){
- .kp-feature-header{height:56px;padding:5px 10px}
- .kp-header-spacer{width:34px;height:34px}
- .kp-brand{width:min(100%,210px);height:44px}
+ .kp-feature-header{padding:9px 10px}
  .kp-profile-shortcut{width:34px;height:34px}
- .kp-feature-nav{top:56px;gap:1px;padding:4px 5px 5px}
+ .kp-feature-nav{gap:1px;padding:4px 5px 5px}
  .kp-feature-nav button{padding:8px 2px;font-size:11px}
  .kp-feature-main{padding:54px 18px 30px}
  .kp-page-head{margin-bottom:17px}
  .kp-page-head p{font-size:13px}
 }
 @media(max-width:360px){
- .kp-feature-header{grid-template-columns:32px minmax(0,1fr) 32px;padding-right:8px;padding-left:8px}
- .kp-header-spacer{width:30px;height:30px}
- .kp-brand{width:min(100%,200px);height:42px}
+ .kp-feature-header{grid-template-columns:minmax(0,1fr) 32px;padding-right:8px;padding-left:8px}
  .kp-profile-shortcut{width:32px;height:32px}
  .kp-feature-nav button{font-size:10px}
 }
