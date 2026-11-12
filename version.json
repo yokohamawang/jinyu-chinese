@@ -1,20 +1,19 @@
 {
-  "version": "301.172",
-  "base_version": "301.171",
+  "version": "301.187",
+  "base_version": "301.175",
+  "built_at_jst": "2026-11-12T17:00:00+09:00",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "Restores the learning dashboard to the design reference, keeps the roadmap artwork at its full aspect ratio, aligns clickable route targets to each island, and keeps learning layout, styling, behavior, and artwork in feature files.",
+  "summary": "301.175 至 301.187 累计差分：保留新版首页结构，将“助けて”手写/语音字典入口添加到当前显示的学习路线图，并更新模块缓存标识。",
   "changed_files": [
-    "index.html",
+    "assets/brand/koepanda-logo.jpeg",
     "css/app-shell.css",
     "css/features/learn.css",
+    "css/features/self.css",
+    "index.html",
     "js/app-shell.js",
     "js/features/learn.js",
-    "assets/brand/koepanda-header-lockup.png",
-    "assets/home/koepanda-learning-dashboard.png",
-    "VERSION.txt",
-    "version.json",
-    "SHA256.txt"
+    "js/features/self.js"
   ],
   "removed_files": []
 }
