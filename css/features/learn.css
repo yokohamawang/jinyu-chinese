@@ -28,6 +28,9 @@
 .kp-learning-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center bottom}
 .kp-home-hotspot{position:absolute;z-index:2;display:block;margin:0;padding:0;border:0;border-radius:30%;background:transparent;-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
 .kp-home-hotspot:focus-visible{outline:3px solid #0ba983;outline-offset:-4px;background:#ffffff2b}
+.kp-help-station{top:12.8%;left:6%;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:58px;min-height:68px;padding:7px 4px;border:1px solid rgba(255,255,255,.95);border-radius:22px;color:#29796e;background:rgba(250,255,250,.96);box-shadow:0 5px 16px rgba(52,111,94,.2);text-decoration:none;font:800 11px/1.1 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+.kp-help-station svg{display:block;width:34px;height:34px}
+.kp-help-station:active{transform:scale(.96)}
 /* Hotspots are derived from the original 739×2129 art after cropping its first 800px. */
 .kp-home-pinyin{top:.75%;left:15%;width:53%;height:10.6%}
 .kp-home-hanzi{top:11.8%;left:40%;width:53%;height:9.4%}
@@ -50,4 +53,5 @@
  .kp-study-stamp{flex-basis:42px;width:42px;height:42px;border-radius:14px}
  .kp-study-stamp img{width:35px;height:35px}
  .kp-learning-map{border-radius:15px}
+ .kp-help-station{left:6%;top:12.8%;width:50px;min-height:60px;border-radius:18px;padding:6px 3px;font-size:10px}
 }
