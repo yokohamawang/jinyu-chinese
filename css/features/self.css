@@ -4,7 +4,16 @@
 .kp-self-account b,.kp-self-account small{display:block}
 .kp-self-account b{font-size:15px;color:#3e584d}
 .kp-self-account small{margin-top:4px;color:#78877f;font-size:11px;line-height:1.55}
-.kp-self-account>.kp-primary{grid-column:1/-1;min-height:46px}
+.kp-account-login{grid-column:1/-1;width:100%;min-height:60px;display:flex;align-items:center;gap:12px;padding:9px 13px;border:1px solid #0b806b;border-radius:18px;background:linear-gradient(112deg,#159b7d 0%,#087961 100%);color:#fff;text-align:left;box-shadow:0 7px 16px #087c672c,inset 0 1px #ffffff42;cursor:pointer;touch-action:manipulation;transition:transform .14s ease,box-shadow .14s ease,filter .14s ease;-webkit-tap-highlight-color:transparent}
+.kp-account-login:active{transform:scale(.985);box-shadow:0 3px 8px #087c6726,inset 0 1px #ffffff42;filter:brightness(.98)}
+.kp-account-login:focus-visible{outline:3px solid #f0ba46;outline-offset:3px}
+.kp-account-login-icon{flex:0 0 40px;width:40px;height:40px;display:grid;place-items:center;border:1px solid #ffffff55;border-radius:14px;background:#ffffff20}
+.kp-account-login-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.kp-account-login-copy{display:grid;gap:3px;min-width:0}
+.kp-account-login-copy>b{font-size:14px;line-height:1.2;font-weight:800;color:#fff}
+.kp-account-login-copy>small{margin:0;color:#e2f5ef;font-size:10px;line-height:1.25;font-weight:600}
+.kp-account-login-arrow{margin-left:auto;flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border:1px solid #ffffff45;border-radius:50%;background:#ffffff14}
+.kp-account-login-arrow svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .kp-self-collection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
 .kp-self-collection button{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:2px 9px;padding:14px 12px;border:1px solid #e9efe9;border-radius:20px;background:#fff;text-align:left;color:#486052;cursor:pointer;box-shadow:0 7px 18px #34483a0a}
 .kp-self-collection button>span{grid-row:span 3;display:grid;place-items:center;width:36px;height:36px;border-radius:13px;background:#eef8f1;font-size:20px}
