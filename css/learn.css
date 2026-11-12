@@ -1,0 +1,56 @@
+/* Learning home feature: live records and stamps above an independently linked island route. */
+.kp-learning-home{width:100%;overflow:visible}
+.kp-study-record,.kp-study-stamps{margin:0 0 12px;padding:14px 16px;border:1px solid #e4eee8;border-radius:20px;background:#fff;box-shadow:0 5px 18px #2747370a}
+.kp-study-record{display:grid;grid-template-columns:minmax(110px,.8fr) minmax(210px,1.7fr) auto;align-items:center;gap:12px}
+.kp-study-record-main{display:grid;grid-template-columns:34px 1fr;align-items:center;column-gap:8px;color:#34483f}
+.kp-study-flame{grid-row:span 2;font-size:27px}
+.kp-study-record-main>div{display:grid;gap:4px}
+.kp-study-record-main>div>b,.kp-study-stamps-head b{font-size:14px;line-height:1.25}
+.kp-study-record-main>div>small,.kp-study-stamps-head small{color:#829088;font-size:11px}
+.kp-study-record-main>strong{grid-column:2;color:#168968;font-size:30px;line-height:1.1}
+.kp-study-record-main>strong small{margin-left:2px;font-size:14px}
+.kp-study-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.kp-study-day{display:grid;justify-items:center;gap:4px;min-height:48px;padding:5px 2px;border-radius:13px;background:#f5f8f6;color:#8a9790}
+.kp-study-day small{font-size:10px}
+.kp-study-day b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#fff;font-size:14px}
+.kp-study-day.is-done{color:#118e6d}.kp-study-day.is-done b{background:#dff5ea;color:#118e6d}
+.kp-study-day.is-today{outline:1px solid #76cdb0;outline-offset:1px}
+.kp-study-link,.kp-study-stamps-head>a{display:inline-flex;align-items:center;gap:5px;color:#45816b;font-size:11px;font-weight:750;text-decoration:none;white-space:nowrap}
+.kp-study-link span,.kp-study-stamps-head>a span{font-size:20px;line-height:1}
+.kp-study-stamps{padding:12px 16px}
+.kp-study-stamps-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.kp-study-stamps-head>div{display:flex;align-items:baseline;gap:8px;color:#34483f}
+.kp-study-stamp-row{display:flex;align-items:center;gap:10px;min-height:56px;margin-top:8px;padding:5px 0;overflow-x:auto}
+.kp-study-stamp{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border:1px solid #f1e7d7;border-radius:16px;background:#fff9ed}
+.kp-study-stamp img{display:block;width:40px;height:40px;object-fit:contain}
+.kp-study-stamp-empty{padding:10px 12px;border-radius:13px;background:#f5f8f6;color:#89958e;font-size:12px}
+.kp-learning-map{position:relative;width:100%;aspect-ratio:739 / 1409;overflow:hidden;border-radius:18px;background:#e9f7f7;isolation:isolate}
+.kp-learning-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center bottom}
+.kp-home-hotspot{position:absolute;z-index:2;display:block;margin:0;padding:0;border:0;border-radius:30%;background:transparent;-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
+.kp-home-hotspot:focus-visible{outline:3px solid #0ba983;outline-offset:-4px;background:#ffffff2b}
+.kp-help-station{top:13.11%;left:5%;z-index:3;display:block;width:136px;height:auto;max-width:23%;min-width:86px;aspect-ratio:5 / 3;padding:0;border:0;border-radius:24px;background:transparent;box-shadow:none;text-decoration:none;overflow:visible}
+.kp-help-station img{display:block;width:100%;height:100%;object-fit:contain}
+.kp-help-station:active{transform:scale(.96)}
+/* Hotspots follow the standalone 739×1409 roadmap image in assets/home. */
+.kp-home-pinyin{top:.71%;left:15%;width:53%;height:10%}
+.kp-home-hanzi{top:11.13%;left:40%;width:53%;height:8.87%}
+.kp-home-pre4{top:25.47%;left:23%;width:54%;height:10.38%}
+.kp-home-grade4{top:35.82%;left:30%;width:56%;height:9.8%}
+.kp-home-grade3{top:45.83%;left:15%;width:54%;height:9.7%}
+.kp-home-grade2{top:55.97%;left:35%;width:53%;height:10%}
+.kp-home-grade-pre1{top:66.72%;left:20%;width:60%;height:10.19%}
+.kp-home-grade1{top:77.37%;left:15%;width:68%;height:19.5%}
+@media(max-width:600px){
+ .kp-study-record{grid-template-columns:1fr;gap:10px;padding:12px 13px}
+ .kp-study-record-main{grid-template-columns:30px 1fr auto;grid-template-rows:auto}
+ .kp-study-flame{grid-row:auto;font-size:23px}
+ .kp-study-record-main>strong{grid-column:3;grid-row:1/3;font-size:26px}
+ .kp-study-calendar{gap:4px}
+ .kp-study-day{min-height:43px}
+ .kp-study-link{justify-self:end}
+ .kp-study-stamps{padding:11px 13px}
+ .kp-study-stamp-row{gap:7px}
+ .kp-study-stamp{flex-basis:42px;width:42px;height:42px;border-radius:14px}
+ .kp-study-stamp img{width:35px;height:35px}
+ .kp-learning-map{border-radius:15px}
+}
