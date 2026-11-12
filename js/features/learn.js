@@ -38,10 +38,10 @@
       ${recordCard()}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
-        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.195" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1409">
+        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.196" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454">
         <button type="button" class="kp-home-hotspot kp-home-pinyin" data-action="pinyin-course" aria-label="ピンインのぼうけんを始める"></button>
         <a class="kp-home-hotspot kp-help-station" href="./help-station.html?v=10.108.301.64" aria-label="小音の手書き漢字辞典：手書きで文字を調べる">
-          <img src="./assets/home/help-station-handwriting-dictionary.svg?v=301.195" alt="" width="180" height="108">
+          <img src="./assets/home/help-station-handwriting-dictionary.svg?v=301.196" alt="" width="180" height="108">
         </a>
         <a class="kp-home-hotspot kp-home-hanzi" href="./hanzi-practice.html" aria-label="漢字のたんけんを開く"></a>
         <a class="kp-home-hotspot kp-home-pre4" href="./hanzi-practice.html" aria-label="準4級の漢字ルートを開く"></a>
