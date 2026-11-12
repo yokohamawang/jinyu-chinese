@@ -38,10 +38,7 @@
       ${recordCard()}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
-       <div class="kp-learning-stage">
-        <img class="kp-learning-art kp-learning-art-upper" src="./assets/home/koepanda-home-roadmap-301.46.png?v=10.108.301.46" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="2129">
-        <img class="kp-learning-art kp-learning-art-lower" src="./assets/home/koepanda-home-roadmap-301.46.png?v=10.108.301.46" alt="" aria-hidden="true" width="739" height="2129">
-        <img class="kp-learning-art kp-learning-art-tail" src="./assets/home/koepanda-home-roadmap-301.46.png?v=10.108.301.46" alt="" aria-hidden="true" width="739" height="2129">
+        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.194" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1409">
         <button type="button" class="kp-home-hotspot kp-home-pinyin" data-action="pinyin-course" aria-label="ピンインのぼうけんを始める"></button>
         <a class="kp-home-hotspot kp-help-station" href="./help-station.html?v=10.108.301.64" aria-label="小音の手書き漢字辞典：手書きで文字を調べる">
           <img src="./assets/home/help-station-handwriting-dictionary.svg?v=301.191" alt="" width="180" height="108">
@@ -53,7 +50,6 @@
         <button type="button" class="kp-home-hotspot kp-home-grade2" data-action="roadmap-coming" data-level="2級" aria-label="2級コースの案内"></button>
         <button type="button" class="kp-home-hotspot kp-home-grade-pre1" data-action="roadmap-coming" data-level="準1級" aria-label="準1級コースの案内"></button>
         <button type="button" class="kp-home-hotspot kp-home-grade1" data-action="roadmap-coming" data-level="1級" aria-label="1級コースの案内"></button>
-       </div>
       </div>
     </section>`;
   };
