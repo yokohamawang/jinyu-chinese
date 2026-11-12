@@ -1,13 +1,14 @@
 {
-  "version": "301.193",
+  "version": "301.194",
   "base_version": "301.175",
-  "built_at_jst": "2026-11-12T21:48:00+09:00",
+  "built_at_jst": "2026-11-12T22:00:00+09:00",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "301.175 至 301.193 累计差分：救助字典入口再下移少许；单独延展准1級至1級之间的连接段，扩大终段岛距并校准热点。",
+  "summary": "301.175 至 301.194 累计差分：将拉伸后的路线图放入 assets/home 作为单张底图，首页单次加载并按新图尺寸校准入口热点。",
   "changed_files": [
     "assets/brand/koepanda-logo.jpeg",
     "assets/home/help-station-handwriting-dictionary.svg",
+    "assets/home/koepanda-learning-roadmap.png",
     "css/app-shell.css",
     "css/features/learn.css",
     "css/features/self.css",
