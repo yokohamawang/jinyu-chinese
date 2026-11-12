@@ -1,0 +1,7 @@
+(function(){
+  'use strict';
+  window.KoepandaFeatures=window.KoepandaFeatures||{};
+  window.KoepandaFeatures.self = function({head,state}){
+    return `${head('記録とコレクション','自分のページ','学習記録を保存して、集めたシールを楽しもう。')}<section class="kp-self-account"><img src="./assets/brand/xiaoyin-mascot.png" alt="小音"><div><b>ゲストとして学習中</b><small>アカウントは既存の学習記録に使えます。新しいシール帳・友だち情報は現在この端末内に保存されます。</small></div><button class="kp-account-login" data-action="account"><span class="kp-account-login-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3.1"></circle><path d="M3.4 19c.5-3.2 2.3-4.8 5.6-4.8s5.1 1.6 5.6 4.8M19 14.4v5.2m-2.6-2.6h5.2"></path></svg></span><span class="kp-account-login-copy"><b>新規登録・ログイン</b><small>学習記録を引き継ぐ</small></span><span class="kp-account-login-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13m-5-5 5 5-5 5"></path></svg></span></button></section><section class="kp-section"><div class="kp-section-title"><h2>コレクション</h2><span>${state.unlocked.length}枚</span></div><div class="kp-self-collection"><button data-go="book"><span>📒</span><b>シール帳</b><small>シールを自由に貼って飾ろう</small><strong>開く ›</strong></button><button data-go="rewards"><span>🎁</span><b>ごほうびボックス</b><small>シリーズとお気に入りを管理</small><strong>開く ›</strong></button></div></section><section class="kp-section"><div class="kp-section-title"><h2>学習の記録</h2></div><div class="kp-self-record"><span>🌱</span><p>続けた分だけ、学習ロードとシールが育っていくよ。</p></div></section>`;
+  }
+})();
