@@ -1,15 +1,14 @@
 {
-  "version": "301.198",
-  "base_version": "301.195",
-  "built_at_jst": "2026-11-12T23:52:40+09:00",
+  "version": "301.199",
+  "base_version": "301.198",
+  "built_at_jst": "2026-11-13T09:50:00+09:00",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "移除旧首页重复的字典入口和专属样式；保留当前学习页唯一入口并按路线图宽度18%自适应，移除手机端最小宽度撑大问题；统一版本标记。",
+  "summary": "整体认读1补齐7音连续播放；汉字描摹区加入前后汉字切换，并缩短描摹按钮。",
   "changed_files": [
-    "assets/home/koepanda-learning-roadmap.png",
-    "css/features/learn.css",
     "index.html",
-    "js/features/learn.js"
+    "hanzi-practice.html",
+    "js/30-whole-syllables-p14-260.js"
   ],
   "removed_files": []
 }
