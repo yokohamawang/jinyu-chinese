@@ -25,3 +25,41 @@
 .kp-trade-item .kp-friend-actions{margin-left:52px}
 .kp-friend-action:disabled{opacity:.5;cursor:not-allowed}
 @media(max-width:520px){.kp-friends-overview{gap:6px}.kp-friends-overview>div{min-height:48px;gap:4px;padding:7px 4px;flex-direction:column}.kp-friends-overview b{font-size:16px}.kp-friends-overview span{font-size:10px}.kp-trade-details{margin-left:0}.kp-trade-details-error,.kp-trade-item .kp-friend-actions{margin-left:0}}
+
+/* 301.201: compact friends dashboard and profile controls */
+.kp-friends-profile-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 15px!important}
+.kp-friends-profile-strip .kp-friend-identity{display:flex;align-items:center;gap:10px;min-width:0}
+.kp-friends-profile-strip .kp-friend-identity>div:last-child{display:grid;gap:3px}
+.kp-friends-profile-strip .kp-friend-identity b{color:#41574a;font-size:14px}
+.kp-friends-profile-strip .kp-friend-identity small{color:#849188;font-size:10px}
+.kp-avatar-art{display:inline-flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;height:46px;border:2px solid rgba(255,255,255,.9);border-radius:50%;box-shadow:0 2px 8px rgba(55,83,65,.12);font-size:25px;line-height:1}
+.kp-avatar-art.mint{background:#e8f5eb}.kp-avatar-art.blue{background:#e9f2fa}.kp-avatar-art.pink{background:#fff0f2}.kp-avatar-art.orange{background:#fff0df}.kp-avatar-art.gold{background:#fff5ce}.kp-avatar-art.green{background:#e8f4da}.kp-avatar-art.lavender{background:#f1ecfa}.kp-avatar-art.peach{background:#ffede5}.kp-avatar-art.gray{background:#edf0ed}
+.kp-friends-overview>div:first-child{background:linear-gradient(145deg,#f1faf2,#fff)}
+.kp-friends-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:0 0 12px;padding:5px;border:1px solid #e7ede8;border-radius:18px;background:#edf3ee}
+.kp-friends-tab{display:flex;align-items:center;justify-content:center;gap:6px;min-height:43px;border:0;border-radius:13px;background:transparent;color:#718078;font-size:13px;font-weight:800;cursor:pointer}
+.kp-friends-tab.is-active{background:#fff;color:#31765b;box-shadow:0 2px 8px rgba(45,76,57,.1)}
+.kp-friends-tab>span{display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:#e9f4ea;color:#397551;font-size:10px}
+.kp-friend-card-row{display:grid;grid-template-columns:minmax(135px,1fr) minmax(0,1.4fr);gap:9px 14px;align-items:center;padding:14px}
+.kp-friend-identity{display:flex;align-items:center;gap:10px;min-width:0}
+.kp-friend-identity .kp-friend-info{display:grid;gap:5px;min-width:0}
+.kp-presence{display:inline-flex;align-items:center;gap:5px;color:#87948b;font-size:10px}
+.kp-presence i{width:8px;height:8px;border-radius:50%;background:#b9c2bc}
+.kp-presence.is-online{color:#328253;font-weight:800}.kp-presence.is-online i{background:#38b36d;box-shadow:0 0 0 3px #e3f5e8}
+.kp-learning-summary{display:flex;flex-wrap:wrap;gap:5px 12px;color:#65776b;font-size:10px;line-height:1.5}
+.kp-learning-summary>span:first-child{width:100%;font-weight:700;color:#53695a}
+.kp-learning-summary b{color:#347450;font-size:12px}
+.kp-learning-private{color:#9aa39c;font-size:10px}
+.kp-friend-card-row .kp-friend-actions{grid-column:1/-1;width:100%;margin:0;justify-content:flex-end}
+.kp-profile-editor{display:grid;gap:12px}
+.kp-profile-editor>label:first-child{margin-bottom:-7px;color:#52665a;font-size:12px;font-weight:800}
+.kp-profile-editor>input:not([type=hidden]){width:100%;min-height:48px;padding:10px 13px;border:1px solid #dfe8e1;border-radius:14px;background:#fff;color:#34443a;font-size:16px}
+.kp-profile-editor fieldset{margin:2px 0;padding:11px;border:1px solid #e6ece7;border-radius:16px}
+.kp-profile-editor legend{padding:0 5px;color:#53675b;font-size:12px;font-weight:800}
+.kp-avatar-picker{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.kp-avatar-choice{display:grid;justify-items:center;gap:4px;padding:6px 2px;border:1px solid transparent;border-radius:13px;background:#f7faf7;color:#6f7e74;cursor:pointer}
+.kp-avatar-choice .kp-avatar-art{width:38px;height:38px;flex-basis:38px;font-size:21px}
+.kp-avatar-choice small{font-size:9px}
+.kp-avatar-choice.is-selected{border-color:#74b58a;background:#edf8ef;box-shadow:0 0 0 2px rgba(95,166,116,.12)}
+.kp-profile-editor .kp-friend-privacy{margin:0;padding:10px 0;border-top:1px solid #edf1ed}
+.kp-profile-save{width:100%;min-height:47px;margin-top:2px}
+@media(max-width:520px){.kp-friend-card-row{grid-template-columns:1fr;gap:8px;padding:12px}.kp-friend-card-row .kp-learning-summary,.kp-friend-card-row .kp-learning-private{padding-left:56px}.kp-friend-card-row .kp-friend-actions{grid-column:auto;justify-content:flex-start;padding-left:56px}.kp-friends-profile-strip{padding:11px!important}.kp-friends-profile-strip>button{padding:9px 10px;font-size:11px}.kp-avatar-picker{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.kp-avatar-choice{padding:5px 0}}
