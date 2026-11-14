@@ -1,72 +1,286 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>声調コーチ</title>
-<link rel="stylesheet" href="./css/00-base.css?v=10.107.72">
-<link rel="stylesheet" href="./css/01-ui54-fix.css?v=10.107.72" id="ui54-fix">
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="koepanda-build" content="10.108.301.206"><title>声調コーチ</title>
+<link rel="stylesheet" href="./css/00-base.css?v=10.108.159">
+<link rel="stylesheet" href="./css/01-ui54-fix.css?v=10.108.159" id="ui54-fix">
 
-<link rel="stylesheet" href="./css/02-ui55-home-fix.css?v=10.107.72" id="ui55-home-fix">
+<link rel="stylesheet" href="./css/02-ui55-home-fix.css?v=10.108.159" id="ui55-home-fix">
 
-<link rel="stylesheet" href="./css/03-ui56-character-assets.css?v=10.107.72" id="ui56-character-assets">
+<link rel="stylesheet" href="./css/03-ui56-character-assets.css?v=10.108.159" id="ui56-character-assets">
 
-<link rel="stylesheet" href="./css/04-demo1057-polish.css?v=10.107.72" id="demo1057-polish">
-
-
-<link rel="stylesheet" href="./css/05-demo1058-path.css?v=10.107.72" id="demo1058-path">
+<link rel="stylesheet" href="./css/04-demo1057-polish.css?v=10.108.159" id="demo1057-polish">
 
 
-<link rel="stylesheet" href="./css/06-demo1059-ui-polish.css?v=10.107.72" id="demo1059-ui-polish">
-
-<link rel="stylesheet" href="./css/07-demo1070-brand-effect-match.css?v=10.107.72" id="demo1070-brand-effect-match">
+<link rel="stylesheet" href="./css/05-demo1058-path.css?v=10.108.159" id="demo1058-path">
 
 
-<link rel="stylesheet" href="./css/08-demo1071-freepreview-fix.css?v=10.107.72" id="demo1071-freepreview-fix">
+<link rel="stylesheet" href="./css/06-demo1059-ui-polish.css?v=10.108.159" id="demo1059-ui-polish">
+
+<link rel="stylesheet" href="./css/07-demo1070-brand-effect-match.css?v=10.108.159" id="demo1070-brand-effect-match">
 
 
-<link rel="stylesheet" href="./css/09-demo1072-stepbuttons-fix.css?v=10.107.72" id="demo1072-stepbuttons-fix">
+<link rel="stylesheet" href="./css/08-demo1071-freepreview-fix.css?v=10.108.159" id="demo1071-freepreview-fix">
 
 
-<link rel="stylesheet" href="./css/10-demo1073-step-image-buttons.css?v=10.107.72" id="demo1073-step-image-buttons">
+<link rel="stylesheet" href="./css/09-demo1072-stepbuttons-fix.css?v=10.108.159" id="demo1072-stepbuttons-fix">
 
 
-<link rel="stylesheet" href="./css/11-demo1074-audio-mouth-fix.css?v=10.107.72" id="demo1074-audio-mouth-fix">
+<link rel="stylesheet" href="./css/10-demo1073-step-image-buttons.css?v=10.108.159" id="demo1073-step-image-buttons">
 
 
-<link rel="stylesheet" href="./css/12-demo1087-small-fixes.css?v=10.107.72" id="demo1087-small-fixes">
-
-<link rel="stylesheet" href="./css/13-demo1088-quiz-dots-mascot-fix.css?v=10.107.72" id="demo1088-quiz-dots-mascot-fix">
+<link rel="stylesheet" href="./css/11-demo1074-audio-mouth-fix.css?v=10.108.159" id="demo1074-audio-mouth-fix">
 
 
-<link rel="stylesheet" href="./css/14-demo1099-home-navigation-clean.css?v=10.107.72" id="demo1099-home-navigation-clean">
+<link rel="stylesheet" href="./css/12-demo1087-small-fixes.css?v=10.108.159" id="demo1087-small-fixes">
+
+<link rel="stylesheet" href="./css/13-demo1088-quiz-dots-mascot-fix.css?v=10.108.159" id="demo1088-quiz-dots-mascot-fix">
 
 
-<link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.107.72" id="demo10105-recording-state-restored">
-<meta name="koepanda-build" content="DEMO 10.107.99 lesson-overlay-audio-balance">
+<link rel="stylesheet" href="./css/14-demo1099-home-navigation-clean.css?v=10.108.159" id="demo1099-home-navigation-clean">
 
-<link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.107.72" id="demo1010734-kids-first-lesson">
-<link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.107.72" id="demo1010735-first-step-home">
-<link rel="stylesheet" href="./css/37-demo1010737-first-step-flow.css?v=10.107.72" id="demo1010737-first-step-flow">
-<link rel="stylesheet" href="./css/38-demo1010738-home-entry-balance.css?v=10.107.72" id="demo1010738-home-entry-balance">
-<link rel="stylesheet" href="./css/39-demo1010740-pinyin-roadmap.css?v=10.107.72" id="demo1010740-pinyin-roadmap">
-<link rel="stylesheet" href="./css/40-demo1010741-p0-tone-adventure.css?v=10.107.72" id="demo1010741-p0-tone-adventure">
-<link rel="stylesheet" href="./css/41-demo1010744-pinyin-visual-audio-fix.css?v=10.107.72" id="demo1010744-pinyin-visual-audio-fix">
-<link rel="stylesheet" href="./css/42-demo1010754-vowel-drill-navigation.css?v=10.107.72" id="demo1010754-vowel-drill-navigation">
-<link rel="stylesheet" href="./css/43-demo1010755-compact-roadmap-navigation.css?v=10.107.72" id="demo1010755-compact-roadmap-navigation">
-<link rel="stylesheet" href="./css/44-demo1010758-visible-back-navigation.css?v=10.107.72" id="demo1010758-visible-back-navigation">
-<link rel="stylesheet" href="./css/45-demo1010759-grouped-lesson-navigation.css?v=10.107.72" id="demo1010759-grouped-lesson-navigation">
+
+<link rel="stylesheet" href="./css/15-demo10105-recording-state-restored.css?v=10.108.159" id="demo10105-recording-state-restored">
+<link rel="stylesheet" href="./css/35-demo1010734-kids-first-lesson.css?v=10.108.301.105" id="demo1010734-kids-first-lesson">
+<link rel="stylesheet" href="./css/36-demo1010735-first-step-home.css?v=10.108.159" id="demo1010735-first-step-home">
+<link rel="stylesheet" href="./css/37-demo1010737-first-step-flow.css?v=10.108.159" id="demo1010737-first-step-flow">
+<link rel="stylesheet" href="./css/38-demo1010738-home-entry-balance.css?v=10.108.159" id="demo1010738-home-entry-balance">
+<link rel="stylesheet" href="./css/39-demo1010740-pinyin-roadmap.css?v=10.108.159" id="demo1010740-pinyin-roadmap">
+<link rel="stylesheet" href="./css/40-demo1010741-p0-tone-adventure.css?v=10.108.159" id="demo1010741-p0-tone-adventure">
+<link rel="stylesheet" href="./css/41-demo1010744-pinyin-visual-audio-fix.css?v=10.108.159" id="demo1010744-pinyin-visual-audio-fix">
+<link rel="stylesheet" href="./css/42-demo1010754-vowel-drill-navigation.css?v=10.108.159" id="demo1010754-vowel-drill-navigation">
+<link rel="stylesheet" href="./css/43-demo1010755-compact-roadmap-navigation.css?v=10.108.159" id="demo1010755-compact-roadmap-navigation">
+<link rel="stylesheet" href="./css/44-demo1010758-visible-back-navigation.css?v=10.108.159" id="demo1010758-visible-back-navigation">
+<link rel="stylesheet" href="./css/45-demo1010759-grouped-lesson-navigation.css?v=10.108.159" id="demo1010759-grouped-lesson-navigation">
   <link rel="stylesheet" href="./css/46-demo1010762-compact-back-override.css">
-<link rel="stylesheet" href="./css/47-demo1010769-a-sample-unlock.css?v=10.107.72" id="demo1010769-a-sample-unlock">
-<link rel="stylesheet" href="./css/48-demo1010770-tone-layer-guide.css?v=10.107.72" id="demo1010770-tone-layer-guide">
-<link rel="stylesheet" href="./css/49-demo1010771-premium-tone-road-a.css?v=10.107.72" id="demo1010771-premium-tone-road-a">
-<link rel="stylesheet" href="./css/50-demo1010772-tone-road-effect-match.css?v=10.107.72" id="demo1010772-tone-road-effect-match">
-<link rel="stylesheet" href="./css/51-demo1010773-tone-road-scene-polish.css?v=10.107.73" id="demo1010773-tone-road-scene-polish">
-<link rel="stylesheet" href="./css/52-demo1010774-tone-road-character-polish.css?v=10.107.77" id="demo1010775-tone-road-character-embed-fix">
-<link rel="stylesheet" href="./css/53-demo1010777-tone-road-fullbody.css?v=10.107.77" id="demo1010777-tone-road-fullbody">
-<link rel="stylesheet" href="./css/60-demo1010785-clean-release.css?v=10.107.85" id="demo1010785-clean-release">
-<link rel="stylesheet" href="./css/62-demo1010788-pinyin-avatar-polish.css?v=10.107.88" id="demo1010788-pinyin-avatar-polish">
-<link rel="stylesheet" href="./css/63-demo1010789-tone-road-polish.css?v=10.107.89" id="demo1010789-tone-road-polish">
-<link rel="stylesheet" href="./css/64-demo1010790-lesson-layer-fix.css?v=10.107.90" id="demo1010790-lesson-layer-fix">
-<link rel="stylesheet" href="./css/65-demo1010797-kids-home-back-unified.css?v=10.107.97" id="demo1010797-kids-home-back-unified">
-<link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.107.99" id="demo1010798-simple-learning-path">
-<link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.01" id="demo1010801-flow-celebration-roadmap-fix">
+<link rel="stylesheet" href="./css/47-demo1010769-a-sample-unlock.css?v=10.108.159" id="demo1010769-a-sample-unlock">
+<link rel="stylesheet" href="./css/48-demo1010770-tone-layer-guide.css?v=10.108.159" id="demo1010770-tone-layer-guide">
+<link rel="stylesheet" href="./css/49-demo1010771-premium-tone-road-a.css?v=10.108.159" id="demo1010771-premium-tone-road-a">
+<link rel="stylesheet" href="./css/50-demo1010772-tone-road-effect-match.css?v=10.108.159" id="demo1010772-tone-road-effect-match">
+<link rel="stylesheet" href="./css/51-demo1010773-tone-road-scene-polish.css?v=10.108.159" id="demo1010773-tone-road-scene-polish">
+<link rel="stylesheet" href="./css/52-demo1010774-tone-road-character-polish.css?v=10.108.159" id="demo1010775-tone-road-character-embed-fix">
+<link rel="stylesheet" href="./css/53-demo1010777-tone-road-fullbody.css?v=10.108.159" id="demo1010777-tone-road-fullbody">
+<link rel="stylesheet" href="./css/60-demo1010785-clean-release.css?v=10.108.159" id="demo1010785-clean-release">
+<link rel="stylesheet" href="./css/62-demo1010788-pinyin-avatar-polish.css?v=10.108.159" id="demo1010788-pinyin-avatar-polish">
+<link rel="stylesheet" href="./css/63-demo1010789-tone-road-polish.css?v=10.108.159" id="demo1010789-tone-road-polish">
+<link rel="stylesheet" href="./css/64-demo1010790-lesson-layer-fix.css?v=10.108.159" id="demo1010790-lesson-layer-fix">
+<link rel="stylesheet" href="./css/65-demo1010797-kids-home-back-unified.css?v=10.108.159" id="demo1010797-kids-home-back-unified">
+<link rel="stylesheet" href="./css/66-demo1010798-simple-learning-path.css?v=10.108.159" id="demo1010798-simple-learning-path">
+<link rel="stylesheet" href="./css/67-demo1010801-flow-celebration-roadmap-fix.css?v=10.108.159" id="demo1010801-flow-celebration-roadmap-fix">
+<link rel="stylesheet" href="./css/68-demo1010872-initials-forest.css?v=10.108.159" id="demo1010808-initials-forest">
+<link rel="stylesheet" href="./css/119-pinyin-mini-match-301.95.css?v=10.108.301.97">
+<link rel="stylesheet" href="./css/70-demo1010820-dtnl-first-lesson.css?v=10.108.159" id="demo1010820-dtnl-first-lesson" data-build="10.108.134">
+<style id="demo1010880-initial-example-press-feedback">
+/* Retain the unified example button feedback from 10.108.79. */
+
+#kidsInitialsLesson .initials-tone-buttons .initial-guide-button{position:relative;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform 110ms cubic-bezier(.2,.75,.25,1),filter 110ms ease,box-shadow 110ms ease;box-shadow:0 6px 0 rgba(55,124,101,.16),0 9px 16px rgba(42,99,76,.10),inset 0 1px 0 rgba(255,255,255,.9)}
+#kidsInitialsLesson .initials-tone-buttons .initial-guide-button:active,#kidsInitialsLesson .initials-tone-buttons .initial-guide-button.is-pressed{transform:translateY(3px) scale(.978);filter:brightness(.95) saturate(.92);box-shadow:0 2px 0 rgba(55,124,101,.13),0 4px 8px rgba(42,99,76,.09),inset 0 2px 4px rgba(34,92,70,.10)}
+#kidsInitialsLesson .initials-tone-buttons .initial-guide-button:focus-visible{outline:3px solid rgba(68,167,126,.42);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){#kidsInitialsLesson .initials-tone-buttons .initial-guide-button{transition:none}}
+
+
+</style>
+<link rel="stylesheet" href="./css/71-demo1010824-free-practice-polish.css?v=10.108.159" id="demo1010824-free-practice-polish">
+<link rel="stylesheet" href="./css/73-demo1010832-practice-simple-large.css?v=10.108.159" id="demo1010832-practice-simple-large">
+<link rel="stylesheet" href="./css/74-demo1010842-vowel-quiz-unified-premium.css?v=10.108.159" id="demo1010842-vowel-quiz-unified-premium">
+<link rel="stylesheet" href="./css/72-demo1010828-result-stage-overlay.css?v=10.108.159" id="demo1010828-result-stage-overlay">
+<link rel="stylesheet" href="./css/69-demo1010812-dev-test-mode.css?v=10.108.159" id="demo1010812-dev-test-mode">
+<link rel="stylesheet" href="./css/75-demo10108104-vowel-clear-zones.css?v=10.108.159" id="demo10108104-vowel-clear-zones">
+<link rel="stylesheet" href="./css/76-demo10108105-consonant-illustration.css?v=10.108.159" id="demo10108105-consonant-illustration">
+<link rel="stylesheet" href="./css/77-demo10108106-dental-integration.css?v=10.108.159" id="demo10108106-dental-integration">
+<link rel="stylesheet" href="./css/78-demo10108107-consonant-finish.css?v=10.108.159" id="demo10108107-consonant-finish">
+<link rel="stylesheet" href="./css/79-demo10108110-f-contact-motion.css?v=10.108.159" id="demo10108110-f-contact-motion">
+<link rel="stylesheet" href="./css/80-demo10108112-dtnl-texture.css?v=10.108.159" id="demo10108112-dtnl-texture">
+<link rel="stylesheet" href="./css/81-demo10108113-gkh-first-lesson.css?v=10.108.159" id="demo10108113-gkh-first-lesson">
+<link rel="stylesheet" href="./css/82-demo10108116-jqx-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/83-demo10108117-zhr-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/84-demo10108118-zcs-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/85-demo10108119-ai-ei-ui-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/86-demo10108122-ao-ou-iu-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/87-demo10108123-ie-ue-er-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/88-demo10108124-front-nasal-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/89-demo10108128-back-nasal-first-lesson.css?v=10.108.159">
+<link rel="stylesheet" href="./css/90-pronunciation-studio-134.css?v=10.108.159">
+<link rel="stylesheet" href="./css/91-pronunciation-ux-135.css?v=10.108.159">
+<link rel="stylesheet" href="./css/92-articulation-motion-139.css?v=10.108.159">
+<link rel="stylesheet" href="./css/128-single-sound-focus-301.107.css?v=10.108.301.107">
+<link rel="stylesheet" href="./css/129-single-sound-navigation-301.111.css?v=10.108.301.111">
+<link rel="stylesheet" href="./css/133-tone-audio-icon-only-301.114.css?v=10.108.301.116">
+<link rel="stylesheet" href="./css/134-single-sound-card-collapse-301.115.css?v=10.108.301.115">
+<style id="kp-practice-layout-159">
+/* Shared practice layout; kept in the head so it is available with the content. */
+#kidsCourse {
+  --kp-practice-ink:#285f50;
+  --kp-practice-green:#3dac7c;
+  --kp-practice-line:#d5e7dc;
+}
+#kidsCourse .kp-practice {
+  --kp-practice-inset:12px;
+  position:relative;display:block;box-sizing:border-box;
+  margin:16px var(--kp-practice-inset)!important;padding:16px 14px 14px!important;
+  min-width:0;min-height:0!important;max-width:calc(100% - 24px);
+  overflow:hidden;border:1px solid var(--kp-practice-line)!important;
+  border-radius:24px!important;background:linear-gradient(180deg,#fcfefb,#f0f8f2)!important;
+  box-shadow:0 7px 20px rgba(47,94,73,.045)!important;
+  color:var(--kp-practice-ink);
+}
+#kidsCourse .kp-practice[hidden]{display:none!important}
+#kidsCourse .kp-practice:before {
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#69b795,#daeee2);
+}
+#kidsCourse .kp-practice .kp-practice-head {
+  display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:0;min-width:0;
+}
+#kidsCourse .kp-practice-head>div {min-width:0;flex:1}
+#kidsCourse .kp-practice .kp-practice-head h3 {
+  margin:0!important;font-size:20px!important;font-weight:850!important;
+  line-height:1.4!important;letter-spacing:.01em;color:var(--kp-practice-ink);
+}
+#kidsCourse .kp-practice .kp-practice-head p {
+  margin:4px 0 0!important;font-size:15px!important;line-height:1.55!important;
+  font-weight:650!important;color:#607b70;white-space:normal;word-break:normal;line-break:strict;
+}
+#kidsCourse .kp-practice-avatar {
+  background:#edf6ed;box-shadow:0 0 0 2px #fff,0 0 0 3px #dceade;
+}
+#kidsCourse .kp-practice .kp-practice-choices {
+  display:grid!important;grid-template-columns:repeat(var(--kp-practice-columns,4),minmax(0,1fr))!important;
+  gap:8px!important;width:100%;min-width:0;margin:0 0 12px!important;padding:0!important;
+}
+#kidsCourse .kp-practice .kp-practice-choices>button {
+  display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  min-width:0;min-height:64px!important;height:auto!important;width:100%;margin:0!important;
+  padding:8px 3px!important;border:1px solid #c9e0d2!important;border-radius:18px!important;
+  background:#eaf5ed!important;color:#34765f!important;box-shadow:none!important;
+  font-family:inherit;font-size:30px!important;font-weight:800!important;line-height:1.2!important;
+  letter-spacing:0;white-space:normal;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transform:none!important;animation:none!important;
+  transition:transform .1s ease,background-color .1s ease;
+}
+#kidsCourse .kp-practice .kp-practice-choices>button:is(.is-active,.is-selected) {
+  background:var(--kp-practice-green)!important;border-color:var(--kp-practice-green)!important;color:#fff!important;
+}
+#kidsCourse .kp-practice .kp-practice-choices>button:is(:active,.is-pressed,.dtnl-is-pressed,.kp-ui-pressed):not(:disabled){transform:translateY(2px)!important;box-shadow:inset 0 2px 4px #215f4326!important;filter:brightness(.97)}
+#kidsCourse .kp-practice .kp-practice-choices>button:disabled{opacity:.5;cursor:default}
+#kidsCourse .kp-practice .kp-practice-choices>button strong{font-size:32px!important;line-height:1.2!important;font-weight:800!important}
+#kidsCourse .kp-practice .kp-practice-choices>button small{font-size:14px!important;line-height:1.35!important;color:inherit!important;font-weight:700!important}
+#kidsCourse .kp-practice .kp135-practice-art {
+  margin:0 0 10px!important;padding:10px!important;width:100%;min-width:0;
+  border:1px solid #d6e5da!important;border-radius:20px!important;background:#fff!important;
+}
+#kidsCourse .kp-practice .kp-practice-console {
+  margin:0!important;padding:14px 12px!important;min-height:0!important;min-width:0;
+  border:1px solid #e1e7dc!important;border-radius:20px!important;
+  background:linear-gradient(145deg,#fbfdf8,#fffbf3)!important;box-shadow:none!important;
+}
+#kidsCourse .kp-practice .kp-practice-console:before{content:none!important}
+#kidsCourse .kp-practice .kp144-front{width:min(100%,180px)!important;max-height:165px!important}
+#kidsCourse .kp-practice .kp134-front-view{min-height:185px!important}
+#kidsCourse .kp-practice .kp-practice-target {
+  display:block!important;min-height:0!important;margin:0!important;padding:0!important;
+  font-size:16px!important;line-height:1.5!important;font-weight:800!important;color:#355e4d!important;
+  white-space:normal!important;overflow-wrap:anywhere;
+}
+#kidsCourse .kp-practice .kp-practice-record-hint {
+  margin:3px 0 12px!important;padding:0!important;font-size:15px!important;
+  line-height:1.5!important;font-weight:650;color:#697f70;white-space:normal;overflow-wrap:anywhere;
+}
+#kidsCourse .kp-practice .kp-practice-record-row {
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;margin:0!important;padding:0!important;
+}
+#kidsCourse .kp-practice .kp-practice-record-row>button {
+  min-width:0;width:100%;min-height:64px!important;height:auto!important;margin:0!important;
+  padding:11px 7px!important;border:1px solid #f1d6cf!important;border-radius:20px!important;
+  font-family:inherit;font-size:17px!important;line-height:1.45!important;font-weight:800!important;
+  background:linear-gradient(180deg,#fff7f3,#ffebe7)!important;color:#c4645b!important;
+  box-shadow:0 3px 0 #efd6ce!important;white-space:normal;overflow-wrap:anywhere;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+#kidsCourse .kp-practice .kp-practice-record-row>button:last-child {
+  border-color:#dce5ef!important;background:linear-gradient(180deg,#f5f8ff,#eaf0fa)!important;
+  color:#536c91!important;box-shadow:0 3px 0 #d8e1ed!important;
+}
+#kidsCourse .kp-practice .kp-practice-record-row>button:disabled{opacity:.46!important;box-shadow:none!important;cursor:default}
+#kidsCourse .kp-practice .kp-practice-record-row>button:active:not(:disabled),
+#kidsCourse .kp-practice .kp-practice-record-row>button.is-playing{transform:translateY(2px)!important;box-shadow:none!important;filter:brightness(.96)}
+#kidsCourse .kp-practice .kp-practice-record-row>button.is-recording{background:#d97468!important;color:#fff!important;border-color:#d97468!important}
+#kidsCourse .kp-practice .kp-practice-console>[aria-live]:last-child {
+  min-height:0!important;margin:12px 0 0!important;padding:0!important;font-size:15px!important;
+  line-height:1.6!important;white-space:normal;overflow-wrap:anywhere;
+}
+#kidsCourse .kp-practice .kp-practice-console>[aria-live]:last-child:empty{display:none!important;margin:0!important}
+#kidsCourse .kp-practice .kp-practice-note{margin:12px 2px 0;font-size:15px;line-height:1.6;color:#657b6e}
+#kidsCourse .kp-practice-check-entry {
+  box-sizing:border-box;margin:16px 12px!important;padding:0!important;max-width:calc(100% - 24px);
+  border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;
+}
+#kidsCourse .kp-practice-check-entry>button {
+  display:block;width:100%;min-height:56px!important;margin:0!important;padding:12px!important;
+  border:1px solid #e7d79c!important;border-radius:20px!important;
+  background:linear-gradient(180deg,#fffdf3,#fff2c9)!important;color:#705b22!important;
+  font-size:17px!important;line-height:1.4;font-weight:800!important;box-shadow:0 3px 0 #e9dba9!important;
+}
+#kidsCourse .kp-practice-check-entry>button:active{transform:translateY(2px);box-shadow:none!important}
+#kidsCourse .kp-practice button:focus-visible,#kidsCourse .kp-practice-check-entry>button:focus-visible{outline:3px solid #dbab4f;outline-offset:3px}
+@media(max-width:360px){
+  #kidsCourse .kp-practice{--kp-practice-inset:10px}
+  #kidsCourse .kp-practice,#kidsCourse .kp-practice-check-entry{margin-left:10px!important;margin-right:10px!important;max-width:calc(100% - 20px)}
+  #kidsCourse .kp-practice{padding-left:12px!important;padding-right:12px!important}
+  #kidsCourse .kp-practice .kp-practice-head{gap:10px}
+  #kidsCourse .kp-practice .kp-practice-head h3{font-size:19px!important}
+  #kidsCourse .kp-practice .kp-practice-choices{gap:6px!important}
+  #kidsCourse .kp-practice .kp-practice-choices>button{font-size:26px!important}
+  #kidsCourse .kp-practice .kp-practice-record-row>button{font-size:16px!important}
+}
+/* The vowel drill has 19px of existing nested border/padding on each side.
+   Match the common lesson edge without changing its teaching section. */
+@media(max-width:600px){
+  #kidsCourse #kidsVowelDrill .kp-practice,
+  #kidsCourse #kidsVowelDrill .kp-practice-check-entry{
+    margin-left:calc(var(--kp-practice-inset,12px) - 19px)!important;
+    margin-right:calc(var(--kp-practice-inset,12px) - 19px)!important;
+    width:calc(100% + 38px - 2 * var(--kp-practice-inset,12px));max-width:none;
+  }
+  #kidsCourse #kidsVowelDrill .kp-practice-check-entry{--kp-practice-inset:12px}
+}
+@media(max-width:360px){#kidsCourse #kidsVowelDrill .kp-practice-check-entry{--kp-practice-inset:10px}}
+@media(max-height:700px){
+  #kidsCourse .kp-practice .kp144-front{width:min(100%,169px)!important;max-height:155px!important}
+  #kidsCourse .kp-practice .kp134-front-view{min-height:175px!important}
+}
+@media(prefers-reduced-motion:reduce){#kidsCourse .kp-practice button{transition:none!important;transform:none!important}}
+
+</style>
+<link rel="stylesheet" href="./css/93-whole-syllables-p14-163.css?v=10.108.174">
+<link rel="stylesheet" href="./css/95-whole-syllables-p15-176.css?v=10.108.178">
+<link rel="stylesheet" href="./css/156-p14-p15-xiaoyin-mouth-motion-301.156.css?v=10.108.301.156">
+<link rel="stylesheet" href="./css/157-p14-p15-switch-stability-touch-301.157.css?v=10.108.301.157">
+<link rel="stylesheet" href="./css/158-p14-p15-xiaoyin-mouth-open-301.158.css?v=10.108.301.158">
+<link rel="stylesheet" href="./css/160-p14-p15-xiaoyin-alignment-301.160.css?v=10.108.301.160">
+<link rel="stylesheet" href="./css/161-p14-p15-hand-gesture-301.161.css?v=10.108.301.161">
+
+<link rel="stylesheet" href="./css/98-two-spelling-p16-192.css?v=10.108.192">
+<link rel="stylesheet" href="./css/98-roadmap-image-193.css?v=10.108.195">
+<link rel="stylesheet" href="./css/99-nine-islands-196.css?v=10.108.201">
+<link rel="stylesheet" href="./css/100-forest-learning-202.css?v=10.108.202">
+<link rel="stylesheet" href="./css/101-pinyin-lesson-illustrations-203.css?v=10.108.203">
+<link rel="stylesheet" href="./css/102-roadmap-harmony-204.css?v=10.108.204">
+<link rel="stylesheet" href="./css/99-roadmap-ten-islands-297.css?v=10.108.297">
+<link rel="stylesheet" href="./css/103-p16-spacious-205.css?v=10.108.205">
+<link rel="stylesheet" href="./css/104-p16-mascot-visible-208.css?v=10.108.208">
+<link rel="stylesheet" href="./css/105-p16-layout-art-fix-209.css?v=10.108.209">
+<link rel="stylesheet" href="./css/106-p16-board-type-and-anchor-210.css?v=10.108.210">
+<link rel="stylesheet" href="./css/107-p16-cue-art-and-audio-211.css?v=10.108.211">
+<link rel="stylesheet" href="./css/135-vowel-record-and-speaker-301.116.css?v=10.108.301.116">
+<link rel="stylesheet" href="./css/136-initials-balanced-card-301.117.css?v=10.108.301.117">
+<link rel="stylesheet" href="./css/137-pinyin-layout-free-practice-301.119.css?v=10.108.301.119">
+<link rel="stylesheet" href="./css/138-pinyin-free-practice-layout-301.120.css?v=10.108.301.120">
+<link rel="stylesheet" href="./css/152-nasal-combined-letter-cards-301.143.css?v=10.108.301.143">
+<link rel="stylesheet" href="./css/153-nasal-card-shape-stable-height-301.144.css?v=10.108.301.144">
+<link rel="stylesheet" href="./css/154-pinyin-header-switcher-301.148.css?v=10.108.301.148">
+<link rel="stylesheet" href="./css/155-p16-pointing-animation-301.151.css?v=10.108.301.151">
+<link rel="stylesheet" href="./css/157-p17-right-hand-g-301.153.css?v=10.108.301.153">
+<link rel="stylesheet" href="./css/koepanda-account-301.164.css?v=10.108.301.164">
 </head><body class="app-home-mode">
 
 <style id="demo1010751-pinyin-entry-hit-fix">
@@ -76,6 +290,7 @@ html body.app-home-mode #kidsEntryButton *{pointer-events:none!important;}
 </style>
 <script id="demo1010751-pinyin-entry-hard-fallback">
 window.koepandaEnterKidsCourse=function(ev){
+  var options=arguments[1]||{};
   try{ if(ev){ev.preventDefault();ev.stopPropagation();} }catch(e){}
   try{
     var b=document.body;
@@ -83,7 +298,16 @@ window.koepandaEnterKidsCourse=function(ev){
     b.classList.add('app-kids-mode');
     var c=document.getElementById('kidsCourse');
     if(c)c.setAttribute('aria-hidden','false');
-    try{history.replaceState(null,'',location.pathname+location.search+'#kidsCourse')}catch(e){}
+    /* Keep a real in-app history step so Android browser Back returns home. */
+    if(!options.restore){
+      try{
+        var currentState=history.state||{};
+        if(!currentState.koepandaPinyinEntry){
+          var pinyinState=Object.assign({},currentState,{koepandaPinyinEntry:true});
+          history.pushState(pinyinState,'',location.pathname+location.search+'#kidsCourse');
+        }
+      }catch(e){}
+    }
     setTimeout(function(){try{window.scrollTo(0,0)}catch(e){}},0);
   }catch(e){console.error('pinyin entry fallback failed',e);}
   return false;
@@ -93,21 +317,13 @@ window.koepandaEnterKidsCourse=function(ev){
 <div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.107.97</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 <!-- DEMO 10.107.61 visible Back navigation; roadmap stays compact and Back remains available while scrolling. -->
-<section class="home-effect-live" id="homeEffect" aria-label="Koepanda ホーム">
-  <div class="home-effect-top">
-    <img class="home-effect-reference home-effect-top-image" src="./assets/home/koepanda-home-top-final.webp?v=10.107.85" alt="今日のステップ。聞く・話す・まねるの3つの練習">
-    <a class="home-effect-hotspot hs-listen" href="#listeningGame" aria-label="聞く：声調を聞き分ける"></a>
-    <a class="home-effect-hotspot hs-talk" href="#pandaChat" aria-label="話す：自由に練習する"></a>
-    <a class="home-effect-hotspot hs-repeat" href="#examplePractice" aria-label="まねる：例文を声に出す"></a>
-  </div>
-  <section class="kids-entry-card" id="kidsEntry" aria-label="はじめの一歩">
-    <button type="button" class="kids-entry-button" id="kidsEntryButton" onclick="return window.koepandaEnterKidsCourse(event)">
-      <span class="kids-entry-icon" aria-hidden="true">🐼</span>
-      <span class="kids-entry-copy"><strong>はじめの一歩</strong><small>音と口の形から、やさしく中国語</small></span>
-      <span class="kids-entry-arrow" aria-hidden="true">›</span>
-    </button>
-  </section>
-  <img class="home-effect-reference home-effect-bottom-image" src="./assets/home/koepanda-home-bottom-final.webp?v=10.107.85" alt="学習の記録と集めたスタンプ">
+<section class="home-effect-live roadmap-home-301" id="homeEffect" aria-label="Koepanda 学びのホーム">
+  <img class="home-effect-reference roadmap-home-image" src="./assets/home/koepanda-home-roadmap-301.46.png?v=10.108.301.46" alt="声調コーチのホームと、拼音・漢字・中国語検定の学習ロード">
+  <a class="home-effect-hotspot roadmap-hs-listen" href="#listeningGame" aria-label="聞く：物語を聞く"></a>
+  <a class="home-effect-hotspot roadmap-hs-talk" href="#pandaChat" aria-label="話す：場面で話す"></a>
+  <a class="home-effect-hotspot roadmap-hs-repeat" href="#examplePractice" aria-label="まねる：発音と声調を練習"></a>
+  <a class="home-effect-hotspot roadmap-hs-pinyin" href="#kidsCourse" onclick="return window.koepandaEnterKidsCourse(event)" aria-label="ピンインのぼうけん：既存の拼音学習ロードを開く"></a>
+  <a class="home-effect-hotspot roadmap-hs-hanzi" href="./hanzi-practice.html?v=301.199" aria-label="漢字のたんけん：漢字练习を開く"></a>
 </section>
 
 <section class="kids-course" id="kidsCourse" aria-labelledby="kidsCourseTitle" aria-hidden="true">
@@ -120,7 +336,7 @@ window.koepandaEnterKidsCourse=function(ev){
     </div>
   </header>
 
-  <div class="kids-map" aria-label="はじめの一歩 進行" hidden>
+  <div class="kids-map" aria-label="はじめの一歩 進行">
     <div class="kids-map-node is-current"><b>1</b><span>音の高さ</span></div>
     <div class="kids-map-line"></div>
     <div class="kids-map-node"><b>2</b><span>6つの母音</span></div>
@@ -313,6 +529,507 @@ window.koepandaEnterKidsCourse=function(ev){
     </div>
   </article>
 
+
+  <article class="kids-lesson-card initials-forest-card" id="kidsInitialsLesson" hidden>
+    <div class="initials-forest-hero">
+      <div class="initials-forest-copy">
+        <span class="initials-kicker">LESSON 3 · 声母の森</span>
+        <h2>b・p・m・f の森へ</h2>
+        <p>声母<strong>そのものの音</strong>を聞いて、くちびると息の違いを感じよう。</p>
+      </div>
+      <div class="initials-forest-art" aria-hidden="true">
+        <span class="tree tree-a">♣</span><span class="tree tree-b">♣</span>
+        <span class="forest-path"></span><span class="forest-gem" aria-label="音のしるし"><i aria-hidden="true">♪</i></span>
+      </div>
+    </div>
+
+    
+
+    <aside class="initials-tone-rule" aria-label="声母と声調のルール">
+      <div class="initials-tone-rule-head"><span class="rule-badge">♪</span><div><b>四声はどこにつく？</b><small>声母には声調をつけず、韻母に音の高さがのります。</small></div></div>
+      <div class="initials-tone-formula" aria-hidden="true">
+        <span class="rule-part initial"><strong>b</strong><em>声母</em><i>声調なし</i></span>
+        <span class="rule-plus">＋</span>
+        <span class="rule-part final"><strong>ā</strong><em>韻母</em><i>ここに四声</i></span>
+        <span class="rule-arrow">→</span>
+        <span class="rule-part syllable"><strong>bā</strong><em>音節</em><i>声＋音調</i></span>
+      </div>
+      <div class="initials-tone-road" aria-hidden="true"><span></span><b>声母でスタート</b><i></i><strong>韻母で声調が動く</strong></div>
+    </aside>
+
+    <section class="initials-panel initials-sound-panel">
+      <div class="initials-panel-head"><span>👂</span><div><b>まず、4つの声母に会おう</b></div></div>
+      
+      <div class="initials-letter-navigation" aria-label="声母を選ぶ"><button type="button" id="initialsLetterPrev" aria-label="前の声母">←</button><span id="initialsLetterCount" aria-live="polite">1 / 4</span><button type="button" id="initialsLetterNext" aria-label="次の声母">→</button></div>
+      <div class="initials-letter-grid" id="initialsLetterGrid" aria-live="polite"></div>
+      <div class="initials-tone-ribbon" id="initialsToneRibbon" aria-live="polite">
+        <div class="initials-focus-copy"><span id="initialsFocusLetter">b</span><strong id="initialsFocusSyllable">[p] · 短い音</strong><small id="initialsFocusTip">くちびるを閉じる → 一瞬だけ開く。母音を足さない</small></div>
+        <div class="initials-tone-buttons" id="initialsToneButtons"></div>
+        <div class="initials-focus-visual" id="initialsFocusVisual" aria-label="口の形と息の流れ"></div>
+        <div class="initials-tone-mini-note">♪ 声調は韻母につくよ</div>
+      </div>
+    </section>
+
+    <section class="initials-panel initials-free-practice kp-practice" aria-labelledby="initialsPracticeTitle">
+      <header class="kp-practice-head"><div><h3 id="initialsPracticeTitle">自由練習</h3><p>選択中の声母を録音して聞き返す</p></div></header>
+      <div class="kp-practice-console"><p class="kp-practice-target" id="initialsPracticeTarget" aria-live="polite">練習する音：b（bō・1声）</p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p>
+        <div class="kp-practice-record-row"><button type="button" id="initialsRecord">● 録音する</button><button type="button" id="initialsPlayback" disabled>▶ 自分の声を聞く</button></div><p id="initialsImitateFeedback" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="kp-practice-check-entry" aria-label="ミニチェック"><button type="button" class="initials-to-quiz" id="initialsToQuiz">ミニチェックへ →</button></section>
+
+    <section class="initials-panel initials-quiz-panel" id="initialsQuizPanel" hidden>
+      <div class="initials-panel-head"><span>⭐</span><div><b>森のミニチェック</b><small>音を聞いて、b・p・m・f から選ぼう</small></div></div>
+      <div class="initials-quiz-count" id="initialsQuizCount">0 / 4 ペア</div>
+      <button type="button" class="initials-big-listen" id="initialsQuizListen" hidden>▶ 音を聞く</button>
+      <div class="kp-match-board" aria-label="音声と発音字母のペア合わせ">
+        <section class="kp-match-column"><h3>発音を選ぶ</h3><div class="initials-quiz-choices" id="initialsQuizChoices"></div></section>
+        <section class="kp-match-column"><h3>音を聞く</h3><div class="kp-match-audio-list" id="initialsQuizAudioCards"></div></section>
+      </div>
+      <div class="initials-feedback" id="initialsQuizFeedback"></div>
+      <button type="button" class="initials-quiz-next" id="initialsQuizNext" hidden>次の問題へ →</button>
+    </section>
+
+    <section class="initials-result" id="initialsResult" hidden aria-live="polite">
+      <div class="initials-result-badge" id="initialsResultBadge">✓</div>
+      <div class="initials-result-copy">
+        <strong id="initialsResultTitle">ミニチェック結果</strong>
+        <span id="initialsResultScore">4問中 0問正解</span>
+        <small id="initialsResultMessage"></small>
+      </div>
+      <button type="button" class="initials-result-action" id="initialsResultAction"></button>
+    </section>
+
+    <section class="initials-reward" id="initialsReward" hidden>
+      <div class="initials-reward-medal">🌲</div><div><strong>b・p・m・f クリア！</strong><span>声母の森の最初のステップをクリアしたよ</span><small>次は d・t・n・l へ進もう！</small></div>
+    </section>
+  </article>
+
+  <article class="kids-lesson-card dtnl-forest-card" id="kidsInitialsDTNLLesson" hidden>
+    <div class="dtnl-hero">
+      <div class="dtnl-hero-copy">
+        <span class="dtnl-kicker">LESSON 4 · 舌先の小径</span>
+        <h2>d・t・n・l</h2>
+        <p>今度の主役は「舌先」。上の歯ぐきに軽く触れる場所は同じでも、息と音の出口が変わるよ。</p>
+      </div>
+      <div class="dtnl-hero-art" aria-hidden="true"><span class="dtnl-leaf l1">🍃</span><span class="dtnl-leaf l2">🍃</span><span class="dtnl-music-gem" aria-label="音のしるし"><i aria-hidden="true">♪</i></span></div>
+    </div>
+    
+    <aside class="dtnl-tone-rule"><span>♪</span><div><b>ここでも声調は韻母につくよ</b><small>d・t・n・l 自体には四声をつけません。</small></div></aside>
+    <section class="dtnl-panel">
+      <div class="dtnl-panel-head"><span>👂</span><div><b>まず4つの音を比べよう</b></div></div>
+      
+      <div class="dtnl-letter-grid" id="dtnlLetterGrid"></div>
+      <div class="dtnl-focus-card" id="dtnlFocusCard"><div class="dtnl-focus-copy"><span id="dtnlFocusLetter">d</span><div><strong id="dtnlFocusGuide">dē（呼読音） · [t]</strong><small id="dtnlFocusTip">舌先で息をいったん止め、ぱっと離します。強い息は出しません。</small></div></div><div class="dtnl-actions" id="dtnlActions"></div><div class="dtnl-articulation" id="dtnlArticulation" aria-label="舌先と息の動き"></div></div>
+    </section>
+    
+    <section class="dtnl-panel dtnl-practice-panel kp-practice" aria-labelledby="dtnlPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="dtnlPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="dtnl-free-choice kp-practice-choices" id="dtnlFreeChoice" style="--kp-practice-columns:4"></div><div class="practice-console dtnl-practice-console kp-practice-console"><p class="kp-practice-target" id="dtnlPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="dtnl-record-row kp-practice-record-row"><button type="button" class="dtnl-record" id="dtnlRecord">● 録音する</button><button type="button" class="dtnl-playback" id="dtnlPlayback" disabled>▶ 自分の声を聞く</button></div><div class="dtnl-feedback" id="dtnlPracticeFeedback" aria-live="polite"></div></div></section><section class="kp-practice-check-entry" aria-label="ミニチェック"><button type="button" class="dtnl-to-quiz" id="dtnlToQuiz">ミニチェックへ →</button></section>
+    <section class="dtnl-panel dtnl-quiz-panel" id="dtnlQuizPanel" hidden><div class="dtnl-panel-head"><span>⭐</span><div><b>舌先のミニチェック</b><small>音を聞いて d・t・n・l から選ぼう</small></div></div><div class="dtnl-quiz-count" id="dtnlQuizCount">1 / 4</div><button type="button" class="dtnl-main-button" id="dtnlQuizListen">▶ 音を聞く</button><div class="dtnl-quiz-choices" id="dtnlQuizChoices"></div><div class="dtnl-feedback" id="dtnlQuizFeedback"></div><button type="button" class="dtnl-quiz-next" id="dtnlQuizNext" hidden>次の問題へ →</button></section>
+    <section class="dtnl-result" id="dtnlResult" hidden aria-live="polite"><div class="dtnl-result-badge" id="dtnlResultBadge">✓</div><div><strong id="dtnlResultTitle">ミニチェック結果</strong><span id="dtnlResultScore">4問中 0問正解</span><small id="dtnlResultMessage"></small></div><button type="button" class="dtnl-result-action" id="dtnlResultAction"></button></section>
+  </article>
+
+  <article class="kids-lesson-card gkh-lesson" id="kidsInitialsGKHLesson" hidden>
+    <header class="gkh-hero">
+      <span class="gkh-kicker">LESSON 5 · 舌の奥へ</span>
+      <h2>g・k・h</h2>
+      <p>舌の奥を使って、息の出し方を聞き分けよう。</p>
+      <span class="gkh-music" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"/><ellipse cx="7" cy="18" rx="3" ry="2"/><ellipse cx="16" cy="16" rx="3" ry="2"/></svg></span>
+      <span class="gkh-complete" id="gkhCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="gkh-zone gkh-teaching" aria-labelledby="gkhTeachingTitle">
+      <div class="gkh-zone-head"><span>01</span><div><h3 id="gkhTeachingTitle">音と舌の動きを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="gkh-letter-grid" id="gkhLetterGrid"></div>
+      <div class="gkh-focus">
+        <div class="gkh-focus-copy"><span id="gkhFocusLetter">g</span><div><strong id="gkhFocusGuide">哥 gē · [k]</strong><p id="gkhFocusTip"></p></div></div>
+        <button class="gkh-button gkh-model" id="gkhModel" type="button">▶ g のお手本を聞く</button>
+        <p class="gkh-model-feedback" id="gkhModelFeedback" aria-live="polite"></p>
+        <div class="gkh-articulation" id="gkhArticulation" aria-label="舌の奥と息の動き"></div>
+      </div>
+      <details class="gkh-static-section" id="gkhStaticDetails" aria-labelledby="gkhStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="gkh-static-head"><span id="gkhStaticLetter" aria-hidden="true">g</span><div><small>静止図で確認</small><h3 id="gkhStaticTitle">口形と舌・息の基本図</h3></div></div><div class="gkh-static-content" id="gkhStaticGuide"></div></details>
+      
+      
+    </section>
+    <section class="gkh-zone gkh-practice kp-practice" aria-labelledby="gkhPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="gkhPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="gkh-free-choice kp-practice-choices" id="gkhFreeChoice" style="--kp-practice-columns:3"></div><div class="practice-console gkh-practice-console kp-practice-console"><p class="kp-practice-target" id="gkhPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="gkh-record-row kp-practice-record-row"><button class="gkh-button gkh-record" id="gkhRecord" type="button">● 録音する</button><button class="gkh-button gkh-playback" id="gkhPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="gkh-feedback" id="gkhPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="gkh-zone gkh-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="gkh-button gkh-to-quiz" id="gkhToQuiz" type="button">ミニチェックへ →</button>
+      <div class="gkh-quiz" id="gkhQuizPanel" hidden>
+        <div class="gkh-quiz-top"><strong>聞こえたのはどの音？</strong><span id="gkhQuizCount">1 / 4</span></div>
+        <button class="gkh-button gkh-listen" id="gkhQuizListen" type="button">▶ 音を聞く</button>
+        <div class="gkh-quiz-choices" id="gkhQuizChoices"></div>
+        <p class="gkh-feedback" id="gkhQuizFeedback" aria-live="polite"></p>
+        <button class="gkh-button gkh-next" id="gkhQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="gkh-result" id="gkhResult" hidden aria-live="polite">
+        <span class="gkh-result-mark" id="gkhResultMark">✓</span><h4 id="gkhResultTitle">ミニチェック結果</h4><strong id="gkhResultScore"></strong><p id="gkhResultMessage"></p>
+        <div class="gkh-result-actions"><button class="gkh-button" id="gkhRetry" type="button">もう一度チェックする</button><button class="gkh-button gkh-return" id="gkhReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card jqx-lesson" id="kidsInitialsJQXLesson" hidden>
+    <header class="jqx-hero">
+      <span class="jqx-kicker">LESSON 6 · 舌の前面へ</span>
+      <h2>j・q・x</h2>
+      <p>舌の前面を使って、息の出し方を聞き分けよう。</p>
+      <span class="jqx-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="jqx-complete" id="jqxCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="jqx-zone jqx-teaching" aria-labelledby="jqxTeachingTitle">
+      <div class="jqx-zone-head"><span>01</span><div><h3 id="jqxTeachingTitle">音と舌の動きを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="jqx-letter-grid" id="jqxLetterGrid"></div>
+      <div class="jqx-focus">
+        <div class="jqx-focus-copy"><span id="jqxFocusLetter">j</span><div><strong id="jqxFocusGuide">鸡 jī · [tɕ]</strong><p id="jqxFocusTip"></p></div></div>
+        <button class="jqx-button jqx-model" id="jqxModel" type="button">▶ j のお手本を聞く</button>
+        <p class="jqx-model-feedback" id="jqxModelFeedback" aria-live="polite"></p>
+        <div class="jqx-articulation" id="jqxArticulation" aria-label="舌の前面と息の動き"></div>
+      </div>
+      <details class="jqx-static-section" id="jqxStaticDetails" aria-labelledby="jqxStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="jqx-static-head"><span id="jqxStaticLetter" aria-hidden="true">j</span><div><small>静止図で確認</small><h3 id="jqxStaticTitle">口形と舌・息の基本図</h3></div></div><div class="jqx-static-content" id="jqxStaticGuide"></div><p class="jqx-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      
+    </section>
+    <section class="jqx-zone jqx-practice kp-practice" aria-labelledby="jqxPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="jqxPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="jqx-free-choice kp-practice-choices" id="jqxFreeChoice" style="--kp-practice-columns:3"></div><div class="practice-console jqx-practice-console kp-practice-console"><p class="kp-practice-target" id="jqxPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="jqx-record-row kp-practice-record-row"><button class="jqx-button jqx-record" id="jqxRecord" type="button">● 録音する</button><button class="jqx-button jqx-playback" id="jqxPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="jqx-feedback" id="jqxPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="jqx-zone jqx-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="jqx-button jqx-to-quiz" id="jqxToQuiz" type="button">ミニチェックへ →</button>
+      <div class="jqx-quiz" id="jqxQuizPanel" hidden>
+        <div class="jqx-quiz-top"><strong>聞こえたのはどの音？</strong><span id="jqxQuizCount">1 / 4</span></div>
+        <button class="jqx-button jqx-listen" id="jqxQuizListen" type="button">▶ 音を聞く</button>
+        <div class="jqx-quiz-choices" id="jqxQuizChoices"></div>
+        <p class="jqx-feedback" id="jqxQuizFeedback" aria-live="polite"></p>
+        <button class="jqx-button jqx-next" id="jqxQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="jqx-result" id="jqxResult" hidden aria-live="polite">
+        <span class="jqx-result-mark" id="jqxResultMark">✓</span><h4 id="jqxResultTitle">ミニチェック結果</h4><strong id="jqxResultScore"></strong><p id="jqxResultMessage"></p>
+        <div class="jqx-result-actions"><button class="jqx-button" id="jqxRetry" type="button">もう一度チェックする</button><button class="jqx-button jqx-return" id="jqxReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card zhr-lesson" id="kidsInitialsZHRLesson" hidden>
+    <header class="zhr-hero">
+      <span class="zhr-kicker">LESSON 7 · 舌先を少し上げて</span>
+      <h2>zh・ch・sh・r</h2>
+      <p>舌先を少し上げて、息と声の違いを聞き分けよう。</p>
+      <span class="zhr-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="zhr-complete" id="zhrCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="zhr-zone zhr-teaching" aria-labelledby="zhrTeachingTitle">
+      <div class="zhr-zone-head"><span>01</span><div><h3 id="zhrTeachingTitle">音と舌の動きを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="zhr-letter-grid" id="zhrLetterGrid"></div>
+      <div class="zhr-focus">
+        <div class="zhr-focus-copy"><span id="zhrFocusLetter">zh</span><div><strong id="zhrFocusGuide">智 zhì · [tʂ]</strong><p id="zhrFocusTip"></p></div></div>
+        <button class="zhr-button zhr-model" id="zhrModel" type="button">▶ zh のお手本を聞く</button>
+        <p class="zhr-model-feedback" id="zhrModelFeedback" aria-live="polite"></p>
+        <div class="zhr-articulation" id="zhrArticulation" aria-label="舌先の奥と息の動き"></div>
+      </div>
+      <details class="zhr-static-section" id="zhrStaticDetails" aria-labelledby="zhrStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="zhr-static-head"><span id="zhrStaticLetter" aria-hidden="true">zh</span><div><small>静止図で確認</small><h3 id="zhrStaticTitle">口形と舌・息の基本図</h3></div></div><div class="zhr-static-content" id="zhrStaticGuide"></div><p class="zhr-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      
+    </section>
+    <section class="zhr-zone zhr-practice kp-practice" aria-labelledby="zhrPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="zhrPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="zhr-free-choice kp-practice-choices" id="zhrFreeChoice" style="--kp-practice-columns:4"></div><div class="practice-console zhr-practice-console kp-practice-console"><p class="kp-practice-target" id="zhrPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="zhr-record-row kp-practice-record-row"><button class="zhr-button zhr-record" id="zhrRecord" type="button">● 録音する</button><button class="zhr-button zhr-playback" id="zhrPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="zhr-feedback" id="zhrPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="zhr-zone zhr-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="zhr-button zhr-to-quiz" id="zhrToQuiz" type="button">ミニチェックへ →</button>
+      <div class="zhr-quiz" id="zhrQuizPanel" hidden>
+        <div class="zhr-quiz-top"><strong>聞こえたのはどの音？</strong><span id="zhrQuizCount">1 / 4</span></div>
+        <button class="zhr-button zhr-listen" id="zhrQuizListen" type="button">▶ 音を聞く</button>
+        <div class="zhr-quiz-choices" id="zhrQuizChoices"></div>
+        <p class="zhr-feedback" id="zhrQuizFeedback" aria-live="polite"></p>
+        <button class="zhr-button zhr-next" id="zhrQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="zhr-result" id="zhrResult" hidden aria-live="polite">
+        <span class="zhr-result-mark" id="zhrResultMark">✓</span><h4 id="zhrResultTitle">ミニチェック結果</h4><strong id="zhrResultScore"></strong><p id="zhrResultMessage"></p>
+        <div class="zhr-result-actions"><button class="zhr-button" id="zhrRetry" type="button">もう一度チェックする</button><button class="zhr-button zhr-return" id="zhrReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card zcs-lesson" id="kidsInitialsZCSLesson" hidden>
+    <header class="zcs-hero">
+      <span class="zcs-kicker">LESSON 8 · 上の歯の裏へ</span>
+      <h2>z・c・s</h2>
+      <p>舌先を前に向けて、息の違いを聞き分けよう。</p>
+      <span class="zcs-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="zcs-complete" id="zcsCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="zcs-zone zcs-teaching" aria-labelledby="zcsTeachingTitle">
+      <div class="zcs-zone-head"><span>01</span><div><h3 id="zcsTeachingTitle">音と舌の動きを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="zcs-letter-grid" id="zcsLetterGrid"></div>
+      <div class="zcs-focus">
+        <div class="zcs-focus-copy"><span id="zcsFocusLetter">z</span><div><strong id="zcsFocusGuide">字 zì · [ts]</strong><p id="zcsFocusTip"></p></div></div>
+        <button class="zcs-button zcs-model" id="zcsModel" type="button">▶ z のお手本を聞く</button>
+        <p class="zcs-model-feedback" id="zcsModelFeedback" aria-live="polite"></p>
+        <div class="zcs-articulation" id="zcsArticulation" aria-label="舌先の奥と息の動き"></div>
+      </div>
+      <details class="zcs-static-section" id="zcsStaticDetails" aria-labelledby="zcsStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="zcs-static-head"><span id="zcsStaticLetter" aria-hidden="true">z</span><div><small>静止図で確認</small><h3 id="zcsStaticTitle">口形と舌・息の基本図</h3></div></div><div class="zcs-static-content" id="zcsStaticGuide"></div><p class="zcs-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      
+    </section>
+    <section class="zcs-zone zcs-practice kp-practice" aria-labelledby="zcsPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="zcsPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="zcs-free-choice kp-practice-choices" id="zcsFreeChoice" style="--kp-practice-columns:3"></div><div class="practice-console zcs-practice-console kp-practice-console"><p class="kp-practice-target" id="zcsPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="zcs-record-row kp-practice-record-row"><button class="zcs-button zcs-record" id="zcsRecord" type="button">● 録音する</button><button class="zcs-button zcs-playback" id="zcsPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="zcs-feedback" id="zcsPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="zcs-zone zcs-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="zcs-button zcs-to-quiz" id="zcsToQuiz" type="button">ミニチェックへ →</button>
+      <div class="zcs-quiz" id="zcsQuizPanel" hidden>
+        <div class="zcs-quiz-top"><strong>聞こえたのはどの音？</strong><span id="zcsQuizCount">1 / 4</span></div>
+        <button class="zcs-button zcs-listen" id="zcsQuizListen" type="button">▶ 音を聞く</button>
+        <div class="zcs-quiz-choices" id="zcsQuizChoices"></div>
+        <p class="zcs-feedback" id="zcsQuizFeedback" aria-live="polite"></p>
+        <button class="zcs-button zcs-next" id="zcsQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="zcs-result" id="zcsResult" hidden aria-live="polite">
+        <span class="zcs-result-mark" id="zcsResultMark">✓</span><h4 id="zcsResultTitle">ミニチェック結果</h4><strong id="zcsResultScore"></strong><p id="zcsResultMessage"></p>
+        <div class="zcs-result-actions"><button class="zcs-button" id="zcsRetry" type="button">もう一度チェックする</button><button class="zcs-button zcs-return" id="zcsReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card cpv-lesson" id="kidsCompoundAIEIUILesson" hidden>
+    <header class="cpv-hero">
+      <span class="cpv-kicker">LESSON 9 · 音をつなぐ湖</span>
+      <h2>ai・ei・ui</h2>
+      <p>口の形を変えながら、ひと息でなめらかにつなごう。</p>
+      <span class="cpv-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="cpv-complete" id="cpvCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="cpv-zone cpv-teaching" aria-labelledby="cpvTeachingTitle">
+      <div class="cpv-zone-head"><span>01</span><div><h3 id="cpvTeachingTitle">音のつながりを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="cpv-letter-grid" id="cpvLetterGrid"></div>
+      <div class="cpv-focus">
+        <div class="cpv-focus-copy"><span id="cpvFocusLetter">ai</span><div><strong id="cpvFocusGuide">唉 āi · [ai]</strong><p id="cpvFocusTip"></p></div></div>
+        <button class="cpv-button cpv-model" id="cpvModel" type="button">▶ ai のお手本を聞く</button>
+        <p class="cpv-model-feedback" id="cpvModelFeedback" aria-live="polite"></p>
+        <div class="cpv-articulation" id="cpvArticulation" aria-label="複韻母の口形と音の流れ"></div>
+      </div>
+      <details class="cpv-static-section" id="cpvStaticDetails" aria-labelledby="cpvStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="cpv-static-head"><span id="cpvStaticLetter" aria-hidden="true">ai</span><div><small>静止図で確認</small><h3 id="cpvStaticTitle">口形と舌・息の基本図</h3></div></div><div class="cpv-static-content" id="cpvStaticGuide"></div><p class="cpv-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      <details class="cpv-model-note"><summary>お手本と声調について</summary><p>ai は「唉」、ei は「诶」、ui は「微（wēi）」で聞いてみよう。声調の違いより、口形が動く方向と音のつながりに注目します。</p><p>声調は韻母につきます。ai は a、ei は e、ui は i に声調記号をつけます。ui は声母の後で使う uei の省略表記です。声母をつけずに示す音は wei と書くため、「微」でお手本を聞きます。</p><p>ei の出だしは前寄りの音で、単母音 e のように口の奥へ引きません。</p></details></section>
+    <section class="cpv-zone cpv-practice kp-practice" aria-labelledby="cpvPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="cpvPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="cpv-free-choice kp-practice-choices" id="cpvFreeChoice" style="--kp-practice-columns:3"></div><div class="practice-console cpv-practice-console kp-practice-console"><p class="kp-practice-target" id="cpvPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="cpv-record-row kp-practice-record-row"><button class="cpv-button cpv-record" id="cpvRecord" type="button">● 録音する</button><button class="cpv-button cpv-playback" id="cpvPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="cpv-feedback" id="cpvPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="cpv-zone cpv-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="cpv-button cpv-to-quiz" id="cpvToQuiz" type="button">ミニチェックへ →</button>
+      <div class="cpv-quiz" id="cpvQuizPanel" hidden>
+        <div class="cpv-quiz-top"><strong>聞こえたのはどの音？</strong><span id="cpvQuizCount">1 / 4</span></div>
+        <button class="cpv-button cpv-listen" id="cpvQuizListen" type="button">▶ 音を聞く</button>
+        <div class="cpv-quiz-choices" id="cpvQuizChoices"></div>
+        <p class="cpv-feedback" id="cpvQuizFeedback" aria-live="polite"></p>
+        <button class="cpv-button cpv-next" id="cpvQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="cpv-result" id="cpvResult" hidden aria-live="polite">
+        <span class="cpv-result-mark" id="cpvResultMark">✓</span><h4 id="cpvResultTitle">ミニチェック結果</h4><strong id="cpvResultScore"></strong><p id="cpvResultMessage"></p>
+        <div class="cpv-result-actions"><button class="cpv-button" id="cpvRetry" type="button">もう一度チェックする</button><button class="cpv-button cpv-return" id="cpvReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card cpo-lesson" id="kidsCompoundAOOUIULesson" hidden>
+    <header class="cpo-hero">
+      <span class="cpo-kicker">LESSON 10 · 音をつなぐ湖</span>
+      <h2>ao・ou・iu</h2>
+      <p>口の形を変えながら、ひと息でなめらかにつなごう。</p>
+      <span class="cpo-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="cpo-complete" id="cpoCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="cpo-zone cpo-teaching" aria-labelledby="cpoTeachingTitle">
+      <div class="cpo-zone-head"><span>01</span><div><h3 id="cpoTeachingTitle">音のつながりを知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="cpo-letter-grid" id="cpoLetterGrid"></div>
+      <div class="cpo-focus">
+        <div class="cpo-focus-copy"><span id="cpoFocusLetter">ao</span><div><strong id="cpoFocusGuide">凹 āo · [ɑʊ]</strong><p id="cpoFocusTip"></p></div></div>
+        <button class="cpo-button cpo-model" id="cpoModel" type="button">▶ ao のお手本を聞く</button>
+        <p class="cpo-model-feedback" id="cpoModelFeedback" aria-live="polite"></p>
+        <div class="cpo-articulation" id="cpoArticulation" aria-label="複韻母の口形と音の流れ"></div>
+      </div>
+      <details class="cpo-static-section" id="cpoStaticDetails" aria-labelledby="cpoStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="cpo-static-head"><span id="cpoStaticLetter" aria-hidden="true">ao</span><div><small>静止図で確認</small><h3 id="cpoStaticTitle">口形と舌・息の基本図</h3></div></div><div class="cpo-static-content" id="cpoStaticGuide"></div><p class="cpo-static-note">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      <details class="cpo-model-note"><summary>お手本と拼音の書き方</summary><p>ao は「凹 āo」、ou は「欧 ōu」、iu は「优 yōu」で聞いてみよう。すべて1声のお手本です。</p><p>iu は声母の後で使う iou の省略表記です。声母をつけずに示す音は you と書くため、「优」でお手本を聞きます。</p><p>声調記号は ao の a、ou の o、iu の u につけます。ao の終わりは独立した o を読み足さず、唇を丸めて短く終えます。</p></details></section>
+    <section class="cpo-zone cpo-practice kp-practice" aria-labelledby="cpoPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="cpoPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="cpo-free-choice kp-practice-choices" id="cpoFreeChoice" style="--kp-practice-columns:3"></div><div class="practice-console cpo-practice-console kp-practice-console"><p class="kp-practice-target" id="cpoPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="cpo-record-row kp-practice-record-row"><button class="cpo-button cpo-record" id="cpoRecord" type="button">● 録音する</button><button class="cpo-button cpo-playback" id="cpoPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="cpo-feedback" id="cpoPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="cpo-zone cpo-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="cpo-button cpo-to-quiz" id="cpoToQuiz" type="button">ミニチェックへ →</button>
+      <div class="cpo-quiz" id="cpoQuizPanel" hidden>
+        <div class="cpo-quiz-top"><strong>聞こえたのはどの音？</strong><span id="cpoQuizCount">1 / 4</span></div>
+        <button class="cpo-button cpo-listen" id="cpoQuizListen" type="button">▶ 音を聞く</button>
+        <div class="cpo-quiz-choices" id="cpoQuizChoices"></div>
+        <p class="cpo-feedback" id="cpoQuizFeedback" aria-live="polite"></p>
+        <button class="cpo-button cpo-next" id="cpoQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="cpo-result" id="cpoResult" hidden aria-live="polite">
+        <span class="cpo-result-mark" id="cpoResultMark">✓</span><h4 id="cpoResultTitle">ミニチェック結果</h4><strong id="cpoResultScore"></strong><p id="cpoResultMessage"></p>
+        <div class="cpo-result-actions"><button class="cpo-button" id="cpoRetry" type="button">もう一度チェックする</button><button class="cpo-button cpo-return" id="cpoReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card cpn-lesson" id="kidsCompoundIEUEERLesson" hidden>
+    <header class="cpn-hero">
+      <span class="cpn-kicker">LESSON 11 · 音をつなぐ湖</span>
+      <h2>ie・üe・er</h2>
+      <p>ie・üe は口形をつなぎ、er は舌の位置を感じてみよう。</p>
+      <span class="cpn-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="cpn-complete" id="cpnCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="cpn-zone cpn-teaching" aria-labelledby="cpnTeachingTitle">
+      <div class="cpn-zone-head"><span>01</span><div><h3 id="cpnTeachingTitle">口と舌で音を知ろう</h3><p>まず好きな音をタップして聞こう。</p></div></div>
+      <div class="cpn-letter-grid" id="cpnLetterGrid"></div>
+      <div class="cpn-focus">
+        <div class="cpn-focus-copy"><span id="cpnFocusLetter">ie</span><div><strong id="cpnFocusGuide">耶 yē · [iɛ]</strong><p id="cpnFocusTip"></p></div></div>
+        <button class="cpn-button cpn-model" id="cpnModel" type="button">▶ ie のお手本を聞く</button>
+        <p class="cpn-model-feedback" id="cpnModelFeedback" aria-live="polite"></p>
+        <div class="cpn-articulation" id="cpnArticulation" aria-label="複韻母の口形と音の流れ"></div>
+      </div>
+      <details class="cpn-static-section" id="cpnStaticDetails" aria-labelledby="cpnStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="cpn-static-head"><span id="cpnStaticLetter" aria-hidden="true">ie</span><div><small>静止図で確認</small><h3 id="cpnStaticTitle">口形と舌・息の基本図</h3></div></div><div class="cpn-static-content" id="cpnStaticGuide"></div><p class="cpn-static-note" id="cpnStaticNote">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      <details class="cpn-model-note"><summary>お手本と拼音の書き方</summary><p>ie は「耶 yē」、üe は「约 yuē」の1声、er は「儿 ér」の2声で聞いてみよう。声調より、韻母の音色に注目します。</p><p>声母をつけずに示すと ie は ye、üe は yue と書きます。yue の u は ü の音です。j・q・x の後でも ü の点を省きます（jue・que・xue）。n・l の後では点を残します（nüe・lüe）。</p><p>ie・üe の声調記号は e につけます。er は声母と組み合わせず、一つの音節として読みます。ここでは単独の er を練習し、儿化は後の内容で扱います。</p></details></section>
+    <section class="cpn-zone cpn-practice kp-practice" aria-labelledby="cpnPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="cpnPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="cpn-free-choice kp-practice-choices" id="cpnFreeChoice" style="--kp-practice-columns:3"></div><div class="practice-console cpn-practice-console kp-practice-console"><p class="kp-practice-target" id="cpnPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="cpn-record-row kp-practice-record-row"><button class="cpn-button cpn-record" id="cpnRecord" type="button">● 録音する</button><button class="cpn-button cpn-playback" id="cpnPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="cpn-feedback" id="cpnPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="cpn-zone cpn-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="cpn-button cpn-to-quiz" id="cpnToQuiz" type="button">ミニチェックへ →</button>
+      <div class="cpn-quiz" id="cpnQuizPanel" hidden>
+        <div class="cpn-quiz-top"><strong>聞こえたのはどの音？</strong><span id="cpnQuizCount">1 / 4</span></div>
+        <button class="cpn-button cpn-listen" id="cpnQuizListen" type="button">▶ 音を聞く</button>
+        <div class="cpn-quiz-choices" id="cpnQuizChoices"></div>
+        <p class="cpn-feedback" id="cpnQuizFeedback" aria-live="polite"></p>
+        <button class="cpn-button cpn-next" id="cpnQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="cpn-result" id="cpnResult" hidden aria-live="polite">
+        <span class="cpn-result-mark" id="cpnResultMark">✓</span><h4 id="cpnResultTitle">ミニチェック結果</h4><strong id="cpnResultScore"></strong><p id="cpnResultMessage"></p>
+        <div class="cpn-result-actions"><button class="cpn-button" id="cpnRetry" type="button">もう一度チェックする</button><button class="cpn-button cpn-return" id="cpnReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+<article class="kids-lesson-card nsv-lesson" id="kidsFrontNasalLesson" hidden>
+    <header class="nsv-hero">
+      <span class="nsv-kicker">LESSON 12 · 音をつなぐ湖</span>
+      <h2><span>an・en・in</span><span>un・ün</span></h2>
+      <p>母音から n へ。口の中を閉じて、鼻に響かせよう。</p>
+      <span class="nsv-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="nsv-complete" id="nsvCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="nsv-zone nsv-teaching" aria-labelledby="nsvTeachingTitle">
+      <div class="nsv-zone-head"><span>01</span><div><h3 id="nsvTeachingTitle">n で終わる音を知ろう</h3><p>好きな音を選び、お手本を聞こう。</p></div></div>
+      <div class="nsv-letter-grid" id="nsvLetterGrid"></div>
+      <div class="nsv-focus">
+        <div class="nsv-focus-copy"><span id="nsvFocusLetter">an</span><div><strong id="nsvFocusGuide">安 ān · [an]</strong><p id="nsvFocusTip">短い n へ。母音から短い n へ。舌の前部の収め方には、話者や発話条件による違いがあります。</p></div></div>
+        <div class="nsv-articulation" id="nsvArticulation" aria-label="複韻母の口形と音の流れ"></div>
+        <button class="nsv-button nsv-model" id="nsvModel" type="button">▶ an のお手本を聞く</button>
+        <p class="nsv-model-feedback" id="nsvModelFeedback" aria-live="polite"></p>
+        
+      </div>
+      <details class="nsv-static-section" id="nsvStaticDetails" aria-labelledby="nsvStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="nsv-static-head"><span id="nsvStaticLetter" aria-hidden="true">an</span><div><small>口形を見くらべる</small><h3 id="nsvStaticTitle">口形と舌・息の基本図</h3></div></div><div class="nsv-static-content" id="nsvStaticGuide"></div><p class="nsv-static-note" id="nsvStaticNote">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      <details class="nsv-model-note"><summary>お手本と拼音の書き方</summary><p>「安 ān・恩 ēn・音 yīn・温 wēn・晕 yūn」をお手本にします。最後の n に注目して、ひと息で読んでみよう。</p><p>声母をつけずに示すと in は yin、un（uen）は wen、ün は yun と書きます。un と ün は別の音です。</p><p>j・q・x の後の un は ün の音です（jun・qun・xun）。一方、dun・tun・lun などの un は uen の音です。</p><p>声調記号は an の a、en の e、in の i、un の u、ün の ü につけます。</p></details></section>
+    <section class="nsv-zone nsv-practice kp-practice" aria-labelledby="nsvPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="nsvPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="nsv-free-choice kp-practice-choices" id="nsvFreeChoice" style="--kp-practice-columns:5"></div><div class="practice-console nsv-practice-console kp-practice-console"><p class="kp-practice-target" id="nsvPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="nsv-record-row kp-practice-record-row"><button class="nsv-button nsv-record" id="nsvRecord" type="button">● 録音する</button><button class="nsv-button nsv-playback" id="nsvPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="nsv-feedback" id="nsvPracticeFeedback" aria-live="polite"></p></div></section>
+    <section class="nsv-zone nsv-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="nsv-button nsv-to-quiz" id="nsvToQuiz" type="button">ミニチェックへ →</button>
+      <div class="nsv-quiz" id="nsvQuizPanel" hidden>
+        <div class="nsv-quiz-top"><strong>聞こえたのはどの音？</strong><span id="nsvQuizCount">1 / 6</span></div>
+        <button class="nsv-button nsv-listen" id="nsvQuizListen" type="button">▶ 音を聞く</button>
+        <div class="nsv-quiz-choices" id="nsvQuizChoices"></div>
+        <p class="nsv-feedback" id="nsvQuizFeedback" aria-live="polite"></p>
+        <button class="nsv-button nsv-next" id="nsvQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="nsv-result" id="nsvResult" hidden aria-live="polite">
+        <span class="nsv-result-mark" id="nsvResultMark">✓</span><h4 id="nsvResultTitle">ミニチェック結果</h4><strong id="nsvResultScore"></strong><p id="nsvResultMessage"></p>
+        <div class="nsv-result-actions"><button class="nsv-button" id="nsvRetry" type="button">もう一度チェックする</button><button class="nsv-button nsv-return" id="nsvReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  <details class="nsv-model-note"><summary>真人の口形を確認する</summary><p><a href="https://www.isc.meiji.ac.jp/~katotoru/chinvu2.html#04" target="_blank" rel="noopener">明治大学・中国語発音教材の鼻母音の模範動画</a>で、安・恩・音・温・晕の唇の違いを見くらべられます。正面動画では舌の内部動作は確認できません。</p><p>お手本音声：Chen Wang / <a href="https://github.com/hugolpz/audio-cmn" target="_blank" rel="noopener">audio-cmn</a>（CC BY-SA）。音量・形式を調整。in・un・ün の独立した音節表記は yin・wen・yun です。</p></details></article>
+
+<article class="kids-lesson-card bnv-lesson" id="kidsBackNasalLesson" hidden>
+    <header class="bnv-hero">
+      <span class="bnv-kicker">LESSON 13 · 音をつなぐ湖</span>
+      <h2><span>ang・eng</span><span>ing・ong</span></h2>
+      <p>母音から ng へ。舌の後ろ側で閉じて、鼻に響かせよう。</p>
+      <span class="bnv-music" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M10 17V5l9-2v12M10 8l9-2"></path><ellipse cx="7" cy="18" rx="3" ry="2"></ellipse><ellipse cx="16" cy="16" rx="3" ry="2"></ellipse></svg></span>
+      <span class="bnv-complete" id="bnvCompleteBadge" hidden>クリア済み</span>
+    </header>
+    <section class="bnv-zone bnv-teaching" aria-labelledby="bnvTeachingTitle">
+      <div class="bnv-zone-head"><span>01</span><div><h3 id="bnvTeachingTitle">ng で終わる音を知ろう</h3><p>好きな音を選び、お手本を聞こう。</p></div></div>
+      <p class="bnv-model-context">お手本は韻母だけの音。はじめの母音から ng の響きまで、ひと息で聞こう。</p><div class="bnv-letter-grid" id="bnvLetterGrid"></div>
+      <div class="bnv-focus">
+        <div class="bnv-focus-copy"><span id="bnvFocusLetter">ang</span><div><strong id="bnvFocusGuide">肮 āng · [ɑŋ]</strong><p id="bnvFocusTip">短い ng へ。舌の後ろ側を軟口蓋へ近づけ、最後に g を破裂させずに収めます。</p></div></div>
+        <div class="bnv-articulation" id="bnvArticulation" aria-label="後鼻韻母の舌の動きと鼻の響き"></div>
+        <button class="bnv-button bnv-model" id="bnvModel" type="button">▶ ang のお手本を聞く</button>
+        <p class="bnv-model-feedback" id="bnvModelFeedback" aria-live="polite"></p>
+        
+      </div>
+      <details class="bnv-static-section" id="bnvStaticDetails" aria-labelledby="bnvStaticTitle"><summary>静止図で口形・舌・息を確認</summary><div class="bnv-static-head"><span id="bnvStaticLetter" aria-hidden="true">ang</span><div><small>静止図で確認</small><h3 id="bnvStaticTitle">口形と舌・息の基本図</h3></div></div><div class="bnv-static-content" id="bnvStaticGuide"></div><p class="bnv-static-note" id="bnvStaticNote">左は口形の模式図、右は調音部位・息の出口の基本図です。口形には個人差があります。音をひと息でつなぎましょう。</p></details>
+      
+      <details class="bnv-model-note"><summary>お手本と拼音の書き方</summary><p>ang は「肮 āng」、eng は「鞥 ēng」、ing は「鹰 yīng」の音です。漢字を覚える課ではなく、韻母の音を聞いてまねる課です。</p><p>ong は独立した漢字音節ではないため、韻母部分の音を使います。「翁 wēng」は ueng の音なので、ong の代わりにはしません。ing を声母なしで書くと ying になります。</p><p>ng は一つの鼻音 [ŋ] です。n と g を一つずつ読まず、最後に余分な母音や破裂音を足しません。</p><p>声調記号は ang の a、eng の e、ing の i、ong の o につけます。</p><p class="bnv-audio-credit">音声：Chen Wang / <a href="https://github.com/hugolpz/audio-cmn" target="_blank" rel="noopener">audio-cmn</a>（<a href="https://creativecommons.org/licenses/by-sa/" target="_blank" rel="noopener">CC BY-SA</a>）。形式・音量を調整。ong は同じ話者の dong から韻母部分を切り出しています。</p></details></section>
+    <section class="bnv-zone bnv-practice kp-practice" aria-labelledby="bnvPracticeTitle"><header class="kp-practice-head"><span class="kp-practice-avatar" aria-hidden="true" style="display:block;width:44px;height:44px;position:relative;overflow:hidden;flex:0 0 44px;border-radius:50%"><img src="./assets/home/koepanda-home-top-final.webp?v=10.108.159" alt="" width="941" height="1040" style="position:absolute;width:230%;max-width:none;height:auto;left:-65%;top:-50%"></span><div><h3 id="bnvPracticeTitle">自由練習</h3><p>選択中の音を録音して聞き返す</p></div></header><div class="bnv-free-choice kp-practice-choices" id="bnvFreeChoice" style="--kp-practice-columns:4"></div><div class="practice-console bnv-practice-console kp-practice-console"><p class="kp-practice-target" id="bnvPracticeTarget" aria-live="polite"></p><p class="kp-practice-record-hint">録音して、自分の声を再生できます</p><div class="bnv-record-row kp-practice-record-row"><button class="bnv-button bnv-record" id="bnvRecord" type="button">● 録音する</button><button class="bnv-button bnv-playback" id="bnvPlayback" type="button" disabled>▶ 自分の声を聞く</button></div><p class="bnv-feedback" id="bnvPracticeFeedback" aria-live="polite"></p></div><p class="kp-practice-note">声母をつけずに練習します。</p></section>
+    <section class="bnv-zone bnv-check kp-practice-check-entry" aria-label="ミニチェック">
+      <button class="bnv-button bnv-to-quiz" id="bnvToQuiz" type="button">ミニチェックへ →</button>
+      <div class="bnv-quiz" id="bnvQuizPanel" hidden>
+        <div class="bnv-quiz-top"><strong>聞こえたのはどの音？</strong><span id="bnvQuizCount">1 / 5</span></div>
+        <button class="bnv-button bnv-listen" id="bnvQuizListen" type="button">▶ 音を聞く</button>
+        <div class="bnv-quiz-choices" id="bnvQuizChoices"></div>
+        <p class="bnv-feedback" id="bnvQuizFeedback" aria-live="polite"></p>
+        <button class="bnv-button bnv-next" id="bnvQuizNext" type="button" hidden>次の問題へ →</button>
+      </div>
+      <div class="bnv-result" id="bnvResult" hidden aria-live="polite">
+        <span class="bnv-result-mark" id="bnvResultMark">✓</span><h4 id="bnvResultTitle">ミニチェック結果</h4><strong id="bnvResultScore"></strong><p id="bnvResultMessage"></p>
+        <div class="bnv-result-actions"><button class="bnv-button" id="bnvRetry" type="button">もう一度チェックする</button><button class="bnv-button bnv-return" id="bnvReturn" type="button">← 戻る　学習ロード</button></div>
+      </div>
+    </section>
+  </article>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
   <button type="button" class="kids-finish" id="kidsFinishLesson">できた！ 今日のれんしゅう完了</button>
   <div class="kids-finish-note" id="kidsFinishNote" role="status" aria-live="polite"></div>
 </section>
@@ -347,55 +1064,68 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 -->
-<script src="./js/00-core.js?v=10.107.72"></script>
-<script src="./js/01-features.js?v=10.107.72"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.107.72" id="demo1077-final-fix">
+<script src="./data/pronunciation-134.js?v=10.108.301.128"></script>
+<script src="./data/pronunciation-timing-139.js?v=10.108.159"></script>
+<script src="./data/articulation-151.js?v=10.108.159"></script>
+<script src="./js/26-articulation-motion-139.js?v=10.108.162"></script>
+<script src="./js/27-vowel-portrait-144.js?v=10.108.159"></script>
+<script src="./js/24-pronunciation-studio-134.js?v=10.108.159"></script>
+<script src="./js/28-initial-mnemonics-150.js?v=10.108.159"></script>
+<script src="./js/29-word-cues-152.js?v=10.108.301.125"></script>
+<script src="./js/25-pronunciation-ux-135.js?v=10.108.301.109"></script>
+<script src="./js/00-core.js?v=10.108.159"></script>
+<script src="./js/01-features.js?v=10.108.223"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.108.159" id="demo1077-final-fix">
 
-<link rel="stylesheet" href="./css/17-demo1078-step1-visual-only.css?v=10.107.72" id="demo1078-step1-visual-only">
+<link rel="stylesheet" href="./css/17-demo1078-step1-visual-only.css?v=10.108.159" id="demo1078-step1-visual-only">
 
 <!-- DEMO 10.83: restored STEP1 audio path exactly from stable 10.74; current visual assets preserved -->
 
-<link rel="stylesheet" href="./css/18-demo1086-ui-detail-fix.css?v=10.107.72" id="demo1086-ui-detail-fix">
+<link rel="stylesheet" href="./css/18-demo1086-ui-detail-fix.css?v=10.108.159" id="demo1086-ui-detail-fix">
 
 
-<link rel="stylesheet" href="./css/19-demo1092-dynamic-mouth-new-xiaoyin.css?v=10.107.72" id="demo1092-dynamic-mouth-new-xiaoyin">
+<link rel="stylesheet" href="./css/19-demo1092-dynamic-mouth-new-xiaoyin.css?v=10.108.159" id="demo1092-dynamic-mouth-new-xiaoyin">
 
 
-<link rel="stylesheet" href="./css/20-demo1093-pinyin-left-edge-fix.css?v=10.107.72" id="demo1093-pinyin-left-edge-fix">
+<link rel="stylesheet" href="./css/20-demo1093-pinyin-left-edge-fix.css?v=10.108.159" id="demo1093-pinyin-left-edge-fix">
 
 
-<link rel="stylesheet" href="./css/21-demo1096-pinyin-readable-playback.css?v=10.107.72" id="demo1096-pinyin-readable-playback">
-<link rel="stylesheet" href="./css/22-demo1098-no-fast-letter-switch.css?v=10.107.72" id="demo1098-no-fast-letter-switch">
+<link rel="stylesheet" href="./css/21-demo1096-pinyin-readable-playback.css?v=10.108.159" id="demo1096-pinyin-readable-playback">
+<link rel="stylesheet" href="./css/22-demo1098-no-fast-letter-switch.css?v=10.108.159" id="demo1098-no-fast-letter-switch">
 
 
-<script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.107.72"></script>
-<script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.107.72"></script>
-<script src="./data/pinyin-course.js?v=10.107.99"></script>
-<script src="./data/kids-pinyin.js?v=10.107.72"></script>
-<script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof.js?v=10.108.03"></script>
-<script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.107.72"></script>
-<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap.js?v=10.108.01"></script>
+<script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.108.159"></script>
+<script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.108.159"></script>
+<script src="./data/pinyin-course.js?v=10.108.176"></script>
+<script src="./data/kids-pinyin.js?v=10.108.159"></script>
+<script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof-301.116.js?v=10.108.301.119"></script>
+<script id="demo1010741-p0-tone-adventure-js" src="./js/07-demo1010741-p0-tone-adventure.js?v=10.108.159"></script>
+<script id="demo1010812-dev-test-mode-js" src="./js/11-demo1010812-dev-test-mode.js?v=10.108.159"></script>
+<script id="demo1010807-home-escape-fix" src="./js/09-demo1010807-home-escape-fix.js?v=10.108.301.100"></script>
+<script id="demo1010828-result-stage-overlay-js" src="./js/13-demo1010828-result-stage-overlay.js?v=10.108.159"></script>
+<script id="demo1010808-initials-forest-js" src="./js/10-demo1010872-initials-forest-301.117.js?v=10.108.301.125"></script>
+<script id="demo1010820-dtnl-first-lesson-js" src="./js/12-demo1010820-dtnl-first-lesson.js?v=10.108.301.125"></script>
 
 
-<link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.107.72" id="demo10100-step23-header-align-fix">
+<link rel="stylesheet" href="./css/23-demo10100-step23-header-align-fix.css?v=10.108.159" id="demo10100-step23-header-align-fix">
 
 
-<link rel="stylesheet" href="./css/24-demo10101-unified-step-headers.css?v=10.107.72" id="demo10101-unified-step-headers">
+<link rel="stylesheet" href="./css/24-demo10101-unified-step-headers.css?v=10.108.159" id="demo10101-unified-step-headers">
 
 
-<link rel="stylesheet" href="./css/25-demo10103-result-mascot-restored.css?v=10.107.72" id="demo10103-result-mascot-restored">
+<link rel="stylesheet" href="./css/25-demo10103-result-mascot-restored.css?v=10.108.159" id="demo10103-result-mascot-restored">
 
 
-<link rel="stylesheet" href="./css/26-demo10104-result-celebration.css?v=10.107.72" id="demo10104-result-celebration">
+<link rel="stylesheet" href="./css/26-demo10104-result-celebration.css?v=10.108.159" id="demo10104-result-celebration">
 
-<link rel="stylesheet" href="./css/27-demo10107-home-refresh.css?v=10.107.72" id="demo10107-home-refresh">
-<link rel="stylesheet" href="./css/28-demo101071-home-layout-fix.css?v=10.107.72" id="demo101071-home-layout-fix">
-<link rel="stylesheet" href="./css/29-demo101072-home-dashboard.css?v=10.107.72" id="demo101072-home-dashboard">
-<link rel="stylesheet" href="./css/30-demo101074-home-effect-faithful.css?v=10.107.72" id="demo101074-home-effect-faithful">
-<link rel="stylesheet" href="./css/31-demo101076-function-home-hide.css?v=10.107.72" id="demo101076-function-home-hide">
-<link rel="stylesheet" href="./css/32-demo101077-mobile-fit-rounded.css?v=10.107.72" id="demo101077-mobile-fit-rounded">
-<link rel="stylesheet" href="./css/33-demo101078-premium-season-continuity.css?v=10.107.72" id="demo101078-premium-season-continuity">
-<link rel="stylesheet" href="./css/34-demo101079-mouth-focus-head.css?v=10.107.72" id="demo101079-mouth-focus-head">
-<script src="./js/04-demo101078-season-theme.js?v=10.107.72"></script>
+<link rel="stylesheet" href="./css/27-demo10107-home-refresh.css?v=10.108.159" id="demo10107-home-refresh">
+<link rel="stylesheet" href="./css/28-demo101071-home-layout-fix.css?v=10.108.159" id="demo101071-home-layout-fix">
+<link rel="stylesheet" href="./css/29-demo101072-home-dashboard.css?v=10.108.159" id="demo101072-home-dashboard">
+<link rel="stylesheet" href="./css/30-demo101074-home-effect-faithful.css?v=10.108.159" id="demo101074-home-effect-faithful">
+<link rel="stylesheet" href="./css/31-demo101076-function-home-hide.css?v=10.108.159" id="demo101076-function-home-hide">
+<link rel="stylesheet" href="./css/32-demo101077-mobile-fit-rounded.css?v=10.108.159" id="demo101077-mobile-fit-rounded">
+<link rel="stylesheet" href="./css/33-demo101078-premium-season-continuity.css?v=10.108.159" id="demo101078-premium-season-continuity">
+<link rel="stylesheet" href="./css/34-demo101079-mouth-focus-head.css?v=10.108.159" id="demo101079-mouth-focus-head">
+<script src="./js/04-demo101078-season-theme.js?v=10.108.159"></script>
 
 <style id="demo1010716-mouth-avatar-restore">
 /* DEMO 10.107.37 — restore natural mouth-avatar scale/crop.
@@ -581,25 +1311,17 @@ body.app-home-mode #homeEffect > a.home-effect-hotspot{
   text-decoration:none!important;
   -webkit-tap-highlight-color:rgba(0,0,0,.06)!important;
 }
-/* Current artwork button rectangles, measured as percentages of the full homepage image. */
-body.app-home-mode #homeEffect > a.hs-listen{
-  left:4.2%!important;
-  top:33.5%!important;
-  width:29.2%!important;
-  height:23.4%!important;
-}
-body.app-home-mode #homeEffect > a.hs-talk{
-  left:35.4%!important;
-  top:33.5%!important;
-  width:29.2%!important;
-  height:23.4%!important;
-}
-body.app-home-mode #homeEffect > a.hs-repeat{
-  left:66.6%!important;
-  top:33.5%!important;
-  width:29.2%!important;
-  height:23.4%!important;
-}
+/* 10.108.301: transparent link zones measured against the supplied 739×2129 artwork. */
+body.app-home-mode #homeEffect > a.roadmap-hs-listen,
+body.app-home-mode #homeEffect > a.roadmap-hs-talk,
+body.app-home-mode #homeEffect > a.roadmap-hs-repeat,
+body.app-home-mode #homeEffect > a.roadmap-hs-pinyin{border-radius:18%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-listen{left:6%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-talk{left:36%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-repeat{left:66%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-pinyin{left:16%!important;top:36.5%!important;width:43%!important;height:6.8%!important}
+body.app-home-mode #homeEffect > a.roadmap-hs-hanzi{left:42%!important;top:45.2%!important;width:49%!important;height:8.2%!important;border-radius:18%!important}
+body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;height:auto!important;display:block!important}
 </style>
 
 <script id="demo1010717-week-stats">
@@ -625,4 +1347,58 @@ body.app-home-mode #homeEffect > a.hs-repeat{
 </script>
 
 <script id="demo1010777-tone-road-fullbody-fix">/* full-body mascot is inline SVG; no cloned head image */</script>
+<script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.301.125"></script>
+<script src="./js/15-demo10108116-jqx-first-lesson.js?v=10.108.301.125"></script>
+<script src="./js/16-demo10108117-zhr-first-lesson.js?v=10.108.301.125"></script>
+<script src="./js/17-demo10108118-zcs-first-lesson.js?v=10.108.301.125"></script>
+<script src="./js/18-demo10108119-ai-ei-ui-first-lesson.js?v=10.108.301.130"></script>
+<script src="./js/19-demo10108122-ao-ou-iu-first-lesson.js?v=10.108.301.133"></script>
+<script src="./js/20-demo10108123-ie-ue-er-first-lesson.js?v=10.108.301.133"></script>
+<script src="./js/21-demo10108124-front-nasal-first-lesson.js?v=10.108.301.143"></script>
+<script src="./js/22-demo10108128-back-nasal-first-lesson.js?v=10.108.301.143"></script>
+<script src="./js/30-whole-syllables-p14-260.js?v=10.108.301.199"></script>
+<script src="./js/32-whole-syllables-p15-268.js?v=10.108.301.163"></script>
+<script src="./js/33-two-spelling-p16-192.js?v=10.108.238"></script>
+<script src="./js/155-p16-pointing-animation-301.151.js?v=10.108.301.151"></script>
+<!-- Register the roadmap only after its P14-P16 lesson roots have been created. -->
+<script src="./js/p18-integrated-practice-291.js?v=10.108.291"></script>
+<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap-304.js?v=10.108.301.155"></script>
+<script src="./js/159-p17-audio-cues-301.155.js?v=10.108.301.155"></script>
+<link rel="stylesheet" href="./css/109-p17-p16-consistent-223.css?v=10.108.223">
+<link rel="stylesheet" href="./css/111-p16-p17-test-isolation-226.css?v=10.108.230">
+<link rel="stylesheet" href="./css/112-p16-p17-retest-227.css?v=10.108.230">
+<link rel="stylesheet" href="./css/113-p16-p17-artwork-system-230.css?v=10.108.230">
+<link rel="stylesheet" href="./css/114-p14-p17-visual-layout-246.css?v=10.108.246">
+<link rel="stylesheet" href="./css/115-p21-final-exam-result-polish-300.css?v=10.108.300">
+<link rel="stylesheet" href="./css/139-pinyin-letter-card-overflow-301.121.css?v=10.108.301.121">
+<link rel="stylesheet" href="./css/140-all-initials-letter-cards-301.122.css?v=10.108.301.129">
+<link rel="stylesheet" href="./css/141-initials-unified-letter-cards-301.124.css?v=10.108.301.125">
+<link rel="stylesheet" href="./css/142-initials-ipa-inline-301.129.css?v=10.108.301.129">
+<link rel="stylesheet" href="./css/143-letter-card-consistency-301.130.css?v=10.108.301.130">
+<link rel="stylesheet" href="./css/144-letter-card-layout-301.131.css?v=10.108.301.131">
+<link rel="stylesheet" href="./css/145-letter-card-specificity-301.132.css?v=10.108.301.132">
+<link rel="stylesheet" href="./css/146-compound-inline-mouth-301.133.css?v=10.108.301.133">
+<script src="./js/koepanda-update-check.js?v=10.108.301.83" defer></script>
+<script src="./js/35-course-switch-press-259.js?v=10.108.259"></script>
+<script src="./js/129-pinyin-single-item-navigation-301.107.js?v=10.108.301.119"></script>
+<script src="./js/154-pinyin-header-switcher-301.145.js?v=10.108.301.146"></script>
+
+<script src="./js/koepanda-cloud-config-301.165.js?v=10.108.301.166"></script>
+<link rel="stylesheet" href="./css/app-shell.css?v=10.108.301.176">
+<link rel="stylesheet" href="./css/features/learn.css?v=10.108.301.198">
+<link rel="stylesheet" href="./css/features/practice.css?v=10.108.301.202">
+<link rel="stylesheet" href="./css/features/story.css?v=10.108.301.202">
+<link rel="stylesheet" href="./css/features/friends.css?v=10.108.301.202">
+<link rel="stylesheet" href="./css/features/self.css?v=10.108.301.204">
+<link rel="stylesheet" href="./css/features/collections.css?v=10.108.301.206">
+<script src="./js/features/sticker-data.js?v=10.108.301.204"></script>
+<script src="./js/features/learn.js?v=10.108.301.198"></script>
+<script src="./js/features/practice.js?v=10.108.301.202"></script>
+<script src="./js/features/story.js?v=10.108.301.202"></script>
+<script src="./js/features/friends.js?v=10.108.301.202"></script>
+<script src="./js/features/self.js?v=10.108.301.204"></script>
+<script src="./js/features/sticker-book.js?v=10.108.301.206"></script>
+<script src="./js/features/rewards.js?v=10.108.301.204"></script>
+<script src="./js/app-shell.js?v=10.108.301.204"></script>
+<script src="./js/koepanda-account-301.168.js?v=10.108.301.168"></script>
 </body></html>

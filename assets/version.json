@@ -1,0 +1,20 @@
+{
+  "version": "301.206",
+  "base_version": "301.204",
+  "status": "candidate",
+  "entry": "index.html",
+  "summary": "旧三款封面独立恢复，新封面每款只显示一个角色图；补充拼音生肖贴纸预览，并将连续空白页限制为最多两页，防止重复点击建页。",
+  "database_migrations": [
+    "20261114135656_sticker_book_single_character_covers_301205"
+  ],
+  "removed_files": [],
+  "built_at_jst": "2026-11-14T23:05:00+09:00",
+  "changed_files": [
+    "index.html",
+    "css/features/collections.css",
+    "js/features/sticker-book.js",
+    "assets/stickers/covers/xiaoyin-note.webp",
+    "zodiac-stickers-pinyin-preview.html",
+    "supabase/migrations/20261114135656_sticker_book_single_character_covers_301205.sql"
+  ]
+}
