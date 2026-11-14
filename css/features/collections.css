@@ -31,6 +31,13 @@
 .kp-add-page:disabled{background:#edf1ed;color:#96a098;cursor:not-allowed;box-shadow:none}
 .kp-page-limit-note{margin:-12px 0 14px;text-align:center;color:#8b978f;font-size:10px;line-height:1.5}
 
+/* Give every cover motif a stable square drawing area in the picker. */
+.kp-cover-artwork{position:relative;display:block;min-width:0;min-height:0;overflow:visible}
+.kp-cover-artwork img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;object-position:center center}
+.kp-cover-mini .kp-cover-artwork{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:82%;height:auto;aspect-ratio:1;align-self:auto}
+.kp-cover-mini .kp-cover-artwork img{position:static;inset:auto;width:100%;height:100%;object-fit:contain}
+.kp-cover-mini .kp-cover-art-emoji.is-mini{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;width:100%;height:100%;place-items:center;margin:0;font-size:38px;line-height:1;overflow:visible}
+
 /* Series previews stay inside each card on narrow screens; each design opens its full gallery. */
 .kp-series-card{width:100%;min-width:0;display:grid;grid-template-rows:77px auto auto auto auto;gap:4px;padding:13px;border:0;border-radius:22px;background:#fff;box-shadow:0 8px 20px #283d310e;text-align:left;color:#34453d;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .kp-series-card:active{transform:translateY(1px);background:#fbfdfb}
