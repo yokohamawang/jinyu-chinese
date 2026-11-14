@@ -5,22 +5,24 @@
   const KEY='koepanda.community.301166';
   const STICKERS=(window.KoepandaCatalog&&Array.isArray(window.KoepandaCatalog.STICKERS))?window.KoepandaCatalog.STICKERS:[];
   const QUESTIONS=(window.KoepandaFeatures&&window.KoepandaFeatures.practice&&Array.isArray(window.KoepandaFeatures.practice.questions))?window.KoepandaFeatures.practice.questions:[];
-  const initial={friends:[], greetings:[], pages:[[]], activePage:0, wrongs:{}, mastered:{}, unlocked:['a','o','n','shan','ren'], favorites:[], trades:[], lastQuiz:0};
+  const initial={pages:[[]], activePage:0, wrongs:{}, mastered:{}, unlocked:['a','o','n','shan','ren'], favorites:[], lastQuiz:0};
   let state;
   try{state=Object.assign({},initial,JSON.parse(localStorage.getItem(KEY)||'{}'));}catch(_){state=Object.assign({},initial);}
-  ['friends','greetings','pages','unlocked','favorites','trades'].forEach(k=>{if(!Array.isArray(state[k]))state[k]=initial[k].slice();});
+  ['pages','unlocked','favorites'].forEach(k=>{if(!Array.isArray(state[k]))state[k]=initial[k].slice();});
+  ['friends','greetings','trades','friendCode','progressVisible'].forEach(k=>delete state[k]);
   ['wrongs','mastered'].forEach(k=>{if(!state[k]||typeof state[k]!=='object'||Array.isArray(state[k]))state[k]={};});
   if(!state.pages.length)state.pages=[[]];
   state.pages=state.pages.map(p=>Array.isArray(p)?p:[]);
   state.activePage=Math.max(0,Math.min(state.pages.length-1,Number.isInteger(state.activePage)?state.activePage:0));
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(_){}}
+  save();
   function img(id){const s=STICKERS.find(x=>x.id===id);return s?'./assets/stickers/'+s.art:'';}
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   let root, page='learn', selectedSticker=null;
   function boot(){
     if(document.getElementById('kpFeatureRoot'))return;
-    root=el('div','kp-feature-root');root.id='kpFeatureRoot';root.setAttribute('aria-hidden','true');root.innerHTML=`<div class="kp-feature-frame"><header class="kp-feature-header"><button class="kp-brand" data-go="learn" aria-label="Koepanda 学習ホーム"><img class="kp-logo-art" src="./assets/brand/koepanda-logo.jpeg?v=10.108.301.185" alt="小音と声調コーチ Koepanda" width="1536" height="864"></button></header><nav class="kp-feature-nav" aria-label="メインメニュー"><button data-go="learn"><span>学習</span></button><button data-go="practice"><span>練習</span></button><button data-go="friends"><span>友だち</span></button><button data-go="story"><span>ストーリー</span></button><button data-go="self"><span>自分</span></button></nav><main class="kp-feature-main" id="kpFeatureMain"></main><p class="kp-prototype-note">友だちとの送受信・シール交換は、正式サービス接続後に使えます。</p></div><dialog class="kp-modal" id="kpModal"><div class="kp-modal-body"></div></dialog></div>`;
+    root=el('div','kp-feature-root');root.id='kpFeatureRoot';root.setAttribute('aria-hidden','true');root.innerHTML=`<div class="kp-feature-frame"><header class="kp-feature-header"><button class="kp-brand" data-go="learn" aria-label="Koepanda 学習ホーム"><img class="kp-logo-art" src="./assets/brand/koepanda-logo.jpeg?v=10.108.301.185" alt="小音と声調コーチ Koepanda" width="1536" height="864"></button></header><nav class="kp-feature-nav" aria-label="メインメニュー"><button data-go="learn"><span>学習</span></button><button data-go="practice"><span>練習</span></button><button data-go="friends"><span>友だち</span></button><button data-go="story"><span>ストーリー</span></button><button data-go="self"><span>自分</span></button></nav><main class="kp-feature-main" id="kpFeatureMain"></main><p class="kp-prototype-note">友だち機能はログイン後に使えます。自由入力のチャットはありません。</p></div><dialog class="kp-modal" id="kpModal"><div class="kp-modal-body"></div></dialog></div>`;
     document.body.append(root);
     root.addEventListener('click',onClick);
     root.addEventListener('submit',onSubmit);
@@ -48,7 +50,7 @@
       main.innerHTML=`<section class="kp-feature-error" role="alert"><h1>このページを読み込めませんでした</h1><p>読み込みが途中で止まった可能性があります。学習ホームへ戻るか、ページを再読み込みしてください。</p><button class="kp-primary" data-go="learn">学習ホームへ戻る</button></section>`;
       return;
     }
-    try{main.innerHTML=view({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker});}
+    try{main.innerHTML=view({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker});if(typeof view.mount==='function')view.mount({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker,main,root,render,toast,modal,closeModal});}
     catch(error){console.error('[Koepanda] feature render failed:',key,error);main.innerHTML=`<section class="kp-feature-error" role="alert"><h1>ページを表示できませんでした</h1><p>このページの読み込み中に問題が起きました。ほかのページへ移動できます。</p><button class="kp-primary" data-go="learn">学習ホームへ戻る</button></section>`;}
   }
   function head(eyebrow,title,sub){return `<div class="kp-page-head"><span class="kp-eyebrow">${eyebrow}</span><h1>${title}</h1><p>${sub}</p></div>`;}
