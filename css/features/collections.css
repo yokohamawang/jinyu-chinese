@@ -67,3 +67,11 @@
 .kp-cover-characters.is-mini img.cover-character-3{width:min(46%,38px);height:52px;margin-left:-9px}
 .cover-study .kp-cover-strap{color:#766da5}.cover-peach .kp-cover-strap{color:#ad6e7b}
 .kp-book-cover.cover-study:after,.kp-book-cover.cover-peach:after{border-color:#ffffff9c;box-shadow:inset 0 0 18px #ffffff16}
+
+/* Final cover and open-book controls for mobile-sized screens. */
+.kp-book-cover.cover-rat,.kp-cover-mini.cover-rat{background:radial-gradient(ellipse at 55% 50%,#fff4cb 0,transparent 45%),linear-gradient(145deg,#c8def0,#96bbd9 58%,#648dac)}
+.kp-open-book-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"title title" "back covers";gap:8px;margin:5px 0 14px}
+.kp-open-book-head>div{grid-area:title;text-align:center}
+.kp-book-back{grid-area:back;display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:46px;padding:10px 12px;border:1px solid #d2e6d7;background:linear-gradient(180deg,#f1fbf3,#e7f4e9);color:#35734c;font-size:13px;font-weight:850}
+.kp-book-back span{font-size:19px;line-height:1}
+.kp-cover-change-mini{grid-area:covers;min-height:46px;display:flex;align-items:center;justify-content:center;padding:10px 12px;font-size:13px}
