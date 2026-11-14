@@ -5,9 +5,10 @@
   const KEY='koepanda.community.301166';
   const STICKERS=(window.KoepandaCatalog&&Array.isArray(window.KoepandaCatalog.STICKERS))?window.KoepandaCatalog.STICKERS:[];
   const QUESTIONS=(window.KoepandaFeatures&&window.KoepandaFeatures.practice&&Array.isArray(window.KoepandaFeatures.practice.questions))?window.KoepandaFeatures.practice.questions:[];
-  const initial={pages:[[]], activePage:0, wrongs:{}, mastered:{}, unlocked:['a','o','n','shan','ren'], favorites:[], lastQuiz:0};
+  const initial={pages:[[]], activePage:0, wrongs:{}, mastered:{}, unlocked:[], favorites:[], lastQuiz:0};
   let state;
   try{state=Object.assign({},initial,JSON.parse(localStorage.getItem(KEY)||'{}'));}catch(_){state=Object.assign({},initial);}
+  if(state.stickerCollectionVersion!==1){state.unlocked=[];state.favorites=[];state.stickerCollectionVersion=1;}
   ['pages','unlocked','favorites'].forEach(k=>{if(!Array.isArray(state[k]))state[k]=initial[k].slice();});
   ['friends','greetings','trades','friendCode','progressVisible'].forEach(k=>delete state[k]);
   ['wrongs','mastered'].forEach(k=>{if(!state[k]||typeof state[k]!=='object'||Array.isArray(state[k]))state[k]={};});
