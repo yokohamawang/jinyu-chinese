@@ -1,12 +1,12 @@
 {
-  "version": "301.207",
-  "base_version": "301.206",
+  "version": "301.208",
+  "base_version": "301.207",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "修复封面选择器图案被裁切或缺失；修正拼音生肖系列筛选名称，恢复12款设计预览。",
+  "summary": "按贴纸固定ID生成系列预览，避免系列名称不一致导致空弹窗；修正封面图案缩略框，完整显示角色与旧款图案。",
   "database_migrations": [],
   "removed_files": [],
-  "built_at_jst": "2026-11-15T09:04:00+09:00",
+  "built_at_jst": "2026-11-15T09:20:00+09:00",
   "changed_files": [
     "index.html",
     "css/features/collections.css",
