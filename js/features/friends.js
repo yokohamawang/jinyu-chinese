@@ -9,13 +9,64 @@
     see_you_soon:{icon:'🌈',text:'またいっしょに遊ぼう！'}
   };
   const TRADE_STATUS={pending:'返事待ち',completed:'交換成立',declined:'お断り',cancelled:'取り消し',expired:'期限切れ'};
+  const AVATARS={
+    xiaoyin:{emoji:'🐼',label:'小音',color:'mint'},
+    panda:{emoji:'🐻‍❄️',label:'パンダ',color:'blue'},
+    rabbit:{emoji:'🐰',label:'うさぎ',color:'pink'},
+    fox:{emoji:'🦊',label:'きつね',color:'orange'},
+    tiger:{emoji:'🐯',label:'とら',color:'gold'},
+    frog:{emoji:'🐸',label:'かえる',color:'green'},
+    cat:{emoji:'🐱',label:'ねこ',color:'lavender'},
+    dog:{emoji:'🐶',label:'いぬ',color:'peach'},
+    koala:{emoji:'🐨',label:'コアラ',color:'gray'}
+  };
   let loadSequence=0;
   let authSubscription=null;
   let snapshot=null;
+  let activeTab='friends';
+  let onlineByFriend={};
+  let friendPresenceChannels=[];
 
   function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function shortDate(value){try{return new Date(value).toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'});}catch(_){return '';}}
   function friendName(userId,profiles){return profiles[userId]?.nickname||'Koepanda learner';}
+  function avatarMarkup(key,label,extra=''){const avatar=AVATARS[key]||AVATARS.xiaoyin;return `<span class="kp-avatar-art ${esc(avatar.color)} ${extra}" role="img" aria-label="${esc(label||avatar.label)}のアバター">${avatar.emoji}</span>`;}
+  function clearFriendPresence(){const channels=friendPresenceChannels.splice(0);channels.forEach(channel=>{try{snapshot?.client?.removeChannel(channel);}catch(_){}});onlineByFriend={};}
+  function paintPresence(userId){
+    const visible=snapshot?.profiles?.[userId]?.online_visible;
+    const state=onlineByFriend[userId];
+    document.querySelectorAll(`[data-presence-user="${userId}"]`).forEach(el=>{
+      el.classList.toggle('is-online',state===true);
+      const text=el.querySelector('[data-presence-label]');
+      if(text)text.textContent=!visible?'オンライン状態は非公開':state===true?'オンライン':state===false?'オフライン':state==='error'?'状態を取得できません':'確認中';
+    });
+    const count=document.querySelector('[data-kp-online-count]');
+    if(count&&snapshot)count.textContent=String(Object.values(onlineByFriend).filter(Boolean).length);
+  }
+  function listenForFriendPresence(client,userId){
+    onlineByFriend[userId]=null;
+    const channel=client.channel(`kp-presence-${userId}`,{config:{private:true,presence:{key:userId}}});
+    const sync=()=>{
+      const states=channel.presenceState()||{};
+      onlineByFriend[userId]=Object.values(states).flat().some(item=>item&&item.user_id===userId);
+      paintPresence(userId);
+    };
+    channel.on('presence',{event:'sync'},sync);
+    channel.subscribe(status=>{
+      if(status==='SUBSCRIBED')sync();
+      else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'||status==='CLOSED'){
+        onlineByFriend[userId]='error';paintPresence(userId);
+      }
+    });
+    friendPresenceChannels.push(channel);
+  }
+  function attachFriendPresence(data){
+    clearFriendPresence();
+    data.accepted.forEach(row=>{
+      const id=row.user_low===data.user.id?row.user_high:row.user_low;
+      if(data.profiles[id]?.online_visible)listenForFriendPresence(data.client,id);
+    });
+  }
   function errText(error){
     const msg=String(error&&(error.message||error)||'');
     if(/sign_in_required/i.test(msg))return '先にアカウントへログインしてください。';
@@ -43,6 +94,7 @@
   function mount(ctx){
     const sequence=++loadSequence;
     const main=ctx.main;
+    clearFriendPresence();
     load(ctx,main,sequence).catch(error=>{
       if(sequence!==loadSequence)return;
       const body=main.querySelector('#kpFriendsBody');
@@ -63,6 +115,7 @@
     }
     const body=main.querySelector('#kpFriendsBody');
     if(!user){
+      snapshot=null;
       setMessage(main,'ログインすると友だち機能を使えます。',false);
       body.innerHTML=`<section class="kp-friends-card kp-friends-login"><span class="kp-friends-illustration" aria-hidden="true">🐼</span><h2>アカウントで友だちとつながろう</h2><p>招待コード、申請、カード、シール交換はアカウントに保存されます。端末を変えても続けられます。</p><button class="kp-primary" data-action="account">新規登録・ログイン</button></section>`;
       return;
@@ -71,7 +124,7 @@
     const relationFilter=`user_low.eq.${user.id},user_high.eq.${user.id}`;
     const participantFilter=`from_user.eq.${user.id},to_user.eq.${user.id}`;
     const [profileRes,relationsRes,greetingsRes,tradesRes]=await Promise.all([
-      client.from('kp_social_profiles').select('user_id,friend_code,nickname,progress_visible').eq('user_id',user.id).maybeSingle(),
+      client.from('kp_social_profiles').select('user_id,friend_code,nickname,avatar_key,progress_visible,online_visible').eq('user_id',user.id).maybeSingle(),
       client.from('kp_friendships').select('id,user_low,user_high,requested_by,status,created_at,accepted_at').or(relationFilter).order('created_at',{ascending:false}).limit(100),
       client.from('kp_greeting_cards').select('id,from_user,to_user,card_key,created_at,read_at').or(participantFilter).order('created_at',{ascending:false}).limit(20),
       client.from('kp_sticker_trades').select('id,from_user,to_user,status,created_at,expires_at').or(participantFilter).order('created_at',{ascending:false}).limit(20)
@@ -87,15 +140,15 @@
     const profileIds=[...new Set([...acceptedIds,...relatedIds,...greetingIds,...tradeIds])].filter(id=>id!==user.id);
     let profiles={};
     if(profileIds.length){
-      const profilesRes=await client.from('kp_social_profiles').select('user_id,nickname,progress_visible').in('user_id',profileIds);
+      const profilesRes=await client.from('kp_social_profiles').select('user_id,nickname,avatar_key,progress_visible,online_visible').in('user_id',profileIds);
       if(profilesRes.error)throw profilesRes.error;
       profiles=Object.fromEntries((profilesRes.data||[]).map(row=>[row.user_id,row]));
     }
     const progress=await Promise.all(accepted.map(async row=>{
       const id=row.user_low===user.id?row.user_high:row.user_low;
       if(!profiles[id]?.progress_visible)return [id,null];
-      const result=await client.rpc('kp_friend_weekly_learning_days',{p_friend:id});
-      return [id,result.error?null:result.data];
+      const result=await client.rpc('kp_friend_learning_summary',{p_friend:id});
+      return [id,result.error?null:(Array.isArray(result.data)?result.data[0]:result.data)||null];
     }));
     let tradeItems=[];
     const tradeRows=tradesRes.data||[];
@@ -107,6 +160,7 @@
     snapshot={client,user,profile:profileRes.data,relations,accepted,pending,profiles,greetings:greetingsRes.data||[],trades:tradeRows,tradeItems,progress:Object.fromEntries(progress)};
     if(sequence!==loadSequence)return;
     body.innerHTML=renderBody(snapshot);
+    attachFriendPresence(snapshot);
     setMessage(main,'最新の情報を表示しています。',false);
   }
   function requestRows(rows,user,profiles,incoming){
@@ -114,8 +168,8 @@
     return `<div class="kp-friends-list">${rows.map(row=>{
       const other=row.user_low===user.id?row.user_high:row.user_low;
       const name=friendName(other,profiles);
-      if(incoming)return `<article class="kp-friend-item"><span class="kp-friend-avatar" aria-hidden="true">✉️</span><div class="kp-friend-info"><b>${esc(name)}</b><small>あなたに友だち申請を送りました · ${shortDate(row.created_at)}</small></div><div class="kp-friend-actions"><button class="kp-primary kp-friend-action" data-action="friend-response" data-id="${esc(row.id)}" data-accept="true">承認</button><button class="kp-secondary kp-friend-action" data-action="friend-response" data-id="${esc(row.id)}" data-accept="false">断る</button></div></article>`;
-      return `<article class="kp-friend-item"><span class="kp-friend-avatar" aria-hidden="true">⏳</span><div class="kp-friend-info"><b>${esc(name)}</b><small>申請を送信しました · ${shortDate(row.created_at)}</small></div><span class="kp-friends-pill">返事待ち</span></article>`;
+      if(incoming)return `<article class="kp-friend-item">${avatarMarkup(profiles[other]?.avatar_key,name)}<div class="kp-friend-info"><b>${esc(name)}</b><small>あなたに友だち申請を送りました · ${shortDate(row.created_at)}</small></div><div class="kp-friend-actions"><button class="kp-primary kp-friend-action" data-action="friend-response" data-id="${esc(row.id)}" data-accept="true">承認</button><button class="kp-secondary kp-friend-action" data-action="friend-response" data-id="${esc(row.id)}" data-accept="false">断る</button></div></article>`;
+      return `<article class="kp-friend-item">${avatarMarkup(profiles[other]?.avatar_key,name)}<div class="kp-friend-info"><b>${esc(name)}</b><small>申請を送信しました · ${shortDate(row.created_at)}</small></div><span class="kp-friends-pill">返事待ち</span></article>`;
     }).join('')}</div>`;
   }
   function renderBody(data){
@@ -127,56 +181,44 @@
     const incomingGreetings=greetings.filter(row=>row.to_user===user.id);
     const incomingTrades=trades.filter(row=>row.to_user===user.id&&row.status==='pending');
     const incomingGreetingsUnread=incomingGreetings.filter(g=>!g.read_at).length;
-    return `<section class="kp-friends-card kp-my-friend-card">
-      <div class="kp-my-friend-top"><div><span class="kp-eyebrow">1 · 招待コードを共有</span><p class="kp-friend-code-value">${esc(profile.friend_code)}</p><small>このコードを友だちに伝えてつながろう</small></div><button class="kp-secondary" data-action="copy-friend-code">コードをコピー</button></div>
-      <form class="kp-friend-profile-form" id="kpFriendProfileForm"><label for="kpFriendNickname">友だちに表示する名前</label><div class="kp-friend-profile-controls"><input id="kpFriendNickname" name="nickname" maxlength="24" required value="${esc(profile.nickname)}" autocomplete="nickname"><button class="kp-primary">保存</button></div></form>
-      <label class="kp-friend-privacy"><span><b>今週の学習日数を友だちに見せる</b><small>オフの間、学習日数は相手に表示されません。</small></span><input type="checkbox" data-action="friend-privacy" ${profile.progress_visible?'checked':''}></label>
-    </section>
-
-    <div class="kp-friends-overview" aria-label="友だちの状況">
-      <div><b>${friends.length}</b><span>友だち</span></div>
-      <div><b>${incoming.length}</b><span>届いた申請</span></div>
-      <div><b>${incomingGreetingsUnread}</b><span>未読カード</span></div>
-    </div>
-
-    <section class="kp-friends-card kp-friend-add-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon kp-friends-step">2</span><div><h2>招待コードで追加</h2><p>相手から教えてもらったコードを入力します。</p></div></div>
-      <form class="kp-add-friend-form" id="kpFriendForm"><label for="kpFriendCodeInput">招待コード</label><div class="kp-add-friend-controls"><input id="kpFriendCodeInput" name="code" maxlength="12" placeholder="KP-AB12-XYZ" autocapitalize="characters" autocomplete="off" required><button class="kp-primary">申請を送る</button></div><small>名前やメールアドレスからは検索できません。</small></form>
-    </section>
-
-    <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">💌</span><div><h2>友だち申請</h2><p>受け取った申請を承認すると、友だちに追加されます。</p></div></div><div class="kp-friends-subheading">届いた申請 <span>${incoming.length}</span></div>${requestRows(incoming,user,profiles,true)}<div class="kp-friends-subheading kp-friends-subheading-spaced">送った申請 <span>${outgoing.length}</span></div>${requestRows(outgoing,user,profiles,false)}</section>
-
-    <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🐼</span><div><h2>友だち一覧</h2><p>カードで応援したり、シール交換を申し込めます。</p></div><span class="kp-friends-count">${friends.length}人</span></div>
+    const onlineCount=Object.values(onlineByFriend).filter(Boolean).length;
+    const tab=(id,label,count)=>`<button class="kp-friends-tab ${activeTab===id?'is-active':''}" role="tab" aria-selected="${activeTab===id}" data-action="friends-tab" data-tab="${id}">${label}${count?`<span>${count}</span>`:''}</button>`;
+    const friendsPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🐼</span><div><h2>友だち一覧</h2><p>学習の様子を見て、カードやシールで応援できます。</p></div></div>
       ${friends.length?`<div class="kp-friends-list">${friends.map(id=>{
-        const p=profiles[id]||{};const days=progress[id];
-        const study=p.progress_visible?(days===null||days===undefined?'学習記録を取得できません':`今週 ${days}日 学習`):'学習記録は非公開';
-        return `<article class="kp-friend-item"><span class="kp-friend-avatar" aria-hidden="true">🐼</span><div class="kp-friend-info"><b>${esc(friendName(id,profiles))}</b><small>${esc(study)}</small></div><div class="kp-friend-actions"><button class="kp-secondary kp-friend-action" data-action="greet-friend" data-id="${esc(id)}">カード</button><button class="kp-primary kp-friend-action" data-action="trade-open" data-id="${esc(id)}">シール交換</button></div></article>`;
-      }).join('')}</div>`:`<div class="kp-friends-empty"><span aria-hidden="true">🌱</span><b>友だちはまだいません</b><p>招待コードを伝えるか、相手のコードを入力してつながりましょう。</p></div>`}
-    </section>
-
-    <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🎁</span><div><h2>シール交換の申請</h2><p>交換は相手が内容を確認して承認すると成立します。</p></div><span class="kp-friends-count">${incomingTrades.length}件</span></div>
-      ${trades.length?`<div class="kp-friends-list">${trades.slice(0,8).map(t=>{
-        const incoming=t.to_user===user.id;const other=incoming?t.from_user:t.to_user;const items=tradeItems.filter(x=>x.trade_id===t.id);
-        const giving=items.filter(x=>x.offered_by===user.id);const receiving=items.filter(x=>x.offered_by!==user.id);
-        const itemNames=list=>list.length?list.map(x=>`<span class="kp-trade-sticker-chip"><span aria-hidden="true">${esc(x.glyph||'🎟️')}</span>${esc(x.title||'シール')}</span>`).join(''):'<span class="kp-trade-no-items">なし</span>';
-        const details=items.length?`<div class="kp-trade-details"><div><small>あなたが渡す</small><div>${itemNames(giving)}</div></div><div><small>あなたが受け取る</small><div>${itemNames(receiving)}</div></div></div>`:`<p class="kp-trade-details-error">交換内容を読み込めません。更新して確認してください。</p>`;
-        return `<article class="kp-friend-item kp-trade-item"><span class="kp-friend-avatar" aria-hidden="true">🎟️</span><div class="kp-friend-info"><b>${esc(friendName(other,profiles))}</b><small>${items.length}枚を含む交換 · ${shortDate(t.created_at)}</small></div><span class="kp-friends-pill">${esc(TRADE_STATUS[t.status]||t.status)}</span>${details}${t.status==='pending'?(incoming?`<div class="kp-friend-actions"><button class="kp-primary kp-friend-action" data-action="trade-reply" data-id="${esc(t.id)}" data-accept="true" ${items.length?'':'disabled'}>内容を確認して承認</button><button class="kp-secondary kp-friend-action" data-action="trade-reply" data-id="${esc(t.id)}" data-accept="false">断る</button></div>`:`<button class="kp-secondary kp-friend-action" data-action="trade-cancel" data-id="${esc(t.id)}">取り消す</button>`):''}</article>`;
-      }).join('')}</div>`:`<div class="kp-friends-empty-inline">交換の申請はまだありません。</div>`}
-    </section>
-
-    <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">💌</span><div><h2>受け取ったカード</h2><p>友だちから届いた応援メッセージです。</p></div><span class="kp-friends-count">${incomingGreetings.filter(g=>!g.read_at).length}件 未読</span></div>
-      ${incomingGreetings.length?`<div class="kp-greeting-inbox">${incomingGreetings.slice(0,10).map(g=>`<article class="kp-greeting-item ${g.read_at?'is-read':'is-unread'}"><span aria-hidden="true">${esc(CARDS[g.card_key]?.icon||'💌')}</span><div><b>${esc(friendName(g.from_user,profiles))}</b><p>${esc(CARDS[g.card_key]?.text||'応援カードが届きました')}</p><small>${shortDate(g.created_at)}</small></div>${!g.read_at?`<button class="kp-secondary kp-friend-action" data-action="greeting-read" data-id="${esc(g.id)}">既読にする</button>`:''}</article>`).join('')}</div>`:`<div class="kp-friends-empty-inline">カードが届いたらここに表示されます。</div>`}
-    </section>
-    <p class="kp-friends-safety">自由入力のチャットやメール検索はありません。申請・応援カード・交換の状態はアカウントに保存されます。</p>`;
+        const p=profiles[id]||{};const summary=progress[id];
+        const presence=!p.online_visible?'オンライン状態は非公開':onlineByFriend[id]===true?'オンライン':onlineByFriend[id]===false?'オフライン':'確認中';
+        const learning=!p.progress_visible?`<div class="kp-learning-private">学習記録は非公開</div>`:summary?`<div class="kp-learning-summary"><span>${summary.studied_today?'今日は学習したよ':'今日はまだ学習していないよ'}</span><span>今週 <b>${Number(summary.weekly_days)||0}</b> 日</span><span><b>${Number(summary.completed_units)||0}</b> 単元完了</span></div>`:`<div class="kp-learning-private">学習記録を読み込めません</div>`;
+        return `<article class="kp-friend-item kp-friend-card-row"><div class="kp-friend-identity">${avatarMarkup(p.avatar_key,friendName(id,profiles))}<div class="kp-friend-info"><b>${esc(friendName(id,profiles))}</b><span class="kp-presence ${onlineByFriend[id]===true?'is-online':''}" data-presence-user="${esc(id)}"><i aria-hidden="true"></i><small data-presence-label>${esc(presence)}</small></span></div></div>${learning}<div class="kp-friend-actions"><button class="kp-secondary kp-friend-action" data-action="greet-friend" data-id="${esc(id)}">応援カード</button><button class="kp-primary kp-friend-action" data-action="trade-open" data-id="${esc(id)}">シール交換</button></div></article>`;
+      }).join('')}</div>`:`<div class="kp-friends-empty"><span aria-hidden="true">🌱</span><b>友だちはまだいません</b><p>「申請」から招待コードを使って、友だちを追加できます。</p><button class="kp-secondary" data-action="friends-tab" data-tab="requests">招待コードでつながる</button></div>`}</section>`;
+    const requestsPanel=`<section class="kp-friends-card kp-my-friend-card"><div class="kp-my-friend-top"><div><span class="kp-eyebrow">あなたの招待コード</span><p class="kp-friend-code-value">${esc(profile.friend_code)}</p><small>友だちに伝えて申請してもらいましょう</small></div><button class="kp-secondary" data-action="copy-friend-code">コードをコピー</button></div></section>
+      <section class="kp-friends-card kp-friend-add-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🔎</span><div><h2>友だちを追加</h2><p>相手から教えてもらったコードを入力します。</p></div></div><form class="kp-add-friend-form" id="kpFriendForm"><label for="kpFriendCodeInput">招待コード</label><div class="kp-add-friend-controls"><input id="kpFriendCodeInput" name="code" maxlength="12" placeholder="KP-AB12-XYZ" autocapitalize="characters" autocomplete="off" required><button class="kp-primary">申請を送る</button></div><small>名前やメールアドレスからは検索できません。</small></form></section>
+      <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">💌</span><div><h2>届いた申請</h2><p>承認すると友だちに追加されます。</p></div><span class="kp-friends-count">${incoming.length}件</span></div>${requestRows(incoming,user,profiles,true)}<div class="kp-friends-subheading kp-friends-subheading-spaced">送った申請 <span>${outgoing.length}</span></div>${requestRows(outgoing,user,profiles,false)}</section>`;
+    const activityPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🎟️</span><div><h2>シール交換</h2><p>内容を確認してから承認・お断りできます。</p></div><span class="kp-friends-count">${incomingTrades.length}件の返事待ち</span></div>
+      ${trades.length?`<div class="kp-friends-list">${trades.slice(0,8).map(t=>{const isIncoming=t.to_user===user.id;const other=isIncoming?t.from_user:t.to_user;const items=tradeItems.filter(x=>x.trade_id===t.id);const giving=items.filter(x=>x.offered_by===user.id);const receiving=items.filter(x=>x.offered_by!==user.id);const itemNames=list=>list.length?list.map(x=>`<span class="kp-trade-sticker-chip"><span aria-hidden="true">${esc(x.glyph||'🎟️')}</span>${esc(x.title||'シール')}</span>`).join(''):'<span class="kp-trade-no-items">なし</span>';const details=items.length?`<div class="kp-trade-details"><div><small>あなたが渡す</small><div>${itemNames(giving)}</div></div><div><small>あなたが受け取る</small><div>${itemNames(receiving)}</div></div></div>`:`<p class="kp-trade-details-error">交換内容を読み込めません。更新して確認してください。</p>`;return `<article class="kp-friend-item kp-trade-item"><span class="kp-friend-avatar" aria-hidden="true">🎟️</span><div class="kp-friend-info"><b>${esc(friendName(other,profiles))}</b><small>${items.length}枚を含む交換 · ${shortDate(t.created_at)}</small></div><span class="kp-friends-pill">${esc(TRADE_STATUS[t.status]||t.status)}</span>${details}${t.status==='pending'?(isIncoming?`<div class="kp-friend-actions"><button class="kp-primary kp-friend-action" data-action="trade-reply" data-id="${esc(t.id)}" data-accept="true" ${items.length?'':'disabled'}>内容を確認して承認</button><button class="kp-secondary kp-friend-action" data-action="trade-reply" data-id="${esc(t.id)}" data-accept="false">断る</button></div>`:`<button class="kp-secondary kp-friend-action" data-action="trade-cancel" data-id="${esc(t.id)}">取り消す</button>`):''}</article>`;}).join('')}</div>`:`<div class="kp-friends-empty-inline">交換の申請はまだありません。</div>`}</section>
+      <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">💌</span><div><h2>応援カード</h2><p>友だちから届いたカードを確認できます。</p></div><span class="kp-friends-count">${incomingGreetingsUnread}件 未読</span></div>${incomingGreetings.length?`<div class="kp-greeting-inbox">${incomingGreetings.slice(0,10).map(g=>`<article class="kp-greeting-item ${g.read_at?'is-read':'is-unread'}"><span aria-hidden="true">${esc(CARDS[g.card_key]?.icon||'💌')}</span><div><b>${esc(friendName(g.from_user,profiles))}</b><p>${esc(CARDS[g.card_key]?.text||'応援カードが届きました')}</p><small>${shortDate(g.created_at)}</small></div>${!g.read_at?`<button class="kp-secondary kp-friend-action" data-action="greeting-read" data-id="${esc(g.id)}">既読にする</button>`:''}</article>`).join('')}</div>`:`<div class="kp-friends-empty-inline">カードが届いたらここに表示されます。</div>`}</section>`;
+    const panel=activeTab==='requests'?requestsPanel:activeTab==='activity'?activityPanel:friendsPanel;
+    return `<section class="kp-friends-card kp-friends-profile-strip"><div class="kp-friend-identity">${avatarMarkup(profile.avatar_key,profile.nickname)}<div><b>${esc(profile.nickname||'あなた')}</b><small>あなたの友だちプロフィール</small></div></div><button class="kp-secondary" data-action="profile-open">プロフィール設定</button></section>
+      <div class="kp-friends-overview" aria-label="友だちの状況"><div><b>${onlineCount}</b><span>オンライン中</span></div><div><b>${friends.length}</b><span>友だち</span></div><div><b>${incoming.length}</b><span>届いた申請</span></div></div>
+      <div class="kp-friends-tabs" role="tablist" aria-label="友だちメニュー">${tab('friends','友だち')}${tab('requests','申請',incoming.length)}${tab('activity','交流',incomingTrades.length+incomingGreetingsUnread)}</div>
+      ${panel}<p class="kp-friends-safety">オンライン表示と学習記録はプロフィール設定で個別に公開できます。自由入力のチャットやメール検索はありません。</p>`;
   }
   async function safeAction(ctx,fn){try{await fn();}catch(error){ctx.toast(errText(error));}}
   async function refresh(ctx){ctx.render();}
+  function openProfile(ctx){
+    const p=snapshot.profile||{};
+    const choices=Object.entries(AVATARS).map(([key,item])=>`<button type="button" class="kp-avatar-choice ${p.avatar_key===key?'is-selected':''}" data-action="avatar-select" data-avatar="${key}" aria-pressed="${p.avatar_key===key}"><span class="kp-avatar-art ${item.color}">${item.emoji}</span><small>${item.label}</small></button>`).join('');
+    ctx.modal('プロフィール設定',`<form id="kpFriendProfileForm" class="kp-profile-editor"><label for="kpFriendNickname">友だちに表示する名前</label><input id="kpFriendNickname" name="nickname" maxlength="24" required value="${esc(p.nickname||'')}" autocomplete="nickname"><input type="hidden" name="avatar_key" value="${esc(AVATARS[p.avatar_key]?p.avatar_key:'xiaoyin')}"><fieldset><legend>自分のアバター</legend><div class="kp-avatar-picker">${choices}</div></fieldset><label class="kp-friend-privacy"><span><b>学習の様子を友だちに見せる</b><small>今日の学習、今週の日数、完了した単元数を表示します。</small></span><input type="checkbox" name="progress_visible" ${p.progress_visible?'checked':''}></label><label class="kp-friend-privacy"><span><b>オンライン状態を友だちに見せる</b><small>使用中はオンラインと表示します。オフライン時刻は公開しません。</small></span><input type="checkbox" name="online_visible" ${p.online_visible?'checked':''}></label><button class="kp-primary kp-profile-save">設定を保存</button></form>`);
+  }
   async function updateProfile(ctx,form){
     if(!snapshot?.user)throw new Error('sign_in_required');
-    const nickname=String(new FormData(form).get('nickname')||'').trim();
+    const data=new FormData(form);const nickname=String(data.get('nickname')||'').trim();
     if(!nickname||nickname.length>24){ctx.toast('表示名は1〜24文字で入力してください。');return;}
-    const result=await snapshot.client.from('kp_social_profiles').update({nickname}).eq('user_id',snapshot.user.id);
+    const avatar_key=String(data.get('avatar_key')||'xiaoyin');
+    if(!AVATARS[avatar_key]){ctx.toast('アバターを選び直してください。');return;}
+    const values={nickname,avatar_key,progress_visible:form.elements.progress_visible.checked,online_visible:form.elements.online_visible.checked};
+    const result=await snapshot.client.from('kp_social_profiles').update(values).eq('user_id',snapshot.user.id);
     if(result.error)throw result.error;
-    ctx.toast('友だちに表示する名前を保存しました。');await refresh(ctx);
+    ctx.closeModal();ctx.toast('プロフィール設定を保存しました。');window.KP_PRESENCE_MANAGER?.refresh?.();await refresh(ctx);
   }
   async function sendRequest(ctx,form){
     const code=String(new FormData(form).get('code')||'').trim().toUpperCase();
@@ -250,6 +292,9 @@
       catch(_){ctx.toast(`あなたの招待コード：${code}`);}
     }),
     account:()=>document.getElementById('kpAccountTrigger')?.click(),
+    'friends-tab':(ctx,b)=>{activeTab=['friends','requests','activity'].includes(b.dataset.tab)?b.dataset.tab:'friends';ctx.render();},
+    'profile-open':ctx=>openProfile(ctx),
+    'avatar-select':(ctx,b)=>{const form=b.closest('form');if(!form||!AVATARS[b.dataset.avatar])return;form.elements.avatar_key.value=b.dataset.avatar;form.querySelectorAll('.kp-avatar-choice').forEach(choice=>{const selected=choice===b;choice.classList.toggle('is-selected',selected);choice.setAttribute('aria-pressed',String(selected));});},
     'greet-friend':(ctx,b)=>greet(ctx,b.dataset.id),
     'greeting-send':(ctx,b)=>safeAction(ctx,()=>sendGreeting(ctx,b)),
     'friend-response':(ctx,b)=>safeAction(ctx,async()=>{

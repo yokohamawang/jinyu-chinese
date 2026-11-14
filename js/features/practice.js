@@ -13,19 +13,40 @@
     {id:'hao',q:'「好」の意味に近いのは？',a:['よい','大きい','あした'],correct:0,sticker:'hao'},
     {id:'shan',q:'「山」のピンインは？',a:['mā','shān','nǐ'],correct:1,sticker:'shan'}
   ];
-  let quizIndex=0,quizSet=[];
+  let quizIndex=0,quizSet=[],quizMode='challenge',quizClaimToken=null;
   window.KoepandaFeatures.practice.actions={
     quiz:ctx=>startQuiz(ctx),
     review:ctx=>review(ctx),
     'quiz-answer':(ctx,b)=>answer(ctx,+b.dataset.answer),
     'quiz-next':ctx=>nextQuestion(ctx),
-    'finish-quiz':ctx=>finishQuiz(ctx)
+    'finish-quiz':ctx=>finishQuiz(ctx),
+    'sticker-award-retry':ctx=>claimQuizSticker(ctx,quizClaimToken)
   };
   window.KoepandaFeatures.practice.questions=QUESTIONS;
-  function startQuiz(ctx){quizSet=QUESTIONS.map((q,i)=>i).sort(()=>Math.random()-.5);quizIndex=0;renderQuiz(ctx);}
+  function startQuiz(ctx){quizMode='challenge';quizClaimToken=newClaimToken();quizSet=QUESTIONS.map((q,i)=>i).sort(()=>Math.random()-.5);quizIndex=0;renderQuiz(ctx);}
   function renderQuiz(ctx,feedback){const main=ctx.root.querySelector('#kpFeatureMain'),q=QUESTIONS[quizSet[quizIndex]];main.innerHTML=`${ctx.head('ミニクイズ','5問チャレンジ','答えた問題は、次の復習タイミングに反映するよ。')}<div class="kp-quiz-progress"><span style="width:${(quizIndex/quizSet.length)*100}%"></span></div><section class="kp-quiz-card"><span class="kp-eyebrow">${quizIndex+1} / ${quizSet.length} 問</span><h2>${q.q}</h2><div class="kp-quiz-options">${q.a.map((x,i)=>`<button data-action="quiz-answer" data-answer="${i}" ${feedback?'disabled':''}>${ctx.safe(x)}</button>`).join('')}</div>${feedback?`<div class="kp-quiz-feedback ${feedback.ok?'good':'again'}">${feedback.ok?'せいかい！シールをゲット ✨':'だいじょうぶ。まちがいノートに入れて、あとで復習しよう。'}<button data-action="quiz-next" class="kp-primary">${quizIndex===quizSet.length-1?'結果を見る':'つぎへ'}</button></div>`:''}</section><button class="kp-text-button" data-go="practice">練習ひろばへ戻る</button>`;}
   function answer(ctx,index){const q=QUESTIONS[quizSet[quizIndex]],ok=index===q.correct;ctx.state.lastQuiz=Date.now();if(ok){ctx.state.mastered[q.id]=(ctx.state.mastered[q.id]||0)+1;const old=ctx.state.wrongs[q.id];if(old){old.streak=(old.streak||0)+1;if(old.streak>=3)delete ctx.state.wrongs[q.id];else old.due=Date.now()+(old.streak===1?86400000:3*86400000);}if(!ctx.state.unlocked.includes(q.sticker))ctx.state.unlocked.push(q.sticker);}else{const old=ctx.state.wrongs[q.id]||{count:0,streak:0};old.count++;old.streak=0;old.due=Date.now();old.question=q.id;ctx.state.wrongs[q.id]=old;}ctx.save();renderQuiz(ctx,{ok});}
   function nextQuestion(ctx){quizIndex++;if(quizIndex>=quizSet.length){finishQuiz(ctx);return;}renderQuiz(ctx);}
-  function finishQuiz(ctx){ctx.save();ctx.setPage('practice');ctx.render();ctx.modal('チャレンジできたね！',`<div class="kp-result-illustration">${ctx.STICKERS.slice(0,ctx.state.unlocked.length).map(s=>`<img src="${ctx.img(s.id)}" alt="">`).join('')}</div><p class="kp-modal-copy">まちがえた問題は、次にちょうどいいタイミングで出てくるよ。シールはシール帳に追加しました。</p><button data-action="modal-close" class="kp-primary">とじる</button>`);}
-  function review(ctx){const due=Object.values(ctx.state.wrongs).filter(x=>x.due<=Date.now());if(!due.length){ctx.modal('まちがいノート',`<p class="kp-modal-copy">今は復習する問題がないよ。ミニクイズで新しいチャレンジをしてみよう。</p><button data-action="modal-close" class="kp-primary">とじる</button>`);return;}const q=QUESTIONS.find(x=>x.id===due[0].question);if(!q)return;quizSet=[QUESTIONS.indexOf(q)];quizIndex=0;renderQuiz(ctx);}
+  function finishQuiz(ctx){
+    ctx.save();ctx.setPage('practice');ctx.render();
+    const isFullChallenge=quizMode==='challenge'&&quizSet.length===QUESTIONS.length;
+    const body=`<p class="kp-modal-copy">チャレンジ完了！まちがえた問題は復習ノートに入りました。</p>${isFullChallenge?'<div id="kpQuizStickerReward" class="kp-quiz-sticker-reward"><span class="kp-friends-spinner" aria-hidden="true"></span><p>ごほうびシールを抽選しています…</p></div>':''}<button data-action="modal-close" class="kp-primary">とじる</button>`;
+    ctx.modal('チャレンジできたね！',body);
+    if(isFullChallenge)claimQuizSticker(ctx,quizClaimToken);
+  }
+  function newClaimToken(){if(window.crypto?.randomUUID)return window.crypto.randomUUID();return'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16);});}
+  async function claimQuizSticker(ctx,claimToken){
+    const target=ctx.root.querySelector('#kpQuizStickerReward');if(!target)return;
+    try{
+      const api=window.KP_ACCOUNT_API;if(!api||typeof api.getClient!=='function'){target.innerHTML='<p>ログインすると、友だちと交換できる生肖シールを受け取れます。</p><button class="kp-secondary" data-action="account">ログインする</button>';return;}
+      const client=await api.getClient();if(!client){target.innerHTML='<p>アカウントに接続できません。ログイン状態を確認してください。</p>';return;}
+      const session=await client.auth.getSession();if(!session.data?.session){target.innerHTML='<p>ログインすると、友だちと交換できる生肖シールを受け取れます。</p><button class="kp-secondary" data-action="account">ログインする</button>';return;}
+      const result=await client.rpc('kp_award_random_zodiac_sticker',{p_claim_token:claimToken});if(result.error)throw result.error;
+      const item=Array.isArray(result.data)?result.data[0]:result.data;if(!item)throw new Error('sticker_reward_empty');
+      if(!ctx.state.unlocked.includes(item.sticker_key)){ctx.state.unlocked.push(item.sticker_key);ctx.save();}
+      const title=ctx.STICKERS.find(s=>s.id===item.sticker_key)?.name||item.title||item.glyph;
+      target.innerHTML=`<div class="kp-zodiac-award"><img src="${ctx.img(item.sticker_key)}" alt="${ctx.safe(title)}"><div><b>${item.already_claimed?'受け取りを確認したよ！':'新しいシールをゲット！'}</b><span>${ctx.safe(title)}</span><small>シール帳に追加しました。友だちとの交換にも使えます。</small></div></div>`;
+    }catch(error){console.warn('[Koepanda] zodiac sticker award failed:',error);target.innerHTML='<p>シールを受け取れませんでした。通信を確認して、もう一度試してください。</p><button class="kp-secondary" data-action="sticker-award-retry">もう一度受け取る</button>';}
+  }
+  function review(ctx){const due=Object.values(ctx.state.wrongs).filter(x=>x.due<=Date.now());if(!due.length){ctx.modal('まちがいノート',`<p class="kp-modal-copy">今は復習する問題がないよ。ミニクイズで新しいチャレンジをしてみよう。</p><button data-action="modal-close" class="kp-primary">とじる</button>`);return;}const q=QUESTIONS.find(x=>x.id===due[0].question);if(!q)return;quizMode='review';quizClaimToken=null;quizSet=[QUESTIONS.indexOf(q)];quizIndex=0;renderQuiz(ctx);}
 })();
