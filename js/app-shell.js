@@ -20,6 +20,29 @@
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   let root, page='learn', selectedSticker=null;
+  let ownPresenceClient=null,ownPresenceChannel=null,ownPresenceAuth=null,ownPresenceBusy=false;
+  async function syncOwnPresence(){
+    if(ownPresenceBusy)return;ownPresenceBusy=true;
+    try{
+      const api=window.KP_ACCOUNT_API;if(!api||typeof api.getClient!=='function')return;
+      const client=await api.getClient();if(!client)return;ownPresenceClient=client;
+      const sessionResult=await client.auth.getSession();const user=sessionResult.data?.session?.user;
+      const stop=async()=>{if(ownPresenceChannel){const channel=ownPresenceChannel;ownPresenceChannel=null;try{await client.removeChannel(channel);}catch(_){}}};
+      if(!user){await stop();return;}
+      const profile=await client.from('kp_social_profiles').select('online_visible').eq('user_id',user.id).maybeSingle();
+      if(profile.error||!profile.data?.online_visible){await stop();return;}
+      if(ownPresenceChannel&&ownPresenceChannel.topic===`realtime:kp-presence-${user.id}`)return;
+      await stop();
+      const channel=client.channel(`kp-presence-${user.id}`,{config:{private:true,presence:{key:user.id}}});ownPresenceChannel=channel;
+      channel.subscribe(async status=>{if(status==='SUBSCRIBED'&&ownPresenceChannel===channel){const result=await channel.track({user_id:user.id});if(result==='error')console.warn('[Koepanda] presence publish failed');}});
+    }catch(error){console.warn('[Koepanda] presence sync unavailable:',error);}
+    finally{ownPresenceBusy=false;}
+  }
+  function startPresenceManager(){
+    window.KP_PRESENCE_MANAGER={refresh:syncOwnPresence,stop:async()=>{if(ownPresenceClient&&ownPresenceChannel){const channel=ownPresenceChannel;ownPresenceChannel=null;try{await ownPresenceClient.removeChannel(channel);}catch(_){}}}};
+    Promise.resolve().then(syncOwnPresence);
+    const api=window.KP_ACCOUNT_API;if(api&&typeof api.getClient==='function')Promise.resolve(api.getClient()).then(client=>{if(client&&!ownPresenceAuth)ownPresenceAuth=client.auth.onAuthStateChange(()=>setTimeout(syncOwnPresence,0)).data.subscription;}).catch(()=>{});
+  }
   function boot(){
     if(document.getElementById('kpFeatureRoot'))return;
     root=el('div','kp-feature-root');root.id='kpFeatureRoot';root.setAttribute('aria-hidden','true');root.innerHTML=`<div class="kp-feature-frame"><header class="kp-feature-header"><button class="kp-brand" data-go="learn" aria-label="Koepanda 学習ホーム"><img class="kp-logo-art" src="./assets/brand/koepanda-logo.jpeg?v=10.108.301.185" alt="小音と声調コーチ Koepanda" width="1536" height="864"></button></header><nav class="kp-feature-nav" aria-label="メインメニュー"><button data-go="learn"><span>学習</span></button><button data-go="practice"><span>練習</span></button><button data-go="friends"><span>友だち</span></button><button data-go="story"><span>ストーリー</span></button><button data-go="self"><span>自分</span></button></nav><main class="kp-feature-main" id="kpFeatureMain"></main><p class="kp-prototype-note">友だち機能はログイン後に使えます。自由入力のチャットはありません。</p></div><dialog class="kp-modal" id="kpModal"><div class="kp-modal-body"></div></dialog></div>`;
@@ -35,6 +58,7 @@
     document.addEventListener('click',function(e){const a=e.target.closest('#homeEffect a.home-effect-hotspot.roadmap-hs-listen,#homeEffect a.home-effect-hotspot.roadmap-hs-talk,#homeEffect a.home-effect-hotspot.roadmap-hs-repeat');if(!a)return;e.preventDefault();e.stopImmediatePropagation();open('practice',a.classList.contains('roadmap-hs-listen')?'listen':a.classList.contains('roadmap-hs-talk')?'talk':'repeat');},true);
     render();
     root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');
+    startPresenceManager();
     const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};
   }
   function open(where='practice'){page=where;root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
@@ -56,7 +80,7 @@
   function head(eyebrow,title,sub){return `<div class="kp-page-head"><span class="kp-eyebrow">${eyebrow}</span><h1>${title}</h1><p>${sub}</p></div>`;}
   function actionContext(){return {state,save,safe,img,head,STICKERS,QUESTIONS,selectedSticker,setSelectedSticker:value=>{selectedSticker=value;},setPage:value=>{page=value;},root,render,toast,modal,closeModal};}
   function onClick(e){
-    const go=e.target.closest('[data-go]');if(go){page=go.dataset.go;render();return;}
+    const go=e.target.closest('[data-go]');if(go){if(go.dataset.go==='book'){state.bookOpen=false;state.bookReady=false;state.coversOpen=false;}page=go.dataset.go;render();return;}
     const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
     if(action==='close'){open('learn');return;}
     if(action==='account'){document.getElementById('kpAccountTrigger')?.click();return;}
