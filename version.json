@@ -1,18 +1,21 @@
 {
-  "version": "301.202",
-  "base_version": "301.201",
+  "version": "301.204",
+  "base_version": "301.202",
   "status": "candidate",
   "entry": "index.html",
-  "summary": "生肖貼紙素材とスマートフォン表示を修正し、全デザインの図鑑を追加。小音や動物の挿絵を使った表紙を5種類から選択できるようにし、未実装の収集状態を明記。",
+  "summary": "表紙用の小音・十二支画像を配布対象に追加し、301.203の戻る操作・ログイン表示・キャッシュ修正と301.202の貼紙修正を統合。",
   "database_migrations": [],
   "removed_files": [],
-  "built_at_jst": "2026-11-14T21:00:09+09:00",
+  "built_at_jst": "2026-11-14T22:34:13+09:00",
   "changed_files": [
     "index.html",
+    "css/features/collections.css",
+    "css/features/self.css",
     "js/app-shell.js",
     "js/features/rewards.js",
+    "js/features/self.js",
     "js/features/sticker-book.js",
-    "css/features/collections.css",
+    "js/features/sticker-data.js",
     "assets/stickers/zodiac/dog-kanji.svg",
     "assets/stickers/zodiac/dog-pinyin.svg",
     "assets/stickers/zodiac/dragon-kanji.svg",
@@ -36,6 +39,13 @@
     "assets/stickers/zodiac/snake-kanji.svg",
     "assets/stickers/zodiac/snake-pinyin.svg",
     "assets/stickers/zodiac/tiger-kanji.svg",
-    "assets/stickers/zodiac/tiger-pinyin.svg"
+    "assets/stickers/zodiac/tiger-pinyin.svg",
+    "assets/stickers/covers/dragon.png",
+    "assets/stickers/covers/goat.png",
+    "assets/stickers/covers/rabbit.png",
+    "assets/stickers/covers/rat.png",
+    "assets/stickers/covers/tiger.png",
+    "assets/stickers/covers/xiaoyin-calm.webp",
+    "assets/stickers/covers/xiaoyin-hearts.webp"
   ]
 }
