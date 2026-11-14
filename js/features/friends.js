@@ -26,6 +26,9 @@
   let activeTab='friends';
   let onlineByFriend={};
   let friendPresenceChannels=[];
+  let qrScanFrame=0;
+  let qrVideoStream=null;
+  const qrScriptLoads={};
 
   function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function shortDate(value){try{return new Date(value).toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'});}catch(_){return '';}}
@@ -77,6 +80,67 @@
     return '通信に失敗しました。接続を確認して、もう一度お試しください。';
   }
   function setMessage(main,message,isError){const el=main.querySelector('#kpFriendsMessage');if(el){el.textContent=message||'';el.classList.toggle('is-error',!!isError);}}
+  function loadQrScript(url,globalName){
+    if(window[globalName])return Promise.resolve();
+    if(qrScriptLoads[globalName])return qrScriptLoads[globalName];
+    qrScriptLoads[globalName]=new Promise((resolve,reject)=>{
+      const script=document.createElement('script');script.src=url;script.async=true;
+      script.onload=()=>window[globalName]?resolve():reject(new Error('qr_library_unavailable'));
+      script.onerror=()=>reject(new Error('qr_library_unavailable'));
+      document.head.appendChild(script);
+    });
+    return qrScriptLoads[globalName];
+  }
+  function loadQrGenerator(){return loadQrScript('https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js','qrcode');}
+  function loadQrReader(){return loadQrScript('https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js','jsQR');}
+  function renderInviteQr(main,code){
+    const host=main.querySelector('[data-kp-my-friend-qr]');if(!host)return;
+    host.textContent='QRコードを準備しています…';
+    loadQrGenerator().then(()=>{
+      if(!host.isConnected)return;
+      const qr=window.qrcode(0,'M');qr.addData(String(code));qr.make();
+      host.innerHTML=qr.createSvgTag({cellSize:5,margin:4,scalable:true});
+      const svg=host.querySelector('svg');if(svg){svg.setAttribute('role','img');svg.setAttribute('aria-label','あなたの招待コードのQRコード');}
+    }).catch(()=>{if(host.isConnected)host.textContent='QRを表示できません。招待コードを使ってください。';});
+  }
+  function stopQrCamera(){
+    if(qrScanFrame)cancelAnimationFrame(qrScanFrame);qrScanFrame=0;
+    if(qrVideoStream){qrVideoStream.getTracks().forEach(track=>track.stop());qrVideoStream=null;}
+  }
+  function inviteCodeFromQr(raw){
+    const value=String(raw||'').trim();
+    const valid=code=>/^KP-[A-Z0-9]{4}-[A-Z0-9]{3}$/.test(String(code||'').trim().toUpperCase());
+    if(valid(value))return value.toUpperCase();
+    try{const url=new URL(value);if(url.origin!==location.origin)return'';const code=url.searchParams.get('friend')||url.searchParams.get('invite')||'';return valid(code)?code.toUpperCase():'';}catch(_){return'';}
+  }
+  async function openQrScanner(ctx){
+    stopQrCamera();
+    ctx.modal('QRコードを読み取る',`<div class="kp-friend-qr-scanner"><div class="kp-friend-qr-camera"><video id="kpFriendQrVideo" playsinline muted aria-label="友だちの招待QRコードを映すカメラ"></video><span aria-hidden="true"></span></div><p id="kpFriendQrStatus" role="status" aria-live="polite">カメラを準備しています…</p><small>QRが枠に入るように、ゆっくり合わせてください。読み取り後、申請内容を確認できます。</small></div>`);
+    const dialog=ctx.root.querySelector('#kpModal'),video=ctx.root.querySelector('#kpFriendQrVideo'),status=ctx.root.querySelector('#kpFriendQrStatus');
+    dialog?.addEventListener('close',stopQrCamera,{once:true});
+    try{
+      await loadQrReader();
+      if(!navigator.mediaDevices?.getUserMedia)throw new Error('camera_unavailable');
+      qrVideoStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'}}});
+      if(!dialog?.open){stopQrCamera();return;}
+      video.srcObject=qrVideoStream;await video.play();
+      if(status)status.textContent='QRコードを枠に合わせてください';
+      const canvas=document.createElement('canvas'),scanContext=canvas.getContext('2d',{willReadFrequently:true});let lastScan=0;
+      const scan=now=>{
+        if(!qrVideoStream||!dialog?.open)return;
+        if(video.readyState>=2&&video.videoWidth&&now-lastScan>140){
+          lastScan=now;const scale=Math.min(1,720/video.videoWidth);canvas.width=Math.round(video.videoWidth*scale);canvas.height=Math.round(video.videoHeight*scale);
+          scanContext.drawImage(video,0,0,canvas.width,canvas.height);
+          const result=window.jsQR(scanContext.getImageData(0,0,canvas.width,canvas.height).data,canvas.width,canvas.height,{inversionAttempts:'dontInvert'});
+          if(result?.data){const code=inviteCodeFromQr(result.data);if(code){stopQrCamera();ctx.closeModal();const input=ctx.main.querySelector('#kpFriendCodeInput');if(input){input.value=code;setMessage(ctx.main,'QRコードを読み取りました。コードを確認してから友だち申請を送ってください。',false);input.scrollIntoView({behavior:'smooth',block:'center'});input.focus();}ctx.toast('招待コードを読み取りました。');return;}if(status)status.textContent='Koepandaの招待QRではありません。手入力もできます。';}
+        }
+        qrScanFrame=requestAnimationFrame(scan);
+      };
+      qrScanFrame=requestAnimationFrame(scan);
+    }catch(error){
+      stopQrCamera();if(status)status.textContent=/NotAllowed|Permission|denied/i.test(String(error))?'カメラの使用が許可されませんでした。ブラウザの設定を確認するか、招待コードを手入力してください。':'カメラを起動できませんでした。招待コードを手入力してください。';
+    }
+  }
   function shell({head}){
     return `${head('つながる・応援する','友だち','招待コードでつながり、定型カードで応援し合えます。')}
       <div class="kp-friends-status" id="kpFriendsMessage" role="status" aria-live="polite">アカウント情報を確認しています…</div>
@@ -160,6 +224,7 @@
     snapshot={client,user,profile:profileRes.data,relations,accepted,pending,profiles,greetings:greetingsRes.data||[],trades:tradeRows,tradeItems,progress:Object.fromEntries(progress)};
     if(sequence!==loadSequence)return;
     body.innerHTML=renderBody(snapshot);
+    renderInviteQr(body,profileRes.data?.friend_code);
     attachFriendPresence(snapshot);
     setMessage(main,'最新の情報を表示しています。',false);
   }
@@ -190,8 +255,8 @@
         const learning=!p.progress_visible?`<div class="kp-learning-private">学習記録は非公開</div>`:summary?`<div class="kp-learning-summary"><span>${summary.studied_today?'今日は学習したよ':'今日はまだ学習していないよ'}</span><span>今週 <b>${Number(summary.weekly_days)||0}</b> 日</span><span><b>${Number(summary.completed_units)||0}</b> 単元完了</span></div>`:`<div class="kp-learning-private">学習記録を読み込めません</div>`;
         return `<article class="kp-friend-item kp-friend-card-row"><div class="kp-friend-identity">${avatarMarkup(p.avatar_key,friendName(id,profiles))}<div class="kp-friend-info"><b>${esc(friendName(id,profiles))}</b><span class="kp-presence ${onlineByFriend[id]===true?'is-online':''}" data-presence-user="${esc(id)}"><i aria-hidden="true"></i><small data-presence-label>${esc(presence)}</small></span></div></div>${learning}<div class="kp-friend-actions"><button class="kp-secondary kp-friend-action" data-action="greet-friend" data-id="${esc(id)}">応援カード</button><button class="kp-primary kp-friend-action" data-action="trade-open" data-id="${esc(id)}">シール交換</button></div></article>`;
       }).join('')}</div>`:`<div class="kp-friends-empty"><span aria-hidden="true">🌱</span><b>友だちはまだいません</b><p>「申請」から招待コードを使って、友だちを追加できます。</p><button class="kp-secondary" data-action="friends-tab" data-tab="requests">招待コードでつながる</button></div>`}</section>`;
-    const requestsPanel=`<section class="kp-friends-card kp-my-friend-card"><div class="kp-my-friend-top"><div><span class="kp-eyebrow">あなたの招待コード</span><p class="kp-friend-code-value">${esc(profile.friend_code)}</p><small>友だちに伝えて申請してもらいましょう</small></div><button class="kp-secondary" data-action="copy-friend-code">コードをコピー</button></div></section>
-      <section class="kp-friends-card kp-friend-add-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🔎</span><div><h2>友だちを追加</h2><p>相手から教えてもらったコードを入力します。</p></div></div><form class="kp-add-friend-form" id="kpFriendForm"><label for="kpFriendCodeInput">招待コード</label><div class="kp-add-friend-controls"><input id="kpFriendCodeInput" name="code" maxlength="12" placeholder="KP-AB12-XYZ" autocapitalize="characters" autocomplete="off" required><button class="kp-primary">申請を送る</button></div><small>名前やメールアドレスからは検索できません。</small></form></section>
+    const requestsPanel=`<section class="kp-friends-card kp-my-friend-card"><div class="kp-my-friend-top"><div><span class="kp-eyebrow">あなたの招待コード</span><p class="kp-friend-code-value">${esc(profile.friend_code)}</p><small>QRを見せるか、コードを伝えて友だち申請を受け取れます。</small></div><button class="kp-secondary" data-action="copy-friend-code">コードをコピー</button></div><div class="kp-my-friend-qr-row"><div class="kp-my-friend-qr" data-kp-my-friend-qr aria-label="あなたの招待QRコード">QRコードを準備しています…</div><div><b>QRコードでつながる</b><p>友だちにこのQRを見せてもらい、下の「読み取る」から追加できます。</p></div></div></section>
+      <section class="kp-friends-card kp-friend-add-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🔎</span><div><h2>友だちを追加</h2><p>QRコードを読み取るか、招待コードを入力します。</p></div></div><button type="button" class="kp-qr-scan-button" data-action="friends-scan-qr"><span aria-hidden="true">▦</span> QRコードを読み取る</button><div class="kp-manual-code-divider"><span>またはコードを手入力</span></div><form class="kp-add-friend-form" id="kpFriendForm"><label for="kpFriendCodeInput">招待コード</label><div class="kp-add-friend-controls"><input id="kpFriendCodeInput" name="code" maxlength="12" placeholder="KP-AB12-XYZ" autocapitalize="characters" autocomplete="off" required><button class="kp-primary">申請を送る</button></div><small>読み取ったコードも、送信前にここで確認できます。</small></form></section>
       <section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">💌</span><div><h2>届いた申請</h2><p>承認すると友だちに追加されます。</p></div><span class="kp-friends-count">${incoming.length}件</span></div>${requestRows(incoming,user,profiles,true)}<div class="kp-friends-subheading kp-friends-subheading-spaced">送った申請 <span>${outgoing.length}</span></div>${requestRows(outgoing,user,profiles,false)}</section>`;
     const activityPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🎟️</span><div><h2>シール交換</h2><p>内容を確認してから承認・お断りできます。</p></div><span class="kp-friends-count">${incomingTrades.length}件の返事待ち</span></div>
       ${trades.length?`<div class="kp-friends-list">${trades.slice(0,8).map(t=>{const isIncoming=t.to_user===user.id;const other=isIncoming?t.from_user:t.to_user;const items=tradeItems.filter(x=>x.trade_id===t.id);const giving=items.filter(x=>x.offered_by===user.id);const receiving=items.filter(x=>x.offered_by!==user.id);const itemNames=list=>list.length?list.map(x=>`<span class="kp-trade-sticker-chip"><span aria-hidden="true">${esc(x.glyph||'🎟️')}</span>${esc(x.title||'シール')}</span>`).join(''):'<span class="kp-trade-no-items">なし</span>';const details=items.length?`<div class="kp-trade-details"><div><small>あなたが渡す</small><div>${itemNames(giving)}</div></div><div><small>あなたが受け取る</small><div>${itemNames(receiving)}</div></div></div>`:`<p class="kp-trade-details-error">交換内容を読み込めません。更新して確認してください。</p>`;return `<article class="kp-friend-item kp-trade-item"><span class="kp-friend-avatar" aria-hidden="true">🎟️</span><div class="kp-friend-info"><b>${esc(friendName(other,profiles))}</b><small>${items.length}枚を含む交換 · ${shortDate(t.created_at)}</small></div><span class="kp-friends-pill">${esc(TRADE_STATUS[t.status]||t.status)}</span>${details}${t.status==='pending'?(isIncoming?`<div class="kp-friend-actions"><button class="kp-primary kp-friend-action" data-action="trade-reply" data-id="${esc(t.id)}" data-accept="true" ${items.length?'':'disabled'}>内容を確認して承認</button><button class="kp-secondary kp-friend-action" data-action="trade-reply" data-id="${esc(t.id)}" data-accept="false">断る</button></div>`:`<button class="kp-secondary kp-friend-action" data-action="trade-cancel" data-id="${esc(t.id)}">取り消す</button>`):''}</article>`;}).join('')}</div>`:`<div class="kp-friends-empty-inline">交換の申請はまだありません。</div>`}</section>
@@ -286,6 +351,7 @@
   window.KoepandaFeatures.friends.mount=mount;
   window.KoepandaFeatures.friends.actions={
     'friends-retry':ctx=>safeAction(ctx,()=>refresh(ctx)),
+    'friends-scan-qr':ctx=>safeAction(ctx,()=>openQrScanner(ctx)),
     'copy-friend-code':ctx=>safeAction(ctx,async()=>{
       const code=snapshot?.profile?.friend_code;if(!code)throw new Error('profile_missing');
       try{await navigator.clipboard.writeText(code);ctx.toast('招待コードをコピーしました。');}

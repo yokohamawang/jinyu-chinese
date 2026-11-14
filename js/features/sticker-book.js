@@ -5,7 +5,7 @@
     {id:'xiaoyin_sparkle',name:'小音のきらきら',sub:'やさしいピンクと星の箔',className:'cover-sparkle',mark:'✦',art:'🌙'},
     {id:'zodiac_album',name:'十二支コレクション',sub:'十二支と一緒に集めよう',className:'cover-zodiac',mark:'十二支',art:'🐉'},
     {id:'clear_mint',name:'クリアミント',sub:'すっきり透明感のあるデザイン',className:'cover-mint',mark:'✧',art:'🍃'},
-    {id:'xiaoyin_study',name:'小音のひみつノート',sub:'小音といっしょに学ぶノート風',className:'cover-study',mark:'NOTE',image:'assets/stickers/covers/xiaoyin-happy.png'},
+    {id:'xiaoyin_study',name:'小音のひみつノート',sub:'小音といっしょに学ぶノート風',className:'cover-study',mark:'NOTE',image:'assets/stickers/covers/xiaoyin-hearts-cover.png'},
     {id:'zodiac_tiger',name:'十二支・とら',sub:'十二支のなかまから一匹',className:'cover-tiger',mark:'寅',image:'assets/stickers/covers/tiger.png'},
     {id:'zodiac_rat',name:'十二支・ねずみ',sub:'チーズを持った小さなねずみ',className:'cover-rat',mark:'子',image:'assets/stickers/covers/rat.png'},
     {id:'clear_rabbit',name:'ミントとうさぎ',sub:'うさぎと草花のクリアミント',className:'cover-rabbit',mark:'✧',image:'assets/stickers/covers/rabbit.png'},
