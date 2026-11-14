@@ -81,6 +81,7 @@
   function head(eyebrow,title,sub){return `<div class="kp-page-head"><span class="kp-eyebrow">${eyebrow}</span><h1>${title}</h1><p>${sub}</p></div>`;}
   function actionContext(){return {state,save,safe,img,head,STICKERS,QUESTIONS,selectedSticker,setSelectedSticker:value=>{selectedSticker=value;},setPage:value=>{page=value;},root,render,toast,modal,closeModal};}
   window.KP_REWARD_CONTEXT=actionContext;
+  window.KP_OPEN_STICKER_BOOK=function(){state.bookOpen=true;state.coversOpen=false;state.bookReady=false;state.bookLoadError=false;state.bookError=false;state.bookFocusInventory=true;open('book');};
   function onClick(e){
     const go=e.target.closest('[data-go]');if(go){if(go.dataset.go==='book'){state.bookOpen=false;state.bookReady=false;state.coversOpen=false;}page=go.dataset.go;render();return;}
     const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
