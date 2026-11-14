@@ -63,3 +63,22 @@
 .kp-profile-editor .kp-friend-privacy{margin:0;padding:10px 0;border-top:1px solid #edf1ed}
 .kp-profile-save{width:100%;min-height:47px;margin-top:2px}
 @media(max-width:520px){.kp-friend-card-row{grid-template-columns:1fr;gap:8px;padding:12px}.kp-friend-card-row .kp-learning-summary,.kp-friend-card-row .kp-learning-private{padding-left:56px}.kp-friend-card-row .kp-friend-actions{grid-column:auto;justify-content:flex-start;padding-left:56px}.kp-friends-profile-strip{padding:11px!important}.kp-friends-profile-strip>button{padding:9px 10px;font-size:11px}.kp-avatar-picker{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.kp-avatar-choice{padding:5px 0}}
+
+
+/* QR invite and scan flow: keep QR recognition optional and manual code entry visible. */
+.kp-my-friend-qr-row{display:grid;grid-template-columns:116px minmax(0,1fr);align-items:center;gap:14px;padding:14px 16px}
+.kp-my-friend-qr-row>div:last-child b{display:block;color:#40574b;font-size:14px}
+.kp-my-friend-qr-row>div:last-child p{margin:5px 0 0;color:#7c8b82;font-size:11px;line-height:1.6}
+.kp-my-friend-qr{display:grid;place-items:center;width:116px;height:116px;padding:8px;border:1px solid #e8eee9;border-radius:17px;background:#fff;color:#87958d;font-size:9px;text-align:center;overflow:hidden}
+.kp-my-friend-qr svg{display:block;width:100%;height:100%;shape-rendering:crispEdges}
+.kp-qr-scan-button{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:50px;margin:0 0 10px;padding:11px 14px;border:1px solid #cfe9dc;border-radius:15px;background:linear-gradient(135deg,#effaf3,#e7f6ee);color:#247452;font-size:14px;font-weight:850;cursor:pointer}
+.kp-qr-scan-button span{font-size:22px;line-height:1}
+.kp-manual-code-divider{display:flex;align-items:center;gap:10px;margin:5px 0 14px;color:#94a097;font-size:10px}
+.kp-manual-code-divider:before,.kp-manual-code-divider:after{content:"";height:1px;flex:1;background:#e8eee9}
+.kp-friend-qr-scanner{display:grid;justify-items:center;gap:10px;padding:0 0 12px}
+.kp-friend-qr-camera{position:relative;width:min(100%,320px);aspect-ratio:1;border-radius:20px;overflow:hidden;background:#17251e}
+.kp-friend-qr-camera video{display:block;width:100%;height:100%;object-fit:cover}
+.kp-friend-qr-camera>span{position:absolute;inset:17%;border:3px solid #b8efcf;border-radius:18px;box-shadow:0 0 0 999px #08130d30;pointer-events:none}
+.kp-friend-qr-scanner>p{min-height:20px;margin:0;color:#52675a;font-size:13px;font-weight:800;text-align:center}
+.kp-friend-qr-scanner>small{max-width:300px;color:#849188;font-size:11px;line-height:1.6;text-align:center}
+@media(max-width:520px){.kp-my-friend-qr-row{grid-template-columns:102px minmax(0,1fr);gap:11px;padding:12px 14px}.kp-my-friend-qr{width:102px;height:102px}.kp-my-friend-qr-row>div:last-child b{font-size:13px}.kp-my-friend-qr-row>div:last-child p{font-size:10px}.kp-qr-scan-button{min-height:48px;font-size:13px}}

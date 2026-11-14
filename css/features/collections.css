@@ -75,3 +75,9 @@
 .kp-book-back{grid-area:back;display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:46px;padding:10px 12px;border:1px solid #d2e6d7;background:linear-gradient(180deg,#f1fbf3,#e7f4e9);color:#35734c;font-size:13px;font-weight:850}
 .kp-book-back span{font-size:19px;line-height:1}
 .kp-cover-change-mini{grid-area:covers;min-height:46px;display:flex;align-items:center;justify-content:center;padding:10px 12px;font-size:13px}
+
+/* Keep the return action visible beneath the sticky section tabs while the album is open. */
+.kp-open-book-head{position:sticky;top:48px;z-index:8;scroll-margin-top:50px;padding:8px 6px 9px;margin:0 -6px 12px;background:#fffefaed;border:1px solid #e9efe9;border-radius:0 0 18px 18px;box-shadow:0 6px 18px #314b3a12;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.kp-book-back{background:linear-gradient(135deg,#13b58c,#079875);border-color:#078f70;color:#fff;box-shadow:0 5px 12px #078e7633}
+.kp-book-back:active{transform:translateY(1px);box-shadow:0 2px 7px #078e7633}
+@media(max-width:520px){.kp-open-book-head{top:43px;scroll-margin-top:45px;padding:8px 6px;margin-left:-6px;margin-right:-6px}}
