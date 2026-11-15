@@ -53,6 +53,8 @@
         const items=Array.isArray(result.data)?result.data:[];if(!items.length)throw new Error('empty_reward');
         if(active?.node!==node)return;
         const ordered=items.slice().sort((a,b)=>a.ordinal-b.ordinal);
+        if(typeof window.completeDailyGoal==='function')window.completeDailyGoal();
+        const now=new Date(),tokyo=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'})),today=[tokyo.getFullYear(),String(tokyo.getMonth()+1).padStart(2,'0'),String(tokyo.getDate()).padStart(2,'0')].join('-');
         const eventName=ordered.find(x=>x.campaign_name)?.campaign_name;
         const modeKey=resolveMode(options,ordered,eventName);
         const mode=PRESENTATION_MODES[modeKey];
@@ -67,7 +69,14 @@
           figure.innerHTML='<span class="kp-reveal-card-back" aria-hidden="true"><b>小音</b><i>✦</i></span><div class="kp-reveal-card-front"><img src="'+safe(img)+'" alt="'+safe(title)+'"><figcaption>'+safe(title)+'</figcaption></div>';
           node.querySelector('.kp-reward-items').appendChild(figure);
         });
+        if(Array.isArray(ctx.state.rewardStickerKeys)){
+          const keys=new Set(ctx.state.rewardStickerKeys);ordered.forEach(item=>keys.add(item.sticker_key));
+          ctx.state.rewardStickerKeys=[...keys];ctx.state.rewardStickerCountLabel=keys.size+' 種類';
+        }
+        const priorStickerCount=Number.parseInt(ctx.state.selfStickerCountLabel,10);
+        if(ctx.state.selfStickerCountUserId&&Number.isFinite(priorStickerCount))ctx.state.selfStickerCountLabel=(priorStickerCount+ordered.length)+'枚';
         ctx.save();
+        window.dispatchEvent(new CustomEvent('kp-learning-activity-recorded',{detail:{day:today,stickers:ordered.map(item=>({id:item.sticker_instance_id,sticker_key:item.sticker_key,obtained_at:now.toISOString()}))}}));
         node.querySelector('.kp-reward-brand').textContent=eventName?String(eventName).toUpperCase()+' · SPECIAL DROP':mode.label;
         node.querySelector('.kp-reward-subtitle').textContent=modeKey==='campaign'?'今日は特別なごほうびの日！':modeKey==='bonus'?'すごい！ごほうびが2枚届いたよ':'シール帳に新しいシールが届いたよ';
         node.querySelector('.kp-reward-box').classList.add('is-open');
