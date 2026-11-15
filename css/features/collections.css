@@ -111,11 +111,23 @@
 /* Cover itself is the single, discoverable open control. */
 .kp-book-cover{appearance:none;-webkit-appearance:none;padding:0;font:inherit;cursor:pointer;touch-action:manipulation}
 .kp-book-cover:active{transform:translateY(2px) scale(.995);box-shadow:8px 11px 24px #273d3440,inset 8px 0 0 #0000000d,inset 12px 0 0 #ffffff35}
-.kp-cover-tap-hint{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);padding:5px 10px;border:1px solid #ffffff70;border-radius:99px;background:#ffffff18;color:#ffffffd9;font-size:8px;font-weight:900;letter-spacing:.16em;white-space:nowrap}
-.kp-cover-tap-hint b{margin-left:5px;font-size:12px}
 /* Keep the sticker visible while dragging and clamp its saved drop to the page. */
 .kp-placed-sticker.is-dragging{opacity:.28;outline:2px dashed #4eaa78;outline-offset:3px}
 .kp-placed-sticker{width:clamp(56px,17vw,76px);height:clamp(56px,17vw,76px);box-sizing:border-box}
 .kp-sticker-drag-ghost{z-index:10030;width:clamp(56px,17vw,76px);height:clamp(56px,17vw,76px);transform:translate(-50%,-50%);border:2px solid #fff;border-radius:10px;background:#fff;box-shadow:0 10px 24px #18332655;object-fit:contain;opacity:.96}
 .kp-sticker-drag-ghost.is-placed-ghost{outline:3px solid #4eaa78;outline-offset:2px}
 .kp-sticker-book.is-drop-target{outline:3px solid #4eaa78;outline-offset:2px}
+
+/* The cover chooser is two full 3x3 pages: twelve zodiac covers plus six character/design covers. */
+.kp-cover-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kp-cover-option{padding:8px 4px 9px;gap:5px}
+.kp-cover-mini{width:min(100%,96px)}
+.kp-cover-option strong{font-size:10px;min-height:2.6em}
+.kp-cover-pagination{display:flex;justify-content:center;align-items:center;gap:18px;margin:12px auto 0;color:#617468;font-size:12px}
+.kp-cover-pagination button{width:38px;height:38px;border:1px solid #e2ebe3;border-radius:12px;background:#eaf6ef;color:#287a5d;font-size:25px;line-height:1}
+.kp-cover-pagination button:disabled{opacity:.35}
+.kp-cover-picker{max-height:calc(100dvh - 24px);padding:23px 14px 14px}
+.kp-cover-picker p{margin-bottom:10px}
+.kp-book-cover.cover-character-pink,.kp-cover-mini.cover-character-pink{background:radial-gradient(circle at 75% 24%,#fff9 0 3px,transparent 4px),linear-gradient(145deg,#f5d7e6,#d39bc0 58%,#a976a7)}
+.kp-book-cover.cover-character-blue,.kp-cover-mini.cover-character-blue{background:radial-gradient(circle at 25% 20%,#fff9 0 3px,transparent 4px),linear-gradient(145deg,#d9eff3,#9bc9d6 58%,#6c9da9)}
+@media(max-width:370px){.kp-cover-options{gap:6px}.kp-cover-mini{width:min(100%,82px)}.kp-cover-option strong{font-size:9px}}
