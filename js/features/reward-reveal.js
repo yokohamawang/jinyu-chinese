@@ -73,8 +73,8 @@
         node.querySelector('.kp-reward-box').classList.add('is-open');
         node.classList.remove('is-loading');node.classList.add('has-rewards');
         node.querySelectorAll('.kp-reveal-sticker').forEach((figure,i)=>{
-          const delay=window.matchMedia(MOTION_QUERY).matches?0:700+i*400;
-          setTimeout(()=>{figure.classList.remove('is-sealed');if(i===0&&soundEnabled())playFanfare(modeKey);},delay);
+          const reducedMotion=window.matchMedia(MOTION_QUERY).matches,delay=reducedMotion?0:700+i*400;
+          setTimeout(()=>{figure.classList.remove('is-sealed');if(i===0&&soundEnabled())playFanfare(modeKey);setTimeout(()=>figure.classList.add('is-revealed'),reducedMotion?0:500);},delay);
         });
         const actions=node.querySelector('.kp-reward-actions');
         actions.innerHTML='<button type="button" class="kp-reward-sound" data-sound-toggle aria-pressed="'+soundEnabled()+'">'+(soundEnabled()?'🔊 お祝い音 ON':'🔇 お祝い音 OFF')+'</button><button type="button" class="kp-reward-primary" data-book>シール帳で見る <span>→</span></button><button type="button" class="kp-reward-secondary" data-close>学習を続ける</button><p class="kp-reward-idempotent" hidden>このごほうびは受け取り済みです</p>';
