@@ -229,7 +229,7 @@ function completeDailyGoal(){
 function dailyGoalHtml(){
  const state=readDailyGoal(),today=new Date(),streak=currentStreak(),goal=streak<3?3:streak<7?7:streak<14?14:30;
  const days=Array.from({length:7},(_,i)=>{const d=new Date(today.getFullYear(),today.getMonth(),today.getDate()-6+i);const key=localDayKey(d),done=state.days.includes(key),current=i===6;return '<span class="day-chip '+(done?'done ':'')+(current?'today':'')+'"><small>'+['日','月','火','水','木','金','土'][d.getDay()]+'</small><b>'+(done?'✓':'·')+'</b></span>'}).join('');
- return '<div class="daily-title"><b>🎋 連続学習 '+streak+'日</b><span>次は'+goal+'日を目指そう</span></div><div class="daily-days">'+days+'</div><p class="daily-foot">1日1回、5問を終えると記録。この端末に保存します。</p>'
+ return '<div class="daily-title"><b>🎋 連続学習 '+streak+'日</b><span>次は'+goal+'日を目指そう</span></div><div class="daily-days">'+days+'</div><p class="daily-foot">1日1回、5問のミニクイズを終えるか、ごほうびを受け取ると記録します。</p>'
 }
 function renderDailyGoal(){const el=getEl('dailyGoal');if(el)el.innerHTML=dailyGoalHtml()}
 function readLearningHistory(){
@@ -291,7 +291,7 @@ const TTS_API='https://worker-xiaoshuang.wangjinyu00.workers.dev';
 const STT_API=TTS_API+'/stt';
 const ttsCache=new Map();
 const ttsPending=new Map();
-const ttsAudioPool=new Map();
+const ttsAudioPool=new Map(); let ttsServiceUnavailable=false;
 function getTTSAudio(text,url){
   let audio=ttsAudioPool.get(text);
   if(!audio){audio=new Audio(url);audio.preload='auto';audio.playsInline=true;ttsAudioPool.set(text,audio);try{audio.load()}catch(e){}}
@@ -314,6 +314,9 @@ function fetchTTSBlobUrl(text){
       ttsCache.set(key,url);
       getTTSAudio(key,url);
       return url;
+    }catch(error){
+      ttsServiceUnavailable=true;
+      throw error;
     }finally{
       clearTimeout(timer);
       ttsPending.delete(key);
@@ -322,11 +325,14 @@ function fetchTTSBlobUrl(text){
   ttsPending.set(key,pending);
   return pending;
 }
+function playDeviceSpeech(text){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window))throw new Error('device speech unavailable');const synth=window.speechSynthesis;synth.cancel();const utterance=new SpeechSynthesisUtterance(String(text||''));utterance.lang='zh-CN';utterance.rate=.86;const voices=synth.getVoices();utterance.voice=voices.find(v=>/^zh(-|_|$)/i.test(v.lang)&&/CN|Hans/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;utterance.onerror=e=>audioDiag('设备语音播放失败：'+(e&&e.error||'unknown'),'err');synth.resume();synth.speak(utterance);return utterance}
 function prefetchTTS(text){
   const key=String(text||'').trim();
   if(!key||ttsCache.has(key)||ttsPending.has(key))return;
   fetchTTSBlobUrl(key).catch(()=>{});
 }
+// Probe the shared voice service quietly so device speech is ready on the next tap if it is down.
+fetchTTSBlobUrl('你好').catch(()=>{});
 function playChatAudioFromUrl(text,url,bubble){
   stopStandardAudio();
   if(chatAudio){try{chatAudio.pause()}catch(e){}}
@@ -353,6 +359,7 @@ async function playMachine(t,feedbackTargetId,showMouthPopup=true){
 
   stopStandardAudio();
   const playToken=mouthToken;
+  if(ttsServiceUnavailable&&showMouthPopup){try{playDeviceSpeech(text);audioDiag('在线语音不可用，已切换到设备语音','info');const fallbackStatus=document.getElementById(feedbackTargetId||'status');if(fallbackStatus){fallbackStatus.className='status info show';fallbackStatus.textContent='在线语音暂不可用，正在使用设备语音。';}return null}catch(fallbackError){audioDiag('设备语音回退失败：'+fallbackError.message,'err')}}
 
   try{
     let audioUrl=ttsCache.get(text);
@@ -403,6 +410,7 @@ async function playMachine(t,feedbackTargetId,showMouthPopup=true){
     hideMouthPop();
     // Lesson buttons can explain an iOS gesture rejection instead of switching voices silently.
     if(e&&e.name==='NotAllowedError'&&showMouthPopup===false)throw e;
+    if(showMouthPopup){try{playDeviceSpeech(text);audioDiag('在线语音不可用，已切换到设备语音','info');const fallbackStatus=document.getElementById(feedbackTargetId||'status');if(fallbackStatus){fallbackStatus.className='status info show';fallbackStatus.textContent='在线语音暂不可用，正在使用设备语音。';}return null}catch(fallbackError){audioDiag('设备语音回退失败：'+fallbackError.message,'err')}}
     console.error('Standard audio error',e);
     audioDiag('停止位置: '+(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)),'err');
     audioDiag('環境: speechSynthesis='+(('speechSynthesis' in window)?'あり':'なし')+', online='+(navigator.onLine?'yes':'no'),'info');
@@ -1385,6 +1393,7 @@ function chatHearTap(event){
  button.dataset.originalLabel=original;
  const url=button.dataset.audioUrl||ttsCache.get(text)||'';
  if(!url){
+   if(ttsServiceUnavailable){try{playDeviceSpeech(text);chatNote('在线语音暂不可用，小音正在使用设备语音示范。');}catch(e){chatNote('在线语音和设备语音都无法播放。');}return false;}
    chatNote('いま音声を準備中です。1秒ほど待って、もう一度押してね。');
    button.textContent='🔄 準備中…';
    if(!button._prefetching){
