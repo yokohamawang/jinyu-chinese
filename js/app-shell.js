@@ -20,7 +20,7 @@
   function img(id){const s=STICKERS.find(x=>x.id===id);return s?'./assets/stickers/'+s.art:'';}
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  let root, page='learn', selectedSticker=null;
+  let root, page=new URLSearchParams(location.search).get('open')==='practice'?'practice':'learn', selectedSticker=null;
   let ownPresenceClient=null,ownPresenceChannel=null,ownPresenceAuth=null,ownPresenceBusy=false;
   async function syncOwnPresence(){
     if(ownPresenceBusy)return;ownPresenceBusy=true;
@@ -60,6 +60,9 @@
     render();
     root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');
     startPresenceManager();
+    window.addEventListener('kp-auth-state-changed',()=>{state.remoteReviewLoadedAt=0;if(page==='practice')render();});
+    window.addEventListener('kp-practice-state-changed',()=>{state.remoteReviewLoadedAt=0;});
+    window.addEventListener('pageshow',event=>{if(event.persisted){state.remoteReviewLoadedAt=0;if(page==='practice')render();}});
     const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};
   }
   function open(where='practice'){page=where;root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}

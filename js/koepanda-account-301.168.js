@@ -338,6 +338,37 @@
       var result = await c.auth.getSession();
       if (result.error) throw result.error;
       return result.data.session || null;
+    },
+    recordPracticeAttempt: async function (itemKey, courseKey, isCorrect) {
+      var c = await getClient();
+      if (!c) return false;
+      var sessionResult = await c.auth.getSession();
+      if (sessionResult.error) throw sessionResult.error;
+      if (!sessionResult.data.session) return false;
+      var result = await c.rpc('kp_record_practice_attempt', {
+        p_item_key: String(itemKey),
+        p_course_key: String(courseKey),
+        p_correct: Boolean(isCorrect)
+      });
+      if (result.error) throw result.error;
+      window.dispatchEvent(new CustomEvent('kp-practice-state-changed'));
+      return true;
+    },
+    getPracticeReviewQueue: async function (courseKey) {
+      var c = await getClient();
+      if (!c) return null;
+      var sessionResult = await c.auth.getSession();
+      if (sessionResult.error) throw sessionResult.error;
+      if (!sessionResult.data.session) return null;
+      var query = c.from('kp_item_mastery')
+        .select('item_key,course_key,correct_streak,wrong_count,interval_days,due_at,last_seen_at,mastered_at')
+        .is('mastered_at', null)
+        .order('due_at', { ascending: true })
+        .limit(100);
+      if (courseKey) query = query.eq('course_key', String(courseKey));
+      var result = await query;
+      if (result.error) throw result.error;
+      return result.data || [];
     }
   };
 
