@@ -132,13 +132,13 @@
 .kp-book-cover.cover-character-blue,.kp-cover-mini.cover-character-blue{background:radial-gradient(circle at 25% 20%,#fff9 0 3px,transparent 4px),linear-gradient(145deg,#d9eff3,#9bc9d6 58%,#6c9da9)}
 @media(max-width:370px){.kp-cover-options{gap:6px}.kp-cover-mini{width:min(100%,82px)}.kp-cover-option strong{font-size:9px}}
 
-.kp-cover-character-artwork{position:relative;display:block;width:min(100%,clamp(108px,34vw,148px));aspect-ratio:1/1;margin:auto;overflow:hidden;filter:drop-shadow(0 6px 5px #20352b3d)}
-.kp-cover-character-artwork img{position:absolute;display:block;width:400%;height:200%;max-width:none;object-fit:fill}
-.kp-cover-character-artwork.is-mini{width:78%;filter:drop-shadow(0 3px 3px #263a3040)}
+.kp-cover-artwork{width:min(100%,clamp(108px,34vw,148px));height:auto;aspect-ratio:1/1;margin:auto;filter:drop-shadow(0 6px 5px #20352b3d)}
+.kp-cover-artwork.is-mini{width:78%;filter:drop-shadow(0 3px 3px #263a3040)}
 
 /* Leave a clear margin between stickers while keeping each in its 4x5 cell. */
-.kp-placed-sticker{width:clamp(48px,13.5vw,64px);height:clamp(48px,13.5vw,64px)}
-.kp-sticker-drag-ghost{width:clamp(48px,13.5vw,64px);height:clamp(48px,13.5vw,64px)}
+.kp-placed-sticker{width:clamp(56px,17vw,76px);height:clamp(56px,17vw,76px)}
+.kp-sticker-drag-ghost{width:clamp(56px,17vw,76px);height:clamp(56px,17vw,76px)}
+.kp-placed-sticker.selected,.kp-placed-sticker.is-dragging.selected,.kp-sticker-drag-ghost.is-placed-ghost{outline:0;outline-offset:0}
 
 /* Keep selection feedback for tapping; dragging itself gets the temporary ghost only. */
 .kp-placed-sticker.is-dragging.selected{outline:0}
