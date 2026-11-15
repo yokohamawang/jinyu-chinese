@@ -174,7 +174,10 @@
           return;
         }
         currentUser = result.data.user || null;
-        await renderAccount();
+        if (trigger) trigger.textContent = '学習記録を開く';
+        window.dispatchEvent(new CustomEvent('kp-auth-state-changed', { detail: { user: currentUser } }));
+        if (dialog && dialog.open) dialog.close();
+        setStatus('ログインしました。', 'success');
       } catch (error) {
         setStatus(friendlyError(error), 'error');
       } finally {
@@ -285,6 +288,8 @@
         var result = await c.auth.signOut();
         if (result.error) throw result.error;
         currentUser = null;
+        if (trigger) trigger.textContent = 'ログインして学習記録を見る';
+        window.dispatchEvent(new CustomEvent('kp-auth-state-changed', { detail: { user: null } }));
         activeTab = 'signin';
         setStatus('ログアウトしました。', 'success');
         renderAuth();
@@ -354,6 +359,7 @@
         });
         c.auth.onAuthStateChange(function (_event, session) {
           currentUser = session && session.user || null;
+          window.dispatchEvent(new CustomEvent('kp-auth-state-changed', { detail: { user: currentUser } }));
           if (trigger) trigger.textContent = currentUser ? '学習記録を開く' : 'ログインして学習記録を見る';
           if (dialog && dialog.open) render();
         });
