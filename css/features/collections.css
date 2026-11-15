@@ -131,3 +131,6 @@
 .kp-book-cover.cover-character-pink,.kp-cover-mini.cover-character-pink{background:radial-gradient(circle at 75% 24%,#fff9 0 3px,transparent 4px),linear-gradient(145deg,#f5d7e6,#d39bc0 58%,#a976a7)}
 .kp-book-cover.cover-character-blue,.kp-cover-mini.cover-character-blue{background:radial-gradient(circle at 25% 20%,#fff9 0 3px,transparent 4px),linear-gradient(145deg,#d9eff3,#9bc9d6 58%,#6c9da9)}
 @media(max-width:370px){.kp-cover-options{gap:6px}.kp-cover-mini{width:min(100%,82px)}.kp-cover-option strong{font-size:9px}}
+
+.kp-cover-character-artwork{display:block;width:auto;height:100%;aspect-ratio:1/1;margin:auto;background-image:url("../../assets/stickers/covers/xiaoyin-characters-sheet.png");background-repeat:no-repeat;background-size:400% 200%;filter:drop-shadow(0 6px 5px #20352b3d)}
+.kp-cover-character-artwork.is-mini{width:78%;height:auto;aspect-ratio:1/1;align-self:center;filter:drop-shadow(0 3px 3px #263a3040)}
