@@ -10,7 +10,7 @@
     {id:'zodiac_snake',name:'十二支・へび',sub:'すてきな模様のへび',className:'cover-zodiac',mark:'巳',image:'assets/stickers/zodiac/snake.png'},
     {id:'xiaoyin_sparkle',name:'小音のきらきら',sub:'やさしいピンクと星の箔',className:'cover-sparkle',mark:'✦',art:'🌙'},
     {id:'xiaoyin_study',name:'小音のひみつノート',sub:'小音といっしょに学ぶノート風',className:'cover-study',mark:'NOTE',image:'assets/stickers/covers/xiaoyin-hearts-cover.png'},
-    {id:'xiaoyin_reader',name:'小音と読書',sub:'本を読む小音のきらきら表紙',className:'cover-character-pink',mark:'BOOK',characterPosition:'0% 0%'},
+    {id:'xiaoyin_reader',name:'小音と読書',sub:'本を読む小音のきらきら表紙',className:'cover-character-pink',mark:'BOOK',characterPosition:'0,0'},
     {id:'zodiac_horse',name:'十二支・うま',sub:'風のように走るうま',className:'cover-zodiac',mark:'午',image:'assets/stickers/zodiac/horse.png'},
     {id:'peach_goat',name:'十二支・ひつじ',sub:'もも色のやさしいひつじ',className:'cover-peach',mark:'未',image:'assets/stickers/zodiac/goat.png'},
     {id:'zodiac_monkey',name:'十二支・さる',sub:'遊ぶのが大好きなさる',className:'cover-zodiac',mark:'申',image:'assets/stickers/zodiac/monkey.png'},
@@ -19,7 +19,7 @@
     {id:'zodiac_pig',name:'十二支・いのしし',sub:'のんびりかわいいいのしし',className:'cover-zodiac',mark:'亥',image:'assets/stickers/zodiac/pig.png'},
     {id:'zodiac_album',name:'十二支コレクション',sub:'十二支となかよくなる表紙',className:'cover-zodiac',mark:'十二支',art:'🐉'},
     {id:'clear_mint',name:'クリアミント',sub:'すっきり透明感のあるデザイン',className:'cover-mint',mark:'✧',art:'🍃'},
-    {id:'xiaoyin_friends',name:'小音とパンダ',sub:'パンダといっしょの小音',className:'cover-character-blue',mark:'♡',characterPosition:'100% 100%'}
+    {id:'xiaoyin_friends',name:'小音とパンダ',sub:'パンダといっしょの小音',className:'cover-character-blue',mark:'♡',characterPosition:'3,1'}
   ];
   const COVERS_PER_PAGE=9;
   const MAX_TRAILING_EMPTY_PAGES=2;
@@ -110,7 +110,7 @@
       suppressInventoryClick=current.instanceId;suppressClickUntil=Date.now()+450;
       const bounds=pageMetrics(current.pageEl),r=current.pageEl.getBoundingClientRect();
       if(current.lastX>=r.left&&current.lastX<=r.right&&current.lastY>=r.top&&current.lastY<=r.bottom){
-        const stickerSize=Math.min(76,Math.max(56,window.innerWidth*.17));
+        const stickerSize=getStickerSize();
         const x=clamp(current.lastX-bounds.left-stickerSize/2,0,Math.max(0,bounds.width-stickerSize))/bounds.width*100;
         const y=clamp(current.lastY-bounds.top-stickerSize/2,0,Math.max(0,bounds.height-stickerSize))/bounds.height*100;
         const position=nearestFreeCell(ctx.state.bookPages[ctx.state.bookPage].items,bounds,stickerSize,stickerSize,{x,y});
@@ -118,7 +118,7 @@
       }
     }
   };
-  function coverArtwork(c,mini=false){if(c.characterPosition)return `<span class="kp-cover-character-artwork ${mini?'is-mini':''}" style="background-position:${c.characterPosition}" aria-hidden="true"></span>`;return c.image?`<span class="kp-cover-artwork ${mini?'is-mini':''}"><img src="./${c.image}" alt="" decoding="async"></span>`:`<span class="kp-cover-art-emoji ${mini?'is-mini':''}" aria-hidden="true">${c.art||'✦'}</span>`;}
+  function coverArtwork(c,mini=false){if(c.characterPosition){const [col,row]=c.characterPosition.split(',');return `<span class="kp-cover-character-artwork ${mini?'is-mini':''}" style="--character-col:${col};--character-row:${row}" aria-hidden="true"><img src="./assets/stickers/covers/xiaoyin-characters-sheet.png" alt="" decoding="async"></span>`;}return c.image?`<span class="kp-cover-artwork ${mini?'is-mini':''}"><img src="./${c.image}" alt="" decoding="async"></span>`:`<span class="kp-cover-art-emoji ${mini?'is-mini':''}" aria-hidden="true">${c.art||'✦'}</span>`;}
   function renderCover(state){const c=coverById(state.bookCover);return `<section class="kp-book-cover-stage"><button class="kp-cover-back" data-action="close-book" aria-label="自分のページへ戻る"><span aria-hidden="true">←</span> 自分のページへ戻る</button><button type="button" class="kp-book-cover ${c.className}" data-action="open-book" aria-label="シール帳をひらく"><div class="kp-cover-ring" aria-hidden="true"><i></i><i></i><i></i></div><div class="kp-cover-art">${coverArtwork(c)}</div><span class="kp-cover-kicker">KOEPANDA · MY COLLECTION</span><h1>わたしの<br>シール帳</h1><p>${c.sub}</p><div class="kp-cover-sticker">${c.mark}</div><div class="kp-cover-strap" aria-hidden="true"><span>✦</span></div></button><div class="kp-cover-actions"><button class="kp-secondary" data-action="show-covers">表紙を変更</button></div><p class="kp-cover-tip">表紙をタップして開く · デザインはあとから変更できます</p>${state.coversOpen?renderCoverPicker(state.bookCover,state.bookCoverOptionPage):''}</section>`;}
   function renderCoverPicker(selected,page=0){const start=clamp(Number(page)||0,0,1),covers=COVERS.slice(start*COVERS_PER_PAGE,(start+1)*COVERS_PER_PAGE);return `<div class="kp-cover-picker-backdrop" data-action="hide-covers"><section class="kp-cover-picker" role="dialog" aria-modal="true" aria-label="表紙を変更" data-picker="true"><button class="kp-cover-picker-close" data-action="hide-covers" aria-label="閉じる">×</button><span class="kp-eyebrow">MY BOOK COVER</span><h2>表紙を変更しよう</h2><p>十二支と小音の表紙から選べます。</p><div class="kp-cover-options">${covers.map(c=>`<button class="kp-cover-option ${selected===c.id?'is-selected':''}" data-action="choose-cover" data-cover="${c.id}"><span class="kp-cover-mini ${c.className}">${coverArtwork(c,true)}<b>${c.mark}</b></span><strong>${c.name}</strong><small>${selected===c.id?'使用中':'この表紙にする'}</small></button>`).join('')}</div><nav class="kp-cover-pagination" aria-label="表紙一覧のページ"><button data-action="cover-page" data-page="0" ${start===0?'disabled':''} aria-label="前の表紙">‹</button><span><b>${start+1}</b> / 2</span><button data-action="cover-page" data-page="1" ${start===1?'disabled':''} aria-label="次の表紙">›</button></nav></section></div>`;}
   function coverById(id){return COVERS.find(c=>c.id===id)||COVERS[0];}
@@ -140,8 +140,9 @@
   function flip(ctx,n){ctx.state.bookPage=clamp(ctx.state.bookPage+n,0,ctx.state.bookPages.length-1);ctx.state.selectedBookSticker=null;ctx.render();requestAnimationFrame(()=>normalizePageLayout(ctx));}
   function stickerImage(ctx,key){const s=ctx.STICKERS.find(x=>x.id===key);return s?'./assets/stickers/'+s.art:'';}
   function pageMetrics(pageEl){const r=pageEl.getBoundingClientRect(),s=getComputedStyle(pageEl),bl=parseFloat(s.borderLeftWidth)||0,br=parseFloat(s.borderRightWidth)||0,bt=parseFloat(s.borderTopWidth)||0,bb=parseFloat(s.borderBottomWidth)||0;return{left:r.left+bl,top:r.top+bt,width:Math.max(1,r.width-bl-br),height:Math.max(1,r.height-bt-bb)};}
+  function getStickerSize(){return Math.min(64,Math.max(48,window.innerWidth*.135));}
   function clearDragPreview(ctx){if(dragGhost){dragGhost.remove();dragGhost=null;}ctx.root.querySelector('.kp-placed-sticker.is-dragging')?.classList.remove('is-dragging');ctx.root.querySelector('#kpStickerBook')?.classList.remove('is-drop-target');}
-  function place(ctx,instanceId){if(suppressInventoryClick===instanceId&&Date.now()<suppressClickUntil){suppressInventoryClick='';return;}const board=ctx.root.querySelector('#kpStickerBook'),metrics=pageMetrics(board),size=Math.min(76,Math.max(56,window.innerWidth*.17)),page=ctx.state.bookPages[ctx.state.bookPage],position=nearestFreeCell(page.items,metrics,size,size,null);if(position)placeAt(ctx,instanceId,position.x,position.y);else ctx.toast('このページはいっぱいです。新しいページを追加してください');}
+  function place(ctx,instanceId){if(suppressInventoryClick===instanceId&&Date.now()<suppressClickUntil){suppressInventoryClick='';return;}const board=ctx.root.querySelector('#kpStickerBook'),metrics=pageMetrics(board),size=getStickerSize(),page=ctx.state.bookPages[ctx.state.bookPage],position=nearestFreeCell(page.items,metrics,size,size,null);if(position)placeAt(ctx,instanceId,position.x,position.y);else ctx.toast('このページはいっぱいです。新しいページを追加してください');}
   async function placeAt(ctx,instanceId,x,y){if(!account)return;const page=ctx.state.bookPages[ctx.state.bookPage];if(page.items.some(i=>i.userStickerId===instanceId)){ctx.toast('このページにはもう貼ってあるよ。シールを動かしてみよう');return;}const sticker=ctx.state.bookInventory.find(s=>s.id===instanceId);if(!sticker)return;ctx.state.bookSaving=true;ctx.render();const {data,error}=await account.client.from('kp_sticker_book_items').insert({user_id:account.user.id,page_id:page.id,user_sticker_id:instanceId,x,y,z_order:page.items.length}).select('id').single();ctx.state.bookSaving=false;if(error){ctx.state.bookError=true;ctx.render();return;}page.items.push({id:data.id,userStickerId:instanceId,stickerKey:sticker.sticker_key,x,y});ctx.state.selectedBookSticker=data.id;ctx.render();}
   function nearestFreeCell(occupied,bounds,width,height,preferred){
     const cols=4,rows=5,cellW=bounds.width/cols,cellH=bounds.height/rows,used=new Set();
