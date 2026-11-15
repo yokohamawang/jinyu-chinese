@@ -132,18 +132,28 @@
   function place(ctx,instanceId){if(suppressInventoryClick===instanceId&&Date.now()<suppressClickUntil){suppressInventoryClick='';return;}const board=ctx.root.querySelector('#kpStickerBook'),metrics=pageMetrics(board),size=Math.min(76,Math.max(56,window.innerWidth*.17)),page=ctx.state.bookPages[ctx.state.bookPage],position=nearestFreeCell(page.items,metrics,size,size,null);if(position)placeAt(ctx,instanceId,position.x,position.y);else ctx.toast('このページはいっぱいです。新しいページを追加してください');}
   async function placeAt(ctx,instanceId,x,y){if(!account)return;const page=ctx.state.bookPages[ctx.state.bookPage];if(page.items.some(i=>i.userStickerId===instanceId)){ctx.toast('このページにはもう貼ってあるよ。シールを動かしてみよう');return;}const sticker=ctx.state.bookInventory.find(s=>s.id===instanceId);if(!sticker)return;ctx.state.bookSaving=true;ctx.render();const {data,error}=await account.client.from('kp_sticker_book_items').insert({user_id:account.user.id,page_id:page.id,user_sticker_id:instanceId,x,y,z_order:page.items.length}).select('id').single();ctx.state.bookSaving=false;if(error){ctx.state.bookError=true;ctx.render();return;}page.items.push({id:data.id,userStickerId:instanceId,stickerKey:sticker.sticker_key,x,y});ctx.state.selectedBookSticker=data.id;ctx.render();}
   function nearestFreeCell(occupied,bounds,width,height,preferred){
-    const cellW=bounds.width/4,cellH=bounds.height/5,gap=6,candidates=[];
-    for(let row=0;row<5;row++)for(let col=0;col<4;col++){
-      const left=clamp(col*cellW+(cellW-width)/2,0,Math.max(0,bounds.width-width));
-      const top=clamp(row*cellH+(cellH-height)/2,0,Math.max(0,bounds.height-height));
-      const x=left/bounds.width*100,y=top/bounds.height*100;
-      const clear=occupied.every(item=>{
-        const ox=item.x/100*bounds.width,oy=item.y/100*bounds.height;
-        return left+width+gap<=ox||ox+width+gap<=left||top+height+gap<=oy||oy+height+gap<=top;
-      });
-      if(clear){const px=(preferred?.x??x)/100*bounds.width,py=(preferred?.y??y)/100*bounds.height;candidates.push({x,y,distance:Math.hypot(left-px,top-py)});}
+    const gap=6,maxLeft=Math.max(0,bounds.width-width),maxTop=Math.max(0,bounds.height-height);
+    const isFree=(left,top)=>occupied.every(item=>{
+      const otherLeft=item.x/100*bounds.width,otherTop=item.y/100*bounds.height;
+      return left+width+gap<=otherLeft||otherLeft+width+gap<=left||top+height+gap<=otherTop||otherTop+height+gap<=top;
+    });
+    if(preferred){
+      const left=clamp(preferred.x/100*bounds.width,0,maxLeft),top=clamp(preferred.y/100*bounds.height,0,maxTop);
+      if(isFree(left,top))return{x:left/bounds.width*100,y:top/bounds.height*100};
+      const step=6,candidates=[];
+      for(let y=0;y<=maxTop;y+=step)for(let x=0;x<=maxLeft;x+=step)candidates.push({left:x,top:y,distance:Math.hypot(x-left,y-top)});
+      if(maxLeft%step)candidates.push({left:maxLeft,top:clamp(Math.round(top/step)*step,0,maxTop),distance:Math.hypot(maxLeft-left,clamp(Math.round(top/step)*step,0,maxTop)-top)});
+      if(maxTop%step)candidates.push({left:clamp(Math.round(left/step)*step,0,maxLeft),top:maxTop,distance:Math.hypot(clamp(Math.round(left/step)*step,0,maxLeft)-left,maxTop-top)});
+      candidates.sort((a,b)=>a.distance-b.distance);
+      const free=candidates.find(point=>isFree(point.left,point.top));
+      return free?{x:free.left/bounds.width*100,y:free.top/bounds.height*100}:null;
     }
-    candidates.sort((a,b)=>a.distance-b.distance);return candidates[0]||null;
+    const cellW=bounds.width/4,cellH=bounds.height/5;
+    for(let row=0;row<5;row++)for(let col=0;col<4;col++){
+      const left=clamp(col*cellW+(cellW-width)/2,0,maxLeft),top=clamp(row*cellH+(cellH-height)/2,0,maxTop);
+      if(isFree(left,top))return{x:left/bounds.width*100,y:top/bounds.height*100};
+    }
+    return null;
   }
   function separateOverlappedAt(ctx,page,board,selectedIndex){
     const selected=board.querySelector(`.kp-placed-sticker[data-index="${selectedIndex}"]`);if(!selected)return false;
