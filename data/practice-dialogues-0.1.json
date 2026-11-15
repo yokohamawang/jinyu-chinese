@@ -1,0 +1,1607 @@
+{
+  "schema_version": "koepanda-practice-dialogues-0.1",
+  "status": "candidate",
+  "description": "Reusable scene dialogue units: listen first, read with word-level pinyin/audio, then practice several skills.",
+  "dialogues": [
+    {
+      "id": "meeting-new-friend",
+      "activity_id": "introductions",
+      "title": "はじめまして",
+      "context": "新しい友だちにあいさつして、名前を聞く",
+      "unlock_unit": "pre4-u10",
+      "turns": [
+        {
+          "id": "m1",
+          "speaker": "friend",
+          "hanzi": "你好！",
+          "translation": "こんにちは！",
+          "words": [
+            {
+              "id": "m1w1",
+              "hanzi": "你好",
+              "pinyin": "nǐ hǎo",
+              "meaning": "こんにちは"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "speaker": "xiaoyin",
+          "hanzi": "你好！你叫什么名字？",
+          "translation": "こんにちは！お名前は何ですか？",
+          "words": [
+            {
+              "id": "m2w1",
+              "hanzi": "你好",
+              "pinyin": "nǐ hǎo",
+              "meaning": "こんにちは"
+            },
+            {
+              "id": "m2w2",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            },
+            {
+              "id": "m2w3",
+              "hanzi": "叫",
+              "pinyin": "jiào",
+              "meaning": "〜という名前です"
+            },
+            {
+              "id": "m2w4",
+              "hanzi": "什么",
+              "pinyin": "shénme",
+              "meaning": "何"
+            },
+            {
+              "id": "m2w5",
+              "hanzi": "名字",
+              "pinyin": "míngzi",
+              "meaning": "名前"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "speaker": "friend",
+          "hanzi": "我叫小明。",
+          "translation": "ぼくは小明といいます。",
+          "words": [
+            {
+              "id": "m3w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "m3w2",
+              "hanzi": "叫",
+              "pinyin": "jiào",
+              "meaning": "〜という名前です"
+            },
+            {
+              "id": "m3w3",
+              "hanzi": "小明",
+              "pinyin": "Xiǎomíng",
+              "meaning": "小明（名前）"
+            }
+          ]
+        },
+        {
+          "id": "m4",
+          "speaker": "xiaoyin",
+          "hanzi": "很高兴认识你。",
+          "translation": "あなたに会えてうれしいです。",
+          "words": [
+            {
+              "id": "m4w1",
+              "hanzi": "很",
+              "pinyin": "hěn",
+              "meaning": "とても"
+            },
+            {
+              "id": "m4w2",
+              "hanzi": "高兴",
+              "pinyin": "gāoxìng",
+              "meaning": "うれしい"
+            },
+            {
+              "id": "m4w3",
+              "hanzi": "认识",
+              "pinyin": "rènshi",
+              "meaning": "知り合う"
+            },
+            {
+              "id": "m4w4",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            }
+          ]
+        },
+        {
+          "id": "m5",
+          "speaker": "friend",
+          "hanzi": "我也很高兴！",
+          "translation": "ぼくもうれしいです！",
+          "words": [
+            {
+              "id": "m5w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "m5w2",
+              "hanzi": "也",
+              "pinyin": "yě",
+              "meaning": "〜も"
+            },
+            {
+              "id": "m5w3",
+              "hanzi": "很",
+              "pinyin": "hěn",
+              "meaning": "とても"
+            },
+            {
+              "id": "m5w4",
+              "hanzi": "高兴",
+              "pinyin": "gāoxìng",
+              "meaning": "うれしい"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "m-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "m2",
+          "prompt": "聞こえた一文の意味は？",
+          "choices": [
+            "こんにちは！お名前は何ですか？",
+            "ぼくは小明といいます。",
+            "あなたに会えてうれしいです。"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "m-word-order",
+          "type": "word_order",
+          "turn_id": "m3",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "m2w5",
+            "m4w2"
+          ]
+        },
+        {
+          "id": "m-fill-name",
+          "type": "fill_word",
+          "turn_id": "m2",
+          "prompt": "空欄に入ることばは？",
+          "blank_word_id": "m2w5",
+          "choice_word_ids": [
+            "m2w5",
+            "m3w3",
+            "m1w1"
+          ]
+        },
+        {
+          "id": "m-reply",
+          "type": "reply_choice",
+          "turn_id": "m2",
+          "prompt": "自然な返事を選ぼう",
+          "choice_turn_ids": [
+            "m3",
+            "m5",
+            "m1"
+          ],
+          "answer_turn_id": "m3"
+        },
+        {
+          "id": "m-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "m4",
+          "prompt": "「认识」のピンインは？",
+          "word_id": "m4w3",
+          "choices": [
+            "rènshi",
+            "nǐ hǎo",
+            "nǐ"
+          ],
+          "answer": 0
+        }
+      ],
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "fruit-shop",
+      "activity_id": "food-ordering",
+      "title": "お店で買い物",
+      "context": "お店でりんごを買う",
+      "unlock_unit": "pre4-u10",
+      "turns": [
+        {
+          "id": "s1",
+          "speaker": "xiaoyin",
+          "hanzi": "你好！",
+          "translation": "こんにちは！",
+          "words": [
+            {
+              "id": "s1w1",
+              "hanzi": "你好",
+              "pinyin": "nǐ hǎo",
+              "meaning": "こんにちは"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "speaker": "friend",
+          "hanzi": "你好！你想买什么？",
+          "translation": "こんにちは！何を買いたいですか？",
+          "words": [
+            {
+              "id": "s2w1",
+              "hanzi": "你好",
+              "pinyin": "nǐ hǎo",
+              "meaning": "こんにちは"
+            },
+            {
+              "id": "s2w2",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            },
+            {
+              "id": "s2w3",
+              "hanzi": "想",
+              "pinyin": "xiǎng",
+              "meaning": "〜したい"
+            },
+            {
+              "id": "s2w4",
+              "hanzi": "买",
+              "pinyin": "mǎi",
+              "meaning": "買う"
+            },
+            {
+              "id": "s2w5",
+              "hanzi": "什么",
+              "pinyin": "shénme",
+              "meaning": "何"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "speaker": "xiaoyin",
+          "hanzi": "我想买苹果。",
+          "translation": "りんごを買いたいです。",
+          "words": [
+            {
+              "id": "s3w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "s3w2",
+              "hanzi": "想",
+              "pinyin": "xiǎng",
+              "meaning": "〜したい"
+            },
+            {
+              "id": "s3w3",
+              "hanzi": "买",
+              "pinyin": "mǎi",
+              "meaning": "買う"
+            },
+            {
+              "id": "s3w4",
+              "hanzi": "苹果",
+              "pinyin": "píngguǒ",
+              "meaning": "りんご"
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "speaker": "friend",
+          "hanzi": "给你。",
+          "translation": "はい、どうぞ。",
+          "words": [
+            {
+              "id": "s4w1",
+              "hanzi": "给",
+              "pinyin": "gěi",
+              "meaning": "あげる、渡す"
+            },
+            {
+              "id": "s4w2",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "speaker": "xiaoyin",
+          "hanzi": "谢谢！",
+          "translation": "ありがとう！",
+          "words": [
+            {
+              "id": "s5w1",
+              "hanzi": "谢谢",
+              "pinyin": "xièxie",
+              "meaning": "ありがとう"
+            }
+          ]
+        },
+        {
+          "id": "s6",
+          "speaker": "friend",
+          "hanzi": "不客气！",
+          "translation": "どういたしまして！",
+          "words": [
+            {
+              "id": "s6w1",
+              "hanzi": "不客气",
+              "pinyin": "bú kèqi",
+              "meaning": "どういたしまして"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "s2",
+          "prompt": "お店の人は何を聞いていますか？",
+          "choices": [
+            "何を買いたいか",
+            "どこへ行きたいか",
+            "何を飲みたいか"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "s-word-order",
+          "type": "word_order",
+          "turn_id": "s3",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "s2w5",
+            "s4w1"
+          ]
+        },
+        {
+          "id": "s-fill-buy",
+          "type": "fill_word",
+          "turn_id": "s2",
+          "prompt": "何を買いたい？空欄を選ぼう",
+          "blank_word_id": "s2w4",
+          "choice_word_ids": [
+            "s2w4",
+            "s2w3",
+            "s6w1"
+          ]
+        },
+        {
+          "id": "s-reply",
+          "type": "reply_choice",
+          "turn_id": "s5",
+          "prompt": "「谢谢！」への返事は？",
+          "choice_turn_ids": [
+            "s6",
+            "s4",
+            "s3"
+          ],
+          "answer_turn_id": "s6"
+        },
+        {
+          "id": "s-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "s3",
+          "prompt": "「苹果」のピンインは？",
+          "word_id": "s3w4",
+          "choices": [
+            "píngguǒ",
+            "nǐ hǎo",
+            "nǐ"
+          ],
+          "answer": 0
+        }
+      ],
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "at-school",
+      "activity_id": "school-day",
+      "title": "学校で勉強",
+      "context": "学校で勉強していることを話す",
+      "unlock_unit": "pre4-u10",
+      "turns": [
+        {
+          "id": "c1",
+          "speaker": "friend",
+          "hanzi": "你学习什么？",
+          "translation": "何を勉強していますか？",
+          "words": [
+            {
+              "id": "c1w1",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            },
+            {
+              "id": "c1w2",
+              "hanzi": "学习",
+              "pinyin": "xuéxí",
+              "meaning": "勉強する"
+            },
+            {
+              "id": "c1w3",
+              "hanzi": "什么",
+              "pinyin": "shénme",
+              "meaning": "何"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "speaker": "xiaoyin",
+          "hanzi": "我学习汉语。",
+          "translation": "中国語を勉強しています。",
+          "words": [
+            {
+              "id": "c2w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "c2w2",
+              "hanzi": "学习",
+              "pinyin": "xuéxí",
+              "meaning": "勉強する"
+            },
+            {
+              "id": "c2w3",
+              "hanzi": "汉语",
+              "pinyin": "Hànyǔ",
+              "meaning": "中国語"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "speaker": "friend",
+          "hanzi": "你听音乐吗？",
+          "translation": "音楽を聴きますか？",
+          "words": [
+            {
+              "id": "c3w1",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            },
+            {
+              "id": "c3w2",
+              "hanzi": "听",
+              "pinyin": "tīng",
+              "meaning": "聞く"
+            },
+            {
+              "id": "c3w3",
+              "hanzi": "音乐",
+              "pinyin": "yīnyuè",
+              "meaning": "音楽"
+            },
+            {
+              "id": "c3w4",
+              "hanzi": "吗",
+              "pinyin": "ma",
+              "meaning": "疑問を表す助詞"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "speaker": "xiaoyin",
+          "hanzi": "对，我听音乐。",
+          "translation": "はい、音楽を聴きます。",
+          "words": [
+            {
+              "id": "c4w1",
+              "hanzi": "对",
+              "pinyin": "duì",
+              "meaning": "はい、そうです"
+            },
+            {
+              "id": "c4w2",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "c4w3",
+              "hanzi": "听",
+              "pinyin": "tīng",
+              "meaning": "聞く"
+            },
+            {
+              "id": "c4w4",
+              "hanzi": "音乐",
+              "pinyin": "yīnyuè",
+              "meaning": "音楽"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "c-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "c1",
+          "prompt": "何を聞かれていますか？",
+          "choices": [
+            "何を勉強しているか",
+            "何を買いたいか",
+            "どこにいるか"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "c-word-order",
+          "type": "word_order",
+          "turn_id": "c4",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "c1w3",
+            "c2w3"
+          ]
+        },
+        {
+          "id": "c-fill-language",
+          "type": "fill_word",
+          "turn_id": "c2",
+          "prompt": "勉強していることばは？",
+          "blank_word_id": "c2w3",
+          "choice_word_ids": [
+            "c2w3",
+            "c3w3",
+            "c4w1"
+          ]
+        },
+        {
+          "id": "c-reply",
+          "type": "reply_choice",
+          "turn_id": "c3",
+          "prompt": "音楽を聴くか聞かれたら？",
+          "choice_turn_ids": [
+            "c4",
+            "c2",
+            "c1"
+          ],
+          "answer_turn_id": "c4"
+        },
+        {
+          "id": "c-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "c3",
+          "prompt": "「音乐」のピンインは？",
+          "word_id": "c3w3",
+          "choices": [
+            "yīnyuè",
+            "nǐ",
+            "xuéxí"
+          ],
+          "answer": 0
+        }
+      ],
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "weekend-outing",
+      "activity_id": "weekend-outing",
+      "title": "日曜日のおでかけ",
+      "context": "友だちと週末の予定を相談する",
+      "unlock_unit": "pre4-u10",
+      "turns": [
+        {
+          "id": "w1",
+          "speaker": "friend",
+          "hanzi": "星期天你去哪儿？",
+          "translation": "日曜日はどこへ行きますか？",
+          "words": [
+            {
+              "id": "w1w1",
+              "hanzi": "星期天",
+              "pinyin": "xīngqītiān",
+              "meaning": "日曜日"
+            },
+            {
+              "id": "w1w2",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            },
+            {
+              "id": "w1w3",
+              "hanzi": "去",
+              "pinyin": "qù",
+              "meaning": "行く"
+            },
+            {
+              "id": "w1w4",
+              "hanzi": "哪儿",
+              "pinyin": "nǎr",
+              "meaning": "どこ"
+            }
+          ]
+        },
+        {
+          "id": "w2",
+          "speaker": "xiaoyin",
+          "hanzi": "我去公园。",
+          "translation": "公園へ行きます。",
+          "words": [
+            {
+              "id": "w2w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "w2w2",
+              "hanzi": "去",
+              "pinyin": "qù",
+              "meaning": "行く"
+            },
+            {
+              "id": "w2w3",
+              "hanzi": "公园",
+              "pinyin": "gōngyuán",
+              "meaning": "公園"
+            }
+          ]
+        },
+        {
+          "id": "w3",
+          "speaker": "friend",
+          "hanzi": "你想运动吗？",
+          "translation": "運動したいですか？",
+          "words": [
+            {
+              "id": "w3w1",
+              "hanzi": "你",
+              "pinyin": "nǐ",
+              "meaning": "あなた"
+            },
+            {
+              "id": "w3w2",
+              "hanzi": "想",
+              "pinyin": "xiǎng",
+              "meaning": "〜したい"
+            },
+            {
+              "id": "w3w3",
+              "hanzi": "运动",
+              "pinyin": "yùndòng",
+              "meaning": "運動する"
+            },
+            {
+              "id": "w3w4",
+              "hanzi": "吗",
+              "pinyin": "ma",
+              "meaning": "疑問を表す助詞"
+            }
+          ]
+        },
+        {
+          "id": "w4",
+          "speaker": "xiaoyin",
+          "hanzi": "我想运动。",
+          "translation": "運動したいです。",
+          "words": [
+            {
+              "id": "w4w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "w4w2",
+              "hanzi": "想",
+              "pinyin": "xiǎng",
+              "meaning": "〜したい"
+            },
+            {
+              "id": "w4w3",
+              "hanzi": "运动",
+              "pinyin": "yùndòng",
+              "meaning": "運動する"
+            }
+          ]
+        },
+        {
+          "id": "w5",
+          "speaker": "friend",
+          "hanzi": "咱们一起去吧！",
+          "translation": "一緒に行こう！",
+          "words": [
+            {
+              "id": "w5w1",
+              "hanzi": "咱们",
+              "pinyin": "zánmen",
+              "meaning": "私たち（聞き手を含む）"
+            },
+            {
+              "id": "w5w2",
+              "hanzi": "一起",
+              "pinyin": "yìqǐ",
+              "meaning": "一緒に"
+            },
+            {
+              "id": "w5w3",
+              "hanzi": "去",
+              "pinyin": "qù",
+              "meaning": "行く"
+            },
+            {
+              "id": "w5w4",
+              "hanzi": "吧",
+              "pinyin": "ba",
+              "meaning": "誘いかけの語気助詞"
+            }
+          ]
+        },
+        {
+          "id": "w6",
+          "speaker": "xiaoyin",
+          "hanzi": "好！",
+          "translation": "いいね！",
+          "words": [
+            {
+              "id": "w6w1",
+              "hanzi": "好",
+              "pinyin": "hǎo",
+              "meaning": "よい、いいね"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "w-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "w1",
+          "prompt": "何を聞かれていますか？",
+          "choices": [
+            "日曜日にどこへ行くか",
+            "何を食べるか",
+            "何を勉強するか"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "w-word-order",
+          "type": "word_order",
+          "turn_id": "w5",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "w1w4",
+            "w3w3"
+          ]
+        },
+        {
+          "id": "w-fill-place",
+          "type": "fill_word",
+          "turn_id": "w1",
+          "prompt": "どこへ行く？空欄を選ぼう",
+          "blank_word_id": "w1w4",
+          "choice_word_ids": [
+            "w1w4",
+            "w2w3",
+            "w5w4"
+          ]
+        },
+        {
+          "id": "w-reply",
+          "type": "reply_choice",
+          "turn_id": "w1",
+          "prompt": "行き先を聞かれたら？",
+          "choice_turn_ids": [
+            "w2",
+            "w4",
+            "w6"
+          ],
+          "answer_turn_id": "w2"
+        },
+        {
+          "id": "w-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "w1",
+          "prompt": "「哪儿」のピンインは？",
+          "word_id": "w1w4",
+          "choices": [
+            "nǎr",
+            "xīngqītiān",
+            "nǐ"
+          ],
+          "answer": 0
+        }
+      ],
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "taxi-ride",
+      "activity_id": "taxi-ride",
+      "title": "タクシーに乗る",
+      "context": "行き先を伝えて、運転手に確認する",
+      "unlock_unit": "pre4-u10",
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "turns": [
+        {
+          "id": "t1",
+          "speaker": "xiaoyin",
+          "hanzi": "师傅，去火车站。",
+          "translation": "運転手さん、駅までお願いします。",
+          "words": [
+            {
+              "id": "t1w1",
+              "hanzi": "师傅",
+              "pinyin": "shīfu",
+              "meaning": "運転手さん"
+            },
+            {
+              "id": "t1w2",
+              "hanzi": "去",
+              "pinyin": "qù",
+              "meaning": "行く"
+            },
+            {
+              "id": "t1w3",
+              "hanzi": "火车站",
+              "pinyin": "huǒchēzhàn",
+              "meaning": "駅"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "speaker": "driver",
+          "hanzi": "好的。",
+          "translation": "わかりました。",
+          "words": [
+            {
+              "id": "t2w1",
+              "hanzi": "好",
+              "pinyin": "hǎo",
+              "meaning": "よい"
+            },
+            {
+              "id": "t2w2",
+              "hanzi": "的",
+              "pinyin": "de",
+              "meaning": "文末の助詞"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "speaker": "xiaoyin",
+          "hanzi": "大概多少钱？",
+          "translation": "だいたいいくらですか？",
+          "words": [
+            {
+              "id": "t3w1",
+              "hanzi": "大概",
+              "pinyin": "dàgài",
+              "meaning": "だいたい"
+            },
+            {
+              "id": "t3w2",
+              "hanzi": "多少",
+              "pinyin": "duōshao",
+              "meaning": "いくら"
+            },
+            {
+              "id": "t3w3",
+              "hanzi": "钱",
+              "pinyin": "qián",
+              "meaning": "お金"
+            }
+          ]
+        },
+        {
+          "id": "t4",
+          "speaker": "driver",
+          "hanzi": "三十块。",
+          "translation": "30元です。",
+          "words": [
+            {
+              "id": "t4w1",
+              "hanzi": "三十",
+              "pinyin": "sānshí",
+              "meaning": "30"
+            },
+            {
+              "id": "t4w2",
+              "hanzi": "块",
+              "pinyin": "kuài",
+              "meaning": "元"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "t-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "t2",
+          "prompt": "聞こえたセリフはどんな意味？",
+          "choices": [
+            "わかりました。",
+            "だいたいいくらですか？",
+            "別のことについて話しています"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "t-word-order",
+          "type": "word_order",
+          "turn_id": "t3",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "t1w1",
+            "t1w2"
+          ]
+        },
+        {
+          "id": "t-fill",
+          "type": "fill_word",
+          "turn_id": "t2",
+          "prompt": "空欄に入ることばは？",
+          "blank_word_id": "t2w2",
+          "choice_word_ids": [
+            "t2w2",
+            "t3w1",
+            "t4w2"
+          ]
+        },
+        {
+          "id": "t-reply",
+          "type": "reply_choice",
+          "turn_id": "t2",
+          "prompt": "会話の流れに合う返事は？",
+          "choice_turn_ids": [
+            "t3",
+            "t4",
+            "t1"
+          ],
+          "answer_turn_id": "t3"
+        },
+        {
+          "id": "t-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "t3",
+          "prompt": "「大概」のピンインは？",
+          "word_id": "t3w1",
+          "choices": [
+            "dàgài",
+            "shīfu",
+            "qù"
+          ],
+          "answer": 0
+        }
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "restaurant-order",
+      "activity_id": "food-ordering",
+      "title": "レストランで注文",
+      "context": "食べたいものを伝えて、注文する",
+      "unlock_unit": "pre4-u10",
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "turns": [
+        {
+          "id": "r1",
+          "speaker": "xiaoyin",
+          "hanzi": "你好，想吃什么？",
+          "translation": "こんにちは、何を食べたいですか？",
+          "words": [
+            {
+              "id": "r1w1",
+              "hanzi": "你好",
+              "pinyin": "nǐ hǎo",
+              "meaning": "こんにちは"
+            },
+            {
+              "id": "r1w2",
+              "hanzi": "想",
+              "pinyin": "xiǎng",
+              "meaning": "〜したい"
+            },
+            {
+              "id": "r1w3",
+              "hanzi": "吃",
+              "pinyin": "chī",
+              "meaning": "食べる"
+            },
+            {
+              "id": "r1w4",
+              "hanzi": "什么",
+              "pinyin": "shénme",
+              "meaning": "何"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "speaker": "friend",
+          "hanzi": "我想吃面条。",
+          "translation": "麺を食べたいです。",
+          "words": [
+            {
+              "id": "r2w1",
+              "hanzi": "我",
+              "pinyin": "wǒ",
+              "meaning": "私"
+            },
+            {
+              "id": "r2w2",
+              "hanzi": "想",
+              "pinyin": "xiǎng",
+              "meaning": "〜したい"
+            },
+            {
+              "id": "r2w3",
+              "hanzi": "吃",
+              "pinyin": "chī",
+              "meaning": "食べる"
+            },
+            {
+              "id": "r2w4",
+              "hanzi": "面条",
+              "pinyin": "miàntiáo",
+              "meaning": "麺"
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "speaker": "xiaoyin",
+          "hanzi": "还要喝什么？",
+          "translation": "ほかに何を飲みますか？",
+          "words": [
+            {
+              "id": "r3w1",
+              "hanzi": "还",
+              "pinyin": "hái",
+              "meaning": "さらに"
+            },
+            {
+              "id": "r3w2",
+              "hanzi": "要",
+              "pinyin": "yào",
+              "meaning": "ほしい"
+            },
+            {
+              "id": "r3w3",
+              "hanzi": "喝",
+              "pinyin": "hē",
+              "meaning": "飲む"
+            },
+            {
+              "id": "r3w4",
+              "hanzi": "什么",
+              "pinyin": "shénme",
+              "meaning": "何"
+            }
+          ]
+        },
+        {
+          "id": "r4",
+          "speaker": "friend",
+          "hanzi": "一杯茶，谢谢。",
+          "translation": "お茶を一杯ください、ありがとう。",
+          "words": [
+            {
+              "id": "r4w1",
+              "hanzi": "一杯",
+              "pinyin": "yì bēi",
+              "meaning": "一杯"
+            },
+            {
+              "id": "r4w2",
+              "hanzi": "茶",
+              "pinyin": "chá",
+              "meaning": "お茶"
+            },
+            {
+              "id": "r4w3",
+              "hanzi": "谢谢",
+              "pinyin": "xièxie",
+              "meaning": "ありがとう"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "r-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "r2",
+          "prompt": "聞こえたセリフはどんな意味？",
+          "choices": [
+            "麺を食べたいです。",
+            "ほかに何を飲みますか？",
+            "別のことについて話しています"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "r-word-order",
+          "type": "word_order",
+          "turn_id": "r3",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "r1w1",
+            "r1w2"
+          ]
+        },
+        {
+          "id": "r-fill",
+          "type": "fill_word",
+          "turn_id": "r2",
+          "prompt": "空欄に入ることばは？",
+          "blank_word_id": "r2w4",
+          "choice_word_ids": [
+            "r2w4",
+            "r3w1",
+            "r4w3"
+          ]
+        },
+        {
+          "id": "r-reply",
+          "type": "reply_choice",
+          "turn_id": "r2",
+          "prompt": "会話の流れに合う返事は？",
+          "choice_turn_ids": [
+            "r3",
+            "r4",
+            "r1"
+          ],
+          "answer_turn_id": "r3"
+        },
+        {
+          "id": "r-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "r3",
+          "prompt": "「还」のピンインは？",
+          "word_id": "r3w1",
+          "choices": [
+            "hái",
+            "nǐ hǎo",
+            "xiǎng"
+          ],
+          "answer": 0
+        }
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "bill-payment",
+      "activity_id": "bill-payment",
+      "title": "お会計をする",
+      "context": "食事のあとに会計をお願いする",
+      "unlock_unit": "pre4-u10",
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "turns": [
+        {
+          "id": "b1",
+          "speaker": "xiaoyin",
+          "hanzi": "服务员，买单。",
+          "translation": "店員さん、お会計をお願いします。",
+          "words": [
+            {
+              "id": "b1w1",
+              "hanzi": "服务员",
+              "pinyin": "fúwùyuán",
+              "meaning": "店員さん"
+            },
+            {
+              "id": "b1w2",
+              "hanzi": "买单",
+              "pinyin": "mǎidān",
+              "meaning": "会計をする"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "speaker": "staff",
+          "hanzi": "一共三十元。",
+          "translation": "全部で30元です。",
+          "words": [
+            {
+              "id": "b2w1",
+              "hanzi": "一共",
+              "pinyin": "yígòng",
+              "meaning": "全部で"
+            },
+            {
+              "id": "b2w2",
+              "hanzi": "三十",
+              "pinyin": "sānshí",
+              "meaning": "30"
+            },
+            {
+              "id": "b2w3",
+              "hanzi": "元",
+              "pinyin": "yuán",
+              "meaning": "元"
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "speaker": "xiaoyin",
+          "hanzi": "可以扫码吗？",
+          "translation": "QRコードで払えますか？",
+          "words": [
+            {
+              "id": "b3w1",
+              "hanzi": "可以",
+              "pinyin": "kěyǐ",
+              "meaning": "できます"
+            },
+            {
+              "id": "b3w2",
+              "hanzi": "扫码",
+              "pinyin": "sǎomǎ",
+              "meaning": "QRコードを読み取る"
+            },
+            {
+              "id": "b3w3",
+              "hanzi": "吗",
+              "pinyin": "ma",
+              "meaning": "疑問の助詞"
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "speaker": "staff",
+          "hanzi": "可以。",
+          "translation": "できます。",
+          "words": [
+            {
+              "id": "b4w1",
+              "hanzi": "可以",
+              "pinyin": "kěyǐ",
+              "meaning": "できます"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "b-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "b2",
+          "prompt": "聞こえたセリフはどんな意味？",
+          "choices": [
+            "全部で30元です。",
+            "QRコードで払えますか？",
+            "別のことについて話しています"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "b-word-order",
+          "type": "word_order",
+          "turn_id": "b3",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "b1w1",
+            "b1w2"
+          ]
+        },
+        {
+          "id": "b-fill",
+          "type": "fill_word",
+          "turn_id": "b2",
+          "prompt": "空欄に入ることばは？",
+          "blank_word_id": "b2w3",
+          "choice_word_ids": [
+            "b2w3",
+            "b3w1",
+            "b4w1"
+          ]
+        },
+        {
+          "id": "b-reply",
+          "type": "reply_choice",
+          "turn_id": "b2",
+          "prompt": "会話の流れに合う返事は？",
+          "choice_turn_ids": [
+            "b3",
+            "b4",
+            "b1"
+          ],
+          "answer_turn_id": "b3"
+        },
+        {
+          "id": "b-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "b3",
+          "prompt": "「可以」のピンインは？",
+          "word_id": "b3w1",
+          "choices": [
+            "kěyǐ",
+            "fúwùyuán",
+            "mǎidān"
+          ],
+          "answer": 0
+        }
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    },
+    {
+      "id": "home-visit",
+      "activity_id": "home-visit",
+      "title": "友だちの家を訪ねる",
+      "context": "家に招かれたときのあいさつ",
+      "unlock_unit": "pre4-u10",
+      "session_flow": [
+        "listen",
+        "read-and-repeat",
+        "exercises"
+      ],
+      "turns": [
+        {
+          "id": "h1",
+          "speaker": "friend",
+          "hanzi": "欢迎来我家！",
+          "translation": "うちへようこそ！",
+          "words": [
+            {
+              "id": "h1w1",
+              "hanzi": "欢迎",
+              "pinyin": "huānyíng",
+              "meaning": "歓迎する"
+            },
+            {
+              "id": "h1w2",
+              "hanzi": "来",
+              "pinyin": "lái",
+              "meaning": "来る"
+            },
+            {
+              "id": "h1w3",
+              "hanzi": "我家",
+              "pinyin": "wǒjiā",
+              "meaning": "私の家"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "speaker": "xiaoyin",
+          "hanzi": "谢谢！",
+          "translation": "ありがとう！",
+          "words": [
+            {
+              "id": "h2w1",
+              "hanzi": "谢谢",
+              "pinyin": "xièxie",
+              "meaning": "ありがとう"
+            }
+          ]
+        },
+        {
+          "id": "h3",
+          "speaker": "friend",
+          "hanzi": "请进，坐吧。",
+          "translation": "どうぞ入って、座ってね。",
+          "words": [
+            {
+              "id": "h3w1",
+              "hanzi": "请进",
+              "pinyin": "qǐngjìn",
+              "meaning": "どうぞお入りください"
+            },
+            {
+              "id": "h3w2",
+              "hanzi": "坐",
+              "pinyin": "zuò",
+              "meaning": "座る"
+            },
+            {
+              "id": "h3w3",
+              "hanzi": "吧",
+              "pinyin": "ba",
+              "meaning": "〜してね"
+            }
+          ]
+        },
+        {
+          "id": "h4",
+          "speaker": "xiaoyin",
+          "hanzi": "你家真漂亮！",
+          "translation": "おうちは本当にきれいですね！",
+          "words": [
+            {
+              "id": "h4w1",
+              "hanzi": "你家",
+              "pinyin": "nǐjiā",
+              "meaning": "あなたの家"
+            },
+            {
+              "id": "h4w2",
+              "hanzi": "真",
+              "pinyin": "zhēn",
+              "meaning": "本当に"
+            },
+            {
+              "id": "h4w3",
+              "hanzi": "漂亮",
+              "pinyin": "piàoliang",
+              "meaning": "きれい"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "h-listen-meaning",
+          "type": "listen_meaning",
+          "turn_id": "h2",
+          "prompt": "聞こえたセリフはどんな意味？",
+          "choices": [
+            "ありがとう！",
+            "どうぞ入って、座ってね。",
+            "別のことについて話しています"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "h-word-order",
+          "type": "word_order",
+          "turn_id": "h3",
+          "prompt": "音声のことばを順番に並べよう",
+          "distractor_word_ids": [
+            "h1w1",
+            "h1w2"
+          ]
+        },
+        {
+          "id": "h-fill",
+          "type": "fill_word",
+          "turn_id": "h2",
+          "prompt": "空欄に入ることばは？",
+          "blank_word_id": "h2w1",
+          "choice_word_ids": [
+            "h2w1",
+            "h3w1",
+            "h4w3"
+          ]
+        },
+        {
+          "id": "h-reply",
+          "type": "reply_choice",
+          "turn_id": "h2",
+          "prompt": "会話の流れに合う返事は？",
+          "choice_turn_ids": [
+            "h3",
+            "h4",
+            "h1"
+          ],
+          "answer_turn_id": "h3"
+        },
+        {
+          "id": "h-pinyin",
+          "type": "pinyin_choice",
+          "turn_id": "h3",
+          "prompt": "「请进」のピンインは？",
+          "word_id": "h3w1",
+          "choices": [
+            "qǐngjìn",
+            "huānyíng",
+            "lái"
+          ],
+          "answer": 0
+        }
+      ],
+      "exercise_types": [
+        "listen_meaning",
+        "word_order",
+        "fill_word",
+        "reply_choice",
+        "pinyin_choice"
+      ]
+    }
+  ]
+}

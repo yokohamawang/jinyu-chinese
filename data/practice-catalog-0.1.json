@@ -1,0 +1,518 @@
+{
+  "schema_version": "koepanda-practice-catalog-0.1",
+  "status": "candidate",
+  "description": "Shared static practice catalog. Dialogue scripts and word-level data live in practice-dialogues-0.1.json; mastery is account-specific.",
+  "tracks": [
+    {
+      "id": "chapter",
+      "title": "章ごとの練習",
+      "description": "学習した単元の語彙・漢字につながる練習。"
+    },
+    {
+      "id": "theme",
+      "title": "テーマで練習",
+      "description": "家族・時間・食べ物など、話題ごとにまとめて練習。"
+    },
+    {
+      "id": "daily",
+      "title": "日常のひとこと",
+      "description": "日常用語を先に聞き、ピンインを見ながら声に出して練習。"
+    },
+    {
+      "id": "scenario",
+      "title": "場面で会話",
+      "description": "打車・注文・会計・訪問など、生活場面ごとの会話を練習。"
+    }
+  ],
+  "themes": [
+    {
+      "id": "people",
+      "title": "人・家族・国",
+      "description": "家族や友だち、国についてのことば",
+      "unit_ids": [
+        "pre4-u02",
+        "pre4-u10"
+      ],
+      "mode": "meaning"
+    },
+    {
+      "id": "time",
+      "title": "時間・曜日",
+      "description": "今日・明日・時刻をたずねることば",
+      "unit_ids": [
+        "pre4-u03"
+      ],
+      "mode": "meaning"
+    },
+    {
+      "id": "food",
+      "title": "食べ物・買い物",
+      "description": "食事や買い物で使うことば",
+      "unit_ids": [
+        "pre4-u05"
+      ],
+      "mode": "meaning"
+    },
+    {
+      "id": "school",
+      "title": "学校・ことば",
+      "description": "勉強や学校で出会うことば",
+      "unit_ids": [
+        "pre4-u06"
+      ],
+      "mode": "meaning"
+    },
+    {
+      "id": "actions",
+      "title": "行動・毎日のこと",
+      "description": "聞く・読む・行くなどの動作",
+      "unit_ids": [
+        "pre4-u08"
+      ],
+      "mode": "meaning"
+    },
+    {
+      "id": "weather",
+      "title": "気持ち・天気",
+      "description": "気分や天気、様子を表すことば",
+      "unit_ids": [
+        "pre4-u09"
+      ],
+      "mode": "meaning"
+    }
+  ],
+  "daily_phrase_bank": [
+    {
+      "id": "daily-nihao",
+      "simplified": "你好",
+      "pinyin": "nǐ hǎo",
+      "ja_meaning": "こんにちは"
+    },
+    {
+      "id": "daily-xiexie",
+      "simplified": "谢谢",
+      "pinyin": "xièxie",
+      "ja_meaning": "ありがとう"
+    },
+    {
+      "id": "daily-bukeqi",
+      "simplified": "不客气",
+      "pinyin": "bú kèqi",
+      "ja_meaning": "どういたしまして"
+    },
+    {
+      "id": "daily-duibuqi",
+      "simplified": "对不起",
+      "pinyin": "duìbuqǐ",
+      "ja_meaning": "ごめんなさい"
+    },
+    {
+      "id": "daily-meiguanxi",
+      "simplified": "没关系",
+      "pinyin": "méi guānxi",
+      "ja_meaning": "大丈夫です／気にしないで"
+    },
+    {
+      "id": "daily-zaijian",
+      "simplified": "再见",
+      "pinyin": "zàijiàn",
+      "ja_meaning": "さようなら"
+    }
+  ],
+  "daily_activities": [
+    {
+      "id": "hello-and-goodbye",
+      "title": "あいさつとお別れ",
+      "description": "出会ったとき・別れるときのひとこと",
+      "question_ids": [
+        "reply-nihao",
+        "reply-zaijian"
+      ],
+      "phrase_ids": [
+        "daily-nihao",
+        "daily-zaijian"
+      ],
+      "session_style": "listen-shadow-check"
+    },
+    {
+      "id": "thanks-and-apology",
+      "title": "お礼とおわび",
+      "description": "ありがとう・ごめんなさいへの返事",
+      "question_ids": [
+        "reply-xiexie",
+        "reply-duibuqi"
+      ],
+      "phrase_ids": [
+        "daily-xiexie",
+        "daily-bukeqi",
+        "daily-duibuqi",
+        "daily-meiguanxi"
+      ],
+      "session_style": "listen-shadow-check"
+    }
+  ],
+  "daily_questions": [
+    {
+      "id": "reply-nihao",
+      "prompt_id": "daily-nihao",
+      "choice_ids": [
+        "daily-nihao",
+        "daily-xiexie",
+        "daily-zaijian"
+      ],
+      "answer_id": "daily-nihao",
+      "context": "はじめましてのあいさつ"
+    },
+    {
+      "id": "reply-xiexie",
+      "prompt_id": "daily-xiexie",
+      "choice_ids": [
+        "daily-bukeqi",
+        "daily-duibuqi",
+        "daily-zaijian"
+      ],
+      "answer_id": "daily-bukeqi",
+      "context": "お礼を言われたら"
+    },
+    {
+      "id": "reply-duibuqi",
+      "prompt_id": "daily-duibuqi",
+      "choice_ids": [
+        "daily-meiguanxi",
+        "daily-bukeqi",
+        "daily-xiexie"
+      ],
+      "answer_id": "daily-meiguanxi",
+      "context": "あやまられたとき"
+    },
+    {
+      "id": "reply-zaijian",
+      "prompt_id": "daily-zaijian",
+      "choice_ids": [
+        "daily-zaijian",
+        "daily-nihao",
+        "daily-xiexie"
+      ],
+      "answer_id": "daily-zaijian",
+      "context": "別れるときのあいさつ"
+    }
+  ],
+  "scenario_activities": [
+    {
+      "id": "introductions",
+      "title": "自己紹介をしよう",
+      "description": "あいさつや名前、出身を伝える",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "meeting-new-friend",
+      "turn_count": 5,
+      "category_id": "meet",
+      "category_title": "人と会う・訪ねる"
+    },
+    {
+      "id": "food-ordering",
+      "title": "レストランで注文",
+      "description": "食べたいものや飲みものを伝える",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "restaurant-order",
+      "turn_count": 4,
+      "category_id": "food",
+      "category_title": "食べる・買う"
+    },
+    {
+      "id": "weekend-outing",
+      "title": "週末のおでかけ",
+      "description": "行き先や予定を相談する",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "weekend-outing",
+      "turn_count": 6,
+      "category_id": "transport",
+      "category_title": "移動する"
+    },
+    {
+      "id": "school-day",
+      "title": "学校での会話",
+      "description": "勉強や好きなことを話す",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "at-school",
+      "turn_count": 4,
+      "category_id": "school",
+      "category_title": "学校・毎日の生活"
+    },
+    {
+      "id": "taxi-ride",
+      "title": "タクシーに乗る",
+      "description": "行き先を伝えて、確認する",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "taxi-ride",
+      "turn_count": 4,
+      "category_id": "transport",
+      "category_title": "移動する"
+    },
+    {
+      "id": "bill-payment",
+      "title": "お会計をする",
+      "description": "会計を頼み、支払いを確認する",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "bill-payment",
+      "turn_count": 4,
+      "category_id": "food",
+      "category_title": "食べる・買う"
+    },
+    {
+      "id": "home-visit",
+      "title": "友だちの家を訪ねる",
+      "description": "歓迎のあいさつや家での会話",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "home-visit",
+      "turn_count": 4,
+      "category_id": "meet",
+      "category_title": "人と会う・訪ねる"
+    }
+  ],
+  "scenario_questions": [
+    {
+      "id": "scene-self-intro",
+      "context": "はじめまして",
+      "heard": "你好！你叫什么名字？",
+      "text": "你好，我叫小音。",
+      "tile_ids": [
+        "daily-nihao",
+        "pre4-045",
+        "practice-extra-jiao",
+        "practice-extra-xiaoyin",
+        "pre4-047"
+      ],
+      "answer_ids": [
+        "daily-nihao",
+        "pre4-045",
+        "practice-extra-jiao",
+        "practice-extra-xiaoyin"
+      ],
+      "punctuation_after": [
+        1
+      ]
+    },
+    {
+      "id": "scene-you-china",
+      "context": "出身をたずねる",
+      "heard": "你是中国人吗？",
+      "text": "我是中国人。",
+      "tile_ids": [
+        "pre4-045",
+        "pre4-048",
+        "pre4-098",
+        "pre4-046",
+        "pre4-097"
+      ],
+      "answer_ids": [
+        "pre4-045",
+        "pre4-048",
+        "pre4-098"
+      ],
+      "punctuation_after": []
+    },
+    {
+      "id": "scene-dad-teacher",
+      "context": "家族のこと",
+      "heard": "爸爸是老师吗？",
+      "text": "爸爸不是老师。",
+      "tile_ids": [
+        "pre4-025",
+        "pre4-085",
+        "pre4-028",
+        "pre4-048",
+        "pre4-027"
+      ],
+      "answer_ids": [
+        "pre4-025",
+        "pre4-085",
+        "pre4-028"
+      ],
+      "punctuation_after": []
+    },
+    {
+      "id": "scene-friend-park",
+      "context": "友だちの居場所",
+      "heard": "你的朋友在哪儿？",
+      "text": "朋友在公园。",
+      "tile_ids": [
+        "pre4-024",
+        "pre4-050",
+        "pre4-019",
+        "pre4-082",
+        "pre4-020"
+      ],
+      "answer_ids": [
+        "pre4-024",
+        "pre4-050",
+        "pre4-019"
+      ],
+      "punctuation_after": []
+    },
+    {
+      "id": "scene-go-park",
+      "context": "週末のおでかけ",
+      "heard": "星期天你去哪儿？",
+      "text": "我去公园。",
+      "tile_ids": [
+        "pre4-045",
+        "pre4-023",
+        "pre4-019",
+        "pre4-102",
+        "pre4-020"
+      ],
+      "answer_ids": [
+        "pre4-045",
+        "pre4-023",
+        "pre4-019"
+      ],
+      "punctuation_after": []
+    },
+    {
+      "id": "scene-i-phone",
+      "context": "持ちものについて",
+      "heard": "你有手机吗？",
+      "text": "我有手机。",
+      "tile_ids": [
+        "pre4-045",
+        "pre4-049",
+        "pre4-074",
+        "pre4-046",
+        "pre4-066"
+      ],
+      "answer_ids": [
+        "pre4-045",
+        "pre4-049",
+        "pre4-074"
+      ],
+      "punctuation_after": []
+    },
+    {
+      "id": "scene-i-chinese",
+      "context": "学校で勉強する",
+      "heard": "你学习什么？",
+      "text": "我学习汉语。",
+      "tile_ids": [
+        "pre4-045",
+        "pre4-015",
+        "pre4-058",
+        "pre4-046",
+        "practice-extra-shenme"
+      ],
+      "answer_ids": [
+        "pre4-045",
+        "pre4-015",
+        "pre4-058"
+      ],
+      "punctuation_after": []
+    },
+    {
+      "id": "scene-we-park",
+      "context": "友だちと週末の予定",
+      "heard": "星期天你们去哪儿？",
+      "text": "我们一起去公园。",
+      "tile_ids": [
+        "pre4-047",
+        "pre4-060",
+        "pre4-023",
+        "pre4-019",
+        "pre4-102",
+        "pre4-020"
+      ],
+      "answer_ids": [
+        "pre4-047",
+        "pre4-060",
+        "pre4-023",
+        "pre4-019"
+      ],
+      "punctuation_after": []
+    }
+  ],
+  "support_tokens": [
+    {
+      "id": "practice-extra-jiao",
+      "simplified": "叫",
+      "pinyin": "jiào",
+      "ja_meaning": "名前を〜という"
+    },
+    {
+      "id": "practice-extra-xiaoyin",
+      "simplified": "小音",
+      "pinyin": "xiǎoyīn",
+      "ja_meaning": "小音（Koepandaの先生）"
+    },
+    {
+      "id": "practice-extra-shenme",
+      "simplified": "什么",
+      "pinyin": "shénme",
+      "ja_meaning": "何／何を"
+    },
+    {
+      "id": "practice-extra-ma",
+      "simplified": "吗",
+      "pinyin": "ma",
+      "ja_meaning": "疑問を表す助詞"
+    },
+    {
+      "id": "practice-extra-mingzi",
+      "simplified": "名字",
+      "pinyin": "míngzi",
+      "ja_meaning": "名前"
+    }
+  ],
+  "scenario_categories": [
+    {
+      "id": "transport",
+      "title": "移動する",
+      "description": "タクシー・道案内・電車・週末のおでかけ"
+    },
+    {
+      "id": "food",
+      "title": "食べる・買う",
+      "description": "注文・メニュー・会計・買い物"
+    },
+    {
+      "id": "meet",
+      "title": "人と会う・訪ねる",
+      "description": "自己紹介・友だちの家・あいさつ"
+    },
+    {
+      "id": "school",
+      "title": "学校・毎日の生活",
+      "description": "学校の会話・予定・身近なやりとり"
+    }
+  ],
+  "scenario_roadmap_note": "ひとつの場面を「全体を聞く → ピンイン付きテキストを行・語ごとに聞く → 意味・並べ替え・穴埋め・返答・ピンインに挑戦」の順で練習。各カテゴリーは短い会話から少しずつ増やす。",
+  "planned_scenarios": [
+    {
+      "category_id": "transport",
+      "title": "電車に乗る",
+      "description": "駅で行き先や切符をたずねる"
+    },
+    {
+      "category_id": "transport",
+      "title": "道をたずねる",
+      "description": "目的地までの道順を聞く"
+    },
+    {
+      "category_id": "food",
+      "title": "メニューを見る",
+      "description": "料理や飲みものについて聞く"
+    },
+    {
+      "category_id": "food",
+      "title": "買い物をする",
+      "description": "値段や数をたずねて買う"
+    },
+    {
+      "category_id": "meet",
+      "title": "友だちを家に招く",
+      "description": "訪問のお礼や家族を紹介する"
+    },
+    {
+      "category_id": "school",
+      "title": "授業のあとに話す",
+      "description": "好きな科目や放課後の予定を話す"
+    }
+  ]
+}
