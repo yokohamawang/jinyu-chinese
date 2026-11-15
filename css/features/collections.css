@@ -90,3 +90,21 @@
 .kp-book-inventory-notice button{grid-column:2;justify-self:start;border:0;border-radius:99px;background:#dff3e7;color:#267b59;padding:7px 11px;font:800 11px system-ui,-apple-system,"Noto Sans JP",sans-serif}
 .kp-empty-page-hint{position:absolute;left:12%;right:12%;top:46%;transform:translateY(-50%);padding:12px;border-radius:14px;background:#fffdf2d9;color:#718276;font-size:12px;line-height:1.6;text-align:center;pointer-events:none}
 #kpStickerInventory{scroll-margin-top:84px}
+/* Keep the album within the phone viewport and leave the grid cells fully usable. */
+.kp-book-shell{width:100%;box-sizing:border-box;padding-right:8px;padding-left:8px}
+.kp-book-page-wrap{width:100%;min-width:0;box-sizing:border-box;padding-left:12px}
+.kp-sticker-book{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+.kp-placed-sticker{width:clamp(48px,16vw,70px);height:clamp(48px,16vw,70px);box-sizing:border-box;display:grid;place-items:center}
+.kp-inventory-sticker{touch-action:none;user-select:none;-webkit-user-select:none}
+.kp-sticker-book.is-drop-target{outline:3px solid #4eaa78;outline-offset:2px;box-shadow:0 0 0 7px #4eaa7826,0 12px 25px #35473b20}
+.kp-sticker-drag-ghost{position:fixed;z-index:10030;width:clamp(48px,16vw,70px);height:clamp(48px,16vw,70px);object-fit:contain;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 8px 9px #18332666)}
+.kp-book-cover-stage{width:100%;max-width:620px;box-sizing:border-box;padding:14px 10px 30px}
+.kp-cover-back{justify-self:start;min-height:40px;padding:8px 11px;border:1px solid #e2ebe3;border-radius:12px;background:#fff;color:#5a7162;font-size:12px;font-weight:800}
+.kp-cover-back span{margin-right:5px;font-size:18px;vertical-align:-1px}
+.kp-open-book-head{grid-template-columns:42px minmax(0,1fr) auto;grid-template-areas:"back title covers";gap:6px;align-items:center;padding:6px 8px;margin-left:-2px;margin-right:-2px}
+.kp-open-book-head>div{grid-area:title;min-width:0}
+.kp-book-back{width:42px;min-width:42px;height:42px;min-height:42px;padding:0;border-radius:12px;font-size:0}
+.kp-book-back span{font-size:24px}
+.kp-cover-change-mini{min-height:40px;padding:0 11px;border-radius:12px;font-size:11px}
+.kp-empty-page-hint{left:10%;right:10%;top:47%;z-index:1}
+@media(max-width:520px){.kp-open-book-head{grid-template-columns:42px minmax(0,1fr) auto;grid-template-areas:"back title covers";gap:5px;padding:6px 7px;margin-left:-2px;margin-right:-2px}}
