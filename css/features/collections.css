@@ -108,3 +108,14 @@
 .kp-cover-change-mini{min-height:40px;padding:0 11px;border-radius:12px;font-size:11px}
 .kp-empty-page-hint{left:10%;right:10%;top:47%;z-index:1}
 @media(max-width:520px){.kp-open-book-head{grid-template-columns:42px minmax(0,1fr) auto;grid-template-areas:"back title covers";gap:5px;padding:6px 7px;margin-left:-2px;margin-right:-2px}}
+/* Cover itself is the single, discoverable open control. */
+.kp-book-cover{appearance:none;-webkit-appearance:none;padding:0;font:inherit;cursor:pointer;touch-action:manipulation}
+.kp-book-cover:active{transform:translateY(2px) scale(.995);box-shadow:8px 11px 24px #273d3440,inset 8px 0 0 #0000000d,inset 12px 0 0 #ffffff35}
+.kp-cover-tap-hint{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);padding:5px 10px;border:1px solid #ffffff70;border-radius:99px;background:#ffffff18;color:#ffffffd9;font-size:8px;font-weight:900;letter-spacing:.16em;white-space:nowrap}
+.kp-cover-tap-hint b{margin-left:5px;font-size:12px}
+/* Keep the sticker visible while dragging and clamp its saved drop to the page. */
+.kp-placed-sticker.is-dragging{opacity:.28;outline:2px dashed #4eaa78;outline-offset:3px}
+.kp-placed-sticker{width:clamp(56px,17vw,76px);height:clamp(56px,17vw,76px);box-sizing:border-box}
+.kp-sticker-drag-ghost{z-index:10030;width:clamp(56px,17vw,76px);height:clamp(56px,17vw,76px);transform:translate(-50%,-50%);border:2px solid #fff;border-radius:10px;background:#fff;box-shadow:0 10px 24px #18332655;object-fit:contain;opacity:.96}
+.kp-sticker-drag-ghost.is-placed-ghost{outline:3px solid #4eaa78;outline-offset:2px}
+.kp-sticker-book.is-drop-target{outline:3px solid #4eaa78;outline-offset:2px}
