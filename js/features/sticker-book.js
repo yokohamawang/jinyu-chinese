@@ -10,7 +10,7 @@
     {id:'zodiac_snake',name:'十二支・へび',sub:'すてきな模様のへび',className:'cover-zodiac',mark:'巳',image:'assets/stickers/zodiac/snake.png'},
     {id:'xiaoyin_sparkle',name:'小音のきらきら',sub:'やさしいピンクと星の箔',className:'cover-sparkle',mark:'✦',art:'🌙'},
     {id:'xiaoyin_study',name:'小音のひみつノート',sub:'小音といっしょに学ぶノート風',className:'cover-study',mark:'NOTE',image:'assets/stickers/covers/xiaoyin-hearts-cover.png'},
-    {id:'xiaoyin_reader',name:'小音と読書',sub:'本を読む小音のきらきら表紙',className:'cover-character-pink',mark:'BOOK',image:'assets/stickers/covers/xiaoyin-happy.png'},
+    {id:'xiaoyin_reader',name:'小音と読書',sub:'本を読む小音のきらきら表紙',className:'cover-character-pink',mark:'BOOK',characterPosition:'0% 0%'},
     {id:'zodiac_horse',name:'十二支・うま',sub:'風のように走るうま',className:'cover-zodiac',mark:'午',image:'assets/stickers/zodiac/horse.png'},
     {id:'peach_goat',name:'十二支・ひつじ',sub:'もも色のやさしいひつじ',className:'cover-peach',mark:'未',image:'assets/stickers/zodiac/goat.png'},
     {id:'zodiac_monkey',name:'十二支・さる',sub:'遊ぶのが大好きなさる',className:'cover-zodiac',mark:'申',image:'assets/stickers/zodiac/monkey.png'},
@@ -19,7 +19,7 @@
     {id:'zodiac_pig',name:'十二支・いのしし',sub:'のんびりかわいいいのしし',className:'cover-zodiac',mark:'亥',image:'assets/stickers/zodiac/pig.png'},
     {id:'zodiac_album',name:'十二支コレクション',sub:'十二支となかよくなる表紙',className:'cover-zodiac',mark:'十二支',art:'🐉'},
     {id:'clear_mint',name:'クリアミント',sub:'すっきり透明感のあるデザイン',className:'cover-mint',mark:'✧',art:'🍃'},
-    {id:'xiaoyin_friends',name:'小音とパンダ',sub:'パンダといっしょの小音',className:'cover-character-blue',mark:'♡',image:'assets/stickers/covers/xiaoyin-calm.webp'}
+    {id:'xiaoyin_friends',name:'小音とパンダ',sub:'パンダといっしょの小音',className:'cover-character-blue',mark:'♡',characterPosition:'100% 100%'}
   ];
   const COVERS_PER_PAGE=9;
   const MAX_TRAILING_EMPTY_PAGES=2;
@@ -118,7 +118,7 @@
       }
     }
   };
-  function coverArtwork(c,mini=false){return c.image?`<span class="kp-cover-artwork ${mini?'is-mini':''}"><img src="./${c.image}" alt="" decoding="async"></span>`:`<span class="kp-cover-art-emoji ${mini?'is-mini':''}" aria-hidden="true">${c.art||'✦'}</span>`;}
+  function coverArtwork(c,mini=false){if(c.characterPosition)return `<span class="kp-cover-character-artwork ${mini?'is-mini':''}" style="background-position:${c.characterPosition}" aria-hidden="true"></span>`;return c.image?`<span class="kp-cover-artwork ${mini?'is-mini':''}"><img src="./${c.image}" alt="" decoding="async"></span>`:`<span class="kp-cover-art-emoji ${mini?'is-mini':''}" aria-hidden="true">${c.art||'✦'}</span>`;}
   function renderCover(state){const c=coverById(state.bookCover);return `<section class="kp-book-cover-stage"><button class="kp-cover-back" data-action="close-book" aria-label="自分のページへ戻る"><span aria-hidden="true">←</span> 自分のページへ戻る</button><button type="button" class="kp-book-cover ${c.className}" data-action="open-book" aria-label="シール帳をひらく"><div class="kp-cover-ring" aria-hidden="true"><i></i><i></i><i></i></div><div class="kp-cover-art">${coverArtwork(c)}</div><span class="kp-cover-kicker">KOEPANDA · MY COLLECTION</span><h1>わたしの<br>シール帳</h1><p>${c.sub}</p><div class="kp-cover-sticker">${c.mark}</div><div class="kp-cover-strap" aria-hidden="true"><span>✦</span></div></button><div class="kp-cover-actions"><button class="kp-secondary" data-action="show-covers">表紙を変更</button></div><p class="kp-cover-tip">表紙をタップして開く · デザインはあとから変更できます</p>${state.coversOpen?renderCoverPicker(state.bookCover,state.bookCoverOptionPage):''}</section>`;}
   function renderCoverPicker(selected,page=0){const start=clamp(Number(page)||0,0,1),covers=COVERS.slice(start*COVERS_PER_PAGE,(start+1)*COVERS_PER_PAGE);return `<div class="kp-cover-picker-backdrop" data-action="hide-covers"><section class="kp-cover-picker" role="dialog" aria-modal="true" aria-label="表紙を変更" data-picker="true"><button class="kp-cover-picker-close" data-action="hide-covers" aria-label="閉じる">×</button><span class="kp-eyebrow">MY BOOK COVER</span><h2>表紙を変更しよう</h2><p>十二支と小音の表紙から選べます。</p><div class="kp-cover-options">${covers.map(c=>`<button class="kp-cover-option ${selected===c.id?'is-selected':''}" data-action="choose-cover" data-cover="${c.id}"><span class="kp-cover-mini ${c.className}">${coverArtwork(c,true)}<b>${c.mark}</b></span><strong>${c.name}</strong><small>${selected===c.id?'使用中':'この表紙にする'}</small></button>`).join('')}</div><nav class="kp-cover-pagination" aria-label="表紙一覧のページ"><button data-action="cover-page" data-page="0" ${start===0?'disabled':''} aria-label="前の表紙">‹</button><span><b>${start+1}</b> / 2</span><button data-action="cover-page" data-page="1" ${start===1?'disabled':''} aria-label="次の表紙">›</button></nav></section></div>`;}
   function coverById(id){return COVERS.find(c=>c.id===id)||COVERS[0];}
