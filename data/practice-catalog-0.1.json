@@ -267,6 +267,16 @@
       "turn_count": 4,
       "category_id": "meet",
       "category_title": "人と会う・訪ねる"
+    },
+    {
+      "id": "fruit-shopping",
+      "title": "果物を買う",
+      "description": "果物を選び、買いたいものを伝える",
+      "unlock_unit": "pre4-u10",
+      "dialogue_id": "fruit-shop",
+      "turn_count": 6,
+      "category_id": "food",
+      "category_title": "食べる・買う"
     }
   ],
   "scenario_questions": [
