@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   window.KoepandaFeatures=window.KoepandaFeatures||{};
-  const WEEK=['日','月','火','水','木','金','土'];
+  const GOAL_KEY='koepanda.learning-goal-target.v1';
   let dashboardStatus='idle',dashboardUserId=null,cloudStickers=null,cloudDays=null,activeContext=null,requestSeq=0;
   const recentAwardStickers=new Map(),recentActivityDays=new Set();
   function localDateKey(date){return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');}
@@ -25,35 +25,36 @@
     if(dashboardStatus==='loading')return null;
     return dailyRecord().days;
   }
-  function weeklyCalendar(days){
-    const today=new Date(),monday=new Date(today);monday.setDate(today.getDate()-((today.getDay()+6)%7));const loading=days===null;
-    return Array.from({length:7},(_,index)=>{
-      const date=new Date(monday);date.setDate(monday.getDate()+index);
-      const key=localDateKey(date),done=!loading&&days.includes(key),current=key===localDateKey(today);
-      return `<span class="kp-study-day${done?' is-done':''}${current?' is-today':''}"><small>${WEEK[date.getDay()]}</small><b>${loading?'—':done?'✓':'·'}</b></span>`;
-    }).join('');
+  function currentGoal(total){
+    const first=(Math.floor(Math.max(0,total)/5)+1)*5;
+    const options=[first,first+5,first+10];
+    let selected=0;try{selected=Number(localStorage.getItem(GOAL_KEY));}catch(_){}
+    if(!options.includes(selected)){selected=first;try{localStorage.setItem(GOAL_KEY,String(selected));}catch(_){}}
+    return {options,selected};
   }
   function recordCard(){
     const days=displayedDays(),local=dailyRecord();
+    const total=days===null?Math.max(0,Number(local.days?.length)||0):days.length;
+    const goal=currentGoal(total);
     const streak=days===null?'確認中…':dashboardStatus==='ready'?consecutiveStreak(days):(typeof window.currentStreak==='function'?window.currentStreak():Math.max(0,Number(local.streak)||0));
     return `<section class="kp-study-record" aria-label="学習の記録">
-      <div class="kp-study-record-main"><span class="kp-study-flame" aria-hidden="true">🎋</span><div><b>学習の記録</b><small>累計 ${days===null?'…':days.length} 日</small></div><strong>${streak}<small>${streak==='確認中…'?'':'日連続'}</small></strong></div>
-      <div class="kp-study-calendar" aria-label="直近7日の学習記録">${weeklyCalendar(days)}</div>
-      <a href="#self" class="kp-study-link" data-action="open-records">カレンダーを見る <span aria-hidden="true">›</span></a>
+      <div class="kp-study-record-main"><span class="kp-study-flame" aria-hidden="true">🎋</span><div><b>次の目標</b><small>累計 ${days===null?'…':total} 日</small></div><strong>${streak}<small>${streak==='確認中…'?'':'日連続'}</small></strong></div>
+      <div class="kp-study-goal-picker" aria-label="次の目標を選ぶ">${goal.options.map(value=>`<button type="button" class="kp-study-goal-option${goal.selected===value?' is-selected':''}" data-action="select-goal" data-goal="${value}" aria-pressed="${goal.selected===value}"><b>${value}日</b><small>あと ${Math.max(0,value-total)} 日</small></button>`).join('')}</div>
+      <a href="#self" class="kp-study-link" data-action="open-records">連続目標を設定 <span aria-hidden="true">›</span></a>
     </section>`;
   }
   function stampCard(state,STICKERS,img,safe){
     let countLabel,shown=[];
     if(dashboardStatus==='ready'&&Array.isArray(cloudStickers)){
       countLabel=cloudStickers.length+'枚';
-      shown=cloudStickers.slice(-7).map(row=>STICKERS.find(item=>item.id===row.sticker_key)).filter(Boolean);
+      shown=cloudStickers.slice(-5).map(row=>STICKERS.find(item=>item.id===row.sticker_key)).filter(Boolean);
     }else if(dashboardStatus==='loading'||dashboardStatus==='idle'){
       countLabel='確認中…';
     }else if(dashboardStatus==='error'){
       countLabel='—';
     }else{
       const owned=STICKERS.filter(item=>state.unlocked.includes(item.id));
-      countLabel=owned.length+'枚';shown=owned.slice(-7);
+      countLabel=owned.length+'枚';shown=owned.slice(-5);
     }
     const stamps=shown.length?shown.map(item=>`<span class="kp-study-stamp" title="${safe(item.name)}"><img src="${img(item.id)}" alt="${safe(item.glyph)}"></span>`).join(''):`<span class="kp-study-stamp-empty">${dashboardStatus==='error'?'シールを読み込めませんでした':dashboardStatus==='loading'||dashboardStatus==='idle'?'シールを確認中…':'学習してシールを集めよう'}</span>`;
     return `<section class="kp-study-stamps" aria-label="集めたスタンプ"><div class="kp-study-stamps-head"><div><b>集めたスタンプ</b><small>${countLabel}</small></div><a href="#rewards" data-action="open-rewards">一覧を見る <span aria-hidden="true">›</span></a></div><div class="kp-study-stamp-row">${stamps}</div></section>`;
@@ -124,6 +125,7 @@
     }
   };
   feature.actions={
+    'select-goal':(ctx,button)=>{try{localStorage.setItem(GOAL_KEY,String(Number(button.dataset.goal)));}catch(_){}ctx.render();},
     'open-records':(ctx,button,event)=>{event.preventDefault();ctx.setPage('records');ctx.render();},
     'open-rewards':(ctx,button,event)=>{event.preventDefault();ctx.setPage('rewards');ctx.render();},
     'roadmap-coming':(ctx,button)=>ctx.modal(`${ctx.safe(button.dataset.level)}コース`,`<p class="kp-modal-copy">このコースは準備中です。公開後、この島から学習を始められます。</p><button class="kp-primary" data-action="modal-close">閉じる</button>`)
