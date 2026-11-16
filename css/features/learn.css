@@ -9,12 +9,11 @@
 .kp-study-record-main>div>small,.kp-study-stamps-head small{color:#829088;font-size:11px}
 .kp-study-record-main>strong{grid-column:2;color:#168968;font-size:30px;line-height:1.1}
 .kp-study-record-main>strong small{margin-left:2px;font-size:14px}
-.kp-study-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
-.kp-study-day{display:grid;justify-items:center;gap:4px;min-height:48px;padding:5px 2px;border-radius:13px;background:#f5f8f6;color:#8a9790}
-.kp-study-day small{font-size:10px}
-.kp-study-day b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#fff;font-size:14px}
-.kp-study-day.is-done{color:#118e6d}.kp-study-day.is-done b{background:#dff5ea;color:#118e6d}
-.kp-study-day.is-today{outline:1px solid #76cdb0;outline-offset:1px}
+.kp-study-goal-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.kp-study-goal-option{display:grid;justify-items:center;gap:3px;min-height:54px;padding:7px 4px;border:1px solid #e6eee8;border-radius:15px;background:#f8fbf9;color:#526b5e;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.kp-study-goal-option b{font-size:15px;line-height:1.15}.kp-study-goal-option small{color:#85938a;font-size:10px;white-space:nowrap}
+.kp-study-goal-option.is-selected{border-color:#64c5a2;background:#eaf8f0;color:#168968;box-shadow:0 0 0 1px #64c5a255}
+.kp-study-goal-option:active{transform:translateY(1px)}
 .kp-study-link,.kp-study-stamps-head>a{display:inline-flex;align-items:center;gap:5px;color:#45816b;font-size:11px;font-weight:750;text-decoration:none;white-space:nowrap}
 .kp-study-link span,.kp-study-stamps-head>a span{font-size:20px;line-height:1}
 .kp-study-stamps{padding:12px 16px}
@@ -45,8 +44,8 @@
  .kp-study-record-main{grid-template-columns:30px 1fr auto;grid-template-rows:auto}
  .kp-study-flame{grid-row:auto;font-size:23px}
  .kp-study-record-main>strong{grid-column:3;grid-row:1/3;font-size:26px}
- .kp-study-calendar{gap:4px}
- .kp-study-day{min-height:43px}
+ .kp-study-goal-picker{gap:8px}
+ .kp-study-goal-option{min-height:52px}
  .kp-study-link{justify-self:end}
  .kp-study-stamps{padding:11px 13px}
  .kp-study-stamp-row{gap:7px}
