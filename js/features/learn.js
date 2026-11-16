@@ -26,10 +26,10 @@
     return dailyRecord().days;
   }
   function weeklyCalendar(days){
-    const today=new Date(),loading=days===null;
+    const today=new Date(),monday=new Date(today);monday.setDate(today.getDate()-((today.getDay()+6)%7));const loading=days===null;
     return Array.from({length:7},(_,index)=>{
-      const date=new Date(today.getFullYear(),today.getMonth(),today.getDate()-6+index);
-      const key=localDateKey(date),done=!loading&&days.includes(key),current=index===6;
+      const date=new Date(monday);date.setDate(monday.getDate()+index);
+      const key=localDateKey(date),done=!loading&&days.includes(key),current=key===localDateKey(today);
       return `<span class="kp-study-day${done?' is-done':''}${current?' is-today':''}"><small>${WEEK[date.getDay()]}</small><b>${loading?'—':done?'✓':'·'}</b></span>`;
     }).join('');
   }
@@ -37,7 +37,7 @@
     const days=displayedDays(),local=dailyRecord();
     const streak=days===null?'確認中…':dashboardStatus==='ready'?consecutiveStreak(days):(typeof window.currentStreak==='function'?window.currentStreak():Math.max(0,Number(local.streak)||0));
     return `<section class="kp-study-record" aria-label="学習の記録">
-      <div class="kp-study-record-main"><span class="kp-study-flame" aria-hidden="true">🎋</span><div><b>学習の記録</b><small>連続学習</small></div><strong>${streak}<small>${streak==='確認中…'?'':'日'}</small></strong></div>
+      <div class="kp-study-record-main"><span class="kp-study-flame" aria-hidden="true">🎋</span><div><b>学習の記録</b><small>累計 ${days===null?'…':days.length} 日</small></div><strong>${streak}<small>${streak==='確認中…'?'':'日連続'}</small></strong></div>
       <div class="kp-study-calendar" aria-label="直近7日の学習記録">${weeklyCalendar(days)}</div>
       <a href="#self" class="kp-study-link" data-action="open-records">カレンダーを見る <span aria-hidden="true">›</span></a>
     </section>`;
@@ -124,7 +124,7 @@
     }
   };
   feature.actions={
-    'open-records':(ctx,button,event)=>{event.preventDefault();ctx.setPage('self');ctx.render();},
+    'open-records':(ctx,button,event)=>{event.preventDefault();ctx.setPage('records');ctx.render();},
     'open-rewards':(ctx,button,event)=>{event.preventDefault();ctx.setPage('rewards');ctx.render();},
     'roadmap-coming':(ctx,button)=>ctx.modal(`${ctx.safe(button.dataset.level)}コース`,`<p class="kp-modal-copy">このコースは準備中です。公開後、この島から学習を始められます。</p><button class="kp-primary" data-action="modal-close">閉じる</button>`)
   };
