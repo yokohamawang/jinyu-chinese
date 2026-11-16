@@ -6,7 +6,7 @@
     {id:'zodiac_ox',name:'十二支・うし',sub:'ゆったりやさしいうし',className:'cover-zodiac',mark:'丑',image:'assets/stickers/zodiac/ox.png'},
     {id:'zodiac_tiger',name:'十二支・とら',sub:'元気いっぱいのとら',className:'cover-tiger',mark:'寅',image:'assets/stickers/zodiac/tiger.png'},
     {id:'clear_rabbit',name:'十二支・うさぎ',sub:'草花と遊ぶうさぎ',className:'cover-rabbit',mark:'卯',image:'assets/stickers/zodiac/rabbit.png'},
-    {id:'zodiac_dragon',name:'十二支・りゅう',sub:'きらめくりゅう',className:'cover-zodiac',mark:'辰',image:'assets/stickers/zodiac/dragon.png'},
+    {id:'zodiac_dragon',name:'十二支・たつ',sub:'きらめく辰（たつ）',className:'cover-zodiac',mark:'辰',image:'assets/stickers/zodiac/dragon.png'},
     {id:'zodiac_snake',name:'十二支・へび',sub:'すてきな模様のへび',className:'cover-zodiac',mark:'巳',image:'assets/stickers/zodiac/snake.png'},
     {id:'xiaoyin_sparkle',name:'小音のきらきら',sub:'やさしいピンクと星の箔',className:'cover-sparkle',mark:'✦',art:'🌙'},
     {id:'xiaoyin_study',name:'小音のひみつノート',sub:'小音といっしょに学ぶノート風',className:'cover-study',mark:'NOTE',image:'assets/stickers/covers/xiaoyin-hearts-cover.png'},
