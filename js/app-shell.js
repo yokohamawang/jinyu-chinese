@@ -70,9 +70,9 @@
   function render(){
     if(!root)return;
     const main=root.querySelector('#kpFeatureMain');
-    const active=page==='book'||page==='rewards'?'self':page;
+    const active=page==='book'||page==='rewards'?'self':page==='records'?'learn':page;
     root.querySelectorAll('.kp-feature-nav [data-go]').forEach(b=>b.classList.toggle('is-active',b.dataset.go===active));
-    const key=page==='book'?'sticker_book':page==='learn'?'learn':page==='practice'?'practice':page==='friends'?'friends':page==='story'?'story':page==='self'?'self':'rewards';
+    const key=page==='book'?'sticker_book':page==='records'?'learning_records':page==='learn'?'learn':page==='practice'?'practice':page==='friends'?'friends':page==='story'?'story':page==='self'?'self':'rewards';
     const view=window.KoepandaFeatures&&window.KoepandaFeatures[key];
     if(typeof view!=='function'){
       main.innerHTML=`<section class="kp-feature-error" role="alert"><h1>このページを読み込めませんでした</h1><p>読み込みが途中で止まった可能性があります。学習ホームへ戻るか、ページを再読み込みしてください。</p><button class="kp-primary" data-go="learn">学習ホームへ戻る</button></section>`;
