@@ -66,3 +66,5 @@
 .fx-preview-words>span{display:inline-flex;flex-direction:column;align-items:center;gap:2px}
 .fx-preview-words small{color:#4b9a77;font-size:13px;font-weight:800}
 .fx-preview-words b{font-size:21px}
+
+.fx-primary:disabled,.fx-button:disabled{background:#e1eae3;color:#84938a;box-shadow:none;opacity:.92;cursor:not-allowed;filter:none}

@@ -42,3 +42,5 @@
 .pr-mode-copy small{color:#7c8d82;font-size:14px;line-height:1.55}
 .pr-mode-arrow{color:#51a485;font-size:31px;font-weight:800;text-align:right}
 @media(max-width:430px){.pr-mode-list{gap:14px;margin-top:20px}.pr-mode-card{grid-template-columns:56px 1fr 20px;gap:13px;min-height:116px;padding:18px 16px;border-radius:24px}.pr-mode-icon{width:54px;height:54px;border-radius:18px;font-size:25px}.pr-mode-copy b{font-size:18px}.pr-mode-copy small{font-size:13px}}
+
+#themes{scroll-margin-top:100px}
