@@ -28,3 +28,17 @@
 .pr-chapter-tools a{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:10px 15px;border-radius:16px;background:#fff;color:#54806b;font-size:13px;font-weight:850;text-decoration:none;box-shadow:0 4px 14px #29473708}
 .pr-chapter-tools a:active{transform:translateY(2px)}
 @media(max-width:430px){.pr-500-intro{gap:13px;padding:16px}.pr-500-count{width:70px;height:70px;flex-basis:70px;border-radius:23px;font-size:26px}.pr-500-intro h2{font-size:16px}.pr-embedded-theme{padding:17px}.pr-card-grid{grid-template-columns:1fr}.pr-card{min-height:112px}}
+
+/* Keep the roadmap cards as one clear tap target. Put practice choices on their own spacious screen. */
+.pr-node-cta,.pr-actions{display:none}
+.pr-mode-list{display:grid;gap:16px;margin:22px 0 12px}
+.pr-mode-card{display:grid;grid-template-columns:64px 1fr 26px;align-items:center;gap:16px;min-height:126px;padding:21px 22px;border:1px solid #e3ede6;border-radius:27px;background:#fff;color:#3d5949;text-decoration:none;box-shadow:0 8px 22px #2947370a;transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+.pr-mode-card:active{transform:translateY(3px) scale(.99);box-shadow:0 2px 5px #29473712}
+.pr-mode-card:focus-visible{outline:3px solid #75d3ae;outline-offset:3px}
+.pr-mode-icon{display:grid;place-items:center;width:62px;height:62px;border-radius:21px;background:#e8f7ef;color:#29906e;font-size:28px;font-weight:900}
+.pr-mode-icon.is-kanji{font-size:24px}
+.pr-mode-copy{display:grid;gap:7px;min-width:0}
+.pr-mode-copy b{color:#30483a;font-size:20px;line-height:1.35}
+.pr-mode-copy small{color:#7c8d82;font-size:14px;line-height:1.55}
+.pr-mode-arrow{color:#51a485;font-size:31px;font-weight:800;text-align:right}
+@media(max-width:430px){.pr-mode-list{gap:14px;margin-top:20px}.pr-mode-card{grid-template-columns:56px 1fr 20px;gap:13px;min-height:116px;padding:18px 16px;border-radius:24px}.pr-mode-icon{width:54px;height:54px;border-radius:18px;font-size:25px}.pr-mode-copy b{font-size:18px}.pr-mode-copy small{font-size:13px}}
