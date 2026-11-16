@@ -20,6 +20,10 @@
 .fx-word b{font-size:clamp(29px,7vw,38px);line-height:1.25;color:#30483a}
 .fx-word.is-speaking{background:#fff1ae;box-shadow:0 3px 0 #ecd785;transform:translateY(-3px)}
 .fx-turn.is-speaking .fx-word.is-speaking small{color:#8b752b}.fx-turn.is-speaking .fx-word.is-speaking b{color:#4b4a34}
+.ps-main.has-follow-dock{padding-bottom:235px}
+.fx-follow-dock{position:fixed;z-index:5;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,790px);padding:13px 16px calc(13px + env(safe-area-inset-bottom));border:1px solid #e7eadb;border-bottom:0;border-radius:24px 24px 0 0;background:rgba(255,254,248,.96);box-shadow:0 -8px 28px #304e3d12;text-align:center;backdrop-filter:blur(14px)}
+.fx-follow-dock>p{display:grid;gap:3px;margin:0 0 9px;color:#6b7666;font-size:12px;line-height:1.4}.fx-follow-pinyin{color:#398c70;font-size:16px;font-weight:850;letter-spacing:.015em}.fx-follow-hanzi{color:#354b3d;font-size:22px;line-height:1.25}.fx-follow-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fx-follow-actions>.fx-button{min-height:46px;padding:10px 9px;border-radius:15px;font-size:13px}.fx-follow-actions>.fx-primary{grid-column:1/-1;width:100%;min-height:48px;margin:0;padding:10px 14px;border-radius:16px;font-size:15px}.fx-follow-dock>small{display:block;margin-top:7px;color:#8b9083;font-size:10px;line-height:1.4}
+.fx-answer-reveal{display:block;margin-top:5px}.fx-answer-reveal .fx-inline-word{margin:0 2px}
 .fx-punc{font-size:34px;line-height:1.15;padding-bottom:6px}
 .fx-translation{margin:11px 0 0!important;color:#7c8a7f!important;font-size:15px;line-height:1.65}
 .fx-follow-tools{max-width:760px;margin:20px auto 22px;padding:19px;border:1px solid #f0e6c9;border-radius:24px;background:linear-gradient(130deg,#fff8e4,#fff);text-align:center}
