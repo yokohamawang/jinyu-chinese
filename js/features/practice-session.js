@@ -6,7 +6,7 @@ const shuffle=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])
 const byId=id=>entriesById.get(id);
 const pageTitles={chapter:'章ごとの練習',theme:'テーマ練習',daily:'日常のひとこと',scenario:'場面で会話'};
 const courseForTheme=id=>'practice-theme-'+id;
-function backHref(){const route=track==='daily'||reviewKey.startsWith('daily:')?'daily':track==='scenario'||reviewKey.startsWith('dialogue:')?'scenario':track;return './practice-routes.html?track='+encodeURIComponent(route)}
+function backHref(){const route=track==='daily'||reviewKey.startsWith('daily:')?'daily':track==='scenario'||reviewKey.startsWith('dialogue:')?'scenario':track;return './practice-routes.html?track='+encodeURIComponent(route)+(route==='chapter'&&unitId&&!reviewOnly?'&unit='+encodeURIComponent(unitId):'')}
 function speak(text){if(!text)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.88;const voice=speechSynthesis.getVoices().find(v=>/^zh(-|_)/i.test(v.lang));if(voice)u.voice=voice;(window.KP_AUDIO_SESSION&&window.KP_AUDIO_SESSION.preparePlayback(),window.speechSynthesis.speak(u))}catch(_){}}
 function makeChoiceQuestion(entry,pool,kind,course){
  let choices,answerId,prompt,target='',audioText=entry.simplified,explain=`${entry.simplified} · ${entry.pinyin} · ${entry.ja_meaning}`,review;
@@ -19,7 +19,7 @@ function makeChoiceQuestion(entry,pool,kind,course){
   const charPool=[];for(const e of pool){(e.character_sequence||[]).forEach((ch,i)=>{const py=e.recognition?.character_pinyin?.[i];if(py&&!charPool.some(x=>x.char===ch))charPool.push({char:ch,pinyin:py})})}
   const distractors=shuffle(charPool.filter(x=>x.char!==character&&x.pinyin!==correctPy));choices=shuffle([{id:character,label:correctPy,pinyin:'',imageData:''},...distractors.slice(0,3).map(x=>({id:x.char,label:x.pinyin,pinyin:'',imageData:''}))]);answerId=character;prompt='この漢字の読み方は？';target=character;audioText=character;explain=`${character} · ${correctPy} · ${entry.ja_meaning}`;review='pre4-char:'+course+':'+character;
  }
- return{kind:'choice',context:kind==='word'?'':'ひとつずつ思い出そう',prompt,target,audioText,choices,answerId,explain,reviewKey:review,course};
+ return{kind:'choice',context:'',prompt,target,audioText,choices,answerId,explain,reviewKey:review,course};
 }
 function unlockedUnitIds(){const done=(()=>{try{return new Set(JSON.parse(localStorage.getItem('koepanda.hanzi.unit-progress.v1')||'[]'))}catch(_){return new Set()}})(),current=courseData.units.findIndex(x=>!done.has(x.unit_id)),ci=current<0?courseData.units.length:current;return new Set(courseData.units.filter((u,i)=>done.has(u.unit_id)||i<=ci).map(u=>u.unit_id))}
 function buildChapter(){const unit=courseData.units.find(x=>x.unit_id===unitId);if(!unit)throw Error('章が見つかりません');if(!unlockedUnitIds().has(unitId))throw Error('unlock:'+unitId);const bank=courseData.vocabulary_entries.filter(e=>e.unit_id===unitId);if(mode==='reading'){
