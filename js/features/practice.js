@@ -13,7 +13,7 @@
     if(!catalog)return `<section class="kp-practice-routes"><p class="kp-chapter-loading">練習コースを準備しています…</p></section>`;
     const routes=[
       {id:'chapter',icon:'🗺️',title:'学習章の練習',description:'学習した章を、読み・意味・ことばのミッションで復習',meta:`${catalog.unit_summaries?.length||11}章`},
-      {id:'daily',icon:'💬',title:'日常でよく使う中国語 500フレーズ',description:'よく使うひとことを聞いて、声に出して練習',meta:'テーマ別'},
+      {id:'daily',icon:'💬',title:'日常でよく使う中国語',description:'よく使うひとことを聞いて、声に出して練習',meta:'テーマ別'},
       {id:'scenario',icon:'🎭',title:'場面練習',description:'食事・移動・買い物など、場面ごとの会話を練習',meta:`${catalog.scenario_activities?.length||0}場面`}
     ];
     return `<section class="kp-practice-routes" aria-label="練習コース"><div class="kp-practice-route-grid">${routes.map(route=>`<button class="kp-practice-route kp-route-${route.id}" data-action="practice-route" data-track="${route.id}"><span class="kp-route-icon" aria-hidden="true">${route.icon}</span><span class="kp-route-copy"><b>${safe(route.title)}</b><small>${safe(route.description)}</small><em>${safe(route.meta)}</em></span><span class="kp-route-arrow" aria-hidden="true">›</span></button>`).join('')}</div></section>`;
@@ -23,8 +23,8 @@
   }
   window.KoepandaFeatures.practice.mount=function(ctx){
     const requestedAction=new URLSearchParams(location.search);
-    if(!ctx.state.practiceAutoAction&&requestedAction.get('review')==='1'){ctx.state.practiceAutoAction=true;setTimeout(()=>review(ctx),0)}
-    if(!ctx.state.practiceAutoAction&&requestedAction.get('quiz')==='1'){ctx.state.practiceAutoAction=true;setTimeout(()=>startQuiz(ctx),0)}
+    if(ctx.state.practiceCatalog&&!ctx.state.practiceAutoAction&&requestedAction.get('review')==='1'){ctx.state.practiceAutoAction=true;setTimeout(()=>review(ctx),0)}
+    if(ctx.state.practiceCatalog&&!ctx.state.practiceAutoAction&&requestedAction.get('quiz')==='1'){ctx.state.practiceAutoAction=true;setTimeout(()=>startQuiz(ctx),0)}
     if(!ctx.state.practiceCatalogLoading&&!ctx.state.practiceCatalog){ctx.state.practiceCatalogLoading=true;fetch('./data/practice-catalog-0.1.json?v=301.240').then(response=>{if(!response.ok)throw new Error('practice_catalog_unavailable');return response.json()}).then(catalog=>{ctx.state.practiceCatalog=catalog;ctx.state.practiceCatalogLoading=false;ctx.render()}).catch(error=>{console.warn('[Koepanda] practice catalog unavailable:',error);ctx.state.practiceCatalog={tracks:[],themes:[],daily_activities:[],scenario_activities:[]};ctx.state.practiceCatalogLoading=false;ctx.render()})}
     const progressKey='koepanda.hanzi.unit-progress.v1';try{const ids=JSON.parse(localStorage.getItem(progressKey)||'[]');if(Array.isArray(ids))ctx.state.completedUnitIds=ids.filter(x=>typeof x==='string')}catch(_){}
   };
