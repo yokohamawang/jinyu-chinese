@@ -94,7 +94,7 @@
     const go=e.target.closest('[data-go]');if(go){if(go.dataset.go==='book'){state.bookOpen=false;state.bookReady=false;state.coversOpen=false;}page=go.dataset.go;root.scrollTop=0;window.scrollTo(0,0);render();return;}
     const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
     if(action==='close'){open('learn');return;}
-    if(action==='account'){document.getElementById('kpAccountTrigger')?.click();return;}
+    if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
     if(action==='pinyin-course'){close();window.koepandaEnterKidsCourse?.(e);return;}
     if(action==='legacy'){close();const area=b.dataset.mode==='listen'?'listen':b.dataset.mode==='talk'?'chat':'repeat';if(window.openHomeArea)window.openHomeArea(area);return;}
     if(action==='modal-close'){closeModal();return;}
