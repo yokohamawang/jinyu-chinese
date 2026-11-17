@@ -325,7 +325,7 @@ function fetchTTSBlobUrl(text){
   ttsPending.set(key,pending);
   return pending;
 }
-function playDeviceSpeech(text){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window))throw new Error('device speech unavailable');const synth=window.speechSynthesis;synth.cancel();const utterance=new SpeechSynthesisUtterance(String(text||''));utterance.lang='zh-CN';utterance.rate=.86;const voices=synth.getVoices();utterance.voice=voices.find(v=>/^zh(-|_|$)/i.test(v.lang)&&/CN|Hans/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;utterance.onerror=e=>audioDiag('设备语音播放失败：'+(e&&e.error||'unknown'),'err');synth.resume();if(window.KP_AUDIO_SESSION)window.KP_AUDIO_SESSION.preparePlayback();synth.speak(utterance);return utterance}
+function playDeviceSpeech(text){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window))throw new Error('device speech unavailable');const synth=window.speechSynthesis;synth.cancel();const utterance=new SpeechSynthesisUtterance(String(text||''));utterance.lang='zh-CN';utterance.rate=.86;const voices=synth.getVoices();utterance.voice=voices.find(v=>/^zh(-|_|$)/i.test(v.lang)&&/CN|Hans/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;utterance.onerror=e=>audioDiag('设备语音播放失败：'+(e&&e.error||'unknown'),'err');synth.resume();synth.speak(utterance);return utterance}
 function prefetchTTS(text){
   const key=String(text||'').trim();
   if(!key||ttsCache.has(key)||ttsPending.has(key))return;
