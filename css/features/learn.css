@@ -25,6 +25,12 @@
 .kp-study-stamp-empty{padding:10px 12px;border-radius:13px;background:#f5f8f6;color:#89958e;font-size:12px}
 .kp-learning-map{position:relative;width:100%;aspect-ratio:739 / 1454;overflow:hidden;border-radius:18px;background:#e9f7f7;isolation:isolate}
 .kp-learning-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center bottom}
+.kp-map-recovery{display:none}
+.kp-learning-map.is-failed{aspect-ratio:auto;min-height:280px;padding:24px;box-sizing:border-box}
+.kp-learning-map.is-failed>.kp-learning-art,.kp-learning-map.is-failed>.kp-home-hotspot{display:none}
+.kp-learning-map.is-failed>.kp-map-recovery{display:grid;gap:12px;text-align:center;color:#315f52}
+.kp-map-recovery button,.kp-map-recovery a{display:block;padding:16px;border:1px solid #cce4d7;border-radius:16px;background:#fff;color:#26745c;text-decoration:none;font:700 16px/1.4 system-ui;cursor:pointer;touch-action:manipulation}
+.kp-map-recovery button:active,.kp-map-recovery a:active{transform:translateY(2px);background:#e0f4e9}
 .kp-home-hotspot{position:absolute;z-index:2;display:block;margin:0;padding:0;border:0;border-radius:30%;background:transparent;-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
 .kp-home-hotspot:focus-visible{outline:3px solid #0ba983;outline-offset:-4px;background:#ffffff2b}
 .kp-help-station{top:14.5%;left:5%;z-index:3;display:block;width:18%;height:auto;max-width:128px;aspect-ratio:5 / 3;padding:0;border:0;border-radius:24px;background:transparent;box-shadow:none;text-decoration:none;overflow:visible}
@@ -52,3 +58,5 @@
  .kp-study-stamp{width:min(42px,100%);border-radius:14px}
  .kp-learning-map{border-radius:15px}
 }
+
+.kp-study-stamp{box-sizing:border-box;min-width:0;max-width:100%}.kp-study-stamp-empty{grid-column:1/-1;box-sizing:border-box;max-width:100%;text-align:center}

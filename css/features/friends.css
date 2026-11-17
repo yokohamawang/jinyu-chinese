@@ -82,3 +82,6 @@
 .kp-friend-qr-scanner>p{min-height:20px;margin:0;color:#52675a;font-size:13px;font-weight:800;text-align:center}
 .kp-friend-qr-scanner>small{max-width:300px;color:#849188;font-size:11px;line-height:1.6;text-align:center}
 @media(max-width:520px){.kp-my-friend-qr-row{grid-template-columns:102px minmax(0,1fr);gap:11px;padding:12px 14px}.kp-my-friend-qr{width:102px;height:102px}.kp-my-friend-qr-row>div:last-child b{font-size:13px}.kp-my-friend-qr-row>div:last-child p{font-size:10px}.kp-qr-scan-button{min-height:48px;font-size:13px}}
+
+/* Use the same XiaoYin artwork as the learning and account pages. */
+.kp-friends-xiaoyin{display:block;width:116px;height:116px;margin:0 auto 18px;object-fit:cover;border-radius:26px}.kp-avatar-art>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}.kp-friends-section-icon>img{display:block;width:36px;height:36px;object-fit:cover;border-radius:12px}
