@@ -315,6 +315,22 @@ try {
   const GOAL_KEY='koepanda.learning-goal-target.v1';
   let dashboardStatus='idle',dashboardUserId=null,cloudStickers=null,cloudDays=null,activeContext=null,requestSeq=0;
   const recentAwardStickers=new Map(),recentActivityDays=new Set();
+  function mountMap(main){
+    const image=main.querySelector('.kp-learning-art');
+    if(!image||image.dataset.recoveryBound)return;
+    image.dataset.recoveryBound='1';
+    const map=image.closest('.kp-learning-map');
+    image.addEventListener('load',()=>{map.classList.remove('is-failed');});
+    const recover=()=>{
+      if(image.dataset.recoveryAttempt==='1'){map.classList.add('is-failed');return;}
+      image.dataset.recoveryAttempt='1';
+      const url=new URL(image.getAttribute('src'),document.baseURI);
+      url.searchParams.set('kp_image_retry',String(Date.now()));
+      image.src=url.href;
+    };
+    image.addEventListener('error',recover);
+    if(image.complete&&!image.naturalWidth)recover();
+  }
   function localDateKey(date){return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');}
   function dailyRecord(){
     try{
@@ -380,7 +396,9 @@ try {
     for(const [id,row] of recentAwardStickers)result.set(id,row);
     return [...result.values()].sort((a,b)=>String(a.obtained_at||'').localeCompare(String(b.obtained_at||'')));
   }
-  window.addEventListener('kp-auth-state-changed',()=>{
+  window.addEventListener('kp-auth-state-changed',event=>{
+    const nextUserId=event.detail?.user?.id||null;
+    if(nextUserId===dashboardUserId&&(dashboardStatus==='guest'||dashboardStatus==='ready'||dashboardStatus==='loading'))return;
     dashboardStatus='idle';dashboardUserId=null;cloudStickers=null;cloudDays=null;recentAwardStickers.clear();recentActivityDays.clear();
     if(activeContext)activeContext.render();
   });
@@ -397,7 +415,8 @@ try {
       ${recordCard()}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
-        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.196" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454">
+        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.266" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454" loading="eager" decoding="async" fetchpriority="high">
+        <section class="kp-map-recovery" role="status"><p>学習マップを表示できませんでした。</p><button type="button" data-action="retry-home-map">マップをもう一度読み込む</button><button type="button" data-action="pinyin-course">ピンインのぼうけんへ</button><a href="./hanzi-practice.html">漢字のたんけんへ</a><a href="./help-station.html?v=10.108.301.64">手書き漢字辞典へ</a></section>
         <button type="button" class="kp-home-hotspot kp-home-pinyin" data-action="pinyin-course" aria-label="ピンインのぼうけんを始める"></button>
         <a class="kp-home-hotspot kp-help-station" href="./help-station.html?v=10.108.301.64" aria-label="小音の手書き漢字辞典：手書きで文字を調べる">
           <img src="./assets/home/help-station-handwriting-dictionary.svg?v=301.197" alt="" width="128" height="77">
@@ -413,8 +432,10 @@ try {
     </section>`;
   };
   feature.mount=async ctx=>{
+    mountMap(ctx.main);
     activeContext=ctx;
     if(dashboardStatus==='guest'||dashboardStatus==='loading'||dashboardStatus==='ready'||dashboardStatus==='error')return;
+    dashboardStatus='loading';
     const request=++requestSeq;
     try{
       const api=window.KP_ACCOUNT_API,client=api&&await api.getClient();
@@ -441,6 +462,11 @@ try {
     }
   };
   feature.actions={
+    'retry-home-map':ctx=>{
+      const image=ctx.root.querySelector('.kp-learning-art');if(!image)return;
+      image.dataset.recoveryAttempt='0';
+      const url=new URL(image.getAttribute('src'),document.baseURI);url.searchParams.set('kp_image_retry',String(Date.now()));image.src=url.href;
+    },
     'select-goal':(ctx,button)=>{goalModel.choose(Number(button.dataset.goal),displayedDays()||dailyRecord().days);ctx.render();},
     'open-records':(ctx,button,event)=>{event.preventDefault();ctx.setPage('records');ctx.render();},
     'open-rewards':(ctx,button,event)=>{event.preventDefault();ctx.setPage('rewards');ctx.render();},
@@ -1955,11 +1981,26 @@ try {
     window.addEventListener('kp-practice-state-changed',()=>{state.remoteReviewLoadedAt=0;});
     window.addEventListener('pageshow',event=>{if(event.persisted){state.remoteReviewLoadedAt=0;if(page==='practice')render();}});
     const bindHomeReturn=()=>{const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};};
-    const lessonsReady=()=>{bindHomeReturn();if(pendingPinyin&&page==='learn')enterPinyin();};
+    const lessonsReady=()=>{bindHomeReturn();};
+    window.addEventListener('kp-pinyin-ready',()=>{if(pendingPinyin&&page==='learn')enterPinyin();});
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(lessonsReady,0),{once:true});else lessonsReady();
   }
   function open(where='practice'){pendingPinyin=false;page=where;root.scrollTop=0;window.scrollTo(0,0);root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
   function close(){root.classList.remove('is-open');root.setAttribute('aria-hidden','true');document.body.classList.remove('kp-feature-active');}
+  function updateMain(main,html){
+    // Background account/goal updates must not detach the image being downloaded.
+    const current=page==='learn'&&main.querySelector('.kp-learning-home');
+    if(current){
+      const template=document.createElement('template');template.innerHTML=html;
+      const next=template.content.querySelector('.kp-learning-home');
+      const sections=['.kp-study-record','.kp-study-stamps'];
+      if(next&&current.querySelector('.kp-learning-map')&&sections.every(selector=>current.querySelector(selector)&&next.querySelector(selector))){
+        sections.forEach(selector=>current.querySelector(selector).replaceWith(next.querySelector(selector)));
+        return;
+      }
+    }
+    main.innerHTML=html;
+  }
   function render(){
     if(!root)return;
     const main=root.querySelector('#kpFeatureMain');
@@ -1971,7 +2012,7 @@ try {
       main.innerHTML=`<section class="kp-feature-error" role="alert"><h1>このページを読み込めませんでした</h1><p>読み込みが途中で止まった可能性があります。学習ホームへ戻るか、ページを再読み込みしてください。</p><button class="kp-primary" data-go="learn">学習ホームへ戻る</button></section>`;
       return;
     }
-    try{main.innerHTML=view({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker});if(typeof view.mount==='function')view.mount({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker,main,root,render,toast,modal,closeModal});}
+    try{updateMain(main,view({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker}));if(typeof view.mount==='function')view.mount({state,img,head,safe,save,STICKERS,QUESTIONS,selectedSticker,main,root,render,toast,modal,closeModal});}
     catch(error){console.error('[Koepanda] feature render failed:',key,error);main.innerHTML=`<section class="kp-feature-error" role="alert"><h1>ページを表示できませんでした</h1><p>このページの読み込み中に問題が起きました。ほかのページへ移動できます。</p><button class="kp-primary" data-go="learn">学習ホームへ戻る</button></section>`;}
   }
   function head(eyebrow,title,sub){return `<div class="kp-page-head"><span class="kp-eyebrow">${eyebrow}</span><h1>${title}</h1><p>${sub}</p></div>`;}
@@ -1979,8 +2020,8 @@ try {
   window.KP_REWARD_CONTEXT=actionContext;
   window.KP_OPEN_STICKER_BOOK=function(){state.bookOpen=true;state.coversOpen=false;state.bookReady=false;state.bookLoadError=false;state.bookError=false;state.bookFocusInventory=true;open('book');};
   function enterPinyin(){
+    if(!window.KP_PINYIN_READY||typeof window.koepandaEnterKidsCourse!=='function'){toast('教材を準備しています。準備ができると自動で開きます。');return;}
     pendingPinyin=false;
-    if(typeof window.koepandaEnterKidsCourse!=='function'){toast('教材を読み込めませんでした。ページを再読み込みしてください。');return;}
     close();window.koepandaEnterKidsCourse();
   }
   function onClick(e){
@@ -1988,7 +2029,7 @@ try {
     const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
-    if(action==='pinyin-course'){if(document.readyState==='loading'){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
+    if(action==='pinyin-course'){if(!window.KP_PINYIN_READY){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
     if(action==='legacy'){close();const area=b.dataset.mode==='listen'?'listen':b.dataset.mode==='talk'?'chat':'repeat';if(window.openHomeArea)window.openHomeArea(area);return;}
     if(action==='modal-close'){closeModal();return;}
     const ctx=actionContext();for(const feature of Object.values(window.KoepandaFeatures||{})){const handler=feature&&feature.actions&&feature.actions[action];if(handler){try{handler(ctx,b,e);}catch(error){console.error('[Koepanda] action failed:',action,error);toast('操作を完了できませんでした。もう一度お試しください。');}return;}}
