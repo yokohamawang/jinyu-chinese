@@ -20,7 +20,7 @@
   function img(id){const s=STICKERS.find(x=>x.id===id);return s?'./assets/stickers/'+s.art:'';}
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  let root, page=new URLSearchParams(location.search).get('open')==='practice'?'practice':'learn', selectedSticker=null;
+  let root, page=new URLSearchParams(location.search).get('open')==='practice'?'practice':'learn', selectedSticker=null, pendingPinyin=false;
   let ownPresenceClient=null,ownPresenceChannel=null,ownPresenceAuth=null,ownPresenceBusy=false;
   async function syncOwnPresence(){
     if(ownPresenceBusy)return;ownPresenceBusy=true;
@@ -63,15 +63,17 @@
     root.scrollTop=0;
     root.querySelectorAll('[data-shell-wait]').forEach(button=>{button.disabled=false;button.removeAttribute('aria-disabled');button.removeAttribute('data-shell-wait');});
     root.dataset.shellState='ready';
+    window.dispatchEvent(new Event('kp-shell-ready'));
     root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');
     startPresenceManager();
     window.addEventListener('kp-auth-state-changed',()=>{state.remoteReviewLoadedAt=0;if(page==='practice')render();});
     window.addEventListener('kp-practice-state-changed',()=>{state.remoteReviewLoadedAt=0;});
     window.addEventListener('pageshow',event=>{if(event.persisted){state.remoteReviewLoadedAt=0;if(page==='practice')render();}});
     const bindHomeReturn=()=>{const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};};
-    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(bindHomeReturn,0),{once:true});else bindHomeReturn();
+    const lessonsReady=()=>{bindHomeReturn();if(pendingPinyin&&page==='learn')enterPinyin();};
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(lessonsReady,0),{once:true});else lessonsReady();
   }
-  function open(where='practice'){page=where;root.scrollTop=0;window.scrollTo(0,0);root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
+  function open(where='practice'){pendingPinyin=false;page=where;root.scrollTop=0;window.scrollTo(0,0);root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
   function close(){root.classList.remove('is-open');root.setAttribute('aria-hidden','true');document.body.classList.remove('kp-feature-active');}
   function render(){
     if(!root)return;
@@ -91,12 +93,17 @@
   function actionContext(){return {state,save,safe,img,head,STICKERS,QUESTIONS,selectedSticker,setSelectedSticker:value=>{selectedSticker=value;},setPage:value=>{page=value;root.scrollTop=0;window.scrollTo(0,0);},root,render,toast,modal,closeModal};}
   window.KP_REWARD_CONTEXT=actionContext;
   window.KP_OPEN_STICKER_BOOK=function(){state.bookOpen=true;state.coversOpen=false;state.bookReady=false;state.bookLoadError=false;state.bookError=false;state.bookFocusInventory=true;open('book');};
+  function enterPinyin(){
+    pendingPinyin=false;
+    if(typeof window.koepandaEnterKidsCourse!=='function'){toast('教材を読み込めませんでした。ページを再読み込みしてください。');return;}
+    close();window.koepandaEnterKidsCourse();
+  }
   function onClick(e){
-    const go=e.target.closest('[data-go]');if(go){if(go.dataset.go==='book'){state.bookOpen=false;state.bookReady=false;state.coversOpen=false;}page=go.dataset.go;root.scrollTop=0;window.scrollTo(0,0);render();return;}
+    const go=e.target.closest('[data-go]');if(go){pendingPinyin=false;if(go.dataset.go==='book'){state.bookOpen=false;state.bookReady=false;state.coversOpen=false;}page=go.dataset.go;root.scrollTop=0;window.scrollTo(0,0);render();return;}
     const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
-    if(action==='pinyin-course'){if(document.readyState!=='complete'){toast('ピンイン教材を準備しています。少し待ってからもう一度タップしてください。');return;}close();window.koepandaEnterKidsCourse?.(e);return;}
+    if(action==='pinyin-course'){if(document.readyState==='loading'){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
     if(action==='legacy'){close();const area=b.dataset.mode==='listen'?'listen':b.dataset.mode==='talk'?'chat':'repeat';if(window.openHomeArea)window.openHomeArea(area);return;}
     if(action==='modal-close'){closeModal();return;}
     const ctx=actionContext();for(const feature of Object.values(window.KoepandaFeatures||{})){const handler=feature&&feature.actions&&feature.actions[action];if(handler){try{handler(ctx,b,e);}catch(error){console.error('[Koepanda] action failed:',action,error);toast('操作を完了できませんでした。もう一度お試しください。');}return;}}
