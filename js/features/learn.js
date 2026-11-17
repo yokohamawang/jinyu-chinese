@@ -4,6 +4,22 @@
   const GOAL_KEY='koepanda.learning-goal-target.v1';
   let dashboardStatus='idle',dashboardUserId=null,cloudStickers=null,cloudDays=null,activeContext=null,requestSeq=0;
   const recentAwardStickers=new Map(),recentActivityDays=new Set();
+  function mountMap(main){
+    const image=main.querySelector('.kp-learning-art');
+    if(!image||image.dataset.recoveryBound)return;
+    image.dataset.recoveryBound='1';
+    const map=image.closest('.kp-learning-map');
+    image.addEventListener('load',()=>{map.classList.remove('is-failed');});
+    const recover=()=>{
+      if(image.dataset.recoveryAttempt==='1'){map.classList.add('is-failed');return;}
+      image.dataset.recoveryAttempt='1';
+      const url=new URL(image.getAttribute('src'),document.baseURI);
+      url.searchParams.set('kp_image_retry',String(Date.now()));
+      image.src=url.href;
+    };
+    image.addEventListener('error',recover);
+    if(image.complete&&!image.naturalWidth)recover();
+  }
   function localDateKey(date){return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');}
   function dailyRecord(){
     try{
@@ -69,7 +85,9 @@
     for(const [id,row] of recentAwardStickers)result.set(id,row);
     return [...result.values()].sort((a,b)=>String(a.obtained_at||'').localeCompare(String(b.obtained_at||'')));
   }
-  window.addEventListener('kp-auth-state-changed',()=>{
+  window.addEventListener('kp-auth-state-changed',event=>{
+    const nextUserId=event.detail?.user?.id||null;
+    if(nextUserId===dashboardUserId&&(dashboardStatus==='guest'||dashboardStatus==='ready'||dashboardStatus==='loading'))return;
     dashboardStatus='idle';dashboardUserId=null;cloudStickers=null;cloudDays=null;recentAwardStickers.clear();recentActivityDays.clear();
     if(activeContext)activeContext.render();
   });
@@ -86,7 +104,8 @@
       ${recordCard()}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
-        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.196" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454">
+        <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.266" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454" loading="eager" decoding="async" fetchpriority="high">
+        <section class="kp-map-recovery" role="status"><p>学習マップを表示できませんでした。</p><button type="button" data-action="retry-home-map">マップをもう一度読み込む</button><button type="button" data-action="pinyin-course">ピンインのぼうけんへ</button><a href="./hanzi-practice.html">漢字のたんけんへ</a><a href="./help-station.html?v=10.108.301.64">手書き漢字辞典へ</a></section>
         <button type="button" class="kp-home-hotspot kp-home-pinyin" data-action="pinyin-course" aria-label="ピンインのぼうけんを始める"></button>
         <a class="kp-home-hotspot kp-help-station" href="./help-station.html?v=10.108.301.64" aria-label="小音の手書き漢字辞典：手書きで文字を調べる">
           <img src="./assets/home/help-station-handwriting-dictionary.svg?v=301.197" alt="" width="128" height="77">
@@ -102,8 +121,10 @@
     </section>`;
   };
   feature.mount=async ctx=>{
+    mountMap(ctx.main);
     activeContext=ctx;
     if(dashboardStatus==='guest'||dashboardStatus==='loading'||dashboardStatus==='ready'||dashboardStatus==='error')return;
+    dashboardStatus='loading';
     const request=++requestSeq;
     try{
       const api=window.KP_ACCOUNT_API,client=api&&await api.getClient();
@@ -130,6 +151,11 @@
     }
   };
   feature.actions={
+    'retry-home-map':ctx=>{
+      const image=ctx.root.querySelector('.kp-learning-art');if(!image)return;
+      image.dataset.recoveryAttempt='0';
+      const url=new URL(image.getAttribute('src'),document.baseURI);url.searchParams.set('kp_image_retry',String(Date.now()));image.src=url.href;
+    },
     'select-goal':(ctx,button)=>{goalModel.choose(Number(button.dataset.goal),displayedDays()||dailyRecord().days);ctx.render();},
     'open-records':(ctx,button,event)=>{event.preventDefault();ctx.setPage('records');ctx.render();},
     'open-rewards':(ctx,button,event)=>{event.preventDefault();ctx.setPage('rewards');ctx.render();},
