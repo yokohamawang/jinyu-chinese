@@ -2,10 +2,3 @@
 #pinyinRoadmap .kp197-artwork{aspect-ratio:749 / 2098}
 #pinyinRoadmap .kp197-map-image{width:100%;height:100%;object-fit:fill}
 #pinyinRoadmap .kp197-hotspot{box-sizing:border-box;padding:0;margin:0}
-#pinyinRoadmap .kp197-artwork.is-image-failed{aspect-ratio:auto;display:grid;gap:12px;padding:12px;box-sizing:border-box}
-#pinyinRoadmap .is-image-failed>.kp197-map-image{display:none}
-#pinyinRoadmap .is-image-failed>.kp197-hotspot{position:relative!important;inset:auto!important;width:100%!important;height:auto!important;min-height:64px;padding:16px!important;border:1px solid #cce4d7;border-radius:18px;background:#fffefa;color:#315f52;text-align:left;box-shadow:0 4px 0 #dcebe2}
-#pinyinRoadmap .is-image-failed .kp197-screenreader{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;font-weight:750}
-#pinyinRoadmap .is-image-failed .kp197-clear{position:static;display:inline-block;margin-left:8px}
-#pinyinRoadmap .kp197-map-retry{min-height:48px;padding:12px;border:1px solid #cce4d7;border-radius:16px;background:#eef8f1;color:#315f52;font:700 15px system-ui;cursor:pointer}
-#pinyinRoadmap .kp197-map-retry[hidden]{display:none}
