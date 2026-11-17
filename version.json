@@ -1,6 +1,5 @@
 {
-  "version": "301.258",
-  "base_version": "301.254",
-  "status": "candidate",
-  "includes": "301.255"
+  "version": "301.260",
+  "base_version": "301.259",
+  "status": "candidate"
 }
