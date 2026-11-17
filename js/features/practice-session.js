@@ -7,7 +7,7 @@ const byId=id=>entriesById.get(id);
 const pageTitles={chapter:'章ごとの練習',theme:'テーマ練習',daily:'日常のひとこと',scenario:'場面で会話'};
 const courseForTheme=id=>'practice-theme-'+id;
 function backHref(){const route=track==='daily'||reviewKey.startsWith('daily:')?'daily':track==='scenario'||reviewKey.startsWith('dialogue:')?'scenario':track;return './practice-routes.html?track='+encodeURIComponent(route)}
-function speak(text){if(!text)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.88;const voice=speechSynthesis.getVoices().find(v=>/^zh(-|_)/i.test(v.lang));if(voice)u.voice=voice;speechSynthesis.speak(u)}catch(_){}}
+function speak(text){if(!text)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.88;const voice=speechSynthesis.getVoices().find(v=>/^zh(-|_)/i.test(v.lang));if(voice)u.voice=voice;(window.KP_AUDIO_SESSION&&window.KP_AUDIO_SESSION.preparePlayback(),window.speechSynthesis.speak(u))}catch(_){}}
 function makeChoiceQuestion(entry,pool,kind,course){
  let choices,answerId,prompt,target='',audioText=entry.simplified,explain=`${entry.simplified} · ${entry.pinyin} · ${entry.ja_meaning}`,review;
  if(kind==='meaning'){
