@@ -43,3 +43,6 @@ button:not(:disabled).is-pressed,a[href].is-pressed{transform:translateY(3px) sc
 .fx-follow-actions>[hidden]{display:none!important}
 .fx-follow-actions>.fx-record-btn:has(+[hidden]){grid-column:1/-1}
 .fx-daily-dock .fx-nav-button:disabled{opacity:.45;box-shadow:none;cursor:default}
+
+/* Keep acknowledgement visible when an answer locks its button immediately. */
+button.is-pressed,a[href].is-pressed{transform:translateY(4px) scale(.975)!important;filter:brightness(.88)!important;box-shadow:inset 0 3px 5px #17493635!important}
