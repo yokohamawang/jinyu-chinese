@@ -10,8 +10,8 @@
   };
   const TRADE_STATUS={pending:'返事待ち',completed:'交換成立',declined:'お断り',cancelled:'取り消し',expired:'期限切れ'};
   const AVATARS={
-    xiaoyin:{emoji:'🐼',label:'小音',color:'mint'},
-    panda:{emoji:'🐻‍❄️',label:'パンダ',color:'blue'},
+    xiaoyin:{image:'./assets/brand/xiaoyin-mascot.png',label:'小音',color:'mint'},
+    panda:{emoji:'🐼',label:'パンダ',color:'blue'},
     rabbit:{emoji:'🐰',label:'うさぎ',color:'pink'},
     fox:{emoji:'🦊',label:'きつね',color:'orange'},
     tiger:{emoji:'🐯',label:'とら',color:'gold'},
@@ -33,7 +33,7 @@
   function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function shortDate(value){try{return new Date(value).toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'});}catch(_){return '';}}
   function friendName(userId,profiles){return profiles[userId]?.nickname||'Koepanda learner';}
-  function avatarMarkup(key,label,extra=''){const avatar=AVATARS[key]||AVATARS.xiaoyin;return `<span class="kp-avatar-art ${esc(avatar.color)} ${extra}" role="img" aria-label="${esc(label||avatar.label)}のアバター">${avatar.emoji}</span>`;}
+  function avatarMarkup(key,label,extra=''){const avatar=AVATARS[key]||AVATARS.xiaoyin;return `<span class="kp-avatar-art ${esc(avatar.color)} ${extra}" role="img" aria-label="${esc(label||avatar.label)}のアバター">${avatar.image?`<img src="${esc(avatar.image)}" alt="">`:avatar.emoji}</span>`;}
   function clearFriendPresence(){const channels=friendPresenceChannels.splice(0);channels.forEach(channel=>{try{snapshot?.client?.removeChannel(channel);}catch(_){}});onlineByFriend={};}
   function paintPresence(userId){
     const visible=snapshot?.profiles?.[userId]?.online_visible;
@@ -181,7 +181,7 @@
     if(!user){
       snapshot=null;
       setMessage(main,'ログインすると友だち機能を使えます。',false);
-      body.innerHTML=`<section class="kp-friends-card kp-friends-login"><span class="kp-friends-illustration" aria-hidden="true">🐼</span><h2>アカウントで友だちとつながろう</h2><p>招待コード、申請、カード、シール交換はアカウントに保存されます。端末を変えても続けられます。</p><button class="kp-primary" data-action="account">新規登録・ログイン</button></section>`;
+      body.innerHTML=`<section class="kp-friends-card kp-friends-login"><img class="kp-friends-illustration kp-friends-xiaoyin" src="./assets/brand/xiaoyin-mascot.png" alt="小音"><h2>アカウントで友だちとつながろう</h2><p>招待コード、申請、カード、シール交換はアカウントに保存されます。端末を変えても続けられます。</p><button class="kp-primary" data-action="account">新規登録・ログイン</button></section>`;
       return;
     }
     setMessage(main,'データベースと同期しています…',false);
@@ -248,7 +248,7 @@
     const incomingGreetingsUnread=incomingGreetings.filter(g=>!g.read_at).length;
     const onlineCount=Object.values(onlineByFriend).filter(Boolean).length;
     const tab=(id,label,count)=>`<button class="kp-friends-tab ${activeTab===id?'is-active':''}" role="tab" aria-selected="${activeTab===id}" data-action="friends-tab" data-tab="${id}">${label}${count?`<span>${count}</span>`:''}</button>`;
-    const friendsPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon">🐼</span><div><h2>友だち一覧</h2><p>学習の様子を見て、カードやシールで応援できます。</p></div></div>
+    const friendsPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon"><img src="./assets/brand/xiaoyin-mascot.png" alt=""></span><div><h2>友だち一覧</h2><p>学習の様子を見て、カードやシールで応援できます。</p></div></div>
       ${friends.length?`<div class="kp-friends-list">${friends.map(id=>{
         const p=profiles[id]||{};const summary=progress[id];
         const presence=!p.online_visible?'オンライン状態は非公開':onlineByFriend[id]===true?'オンライン':onlineByFriend[id]===false?'オフライン':'確認中';
@@ -271,7 +271,7 @@
   async function refresh(ctx){ctx.render();}
   function openProfile(ctx){
     const p=snapshot.profile||{};
-    const choices=Object.entries(AVATARS).map(([key,item])=>`<button type="button" class="kp-avatar-choice ${p.avatar_key===key?'is-selected':''}" data-action="avatar-select" data-avatar="${key}" aria-pressed="${p.avatar_key===key}"><span class="kp-avatar-art ${item.color}">${item.emoji}</span><small>${item.label}</small></button>`).join('');
+    const choices=Object.entries(AVATARS).map(([key,item])=>`<button type="button" class="kp-avatar-choice ${p.avatar_key===key?'is-selected':''}" data-action="avatar-select" data-avatar="${key}" aria-pressed="${p.avatar_key===key}">${avatarMarkup(key,item.label)}<small>${item.label}</small></button>`).join('');
     ctx.modal('プロフィール設定',`<form id="kpFriendProfileForm" class="kp-profile-editor"><label for="kpFriendNickname">友だちに表示する名前</label><input id="kpFriendNickname" name="nickname" maxlength="24" required value="${esc(p.nickname||'')}" autocomplete="nickname"><input type="hidden" name="avatar_key" value="${esc(AVATARS[p.avatar_key]?p.avatar_key:'xiaoyin')}"><fieldset><legend>自分のアバター</legend><div class="kp-avatar-picker">${choices}</div></fieldset><label class="kp-friend-privacy"><span><b>学習の様子を友だちに見せる</b><small>今日の学習、今週の日数、完了した単元数を表示します。</small></span><input type="checkbox" name="progress_visible" ${p.progress_visible?'checked':''}></label><label class="kp-friend-privacy"><span><b>オンライン状態を友だちに見せる</b><small>使用中はオンラインと表示します。オフライン時刻は公開しません。</small></span><input type="checkbox" name="online_visible" ${p.online_visible?'checked':''}></label><button class="kp-primary kp-profile-save">設定を保存</button></form>`);
   }
   async function updateProfile(ctx,form){
