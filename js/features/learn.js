@@ -27,14 +27,15 @@
   }
   const goalModel=window.KP_GOAL={
     key:'koepanda.continuous-goal.v2',
-    read(){try{return JSON.parse(localStorage.getItem(this.key)||'{}')}catch(_){return{}}},
-    write(g){localStorage.setItem(this.key,JSON.stringify(g))},
+    read(){return window.KP_GOAL_STORE.read()},
+    write(g){window.KP_GOAL_STORE.write(g)},
     date(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')},
     range(end){const a=[];for(const d=new Date();this.date(d)<=end;d.setDate(d.getDate()+1)){a.push(this.date(d));if(a.length>3660)break}return a},
     model(days){const set=new Set(days||[]),today=this.date(new Date()),d=new Date();if(!set.has(today))d.setDate(d.getDate()-1);let streak=0;while(set.has(this.date(d))&&streak<10000){streak++;d.setDate(d.getDate()-1)}const g=this.read(),base=Number.isInteger(g.base)?g.base:streak,options=[base+5,base+10,base+15];return {g,streak,options,remaining:g.target?Math.max(0,g.target-streak):0}},
     choose(target,days){const m=this.model(days),d=new Date();d.setDate(d.getDate()+Math.max(0,target-m.streak)-(new Set(days).has(this.date(d))?0:1));this.write({base:m.g.base??m.streak,target,end:this.date(d)});},
     summary(m){return m.g.target?`<b>目標：${m.g.target}日連続</b><p>あと ${m.remaining} 日 · 終了日 ${m.g.end.replaceAll('-','/')}</p>${m.remaining===0?'<small>目標達成！おめでとう！</small>':''}`:'<b>目標を設定しよう</b>'}
   };
+  window.addEventListener('kp-goal-sync-changed',()=>{if(activeContext)activeContext.render()});
   function recordCard(){
     const days=displayedDays(),local=dailyRecord();
     const total=days===null?Math.max(0,Number(local.days?.length)||0):days.length;
@@ -42,7 +43,7 @@
     const streak=days===null?'確認中…':dashboardStatus==='ready'?consecutiveStreak(days):(typeof window.currentStreak==='function'?window.currentStreak():Math.max(0,Number(local.streak)||0));
     return `<section class="kp-study-record" aria-label="学習の記録">
       <div class="kp-study-record-main"><span class="kp-study-flame" aria-hidden="true">🎋</span><div><b>次の目標</b><small>累計 ${days===null?'…':total} 日</small></div><strong>${streak}<small>${streak==='確認中…'?'':'日連続'}</small></strong></div>
-      <div class="kp-study-goal-summary" role="status">${goalModel.summary(goal)}</div>
+      <div class="kp-study-goal-summary" role="status">${goalModel.summary(goal)}<small>${window.KP_GOAL_STORE.message()}</small></div>
       <div class="kp-study-goal-picker" aria-label="次の目標を選ぶ">${goal.options.map(value=>`<button type="button" class="kp-study-goal-option${goal.g.target===value?' is-selected':''}" data-action="select-goal" data-goal="${value}" aria-pressed="${goal.g.target===value}"><b>${value}日</b><small>あと ${Math.max(0,value-goal.streak)} 日</small></button>`).join('')}</div>
       <a href="#self" class="kp-study-link" data-action="open-records">${goal.g.target?'目標を変更':'連続目標を設定'} <span aria-hidden="true">›</span></a>
     </section>`;
