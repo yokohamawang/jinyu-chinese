@@ -60,7 +60,7 @@
   }
 
   function makeTrigger() {
-    var home = document.getElementById('homeEffect');
+    var home = document.getElementById('kpFeatureRoot');
     if (!home || document.getElementById('kpAccountTrigger')) return;
     trigger = el('button', 'kp-account-trigger', 'ログインして学習記録を見る');
     trigger.id = 'kpAccountTrigger';
@@ -331,6 +331,7 @@
   }
 
   window.KP_ACCOUNT_API = {
+    open: openDialog,
     getClient: getClient,
     getSession: async function () {
       var c = await getClient();
@@ -338,6 +339,34 @@
       var result = await c.auth.getSession();
       if (result.error) throw result.error;
       return result.data.session || null;
+    },
+    recordLearningCompletion: async function (source, unitId) {
+      var now = new Date(), day = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+      try {
+        if (typeof window.completeDailyGoal === 'function') window.completeDailyGoal();
+        else {
+          var state = JSON.parse(localStorage.getItem('toneCoachDailyGoalV1') || '{}');
+          var days = Array.isArray(state.days) ? state.days.filter(function(d){return /^\d{4}-\d{2}-\d{2}$/.test(d);}) : [];
+          if(state.lastDay && !days.includes(state.lastDay))days.push(state.lastDay);
+          if(state.lastDay !== day){
+            var previous = new Date(now); previous.setDate(now.getDate()-1);
+            var yesterday = previous.getFullYear()+'-'+String(previous.getMonth()+1).padStart(2,'0')+'-'+String(previous.getDate()).padStart(2,'0');
+            state.streak = state.lastDay === yesterday ? (Number(state.streak)||0)+1 : 1;
+            state.best = Math.max(Number(state.best)||0,state.streak);state.lastDay=day;
+          }
+          state.days=Array.from(new Set(days.concat(day))).sort().slice(-30);
+          localStorage.setItem('toneCoachDailyGoalV1',JSON.stringify(state));
+        }
+        window.dispatchEvent(new CustomEvent('kp-learning-activity-recorded',{detail:{day:day,source:source,unitId:unitId}}));
+      } catch(error) { console.warn('[Koepanda] local completion unavailable:',error); }
+      try {
+        var c=await getClient();if(!c)return false;
+        var session=await c.auth.getSession();if(session.error)throw session.error;
+        var user=session.data.session&&session.data.session.user;if(!user)return false;
+        var result=await c.from('learning_days').insert({user_id:user.id,study_date:day,source:'completed_practice'});
+        if(result.error&&result.error.code!=='23505')throw result.error;
+        return true;
+      } catch(error) { console.warn('[Koepanda] completion sync unavailable:',error);return false; }
     },
     recordPracticeAttempt: async function (itemKey, courseKey, isCorrect) {
       var c = await getClient();
@@ -379,7 +408,6 @@
 
   function boot() {
     makeTrigger();
-    if (!document.getElementById('homeEffect')) return;
     createDialog();
     if (configured()) {
       getClient().then(function (c) {

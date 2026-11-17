@@ -14,7 +14,7 @@
   function playerFor(url){if(!player){player=new Audio();player.preload='none';player.playsInline=true;player.volume=1}var absolute=new URL(url,document.baseURI).href;if(player.src!==absolute){player.src=absolute;player.load()}return player}
   var microphoneStreams=new Set(),microphoneRequests=0;
   function audioMode(type){try{if(navigator.audioSession&&navigator.audioSession.type!==type)navigator.audioSession.type=type}catch(e){}}
-  function restorePlayback(){if(!microphoneStreams.size&&!microphoneRequests)audioMode('playback')}
+  function restorePlayback(){if(!microphoneStreams.size&&!microphoneRequests){audioMode('playback');if(window.KP_AUDIO_SESSION)window.KP_AUDIO_SESSION.preparePlayback()}}
   function microphone(){audioMode('play-and-record');microphoneRequests++;return navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){microphoneRequests--;microphoneStreams.add(stream);stream.getTracks().forEach(function(t){t.addEventListener('ended',function(){if(stream.getTracks().every(function(x){return x.readyState==='ended'})){microphoneStreams.delete(stream);restorePlayback()}})});return stream},function(e){microphoneRequests--;restorePlayback();throw e})}
   function releaseMicrophone(stream){if(stream){stream.getTracks().forEach(function(t){t.stop()});microphoneStreams.delete(stream)}restorePlayback()}
   function warm(keys){/* Audio loads on the gesture that requests it. */}

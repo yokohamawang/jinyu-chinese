@@ -325,7 +325,7 @@ function fetchTTSBlobUrl(text){
   ttsPending.set(key,pending);
   return pending;
 }
-function playDeviceSpeech(text){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window))throw new Error('device speech unavailable');const synth=window.speechSynthesis;synth.cancel();const utterance=new SpeechSynthesisUtterance(String(text||''));utterance.lang='zh-CN';utterance.rate=.86;const voices=synth.getVoices();utterance.voice=voices.find(v=>/^zh(-|_|$)/i.test(v.lang)&&/CN|Hans/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;utterance.onerror=e=>audioDiag('设备语音播放失败：'+(e&&e.error||'unknown'),'err');synth.resume();synth.speak(utterance);return utterance}
+function playDeviceSpeech(text){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window))throw new Error('device speech unavailable');const synth=window.speechSynthesis;synth.cancel();const utterance=new SpeechSynthesisUtterance(String(text||''));utterance.lang='zh-CN';utterance.rate=.86;const voices=synth.getVoices();utterance.voice=voices.find(v=>/^zh(-|_|$)/i.test(v.lang)&&/CN|Hans/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;utterance.onerror=e=>audioDiag('设备语音播放失败：'+(e&&e.error||'unknown'),'err');synth.resume();if(window.KP_AUDIO_SESSION)window.KP_AUDIO_SESSION.preparePlayback();synth.speak(utterance);return utterance}
 function prefetchTTS(text){
   const key=String(text||'').trim();
   if(!key||ttsCache.has(key)||ttsPending.has(key))return;
@@ -601,8 +601,8 @@ async function toggleExampleRecording(){
   let stream=null;
   try{
     stopStandardAudio();
-    try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}})}
-    catch(e){stream=await navigator.mediaDevices.getUserMedia({audio:true})}
+    try{stream=await window.KP_AUDIO_SESSION.getMicrophone({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}})}
+    catch(e){stream=await window.KP_AUDIO_SESSION.getMicrophone({audio:true})}
     if(gen!==exampleGeneration||i!==examplePracticeIndex){releaseExampleStream(stream);return}
     exampleStream=stream;
     const opts=getRecorderOptions();
@@ -1100,7 +1100,7 @@ async function toggleRecording(){stopStandardAudio();stopGuide();
 
     let stream;
     try{
-      stream=await navigator.mediaDevices.getUserMedia({
+      stream=await window.KP_AUDIO_SESSION.getMicrophone({
         audio:{
           echoCancellation:false,
           noiseSuppression:false,
@@ -1111,7 +1111,7 @@ async function toggleRecording(){stopStandardAudio();stopGuide();
       });
     }catch(primaryErr){
       console.warn('High-quality audio constraints unavailable, retrying with default audio constraints.',primaryErr);
-      stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      stream=await window.KP_AUDIO_SESSION.getMicrophone({audio:true});
     }
 
     microphoneStream=stream;
@@ -1506,7 +1506,7 @@ async function chatToggleRecording(options={}){
  if(chatAudio){chatAudio.pause();chatAudio=null}hideMouthPop();
  chatBusy=true;const generation=++chatGeneration;chatNote('マイクを準備しています…');
  try{
-  chatStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});
+  chatStream=await window.KP_AUDIO_SESSION.getMicrophone({audio:{echoCancellation:true,noiseSuppression:true}});
   if(generation!==chatGeneration){chatRelease();return}
   const mime=['audio/mp4','audio/webm;codecs=opus','audio/webm'].find(m=>typeof MediaRecorder.isTypeSupported==='function'&&MediaRecorder.isTypeSupported(m));
   chatParts=[];chatRecorder=new MediaRecorder(chatStream,mime?{mimeType:mime}:undefined);

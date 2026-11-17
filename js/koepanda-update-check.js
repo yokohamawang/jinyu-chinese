@@ -7,6 +7,16 @@
   var latestFound = '';
   var notice;
 
+  function isNewer(latest, installed) {
+    var a = latest.split('.'), b = installed.split('.');
+    if (!/^\d+(\.\d+)*$/.test(latest) || !/^\d+(\.\d+)*$/.test(installed)) return false;
+    for (var i = 0; i < Math.max(a.length, b.length); i++) {
+      var delta = Number(a[i] || 0) - Number(b[i] || 0);
+      if (delta) return delta > 0;
+    }
+    return false;
+  }
+
   function makeNotice(version) {
     if (notice) return;
     notice = document.createElement('aside');
@@ -21,6 +31,7 @@
     buttons[0].addEventListener('click', function () {
       var target = new URL(window.location.href);
       target.searchParams.set('kp_release', latestFound);
+      target.searchParams.set('kp_refresh', String(Date.now()));
       window.location.replace(target.toString());
     });
     buttons[1].addEventListener('click', function () { notice.remove(); notice = null; });
@@ -30,11 +41,13 @@
   function checkVersion() {
     if (checkInFlight || !current || document.visibilityState === 'hidden') return;
     checkInFlight = true;
-    fetch('./version.json?check=' + Date.now(), { cache: 'no-store' })
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 8000);
+    fetch('./version.json?check=' + Date.now(), { cache: 'no-store', signal: controller.signal })
       .then(function (response) { if (!response.ok) throw new Error('version check failed'); return response.json(); })
       .then(function (data) {
         var latest = data && String(data.version || '');
-        if (!latest || latest === current) return;
+        if (!latest || !isNewer(latest, current)) return;
         latestFound = latest;
         var attempted = '';
         try { attempted = sessionStorage.getItem('kpReleaseAttempt') || ''; } catch (e) {}
@@ -42,7 +55,7 @@
         makeNotice(latestFound);
       })
       .catch(function () {})
-      .finally(function () { checkInFlight = false; });
+      .finally(function () { clearTimeout(timeout); checkInFlight = false; });
   }
 
   document.addEventListener('click', function (event) {
@@ -51,8 +64,7 @@
     }
   }, true);
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', checkVersion, { once: true });
-  else checkVersion();
+  checkVersion();
   document.addEventListener('visibilitychange', checkVersion);
   window.addEventListener('pageshow', checkVersion);
   window.setInterval(checkVersion, 300000);

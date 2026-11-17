@@ -34,12 +34,12 @@
   function wireHeader(header,host,title){
     if(!header||!host)return;
     var controls=header.querySelector('.kp145-header-stepper'),pairNow=activePair();
-    if(!pairNow){if(controls)controls.remove();header.classList.remove('kp145-has-stepper');if(title)title.hidden=false;return}
+    if(!pairNow){if(controls)controls.remove();if(header.classList.contains('kp145-has-stepper'))header.classList.remove('kp145-has-stepper');if(title&&title.hidden)title.hidden=false;return}
     if(!controls){controls=makeNav();host.appendChild(controls)}
-    header.classList.add('kp145-has-stepper');if(title)title.hidden=true;
+    if(!header.classList.contains('kp145-has-stepper'))header.classList.add('kp145-has-stepper');if(title&&!title.hidden)title.hidden=true;
     var buttons=controls.querySelectorAll('button'),count=controls.querySelector('span');
-    buttons[0].disabled=pairNow.prev.disabled;buttons[1].disabled=pairNow.next.disabled;
-    count.textContent=pairNow.count?pairNow.count.textContent.trim():'';count.hidden=!count.textContent;
+    if(buttons[0].disabled!==pairNow.prev.disabled)buttons[0].disabled=pairNow.prev.disabled;if(buttons[1].disabled!==pairNow.next.disabled)buttons[1].disabled=pairNow.next.disabled;
+    var label=pairNow.count?pairNow.count.textContent.trim():'';if(count.textContent!==label)count.textContent=label;if(count.hidden!==!label)count.hidden=!label;
     if(!controls.dataset.wired){controls.dataset.wired='1';controls.addEventListener('click',function(event){
       var control=event.target.closest('button[data-step]');if(!control||control.disabled)return;
       var current=activePair();if(!current)return;
@@ -55,6 +55,6 @@
   }
   function schedule(){if(!raf)raf=requestAnimationFrame(refresh)}
   document.addEventListener('click',schedule,true);
-  new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','hidden','disabled']});
+  new MutationObserver(function(records){if(records.some(function(record){var el=record.target.nodeType===1?record.target:record.target.parentElement;return !el||!el.closest('.kp145-header-stepper')}))schedule()}).observe(document.documentElement,{childList:true,characterData:true,subtree:true,attributes:true,attributeFilter:['class','hidden','disabled']});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
 })();
