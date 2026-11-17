@@ -1,5 +1,19 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="koepanda-build" content="10.108.301.224"><title>声調コーチ</title>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="koepanda-build" content="301.254"><title>声調コーチ</title>
+<style id="kp-shell-first-paint">
+html body.kp-feature-active{margin:0;overflow:hidden!important;background:#f7faf6}
+html body.kp-feature-active main.phone{display:none!important}
+#kpFeatureRoot{position:fixed;inset:0;z-index:9990;overflow:auto;background:#f7faf6;color:#25332f;font-family:system-ui,-apple-system,sans-serif}
+#kpFeatureRoot:not(.is-open){display:none}
+#kpFeatureRoot.is-open{display:block}
+#kpFeatureRoot .kp-feature-frame{min-height:100dvh;background:linear-gradient(180deg,#eff9f4,#fff)}
+#kpFeatureRoot .kp-feature-header{display:grid;place-items:center;padding:8px 12px;background:#fffefa}
+#kpFeatureRoot .kp-brand{display:flex;align-items:center;justify-content:center;width:180px;height:58px;padding:0;border:0;background:none}
+#kpFeatureRoot .kp-logo-art{max-width:180px;max-height:58px;object-fit:contain}
+#kpFeatureRoot .kp-feature-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:5px 10px;background:#fff;border-bottom:1px solid #e8eee8}
+#kpFeatureRoot .kp-feature-nav button{min-height:38px;border:0;border-radius:16px;background:transparent;color:#52695b;font:700 12px system-ui}
+.kp-shell-loading{max-width:480px;margin:36px auto;padding:28px 18px;text-align:center}.kp-shell-loading>span{font-size:38px}.kp-shell-loading h1{font-size:21px}.kp-shell-loading p{color:#667d6e}.kp-shell-loading button{min-height:46px;padding:10px 20px;border:1px solid #cce4d7;border-radius:15px;background:#fff;color:#26745c;font:700 15px system-ui}
+</style>
 <link rel="stylesheet" href="./css/00-base.css?v=10.108.159">
 <link rel="stylesheet" href="./css/01-ui54-fix.css?v=10.108.159" id="ui54-fix">
 
@@ -282,13 +296,12 @@
 <link rel="stylesheet" href="./css/157-p17-right-hand-g-301.153.css?v=10.108.301.153">
 <link rel="stylesheet" href="./css/koepanda-account-301.164.css?v=10.108.301.164">
 <style>.kp-study-goal-summary{margin:16px 0;padding:16px;background:#edf8f3;border-radius:16px;color:#267e69}.kp-study-goal-summary>b{font-size:22px}.kp-study-goal-summary p{margin:8px 0 0;font-size:15px}</style>
-</head><body class="app-home-mode">
+<script src="./js/audio-session.js?v=10.108.301.253"></script>
+<link rel="stylesheet" href="./css/ui-controls.css?v=10.108.301.256">
+<script src="./js/ui-controls.js?v=10.108.301.253" defer></script>
+</head><body class="app-home-mode kp-feature-active">
+<div id="kpFeatureRoot" class="kp-feature-root is-open" data-shell-state="loading" aria-hidden="false"><div class="kp-feature-frame"><header class="kp-feature-header"><button disabled aria-disabled="true" data-shell-wait class="kp-brand" data-go="learn" aria-label="Koepanda 学習ホーム"><img class="kp-logo-art" src="./assets/brand/koepanda-logo.jpeg?v=10.108.301.185" alt="小音と声調コーチ Koepanda" width="1536" height="864"></button></header><nav class="kp-feature-nav" aria-label="メインメニュー"><button disabled aria-disabled="true" data-shell-wait data-go="learn"><span>学習</span></button><button disabled aria-disabled="true" data-shell-wait data-go="practice"><span>練習</span></button><button disabled aria-disabled="true" data-shell-wait data-go="story"><span>ストーリー</span></button><button disabled aria-disabled="true" data-shell-wait data-go="friends"><span>友だち</span></button><button disabled aria-disabled="true" data-shell-wait data-go="self"><span>自分</span></button></nav><main class="kp-feature-main" id="kpFeatureMain"><section class="kp-shell-loading" role="status"><span aria-hidden="true">🌱</span><h1>学習ページを準備しています</h1><p>もうすぐ表示されます。</p><button type="button" onclick="location.reload()">再読み込み</button><noscript>JavaScriptを有効にして開いてください。</noscript></section></main><p class="kp-prototype-note">友だち機能はログイン後に使えます。自由入力のチャットはありません。</p></div><dialog class="kp-modal" id="kpModal"><div class="kp-modal-body"></div></dialog></div></div>
 
-<style id="demo1010751-pinyin-entry-hit-fix">
-html body.app-home-mode #kidsEntry{position:relative!important;z-index:999!important;pointer-events:auto!important;}
-html body.app-home-mode #kidsEntryButton{position:relative!important;z-index:1000!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(0,0,0,.06)!important;}
-html body.app-home-mode #kidsEntryButton *{pointer-events:none!important;}
-</style>
 <script id="demo1010751-pinyin-entry-hard-fallback">
 window.koepandaEnterKidsCourse=function(ev){
   var options=arguments[1]||{};
@@ -318,15 +331,6 @@ window.koepandaEnterKidsCourse=function(ev){
 <div id="audioDiag"><button type="button" onclick="document.getElementById('audioDiagLog').innerHTML=''">消去</button><strong>🔎 音声診断 10.107.97</strong><div id="audioDiagLog">ページ読込完了。赤い「音声を聞く」を1回押してください。</div></div>
 <!-- DEMO 10.70 brand effect-match --><main class="phone">
 <!-- DEMO 10.107.61 visible Back navigation; roadmap stays compact and Back remains available while scrolling. -->
-<section class="home-effect-live roadmap-home-301" id="homeEffect" aria-label="Koepanda 学びのホーム">
-  <img class="home-effect-reference roadmap-home-image" src="./assets/home/koepanda-home-roadmap-301.46.png?v=10.108.301.46" alt="声調コーチのホームと、拼音・漢字・中国語検定の学習ロード">
-  <a class="home-effect-hotspot roadmap-hs-listen" href="#listeningGame" aria-label="聞く：音声クイズに挑戦"></a>
-  <a class="home-effect-hotspot roadmap-hs-talk" href="#pandaChat" aria-label="話す：場面で話す"></a>
-  <a class="home-effect-hotspot roadmap-hs-repeat" href="#examplePractice" aria-label="まねる：発音と声調を練習"></a>
-  <a class="home-effect-hotspot roadmap-hs-pinyin" href="#kidsCourse" onclick="return window.koepandaEnterKidsCourse(event)" aria-label="ピンインのぼうけん：既存の拼音学習ロードを開く"></a>
-  <a class="home-effect-hotspot roadmap-hs-hanzi" href="./hanzi-practice.html?v=301.233" aria-label="漢字のたんけん：漢字练习を開く"></a>
-</section>
-
 <section class="kids-course" id="kidsCourse" aria-labelledby="kidsCourseTitle" aria-hidden="true">
   <header class="kids-course-head">
     <button type="button" class="kids-back-home" id="kidsBackHome" aria-label="ホームへ戻る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.2 12 4l8 7.2v8.3a1.5 1.5 0 0 1-1.5 1.5h-4.2v-6h-4.6v6H5.5A1.5 1.5 0 0 1 4 19.5z" fill="currentColor"/></svg></button>
@@ -1070,12 +1074,12 @@ SOFTWARE.
 <script src="./data/articulation-151.js?v=10.108.159"></script>
 <script src="./js/26-articulation-motion-139.js?v=10.108.162"></script>
 <script src="./js/27-vowel-portrait-144.js?v=10.108.159"></script>
-<script src="./js/24-pronunciation-studio-134.js?v=10.108.159"></script>
+<script src="./js/24-pronunciation-studio-134.js?v=10.108.301.251"></script>
 <script src="./js/28-initial-mnemonics-150.js?v=10.108.159"></script>
 <script src="./js/29-word-cues-152.js?v=10.108.301.125"></script>
 <script src="./js/25-pronunciation-ux-135.js?v=10.108.301.109"></script>
 <script src="./js/00-core.js?v=10.108.159"></script>
-<script src="./js/01-features.js?v=10.108.301.228"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.108.159" id="demo1077-final-fix">
+<script src="./js/01-features.js?v=10.108.301.253"></script><link rel="stylesheet" href="./css/16-demo1077-final-fix.css?v=10.108.159" id="demo1077-final-fix">
 
 <link rel="stylesheet" href="./css/17-demo1078-step1-visual-only.css?v=10.108.159" id="demo1078-step1-visual-only">
 
@@ -1095,7 +1099,6 @@ SOFTWARE.
 
 
 <script id="demo1099-home-navigation-js" src="./js/02-demo1099-home-navigation-js.js?v=10.108.159"></script>
-<script id="demo10107-home-refresh-js" src="./js/03-demo10107-home-refresh.js?v=10.108.159"></script>
 <script src="./data/pinyin-course.js?v=10.108.176"></script>
 <script src="./data/kids-pinyin.js?v=10.108.159"></script>
 <script id="demo1010734-kids-first-lesson-js" src="./js/08-demo1010793-kids-audio-cacheproof-301.116.js?v=10.108.301.119"></script>
@@ -1230,123 +1233,6 @@ body #mouthPop #popFace .new-xiaoyin-face .cartoon-mouth{
 }
 </style>
 
-<style id="demo1010718-spring-home-lower-layout">
-/* DEMO 10.107.37 — homepage visual test only.
-   Uses the selected spring concept while preserving all exercise/audio/recording/mouth logic. */
-body.app-home-mode{background:#eef8e5!important;}
-body.app-home-mode .phone{background:#f8fbf2!important;}
-body.app-home-mode .home-effect-live{background:#f8fbf2!important;}
-body.app-home-mode .home-effect-reference{width:100%!important;height:auto!important;}
-/* Main three entrances aligned to the selected concept artwork. */
-body.app-home-mode .hs-listen{left:4.2%!important;top:33.5%!important;width:29.2%!important;height:23.4%!important;}
-body.app-home-mode .hs-talk{left:35.4%!important;top:33.5%!important;width:29.2%!important;height:23.4%!important;}
-body.app-home-mode .hs-repeat{left:66.6%!important;top:33.5%!important;width:29.2%!important;height:23.4%!important;}
-/* Dashboard interactions. */
-body.app-home-mode .hs-level{left:4.0%!important;top:58.4%!important;width:92.0%!important;height:15.8%!important;border-radius:24px!important;}
-body.app-home-mode .hs-reward{left:4.0%!important;top:74.8%!important;width:92.0%!important;height:10.6%!important;border-radius:24px!important;}
-body.app-home-mode .hs-history{left:49%!important;top:87.6%!important;width:24%!important;height:7.0%!important;border-radius:20px!important;}
-body.app-home-mode .hs-settings{left:86.0%!important;top:2.8%!important;width:10.0%!important;height:6.5%!important;border-radius:50%!important;}
-body.app-home-mode .hs-sentence-audio{display:none!important;}
-/* Cover the concept's sample streak number with the real local streak. */
-body.app-home-mode .home-effect-streak{
-  top:68.15%!important;left:7.4%!important;right:auto!important;width:31.5%!important;height:6.6%!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;gap:.25em!important;
-  border:0!important;border-radius:20px!important;padding:0 .35em!important;
-  background:rgba(255,249,239,.985)!important;box-shadow:none!important;line-height:1!important;
-}
-body.app-home-mode .home-effect-streak span{font-size:clamp(17px,4.8vw,27px)!important;}
-body.app-home-mode .home-effect-streak b{font-size:clamp(13px,4.0vw,22px)!important;color:#166057!important;font-weight:950!important;}
-/* Replace the sample weekly number in the artwork with an actual 7-day count. */
-body.app-home-mode .home-effect-week{
-  position:absolute;z-index:6;top:71.7%;right:7.0%;width:39%;height:4.5%;
-  display:flex;align-items:center;justify-content:center;gap:.5em;
-  border-radius:16px;background:rgba(255,251,244,.98);line-height:1;pointer-events:none;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-}
-body.app-home-mode .home-effect-week small{font-size:clamp(8px,2.1vw,11px);font-weight:800;color:#6a6f7a;}
-body.app-home-mode .home-effect-week b{font-size:clamp(12px,3.0vw,17px);font-weight:950;color:#ee5f7d;}
-@media(max-width:390px){
-  body.app-home-mode .home-effect-streak{left:8.4%!important;width:23%!important;}
-  body.app-home-mode .home-effect-week{right:8%;width:18%;}
-}
-
-/* DEMO 10.107.37 — homepage button hit-area repair only.
-   Navigation JS binds .home-effect-hotspot; keep transparent hit areas above the artwork. */
-body.app-home-mode .home-effect-live .home-effect-hotspot{
-  position:absolute!important;
-  z-index:20!important;
-  display:block!important;
-  pointer-events:auto!important;
-  touch-action:manipulation!important;
-  -webkit-tap-highlight-color:rgba(255,255,255,.12)!important;
-  background:transparent!important;
-}
-
-</style>
-
-
-<style id="demo1010721-home-hotspot-restore">
-/* DEMO 10.107.37 — restore the proven image + independent transparent hotspot pattern.
-   Artwork is display-only; anchors handle navigation with plain hrefs. */
-body.app-home-mode #homeEffect{
-  position:relative!important;
-}
-body.app-home-mode #homeEffect > .home-effect-reference{
-  display:block!important;
-  width:100%!important;
-  height:auto!important;
-  pointer-events:none!important;
-  -webkit-user-select:none!important;
-  user-select:none!important;
-}
-body.app-home-mode #homeEffect > a.home-effect-hotspot{
-  position:absolute!important;
-  z-index:50!important;
-  display:block!important;
-  pointer-events:auto!important;
-  touch-action:manipulation!important;
-  background:transparent!important;
-  border:0!important;
-  padding:0!important;
-  margin:0!important;
-  text-decoration:none!important;
-  -webkit-tap-highlight-color:rgba(0,0,0,.06)!important;
-}
-/* 10.108.301: transparent link zones measured against the supplied 739×2129 artwork. */
-body.app-home-mode #homeEffect > a.roadmap-hs-listen,
-body.app-home-mode #homeEffect > a.roadmap-hs-talk,
-body.app-home-mode #homeEffect > a.roadmap-hs-repeat,
-body.app-home-mode #homeEffect > a.roadmap-hs-pinyin{border-radius:18%!important}
-body.app-home-mode #homeEffect > a.roadmap-hs-listen{left:6%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
-body.app-home-mode #homeEffect > a.roadmap-hs-talk{left:36%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
-body.app-home-mode #homeEffect > a.roadmap-hs-repeat{left:66%!important;top:13.4%!important;width:28.2%!important;height:10.8%!important}
-body.app-home-mode #homeEffect > a.roadmap-hs-pinyin{left:16%!important;top:36.5%!important;width:43%!important;height:6.8%!important}
-body.app-home-mode #homeEffect > a.roadmap-hs-hanzi{left:42%!important;top:45.2%!important;width:49%!important;height:8.2%!important;border-radius:18%!important}
-body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;height:auto!important;display:block!important}
-</style>
-
-<script id="demo1010717-week-stats">
-(function(){
-  function countLast7(){
-    try{
-      if(typeof readDailyGoal!=='function') return 0;
-      var s=readDailyGoal();
-      var days=s&&Array.isArray(s.days)?s.days:[];
-      var today=new Date(); today.setHours(0,0,0,0);
-      var n=0;
-      for(var i=0;i<days.length;i++){
-        var d=new Date(days[i]); if(isNaN(d)) continue; d.setHours(0,0,0,0);
-        var diff=Math.round((today-d)/86400000); if(diff>=0&&diff<7)n++;
-      }
-      return Math.min(7,n);
-    }catch(e){return 0;}
-  }
-  function render(){var el=document.getElementById('homeEffectWeek');if(el)el.textContent=countLast7()+' / 7日';}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true});else render();
-  window.addEventListener('pageshow',render);document.addEventListener('visibilitychange',function(){if(!document.hidden)render();});
-})();
-</script>
-
 <script id="demo1010777-tone-road-fullbody-fix">/* full-body mascot is inline SVG; no cloned head image */</script>
 <script src="./js/14-demo10108113-gkh-first-lesson.js?v=10.108.301.125"></script>
 <script src="./js/15-demo10108116-jqx-first-lesson.js?v=10.108.301.125"></script>
@@ -1357,13 +1243,13 @@ body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;hei
 <script src="./js/20-demo10108123-ie-ue-er-first-lesson.js?v=10.108.301.133"></script>
 <script src="./js/21-demo10108124-front-nasal-first-lesson.js?v=10.108.301.143"></script>
 <script src="./js/22-demo10108128-back-nasal-first-lesson.js?v=10.108.301.143"></script>
-<script src="./js/30-whole-syllables-p14-260.js?v=10.108.301.199"></script>
-<script src="./js/32-whole-syllables-p15-268.js?v=10.108.301.163"></script>
-<script src="./js/33-two-spelling-p16-192.js?v=10.108.238"></script>
+<script src="./js/30-whole-syllables-p14-260.js?v=10.108.301.253"></script>
+<script src="./js/32-whole-syllables-p15-268.js?v=10.108.301.253"></script>
+<script src="./js/33-two-spelling-p16-192.js?v=10.108.301.253"></script>
 <script src="./js/155-p16-pointing-animation-301.151.js?v=10.108.301.151"></script>
 <!-- Register the roadmap only after its P14-P16 lesson roots have been created. -->
 <script src="./js/p18-integrated-practice-291.js?v=10.108.291"></script>
-<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap-304.js?v=10.108.301.155"></script>
+<script id="demo1010740-pinyin-roadmap-js" src="./js/06-demo1010740-pinyin-roadmap-304.js?v=10.108.301.253"></script>
 <script src="./js/159-p17-audio-cues-301.155.js?v=10.108.301.155"></script>
 <link rel="stylesheet" href="./css/109-p17-p16-consistent-223.css?v=10.108.223">
 <link rel="stylesheet" href="./css/111-p16-p17-test-isolation-226.css?v=10.108.230">
@@ -1382,7 +1268,7 @@ body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;hei
 <script src="./js/koepanda-update-check.js?v=10.108.301.83" defer></script>
 <script src="./js/35-course-switch-press-259.js?v=10.108.259"></script>
 <script src="./js/129-pinyin-single-item-navigation-301.107.js?v=10.108.301.119"></script>
-<script src="./js/154-pinyin-header-switcher-301.145.js?v=10.108.301.146"></script>
+<script src="./js/154-pinyin-header-switcher-301.145.js?v=10.108.301.256"></script>
 
 <script src="./js/koepanda-cloud-config-301.165.js?v=10.108.301.166"></script>
 <link rel="stylesheet" href="./css/app-shell.css?v=10.108.301.238">
@@ -1391,19 +1277,20 @@ body.app-home-mode #homeEffect > img.roadmap-home-image{width:100%!important;hei
 <link rel="stylesheet" href="./css/features/reward-reveal.css?v=10.108.301.224">
 <link rel="stylesheet" href="./css/features/story.css?v=10.108.301.246">
 <link rel="stylesheet" href="./css/features/learning-records.css?v=10.108.301.249">
-<link rel="stylesheet" href="./css/features/friends.css?v=10.108.301.211">
+<link rel="stylesheet" href="./css/features/friends.css?v=10.108.301.253">
 <link rel="stylesheet" href="./css/features/self.css?v=10.108.301.204">
 <link rel="stylesheet" href="./css/features/collections.css?v=10.108.301.225">
 <script src="./js/features/sticker-data.js?v=10.108.301.204"></script>
-<script src="./js/features/learn.js?v=10.108.301.250"></script>
-<script src="./js/features/practice.js?v=301.240"></script>
+<script src="./js/features/learning-goal-sync.js?v=10.108.301.258"></script>
+<script src="./js/features/learn.js?v=10.108.301.258"></script>
+<script src="./js/features/practice.js?v=10.108.301.256"></script>
 <script src="./js/features/reward-reveal.js?v=10.108.301.228"></script>
-<script src="./js/features/story.js?v=10.108.301.249"></script>
-<script src="./js/features/learning-records.js?v=10.108.301.250"></script>
-<script src="./js/features/friends.js?v=10.108.301.211"></script>
+<script src="./js/features/story.js?v=10.108.301.256"></script>
+<script src="./js/features/learning-records.js?v=10.108.301.258"></script>
+<script src="./js/features/friends.js?v=10.108.301.253"></script>
 <script src="./js/features/self.js?v=10.108.301.228"></script>
 <script src="./js/features/sticker-book.js?v=10.108.301.235"></script>
 <script src="./js/features/rewards.js?v=10.108.301.228"></script>
-<script src="./js/app-shell.js?v=10.108.301.246"></script>
-<script src="./js/koepanda-account-301.168.js?v=10.108.301.229"></script>
+<script src="./js/app-shell.js?v=10.108.301.254"></script>
+<script src="./js/koepanda-account-301.168.js?v=10.108.301.256"></script>
 </body></html>
