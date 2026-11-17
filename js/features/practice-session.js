@@ -1,6 +1,13 @@
 (()=>{'use strict';
 const main=document.getElementById('practiceSession'),params=new URLSearchParams(location.search),track=params.get('track')||'chapter',unitId=params.get('unit')||'',mode=params.get('mode')||'meaning',activityId=params.get('activity')||'',reviewKey=params.get('review')||'';
 let courseData,catalog,entriesById=new Map(),questions=[],position=0,score=0,selected=[],answered=false,reviewOnly=Boolean(reviewKey);
+// Keep Safari from scrolling a fixed action into focus before the tap completes.
+// Activation stays on click, so keyboard activation and one-tap/one-question hold.
+const actionButton=document.getElementById('primaryAction');
+actionButton.addEventListener('pointerdown',event=>{
+ if(event.isPrimary&&event.button===0&&!actionButton.disabled)event.preventDefault();
+});
+
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shuffle=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
 const byId=id=>entriesById.get(id);
