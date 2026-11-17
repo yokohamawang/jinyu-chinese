@@ -52,3 +52,5 @@
  .kp-study-stamp{width:min(42px,100%);border-radius:14px}
  .kp-learning-map{border-radius:15px}
 }
+
+.kp-study-stamp{box-sizing:border-box;min-width:0;max-width:100%}.kp-study-stamp-empty{grid-column:1/-1;box-sizing:border-box;max-width:100%;text-align:center}
