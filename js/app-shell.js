@@ -68,7 +68,8 @@
     window.addEventListener('kp-auth-state-changed',()=>{state.remoteReviewLoadedAt=0;if(page==='practice')render();});
     window.addEventListener('kp-practice-state-changed',()=>{state.remoteReviewLoadedAt=0;});
     window.addEventListener('pageshow',event=>{if(event.persisted){state.remoteReviewLoadedAt=0;if(page==='practice')render();}});
-    const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};
+    const bindHomeReturn=()=>{const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};};
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(bindHomeReturn,0),{once:true});else bindHomeReturn();
   }
   function open(where='practice'){page=where;root.scrollTop=0;window.scrollTo(0,0);root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
   function close(){root.classList.remove('is-open');root.setAttribute('aria-hidden','true');document.body.classList.remove('kp-feature-active');}
@@ -95,7 +96,7 @@
     const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
-    if(action==='pinyin-course'){close();window.koepandaEnterKidsCourse?.(e);return;}
+    if(action==='pinyin-course'){if(document.readyState!=='complete'){toast('ピンイン教材を準備しています。少し待ってからもう一度タップしてください。');return;}close();window.koepandaEnterKidsCourse?.(e);return;}
     if(action==='legacy'){close();const area=b.dataset.mode==='listen'?'listen':b.dataset.mode==='talk'?'chat':'repeat';if(window.openHomeArea)window.openHomeArea(area);return;}
     if(action==='modal-close'){closeModal();return;}
     const ctx=actionContext();for(const feature of Object.values(window.KoepandaFeatures||{})){const handler=feature&&feature.actions&&feature.actions[action];if(handler){try{handler(ctx,b,e);}catch(error){console.error('[Koepanda] action failed:',action,error);toast('操作を完了できませんでした。もう一度お試しください。');}return;}}
@@ -106,5 +107,5 @@
   function modal(title,body){const d=root.querySelector('#kpModal');d.querySelector('.kp-modal-body').innerHTML=`<button class="kp-modal-x" data-action="modal-close" aria-label="閉じる">×</button><span class="kp-eyebrow">KOEPANDA</span><h2>${title}</h2>${body}`;d.showModal();}
   function closeModal(){const d=root.querySelector('#kpModal');if(d.open)d.close();}
   function toast(message){let t=root.querySelector('.kp-toast');if(!t){t=el('div','kp-toast');root.querySelector('.kp-feature-frame').append(t);}t.textContent=message;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),3200);}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  if(document.getElementById('kpFeatureRoot'))boot();else if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
