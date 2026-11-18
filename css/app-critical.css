@@ -721,7 +721,7 @@ button.is-pressed,a[href].is-pressed{transform:translateY(4px) scale(.975)!impor
 
 /* Source: css/99-roadmap-ten-islands-297.css */
 /* Match the 749×2098 map coordinate space and keep each tap zone inside its own island. */
-#pinyinRoadmap .kp197-artwork{aspect-ratio:749 / 2098}
+#pinyinRoadmap .kp197-artwork{aspect-ratio:749 / 2348}
 #pinyinRoadmap .kp197-map-image{width:100%;height:100%;object-fit:fill}
 #pinyinRoadmap .kp197-hotspot{box-sizing:border-box;padding:0;margin:0}
 #pinyinRoadmap .kp197-artwork.is-image-failed{aspect-ratio:auto;display:grid;gap:12px;padding:12px;box-sizing:border-box}
@@ -732,3 +732,9 @@ button.is-pressed,a[href].is-pressed{transform:translateY(4px) scale(.975)!impor
 #pinyinRoadmap .kp197-map-retry{min-height:48px;padding:12px;border:1px solid #cce4d7;border-radius:16px;background:#eef8f1;color:#315f52;font:700 15px system-ui;cursor:pointer}
 #pinyinRoadmap .kp197-map-retry[hidden]{display:none}
 
+
+/* The four-tone lesson needs the header to reserve its own row. */
+body.app-kids-mode #kidsCourse > .kp148-lesson-header:has(+ #p0ToneAdventure.is-roadmap-lesson-active) {
+  position: sticky !important;
+  top: 0;
+}
