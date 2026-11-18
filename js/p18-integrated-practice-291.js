@@ -60,7 +60,31 @@ function mount(root,isFinal){
  if(typeof window.koepandaQueueResultCelebration==='function')window.koepandaQueueResultCelebration(config,120);
  }align();prompt.focus({preventScroll:true})
  }
- hear.addEventListener('click',play);next.addEventListener('click',function(){if(next.disabled)return;if(finished){begin('test');align();return}if(index<session.length-1){index++;draw(true)}else finish()});secondary.addEventListener('click',function(){if(finished){begin('test',wrong);align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
+ // Complete a stationary touch before the browser moves focus or synthesizes a click.
+ var touchActivation = false;
+ [next, secondary].forEach(function(button) {
+   var start;
+   button.addEventListener('touchstart', function(event) {
+     start = event.touches.length === 1 ? event.touches[0] : null;
+   }, {passive:true});
+   button.addEventListener('touchmove', function(event) {
+     var point = event.touches[0];
+     if (start && (event.touches.length !== 1 || Math.hypot(point.clientX-start.clientX, point.clientY-start.clientY) > 10)) start = null;
+   }, {passive:true});
+   button.addEventListener('touchcancel', function() { start = null; });
+   button.addEventListener('touchend', function(event) {
+     var point = event.changedTouches[0];
+     var tapped = start && point.identifier === start.identifier && !event.touches.length &&
+       Math.hypot(point.clientX-start.clientX, point.clientY-start.clientY) <= 10;
+     start = null;
+     if (!event.cancelable) return;
+     event.preventDefault();
+     if (!tapped || button.disabled) return;
+     touchActivation = true;
+     try { button.click(); } finally { touchActivation = false; }
+   }, {passive:false});
+ });
+ hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){begin('test');align();return}if(index<session.length-1){index++;draw(event.detail===0 && !touchActivation)}else finish()});secondary.addEventListener('click',function(){if(finished){begin('test',wrong);align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
  window.addEventListener('koepandaP18Stop',stop);window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',function(){if(document.hidden)stop()});
  var visibility=new MutationObserver(function(){if(root.hidden)stop()});visibility.observe(root,{attributes:true,attributeFilter:['hidden']});
  if(!isFinal)window.addEventListener('koepandaP18Reset',function(){begin('practice');requestAnimationFrame(function(){requestAnimationFrame(align)})});begin(mode);
