@@ -119,6 +119,13 @@
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
     if(action==='pinyin-course'){if(!window.KP_PINYIN_READY){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
+    if(action==='pinyin-resume'){
+      const id=window.KP_PINYIN_CHAPTER_STATE?.read()?.lastUnit;
+      if(!window.KP_PINYIN_READY||!id){enterPinyin();return;}
+      enterPinyin();
+      requestAnimationFrame(()=>{if(!window.koepandaOpenPinyinUnit?.(id))toast('この章を開けません。学習ロードから選んでね。');});
+      return;
+    }
     if(action==='legacy'){close();const area=b.dataset.mode==='listen'?'listen':b.dataset.mode==='talk'?'chat':'repeat';if(window.openHomeArea)window.openHomeArea(area);return;}
     if(action==='modal-close'){closeModal();return;}
     const ctx=actionContext();for(const feature of Object.values(window.KoepandaFeatures||{})){const handler=feature&&feature.actions&&feature.actions[action];if(handler){try{handler(ctx,b,e);}catch(error){console.error('[Koepanda] action failed:',action,error);toast('操作を完了できませんでした。もう一度お試しください。');}return;}}

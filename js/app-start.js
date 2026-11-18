@@ -293,6 +293,7 @@ try {
     summary(m){return m.g.target?`<b>目標：${m.g.target}日連続</b><p>あと ${m.remaining} 日 · 終了日 ${m.g.end.replaceAll('-','/')}</p>${m.remaining===0?'<small>目標達成！おめでとう！</small>':''}`:'<b>目標を設定しよう</b>'}
   };
   window.addEventListener('kp-goal-sync-changed',()=>{if(activeContext)activeContext.render()});
+  window.addEventListener('kp-pinyin-chapter-state-changed',()=>{if(activeContext)activeContext.render()});
   function recordCard(){
     const days=displayedDays(),local=dailyRecord();
     const total=days===null?Math.max(0,Number(local.days?.length)||0):days.length;
@@ -321,6 +322,28 @@ try {
     const stamps=shown.length?shown.map(item=>`<span class="kp-study-stamp" title="${safe(item.name)}"><img src="${img(item.id)}" alt="${safe(item.glyph)}"></span>`).join(''):`<span class="kp-study-stamp-empty">${dashboardStatus==='error'?'シールを読み込めませんでした':dashboardStatus==='loading'||dashboardStatus==='idle'?'シールを確認中…':'学習してシールを集めよう'}</span>`;
     return `<section class="kp-study-stamps" aria-label="集めたスタンプ"><div class="kp-study-stamps-head"><div><b>集めたスタンプ</b><small>${countLabel}</small></div><a href="#rewards" data-action="open-rewards">一覧を見る <span aria-hidden="true">›</span></a></div><div class="kp-study-stamp-row">${stamps}</div></section>`;
   }
+  function pinyinContinueCard(){
+    const chapterState=window.KP_PINYIN_CHAPTER_STATE;
+    const lastUnit=chapterState?.read()?.lastUnit;
+    const chapter=window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>unit.id===lastUnit);
+    if(chapter){
+      const review=chapterState.reviewDue().slice(0,2);
+      const reviewLine=review.length?' · 今日の復習：'+review.join('・'):'';
+      return `<section class="kp-pinyin-continue" aria-label="前回のつづき"><div><b>前回のつづき · ${chapter.id}</b><small>${chapter.title}${reviewLine}</small></div><button type="button" data-action="pinyin-resume">つづきから学ぶ <span aria-hidden="true">›</span></button></section>`;
+    }
+    const vowels=['a','o','e','i','u','ü'];
+    let passed=[];
+    try{
+      const mastery=JSON.parse(localStorage.getItem('koepandaVowelMastery69')||'{}');
+      passed=vowels.filter(letter=>mastery?.[letter]?.passed===true);
+    }catch(_){passed=[];}
+    const next=vowels.find(letter=>!passed.includes(letter));
+    const summary=passed.length
+      ?`学習した母音：${passed.join(' · ')}（${passed.length}/6）`
+      :'最初の目標：4つの声調を聞き分けよう';
+    const label=passed.length?(next?`続きから学ぶ · ${next}`:'ピンインの復習へ'):'ここから始める';
+    return `<section class="kp-pinyin-continue" aria-label="ピンイン学習の続き"><div><b>ピンインのぼうけん</b><small>${summary}</small></div><button type="button" data-action="pinyin-course">${label} <span aria-hidden="true">›</span></button></section>`;
+  }
   function mergeRecentAwards(rows){
     const result=new Map((rows||[]).map(row=>[row.id,row]));
     for(const [id,row] of recentAwardStickers)result.set(id,row);
@@ -343,6 +366,7 @@ try {
   const feature=window.KoepandaFeatures.learn=function({state,STICKERS,img,safe}){
     return `<section class="kp-learning-home" aria-label="学習ホーム">
       ${recordCard()}
+      ${pinyinContinueCard()}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
         <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.266" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454" loading="eager" decoding="async" fetchpriority="high">
@@ -1977,6 +2001,13 @@ try {
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
     if(action==='pinyin-course'){if(!window.KP_PINYIN_READY){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
+    if(action==='pinyin-resume'){
+      const id=window.KP_PINYIN_CHAPTER_STATE?.read()?.lastUnit;
+      if(!window.KP_PINYIN_READY||!id){enterPinyin();return;}
+      enterPinyin();
+      requestAnimationFrame(()=>{if(!window.koepandaOpenPinyinUnit?.(id))toast('この章を開けません。学習ロードから選んでね。');});
+      return;
+    }
     if(action==='legacy'){close();const area=b.dataset.mode==='listen'?'listen':b.dataset.mode==='talk'?'chat':'repeat';if(window.openHomeArea)window.openHomeArea(area);return;}
     if(action==='modal-close'){closeModal();return;}
     const ctx=actionContext();for(const feature of Object.values(window.KoepandaFeatures||{})){const handler=feature&&feature.actions&&feature.actions[action];if(handler){try{handler(ctx,b,e);}catch(error){console.error('[Koepanda] action failed:',action,error);toast('操作を完了できませんでした。もう一度お試しください。');}return;}}
