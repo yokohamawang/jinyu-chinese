@@ -12,54 +12,36 @@
     dialog.setAttribute('aria-labelledby','kidsPlanTitle');
     document.body.appendChild(dialog);
 
-    function progress(){
-      const vowels=['a','o','e','i','u','ü'];
-      const groups=[
-        {name:'声母',prefix:'koepandaInitial',ids:['P3','P4','P5','P6','P7','P8']},
-        {name:'複韻母・鼻韻母',prefix:'koepandaCompound',ids:['P9','P10','P11','P12','P13']},
-        {name:'整体認読',prefix:'koepandaWhole',ids:['P14','P15']}
-      ];
-      const units=window.KP_PINYIN_CHAPTER_STATE?.read().units||{};
-      const completed=id=>!!units[id]?.complete;
-      const done=Object.keys(units).filter(completed);
-      const nextId=window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>!completed(unit.id))?.id||'P21';
-      const group=groups.find(g=>g.ids.includes(nextId));
-      const next=group?`次は「${group.name}」へ。前の章も少し復習しよう`:'次の章へ進もう。終わった章も少しずつ復習しよう';
-      return {done:done.length,next,nextId};
+    function lastLesson(){
+      const id=window.KP_PINYIN_CHAPTER_STATE?.read()?.lastUnit;
+      if(!id)return null;
+      const title=window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>unit.id===id)?.title||null;
+      return title?{id,title}:null;
     }
 
     function render(){
-      const p=progress();
-      const schedule=window.KP_PINYIN_PLAN_SCHEDULE;
-      const reviews=window.KP_PINYIN_CHAPTER_STATE?.reviewDue()||[];
+      const recent=lastLesson();
       dialog.innerHTML=`
         <div class="kids-plan-sheet">
           <header class="kids-plan-head">
             <span class="kids-plan-eyebrow">🐼 むりなく、少しずつ</span>
             <button class="kids-plan-close" type="button" aria-label="学習プランを閉じる">×</button>
-            <h2 id="kidsPlanTitle">音のぼうけん 学習プラン</h2>
-            <p>今の章から、学ぶ順番と復習するタイミングを確認しよう。</p>
+            <h2 id="kidsPlanTitle">ピンイン学習ガイド</h2>
+            <p>自分のペースで、楽しく進もう。</p>
           </header>
-          <section class="kids-plan-today" aria-label="今の進みぐあい">
-            <span>🌱 いまの進みぐあい</span>
-            <strong>学習単元 ${p.done}/21 クリア</strong>
-            <p>${p.next}</p>
+          <section class="kids-plan-guide" aria-label="学び方の目安">
+            <div class="kids-plan-flow"><span>📖<b>学ぶ</b></span><i>›</i><span>🎤<b>練習</b></span><i>›</i><span>✅<b>ミニテスト</b></span></div>
+            <p>🕒 1日10〜15分くらいから。時々復習しよう。</p>
           </section>
-          ${reviews.length?`<section class="kids-plan-today"><strong>🔁 復習する章</strong>${reviews.slice(0,2).map(id=>`<div class="kids-plan-review-row"><b>${id}</b><button type="button" data-plan-review-open="${id}">復習する</button><button type="button" data-plan-review-done="${id}">復習できた ✓</button></div>`).join('')}</section>`:''}
-          <p class="kids-plan-effort">参考：中国の小学校1年生では、ピンインを約6週間かけて学ぶ授業計画もあります。</p>
-          ${schedule?schedule.html(p.nextId):'<p>学習メニューを読み込めませんでした。もう一度開いてね。</p>'}
-          <button class="kids-plan-done" type="button">学習ロードへ戻る</button>
+          ${recent?`<section class="kids-plan-recent"><div><small>🔁 前回の学習</small><strong>${recent.title}</strong></div><button type="button" data-plan-review-open="${recent.id}">もう一度</button></section>`:''}
+          <p class="kids-plan-effort">参考：中国の小学校ではピンインを約6週間で学ぶ授業計画もあります。速さは人それぞれ。</p>
+          <button class="kids-plan-done" type="button">学習ロードを見る</button>
         </div>`;
       dialog.querySelector('.kids-plan-close').addEventListener('click',close);
       dialog.querySelector('.kids-plan-done').addEventListener('click',close);
       dialog.querySelectorAll('[data-plan-review-open]').forEach(button=>button.addEventListener('click',()=>{
         const id=button.dataset.planReviewOpen;close();
         if(!window.koepandaOpenPinyinUnit?.(id))window.alert('学習ロードから復習する章を選んでね。');
-      }));
-      dialog.querySelectorAll('[data-plan-review-done]').forEach(button=>button.addEventListener('click',async()=>{
-        button.disabled=true;
-        if(await window.KP_PINYIN_CHAPTER_STATE?.markReviewed(button.dataset.planReviewDone))render();
-        else {button.disabled=false;window.alert('記録できませんでした。ログイン状態を確認してね。');}
       }));
     }
     function open(){
