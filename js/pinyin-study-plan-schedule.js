@@ -22,7 +22,7 @@
   const units=groups.flatMap(g=>g.units.map(([id,title,days])=>({id,title,days,group:g.name})));
   const tasks=[
     '音を聞く → 口の動きを見る → 3回まねする',
-    '前日の音を聞き直す → 録音して比べる → ミニチェック',
+    '前回の音を聞き直す → 録音して比べる → ミニチェック',
     '音をつなげて練習 → 苦手な音を復習 → もう一度チェック'
   ];
 
@@ -59,23 +59,24 @@
     const next=nextSessions(nextId);
     return `
       <section class="kids-plan-next" aria-labelledby="kidsPlanNextTitle">
-        <h3 id="kidsPlanNextTitle">📖 次の3回</h3>
+        <h3 id="kidsPlanNextTitle">📖 これからの学習と復習</h3>
+        <p>今の進みぐあいに合わせた予定です。</p>
         <ol class="kids-plan-session-list">${next.map((d,i)=>`
           <li><span class="kids-plan-session-day">${i+1}回目</span><div>
-            <b>${safe(d.title)}${d.kind==='lesson'?`（${d.part}/${d.parts}日目）`:''}</b>
+            <b>${safe(d.title)}${d.kind==='lesson'?`（全${d.parts}回のうち${d.part}回目）`:''}</b>
             <small>${safe(d.task)}</small>
             ${d.review.length?`<em>復習：${safe(d.review.join('・'))}</em>`:''}
           </div></li>`).join('')}</ol>
       </section>
       <section class="kids-plan-chapters" aria-labelledby="kidsPlanChaptersTitle">
         <h3 id="kidsPlanChaptersTitle">🗺️ 全章の進み方</h3>
-        <p>1章2〜3日。クリアできたら次へ。</p>
+        <p>1単元につき2〜3回が目安。できたら次の単元へ。</p>
         ${groups.map((g,index)=>`<details>
-          <summary>${index+1}. ${safe(g.name)} <small>${g.units.reduce((n,u)=>n+u[2],0)}日＋復習</small></summary>
+          <summary>${index+1}. ${safe(g.name)} <small>${g.units.reduce((n,u)=>n+u[2],0)}回＋復習</small></summary>
           <p class="kids-plan-goal">できるようになること：${safe(g.goal)}</p>
-          <ul>${g.units.map(([id,title,days])=>`<li><span>${safe(id)} · ${safe(title)}</span><b>${days}日</b></li>`).join('')}</ul>
+          <ul>${g.units.map(([id,title,days])=>`<li><span>${safe(id)} · ${safe(title)}</span><b>${days}回</b></li>`).join('')}</ul>
         </details>`).join('')}
-        <p class="kids-plan-review-tip">復習は翌回・3回後・7回後。3章ごとにまとめ直し。迷う音はもう一度。</p>
+        <p class="kids-plan-review-tip">復習は翌回・3回後・7回後。3単元ごとにまとめ直し。迷う音はもう一度。</p>
       </section>`;
   }
   window.KP_PINYIN_PLAN_SCHEDULE={units,calendar,nextSessions,html};

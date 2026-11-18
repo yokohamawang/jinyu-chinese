@@ -111,6 +111,8 @@
   function closeLesson(){
     if(!lessonState)return;
     var returnToOwnDirectory=!!lessonState.returnToOwnDirectory;
+    var returnToDock=lessonState.returnToDock;
+    var returnY=lessonState.returnY;
     var target=lessonState.target;
     if(target){
       target.hidden=true; target.classList.remove('is-roadmap-lesson-active');
@@ -135,6 +137,12 @@
       requestAnimationFrame(function(){detail.scrollIntoView({block:'start',behavior:'auto'})});
     }else{
       restoreRoadmap();
+      if(returnToDock){
+        requestAnimationFrame(function(){
+          window.scrollTo({top:returnY,left:0,behavior:'auto'});
+          returnToDock.focus({preventScroll:true});
+        });
+      }
     }
   }
 
@@ -151,7 +159,7 @@
     var fromInitialsDirectory=!!(detail&&!detail.hidden&&lastStageId==='P3-P8'&&/^P[3-8]$/.test(unit.id));
     var fromFinalsDirectory=!!(detail&&!detail.hidden&&lastStageId==='P9-P13'&&/^P(9|1[0-3])$/.test(unit.id));
     var returnToOwnDirectory=fromInitialsDirectory||fromFinalsDirectory;
-    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top,returnToOwnDirectory:returnToOwnDirectory,p19PaddingTop:unit.id==='P19'?target.style.paddingTop:undefined};
+    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top,returnToDock:button&&button.classList.contains('kp197-tone-dock')?button:null,returnToOwnDirectory:returnToOwnDirectory,p19PaddingTop:unit.id==='P19'?target.style.paddingTop:undefined};
     showRoadmapChrome(false);
     setLessonBodiesHidden();
 
@@ -343,8 +351,17 @@
     });
     mapRetry.addEventListener('click',function(){picture.dataset.recoveryAttempt='0';picture.src='./assets/pinyin/roadmap-ten-islands-297.png?v=301.266&kp_image_retry='+Date.now()});
     picture.src='./assets/pinyin/roadmap-ten-islands-297.png?v=301.266';artwork.appendChild(picture);artwork.appendChild(mapRetry);
+    var dock=document.createElement('button');
+    dock.type='button';
+    dock.className='kp197-tone-dock';
+    dock.setAttribute('aria-label','出発の桟橋：四声のしくみを学ぶ');
+    dock.innerHTML='<span><strong>出発の桟橋</strong><small>四声を聞く ›</small></span><img src="./assets/pinyin/tone-departure-dock.webp" alt="" decoding="async">';
+    dock.addEventListener('click',function(){
+      openLesson(getUnit('P0-U1'),dock);
+    });
+    artwork.appendChild(dock);
     /* Hitboxes follow artwork island centers. Keep targets inside each island, never on connecting bridges. */
-    var positions=[{x:6,y:6,w:60,h:5.5},{x:35,y:13,w:60,h:5.5},{x:5,y:21.5,w:60,h:5.5},{x:35,y:29.5,w:60,h:5.5},{x:5,y:37.5,w:60,h:5.5},{x:35,y:46,w:60,h:5.5},{x:5,y:54.5,w:60,h:5.5},{x:35,y:64,w:60,h:5.5},{x:5,y:74,w:60,h:5.5},{x:30,y:86,w:60,h:5.5}];
+    var positions=[{x:6,y:6,w:49,h:5.5},{x:35,y:13,w:60,h:5.5},{x:5,y:21.5,w:60,h:5.5},{x:35,y:29.5,w:60,h:5.5},{x:5,y:37.5,w:60,h:5.5},{x:35,y:46,w:60,h:5.5},{x:5,y:54.5,w:60,h:5.5},{x:35,y:64,w:60,h:5.5},{x:5,y:74,w:60,h:5.5},{x:30,y:86,w:60,h:5.5}];
     islandSpecs.forEach(function(spec,index){
       var unit=spec.unit?getUnit(spec.unit):null;
       var available=!!((unit&&targetForUnit(unit.id))||(spec.unit&&targetForUnit(spec.unit))||spec.kind==='exam');
@@ -599,6 +616,10 @@
     if(!unit||!targetForUnit(id)||unitLocked(unit,effectiveStageStatus(stage)))return false;
     return openLesson(unit,null)===true;
   };
-  function startRoadmap(){render();window.KP_PINYIN_READY=true;window.dispatchEvent(new Event('kp-pinyin-ready'));}
+  function startRoadmap(){
+    render();
+    window.KP_PINYIN_READY=true;
+    window.dispatchEvent(new Event('kp-pinyin-ready'));
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',startRoadmap,{once:true}); else startRoadmap();
 })();

@@ -46,7 +46,7 @@
             <p>${p.next}</p>
           </section>
           ${reviews.length?`<section class="kids-plan-today"><strong>🔁 復習する章</strong>${reviews.slice(0,2).map(id=>`<div class="kids-plan-review-row"><b>${id}</b><button type="button" data-plan-review-open="${id}">復習する</button><button type="button" data-plan-review-done="${id}">復習できた ✓</button></div>`).join('')}</section>`:''}
-          <p class="kids-plan-effort">このプランは復習込みで約14〜18時間が目安。参考：中国の小学校ではピンインに約50時限（5〜6週間）かける例もあるよ。※習熟にはその後も練習が必要。</p>
+          <p class="kids-plan-effort">参考：中国の小学校1年生では、ピンインを約6週間かけて学ぶ授業計画もあります。</p>
           ${schedule?schedule.html(p.nextId):'<p>学習メニューを読み込めませんでした。もう一度開いてね。</p>'}
           <button class="kids-plan-done" type="button">学習ロードへ戻る</button>
         </div>`;
