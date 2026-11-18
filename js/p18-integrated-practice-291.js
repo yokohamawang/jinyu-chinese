@@ -2,11 +2,11 @@
 (function(){
 'use strict';
 var practiceBank=[
-      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/p14-sequence-177/zhi.wav',choices:['zhī','zī','chī','shī'],answer:'zhī',hint:'整体認読の音は、声母と韻母を一つずつ分けずに読みます。',explain:'zhī は整体認読の音です。舌を巻く zh の音をそのまま一つのまとまりで聞こう。'},
+      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/p14-sequence-177/zhi.wav?v=301.290',choices:['zhī','zī','chī','shī'],answer:'zhī',hint:'整体認読の音は、声母と韻母を一つずつ分けずに読みます。',explain:'zhī は整体認読の音です。舌を巻く zh の音をそのまま一つのまとまりで聞こう。'},
       {interaction:'listen',kind:'二拼',prompt:'音声と同じ音節はどれ？',audio:'assets/audio/p16-sequence/bo.wav',choices:['mō','pō','bō','fō'],answer:'bō',hint:'声母の違いを聞き分けよう。二拼は声母と韻母をつなぎます。',explain:'音声は bō（b＋o）。mō・pō・fō も二拼ですが、音声と同じなのは bō です。'},
       {interaction:'structure3',kind:'三拼',prompt:'声母・介音・韻母の三つでできている音節はどれ？',choices:['qiáo','bō','zhī','yī'],answer:'qiáo',hint:'三拼は「声母＋介音＋韻母」の三つでできています。',explain:'qiáo は q＋i＋ao。bō は二拼、zhī と yī は整体認読です。'},
       {interaction:'listen',kind:'声調',prompt:'音声と同じ声調の「wu」を選ぼう。',audio:'assets/audio/course-134/wu3.wav',choices:['wū','wú','wǔ','wù'],answer:'wǔ',hint:'一声は平ら、二声は上がる、三声は下がって上がる、四声は下がります。',explain:'これは第三声の wǔ。声調記号の位置と形も一緒に確認しよう。'},
-      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/p15-staged-177/yue.wav',choices:['yuè','yè','yú','yuán'],answer:'yuè',hint:'音の最初と最後をよく聞いて比べましょう。',explain:'聞こえた音は yuè。整体認読のまとまりとして覚えます。'},
+      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/p15-staged-177/yue.wav?v=301.290',choices:['yuè','yè','yú','yuán'],answer:'yuè',hint:'音の最初と最後をよく聞いて比べましょう。',explain:'聞こえた音は yuè。整体認読のまとまりとして覚えます。'},
       {interaction:'structure2',kind:'二拼',prompt:'声母と韻母の二つでできている音節はどれ？',choices:['dé','guā','zhī','yī'],answer:'dé',hint:'二拼は「声母＋韻母」の二つでできています。',explain:'dé は d＋e。guā は三拼、zhī と yī は整体認読です。'},
       {interaction:'structure3',kind:'三拼',prompt:'声母・介音・韻母の三つでできている音節はどれ？',choices:['guā','bō','chī','yī'],answer:'guā',hint:'三拼は「声母＋介音＋韻母」の三つでできています。',explain:'guā は g＋u＋a。bō は二拼、chī と yī は整体認読です。'},
       {interaction:'listen',kind:'声調',prompt:'音声と同じ声調を選ぼう。',audio:'assets/audio/course-134/yi4.wav',choices:['yī','yí','yǐ','yì'],answer:'yì',hint:'声調記号の向きと音の動きを一緒に確認しましょう。',explain:'聞こえたのは第四声 yì。短く下がる音です。'},
