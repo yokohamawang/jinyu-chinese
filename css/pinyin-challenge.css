@@ -38,3 +38,14 @@ body.app-kids-mode:has(.kp-pinyin-cards.is-roadmap-lesson-active){overflow:hidde
     padding-block: 8px max(48px, calc(20px + env(safe-area-inset-bottom)));
   }
 }
+
+/* Anchor free-practice controls to the toolbar-expanded viewport. */
+@media (max-width: 759px) {
+  #kidsCourse > section#kidsIslandReviewLesson.kp-pinyin-cards.is-roadmap-lesson-active:not([hidden]):has([data-mode="practice"][aria-pressed="true"]) {
+    bottom: auto;
+    height: calc(100svh - 56px) !important;
+  }
+  #kidsIslandReviewLesson:has([data-mode="practice"][aria-pressed="true"]) .kp-pc-actions {
+    padding-block: 8px max(12px, env(safe-area-inset-bottom));
+  }
+}
