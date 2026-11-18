@@ -9,7 +9,20 @@ window.KoepandaDailyPhrase={async start({main,catalog,activityId,reviewKey,backH
  const activity=catalog.daily_activities.find(x=>x.id===activityId)||catalog.daily_activities[0],bank=new Map(catalog.daily_phrase_bank.map(x=>[x.id,x])),questions=new Map(catalog.daily_questions.map(x=>[x.id,x]));if(!activity)throw Error('日常フレーズのルートが見つかりません');
  main.classList.add('is-daily-session');
  const phraseIds=activity.phrase_ids||[],phrases=phraseIds.map(id=>bank.get(id)).filter(Boolean);let phase='shadow',pos=0,check=0,correct=0,capture=null,viewEpoch=0;
- function ruby(p){let i=0;const py=p.pinyin.trim().split(/\s+/);return [...p.simplified].map((c,index)=>/\p{Script=Han}/u.test(c)?`<ruby data-index="${index}">${esc(c)}<rt>${esc(py[i++]||'')}</rt></ruby>`:esc(c)).join('')}
+ function ruby(p){
+  const chars=[...p.simplified],py=p.pinyin.trim().split(/\s+/u),parts=[];
+  let syllable=0;
+  for(let index=0;index<chars.length;index++){
+   const c=chars[index];
+   if(!/\p{Script=Han}/u.test(c)){parts.push(esc(c));continue}
+   let unit=`<ruby data-index="${index}">${esc(c)}<rt>${esc(py[syllable++]||'')}</rt></ruby>`;
+   let ending='';
+   while(index+1<chars.length && /[。！？；：，、…）”’」』]/u.test(chars[index+1])) ending+=chars[++index];
+   if(ending)unit=`<span style="white-space:nowrap">${unit}${esc(ending)}</span>`;
+   parts.push(unit);
+  }
+  return parts.join('');
+ }
  const header=(label,sub)=>`<div class="fx-head"><small>${esc(label)}</small><h1>${esc(activity.title)}</h1><p>${esc(sub)}</p></div>`;
  function stopRec(){if(capture){capture.dispose();capture=null}}
  function render(){audioEpoch++;speechSynthesis.cancel();clearReading();viewEpoch++;stopRec();main.classList.toggle('is-daily-session',phase==='shadow');window.scrollTo(0,0);const count=document.getElementById('questionCount'),fill=document.getElementById('progressFill');const i=phase==='check'?check:pos,total=phase==='check'?activity.question_ids.length:phrases.length;if(count)count.textContent=`${i+1} / ${total}`;if(fill)fill.style.width=`${Math.round((i+1)/total*100)}%`;if(phase==='listen'){
