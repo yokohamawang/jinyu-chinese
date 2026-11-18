@@ -73,7 +73,12 @@
   function warmPinyin(letter){window.KP134.warm([letter])}
   function showAudioMissing(letter,tone){var msg='音声の読み込みに失敗しました。通信状態を確認して、もう一度押してください。';console.error(msg,letter,tone);var hint=el('kidsToneHint');if(hint)hint.textContent='⚠ '+msg}
   function playLocalPinyin(letter,tone,ended,started,playButton){stopAudio();var request=audioRequestId,referenceButton=document.querySelector('#kidsVowelToneGrid [data-tone="'+tone+'"]');setMouthState('waiting',letter);return window.KP134.play(letter,{tone:tone,button:playButton||referenceButton,root:el('kidsVowelDrill'),onPlaying:function(a){if(request===audioRequestId){localAudio=a;setMouthState('playing',letter);if(referenceButton)referenceButton.classList.add('is-sounding');if(started)started()}},onEnded:function(){if(request===audioRequestId){relaxMouth(letter,request);if(ended)ended()}},onError:function(){if(request===audioRequestId){setMouthState('error',letter);showAudioMissing(letter,tone)}}}).catch(function(e){if(e&&e.name!=='AbortError')showAudioMissing(letter,tone);return null})}
-  function playToneExample(tone){return playLocalPinyin('a',tone)}
+  function playToneExample(tone){
+    return window.KP134.play('a',{tone:tone,root:el('p0ToneAdventure')}).catch(function(error){
+      if(error.name!=='AbortError')showAudioMissing('a',tone);
+      return null;
+    });
+  }
   function playVowelExample(v,tone,ended,started){return playLocalPinyin(v.letter,tone,ended,started)}
   function playIntroToneSerialized(v,tone,ended,started){introTonePending=null;introToneBusy=false;introToneEpoch++;return playVowelExample(v,tone,ended,started)}
   window.koepandaPlayToneIntro=playToneExample;
