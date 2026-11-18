@@ -33,4 +33,6 @@
     if(!container)return;var old=container.querySelector('.koepanda-result-reopen');if(old)old.remove();
     var b=document.createElement('button');b.type='button';b.className='koepanda-result-reopen';b.textContent='結果を見る';b.onclick=function(){window.koepandaShowResultCelebration(cfg)};container.appendChild(b)
   };
+  // app-start loads before this component; hook rewards once the result API exists.
+  window.KoepandaRewardReveal?.installCourseResultHook?.();
 })();
