@@ -23,6 +23,9 @@ body.app-function-mode .kp-account-trigger,body.app-kids-mode .kp-account-trigge
 .kp-account-link{justify-self:center;border:0;background:none;padding:8px;color:#4b7858;font:700 13px system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px}
 .kp-account-reset{margin-top:-10px}
 .kp-account-status{min-height:22px;margin:14px 0 0;color:#687a6b;font-size:13px;line-height:1.5}
+.kp-account-form .kp-account-status{min-height:0;margin:0;padding:8px 10px;border-radius:9px;background:#f1f5eb}
+.kp-account-status:empty{display:none}
+.kp-account-form .kp-account-status[data-kind="error"]{background:#fff0ec}
 .kp-account-status[data-kind="error"]{color:#9c4d43}
 .kp-account-status[data-kind="success"]{color:#3e7650}
 .kp-account-user{padding:15px 16px;border-radius:17px;background:#f3f7eb}

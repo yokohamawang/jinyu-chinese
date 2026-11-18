@@ -21,3 +21,20 @@ body.app-kids-mode:has(.kp-pinyin-cards.is-roadmap-lesson-active){overflow:hidde
 .kp-pc-scroll{overflow-y:auto;overscroll-behavior-y:contain;overflow-anchor:none;min-height:0;padding:16px}
 .kp-pinyin-cards .kp-pc-actions{position:static;transform:none;width:100%}
 .kp-pc-actions button{touch-action:manipulation}
+
+@media (max-width: 759px) {
+  .kp-pinyin-cards .kp-pc-heading { display: none; }
+  .kp-pinyin-cards .kp-pc-scroll { padding-block: 8px 16px; }
+  .kp-pinyin-cards .kp-pc-modes { margin-bottom: 8px; }
+  .kp-pinyin-cards .kp-pc-progress { margin: 8px 2px; }
+  .kp-pinyin-cards .kp-pc-card { padding: 12px; }
+  .kp-pinyin-cards .kp-pc-card h3 { margin: 8px 0 10px; }
+  .kp-pinyin-cards .kp-pc-choices { gap: 9px; margin: 10px 0; }
+  .kp-pinyin-cards .kp-pc-choices button { min-height: 62px; padding-block: 6px; }
+  .kp-pinyin-cards .kp-pc-audio { min-height: 54px; margin-bottom: 10px; }
+  .kp-pinyin-cards .kp-pc-hint { margin: 4px 0 0; }
+  .kp-pinyin-cards .kp-pc-feedback { min-height: 0; margin-top: 6px; }
+  .kp-pinyin-cards .kp-pc-actions {
+    padding-block: 8px max(48px, calc(20px + env(safe-area-inset-bottom)));
+  }
+}
