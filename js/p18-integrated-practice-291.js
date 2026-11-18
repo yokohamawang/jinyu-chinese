@@ -32,11 +32,11 @@ var finalBank=practiceBank.filter(function(q){return q.interaction==='listen'}).
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),v=a[i];a[i]=a[j];a[j]=v}return a}
 function mount(root,isFinal){
  if(!root||root.dataset.largeCards)return;root.dataset.largeCards='1';root.classList.add('kp-pinyin-cards');
- root.innerHTML='<header class="kp-pc-heading"><img src="./assets/brand/xiaoyin-mascot.png" alt="小音"><div><span class="kp-pc-island"></span><h2></h2></div></header>'+
+ root.innerHTML='<div class="kp-pc-scroll"><header class="kp-pc-heading"><img src="./assets/brand/xiaoyin-mascot.png" alt="小音"><div><span class="kp-pc-island"></span><h2></h2></div></header>'+
  '<div class="kp-pc-modes" role="group" aria-label="練習モード"><button type="button" data-mode="practice">自由練習</button><button type="button" data-mode="test">10問チャレンジ</button></div>'+
  '<div class="kp-pc-progress"><span></span><div role="progressbar" aria-label="回答した問題" aria-valuemin="0" aria-valuemax="10"><i></i></div></div>'+
  '<article class="kp-pc-card"><div class="kp-pc-kind"></div><h3 tabindex="-1"></h3><button type="button" class="kp-pc-audio">▶ 音を聞く</button><div class="kp-pc-parts" aria-label="音の構成" hidden></div><details class="kp-pc-hint"><summary>ヒントを見る</summary><p></p></details><div class="kp-pc-choices"></div><p class="kp-pc-feedback" role="status" aria-live="polite"></p><section class="kp-pc-results" hidden></section></article>'+
- '<footer class="kp-pc-actions"><button type="button" class="kp-pc-secondary">やり直す</button><button type="button" class="kp-pc-next">次へ →</button></footer>';
+ '</div><footer class="kp-pc-actions"><button type="button" class="kp-pc-secondary">やり直す</button><button type="button" class="kp-pc-next">次へ →</button></footer>';
  var $=function(s){return root.querySelector(s)}, modes=$('.kp-pc-modes'),count=$('.kp-pc-progress>span'),track=$('[role="progressbar"]'),bar=$('.kp-pc-progress i'),kind=$('.kp-pc-kind'),prompt=$('h3'),hear=$('.kp-pc-audio'),parts=$('.kp-pc-parts'),hint=$('details'),choices=$('.kp-pc-choices'),feedback=$('.kp-pc-feedback'),results=$('.kp-pc-results'),next=$('.kp-pc-next'),secondary=$('.kp-pc-secondary');
  $('.kp-pc-island').textContent=isFinal?'島10 ・最後のチャレンジ':'島9 ・音のまとめ';$('h2').textContent=isFinal?'最終テスト':'総合練習';modes.hidden=isFinal;
  var mode=isFinal?'test':'practice',session=[],index=0,score=0,wrong=[],answered=false,finished=false,retryOnly=false,audio=null,generation=0;
@@ -50,7 +50,7 @@ function mount(root,isFinal){
  choices.hidden=false;choices.replaceChildren();choices.classList.toggle('has-long-text',q.choices.some(function(c){return c.length>13}));shuffle(q.choices.slice()).forEach(function(choice){var b=document.createElement('button');b.type='button';var label=document.createElement('span');label.textContent=choice;b.appendChild(label);b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){if(answered)return;stop();var ok=choice===q.answer;b.setAttribute('aria-pressed','true');if(mode==='practice'&&!ok){b.classList.add('is-wrong');b.setAttribute('aria-label',choice+'：もう一度');feedback.textContent='もう一度！ ヒントも見てみよう。';return}answered=true;if(ok)score++;else wrong.push(q);choices.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.firstChild.textContent===q.answer){x.classList.add('is-answer');x.setAttribute('aria-label',x.firstChild.textContent+'：正解');var mark=document.createElement('small');mark.textContent='✓ 正解';x.appendChild(mark)}else if(x===b){x.classList.add('is-wrong');var mark=document.createElement('small');mark.textContent='もう一度覚えよう';x.appendChild(mark)}});feedback.textContent=(ok?'正解！ ':'正解は「'+q.answer+'」。 ')+q.explain;next.disabled=false;progress(index+1)});choices.appendChild(b)});
  feedback.textContent=q.audio?'音を聞いて、カードを選ぼう。':'カードを選ぼう。';next.disabled=mode!=='practice';next.textContent=index===session.length-1?'結果を見る':'次へ →';secondary.hidden=isFinal;secondary.disabled=false;secondary.textContent=mode==='practice'?'やり直す':'最初から';if(focus){prompt.focus({preventScroll:true})}
  }
- function align(){if(root.hidden)return;var header=document.querySelector('.kp148-lesson-header'),offset=header?header.getBoundingClientRect().bottom:0;window.scrollTo({top:Math.max(0,window.scrollY+root.getBoundingClientRect().top-offset-8),behavior:'auto'})}
+ function align(){root.querySelector('.kp-pc-scroll').scrollTop=0}
  function begin(newMode,subset){stop();mode=newMode;retryOnly=!!subset;session=shuffle((subset|| (isFinal?finalBank:practiceBank)).slice());index=0;score=0;wrong=[];modes.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});draw(false)}
  function finish(){if(finished)return;stop();finished=true;root.classList.add('is-result');kind.textContent='チャレンジ完了';count.textContent='おつかれさま！';progress(session.length);prompt.textContent=mode==='practice'?'いろいろな音を練習できたね！':score===session.length?'全問正解！ おめでとう！':'最後までよくがんばったね！';hear.hidden=true;parts.hidden=true;hint.hidden=true;choices.hidden=true;feedback.textContent=mode==='practice'?'次は10問チャレンジで力だめし！':'正解 '+score+' / '+session.length+'問';results.hidden=false;results.replaceChildren();
  if(wrong.length){var title=document.createElement('h4');title.textContent='もう一度覚えよう';results.appendChild(title);wrong.forEach(function(q){var d=document.createElement('details'),s=document.createElement('summary'),p=document.createElement('p');s.textContent=q.kind+'：'+q.answer;p.textContent=q.prompt+' '+q.explain;d.append(s,p);results.appendChild(d)})}
@@ -60,31 +60,7 @@ function mount(root,isFinal){
  if(typeof window.koepandaQueueResultCelebration==='function')window.koepandaQueueResultCelebration(config,120);
  }align();prompt.focus({preventScroll:true})
  }
- // Complete a stationary touch before the browser moves focus or synthesizes a click.
- var touchActivation = false;
- [next, secondary].forEach(function(button) {
-   var start;
-   button.addEventListener('touchstart', function(event) {
-     start = event.touches.length === 1 ? event.touches[0] : null;
-   }, {passive:true});
-   button.addEventListener('touchmove', function(event) {
-     var point = event.touches[0];
-     if (start && (event.touches.length !== 1 || Math.hypot(point.clientX-start.clientX, point.clientY-start.clientY) > 10)) start = null;
-   }, {passive:true});
-   button.addEventListener('touchcancel', function() { start = null; });
-   button.addEventListener('touchend', function(event) {
-     var point = event.changedTouches[0];
-     var tapped = start && point.identifier === start.identifier && !event.touches.length &&
-       Math.hypot(point.clientX-start.clientX, point.clientY-start.clientY) <= 10;
-     start = null;
-     if (!event.cancelable) return;
-     event.preventDefault();
-     if (!tapped || button.disabled) return;
-     touchActivation = true;
-     try { button.click(); } finally { touchActivation = false; }
-   }, {passive:false});
- });
- hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){begin('test');align();return}if(index<session.length-1){index++;draw(event.detail===0 && !touchActivation)}else finish()});secondary.addEventListener('click',function(){if(finished){begin('test',wrong);align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
+ hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){begin('test');align();return}if(index<session.length-1){index++;draw(event.detail===0);align()}else finish()});secondary.addEventListener('click',function(){if(finished){begin('test',wrong);align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
  window.addEventListener('koepandaP18Stop',stop);window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',function(){if(document.hidden)stop()});
  var visibility=new MutationObserver(function(){if(root.hidden)stop()});visibility.observe(root,{attributes:true,attributeFilter:['hidden']});
  if(!isFinal)window.addEventListener('koepandaP18Reset',function(){begin('practice');requestAnimationFrame(function(){requestAnimationFrame(align)})});begin(mode);
