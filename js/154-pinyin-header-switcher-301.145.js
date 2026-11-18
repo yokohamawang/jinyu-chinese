@@ -39,7 +39,14 @@
     if(!header.classList.contains('kp145-has-stepper'))header.classList.add('kp145-has-stepper');if(title&&!title.hidden)title.hidden=true;
     var buttons=controls.querySelectorAll('button'),count=controls.querySelector('span');
     if(buttons[0].disabled!==pairNow.prev.disabled)buttons[0].disabled=pairNow.prev.disabled;if(buttons[1].disabled!==pairNow.next.disabled)buttons[1].disabled=pairNow.next.disabled;
-    var label=pairNow.count?pairNow.count.textContent.trim():'';if(count.textContent!==label)count.textContent=label;if(count.hidden!==!label)count.hidden=!label;
+    var label=pairNow.count?pairNow.count.textContent.trim():'';if(pairNow.count&&pairNow.count.id==='kidsVowelToneNavCount'){
+      var tones=label.match(/第\s*(\d+)\s*声\s*[／/]\s*全\s*(\d+)\s*声/);
+      if(tones){
+        count.setAttribute('aria-label',label);
+        label=tones[1]+' / '+tones[2];
+      }
+    }
+    if(count.textContent!==label)count.textContent=label;if(count.hidden!==!label)count.hidden=!label;
     if(!controls.dataset.wired){controls.dataset.wired='1';controls.addEventListener('click',function(event){
       var control=event.target.closest('button[data-step]');if(!control||control.disabled)return;
       var current=activePair();if(!current)return;

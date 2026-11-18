@@ -11,7 +11,7 @@
   // Keep the same native media element across the course. Safari grants media
   // permission per element; retaining dozens of preloaded decoders is wasteful.
   function audioFor(key,tone){var url=record(key,tone);return url?playerFor(url):null}
-  function playerFor(url){if(!player){player=new Audio();player.preload='none';player.playsInline=true;player.volume=1}var resolved=new URL(url,document.baseURI);if(resolved.pathname.includes('/assets/audio/'))resolved.searchParams.set('v',resolved.pathname.includes('/audio/course-134/')?'301.287':'301.280');var absolute=resolved.href;if(player.src!==absolute){player.src=absolute;player.load()}return player}
+  function playerFor(url){if(!player){player=new Audio();player.preload='none';player.playsInline=true;player.volume=1}var resolved=new URL(url,document.baseURI);if(resolved.pathname.includes('/assets/audio/'))resolved.searchParams.set('v',resolved.pathname.endsWith('/course-134/a3.wav')?'301.288':resolved.pathname.includes('/audio/course-134/')?'301.287':'301.280');var absolute=resolved.href;if(player.src!==absolute){player.src=absolute;player.load()}return player}
   var microphoneStreams=new Set(),microphoneRequests=0;
   function audioMode(type){try{if(navigator.audioSession&&navigator.audioSession.type!==type)navigator.audioSession.type=type}catch(e){}}
   function restorePlayback(){if(!microphoneStreams.size&&!microphoneRequests){audioMode('playback');if(window.KP_AUDIO_SESSION)window.KP_AUDIO_SESSION.preparePlayback()}}
