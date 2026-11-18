@@ -494,8 +494,8 @@ try {
   function finishQuiz(ctx){
     ctx.save();
     const isFullChallenge=quizMode==='challenge'&&quizSet.length===QUESTIONS.length;
-    if(isFullChallenge&&window.KoepandaRewardReveal){
-      window.KoepandaRewardReveal.award(ctx,{claimToken:quizClaimToken,score:quizScore,total:quizSet.length,activityKey:'practice.mini-quiz'});
+    if(isFullChallenge&&window.KoepandaRewardReveal&&typeof window.koepandaShowResultCelebration==='function'){
+      window.koepandaShowResultCelebration({score:quizScore,total:quizSet.length,kicker:'ミニクイズ',title:'チャレンジ完了！',__kpRewardContext:ctx,__kpRewardClaimToken:quizClaimToken,__kpRewardActivityKey:'practice.mini-quiz'});
       return;
     }
     ctx.setPage('practice');ctx.render();
@@ -554,7 +554,21 @@ try {
   function prepareRewardAudio(){try{const AudioCtor=window.AudioContext||window.webkitAudioContext;if(!AudioCtor)return null;if(!rewardAudio)rewardAudio=new AudioCtor();if(rewardAudio.state==='suspended')rewardAudio.resume().catch(()=>{});return rewardAudio;}catch(_){return null;}}
   function playNote(ctx,frequency,start,duration,wave,volume){const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=wave;osc.frequency.setValueAtTime(frequency,start);gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(volume,start+.025);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);osc.connect(gain);gain.connect(ctx.destination);activeTones.push(osc);osc.onended=()=>{activeTones=activeTones.filter(t=>t!==osc);};osc.start(start);osc.stop(start+duration+.04);}
   function stopFanfare(){activeTones.forEach(t=>{try{t.stop();}catch(_){}});activeTones=[];}
-  function playFanfare(modeKey){const ctx=prepareRewardAudio();if(!ctx)return false;if(ctx.state!=='running'){ctx.resume().then(()=>{if(ctx.state==='running'&&soundEnabled())playFanfare(modeKey);}).catch(()=>{});return false;}stopFanfare();const mode=PRESENTATION_MODES[modeKey]||PRESENTATION_MODES.standard,now=ctx.currentTime+.025,spacing=modeKey==='bonus' ? 0.15 : 0.19;mode.notes.forEach((note,i)=>{const at=now+i*spacing;playNote(ctx,note,at,.48,'sine',.085);if(i===0||i===mode.notes.length-1)playNote(ctx,note/2,at,.62,'triangle',.045);});return true;}
+  function playFanfare(modeKey){const ctx=prepareRewardAudio();if(!ctx)return false;if(ctx.state!=='running'){ctx.resume().then(()=>{if(ctx.state==='running'&&soundEnabled())playFanfare(modeKey);}).catch(()=>{});return false;}stopFanfare();const now=ctx.currentTime+.03,notes=[523.25,659.25,783.99,1046.5,783.99,1046.5,1318.51,1567.98];notes.forEach((note,i)=>{const at=now+[0,.16,.32,.52,.82,1.02,1.22,1.48][i];playNote(ctx,note,at,i===7?.85:.3,i===7?'triangle':'sine',i===7?.11:.07);if(i===3||i===7){playNote(ctx,note/2,at,.75,'triangle',.05);playNote(ctx,note*1.25,at,.6,'sine',.035);}});return true;}
+  function playCompletionFanfare(){
+    if(!soundEnabled())return;
+    const ctx=prepareRewardAudio();if(!ctx||ctx.state!=='running')return;
+    stopFanfare();
+    const start=ctx.currentTime+.05;
+    // Original three-part victory fanfare: low pulse, brass-like melody, full final chord.
+    const melody=[[392,0,.32],[523.25,.24,.32],[659.25,.48,.45],[783.99,.87,.32],[659.25,1.12,.26],[880,1.38,.39],[1046.5,1.74,1.35]];
+    melody.forEach(([note,offset,length],i)=>{
+      playNote(ctx,note,start+offset,length,'sawtooth',i===6?.058:.043);
+      playNote(ctx,note/2,start+offset,length+.09,'triangle',i===6?.075:.038);
+    });
+    [0,.48,.98,1.48].forEach(offset=>{playNote(ctx,130.81,start+offset,.2,'triangle',.09);playNote(ctx,261.63,start+offset,.14,'sine',.05);});
+    [523.25,659.25,783.99,1046.5].forEach(note=>playNote(ctx,note,start+1.74,1.3,'sine',.05));
+  }
   function resolveMode(options,items,eventName){if(PRESENTATION_MODES[options.mode])return options.mode;if(eventName)return'campaign';if(items.length>1)return'bonus';return'standard';}
   function remove(){stopFanfare();if(!active)return;clearTimeout(active.timer);document.removeEventListener('keydown',active.keydown);active.node.remove();active=null;document.body.classList.remove('kp-reward-open');}
   function award(ctx,options){
@@ -613,13 +627,27 @@ try {
         if(ctx.state.selfStickerCountUserId&&Number.isFinite(priorStickerCount))ctx.state.selfStickerCountLabel=(priorStickerCount+ordered.length)+'枚';
         ctx.save();
         window.dispatchEvent(new CustomEvent('kp-learning-activity-recorded',{detail:{day:today,stickers:ordered.map(item=>({id:item.sticker_instance_id,sticker_key:item.sticker_key,obtained_at:now.toISOString()}))}}));
-        node.querySelector('.kp-reward-brand').textContent=eventName?String(eventName).toUpperCase()+' · SPECIAL DROP':mode.label;
-        node.querySelector('.kp-reward-subtitle').textContent=modeKey==='campaign'?'今日は特別なごほうびの日！':modeKey==='bonus'?'すごい！ごほうびが2枚届いたよ':'シール帳に新しいシールが届いたよ';
+        node.querySelector('.kp-reward-brand').textContent='KOEPANDA · REWARD TIME';
+        node.querySelector('.kp-reward-subtitle').textContent='どんなシールかな？';
         node.querySelector('.kp-reward-box').classList.add('is-open');
         node.classList.remove('is-loading');node.classList.add('has-rewards');
-        node.querySelectorAll('.kp-reveal-sticker').forEach((figure,i)=>{
-          const reducedMotion=window.matchMedia(MOTION_QUERY).matches,delay=reducedMotion?0:700+i*400;
-          setTimeout(()=>{figure.classList.remove('is-sealed');if(i===0&&soundEnabled())playFanfare(modeKey);setTimeout(()=>figure.classList.add('is-revealed'),reducedMotion?0:500);},delay);
+        const figures=[...node.querySelectorAll('.kp-reveal-sticker')];
+        figures.slice(1).forEach(figure=>figure.hidden=true);
+        figures.forEach((figure,i)=>{
+          const reducedMotion=window.matchMedia(MOTION_QUERY).matches;
+          const delay=reducedMotion?i*450:700+i*2500;
+          setTimeout(()=>{
+            if(active?.node!==node)return;
+            figure.hidden=false;
+            figure.classList.remove('is-sealed');
+            if(soundEnabled()&&(i===0||i===figures.length-1))playFanfare(modeKey);
+            setTimeout(()=>{
+              if(active?.node!==node)return;
+              figure.classList.add('is-revealed');
+              if(figures.length>1&&i===0)node.querySelector('.kp-reward-subtitle').textContent='あれ？ まだ何かあるみたい…！';
+              if(i===figures.length-1){node.querySelector('.kp-reward-brand').textContent=eventName?String(eventName).toUpperCase()+' · SPECIAL DROP':mode.label;node.querySelector('.kp-reward-subtitle').textContent=figures.length>1?'やったね！ ごほうびが2枚！':'シール帳に新しいシールが届いたよ';}
+            },reducedMotion?0:550);
+          },delay);
         });
         const actions=node.querySelector('.kp-reward-actions');
         actions.innerHTML='<button type="button" class="kp-reward-sound" data-sound-toggle aria-pressed="'+soundEnabled()+'">'+(soundEnabled()?'🔊 お祝い音 ON':'🔇 お祝い音 OFF')+'</button><button type="button" class="kp-reward-primary" data-book>シール帳で見る <span>→</span></button><button type="button" class="kp-reward-secondary" data-close>学習を続ける</button><p class="kp-reward-idempotent" hidden>このごほうびは受け取り済みです</p>';
@@ -642,21 +670,24 @@ try {
     const show=window.koepandaShowResultCelebration;
     if(typeof show!=='function'||show.__kpRewardHooked)return;
     const wrapped=function(config){
-      const eligible=config&&typeof config==='object'&&!config.__kpRewardIssued&&Number.isFinite(Number(config.score))&&Number.isFinite(Number(config.total));
+      const eligible=config&&typeof config==='object'&&config.passed!==false&&!config.__kpRewardIssued&&Number.isFinite(Number(config.score))&&Number.isFinite(Number(config.total));
       let claimToken=null;
       if(eligible){
         if(soundEnabled())prepareRewardAudio();
-        claimToken=token();
+        claimToken=config.__kpRewardClaimToken||token();
         config.__kpRewardIssued=true;
         config.__kpRewardClaimToken=claimToken;
       }
-      const result=show.apply(this,arguments);
       if(eligible){
-        window.setTimeout(()=>{
-          const context=window.KP_REWARD_CONTEXT?.();
-          if(context)award(context,{claimToken,score:Number(config.score),total:Number(config.total),activityKey:'course.quiz.complete'});
-        },240);
+        const previousOnClose=config.onClose;
+        let transitioned=false;
+        config.onClose=function(){
+          try{if(typeof previousOnClose==='function')previousOnClose();}
+          finally{if(!transitioned){transitioned=true;window.setTimeout(()=>{const context=config.__kpRewardContext||window.KP_REWARD_CONTEXT?.();if(context)award(context,{claimToken,score:Number(config.score),total:Number(config.total),activityKey:config.__kpRewardActivityKey||'course.quiz.complete'});},330);}}
+        };
+        playCompletionFanfare();
       }
+      const result=show.apply(this,arguments);
       return result;
     };
     wrapped.__kpRewardHooked=true;
