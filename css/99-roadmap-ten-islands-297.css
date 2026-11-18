@@ -19,14 +19,16 @@
   height: 9.3%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
 #pinyinRoadmap .kp197-tone-dock span {
-  margin-right: 1%;
+  position: absolute;
+  left: 30%;
+  transform: translateX(-50%);
   padding: 5px 9px;
   border-radius: 10px;
   background: #fffdf3;
@@ -34,7 +36,7 @@
   color: #165575;
   font: 700 clamp(12px,3vw,16px)/1.3 system-ui;
 }
-#pinyinRoadmap .kp197-tone-dock:active span { transform: translateY(2px); }
+#pinyinRoadmap .kp197-tone-dock:active span { transform: translate(-50%, 2px); }
 #pinyinRoadmap .is-image-failed > .kp197-tone-dock {
   position: static;
   justify-content: center;
@@ -42,3 +44,5 @@
   height: auto;
   min-height: 48px;
 }
+
+#pinyinRoadmap .is-image-failed > .kp197-tone-dock span { position: static; transform: none; }
