@@ -66,8 +66,8 @@ window.KP139_AUDIO_WINDOWS={
     0.795
   ],
   "assets/audio/course-134/yi1.wav": [
-    0.32,
-    0.73
+    0.05,
+    0.55
   ],
   "assets/audio/course-134/si1.wav": [
     0.26,
@@ -82,8 +82,8 @@ window.KP139_AUDIO_WINDOWS={
     0.49
   ],
   "assets/audio/course-134/a3.wav": [
-    0.145,
-    1.52
+    0.03,
+    0.9
   ],
   "assets/audio/course-134/fo1.wav": [
     0.095,
@@ -174,16 +174,16 @@ window.KP139_AUDIO_WINDOWS={
     0.7
   ],
   "assets/audio/course-134/a2.wav": [
-    0.3,
-    0.98
+    0.06,
+    0.32
   ],
   "assets/audio/course-134/xi1.wav": [
     0.26,
     0.725
   ],
   "assets/audio/course-134/e3.wav": [
-    0.135,
-    1.455
+    0.05,
+    0.93
   ],
   "assets/audio/course-134/zhi1.wav": [
     0.13,
@@ -206,8 +206,8 @@ window.KP139_AUDIO_WINDOWS={
     0.785
   ],
   "assets/audio/course-134/o3.wav": [
-    0.575,
-    1.425
+    0.05,
+    0.89
   ],
   "assets/audio/course-134/ying1.wav": [
     0.135,
@@ -250,32 +250,32 @@ window.KP139_AUDIO_WINDOWS={
     0.68
   ],
   "assets/audio/initials/m.wav": [
-    0,
-    0.34
+    0.16,
+    0.73
   ],
   "assets/audio/initials/f.wav": [
-    0,
-    0.38
+    0.27,
+    0.56
   ],
   "assets/audio/initials/p.wav": [
-    0.0149,
-    0.24
+    0.28,
+    0.5
   ],
   "assets/audio/initials/b.wav": [
-    0.0199,
-    0.0948
+    0.15,
+    0.6
   ],
   "assets/audio/back-nasal-129/ang1.wav": [
-    0.055,
-    0.425
+    0.13,
+    0.7
   ],
   "assets/audio/back-nasal-129/ing1.wav": [
-    0.055,
-    0.55
+    0.13,
+    0.95
   ],
   "assets/audio/back-nasal-129/ong1.wav": [
-    0.035,
-    0.34
+    0.13,
+    0.77
   ],
   "assets/audio/back-nasal-129/eng1.wav": [
     0.055,
@@ -286,20 +286,20 @@ window.KP139_AUDIO_WINDOWS={
     0.5
   ],
   "assets/audio/front-nasal-133/in1.wav": [
-    0.055,
-    0.4
+    0.12,
+    0.86
   ],
   "assets/audio/front-nasal-133/an1.wav": [
-    0.055,
-    0.435
+    0.11,
+    0.66
   ],
   "assets/audio/front-nasal-133/en1.wav": [
-    0.055,
-    0.45
+    0.13,
+    0.72
   ],
   "assets/audio/front-nasal-133/un1.wav": [
-    0.055,
-    0.6
+    0.14,
+    0.97
   ],
   "assets/audio/course-134/yuan1.wav": [
     0.14,
