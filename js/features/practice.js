@@ -58,8 +58,8 @@
   function finishQuiz(ctx){
     ctx.save();
     const isFullChallenge=quizMode==='challenge'&&quizSet.length===QUESTIONS.length;
-    if(isFullChallenge&&window.KoepandaRewardReveal){
-      window.KoepandaRewardReveal.award(ctx,{claimToken:quizClaimToken,score:quizScore,total:quizSet.length,activityKey:'practice.mini-quiz'});
+    if(isFullChallenge&&window.KoepandaRewardReveal&&typeof window.koepandaShowResultCelebration==='function'){
+      window.koepandaShowResultCelebration({score:quizScore,total:quizSet.length,kicker:'ミニクイズ',title:'チャレンジ完了！',__kpRewardContext:ctx,__kpRewardClaimToken:quizClaimToken,__kpRewardActivityKey:'practice.mini-quiz'});
       return;
     }
     ctx.setPage('practice');ctx.render();
