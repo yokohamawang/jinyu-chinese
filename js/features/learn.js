@@ -100,8 +100,9 @@
     const summary=passed.length
       ?`学習した母音：${passed.join(' · ')}（${passed.length}/6）`
       :'最初の目標：4つの声調を聞き分けよう';
-    const label=passed.length?(next?`続きから学ぶ · ${next}`:'ピンインの復習へ'):'ここから始める';
-    return `<section class="kp-pinyin-continue" aria-label="ピンイン学習の続き"><div><b>ピンインのぼうけん</b><small>${summary}</small></div><button type="button" data-action="pinyin-course">${label} <span aria-hidden="true">›</span></button></section>`;
+    const label=passed.length?(next?`続きから学ぶ · ${next}`:'ピンインの復習へ'):'四声を学ぶ';
+    const action=passed.length?'pinyin-course':'pinyin-tone-start';
+    return `<section class="kp-pinyin-continue" aria-label="ピンイン学習の続き"><div><b>ピンインのぼうけん</b><small>${summary}</small></div><button type="button" data-action="${action}">${label} <span aria-hidden="true">›</span></button></section>`;
   }
   function mergeRecentAwards(rows){
     const result=new Map((rows||[]).map(row=>[row.id,row]));
