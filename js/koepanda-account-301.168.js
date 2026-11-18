@@ -43,6 +43,13 @@
     if (!status) return;
     status.textContent = message || '';
     status.dataset.kind = kind || 'info';
+    if (message && dialog.open) {
+      var bounds = status.getBoundingClientRect();
+      var panel = dialog.getBoundingClientRect();
+      if (bounds.top < panel.top || bounds.bottom > panel.bottom) {
+        status.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+    }
   }
 
   function friendlyError(error) {
@@ -144,14 +151,18 @@
       setStatus('');
       renderAuth();
     });
-    form.append(submit, switcher);
+    form.append(status, submit, switcher);
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       var data = new FormData(form);
       var email = String(data.get('email') || '').trim();
       var password = String(data.get('password') || '');
-      if (!email || password.length < 8) {
-        setStatus('メールアドレスと8文字以上のパスワードを入力してください。', 'error');
+      if (!email || form.elements.email.validity.typeMismatch) {
+        setStatus('メールアドレスを正しく入力してください。', 'error');
+        return;
+      }
+      if (password.length < 8) {
+        setStatus('パスワードは8文字以上で入力してください。', 'error');
         return;
       }
       setStatus(activeTab === 'signup' ? 'アカウントを作成しています…' : 'ログインしています…');
@@ -168,9 +179,9 @@
           : await c.auth.signInWithPassword({ email: email, password: password });
         if (result.error) throw result.error;
         if (activeTab === 'signup' && result.data && result.data.user && !result.data.session) {
-          setStatus('確認メールを送信しました。メール内のリンクを開いてからログインしてください。', 'success');
           activeTab = 'signin';
           renderAuth();
+          setStatus('確認メールを送信しました。メール内のリンクを開いてからログインしてください。', 'success');
           return;
         }
         currentUser = result.data.user || null;
@@ -227,6 +238,7 @@
   }
 
   function renderAccount() {
+    content.after(status);
     var requestVersion = ++renderVersion;
     clear(content);
     if (!currentUser) { renderAuth(); return; }
@@ -315,14 +327,21 @@
     return { userId: user.id, profile: results[0].data, dayCount: results[1].count || 0, completedCount: results[2].count || 0, progress: results[3].data || [], rewardCount: results[4].count || 0, rewards: results[5].data || [] };
   }
 
+  function updateSessionUser(session) {
+    var previousId = currentUser && currentUser.id;
+    currentUser = session && session.user || null;
+    if (dialog && dialog.open && previousId !== (currentUser && currentUser.id)) {
+      render();
+    }
+  }
+
   async function refreshSession() {
     try {
       var c = await getClient();
       if (!c) return;
       var result = await c.auth.getSession();
       if (result.error) throw result.error;
-      currentUser = result.data.session && result.data.session.user || null;
-      if (dialog && dialog.open) render();
+      updateSessionUser(result.data.session);
       if (currentUser && trigger) trigger.textContent = '学習記録を開く';
       else if (trigger) trigger.textContent = 'ログインして学習記録を見る';
     } catch (error) {
@@ -413,14 +432,13 @@
       getClient().then(function (c) {
         if (!c) return;
         c.auth.getSession().then(function (result) {
-          currentUser = result.data && result.data.session && result.data.session.user || null;
+          updateSessionUser(result.data && result.data.session);
           if (currentUser && trigger) trigger.textContent = '学習記録を開く';
         });
         c.auth.onAuthStateChange(function (_event, session) {
-          currentUser = session && session.user || null;
+          updateSessionUser(session);
           window.dispatchEvent(new CustomEvent('kp-auth-state-changed', { detail: { user: currentUser } }));
           if (trigger) trigger.textContent = currentUser ? '学習記録を開く' : 'ログインして学習記録を見る';
-          if (dialog && dialog.open) render();
         });
       }).catch(function () {
         if (trigger) trigger.textContent = 'アカウント設定を確認';
