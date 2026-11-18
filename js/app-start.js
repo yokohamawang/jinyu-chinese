@@ -341,8 +341,9 @@ try {
     const summary=passed.length
       ?`学習した母音：${passed.join(' · ')}（${passed.length}/6）`
       :'最初の目標：4つの声調を聞き分けよう';
-    const label=passed.length?(next?`続きから学ぶ · ${next}`:'ピンインの復習へ'):'ここから始める';
-    return `<section class="kp-pinyin-continue" aria-label="ピンイン学習の続き"><div><b>ピンインのぼうけん</b><small>${summary}</small></div><button type="button" data-action="pinyin-course">${label} <span aria-hidden="true">›</span></button></section>`;
+    const label=passed.length?(next?`続きから学ぶ · ${next}`:'ピンインの復習へ'):'四声を学ぶ';
+    const action=passed.length?'pinyin-course':'pinyin-tone-start';
+    return `<section class="kp-pinyin-continue" aria-label="ピンイン学習の続き"><div><b>ピンインのぼうけん</b><small>${summary}</small></div><button type="button" data-action="${action}">${label} <span aria-hidden="true">›</span></button></section>`;
   }
   function mergeRecentAwards(rows){
     const result=new Map((rows||[]).map(row=>[row.id,row]));
@@ -1953,7 +1954,7 @@ try {
     window.addEventListener('pageshow',event=>{if(event.persisted){state.remoteReviewLoadedAt=0;if(page==='practice')render();}});
     const bindHomeReturn=()=>{const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};};
     const lessonsReady=()=>{bindHomeReturn();};
-    window.addEventListener('kp-pinyin-ready',()=>{if(pendingPinyin&&page==='learn')enterPinyin();});
+    window.addEventListener('kp-pinyin-ready',()=>{if(pendingPinyin&&page==='learn'){const tone=pendingPinyin==='tone';enterPinyin();if(tone)requestAnimationFrame(()=>window.koepandaOpenPinyinUnit?.('P0-U1'));}});
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(lessonsReady,0),{once:true});else lessonsReady();
   }
   function open(where='practice'){pendingPinyin=false;page=where;root.scrollTop=0;window.scrollTo(0,0);root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
@@ -2001,6 +2002,7 @@ try {
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
     if(action==='pinyin-course'){if(!window.KP_PINYIN_READY){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
+    if(action==='pinyin-tone-start'){if(!window.KP_PINYIN_READY){pendingPinyin='tone';toast('四声の学習を準備しています。');return;}enterPinyin();requestAnimationFrame(()=>window.koepandaOpenPinyinUnit?.('P0-U1'));return;}
     if(action==='pinyin-resume'){
       const id=window.KP_PINYIN_CHAPTER_STATE?.read()?.lastUnit;
       if(!window.KP_PINYIN_READY||!id){enterPinyin();return;}
