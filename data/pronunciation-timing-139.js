@@ -6,8 +6,8 @@ window.KP139_AUDIO_WINDOWS={
     0.74
   ],
   "assets/audio/course-134/e2.wav": [
-    0.31,
-    0.685
+    0.135,
+    0.405
   ],
   "assets/audio/course-134/wei1.wav": [
     0.1,
@@ -18,40 +18,40 @@ window.KP139_AUDIO_WINDOWS={
     0.435
   ],
   "assets/audio/course-134/yin1.wav": [
-    0.1,
-    0.445
+    0.13,
+    0.875
   ],
   "assets/audio/course-134/chi1.wav": [
-    0.31,
-    0.665
+    0.135,
+    0.71
   ],
   "assets/audio/course-134/wu2.wav": [
     0.075,
     0.65
   ],
   "assets/audio/course-134/zi1.wav": [
-    0.325,
-    0.875
+    0.14,
+    0.605
   ],
   "assets/audio/course-134/ci1.wav": [
-    0.27,
-    1.055
+    0.15,
+    0.415
   ],
   "assets/audio/course-134/ao1.wav": [
-    0.055,
-    0.405
+    0.13,
+    0.685
   ],
   "assets/audio/course-134/o4.wav": [
-    0.055,
-    0.335
+    0.14,
+    0.395
   ],
   "assets/audio/course-134/ai1.wav": [
-    0.2,
-    0.545
+    0.135,
+    0.7
   ],
   "assets/audio/course-134/shi1.wav": [
-    0.335,
-    0.78
+    0.135,
+    0.875
   ],
   "assets/audio/course-134/po1.wav": [
     0.055,
@@ -70,20 +70,20 @@ window.KP139_AUDIO_WINDOWS={
     0.73
   ],
   "assets/audio/course-134/si1.wav": [
-    0.055,
-    1.025
+    0.26,
+    0.625
   ],
   "assets/audio/course-134/an1.wav": [
-    0.1,
-    0.48
+    0.135,
+    0.685
   ],
   "assets/audio/course-134/wu4.wav": [
     0.055,
     0.49
   ],
   "assets/audio/course-134/a3.wav": [
-    0.055,
-    1.135
+    0.145,
+    1.52
   ],
   "assets/audio/course-134/fo1.wav": [
     0.095,
@@ -98,76 +98,76 @@ window.KP139_AUDIO_WINDOWS={
     0.51
   ],
   "assets/audio/course-134/e4.wav": [
-    0.055,
-    0.36
+    0.13,
+    0.505
   ],
   "assets/audio/course-134/o1.wav": [
-    0.055,
-    0.295
+    0.135,
+    0.81
   ],
   "assets/audio/course-134/yi2.wav": [
     0.315,
     0.745
   ],
   "assets/audio/course-134/a4.wav": [
-    0.055,
-    0.37
+    0.135,
+    0.435
   ],
   "assets/audio/course-134/o2.wav": [
-    0.305,
-    0.825
+    0.135,
+    0.4
   ],
   "assets/audio/course-134/ne1.wav": [
     0.29,
     0.585
   ],
   "assets/audio/course-134/wu1.wav": [
-    0.315,
-    0.745
+    0.13,
+    0.78
   ],
   "assets/audio/course-134/e1.wav": [
-    0.315,
-    0.58
+    0.135,
+    0.72
   ],
   "assets/audio/course-134/yue1.wav": [
-    0.325,
-    0.585
+    0.135,
+    0.835
   ],
   "assets/audio/course-134/ang1.wav": [
-    0.055,
-    0.425
+    0.135,
+    0.695
   ],
   "assets/audio/course-134/ei1.wav": [
-    0.3,
-    0.665
+    0.135,
+    0.725
   ],
   "assets/audio/course-134/le1.wav": [
     0.26,
     0.6
   ],
   "assets/audio/course-134/ye1.wav": [
-    0.29,
-    0.785
+    0.135,
+    0.825
   ],
   "assets/audio/course-134/ge1.wav": [
     0.23,
     0.64
   ],
   "assets/audio/course-134/ou1.wav": [
-    0.06,
-    0.395
+    0.135,
+    0.825
   ],
   "assets/audio/course-134/ri1.wav": [
-    0.32,
-    0.685
+    0.13,
+    0.64
   ],
   "assets/audio/course-134/wu3.wav": [
     0.04,
     1.175
   ],
   "assets/audio/course-134/en1.wav": [
-    0.055,
-    0.45
+    0.14,
+    0.725
   ],
   "assets/audio/course-134/de1.wav": [
     0.315,
@@ -182,12 +182,12 @@ window.KP139_AUDIO_WINDOWS={
     0.725
   ],
   "assets/audio/course-134/e3.wav": [
-    0.055,
-    0.66
+    0.135,
+    1.455
   ],
   "assets/audio/course-134/zhi1.wav": [
-    0.275,
-    0.765
+    0.13,
+    0.575
   ],
   "assets/audio/course-134/he1.wav": [
     0.335,
@@ -206,16 +206,16 @@ window.KP139_AUDIO_WINDOWS={
     0.785
   ],
   "assets/audio/course-134/o3.wav": [
-    0.055,
-    0.825
+    0.575,
+    1.425
   ],
   "assets/audio/course-134/ying1.wav": [
-    0.06,
-    0.555
+    0.135,
+    0.95
   ],
   "assets/audio/course-134/yu1.wav": [
-    0.24,
-    0.565
+    0.14,
+    0.69
   ],
   "assets/audio/course-134/er2.wav": [
     0.055,
@@ -226,12 +226,12 @@ window.KP139_AUDIO_WINDOWS={
     0.565
   ],
   "assets/audio/course-134/eng1.wav": [
-    0.32,
-    0.75
+    0.515,
+    1.17
   ],
   "assets/audio/course-134/a1.wav": [
-    0.21,
-    0.545
+    0.135,
+    0.775
   ],
   "assets/audio/course-134/ji1.wav": [
     0.27,
@@ -242,8 +242,8 @@ window.KP139_AUDIO_WINDOWS={
     0.605
   ],
   "assets/audio/course-134/yun1.wav": [
-    0.28,
-    0.725
+    0.13,
+    1.025
   ],
   "assets/audio/course-134/yu3.wav": [
     0.13,
@@ -300,5 +300,9 @@ window.KP139_AUDIO_WINDOWS={
   "assets/audio/front-nasal-133/un1.wav": [
     0.055,
     0.6
+  ],
+  "assets/audio/course-134/yuan1.wav": [
+    0.14,
+    0.91
   ]
 };

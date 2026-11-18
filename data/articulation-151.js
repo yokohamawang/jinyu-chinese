@@ -779,158 +779,158 @@ window.KP151_ARTICULATION={
     "assets/audio/course-134/zhi1.wav": {
       "anchors": [
         [
-          0.215,
+          0.13,
           0
         ],
         [
-          0.275,
+          0.179,
           0.16
         ],
         [
-          0.365,
+          0.251,
           0.46
         ],
         [
-          0.43,
+          0.304,
           0.73
         ],
         [
-          0.765,
+          0.575,
           1
         ]
       ],
-      "estimatedVoicingOnset": 0.365,
-      "method": "Praat autocorrelation F0 onset minus 15ms analysis allowance; no auditory or articulatory ground-truth claim"
+      "estimatedVoicingOnset": 0.251,
+      "method": "Prior gesture phases rescaled to the active sound window of the edited recording."
     },
     "assets/audio/course-134/chi1.wav": {
       "anchors": [
         [
-          0.25,
+          0.135,
           0
         ],
         [
-          0.31,
+          0.218,
           0.16
         ],
         [
-          0.3595,
+          0.287,
           0.63
         ],
         [
-          0.4245,
+          0.377,
           0.81
         ],
         [
-          0.665,
+          0.71,
           1
         ]
       ],
-      "estimatedVoicingOnset": 0.3595,
-      "method": "Praat autocorrelation F0 onset minus 15ms analysis allowance; no auditory or articulatory ground-truth claim"
+      "estimatedVoicingOnset": 0.287,
+      "method": "Prior gesture phases rescaled to the active sound window of the edited recording."
     },
     "assets/audio/course-134/shi1.wav": {
       "anchors": [
         [
-          0.275,
+          0.135,
           0
         ],
         [
-          0.335,
+          0.223,
           0
         ],
         [
-          0.514,
+          0.485,
           0.55
         ],
         [
-          0.579,
+          0.58,
           0.79
-        ],
-        [
-          0.78,
-          1
-        ]
-      ],
-      "estimatedVoicingOnset": 0.514,
-      "method": "Praat autocorrelation F0 onset minus 15ms analysis allowance; no auditory or articulatory ground-truth claim"
-    },
-    "assets/audio/course-134/zi1.wav": {
-      "anchors": [
-        [
-          0.265,
-          0
-        ],
-        [
-          0.325,
-          0.16
-        ],
-        [
-          0.4335,
-          0.44
-        ],
-        [
-          0.4985,
-          0.71
         ],
         [
           0.875,
           1
         ]
       ],
-      "estimatedVoicingOnset": 0.4335,
-      "method": "Praat autocorrelation F0 onset minus 15ms analysis allowance; no auditory or articulatory ground-truth claim"
+      "estimatedVoicingOnset": 0.485,
+      "method": "Prior gesture phases rescaled to the active sound window of the edited recording."
+    },
+    "assets/audio/course-134/zi1.wav": {
+      "anchors": [
+        [
+          0.14,
+          0
+        ],
+        [
+          0.186,
+          0.16
+        ],
+        [
+          0.268,
+          0.44
+        ],
+        [
+          0.318,
+          0.71
+        ],
+        [
+          0.605,
+          1
+        ]
+      ],
+      "estimatedVoicingOnset": 0.268,
+      "method": "Prior gesture phases rescaled to the active sound window of the edited recording."
     },
     "assets/audio/course-134/ci1.wav": {
       "anchors": [
         [
-          0.21,
+          0.15,
           0
         ],
         [
-          0.27,
+          0.169,
           0.16
         ],
         [
-          0.565,
+          0.261,
           0.61
         ],
         [
-          0.63,
+          0.282,
           0.8
         ],
         [
-          1.055,
+          0.415,
           1
         ]
       ],
-      "estimatedVoicingOnset": 0.565,
-      "method": "Praat autocorrelation F0 onset minus 15ms analysis allowance; no auditory or articulatory ground-truth claim"
+      "estimatedVoicingOnset": 0.261,
+      "method": "Prior gesture phases rescaled to the active sound window of the edited recording."
     },
     "assets/audio/course-134/si1.wav": {
       "anchors": [
         [
-          0,
+          0.26,
           0
         ],
         [
-          0.055,
+          0.28,
           0
         ],
         [
-          0.5205,
+          0.445,
           0.54
         ],
         [
-          0.5855,
+          0.468,
           0.78
         ],
         [
-          1.025,
+          0.625,
           1
         ]
       ],
-      "estimatedVoicingOnset": 0.5205,
-      "method": "Praat autocorrelation F0 onset minus 15ms analysis allowance; no auditory or articulatory ground-truth claim"
+      "estimatedVoicingOnset": 0.445,
+      "method": "Prior gesture phases rescaled to the active sound window of the edited recording."
     }
   },
   "sources": [
