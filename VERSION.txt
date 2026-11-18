@@ -1,1 +1,7 @@
-301.266
+Koepanda 301.284 — candidate, NOT DEPLOYED
+Base: verified 301.279 backup; cumulative diff contains all changes since that baseline.
+Scope: verified pinyin audio replacements, chapter-level Supabase resume/review state,
+roadmap cloud completion/locks, Japanese chapter study plan, and P16/P17 pass thresholds.
+QA: all 63 JavaScript files pass syntax checks; 198 referenced resources exist;
+64 changed WAV files decode; chapter-state and study-plan mock tests pass.
+Pending: authenticated Supabase live integration, mobile Safari/Android UX and audio playback.
