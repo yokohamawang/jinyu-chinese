@@ -10,3 +10,14 @@
 .kp-pc-actions{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:1200;display:flex;gap:10px;width:min(100%,720px);padding:12px 16px calc(16px + env(safe-area-inset-bottom));background:#fffefa;box-shadow:0 -4px 20px #31594d0b;border-top:1px solid #e2e8dd}.kp-pc-actions button{min-height:54px;border:0;border-radius:17px;padding:10px 14px;font-size:16px;font-weight:850;line-height:1.3}.kp-pc-secondary{flex:1;background:#edf2e6;color:#58715e;box-shadow:0 4px 0 #d9e3d1}.kp-pc-next{flex:1.5;background:#3f7c60;color:white;box-shadow:0 4px 0 #2d5946}.kp-pc-next:disabled{background:#dae4d6;color:#8a9c85;box-shadow:none}.kp-pinyin-cards.is-result .kp-pc-card{background:linear-gradient(160deg,#fffefa,#f2f8e8)}
 @media(min-width:760px){#kidsCourse>section.kp-pinyin-cards:is(#kidsIslandReviewLesson,#kidsFinalPinyinExam){padding-top:84px!important}.kp-pc-card{padding:28px}.kp-pc-choices button{min-height:100px}}
 @media(prefers-reduced-motion:reduce){.kp-pinyin-cards *{transition:none!important}}
+
+/* Keep page scrolling and Safari's browser controls out of the lesson gesture. */
+body.app-kids-mode:has(.kp-pinyin-cards.is-roadmap-lesson-active){overflow:hidden!important}
+#kidsCourse>section.kp-pinyin-cards.is-roadmap-lesson-active:is(#kidsIslandReviewLesson,#kidsFinalPinyinExam):not([hidden]){
+  position:fixed!important;inset:56px 0 0;display:grid!important;
+  grid-template-rows:minmax(0,1fr) auto;height:auto!important;min-height:0!important;
+  padding:0!important;overflow:hidden!important
+}
+.kp-pc-scroll{overflow-y:auto;overscroll-behavior-y:contain;overflow-anchor:none;min-height:0;padding:16px}
+.kp-pinyin-cards .kp-pc-actions{position:static;transform:none;width:100%}
+.kp-pc-actions button{touch-action:manipulation}
