@@ -356,3 +356,15 @@ body.copy-mode:has(.pre4-finish-unit:not([hidden])) .pre4-learning{padding-botto
 .reading-game .rg-correction.is-complete .rg-correction-status{color:#168469;}
 .reading-game .rg-next:disabled,.reading-game .rg-round-actions button:disabled{opacity:.52;cursor:not-allowed;}
 @media(max-width:600px){.reading-game.is-answered .rg-result-dock{max-height:min(76%,620px);}.reading-game.is-answered .rg-feedback{flex:0 0 auto;}.reading-game.is-answered .rg-answer-reason{width:100%;line-height:1.45;}}
+
+/* 301.311: prevent the mobile result action from covering correction choices. */
+.reading-game .rg-result-dismiss{position:absolute;top:9px;right:10px;z-index:2;width:36px;height:36px;border-radius:50%;background:#e8f3eb;color:#266b60;font-size:26px;font-weight:700;line-height:1;box-shadow:0 2px 0 #cbdfd2;}
+.reading-game .rg-context:not([hidden]){display:block;text-align:center;font-size:12px;color:#648175;white-space:normal;line-height:1.25;}
+@media(max-width:600px){
+ .reading-game.is-answered .rg-result-dock{top:max(12px,calc(env(safe-area-inset-top) + 12px));bottom:max(12px,calc(env(safe-area-inset-bottom) + 12px));max-height:none;justify-content:flex-start;padding:43px 14px 16px;overscroll-behavior:contain;scroll-padding-bottom:14px;}
+ .reading-game.is-answered .rg-next,.reading-game.is-answered .rg-round-actions{position:relative!important;bottom:auto!important;flex-shrink:0;margin-top:8px!important;}
+ .reading-game.is-answered .rg-correction-choice{min-height:70px;}
+ .reading-game.is-answered .rg-feedback{padding:0 5px!important;}
+ .reading-game.is-answered .rg-feedback .rg-feedback-mascot{max-height:42px;}
+ .reading-game.is-answered .rg-meaning.has-answer{padding:6px 8px!important;margin:0!important;}
+}
