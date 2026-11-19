@@ -93,3 +93,8 @@
 .is-daily-session .fx-daily-dock .fx-daily-status{font-size:11px;line-height:1.35;text-align:center;margin:5px 0 0;color:#587365}
 .is-daily-session .fx-daily-dock .fx-daily-status[hidden]{display:none!important}
 .is-daily-session{padding-bottom:160px}
+
+/* Topic stays in the back/progress bar, not above the teaching card. */
+.ps-top-title{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;color:#365c49;font-weight:850;font-size:clamp(13px,3.7vw,17px)}
+body .ps-top .ps-count{min-width:50px;margin-left:0;flex-shrink:0}
+.is-daily-session .fx-phrase{margin-top:12px}
