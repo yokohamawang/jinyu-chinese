@@ -81,3 +81,18 @@ body.kp316-active .kp316-next button:active,.kp316-overlay button:active,.kp316-
   .kp316-quiz-panel{gap:10px}
   .kp316-choices button{min-height:90px}
 }
+/* 301.318: the legacy full-screen handwriting rules conflict with three-tab learning.
+   Use the same scrollable layout for stroke demonstration and finger tracing. */
+body.kp316-active.focus-write{position:static!important;inset:auto!important;width:auto!important;height:auto!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important}
+body.kp316-active.focus-write .app{display:block!important;height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;padding:8px 16px calc(90px + env(safe-area-inset-bottom))!important}
+body.kp316-active.focus-write .top{flex:none!important}
+body.kp316-active.focus-write #pre4Learning{display:block!important}
+body.kp316-active.focus-write .lesson{display:grid!important;flex:none!important;grid-template-columns:76px minmax(0,1fr) 46px!important;min-height:100px!important;padding:10px 14px!important;margin:8px 0!important;border-radius:24px!important}
+body.kp316-active.focus-write .lesson .hanzi{width:76px!important;height:76px!important;font-size:58px!important}
+body.kp316-active.focus-write .progress{display:grid!important;flex:none!important;grid-template-columns:repeat(3,minmax(0,1fr));margin:8px 0 12px!important}
+body.kp316-active.focus-write .board{display:block!important;flex:none!important;height:auto!important;min-height:0!important;overflow:visible!important;margin:8px 0 12px!important;padding:10px!important}
+body.kp316-active.focus-write .board-head{min-height:42px!important;flex:none!important}
+body.kp316-active.focus-write .paper{display:block!important;flex:none!important;width:min(100%,430px)!important;height:auto!important;min-height:0!important;aspect-ratio:1/1!important;margin:0 auto!important;overflow:hidden!important}
+body.kp316-active.focus-write .stroke-controls{display:grid!important;position:static!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;max-width:none!important;box-shadow:none!important;border:0!important;background:transparent!important;padding:10px 2px 0!important}
+body.kp316-active.focus-write .controls{display:grid!important;position:static!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;grid-template-columns:1fr 1fr!important;margin:8px 0 10px!important;padding:0!important;background:transparent!important;border:0!important}
+body.kp316-active.focus-write .paper canvas{touch-action:none!important;pointer-events:auto!important}
