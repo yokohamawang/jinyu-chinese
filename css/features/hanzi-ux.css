@@ -1,4 +1,4 @@
-/* 301.307: keep the recognition action available on every phone height. */
+/* Recognition game: spacious hand-painted storybook visual system. */
 .reading-game { position:fixed; }
 .reading-game .rg-next,
 .reading-game .rg-round-actions {
@@ -22,12 +22,72 @@
   color:#985449;
 }
 .reading-game .rg-feedback.has-result { flex-wrap:wrap; }
+/* Pair small pinyin above its Hanzi, retaining the Hanzi as the focal point. */
+.reading-game .rg-card .rg-pinyin { order:-1; margin:2px 0 0; line-height:1.15; }
+.reading-game .rg-card .rg-target-row { flex:1 1 auto;min-height:0; }
+/* One card geometry for all four options, regardless of image or caption length. */
+.reading-game .rg-options { align-items:stretch; }
+.reading-game .rg-option:has(.rg-image-window) {
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) 2.5em;
+  align-content:stretch;
+  padding:5px!important;
+}
+.reading-game .rg-option .rg-image-window {
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  aspect-ratio:auto!important;
+  overflow:hidden;
+  border-radius:13px;
+}
+.reading-game .rg-option .rg-image-window img {
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+.reading-game .rg-option--storybook .rg-image-window img { object-fit:cover!important; }
+.reading-game .rg-option--storybook .rg-image-window { background:#ecf2e9; }
+.reading-game .rg-option:has(.rg-image-window)>span {
+  min-height:0!important;
+  height:100%;
+  margin:0!important;
+  padding:2px 3px!important;
+  line-height:1.15;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 @media(max-width:600px) {
   .reading-game { overflow-y:auto!important; padding-bottom:calc(env(safe-area-inset-bottom) + 82px)!important; }
-  .reading-game .rg-options { flex-shrink:0; }
+  .reading-game .rg-options {
+    flex:0 0 auto!important;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:repeat(2,clamp(132px,18.5vh,155px))!important;
+    width:min(90%,380px)!important;
+    gap:9px!important;
+    margin:4px auto 10px!important;
+  }
+  .reading-game .rg-option { height:100%!important;min-height:0!important; }
   .reading-game .rg-feedback { flex-shrink:0; }
   .reading-game .rg-next,
   .reading-game .rg-round-actions { box-shadow:0 5px 16px #174f4933; }
+  .reading-game .rg-card { height:clamp(118px,15vh,138px)!important; }
+  .reading-game .rg-card .rg-pinyin { font-size:17px; }
+}
+@media(max-height:700px) and (max-width:600px) {
+  .reading-game .rg-coach { display:none; }
+  .reading-game .rg-card { height:clamp(105px,17vh,124px)!important; }
+  .reading-game .rg-card .rg-character.is-phrase { font-size:clamp(39px,11vw,50px); }
+  .reading-game .rg-card .rg-character.is-long {font-size:clamp(33px,8.8vw,40px);}
+  .reading-game .rg-card .rg-character.is-extended {font-size:clamp(26px,6.7vw,33px);}
+  .reading-game .rg-options { grid-template-rows:repeat(2,clamp(112px,18vh,135px))!important; }
 }
 .pre4-finish-unit:not([hidden]) {
   display:block;
@@ -51,3 +111,85 @@
 .pre4-finish-unit:active { transform:translateY(3px);box-shadow:0 2px 0 #0b9872; }
 .pre4-finish-unit:disabled { opacity:.7;cursor:default; }
 body.copy-mode:has(.pre4-finish-unit:not([hidden])) .pre4-learning{padding-bottom:82px}
+
+/* One visual hierarchy: quiet canvas, focused character, four equal choices. */
+.reading-game {
+  background:
+    radial-gradient(ellipse 80% 38% at 100% 0%,#fff2d9 0%,transparent 100%),
+    radial-gradient(ellipse 80% 45% at 0% 100%,#dceee6 0%,transparent 100%),
+    #f7f8f0;
+}
+.reading-game .rg-coach { color:#557269;font-weight:750; }
+.reading-game .rg-progress { background:#e3e9db; }
+.reading-game .rg-progress i { background:#45a68a; }
+.reading-game .rg-card {
+  border:1px solid #f0e9d7;
+  border-radius:28px;
+  background:#fffefa;
+  box-shadow:0 8px 0 #dfebdf,0 15px 28px #64847312;
+}
+.reading-game .rg-card .rg-pinyin { color:#8f859c; font-weight:800;letter-spacing:.075em; }
+.reading-game .rg-card .rg-character { color:#237b65;letter-spacing:.035em;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK SC",serif; }
+.reading-game .rg-card .rg-character.is-phrase { font-size:clamp(46px,13vw,66px); }
+.reading-game .rg-card .rg-character.is-long { font-size:clamp(36px,9.4vw,47px); }
+.reading-game .rg-card .rg-character.is-extended { font-size:clamp(28px,7.5vw,39px);letter-spacing:0; }
+.reading-game .rg-card .rg-pinyin.is-long {font-size:clamp(12px,3.7vw,16px);letter-spacing:0;}
+.reading-game .rg-prompt { color:#285d52; }
+.reading-game .rg-card .rg-prompt {max-width:100%;overflow-wrap:anywhere;}
+.reading-game .rg-option {
+  background:#fffefa;
+  border:2px solid #fffefa;
+  border-radius:21px;
+  box-shadow:0 4px 0 #e0e8db,0 7px 16px #4c765714;
+  color:#285d52;
+  transition:transform .12s,border-color .12s,background .12s;
+}
+.reading-game .rg-option:has(.rg-image-window) { padding:5px 5px 2px!important; }
+.reading-game .rg-option .rg-image-window { border-radius:16px; }
+.reading-game .rg-option:has(.rg-image-window)>span {font-weight:850;letter-spacing:.012em;}
+.reading-game .rg-option.correct { border-color:#16ac83;background:#eefaf4;box-shadow:0 3px 0 #aadcc8; }
+.reading-game .rg-option.wrong { border-color:#ec8d7e;background:#fff5f1;box-shadow:0 3px 0 #ecc9bd; }
+.reading-game .rg-option:focus-visible { outline:3px solid #117e76;outline-offset:2px; }
+.reading-game .rg-feedback.has-result { font-size:14px;line-height:1.3;min-height:0;padding:7px 8px; }
+.reading-game .rg-feedback-mascot { width:36px;height:36px;flex:0 0 36px; }
+.reading-game .rg-meaning.has-answer {
+  border:1px solid #b4dec9;
+  border-radius:13px;
+  background:#eaf7f0;
+  color:#256c56;
+  box-shadow:none;
+  font-size:14px;
+  padding:6px 12px;
+  margin:3px auto 12px;
+}
+.reading-game .rg-meaning.has-answer.is-correction {
+  border-color:#e8aa98;
+  background:#fff2ed;
+  color:#a34e42;
+}
+.reading-game .rg-next,
+.reading-game .rg-round-stroke { border-radius:18px;background:#0fb389;box-shadow:0 4px 0 #09946e; }
+@media(max-width:600px) {
+  .reading-game { padding-inline:14px!important; }
+  .reading-game::after {
+    content:"";
+    position:absolute;
+    z-index:14;
+    left:0;right:0;bottom:0;
+    height:calc(env(safe-area-inset-bottom) + 77px);
+    background:linear-gradient(0deg,#f2faf6 78%,#f2faf600);
+    pointer-events:none;
+  }
+  .reading-game .rg-card { margin:3px auto 8px!important; }
+  .reading-game .rg-card .rg-character.is-phrase {font-size:clamp(44px,12vw,59px);}
+  .reading-game .rg-card .rg-character.is-long {font-size:clamp(34px,9vw,43px);}
+  .reading-game .rg-card .rg-character.is-extended {font-size:clamp(28px,7vw,35px);}
+  .reading-game .rg-options { margin-top:5px!important; }
+  .reading-game .rg-prompt { margin:4px 0 5px!important; }
+  .reading-game .rg-feedback.has-result { width:min(100%,380px);margin:0 auto; }
+}
+@media(max-height:700px) and (max-width:600px) {
+  .reading-game .rg-card .rg-character.is-phrase {font-size:clamp(39px,11vw,50px);}
+  .reading-game .rg-card .rg-character.is-long {font-size:clamp(33px,8.8vw,40px);}
+  .reading-game .rg-card .rg-character.is-extended {font-size:clamp(26px,6.7vw,33px);}
+}
