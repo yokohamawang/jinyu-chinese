@@ -1,1 +1,1 @@
-Koepanda 301.313 — One-glance Hanzi result dialog without scrolling, cumulative from 301.304, NOT DEPLOYED
+Koepanda 301.314 — Balanced Hanzi card and spacious result dialog, cumulative from 301.304, NOT DEPLOYED
