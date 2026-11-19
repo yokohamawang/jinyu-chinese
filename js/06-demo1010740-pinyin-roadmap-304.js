@@ -352,6 +352,12 @@
     });
     mapRetry.addEventListener('click',function(){picture.dataset.recoveryAttempt='0';picture.src='./assets/pinyin/roadmap-ten-islands-297.png?v=301.287&kp_image_retry='+Date.now()});
     picture.src='./assets/pinyin/roadmap-ten-islands-297.png?v=301.287';artwork.appendChild(picture);artwork.appendChild(mapRetry);
+    /* Lock rules live inside chapters, so island artwork must not imply an island-level lock.
+       Mask only the six pre-rendered padlock glyphs; preserve the original illustration. */
+    [[340,1077],[625,1187],[338,1440],[636,1630],[361,1906],[620,2111]].forEach(function(point){
+      var patch=document.createElement('span');patch.className='kp197-island-lock-cover';patch.setAttribute('aria-hidden','true');
+      patch.style.left=(point[0]/749*100)+'%';patch.style.top=(point[1]/2348*100)+'%';artwork.appendChild(patch);
+    });
     var dock=document.createElement('button');
     dock.type='button';
     dock.className='kp197-tone-dock';
