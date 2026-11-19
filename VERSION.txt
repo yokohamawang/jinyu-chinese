@@ -1,1 +1,1 @@
-Koepanda 301.310 — Guided Hanzi mistake correction in result dialog, cumulative from 301.304, NOT DEPLOYED
+Koepanda 301.311 — Hanzi correction dialog navigation and single-character focus, cumulative from 301.304, NOT DEPLOYED
