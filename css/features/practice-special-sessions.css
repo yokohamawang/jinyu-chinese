@@ -98,3 +98,16 @@
 .ps-top-title{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;color:#365c49;font-weight:850;font-size:clamp(13px,3.7vw,17px)}
 body .ps-top .ps-count{min-width:50px;margin-left:0;flex-shrink:0}
 .is-daily-session .fx-phrase{margin-top:12px}
+
+/* Scenario: all controls remain visible while the long dialogue scrolls. */
+.ps-main.has-listen-dock{padding-bottom:calc(190px + env(safe-area-inset-bottom))}
+.fx-listen-dock{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:20;width:min(100%,790px);box-sizing:border-box;padding:10px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid #deeadf;background:#f8fcf7;box-shadow:0 -6px 24px #304e3d12}
+.fx-listen-dock .fx-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+.fx-listen-dock .fx-button{min-width:0;min-height:46px;padding:10px 8px}
+.fx-listen-dock .fx-primary{margin:9px 0 0;min-height:48px}
+.ps-main.has-follow-dock{padding-bottom:calc(290px + env(safe-area-inset-bottom))}
+.fx-follow-dock .fx-read-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}
+.fx-follow-dock .fx-read-controls .fx-button{min-width:0;min-height:44px;padding:8px 5px;font-size:13px}
+.fx-scenario-head{margin:0 auto 10px;padding:5px 4px 0}
+.fx-scenario-head small{margin:0;font-size:12px}
+.fx-scenario-head p{font-size:13px;line-height:1.45;margin-top:4px}
