@@ -743,9 +743,6 @@ button.is-pressed,a[href].is-pressed{transform:translateY(4px) scale(.975)!impor
 #pinyinRoadmap .is-image-failed .kp197-clear{position:static;display:inline-block;margin-left:8px}
 #pinyinRoadmap .kp197-map-retry{min-height:48px;padding:12px;border:1px solid #cce4d7;border-radius:16px;background:#eef8f1;color:#315f52;font:700 15px system-ui;cursor:pointer}
 #pinyinRoadmap .kp197-map-retry[hidden]{display:none}
-/* Only the six printed island-padlock glyphs are hidden. Chapter-level locks remain active. */
-#pinyinRoadmap .kp197-island-lock-cover{position:absolute;z-index:1;display:block;width:3.85%;height:1.58%;pointer-events:none;border-radius:5px;background:linear-gradient(110deg,#fffdfa,#f9fbf9);box-shadow:0 0 2px 1px #fafbf9}
-#pinyinRoadmap .is-image-failed>.kp197-island-lock-cover{display:none}
 
 /* The pier and boat are part of the map. Its transparent hit area also includes the label. */
 #pinyinRoadmap .kp197-tone-dock {
