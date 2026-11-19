@@ -6,19 +6,22 @@
       {zh:'很久以前，中国人还没有现在这样的文字。',py:'Hěn jiǔ yǐ qián Zhōng guó rén hái méi yǒu xiàn zài zhè yàng de wén zì',ja:'ずっと昔、中国には今のような文字がまだありませんでした。'},
       {zh:'传说，仓颉观察鸟兽的脚印和山川的形状，试着把看到的样子画下来。',py:'Chuán shuō Cāng jié guān chá niǎo shòu de jiǎo yìn hé shān chuān de xíng zhuàng shì zhe bǎ kàn dào de yàng zi huà xià lái',ja:'伝説によると、倉頡は鳥や動物の足あと、山や川の形を観察し、見たものを絵にしました。'},
       {zh:'一条条图形慢慢变成了早期的文字。',py:'Yì tiáo tiáo tú xíng màn màn biàn chéng le zǎo qī de wén zì',ja:'絵は少しずつ、初期の文字になっていきました。'},
-      {zh:'后来，人们把汉字写在甲骨、竹简和纸上。',py:'Hòu lái rén men bǎ Hàn zì xiě zài jiǎ gǔ zhú jiǎn hé zhǐ shàng',ja:'その後、人々は漢字を甲骨や竹簡、紙に書くようになりました。'}
+      {zh:'后来，人们把汉字写在甲骨、竹简和纸上。',py:'Hòu lái rén men bǎ Hàn zì xiě zài jiǎ gǔ zhú jiǎn hé zhǐ shàng',ja:'その後、人々は漢字を甲骨や竹簡、紙に書くようになりました。'},
+      {zh:'一个个小小的文字，像种子一样长大，慢慢走进了今天的一本本书。',py:'Yí gè gè xiǎo xiǎo de wén zì xiàng zhǒng zi yí yàng zhǎng dà màn màn zǒu jìn le jīn tiān de yì běn běn shū',ja:'小さな文字は種のように育ち、やがて今の本の一ページ一ページへと広がっていきました。'}
     ]},
     {id:'movable-type',title:'活字印刷の発明',subtitle:'一つずつの文字から、本が生まれる',theme:'発明ものがたり',image:'movable-type.png',caption:'畢昇は一字ずつの粘土の活字を並べて、本を印刷しました。',tone:'mint',summary:'北宋の職人・畢昇が考えた、くり返し使える印刷の工夫です。',lines:[
       {zh:'北宋时期，工匠毕昇发明了活字印刷。',py:'Běi Sòng shí qī gōng jiàng Bì Shēng fā míng le huó zì yìn shuā',ja:'北宋の時代、職人の畢昇が活字印刷を発明しました。'},
       {zh:'他把一个个汉字刻在小小的泥块上，再烧硬。',py:'Tā bǎ yí gè gè Hàn zì kè zài xiǎo xiǎo de ní kuài shàng zài shāo yìng',ja:'一つずつの漢字を小さな粘土のかけらに刻み、焼いて固めました。'},
       {zh:'印书的时候，人们把字块排在一起，涂上墨，盖上纸。',py:'Yìn shū de shí hou rén men bǎ zì kuài pái zài yì qǐ tú shàng mò gài shàng zhǐ',ja:'本を印刷するときは、字のブロックを並べ、墨をつけて紙を重ねます。'},
-      {zh:'印完以后，字块还可以拆下来，重新排列。',py:'Yìn wán yǐ hòu zì kuài hái kě yǐ chāi xià lái chóng xīn pái liè',ja:'印刷が終わったら、字のブロックを外して、別の順に並べ直せます。'}
+      {zh:'印完以后，字块还可以拆下来，重新排列。',py:'Yìn wán yǐ hòu zì kuài hái kě yǐ chāi xià lái chóng xīn pái liè',ja:'印刷が終わったら、字のブロックを外して、別の順に並べ直せます。'},
+      {zh:'这些小字块像排队的小士兵，把故事印在纸上。后来，印刷技术越走越快，变成了今天的自动印刷。',py:'Zhè xiē xiǎo zì kuài xiàng pái duì de xiǎo shì bīng bǎ gù shi yìn zài zhǐ shàng Hòu lái yìn shuā jì shù yuè zǒu yuè kuài biàn chéng le jīn tiān de zì dòng yìn shuā',ja:'小さな活字たちは、整列する兵隊のように物語を紙に写しました。その技術は進歩を重ね、今の高速な自動印刷へとつながっています。'}
     ]},
     {id:'three-kingdoms',title:'三国志のなかまたち',subtitle:'三つの国がならび立った時代',theme:'歴史のぼうけん',image:'three-kingdoms.png',caption:'桃園で出会った三人と、知恵を出し合う諸葛亮。',tone:'violet',summary:'魏・蜀・呉の時代に生まれた、友情と知恵の物語です。',lines:[
       {zh:'很久以前，中国出现了魏、蜀、吴三个国家。',py:'Hěn jiǔ yǐ qián Zhōng guó chū xiàn le Wèi Shǔ Wú sān gè guó jiā',ja:'ずっと昔、中国には魏・蜀・呉という三つの国がありました。'},
       {zh:'刘备、关羽和张飞在桃园相识，结为兄弟。',py:'Liú Bèi Guān Yǔ hé Zhāng Fēi zài Táo yuán xiāng shí jié wéi xiōng dì',ja:'劉備・関羽・張飛は桃園で出会い、兄弟のちぎりを結びました。'},
       {zh:'诸葛亮帮助刘备制定计划，也常常想办法解决困难。',py:'Zhū gě Liàng bāng zhù Liú Bèi zhì dìng jì huà yě cháng cháng xiǎng bàn fǎ jiě jué kùn nán',ja:'諸葛亮は劉備の計画を助け、知恵を使って困りごとを解決しました。'},
-      {zh:'三个国家时而合作，时而交战，留下了许多有名的故事。',py:'Sān gè guó jiā shí ér hé zuò shí ér jiāo zhàn liú xià le xǔ duō yǒu míng de gù shi',ja:'三つの国は協力したり戦ったりしながら、たくさんの物語を残しました。'}
+      {zh:'三个国家时而合作，时而交战，留下了许多有名的故事。',py:'Sān gè guó jiā shí ér hé zuò shí ér jiāo zhàn liú xià le xǔ duō yǒu míng de gù shi',ja:'三つの国は協力したり戦ったりしながら、たくさんの物語を残しました。'},
+      {zh:'直到今天，刘备和朋友们还在书本、戏台和动画里继续他们的冒险。',py:'Zhí dào jīn tiān Liú Bèi hé péng you men hái zài shū běn xì tái hé dòng huà lǐ jì xù tā men de mào xiǎn',ja:'今でも劉備たちは、本やお芝居、アニメの中で冒険を続けているようです。'}
     ]}
   ];
   let activeUtterance=null;

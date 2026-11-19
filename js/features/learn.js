@@ -87,8 +87,10 @@
     const chapter=window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>unit.id===lastUnit);
     if(chapter){
       const review=chapterState.reviewDue().slice(0,2);
-      const reviewLine=review.length?' · 今日の復習：'+review.join('・'):'';
-      return `<section class="kp-pinyin-continue" aria-label="前回のつづき"><div><b>前回のつづき · ${chapter.id}</b><small>${chapter.title}${reviewLine}</small></div><button type="button" data-action="pinyin-resume">つづきから学ぶ <span aria-hidden="true">›</span></button></section>`;
+      const readableTitle=title=>title==='三拼'?'三つの音をつなぐ練習':title==='四声の感じ'?'声の上がり下がりの練習':title;
+      const reviewNames=review.map(id=>window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>unit.id===id)?.title).filter(Boolean).map(readableTitle);
+      const reviewLine=reviewNames.length?' · 今日のおさらい：'+reviewNames.join('・'):'';
+      return `<section class="kp-pinyin-continue" aria-label="前回のつづき"><div><b>前回のつづき</b><small>${safe(readableTitle(chapter.title))}${safe(reviewLine)}</small></div><button type="button" data-action="pinyin-resume">つづきから学ぶ <span aria-hidden="true">›</span></button></section>`;
     }
     const vowels=['a','o','e','i','u','ü'];
     let passed=[];
