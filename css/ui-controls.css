@@ -37,6 +37,8 @@ button:not(:disabled).is-pressed,a[href].is-pressed{transform:translateY(3px) sc
 .ps-choice:disabled.is-correct,.ps-choice:disabled.is-wrong{opacity:1}
 .ps-choice:disabled:not(.is-correct):not(.is-wrong){opacity:1}
 .ps-top .ps-back:active,.pr-top .pr-back:active{transform:translateY(3px);box-shadow:inset 0 2px 4px #17493626}
+/* Only the daily phrase screen uses the condensed header. */
+body:has(.is-daily-session) .ps-top{height:calc(env(safe-area-inset-top) + 52px);min-height:calc(env(safe-area-inset-top) + 52px)}
 
 .kp-story-back{gap:8px}.kp-story-back svg{width:24px;height:24px;flex:0 0 24px}
 .fx-choice:disabled.is-right,.fx-choice:disabled.is-wrong{opacity:1}
