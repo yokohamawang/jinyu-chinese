@@ -11,3 +11,7 @@
 .kp-story-lines>.kp-story-line:last-child{background:#fff9eb;border-color:#f4dfad}
 .kp-story-lines>.kp-story-line:last-child:before{content:'✨ そして、いまへ';display:block;margin-bottom:10px;color:#a07830;font-size:13px;font-weight:850}
 .kp-story-status{padding-bottom:12px}
+/* The audio controls cover the bottom of the iPhone viewport. Keep the active
+   paragraph and highlighted characters within the readable area. */
+.kp-story-line{scroll-margin-top:18px;scroll-margin-bottom:calc(145px + env(safe-area-inset-bottom))}
+.kp-story-char{scroll-margin-top:72px;scroll-margin-bottom:calc(155px + env(safe-area-inset-bottom))}
