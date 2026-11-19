@@ -194,6 +194,8 @@ body.kp-feature-active #homeEffect,body.kp-feature-active #kpAccountTrigger,body
 @media(min-width:560px){.kp-chapter-current{padding:22px}.kp-chapter-modes{grid-template-columns:repeat(3,minmax(0,1fr))}.kp-chapter-modes button{grid-template-columns:1fr;align-content:center;min-height:112px}.kp-chapter-modes button:after{position:absolute;right:12px;bottom:7px}}
 
 .kp-practice-routes{margin:30px 0}.kp-practice-routes>.kp-section-title{align-items:flex-end}.kp-practice-routes>.kp-section-title h2{max-width:65%;font-size:18px;line-height:1.3}.kp-practice-routes>.kp-section-title>span{max-width:35%;font-size:10px;line-height:1.35;text-align:right}.kp-practice-route-grid{display:grid;grid-template-columns:1fr;gap:9px}.kp-practice-route{display:flex;align-items:center;gap:11px;width:100%;min-height:72px;padding:12px;border:1px solid #e8eee9;border-radius:18px;background:#fff;text-align:left;box-shadow:0 4px 14px #30443808}.kp-route-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:15px;background:#eff8f2;font-size:21px}.kp-route-copy{display:grid;gap:4px;flex:1;min-width:0}.kp-route-copy b{color:#40574b;font-size:14px}.kp-route-copy small{color:#859188;font-size:10px;line-height:1.45}.kp-route-meta{flex:0 0 auto;color:#398d73;font-size:10px;font-weight:800}.kp-practice-route.is-locked{background:#f7f8f6;opacity:.78}.kp-practice-route.is-locked .kp-route-meta{color:#929b94}.kp-route-note{margin:8px 3px 0;color:#6f8076;font-size:11px;line-height:1.55}@media(min-width:540px){.kp-practice-routes>.kp-section-title h2{max-width:none}.kp-practice-route-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kp-practice-route{align-items:flex-start;min-height:88px}}
+/* Keep the explanation visible immediately after each mini-quiz answer. */
+.kp-quiz-explanation{margin:10px 0 14px;padding:12px 14px;border-radius:12px;background:#f4faf5;color:#365e4b;font-size:15px;line-height:1.6;text-align:left}
 
 
 /* Source: css/features/reward-reveal.css */
@@ -212,6 +214,7 @@ body.kp-reward-open{overflow:hidden!important}
 .kp-reward-box{position:relative;display:grid;place-items:center;width:104px;height:82px;margin:7px auto 13px;border:2px solid #ffd887;border-radius:18px 18px 22px 22px;background:linear-gradient(145deg,#f5bb54,#bb6b37);box-shadow:0 12px 35px #050d1d70,inset 0 2px #fff9;transition:transform .5s cubic-bezier(.2,.8,.25,1),opacity .3s}.kp-reward-box::before{content:"";position:absolute;top:-16px;left:-5px;width:110px;height:25px;border:2px solid #ffe8aa;border-radius:10px;background:linear-gradient(135deg,#ffdc84,#eb9b48);box-shadow:inset 0 2px #fff9}.kp-reward-box span{position:absolute;z-index:2;top:-26px;color:#fff1bf;font-size:28px}.kp-reward-box b{z-index:1;color:#fff8d8;font-size:28px;text-shadow:0 2px 5px #7d4829}.kp-reward-box.is-open{transform:translateY(-8px) scale(.85) rotate(-5deg);opacity:.26}
 .kp-reward-items{display:flex;justify-content:center;align-items:center;gap:clamp(10px,4vw,25px);width:100%;min-height:0;margin:0 0 10px;perspective:900px}
 .kp-reveal-sticker{position:relative;flex:0 1 220px;width:min(42vw,220px);aspect-ratio:.78;margin:0;transform:rotateY(180deg);transform-style:preserve-3d;transition:transform .8s cubic-bezier(.16,.86,.22,1),filter .35s;filter:drop-shadow(0 16px 25px #050d1d75)}
+.kp-reveal-sticker[hidden]{display:none!important}
 .kp-reveal-sticker.is-sealed{transform:rotateY(0deg) scale(.72)}
 .kp-reveal-card-back,.kp-reveal-card-front{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border:3px solid #fff4d1;border-radius:22px;background:linear-gradient(155deg,#138d7d,#133c53 68%,#bb7b37);backface-visibility:hidden;box-shadow:inset 0 0 0 5px #ffffff20,inset 0 0 45px #ffffff13}
 .kp-reveal-card-back::before,.kp-reveal-card-back::after{content:"✦ ✧ ✦";position:absolute;color:#ffedb3;font-size:20px;letter-spacing:12px;opacity:.9}.kp-reveal-card-back::before{top:22px}.kp-reveal-card-back::after{bottom:22px;transform:rotate(180deg)}.kp-reveal-card-back b{font-family:serif;font-size:35px;color:#fff}.kp-reveal-card-back i{margin-top:9px;color:#ffe3a2;font-style:normal;font-size:20px}
@@ -261,6 +264,15 @@ body.kp-reward-open{overflow:hidden!important}
 .kp-story-player{position:sticky;z-index:8;bottom:max(10px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:9px;margin:14px 0 4px;padding:9px;border:1px solid #dfece4;border-radius:25px;background:#ffffffed;box-shadow:0 9px 28px #273f3220;backdrop-filter:blur(14px)}.kp-story-play{flex:1;min-height:54px;border:0;border-radius:18px;background:linear-gradient(120deg,#56c5a2,#3fa47e);color:#fff;font-size:16px;font-weight:850;cursor:pointer;touch-action:manipulation}.kp-story-speed{display:grid;gap:3px;color:#7f8c84;font-size:10px;font-weight:750;text-align:center}.kp-story-speed select{min-height:42px;padding:0 9px;border:1px solid #e3ece6;border-radius:14px;background:#f4f8f5;color:#3f765f;font:750 12px system-ui,-apple-system,sans-serif}.kp-story-return{display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;padding:0;border:1px solid #d8e9de;border-radius:15px;background:#eff8f2;color:#47836d;cursor:pointer;touch-action:manipulation}.kp-story-return svg{width:23px;height:23px}.kp-story-status{min-height:22px;margin:0 5px;color:#859188;font-size:12px;line-height:1.55;text-align:center}
 @media(max-width:600px){.kp-story-choice{grid-template-columns:72px minmax(0,1fr) 17px;gap:11px;min-height:105px;padding:13px;border-radius:22px}.kp-story-choice-image{width:72px;height:68px;border-radius:17px}.kp-story-choice-copy>b{font-size:16px}.kp-story-choice-copy>span{font-size:11px}.kp-story-article-hero{padding:16px 15px 13px}.kp-story-summary{padding:12px 15px;font-size:13px}.kp-story-lines{gap:9px;padding:10px}.kp-story-line{padding:12px 11px}.kp-story-hanzi{column-gap:.18em;font-size:clamp(20px,6vw,27px)}.kp-story-translation{font-size:13px}.kp-story-play{min-height:50px;font-size:14px}.kp-story-return{flex-basis:42px;width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){.kp-story-choice,.kp-story-line,.kp-story-char{transition:none!important}}
+.kp-story-article{margin-bottom:116px}
+.kp-story-player{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);box-sizing:border-box;width:min(calc(100% - 24px),720px);margin:0;z-index:30}
+.kp-story-lines>.kp-story-line:last-child{background:#fff9eb;border-color:#f4dfad}
+.kp-story-lines>.kp-story-line:last-child:before{content:'✨ そして、いまへ';display:block;margin-bottom:10px;color:#a07830;font-size:13px;font-weight:850}
+.kp-story-status{padding-bottom:12px}
+/* The audio controls cover the bottom of the iPhone viewport. Keep the active
+   paragraph and highlighted characters within the readable area. */
+.kp-story-line{scroll-margin-top:18px;scroll-margin-bottom:calc(145px + env(safe-area-inset-bottom))}
+.kp-story-char{scroll-margin-top:72px;scroll-margin-bottom:calc(155px + env(safe-area-inset-bottom))}
 
 
 /* Source: css/features/learning-records.css */
@@ -720,7 +732,7 @@ button.is-pressed,a[href].is-pressed{transform:translateY(4px) scale(.975)!impor
 
 
 /* Source: css/99-roadmap-ten-islands-297.css */
-/* Match the 749×2098 map coordinate space and keep each tap zone inside its own island. */
+/* Match the 749×2348 map coordinate space and keep each tap zone inside its own island. */
 #pinyinRoadmap .kp197-artwork{aspect-ratio:749 / 2348}
 #pinyinRoadmap .kp197-map-image{width:100%;height:100%;object-fit:fill}
 #pinyinRoadmap .kp197-hotspot{box-sizing:border-box;padding:0;margin:0}
@@ -731,10 +743,44 @@ button.is-pressed,a[href].is-pressed{transform:translateY(4px) scale(.975)!impor
 #pinyinRoadmap .is-image-failed .kp197-clear{position:static;display:inline-block;margin-left:8px}
 #pinyinRoadmap .kp197-map-retry{min-height:48px;padding:12px;border:1px solid #cce4d7;border-radius:16px;background:#eef8f1;color:#315f52;font:700 15px system-ui;cursor:pointer}
 #pinyinRoadmap .kp197-map-retry[hidden]{display:none}
+/* Only the six printed island-padlock glyphs are hidden. Chapter-level locks remain active. */
+#pinyinRoadmap .kp197-island-lock-cover{position:absolute;z-index:1;display:block;width:3.85%;height:1.58%;pointer-events:none;border-radius:5px;background:linear-gradient(110deg,#fffdfa,#f9fbf9);box-shadow:0 0 2px 1px #fafbf9}
+#pinyinRoadmap .is-image-failed>.kp197-island-lock-cover{display:none}
 
-
-/* The four-tone lesson needs the header to reserve its own row. */
-body.app-kids-mode #kidsCourse > .kp148-lesson-header:has(+ #p0ToneAdventure.is-roadmap-lesson-active) {
-  position: sticky !important;
-  top: 0;
+/* The pier and boat are part of the map. Its transparent hit area also includes the label. */
+#pinyinRoadmap .kp197-tone-dock {
+  position: absolute;
+  top: 4.3%;
+  left: 12%;
+  width: 84%;
+  height: 9.3%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
+#pinyinRoadmap .kp197-tone-dock span {
+  position: absolute;
+  left: 30%;
+  transform: translateX(-50%);
+  padding: 5px 9px;
+  border-radius: 10px;
+  background: #fffdf3;
+  box-shadow: 0 2px 3px #13597755;
+  color: #165575;
+  font: 700 clamp(12px,3vw,16px)/1.3 system-ui;
+}
+#pinyinRoadmap .kp197-tone-dock:active span { transform: translate(-50%, 2px); }
+#pinyinRoadmap .is-image-failed > .kp197-tone-dock {
+  position: static;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 48px;
+}
+
+#pinyinRoadmap .is-image-failed > .kp197-tone-dock span { position: static; transform: none; }
+
