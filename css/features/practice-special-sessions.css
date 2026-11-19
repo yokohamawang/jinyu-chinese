@@ -119,3 +119,28 @@ body .ps-top .ps-count{min-width:50px;margin-left:0;flex-shrink:0}
 .fx-sentence-select:active,.fx-word:active,.fx-follow-dock button:active{filter:brightness(.93);transform:translateY(2px)}
 .fx-turn.is-speaking .fx-word.is-speaking{background:#fff1ae;border-radius:12px;box-shadow:0 3px 0 #ecd785}
 @media(prefers-reduced-motion:reduce){.fx-sentence-select:active,.fx-word:active,.fx-follow-dock button:active{transform:none}}
+
+/* Scenario questions: no repeated preamble; keep the next action reachable. */
+.ps-main:has(.fx-check) .fx-scenario-head{display:none}
+.ps-main:has(.fx-check){padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+.ps-main:has(.fx-check)>#continue:not([hidden]),.ps-main:has(.fx-check)>#submit:not([hidden]){position:fixed;z-index:8;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 28px),680px);margin:0;box-shadow:0 7px 0 #0d896f,0 -8px 24px #fffaf2}
+.ps-main:has(.fx-check)>#continue[hidden],.ps-main:has(.fx-check)>#submit[hidden]{display:none!important}
+.fx-answer-meaning{display:block;margin-top:5px;color:#415f50;font-size:15px;font-weight:800}
+.ps-main:has(.fx-check)>.fx-head{display:none}
+.ps-main:has(.fx-check) .fx-check{min-height:0;justify-content:flex-start;margin-top:7px}
+.fx-choice,.fx-tile,.fx-slot{touch-action:manipulation;transition:transform .12s,box-shadow .12s,background .12s}
+.fx-choice:active:not(:disabled),.fx-tile:active:not(:disabled),.fx-slot:active:not(:disabled){transform:translateY(2px);box-shadow:inset 0 2px 4px #2b584026;background:#e9f8ee}
+.fx-choice:focus-visible,.fx-tile:focus-visible,.fx-slot:focus-visible{outline:3px solid #288d71;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.fx-choice,.fx-tile,.fx-slot{transition:none}.fx-choice:active:not(:disabled),.fx-tile:active:not(:disabled),.fx-slot:active:not(:disabled){transform:none}}
+
+/* Mobile transcript dock: two compact rows; transcript remains the reading surface. */
+.ps-main.has-follow-dock{padding-bottom:calc(166px + env(safe-area-inset-bottom))}
+.fx-follow-dock{box-sizing:border-box;padding:9px 12px calc(9px + env(safe-area-inset-bottom));border-radius:18px 18px 0 0}
+.fx-follow-dock>p{display:none}
+.fx-follow-dock .fx-read-controls{margin-bottom:7px}
+.fx-follow-dock .fx-read-controls .fx-button{min-height:44px}
+.fx-follow-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px}
+.fx-follow-actions>#followRecord{grid-column:1;grid-row:1}
+.fx-follow-actions>#to-ex{grid-column:2;grid-row:1;min-height:46px;padding:8px 5px;font-size:13px}
+.fx-follow-actions>#followPlayback:not([hidden]){grid-column:1/-1;grid-row:2}
+.fx-follow-dock>small{margin-top:5px;font-size:10px}

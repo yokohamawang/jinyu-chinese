@@ -37,3 +37,4 @@ body.ps-question-session{height:100svh;min-height:0;overflow:hidden;padding:0;di
 .ps-question-session .ps-main{width:min(100%,628px);min-height:0;overflow-y:auto;overscroll-behavior-y:contain;overflow-anchor:none;scroll-behavior:auto;margin:0 auto;padding:8px 14px 16px;-webkit-overflow-scrolling:touch}
 .ps-question-session>.ps-action-dock{position:static;left:auto;right:auto;bottom:auto;transform:none;width:min(100%,628px);margin:0 auto;padding:10px 14px calc(12px + env(safe-area-inset-bottom));background:#f6faf8}
 .ps-question-session .ps-question-card{scroll-margin-top:8px}
+.ps-session-heading[hidden]{display:none!important}
