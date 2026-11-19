@@ -80,3 +80,16 @@
 .fx-daily-dock #rec-note:not([hidden]){margin:5px 0 0}
 .is-daily-session .fx-daily-dock .fx-record{padding-top:6px;margin-top:6px}
 .is-daily-session{padding-bottom:245px}
+
+/* Two-row daily controls: model/playback above, back/record/next below. */
+.is-daily-session .fx-daily-dock{padding:9px 12px calc(9px + env(safe-area-inset-bottom))}
+.is-daily-session .fx-daily-dock .fx-controls{display:flex;flex-wrap:nowrap;gap:8px}
+.is-daily-session .fx-daily-dock .fx-controls .fx-button{flex:1 1 0;min-width:0;padding:9px 5px;font-size:clamp(12px,3.5vw,15px)}
+.is-daily-session .fx-daily-dock .fx-controls #own[hidden]{display:none!important}
+.is-daily-session .fx-daily-dock .fx-daily-nav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);gap:8px;padding-top:8px}
+.is-daily-session .fx-daily-dock .fx-daily-nav .fx-button{width:100%;min-width:0;margin:0;padding:10px 4px;font-size:clamp(13px,3.7vw,16px);white-space:nowrap}
+.is-daily-session .fx-daily-dock .fx-daily-nav #record{background:#fff0eb;color:#98543f}
+.is-daily-session .fx-daily-dock .fx-daily-nav #record.is-recording{background:#fbd8d0}
+.is-daily-session .fx-daily-dock .fx-daily-status{font-size:11px;line-height:1.35;text-align:center;margin:5px 0 0;color:#587365}
+.is-daily-session .fx-daily-dock .fx-daily-status[hidden]{display:none!important}
+.is-daily-session{padding-bottom:160px}
