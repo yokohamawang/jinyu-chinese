@@ -1,1 +1,1 @@
-Koepanda 301.299 — combined practice navigation UI candidate, NOT DEPLOYED
+Koepanda 301.304 — tested candidate, NOT DEPLOYED
