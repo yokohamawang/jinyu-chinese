@@ -111,3 +111,11 @@ body .ps-top .ps-count{min-width:50px;margin-left:0;flex-shrink:0}
 .fx-scenario-head{margin:0 auto 10px;padding:5px 4px 0}
 .fx-scenario-head small{margin:0;font-size:12px}
 .fx-scenario-head p{font-size:13px;line-height:1.45;margin-top:4px}
+
+/* Shared scenario interaction: readable text first, minimum touch targets. */
+.fx-dialogue{margin-top:8px}
+.fx-sentence-select{min-width:44px;min-height:44px;width:auto;padding:6px 10px;touch-action:manipulation}
+.fx-word{min-height:48px;touch-action:manipulation}
+.fx-sentence-select:active,.fx-word:active,.fx-follow-dock button:active{filter:brightness(.93);transform:translateY(2px)}
+.fx-turn.is-speaking .fx-word.is-speaking{background:#fff1ae;border-radius:12px;box-shadow:0 3px 0 #ecd785}
+@media(prefers-reduced-motion:reduce){.fx-sentence-select:active,.fx-word:active,.fx-follow-dock button:active{transform:none}}
