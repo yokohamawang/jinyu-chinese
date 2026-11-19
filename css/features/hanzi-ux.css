@@ -368,3 +368,36 @@ body.copy-mode:has(.pre4-finish-unit:not([hidden])) .pre4-learning{padding-botto
  .reading-game.is-answered .rg-feedback .rg-feedback-mascot{max-height:42px;}
  .reading-game.is-answered .rg-meaning.has-answer{padding:6px 8px!important;margin:0!important;}
 }
+
+/* 301.312: independent scrolling feedback and always-visible action footer. */
+.reading-game .rg-card{display:grid!important;grid-template-rows:22px minmax(0,1fr) 21px 35px;align-content:stretch;justify-items:center;gap:0;padding:8px 12px 10px;min-height:155px;height:clamp(155px,23vh,178px)!important;}
+.reading-game .rg-card .rg-pinyin{order:0;grid-row:1;margin:0!important;align-self:center;font-size:18px;line-height:22px;}
+.reading-game .rg-card .rg-target-row{order:0;grid-row:2;display:flex;align-self:center;justify-content:center;align-items:center;width:100%;height:100%;min-height:0;}
+.reading-game .rg-card .rg-character{font-size:clamp(62px,17vw,79px);line-height:.94;}
+.reading-game .rg-card .rg-context:not([hidden]){order:0;grid-row:3;align-self:center;font-size:11px;line-height:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+.reading-game .rg-card .rg-prompt{order:0;grid-row:4;align-self:center;margin:0!important;font-size:clamp(14px,4.1vw,18px);line-height:1.2;}
+.reading-game .rg-result-body{display:flex;flex-direction:column;gap:8px;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 2px 9px;}
+.reading-game .rg-result-actions{flex:0 0 auto;display:flex;flex-direction:column;gap:8px;padding-top:8px;border-top:1px solid #e2eadf;background:#f4f8ef;}
+.reading-game .rg-result-actions .rg-next,.reading-game .rg-result-actions .rg-round-actions{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;width:100%!important;margin:0!important;}
+@media(max-width:600px){
+ .reading-game.is-answered .rg-result-dock{position:absolute!important;display:flex!important;flex-direction:column;overflow:hidden!important;top:12px!important;bottom:74px!important;left:16px!important;right:16px!important;max-height:calc(100% - 86px)!important;padding:48px 13px 12px!important;gap:0!important;}
+ .reading-game.is-answered .rg-result-body{flex:1 1 auto;overflow-y:auto;}
+ .reading-game.is-answered .rg-result-actions{flex:0 0 auto;padding:9px 0 0;}
+ .reading-game.is-answered .rg-result-actions .rg-next,.reading-game.is-answered .rg-result-actions .rg-round-actions{position:relative!important;bottom:auto!important;min-height:48px!important;}
+ .reading-game.is-answered .rg-correction-choice img{height:clamp(62px,10vh,91px);}
+}
+
+/* 301.313: single-glance result, no secondary quiz and no scrolling. */
+@media(max-width:600px){
+ .reading-game.is-answered .rg-result-dock{top:50%!important;bottom:auto!important;left:16px!important;right:16px!important;max-height:calc(100% - 36px)!important;height:auto!important;transform:translateY(-50%);animation:none!important;padding:42px 14px 14px!important;gap:5px!important;overflow:hidden!important;}
+ .reading-game.is-answered .rg-result-body{display:flex;flex-direction:column;flex:0 1 auto;min-height:0;gap:7px;overflow:hidden!important;padding:0!important;}
+ .reading-game.is-answered .rg-result-actions{flex:0 0 auto;margin-top:6px;padding-top:8px;}
+ .reading-game.is-answered .rg-feedback{min-height:34px!important;font-size:clamp(15px,4vw,18px)!important;gap:3px!important;}
+ .reading-game.is-answered .rg-feedback .rg-feedback-mascot{max-height:32px!important;max-width:36px!important;}
+ .reading-game.is-answered .rg-answer-reason{margin:0!important;font-size:clamp(11px,3.3vw,13px)!important;line-height:1.35!important;font-weight:650!important;}
+ .reading-game.is-answered .rg-result-artwork:not([hidden]){gap:8px!important;margin:0 auto!important;}
+ .reading-game.is-answered .rg-result-artwork img{height:clamp(58px,10vh,85px)!important;width:min(30vw,118px)!important;}
+ .reading-game.is-answered .rg-result-art-card{gap:2px;font-size:11px;}
+ .reading-game.is-answered .rg-meaning.has-answer{min-height:0!important;font-size:13px!important;padding:6px 8px!important;margin:0!important;}
+ .reading-game.is-answered .rg-result-actions .rg-next,.reading-game.is-answered .rg-result-actions .rg-round-actions{min-height:48px!important;}
+}
