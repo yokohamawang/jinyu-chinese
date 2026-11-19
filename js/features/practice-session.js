@@ -7,7 +7,8 @@ function prepareQuestionLayout(){
  document.body.classList.add('ps-question-session');
  const title=reviewOnly?'もういちどチャレンジ':pageTitles[track]||'練習';
  document.getElementById('practiceTopTitle').textContent=title;
- main.querySelector('.ps-session-heading')?.remove();
+ const heading=main.querySelector('.ps-session-heading');
+ if(heading)heading.hidden=true;
  document.body.append(document.querySelector('.ps-action-dock'));
 }
 function revealQuestion(){
