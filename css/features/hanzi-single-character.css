@@ -1,0 +1,77 @@
+/* Koepanda 301.316 — one task per viewport, shared lesson and correction language. */
+.kp316-shell,.kp316-next{display:none}
+body.kp316-active .kp316-shell,body.kp316-active .kp316-next{display:block}
+body.kp316-active .pre4-learning-nav{margin:0 0 8px;padding:0;min-height:44px}
+body.kp316-active .pre4-word-nav,
+body.kp316-active .pre4-current,
+body.kp316-active .character-nav,
+body.kp316-active .write-character-nav,
+body.kp316-active .tip,
+body.kp316-active .title-line{display:none!important}
+body.kp316-active .pre4-learning{padding:0;min-height:0}
+body.kp316-active .app{padding:8px 16px calc(90px + env(safe-area-inset-bottom));max-width:520px}
+body.kp316-active .top{min-height:42px}
+body.kp316-active .lesson{grid-template-columns:76px minmax(0,1fr) 46px;gap:12px;padding:10px 14px;min-height:100px;border-radius:24px;margin:8px 0}
+body.kp316-active .hanzi{width:76px;height:76px;font-size:58px;border-radius:19px}
+body.kp316-active .lesson .reading{font-size:clamp(20px,5vw,26px)}
+body.kp316-active .lesson .meaning{line-height:1.4;overflow-wrap:normal;word-break:normal}
+body.kp316-active .lesson .speaker{width:44px;height:44px}
+.kp316-character-nav{display:grid;grid-template-columns:48px 1fr 48px;gap:12px;align-items:center;margin:10px 0}
+.kp316-character-nav button{min-height:44px;background:#eaf6ef;border-radius:15px;color:#165b53;font-weight:850;font-size:20px}
+.kp316-character-nav button:nth-child(2){background:#fffef9;border:1px solid #cce7d9;font-size:16px}
+.kp316-character-nav button:disabled{opacity:.3}
+.kp316-character-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;padding:10px;border-radius:18px;background:#f0f8f2;margin-bottom:10px}
+.kp316-character-list[hidden]{display:none}
+.kp316-character-list button{min-height:44px;border-radius:12px;background:#fffef9;color:#1a6056;font-size:23px}
+.kp316-character-list button.current{background:#087d71;color:white}
+body.kp316-active .progress{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 12px}
+body.kp316-active .progress .step-connector{display:none}
+body.kp316-active .progress .phase{min-width:0;min-height:46px;padding:9px 4px;border-radius:14px;font-size:14px;border:1px solid #d9e9df}
+body.kp316-active .progress .phase.on{background:#0a8f80;color:white;border-color:#0a8f80}
+body.kp316-active .board{box-shadow:none;background:#e4f5ed;border:1px solid #d3ebdf;border-radius:26px;padding:10px;margin:8px 0 12px}
+body.kp316-active .board-head{min-height:42px;padding:0 8px 5px}
+body.kp316-active .paper{width:min(100%,calc(100dvh - 420px));min-width:0;max-width:430px;min-height:235px;margin:0 auto;aspect-ratio:1;border-radius:22px}
+body.kp316-active .stroke-controls{grid-template-columns:repeat(4,44px) minmax(84px,1fr);gap:6px;padding:10px 2px 0}
+body.kp316-active .stroke-controls button{border-radius:12px}
+body.kp316-active .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 10px}
+body.kp316-active .controls .write-nav-row{display:none}
+body.kp316-active .controls button{min-height:48px;font-size:15px;border-radius:16px;padding:7px}
+body.kp316-active .kp316-next{position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:10;background:#f4faf4e8;padding:8px;border-radius:20px;backdrop-filter:blur(8px)}
+.kp316-next button{border-radius:15px;min-height:50px;font-weight:850}
+#kp316Continue{display:block;width:100%;background:#098f81;color:#fff;font-size:17px;box-shadow:0 4px 0 #08756c}
+#kp316Return{width:100%;margin-top:8px;background:#e9f5ed;color:#185e55}
+body.kp316-active .kp316-next button:active,.kp316-overlay button:active,.kp316-quiz button:active{transform:translateY(2px)}
+.kp316-overlay,.kp316-quiz{position:fixed;inset:0;z-index:1000;background:#103f3680;display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 16px)}
+.kp316-overlay[hidden],.kp316-quiz[hidden]{display:none!important}
+.kp316-modal,.kp316-quiz-panel{position:relative;width:min(100%,500px);max-height:100%;overflow:auto;border-radius:28px;background:#fffdf7;box-shadow:0 22px 45px #143f3b39;padding:clamp(18px,4vw,28px);display:flex;flex-direction:column;align-items:stretch;gap:clamp(12px,2vh,20px)}
+.kp316-close{position:absolute;right:13px;top:13px;width:42px;height:42px;border-radius:50%;font-size:27px;color:#246b61;background:#e7f5ec;z-index:2}
+.kp316-mascot{height:92px;display:grid;place-items:center;padding-right:36px}
+.kp316-mascot img{width:90px;height:90px;object-fit:contain}
+.kp316-modal h2{text-align:center;font-size:clamp(20px,5vw,25px);color:#15594f;line-height:1.25;margin:0}
+.kp316-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kp316-example{min-width:0;border:2px solid #b5e5cb;border-radius:20px;background:#f4fbf6;padding:10px 6px 12px;text-align:center}
+.kp316-example.wrong{border-color:#f5b6a7;background:#fff5f1}
+.kp316-glyph{display:grid;place-items:center;min-height:clamp(118px,23vh,220px);font-family:serif;font-size:clamp(74px,20vw,116px);font-weight:700;color:#15594f}
+.kp316-example strong{display:block;font-size:clamp(13px,3.5vw,16px);line-height:1.4;white-space:normal}
+.kp316-example.correct strong{color:#168363}
+.kp316-example.wrong strong{color:#d65f4f}
+#kp316Hint{padding:13px;background:#eaf7ee;border-radius:15px;color:#275f52;text-align:center;font-size:clamp(15px,3.8vw,18px);line-height:1.45;margin:0}
+.kp316-primary{width:100%;min-height:54px;border-radius:17px;background:#098f81;color:white;font-size:17px;font-weight:850;box-shadow:0 4px 0 #08756c}
+.kp316-quiz-panel{gap:18px}
+.kp316-quiz-head{display:flex;justify-content:space-between;align-items:center;font-size:20px;color:#15594f}
+.kp316-quiz-head button{width:42px;height:42px;border-radius:50%;background:#e7f5ec;color:#185d54;font-size:25px}
+.kp316-quiz-prompt{margin:0;font-size:15px;text-align:center;color:#647b70}
+.kp316-quiz-info{display:flex;justify-content:center;align-items:center;gap:18px;min-height:94px;border-radius:20px;background:#ecf8f0;font-size:29px;font-weight:850}
+.kp316-quiz-info button{width:52px;height:52px;border-radius:50%;background:#0a9082;color:white;font-size:24px}
+.kp316-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kp316-choices button{min-height:clamp(95px,20vh,160px);border:2px solid #d7eadc;background:#fff;border-radius:21px;color:#15594f;font-family:serif;font-size:clamp(56px,14vw,78px)}
+.kp316-choices button.correct{border-color:#0e9f78;background:#e4f9ec}
+.kp316-quiz-feedback{margin:0;text-align:center;font-size:17px;color:#168363;min-height:32px}
+.kp316-inline-next{display:block;width:100%;min-height:48px;border-radius:15px;background:#098f81;color:white;font-weight:850;margin-top:14px}
+@media(max-height:720px){
+  .kp316-modal{gap:9px;padding:14px}
+  .kp316-mascot{height:65px}.kp316-mascot img{width:65px;height:65px}
+  .kp316-glyph{min-height:105px;font-size:72px}
+  .kp316-quiz-panel{gap:10px}
+  .kp316-choices button{min-height:90px}
+}
