@@ -144,3 +144,11 @@ body .ps-top .ps-count{min-width:50px;margin-left:0;flex-shrink:0}
 .fx-follow-actions>#to-ex{grid-column:2;grid-row:1;min-height:46px;padding:8px 5px;font-size:13px}
 .fx-follow-actions>#followPlayback:not([hidden]){grid-column:1/-1;grid-row:2}
 .fx-follow-dock>small{margin-top:5px;font-size:10px}
+
+/* Guide the eye to the person speaking, without moving the card for every syllable. */
+.fx-turn.is-speaking{border-color:#2eae86;box-shadow:0 0 0 3px #b9efd9,0 14px 30px #247f5730}
+.fx-turn.is-speaking .fx-speaker{color:#12795c}
+.fx-turn.is-speaking .fx-speaker::after{content:'話しています';display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;background:#dff8ec;color:#147d60;font-size:11px;font-weight:850}
+.fx-turn.is-speaking .fx-speaker i{background:#dcf8e9;box-shadow:0 0 0 4px #bcebd3;animation:fx-speaking-avatar 1.25s ease-in-out infinite alternate}
+@keyframes fx-speaking-avatar{from{box-shadow:0 0 0 2px #bcebd3}to{box-shadow:0 0 0 7px #bcebd366}}
+@media(prefers-reduced-motion:reduce){.fx-turn.is-speaking .fx-speaker i{animation:none}}
