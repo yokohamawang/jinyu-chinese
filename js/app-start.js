@@ -322,7 +322,7 @@ try {
     const stamps=shown.length?shown.map(item=>`<span class="kp-study-stamp" title="${safe(item.name)}"><img src="${img(item.id)}" alt="${safe(item.glyph)}"></span>`).join(''):`<span class="kp-study-stamp-empty">${dashboardStatus==='error'?'シールを読み込めませんでした':dashboardStatus==='loading'||dashboardStatus==='idle'?'シールを確認中…':'学習してシールを集めよう'}</span>`;
     return `<section class="kp-study-stamps" aria-label="集めたスタンプ"><div class="kp-study-stamps-head"><div><b>集めたスタンプ</b><small>${countLabel}</small></div><a href="#rewards" data-action="open-rewards">一覧を見る <span aria-hidden="true">›</span></a></div><div class="kp-study-stamp-row">${stamps}</div></section>`;
   }
-  function pinyinContinueCard(){
+  function pinyinContinueCard(safe){
     const chapterState=window.KP_PINYIN_CHAPTER_STATE;
     const lastUnit=chapterState?.read()?.lastUnit;
     const chapter=window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>unit.id===lastUnit);
@@ -369,7 +369,7 @@ try {
   const feature=window.KoepandaFeatures.learn=function({state,STICKERS,img,safe}){
     return `<section class="kp-learning-home" aria-label="学習ホーム">
       ${recordCard()}
-      ${pinyinContinueCard()}
+      ${pinyinContinueCard(safe)}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
         <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.266" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454" loading="eager" decoding="async" fetchpriority="high">
@@ -465,11 +465,11 @@ try {
     const progressKey='koepanda.hanzi.unit-progress.v1';try{const ids=JSON.parse(localStorage.getItem(progressKey)||'[]');if(Array.isArray(ids))ctx.state.completedUnitIds=ids.filter(x=>typeof x==='string')}catch(_){}
   };
   const QUESTIONS=[
-    {id:'nihao',q:'「你好」はどんなあいさつ？',a:['こんにちは','ありがとう','おやすみ'],correct:0,sticker:'a'},
-    {id:'shui',q:'「水」の意味は？',a:['山','水','人'],correct:1,sticker:'shui'},
-    {id:'ren',q:'「人」のピンインは？',a:['rén','shuǐ','hǎo'],correct:0,sticker:'ren'},
-    {id:'hao',q:'「好」の意味に近いのは？',a:['よい','大きい','あした'],correct:0,sticker:'hao'},
-    {id:'shan',q:'「山」のピンインは？',a:['mā','shān','nǐ'],correct:1,sticker:'shan'}
+    {id:'nihao',q:'「你好」はどんなあいさつ？',a:['こんにちは','ありがとう','おやすみ'],correct:0,sticker:'a',why:'你好（nǐ hǎo）は相手に会ったときのあいさつ。ありがとうは「谢谢」です。'},
+    {id:'shui',q:'「水」の意味は？',a:['山','水','人'],correct:1,sticker:'shui',why:'水（shuǐ）は飲む水。山は shān、人は rén です。'},
+    {id:'ren',q:'「人」のピンインは？',a:['rén','shuǐ','hǎo'],correct:0,sticker:'ren',why:'人は rén（2声）。低めから上げる音です。shuǐ は水、hǎo は好です。'},
+    {id:'hao',q:'「好」の意味に近いのは？',a:['よい','大きい','あした'],correct:0,sticker:'hao',why:'好（hǎo）は「よい・好き」の意味。大きいは「大」、明日は「明天」です。'},
+    {id:'shan',q:'「山」のピンインは？',a:['mā','shān','nǐ'],correct:1,sticker:'shan',why:'山は shān（1声）。高い声を平らに保ちます。mā と nǐ は別の音です。'}
   ];
   let quizIndex=0,quizSet=[],quizMode='challenge',quizClaimToken=null,quizScore=0;
   window.KoepandaFeatures.practice.actions={
@@ -484,8 +484,8 @@ try {
   };
   window.KoepandaFeatures.practice.questions=QUESTIONS;
   function startQuiz(ctx){quizMode='challenge';quizClaimToken=newClaimToken();quizScore=0;quizSet=QUESTIONS.map((q,i)=>i).sort(()=>Math.random()-.5);quizIndex=0;renderQuiz(ctx);}
-  function renderQuiz(ctx,feedback){const main=ctx.root.querySelector('#kpFeatureMain'),q=QUESTIONS[quizSet[quizIndex]];main.innerHTML=`${ctx.head('ミニクイズ','5問チャレンジ','答えた問題は、次の復習タイミングに反映するよ。')}<div class="kp-quiz-progress"><span style="width:${(quizIndex/quizSet.length)*100}%"></span></div><section class="kp-quiz-card"><span class="kp-eyebrow">${quizIndex+1} / ${quizSet.length} 問</span><h2>${q.q}</h2><div class="kp-quiz-options">${q.a.map((x,i)=>`<button data-action="quiz-answer" data-answer="${i}" ${feedback?'disabled':''}>${ctx.safe(x)}</button>`).join('')}</div>${feedback?`<div class="kp-quiz-feedback ${feedback.ok?'good':'again'}">${feedback.ok?'せいかい！ごほうびに近づいたよ ✨':'だいじょうぶ。まちがいノートに入れて、あとで復習しよう。'}<button data-action="quiz-next" class="kp-primary">${quizIndex===quizSet.length-1?'結果を見る':'つぎへ'}</button></div>`:''}</section><button class="kp-text-button" data-go="practice">練習ひろばへ戻る</button>`;}
-  function answer(ctx,index){const q=QUESTIONS[quizSet[quizIndex]],ok=index===q.correct;ctx.state.lastQuiz=Date.now();recordAttempt(q.id,'intro-mini-quiz',ok);if(ok){quizScore++;ctx.state.mastered[q.id]=(ctx.state.mastered[q.id]||0)+1;const old=ctx.state.wrongs[q.id];if(old){old.streak=(old.streak||0)+1;if(old.streak>=5)delete ctx.state.wrongs[q.id];else{const intervals=[3,7,14,30];old.due=Date.now()+intervals[Math.min(old.streak-1,intervals.length-1)]*86400000;}}}else{const old=ctx.state.wrongs[q.id]||{count:0,streak:0};old.count++;old.streak=0;old.due=Date.now()+86400000;old.question=q.id;ctx.state.wrongs[q.id]=old;}ctx.save();renderQuiz(ctx,{ok});}
+  function renderQuiz(ctx,feedback){const main=ctx.root.querySelector('#kpFeatureMain'),q=QUESTIONS[quizSet[quizIndex]];main.innerHTML=`${ctx.head('ミニクイズ','5問チャレンジ','答えた問題は、次の復習タイミングに反映するよ。')}<div class="kp-quiz-progress"><span style="width:${(quizIndex/quizSet.length)*100}%"></span></div><section class="kp-quiz-card"><span class="kp-eyebrow">${quizIndex+1} / ${quizSet.length} 問</span><h2>${q.q}</h2><div class="kp-quiz-options">${q.a.map((x,i)=>`<button data-action="quiz-answer" data-answer="${i}" ${feedback?'disabled':''}>${ctx.safe(x)}${feedback&&i===q.correct?' ✓':''}${feedback&&i===feedback.selected&&!feedback.ok?' ✕':''}</button>`).join('')}</div>${feedback?`<div class="kp-quiz-feedback ${feedback.ok?'good':'again'}" role="status">${feedback.ok?'せいかい！ ✨':'おしい！ 正解は「'+ctx.safe(q.a[q.correct])+'」です。'}<p class="kp-quiz-explanation">${ctx.safe(q.why)}</p><button data-action="quiz-next" class="kp-primary">${quizIndex===quizSet.length-1?'結果を見る':'つぎへ'}</button></div>`:''}</section><button class="kp-text-button" data-go="practice">練習ひろばへ戻る</button>`;}
+  function answer(ctx,index){const q=QUESTIONS[quizSet[quizIndex]],ok=index===q.correct;ctx.state.lastQuiz=Date.now();recordAttempt(q.id,'intro-mini-quiz',ok);if(ok){quizScore++;ctx.state.mastered[q.id]=(ctx.state.mastered[q.id]||0)+1;const old=ctx.state.wrongs[q.id];if(old){old.streak=(old.streak||0)+1;if(old.streak>=5)delete ctx.state.wrongs[q.id];else{const intervals=[3,7,14,30];old.due=Date.now()+intervals[Math.min(old.streak-1,intervals.length-1)]*86400000;}}}else{const old=ctx.state.wrongs[q.id]||{count:0,streak:0};old.count++;old.streak=0;old.due=Date.now()+86400000;old.question=q.id;ctx.state.wrongs[q.id]=old;}ctx.save();renderQuiz(ctx,{ok,selected:index});}
   function recordAttempt(itemKey,courseKey,isCorrect){
     const api=window.KP_ACCOUNT_API;
     if(api&&typeof api.recordPracticeAttempt==='function')api.recordPracticeAttempt('quiz:'+itemKey,courseKey,isCorrect).catch(error=>console.warn('[Koepanda] answer sync unavailable:',error));
@@ -742,12 +742,35 @@ try {
   function lineMarkup(line,index){let syllables=line.py.trim().split(/\s+/),pyIndex=0;const chars=[...line.zh].map((char,charIndex)=>{const han=/\p{Script=Han}/u.test(char),py=han?(syllables[pyIndex++]||''):'';return `<span class="kp-story-char${han?'':' is-punct'}" data-audio-char-index="${charIndex}"><small>${safe(py)}</small><b>${safe(char)}</b></span>`;}).join('');return `<article class="kp-story-line" data-story-line="${index}"><p class="kp-story-hanzi" lang="zh-CN">${chars}</p><p class="kp-story-translation" lang="ja">${safe(line.ja)}</p></article>`;}
   function articleMarkup(head,s){const text=s.lines.map((line,i)=>lineMarkup(line,i)+(i===1?`<figure class="kp-story-comic">${storyImage(s,'kp-story-comic-image')}<figcaption>${safe(s.caption)}</figcaption></figure>`:'')).join('');return `${head('ストーリー','聞いて読む','全文を表示。読み上げ中の漢字が一字ずつ光ります。')}<button type="button" class="kp-story-back" data-action="story-back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ストーリー一覧</span></button><section class="kp-story-article tone-${s.tone}"><header class="kp-story-article-hero"><div><small>${safe(s.theme)}</small><h2>${safe(s.title)}</h2><p>${safe(s.subtitle)}</p></div></header><p class="kp-story-prototype-note">一篇を最後まで聞くと、今日の学習として記録されます。</p><p class="kp-story-summary">${safe(s.summary)}</p><div class="kp-story-lines">${text}</div>${lastCompletedId===s.id?'<p class="kp-story-done" role="status">🎉 最後まで聞けたね！今日の学習を記録しました。</p>':''}</section><div class="kp-story-player" role="group" aria-label="ストーリー再生"><button type="button" class="kp-story-play" data-action="story-toggle">▶　物語を聞く</button><label class="kp-story-speed">速度<select data-action="story-rate" aria-label="再生速度"><option value="0.22" ${rate===.22?'selected':''}>ゆっくり</option><option value="0.45" ${rate===.45?'selected':''}>ふつう</option></select></label><button type="button" class="kp-story-return" data-action="story-back" aria-label="ストーリー一覧へ戻る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><p class="kp-story-status" data-story-status role="status" aria-live="polite">${rate===.22?'ゆっくり':'ふつう'}再生を選択中です。</p>`;}
   function feature({head}){const s=selected();return s?articleMarkup(head,s):listMarkup(head);}
-  function activeChar(lineIndex,charIndex,length=1){const line=document.querySelector(`[data-story-line="${lineIndex}"]`);if(!line)return;line.querySelectorAll('.kp-story-char').forEach((el,i)=>el.classList.toggle('is-speaking-char',i>=charIndex&&i<charIndex+length));line.classList.add('is-speaking');}
+  function storyVisibleBounds(){
+    const player=document.querySelector('.kp-story-player');
+    const nav=document.querySelector('.kp-feature-nav');
+    const viewport=window.visualViewport?.height||window.innerHeight;
+    return {top:Math.max(12,(nav?.getBoundingClientRect().bottom||0)+12),bottom:Math.min(viewport-18,(player?.getBoundingClientRect().top||viewport)-18)};
+  }
+  function focusStoryLine(line){
+    if(!line)return;
+    const rect=line.getBoundingClientRect(),band=storyVisibleBounds();
+    if(rect.top<band.top||rect.bottom>band.bottom)line.scrollIntoView({behavior:'auto',block:'start'});
+  }
+  function activeChar(lineIndex,charIndex,length=1){
+    const line=document.querySelector(`[data-story-line="${lineIndex}"]`);if(!line)return;
+    let focus=null;
+    line.querySelectorAll('.kp-story-char').forEach((el,i)=>{
+      const active=i>=charIndex&&i<charIndex+length;
+      el.classList.toggle('is-speaking-char',active);
+      if(active&&!focus)focus=el;
+    });
+    line.classList.add('is-speaking');
+    if(focus&&isPlaying){const rect=focus.getBoundingClientRect(),band=storyVisibleBounds();
+      if(rect.top<band.top||rect.bottom>band.bottom)focus.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }
   function fallbackHighlight(lineIndex,line,token){clearFallback();const chars=[...line.zh];highlightState={lineIndex,chars,index:-1,token};const state=highlightState,interval=Math.round(210/rate);activeChar(lineIndex,0);state.index=0;const timer=setInterval(()=>{if(isPaused)return;if(token!==playToken||highlightState!==state){clearInterval(timer);return;}if(state.index<chars.length-1){state.index++;activeChar(lineIndex,state.index);}else{clearInterval(timer);}},interval);fallbackTimers.push(timer);}
   function completeFallback(token,done){const state=highlightState;if(!state||state.token!==token){done();return;}fallbackTimers.forEach(clearInterval);fallbackTimers=[];const advance=()=>{if(token!==playToken||highlightState!==state)return;if(state.index<state.chars.length-1){state.index++;activeChar(state.lineIndex,state.index);const timer=setTimeout(advance,75);fallbackTimers.push(timer);}else{highlightState=null;done();}};advance();}
   function persistStoryDay(day){Promise.resolve().then(async()=>{try{const api=window.KP_ACCOUNT_API,client=api&&await api.getClient();if(!client)return;const session=await client.auth.getSession(),user=session?.data?.session?.user;if(!user)return;const result=await client.from('learning_days').insert({user_id:user.id,study_date:day,source:'completed_story'});if(result.error&&result.error.code!=='23505')throw result.error;}catch(error){console.warn('[Koepanda] story day sync failed:',error);}});}
   function finishStory(s,ctx){lastCompletedId=s.id;const today=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));const day=[today.getFullYear(),String(today.getMonth()+1).padStart(2,'0'),String(today.getDate()).padStart(2,'0')].join('-');if(typeof window.completeDailyGoal==='function')window.completeDailyGoal();persistStoryDay(day);window.dispatchEvent(new CustomEvent('kp-learning-activity-recorded',{detail:{day,source:'story',unitId:s.id}}));ctx.render();}
-  function speakAt(index,token,s,ctx){if(token!==playToken)return;currentLine=index;currentContext=ctx;if(index>=s.lines.length){stop();finishStory(s,ctx);return;}const lineData=s.lines[index],line=document.querySelector(`[data-story-line="${index}"]`);document.querySelectorAll('.kp-story-line').forEach(el=>el.classList.toggle('is-speaking',el===line));line?.scrollIntoView({behavior:'smooth',block:'nearest'});const status=document.querySelector('[data-story-status]');if(status)status.textContent=`${index+1} / ${s.lines.length} 文を聞いています。`;try{const u=new SpeechSynthesisUtterance(lineData.zh);activeUtterance=u;u.lang='zh-CN';u.rate=rate;const voices=window.speechSynthesis.getVoices();u.voice=voices.find(v=>/^zh[-_](CN|Hans)/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;u.onstart=()=>fallbackHighlight(index,lineData,token);u.onboundary=e=>{if(token!==playToken||isPaused||e.name==='sentence')return;fallbackTimers.forEach(clearInterval);fallbackTimers=[];activeChar(index,[...lineData.zh.slice(0,e.charIndex)].length,e.charLength||1);};u.onend=()=>{if(token!==playToken)return;clearFallback();const next=()=>{if(token!==playToken)return;if(isPaused){fallbackTimers.push(setTimeout(next,150));return;}speakAt(index+1,token,s,ctx)};fallbackTimers.push(setTimeout(next,rate===.22?1400:1000));};u.onerror=event=>{if(token!==playToken)return;console.warn('[Koepanda] story speech failed:',event.error);stop();if(status)status.textContent='音声を開始できませんでした。もう一度、再生ボタンを押してください。';};window.speechSynthesis.resume();(window.KP_AUDIO_SESSION&&window.KP_AUDIO_SESSION.preparePlayback(),window.speechSynthesis.speak(u));}catch(_){stop();if(status)status.textContent='この端末では音声を再生できません。';}}
+  function speakAt(index,token,s,ctx){if(token!==playToken)return;currentLine=index;currentContext=ctx;if(index>=s.lines.length){stop();finishStory(s,ctx);return;}const lineData=s.lines[index],line=document.querySelector(`[data-story-line="${index}"]`);document.querySelectorAll('.kp-story-line').forEach(el=>el.classList.toggle('is-speaking',el===line));focusStoryLine(line);const status=document.querySelector('[data-story-status]');if(status)status.textContent=`${index+1} / ${s.lines.length} 文を聞いています。`;try{const u=new SpeechSynthesisUtterance(lineData.zh);activeUtterance=u;u.lang='zh-CN';u.rate=rate;const voices=window.speechSynthesis.getVoices();u.voice=voices.find(v=>/^zh[-_](CN|Hans)/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;u.onstart=()=>fallbackHighlight(index,lineData,token);u.onboundary=e=>{if(token!==playToken||isPaused||e.name==='sentence')return;fallbackTimers.forEach(clearInterval);fallbackTimers=[];activeChar(index,[...lineData.zh.slice(0,e.charIndex)].length,e.charLength||1);};u.onend=()=>{if(token!==playToken)return;clearFallback();const next=()=>{if(token!==playToken)return;if(isPaused){fallbackTimers.push(setTimeout(next,150));return;}speakAt(index+1,token,s,ctx)};fallbackTimers.push(setTimeout(next,rate===.22?1400:1000));};u.onerror=event=>{if(token!==playToken)return;console.warn('[Koepanda] story speech failed:',event.error);stop();if(status)status.textContent='音声を開始できませんでした。もう一度、再生ボタンを押してください。';};window.speechSynthesis.resume();(window.KP_AUDIO_SESSION&&window.KP_AUDIO_SESSION.preparePlayback(),window.speechSynthesis.speak(u));}catch(_){stop();if(status)status.textContent='この端末では音声を再生できません。';}}
   function start(ctx){const s=selected();if(!s)return;if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance){const status=document.querySelector('[data-story-status]');if(status)status.textContent='この端末では音声再生を利用できません。';return;}stop();lastCompletedId=null;isPlaying=true;const token=playToken;syncPlayButton();speakAt(0,token,s,ctx);}
   feature.actions={
     'story-open':(ctx,button)=>{stop();selectedId=button.dataset.story;lastCompletedId=null;ctx.render();},
@@ -1936,7 +1959,9 @@ try {
   function img(id){const s=STICKERS.find(x=>x.id===id);return s?'./assets/stickers/'+s.art:'';}
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  let root, page=new URLSearchParams(location.search).get('open')==='practice'?'practice':'learn', selectedSticker=null, pendingPinyin=false;
+  const initialPage=new URLSearchParams(location.search).get('open');
+  let root, page=['practice','book'].includes(initialPage)?initialPage:'learn', selectedSticker=null, pendingPinyin=false;
+  if(initialPage==='book'){state.bookOpen=true;state.bookReady=false;state.bookFocusInventory=true;}
   let ownPresenceClient=null,ownPresenceChannel=null,ownPresenceAuth=null,ownPresenceBusy=false;
   async function syncOwnPresence(){
     if(ownPresenceBusy)return;ownPresenceBusy=true;
