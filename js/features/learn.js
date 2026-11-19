@@ -81,7 +81,7 @@
     const stamps=shown.length?shown.map(item=>`<span class="kp-study-stamp" title="${safe(item.name)}"><img src="${img(item.id)}" alt="${safe(item.glyph)}"></span>`).join(''):`<span class="kp-study-stamp-empty">${dashboardStatus==='error'?'シールを読み込めませんでした':dashboardStatus==='loading'||dashboardStatus==='idle'?'シールを確認中…':'学習してシールを集めよう'}</span>`;
     return `<section class="kp-study-stamps" aria-label="集めたスタンプ"><div class="kp-study-stamps-head"><div><b>集めたスタンプ</b><small>${countLabel}</small></div><a href="#rewards" data-action="open-rewards">一覧を見る <span aria-hidden="true">›</span></a></div><div class="kp-study-stamp-row">${stamps}</div></section>`;
   }
-  function pinyinContinueCard(){
+  function pinyinContinueCard(safe){
     const chapterState=window.KP_PINYIN_CHAPTER_STATE;
     const lastUnit=chapterState?.read()?.lastUnit;
     const chapter=window.KP_PINYIN_PLAN_SCHEDULE?.units?.find(unit=>unit.id===lastUnit);
@@ -128,7 +128,7 @@
   const feature=window.KoepandaFeatures.learn=function({state,STICKERS,img,safe}){
     return `<section class="kp-learning-home" aria-label="学習ホーム">
       ${recordCard()}
-      ${pinyinContinueCard()}
+      ${pinyinContinueCard(safe)}
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
         <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.266" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454" loading="eager" decoding="async" fetchpriority="high">
