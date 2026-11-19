@@ -1,1 +1,1 @@
-Koepanda 301.311 — Hanzi correction dialog navigation and single-character focus, cumulative from 301.304, NOT DEPLOYED
+Koepanda 301.313 — One-glance Hanzi result dialog without scrolling, cumulative from 301.304, NOT DEPLOYED
