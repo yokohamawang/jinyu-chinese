@@ -1,1 +1,1 @@
-Koepanda 301.308 — cumulative integration candidate from 301.304, NOT DEPLOYED
+Koepanda 301.310 — Guided Hanzi mistake correction in result dialog, cumulative from 301.304, NOT DEPLOYED
