@@ -1,4 +1,4 @@
-/* Koepanda 301.316 — one task per viewport, shared lesson and correction language. */
+/* Koepanda 301.317 — stable square canvas and viewport-safe controls. */
 .kp316-shell,.kp316-next{display:none}
 body.kp316-active .kp316-shell,body.kp316-active .kp316-next{display:block}
 body.kp316-active .pre4-learning-nav{margin:0 0 8px;padding:0;min-height:44px}
@@ -30,20 +30,24 @@ body.kp316-active .progress .phase{min-width:0;min-height:46px;padding:9px 4px;b
 body.kp316-active .progress .phase.on{background:#0a8f80;color:white;border-color:#0a8f80}
 body.kp316-active .board{box-shadow:none;background:#e4f5ed;border:1px solid #d3ebdf;border-radius:26px;padding:10px;margin:8px 0 12px}
 body.kp316-active .board-head{min-height:42px;padding:0 8px 5px}
-body.kp316-active .paper{width:min(100%,calc(100dvh - 420px));min-width:0;max-width:430px;min-height:235px;margin:0 auto;aspect-ratio:1;border-radius:22px}
+/* The writing surface must remain square when Safari changes its viewport height. */
+body.kp316-active .paper{width:min(100%,430px);height:auto;min-width:0;min-height:0;max-width:430px;aspect-ratio:1 / 1;flex:none;margin:0 auto;border-radius:22px}
+body.kp316-active .paper canvas,body.kp316-active .paper .guides,body.kp316-active .paper .copy-guide{width:100%;height:100%}
 body.kp316-active .stroke-controls{grid-template-columns:repeat(4,44px) minmax(84px,1fr);gap:6px;padding:10px 2px 0}
 body.kp316-active .stroke-controls button{border-radius:12px}
 body.kp316-active .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 10px}
 body.kp316-active .controls .write-nav-row{display:none}
 body.kp316-active .controls button{min-height:48px;font-size:15px;border-radius:16px;padding:7px}
-body.kp316-active .kp316-next{position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:10;background:#f4faf4e8;padding:8px;border-radius:20px;backdrop-filter:blur(8px)}
+/* Keep the primary action in normal flow so it never covers stroke/trace controls. */
+body.kp316-active .kp316-next{position:relative;bottom:auto;z-index:1;background:#f4faf4;padding:8px;border-radius:20px;margin:12px 0 8px}
 .kp316-next button{border-radius:15px;min-height:50px;font-weight:850}
 #kp316Continue{display:block;width:100%;background:#098f81;color:#fff;font-size:17px;box-shadow:0 4px 0 #08756c}
 #kp316Return{width:100%;margin-top:8px;background:#e9f5ed;color:#185e55}
 body.kp316-active .kp316-next button:active,.kp316-overlay button:active,.kp316-quiz button:active{transform:translateY(2px)}
-.kp316-overlay,.kp316-quiz{position:fixed;inset:0;z-index:1000;background:#103f3680;display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 16px)}
+.kp316-overlay,.kp316-quiz{position:fixed;inset:0;z-index:1000;background:#103f3680;display:flex;align-items:center;justify-content:center;box-sizing:border-box;height:100dvh;padding:calc(env(safe-area-inset-top) + 12px) 14px calc(env(safe-area-inset-bottom) + 12px)}
 .kp316-overlay[hidden],.kp316-quiz[hidden]{display:none!important}
-.kp316-modal,.kp316-quiz-panel{position:relative;width:min(100%,500px);max-height:100%;overflow:auto;border-radius:28px;background:#fffdf7;box-shadow:0 22px 45px #143f3b39;padding:clamp(18px,4vw,28px);display:flex;flex-direction:column;align-items:stretch;gap:clamp(12px,2vh,20px)}
+.kp316-modal,.kp316-quiz-panel{position:relative;box-sizing:border-box;width:min(100%,500px);max-height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border-radius:28px;background:#fffdf7;box-shadow:0 22px 45px #143f3b39;padding:clamp(18px,4vw,28px);display:flex;flex-direction:column;align-items:stretch;gap:clamp(10px,1.5vh,18px)}
+.kp316-quiz-panel{padding-bottom:max(22px,env(safe-area-inset-bottom))}
 .kp316-close{position:absolute;right:13px;top:13px;width:42px;height:42px;border-radius:50%;font-size:27px;color:#246b61;background:#e7f5ec;z-index:2}
 .kp316-mascot{height:92px;display:grid;place-items:center;padding-right:36px}
 .kp316-mascot img{width:90px;height:90px;object-fit:contain}
@@ -64,10 +68,12 @@ body.kp316-active .kp316-next button:active,.kp316-overlay button:active,.kp316-
 .kp316-quiz-info{display:flex;justify-content:center;align-items:center;gap:18px;min-height:94px;border-radius:20px;background:#ecf8f0;font-size:29px;font-weight:850}
 .kp316-quiz-info button{width:52px;height:52px;border-radius:50%;background:#0a9082;color:white;font-size:24px}
 .kp316-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.kp316-choices button{min-height:clamp(95px,20vh,160px);border:2px solid #d7eadc;background:#fff;border-radius:21px;color:#15594f;font-family:serif;font-size:clamp(56px,14vw,78px)}
+.kp316-choices button{min-height:clamp(80px,15dvh,138px);border:2px solid #d7eadc;background:#fff;border-radius:21px;color:#15594f;font-family:serif;font-size:clamp(56px,14vw,78px)}
 .kp316-choices button.correct{border-color:#0e9f78;background:#e4f9ec}
 .kp316-quiz-feedback{margin:0;text-align:center;font-size:17px;color:#168363;min-height:32px}
 .kp316-inline-next{display:block;width:100%;min-height:48px;border-radius:15px;background:#098f81;color:white;font-weight:850;margin-top:14px}
+.kp316-quiz-feedback:has(.kp316-inline-next){min-height:65px}
+@media(max-width:380px){body.kp316-active .stroke-controls{grid-template-columns:repeat(4,minmax(34px,1fr));gap:6px}body.kp316-active .stroke-controls .speed{grid-column:1/-1}.kp316-quiz-info{min-height:74px}.kp316-choices{gap:9px}}
 @media(max-height:720px){
   .kp316-modal{gap:9px;padding:14px}
   .kp316-mascot{height:65px}.kp316-mascot img{width:65px;height:65px}
