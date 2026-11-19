@@ -10,6 +10,8 @@
 .ps-choice:disabled .ps-choice-pinyin{color:#607669}
 .ps-choice.is-correct::after{content:'✓';position:absolute;top:5px;right:8px;color:#087553;font-size:16px}
 .ps-feedback{font-size:13px;line-height:1.6;text-wrap:pretty}
+.ps-result-detail{white-space:pre-line;font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+#ps-record-status{padding:10px;margin:12px 0!important;border-radius:13px;background:#edf8f1;color:#32775c;font-size:13px}
 .ps-primary.is-pressed,.ps-audio.is-pressed,.ps-secondary.is-pressed{transform:translateY(4px) scale(.985);filter:brightness(.9);box-shadow:inset 0 2px 4px #17493626}
 .ps-top .ps-progress[hidden]{display:none!important}
 

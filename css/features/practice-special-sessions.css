@@ -119,6 +119,12 @@ body .ps-top .ps-count{min-width:50px;margin-left:0;flex-shrink:0}
 .fx-sentence-select:active,.fx-word:active,.fx-follow-dock button:active{filter:brightness(.93);transform:translateY(2px)}
 .fx-turn.is-speaking .fx-word.is-speaking{background:#fff1ae;border-radius:12px;box-shadow:0 3px 0 #ecd785}
 @media(prefers-reduced-motion:reduce){.fx-sentence-select:active,.fx-word:active,.fx-follow-dock button:active{transform:none}}
+.fx-feedback{white-space:pre-line;line-height:1.65}
+.fx-finish{padding-bottom:24px}
+.fx-finish h2{color:#287c68}
+.fx-finish .fx-record-status{padding:9px 12px;border-radius:13px;background:#edf8f1;color:#39755e;font-size:14px}
+.ps-main:has(.fx-audio-first)>#next{position:fixed;z-index:15;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 28px),680px);margin:0}
+.ps-main:has(.fx-audio-first){padding-bottom:90px}
 
 /* Scenario questions: no repeated preamble; keep the next action reachable. */
 .ps-main:has(.fx-check) .fx-scenario-head{display:none}
