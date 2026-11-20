@@ -152,4 +152,19 @@ body.kp316-active .kp321-task:not(.kp321-tracing) .kp321-body .paper{width:min(1
 body.kp316-active .kp321-task.kp321-tracing .kp321-body .paper{width:min(100%,405px,max(245px,calc(100dvh - 280px)))!important;max-width:405px!important}
 body.kp316-active .kp321-task.kp321-tracing .kp321-body .animation-hint{margin:8px 0 5px}
 body.kp316-active .kp321-body .animation-hint{display:none!important}
+/* 301.324: compact chapter bar, larger current glyph, no duplicate navigation. */
+body.kp316-active .pre4-learning-nav{display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px!important;margin:5px 0 13px!important;padding:0 2px!important;min-height:48px!important}
+body.kp316-active #backToPre4Route{font-size:15px!important;line-height:1.25!important;white-space:nowrap!important;min-height:43px!important;padding:9px 13px!important;border-radius:14px!important}
+body.kp316-active #pre4LessonProgress{display:block!important;min-width:0!important;font-size:15px!important;font-weight:700!important;line-height:1.35!important;text-align:right!important;white-space:normal!important;overflow-wrap:anywhere!important;color:#53766b!important}
+body.kp316-active:not(.focus-write) .lesson{grid-template-columns:116px minmax(0,1fr) 54px!important;min-height:172px!important;padding:19px!important;gap:12px!important;margin:13px 0 18px!important}
+body.kp316-active:not(.focus-write) .hanzi{width:116px!important;height:116px!important;font-size:90px!important;border-radius:23px!important}
+body.kp316-active:not(.focus-write) .lesson .reading{font-size:clamp(26px,7vw,34px)!important;line-height:1.2!important}
+body.kp316-active:not(.focus-write) .lesson .meaning{font-size:16px!important;line-height:1.5!important}
+body.kp316-active .kp316-next{display:none!important}
+@media(max-width:400px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:102px minmax(0,1fr) 48px!important;gap:9px!important;padding:15px!important;min-height:150px!important}body.kp316-active:not(.focus-write) .hanzi{width:102px!important;height:102px!important;font-size:80px!important}body.kp316-active #pre4LessonProgress{font-size:14px!important}}
+/* 301.325: one-step undo belongs on the writing surface, not in the toolbar. */
+#kp325Undo{display:none;position:absolute;right:11px;bottom:11px;z-index:8;align-items:center;justify-content:center;width:46px;height:46px;border:1px solid #d5e9dc;border-radius:15px;background:#fffcf1ef;color:#246b60;font-size:29px;font-weight:800;box-shadow:0 3px 9px #174a3820;touch-action:manipulation}
+.kp321-task.kp321-tracing #kp325Undo{display:flex!important}
+#kp325Undo:disabled{opacity:.38;box-shadow:none}
+#kp325Undo:active:not(:disabled){transform:translateY(2px)}
 @media(max-width:390px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:86px minmax(0,1fr) 52px;gap:10px;padding:14px}body.kp316-active:not(.focus-write) .hanzi{width:86px;height:86px;font-size:65px}body.kp316-active:not(.focus-write) .lesson .speaker{width:50px;height:50px}}
