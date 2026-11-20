@@ -54,7 +54,8 @@
   undoButton.id='kp325Undo';undoButton.type='button';
   undoButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   undoButton.setAttribute('aria-label','一画戻す');undoButton.title='一画戻す';
-  paper.append(undoButton);
+  // Keep the undo control adjacent to the writing pad, never over a glyph.
+  paper.after(undoButton);
   let undoHistory=[],pendingTrace=null;
   function updateUndo(){undoButton.disabled=undoHistory.length===0}
   traceCanvas.addEventListener('pointerdown',()=>{
