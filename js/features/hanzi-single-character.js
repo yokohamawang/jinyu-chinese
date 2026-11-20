@@ -6,6 +6,7 @@
   const lesson=$('pre4Learning'), game=$('readingGame'), app=document.querySelector('.app');
   if(!lesson||!game||!app)return;
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
+  const FIRST_UNIT='pre4-u01';
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
   const teacherArea=document.querySelector('.pre4-learning-nav');
@@ -47,6 +48,30 @@
   shell.innerHTML='<div class="kp316-character-nav"><button type="button" id="kp316Prev" aria-label="前の漢字">‹</button><button type="button" id="kp316Picker" aria-label="漢字一覧を開く">1 / 10</button><button type="button" id="kp316Next" aria-label="次の漢字">›</button></div><div class="kp316-character-list" id="kp316List" hidden></div>';
   const progress=document.querySelector('.progress');
   progress.before(shell);
+  const unitProgress=document.createElement('div');
+  unitProgress.id='kp350UnitProgress';
+  unitProgress.setAttribute('role','status');
+  unitProgress.setAttribute('aria-live','polite');
+  unitProgress.hidden=true;
+  progress.after(unitProgress);
+  const dailyToast=document.createElement('div');
+  dailyToast.id='kp352DailyToast';dailyToast.setAttribute('role','status');dailyToast.hidden=true;
+  document.body.append(dailyToast);
+  const unitFinish=document.createElement('section');
+  unitFinish.id='kp350UnitFinish';unitFinish.className='kp350-unit-finish';unitFinish.hidden=true;
+  unitFinish.setAttribute('role','dialog');unitFinish.setAttribute('aria-modal','true');
+  unitFinish.innerHTML='<div class="kp350-unit-finish-card"><img src="./assets/hanzi/teacher-welcome-resting.webp" alt="小音先生"><span>✦ 第一単元クリア ✦</span><h2>10文字、全部できたね！</h2><p>読む・筆順・なぞり書き、ぜんぶがんばりました。</p><p id="kp350SaveStatus" role="status">学習記録を保存しています…</p><button type="button" id="kp350FinishRetry" hidden>記録をもう一度保存する</button><button type="button" id="kp350FinishClose">学習画面へ戻る</button></div>';
+  document.body.append(unitFinish);
+  $('kp350FinishClose').onclick=()=>{unitFinish.hidden=true};
+  $('kp350FinishRetry').onclick=()=>{
+    if(unitFinish.dataset.needsLogin==='true'){
+      unitFinish.hidden=true;
+      if($('kpAccountTrigger'))$('kpAccountTrigger').click();
+      else window.location.href='./index.html';
+      return;
+    }
+    completeFirstUnit();
+  };
   const lessonBoard=document.querySelector('.board');
   if(lessonBoard){
     const originalScroll=lessonBoard.scrollIntoView.bind(lessonBoard);
@@ -134,6 +159,7 @@
         const praise=$('praisePop');
         if(praise){praise.classList.remove('on');praise.hidden=true;}
         showTraceNotice('success','✓ 正解！ 全'+total+'画、上手に書けました！',true);
+        markStage(3);
       }else if(accepted){
         resetTraceNotice();
       }else if(tracePoints.length>=2){
@@ -222,6 +248,7 @@
     $('kp316Return').hidden=!state.returnTo||state.returnTo===state.character;
     const lessonEntry=(window.KP_HANZI_UNIT_ENTRIES||[]).find(e=>(e.character_sequence||[]).includes(state.character));
     if(lessonEntry){const meaning=$('meaning');if(meaning){meaning.textContent=(entry(state.character)?.meaning||'').split('：')[0]||lessonEntry.ja_meaning}}
+    updateUnitProgress();
   }
   function switchCharacter(ch,stage=1){
     if(!entry(ch))return;
@@ -258,38 +285,208 @@
       $('kp316Retry').focus();
     }
   }
-  let saves=Promise.resolve();
+  let saves=Promise.resolve(),finishPending=false,finishedHere=false,unitTestPassed=false,unitTestScore=0;
+  let dailySteps=new Map(),todayChars=new Set(),dailyToastTimer=null,lastPracticeDay='';
+  function tokyoDay(){
+    const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    const part=type=>parts.find(item=>item.type===type)?.value||'';
+    return part('year')+'-'+part('month')+'-'+part('day');
+  }
+  function showDailyToast(text){
+    clearTimeout(dailyToastTimer);
+    dailyToast.textContent=text;dailyToast.hidden=false;
+    dailyToastTimer=setTimeout(()=>{dailyToast.hidden=true},2700);
+  }
+  function firstUnitActive(){return document.body.classList.contains('kp316-active')&&window.KP_HANZI_SCOPE?.unitId===FIRST_UNIT}
+  function unitIsReady(){return firstUnitActive()&&scoped().length>0&&scoped().every(ch=>[1,2,3].every(stage=>state.completed.get(ch)?.has(stage)))}
+  function updateUnitProgress(){
+    const visible=firstUnitActive();unitProgress.hidden=!visible;if(!visible)return;
+    const chars=scoped(),done=chars.filter(ch=>[1,2,3].every(n=>state.completed.get(ch)?.has(n))).length;
+    unitProgress.textContent='第一単元の進み具合　'+done+' / '+chars.length+'文字';
+    if(done===chars.length){
+      unitProgress.textContent=unitTestPassed?'✓ 第一単元　テスト合格':'✓ '+chars.length+'文字の学習完了 · 単元テストへ';
+      if(!unitTestPassed){
+        const takeTest=document.createElement('button');takeTest.type='button';takeTest.className='kp351-take-test';
+        takeTest.textContent='テストに進む';takeTest.onclick=offerUnitTest;
+        unitProgress.append(takeTest);
+      }
+    }
+    if(todayChars.size)unitProgress.append(document.createTextNode('　·　今日 '+todayChars.size+'文字'));
+    [1,2,3].forEach(n=>{
+      const button=stageButton(n);button.classList.toggle('kp350-complete',!!state.completed.get(state.character)?.has(n));
+      button.setAttribute('aria-label',stages[n-1]+(state.completed.get(state.character)?.has(n)?' 完了':''));
+    });
+  }
+  async function syncVerifiedFirstUnit(){
+    const client=await window.KP_ACCOUNT_API?.getClient?.();
+    if(!client)return false;
+    const {data:auth,error:authError}=await client.auth.getUser();
+    if(authError||!auth?.user)return false;
+    const {data:previous,error:readError}=await client.from('course_progress')
+      .select('status,completed_at,review_checks').eq('user_id',auth.user.id)
+      .eq('course_id','hanzi-pre4-course').eq('unit_id',FIRST_UNIT).maybeSingle();
+    if(readError)throw readError;
+    const checks={...(previous?.review_checks||{})};
+    scoped().forEach(ch=>{
+      const verified=[...(state.completed.get(ch)||[])];
+      checks['char:'+ch]=[...new Set([...(checks['char:'+ch]||[]),...verified])];
+      checks['charVerified:'+ch]=[...new Set([...(checks['charVerified:'+ch]||[]),...verified.filter(n=>n===2||n===3)])];
+    });
+    if(unitTestPassed)checks['unitTest:'+FIRST_UNIT]=checks['unitTest:'+FIRST_UNIT]||{passed_at:nowIso(),score:unitTestScore,total:10};
+    const now=new Date().toISOString();
+    const payload={user_id:auth.user.id,course_id:'hanzi-pre4-course',unit_id:FIRST_UNIT,
+      status:previous?.status||'in_progress',last_visited_at:now,review_checks:checks,updated_at:now};
+    if(previous?.completed_at)payload.completed_at=previous.completed_at;
+    const {error:writeError}=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
+    if(writeError)throw writeError;
+    return true;
+  }
+  async function completeFirstUnit(){
+    if(!unitIsReady()||!unitTestPassed||finishPending||finishedHere)return;
+    finishPending=true;
+    const status=$('kp350SaveStatus');
+    const retry=$('kp350FinishRetry');retry.hidden=true;
+    unitFinish.dataset.needsLogin='false';retry.textContent='記録をもう一度保存する';
+    try{
+      await saves;
+      const already=window.KP_HANZI_PROGRESS?.completed()?.has(FIRST_UNIT);
+      if(already){finishedHere=true;finishPending=false;updateUnitProgress();return;}
+      const synced=await syncVerifiedFirstUnit();
+      if(!synced){
+        unitFinish.hidden=false;
+        status.textContent='学習はできました。記録とごほうびにはログインが必要です。';
+        retry.hidden=false;retry.textContent='ログインして記録する';unitFinish.dataset.needsLogin='true';
+        return;
+      }
+      const saved=await window.KP_HANZI_PROGRESS?.markComplete?.(FIRST_UNIT);
+      if(!saved){
+        unitFinish.hidden=false;
+        status.textContent='学習はできました。記録とごほうびにはログインが必要です。';
+        retry.hidden=false;retry.textContent='ログインして記録する';unitFinish.dataset.needsLogin='true';
+        finishPending=false;return;
+      }
+      finishedHere=true;
+      taskPopup.hidden=true;
+      quiz.hidden=true;
+      setStudyStep(2);
+      resetModeSelection();
+      unitFinish.hidden=false;
+      status.textContent='✓ 学習記録を保存しました。ごほうびを準備しています！';
+      const completion=window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',FIRST_UNIT);
+      // Allow the child to read their result before opening the sticker reveal.
+      setTimeout(()=>{
+        if(!firstUnitActive())return;
+        unitFinish.hidden=true;
+        window.KPStandaloneReward?.show?.({activityKey:'hanzi.'+FIRST_UNIT,score:1,total:1,completion});
+      },2100);
+      updateUnitProgress();
+    }catch(error){
+      console.warn('[Koepanda] first unit completion pending:',error);
+      unitFinish.hidden=false;
+      status.textContent='保存できませんでした。通信を確認してもう一度試してください。';
+      retry.hidden=false;
+    }finally{finishPending=false}
+  }
+  function nowIso(){return new Date().toISOString()}
+  function offerUnitTest(){
+    if(!unitIsReady()||unitTestPassed||finishedHere)return;
+    taskPopup.hidden=true;quiz.hidden=true;overlay.hidden=true;
+    setStudyStep(2);resetModeSelection();
+    window.KP_HANZI_UNIT_TEST?.open?.(scoped());
+  }
+  window.addEventListener('kp-hanzi-unit-test-passed',event=>{
+    if(!firstUnitActive()||!unitIsReady()||unitTestPassed)return;
+    unitTestPassed=true;
+    unitTestScore=Number(event.detail?.score)||8;
+    window.KP_HANZI_UNIT_TEST?.close?.();
+    updateUnitProgress();
+    setTimeout(completeFirstUnit,900);
+  });
   function markStage(n){
     if(!window.KP_HANZI_SCOPE?.unitId||!state.character)return;
     const unit=window.KP_HANZI_SCOPE.unitId,char=state.character;
-    const existing=state.completed.get(char)||new Set();existing.add(n);state.completed.set(char,existing);
+    const existing=state.completed.get(char)||new Set();
+    const isNewStage=!existing.has(n);
+    if(isNewStage){existing.add(n);state.completed.set(char,existing);}
+    const activeDay=tokyoDay();
+    if(lastPracticeDay!==activeDay){dailySteps=new Map();todayChars=new Set();lastPracticeDay=activeDay;}
+    const steps=dailySteps.get(char)||new Set();
+    if(!isNewStage&&steps.has(n))return;
+    steps.add(n);dailySteps.set(char,steps);
+    updateUnitProgress();
     const api=window.KP_ACCOUNT_API;
     saves=saves.then(async()=>{
       const client=await api?.getClient?.();if(!client)return;
       const {data:userData}=await client.auth.getUser();const user=userData?.user;if(!user)return;
       const {data,error}=await client.from('course_progress').select('status,completed_at,review_checks').eq('user_id',user.id).eq('course_id','hanzi-pre4-course').eq('unit_id',unit).maybeSingle();
       if(error)throw error;
-      const checks={...(data?.review_checks||{})};checks['char:'+char]=[...new Set([...(checks['char:'+char]||[]),n])];
+      const checks={...(data?.review_checks||{})};
+      // Keep per-day handwriting snapshots short; the authoritative calendar
+      // remains in learning_days, while this row only needs recent steps.
+      const cutoff=new Date(Date.now()-45*86400000).toISOString().slice(0,10);
+      Object.keys(checks).forEach(key=>{
+        if((key.startsWith('daySteps:')||key.startsWith('dayChars:'))&&key.split(':')[1]<cutoff)delete checks[key];
+      });
+      if(isNewStage)checks['char:'+char]=[...new Set([...(checks['char:'+char]||[]),n])];
+      // v350 distinguishes genuine completed strokes from legacy popup-close marks.
+      if(unit===FIRST_UNIT&&isNewStage&&n!==1)checks['charVerified:'+char]=[...new Set([...(checks['charVerified:'+char]||[]),n])];
+      const stepKey='daySteps:'+activeDay+':'+char,dayKey='dayChars:'+activeDay;
+      const currentSteps=[...new Set([...(checks[stepKey]||[]),n])];
+      checks[stepKey]=currentSteps;
+      const previouslyDone=(checks[dayKey]||[]).includes(char);
+      const finishedChar=currentSteps.length===3;
+      if(finishedChar)checks[dayKey]=[...new Set([...(checks[dayKey]||[]),char])];
       const now=new Date().toISOString();
       const payload={user_id:user.id,course_id:'hanzi-pre4-course',unit_id:unit,status:data?.status||'in_progress',last_visited_at:now,review_checks:checks,updated_at:now};
       if(data?.completed_at)payload.completed_at=data.completed_at;
       const result=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
       if(result.error)throw result.error;
+      if(unit===FIRST_UNIT&&finishedChar&&!previouslyDone){
+        todayChars=new Set(checks[dayKey]);
+        updateUnitProgress();
+        const count=todayChars.size;
+        if(count===1){
+          showDailyToast('🌱 今日の学習達成！ 1文字できたね！');
+          window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',unit+':'+char)?.catch?.(error=>console.warn('[Koepanda] daily record delayed:',error));
+        }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！');
+      }
     }).catch(e=>console.warn('[Koepanda] stage sync pending:',e));
+    if(unit===FIRST_UNIT&&unitIsReady())setTimeout(offerUnitTest,1250);
   }
+  // Completion must be earned by finishing the demo, not by opening/closing it.
+  const strokeCounter=$('strokeCount');
+  if(strokeCounter)new MutationObserver(()=>{
+    if(!firstUnitActive()||state.stage!==2||taskPopup.hidden)return;
+    const total=HANZI_LESSONS[current]?.strokes?.length;
+    if(total>0&&strokeIndex===total)markStage(2);
+  }).observe(strokeCounter,{childList:true,characterData:true,subtree:true});
   async function restoreStages(){
     const unit=window.KP_HANZI_SCOPE?.unitId;if(!unit)return;
     try{
       const client=await window.KP_ACCOUNT_API?.getClient?.();const {data:auth}=await client?.auth.getUser();if(!auth?.user)return;
       const {data}=await client.from('course_progress').select('review_checks').eq('user_id',auth.user.id).eq('course_id','hanzi-pre4-course').eq('unit_id',unit).maybeSingle();
-      state.completed.clear();Object.entries(data?.review_checks||{}).forEach(([key,value])=>{if(key.startsWith('char:')&&Array.isArray(value))state.completed.set(key.slice(5),new Set(value))});
+      unitTestPassed=!!data?.review_checks?.['unitTest:'+FIRST_UNIT]?.passed_at;
+      unitTestScore=Number(data?.review_checks?.['unitTest:'+FIRST_UNIT]?.score)||0;
+      const today=tokyoDay();lastPracticeDay=today;
+      todayChars=new Set([...(data?.review_checks?.['dayChars:'+today]||[]),...todayChars]);
+      dailySteps=new Map(scoped().map(ch=>[ch,new Set([...(data?.review_checks?.['daySteps:'+today+':'+ch]||[]),...(dailySteps.get(ch)||[])])]));
+      Object.entries(data?.review_checks||{}).forEach(([key,value])=>{
+        if(!key.startsWith('char:')||!Array.isArray(value))return;
+        const ch=key.slice(5),verified=data.review_checks['charVerified:'+ch]||[];
+        const existing=state.completed.get(ch)||new Set();
+        (unit===FIRST_UNIT?value.filter(n=>n===1||verified.includes(n)):value).forEach(n=>existing.add(n));
+        state.completed.set(ch,existing);
+      });
+      updateUnitProgress();
+      if(unitIsReady()&&unitTestPassed&&!finishedHere)setTimeout(completeFirstUnit,700);
     }catch(e){console.warn('[Koepanda] stage restore unavailable',e)}
   }
   function launch(){
     if(state.legacyTest||!window.KP_HANZI_SCOPE?.characters?.length)return;
     game.hidden=true;document.body.style.overflow='';
     document.body.classList.add('kp316-active');
-    state.returnTo='';state.completed.clear();
+    state.returnTo='';state.completed.clear();unitTestPassed=false;unitTestScore=0;finishedHere=false;
+    dailySteps=new Map();todayChars=new Set();lastPracticeDay=tokyoDay();dailyToast.hidden=true;
     restoreStages();
     switchCharacter(scoped()[0],0);
   }
@@ -310,7 +507,7 @@
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
   $('kp316QuizClose').onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};
-  $('kp321Close').onclick=()=>{if(taskInteracted)markStage(state.stage);taskPopup.hidden=true;setStudyStep(2);resetModeSelection()};
+  $('kp321Close').onclick=()=>{taskPopup.hidden=true;setStudyStep(2);resetModeSelection();updateUnitProgress()};
   $('kp316Speak').onclick=()=>speak(state.character);
   // Existing next/previous shortcuts should not change the word-level position.
   for(const [id,delta] of [['prevCharacter',-1],['nextCharacter',1],['writePrevCharacter',-1],['writeNextCharacter',1]])$(id)?.addEventListener('click',e=>{
@@ -318,4 +515,7 @@
     e.stopImmediatePropagation();const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,state.stage);
   },true);
   $('backToPre4Route')?.addEventListener('click',()=>{document.body.classList.remove('kp316-active');quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true},true);
+  window.addEventListener('kp-account-state-changed',()=>{
+    if(unitIsReady()&&!finishedHere)setTimeout(completeFirstUnit,400);
+  });
 })();
