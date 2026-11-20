@@ -29,6 +29,31 @@
   taskPopup.innerHTML='<div class="kp321-panel"><div class="kp321-head"><div><strong id="kp321Title">筆順</strong><span id="kp321Character">你 · nǐ</span></div><button type="button" id="kp321Close" aria-label="主画面に戻る">×</button></div><div class="kp321-body" id="kp321Body"></div></div>';
   document.body.append(taskPopup);
   $('kp321Body').append(lessonBoard,document.querySelector('.controls'));
+  // Undo only the last accepted trace stroke, preserving earlier strokes.
+  const paper=$('paper'),traceCanvas=$('canvas');
+  const undoButton=document.createElement('button');
+  undoButton.id='kp325Undo';undoButton.type='button';undoButton.textContent='↶';
+  undoButton.setAttribute('aria-label','一画戻す');undoButton.title='一画戻す';
+  paper.append(undoButton);
+  let undoHistory=[],pendingTrace=null;
+  function updateUndo(){undoButton.disabled=undoHistory.length===0}
+  traceCanvas.addEventListener('pointerdown',()=>{
+    if(!document.body.classList.contains('kp316-active')||state.stage!==3||taskPopup.hidden)return;
+    pendingTrace={index:strokeIndex,image:ctx.getImageData(0,0,traceCanvas.width,traceCanvas.height)};
+  },true);
+  const finishUndoCapture=()=>{
+    if(!pendingTrace)return;
+    if(strokeIndex>pendingTrace.index)undoHistory.push(pendingTrace);
+    pendingTrace=null;updateUndo();
+  };
+  ['pointerup','pointercancel','lostpointercapture'].forEach(n=>traceCanvas.addEventListener(n,finishUndoCapture));
+  undoButton.onclick=()=>{
+    const previous=undoHistory.pop();if(!previous)return;
+    ctx.putImageData(previous.image,0,0);strokeIndex=previous.index;
+    drawStrokeDemo();updateUndo();
+  };
+  $('clear')?.addEventListener('click',()=>{undoHistory=[];pendingTrace=null;updateUndo()});
+  updateUndo();
   let taskInteracted=false;
   $('kp321Body').addEventListener('pointerdown',e=>{
     if(e.target.closest('canvas,.stroke-controls button,.controls button'))taskInteracted=true;
@@ -51,6 +76,7 @@
     document.body.classList.toggle('kp316-read',n===1);
     setStudyStep(n===1?2:n);
     taskPopup.hidden=n===1;
+    undoHistory=[];pendingTrace=null;updateUndo();
     taskInteracted=false;
     taskPopup.classList.toggle('kp321-tracing',n===3);
     $('kp321Title').textContent=n===3?'なぞり書き':'筆順アニメーション';
@@ -62,10 +88,11 @@
   }
   function updateNavigation(){
     const chars=scoped(),i=index();
-    $('kp316Prev').disabled=i===0;$('kp316Next').disabled=i>=chars.length-1;
+    $('kp316Prev').disabled=i===0;$('kp316Next').disabled=false;
+    $('kp316Next').setAttribute('aria-label',i===chars.length-1?'単元のテストへ':'次の漢字');
     $('kp316Picker').textContent=(i+1)+' / '+chars.length;
     $('kp316List').replaceChildren();
-    chars.forEach((ch,j)=>{const b=document.createElement('button');b.textContent=ch;b.className=ch===state.character?'current':'';b.type='button';b.onclick=()=>{switchCharacter(ch,1);$('kp316List').hidden=true};$('kp316List').append(b)});
+    chars.forEach((ch,j)=>{const b=document.createElement('button');b.textContent=ch;b.className=ch===state.character?'current':'';b.type='button';b.onclick=()=>{switchCharacter(ch,0);$('kp316List').hidden=true};$('kp316List').append(b)});
     $('kp316Return').hidden=!state.returnTo||state.returnTo===state.character;
     const lessonEntry=(window.KP_HANZI_UNIT_ENTRIES||[]).find(e=>(e.character_sequence||[]).includes(state.character));
     if(lessonEntry){const meaning=$('meaning');if(meaning){meaning.textContent=(entry(state.character)?.meaning||'').split('：')[0]||lessonEntry.ja_meaning}}
@@ -75,7 +102,7 @@
     if(state.character&&state.character!==ch&&!state.returnTo)state.returnTo=state.character;
     state.character=ch;
     const i=HANZI_LESSONS.findIndex(x=>x.char===ch);
-    render(i);updateNavigation();
+    render(i);undoHistory=[];pendingTrace=null;updateUndo();updateNavigation();
     if(stage)selectStage(stage);
     else{quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;setStudyStep(2)}
   }
@@ -146,17 +173,19 @@
     e.stopImmediatePropagation();launch();
   },true);
   [1,2,3].forEach(n=>stageButton(n).addEventListener('click',e=>{if(!document.body.classList.contains('kp316-active'))return;e.stopImmediatePropagation();selectStage(n)},true));
-  for(const [id,delta] of [['kp316Prev',-1],['kp316Next',1]])$(id).onclick=()=>{const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,0)};
+  function finishUnit(){
+    state.legacyTest=true;document.body.classList.remove('kp316-active');
+    quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;
+    window.dispatchEvent(new Event('kp:open-hanzi-recognition'));
+    state.legacyTest=false;
+  }
+  for(const [id,delta] of [['kp316Prev',-1],['kp316Next',1]])$(id).onclick=()=>{const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,0);else if(delta===1)finishUnit()};
   $('kp316Picker').onclick=()=>$('kp316List').hidden=!$('kp316List').hidden;
   $('kp316Return').onclick=()=>{const ch=state.returnTo;state.returnTo='';switchCharacter(ch,0)};
   $('kp316Continue').onclick=()=>{
     const next=scoped()[index()+1];
     if(next){switchCharacter(next,0);return}
-    state.legacyTest=true;
-    document.body.classList.remove('kp316-active');
-    quiz.hidden=true;overlay.hidden=true;
-    window.dispatchEvent(new Event('kp:open-hanzi-recognition'));
-    state.legacyTest=false;
+    finishUnit();
   };
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
