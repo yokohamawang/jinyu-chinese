@@ -185,3 +185,10 @@ body.kp316-active .progress .phase:not(.on){background:#ecf6ef!important;color:#
 #kp325Undo svg{display:block;width:30px;height:30px;stroke:currentColor}
 #kp325Undo:disabled{opacity:.76!important;color:#49796c;border-color:#bbd6c7;box-shadow:none}
 @media(max-width:400px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:120px minmax(0,1fr) 50px!important;gap:10px!important;min-height:184px!important;padding:16px!important}body.kp316-active:not(.focus-write) .hanzi{width:120px!important;height:120px!important;font-size:92px!important}body.kp316-active:not(.focus-write) .lesson .speaker{width:50px!important;height:50px!important}body.kp316-active #pre4LessonProgress{font-size:17px!important}}
+/* 301.327: a small, quiet mascot balances the home icon without competing with the glyph. */
+.kp327-mascot-slot{display:flex;width:44px;height:44px;flex:none;align-items:center;justify-content:center}
+.kp327-mascot-slot img{display:none;width:100%;height:100%;object-fit:contain}
+body.kp316-active .kp327-mascot-slot img{display:block}
+body.kp316-active .app > .top{align-items:center}
+body.kp316-active .app > .top .brand{min-width:0;text-align:center}
+@media(max-width:360px){.kp327-mascot-slot{width:38px;height:38px}}
