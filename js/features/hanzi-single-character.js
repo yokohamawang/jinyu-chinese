@@ -5,21 +5,6 @@
   const $=id=>document.getElementById(id);
   const lesson=$('pre4Learning'), game=$('readingGame'), app=document.querySelector('.app');
   if(!lesson||!game||!app)return;
-  // The entire reading prompt card is a single, forgiving audio tap target.
-  // A direct click on the speaker must not bubble into a second playback.
-  const readingCard=game.querySelector('.rg-card'),readingAudio=$('rgAudio');
-  if(readingCard&&readingAudio){
-    readingCard.addEventListener('click',event=>{
-      if(event.target.closest?.('#rgAudio'))return;
-      readingAudio.click();
-    });
-    readingCard.tabIndex=0;
-    readingCard.setAttribute('aria-label','読み方を聞く');
-    readingCard.addEventListener('keydown',event=>{
-      if(event.target!==readingCard||!['Enter',' '].includes(event.key))return;
-      event.preventDefault();readingAudio.click();
-    });
-  }
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
@@ -44,17 +29,18 @@
   $('speak')?.addEventListener('click',armTeacher,true);
   const mainCharacterCard=document.querySelector('.lesson'),mainAudio=$('speak');
   if(mainCharacterCard&&mainAudio){
+    const speakFromCard=()=>speak(state.character);
     mainCharacterCard.addEventListener('click',event=>{
       if(event.target.closest?.('#speak'))return;
       if(!document.body.classList.contains('kp316-active'))return;
-      mainAudio.click();
+      speakFromCard();
     });
     mainCharacterCard.tabIndex=0;
     mainCharacterCard.setAttribute('aria-label','漢字の読み方を聞く');
     mainCharacterCard.addEventListener('keydown',event=>{
       if(event.target!==mainCharacterCard||!['Enter',' '].includes(event.key))return;
       if(!document.body.classList.contains('kp316-active'))return;
-      event.preventDefault();mainAudio.click();
+      event.preventDefault();speakFromCard();
     });
   }
   shell.className='kp316-shell';
@@ -148,6 +134,17 @@
   const quiz=document.createElement('section');quiz.className='kp316-quiz';quiz.id='kp316Quiz';quiz.hidden=true;
   quiz.innerHTML='<div class="kp316-quiz-panel"><div class="kp316-quiz-head"><strong>漢字を読んでみよう</strong><button type="button" id="kp316QuizClose" aria-label="認読を閉じる">×</button></div><p class="kp316-quiz-prompt">読み方に合う漢字を選んでね</p><div class="kp316-quiz-info"><span id="kp316SoundText"></span><button type="button" id="kp316Speak" aria-label="発音を聞く">🔊</button></div><div class="kp316-choices" id="kp316Choices"></div><p class="kp316-quiz-feedback" id="kp316Feedback" aria-live="polite"></p></div>';
   document.body.append(quiz);
+  const liveReadingPrompt=quiz.querySelector('.kp316-quiz-info');
+  liveReadingPrompt.tabIndex=0;
+  liveReadingPrompt.setAttribute('aria-label','ピンインをタップして発音を聞く');
+  liveReadingPrompt.addEventListener('click',event=>{
+    if(event.target.closest?.('#kp316Speak'))return;
+    speak(state.character);
+  });
+  liveReadingPrompt.addEventListener('keydown',event=>{
+    if(event.target!==liveReadingPrompt||!['Enter',' '].includes(event.key))return;
+    event.preventDefault();speak(state.character);
+  });
   function scoped(){return window.KP_HANZI_SCOPE?.characters||HANZI_LESSONS.map(x=>x.char)}
   function index(){return Math.max(0,scoped().indexOf(state.character))}
   function entry(ch){return HANZI_LESSONS.find(x=>x.char===ch)}
