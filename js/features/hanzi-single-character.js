@@ -5,6 +5,21 @@
   const $=id=>document.getElementById(id);
   const lesson=$('pre4Learning'), game=$('readingGame'), app=document.querySelector('.app');
   if(!lesson||!game||!app)return;
+  // The entire reading prompt card is a single, forgiving audio tap target.
+  // A direct click on the speaker must not bubble into a second playback.
+  const readingCard=game.querySelector('.rg-card'),readingAudio=$('rgAudio');
+  if(readingCard&&readingAudio){
+    readingCard.addEventListener('click',event=>{
+      if(event.target.closest?.('#rgAudio'))return;
+      readingAudio.click();
+    });
+    readingCard.tabIndex=0;
+    readingCard.setAttribute('aria-label','読み方を聞く');
+    readingCard.addEventListener('keydown',event=>{
+      if(event.target!==readingCard||!['Enter',' '].includes(event.key))return;
+      event.preventDefault();readingAudio.click();
+    });
+  }
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
@@ -27,6 +42,21 @@
     setTimeout(()=>{teacher.classList.remove('kp335-mouth-open');mouthBusy=false;},610);
   };
   $('speak')?.addEventListener('click',armTeacher,true);
+  const mainCharacterCard=document.querySelector('.lesson'),mainAudio=$('speak');
+  if(mainCharacterCard&&mainAudio){
+    mainCharacterCard.addEventListener('click',event=>{
+      if(event.target.closest?.('#speak'))return;
+      if(!document.body.classList.contains('kp316-active'))return;
+      mainAudio.click();
+    });
+    mainCharacterCard.tabIndex=0;
+    mainCharacterCard.setAttribute('aria-label','漢字の読み方を聞く');
+    mainCharacterCard.addEventListener('keydown',event=>{
+      if(event.target!==mainCharacterCard||!['Enter',' '].includes(event.key))return;
+      if(!document.body.classList.contains('kp316-active'))return;
+      event.preventDefault();mainAudio.click();
+    });
+  }
   shell.className='kp316-shell';
   shell.innerHTML='<div class="kp316-character-nav"><button type="button" id="kp316Prev" aria-label="前の漢字">‹</button><button type="button" id="kp316Picker" aria-label="漢字一覧を開く">1 / 10</button><button type="button" id="kp316Next" aria-label="次の漢字">›</button></div><div class="kp316-character-list" id="kp316List" hidden></div>';
   const progress=document.querySelector('.progress');
@@ -54,8 +84,8 @@
   undoButton.id='kp325Undo';undoButton.type='button';
   undoButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   undoButton.setAttribute('aria-label','一画戻す');undoButton.title='一画戻す';
-  // Keep the undo control adjacent to the writing pad, never over a glyph.
-  paper.after(undoButton);
+  // Compact undo sits in the pad's empty lower-right corner, without adding a row.
+  paper.append(undoButton);
   let undoHistory=[],pendingTrace=null;
   function updateUndo(){undoButton.disabled=undoHistory.length===0}
   traceCanvas.addEventListener('pointerdown',()=>{
