@@ -198,3 +198,23 @@ body.kp316-active .app.is-speaking .kp331-teacher-speaking{animation:kp331-talk 
 @keyframes kp331-talk{0%,48%{opacity:1}49%,100%{opacity:0}}
 body.kp316-active #pre4LessonProgress{grid-column:1 / -1;grid-row:2;justify-self:center;align-self:center;margin:0!important}
 @media(max-width:380px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 58px!important;grid-template-rows:58px auto!important}body.kp316-active .kp330-nav-teacher{width:58px;height:56px}}
+/* 301.332: use the calm right-hand whitespace; one spoken syllable, one mouth opening. */
+body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 102px!important;grid-template-rows:92px auto!important;row-gap:3px!important;margin:4px 0 17px!important}
+body.kp316-active .kp330-nav-teacher{width:100px;height:92px;align-self:end}
+body.kp316-active .app.is-speaking .kp331-teacher-speaking{animation:kp332-one-syllable .68s steps(1,end) 1 both}
+@keyframes kp332-one-syllable{0%,14%{opacity:0}15%,73%{opacity:1}74%,100%{opacity:0}}
+@media(max-width:380px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 86px!important;grid-template-rows:80px auto!important}body.kp316-active .kp330-nav-teacher{width:86px;height:80px}}
+/* 301.335: anchor the teacher to the learning card, away from navigation. */
+body.kp316-active .pre4-learning-nav{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;margin:7px 0 17px!important;min-height:0!important}
+body.kp316-active #backToPre4Route{align-self:flex-start!important}
+body.kp316-active #pre4LessonProgress{width:100%!important;text-align:center!important}
+body.kp316-active .kp331-teacher-speaking{animation:none!important;opacity:0}
+body.kp316-active .app.is-speaking .kp331-teacher-speaking{animation:none!important;opacity:0}
+body.kp316-active .kp330-nav-teacher.kp335-mouth-open .kp331-teacher-speaking{opacity:1!important}
+/* 301.336: retain the upper-right teacher and make only a restrained adjustment. */
+body.kp316-active .pre4-learning-nav{display:grid!important;grid-template-columns:minmax(0,1fr) 115px!important;grid-template-rows:100px auto!important;column-gap:12px!important;row-gap:3px!important;align-items:center!important;margin:4px 0 17px!important}
+body.kp316-active #backToPre4Route{grid-column:1;grid-row:1;align-self:center!important;justify-self:start}
+body.kp316-active #pre4LessonProgress{grid-column:1 / -1;grid-row:2;width:100%!important;text-align:center!important}
+body.kp316-active .pre4-learning-nav .kp330-nav-teacher{display:block!important;position:relative!important;grid-column:2;grid-row:1;justify-self:end;width:110px;height:102px;transform:translate(-12px,-7px);pointer-events:none}
+body.kp316-active:not(.focus-write) .lesson .speaker{transform:none!important}
+@media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 98px!important;grid-template-rows:90px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:98px;height:92px;transform:translate(-9px,-6px)}}
