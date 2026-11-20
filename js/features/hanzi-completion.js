@@ -16,7 +16,7 @@
       finish.disabled=false;finish.textContent='この単元を完了する ✦';
     }
     // Lesson quizzes own all first-theme completion; legacy finish must never bypass them.
-    if(scope.unitId==='pre4-u01'){finish.hidden=true;return scope;}
+    if(scope.lessonId){finish.hidden=true;return scope;}
     const match=(counter?.textContent||'').match(/(\d+)\s*\/\s*(\d+)/);
     const onLast=!!match&&Number(match[1])===Number(match[2]);
     finish.hidden=!(onLast&&document.body.classList.contains('copy-mode'));

@@ -128,6 +128,17 @@
     }
     pendingTrace={index:strokeIndex};
   },true);
+  // The first dot of 谢 is short enough that iOS Safari may emit no
+  // pointermove before pointerup. Append the final position BEFORE the legacy
+  // finishStroke listener checks tracePoints.length (without changing criteria).
+  traceCanvas.addEventListener('pointerup',event=>{
+    if(!document.body.classList.contains('kp316-active')||state.stage!==3||taskPopup.hidden)return;
+    if(state.character!=='谢'||strokeIndex!==0||!drawing||!tracePoints.length)return;
+    const r=traceCanvas.getBoundingClientRect();
+    const p={x:event.clientX-r.left,y:event.clientY-r.top};
+    const last=tracePoints[tracePoints.length-1];
+    if(Math.hypot(p.x-last.x,p.y-last.y)>1)tracePoints.push(p);
+  },true);
   // Rebuild the accepted ink from vector paths. Canvas pixel snapshots become
   // stale whenever Safari changes its visual viewport and calls resize().
   function repaintAccepted(){
@@ -301,7 +312,7 @@
     dailyToast.textContent=text;dailyToast.hidden=false;
     dailyToastTimer=setTimeout(()=>{dailyToast.hidden=true},2700);
   }
-  function firstUnitActive(){return document.body.classList.contains('kp316-active')&&window.KP_HANZI_SCOPE?.unitId===FIRST_UNIT&&!!window.KP_HANZI_SCOPE?.lessonId}
+  function firstUnitActive(){return document.body.classList.contains('kp316-active')&&!!window.KP_HANZI_SCOPE?.unitId&&!!window.KP_HANZI_SCOPE?.lessonId}
   function unitIsReady(){return firstUnitActive()&&scoped().length>0&&scoped().every(ch=>[1,2,3].every(stage=>state.completed.get(ch)?.has(stage)))}
   function updateUnitProgress(){
     const visible=firstUnitActive();unitProgress.hidden=!visible;if(!visible)return;
@@ -328,7 +339,7 @@
     if(authError||!auth?.user)return false;
     const {data:previous,error:readError}=await client.from('course_progress')
       .select('status,completed_at,review_checks').eq('user_id',auth.user.id)
-      .eq('course_id','hanzi-pre4-course').eq('unit_id',FIRST_UNIT).maybeSingle();
+      .eq('course_id','hanzi-pre4-course').eq('unit_id',window.KP_HANZI_SCOPE.unitId).maybeSingle();
     if(readError)throw readError;
     const checks={...(previous?.review_checks||{})};
     scoped().forEach(ch=>{
@@ -336,9 +347,9 @@
       checks['char:'+ch]=[...new Set([...(checks['char:'+ch]||[]),...verified])];
       checks['charVerified:'+ch]=[...new Set([...(checks['charVerified:'+ch]||[]),...verified.filter(n=>n===2||n===3)])];
     });
-    if(unitTestPassed)checks['unitTest:'+activeLesson()]=checks['unitTest:'+activeLesson()]||{passed_at:nowIso(),score:unitTestScore,total:activeLesson()===FIRST_UNIT?10:6};
+    if(unitTestPassed)checks['unitTest:'+activeLesson()]=checks['unitTest:'+activeLesson()]||{passed_at:nowIso(),score:unitTestScore,total:activeLesson()===window.KP_HANZI_SCOPE.unitId?10:6};
     const now=new Date().toISOString();
-    const payload={user_id:auth.user.id,course_id:'hanzi-pre4-course',unit_id:FIRST_UNIT,
+    const payload={user_id:auth.user.id,course_id:'hanzi-pre4-course',unit_id:window.KP_HANZI_SCOPE.unitId,
       status:previous?.status||'started',last_visited_at:now,review_checks:checks,updated_at:now};
     if(previous?.completed_at)payload.completed_at=previous.completed_at;
     const {error:writeError}=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
@@ -433,7 +444,7 @@
       });
       if(isNewStage)checks['char:'+char]=[...new Set([...(checks['char:'+char]||[]),n])];
       // v350 distinguishes genuine completed strokes from legacy popup-close marks.
-      if(unit===FIRST_UNIT&&isNewStage&&n!==1)checks['charVerified:'+char]=[...new Set([...(checks['charVerified:'+char]||[]),n])];
+      if(isNewStage&&n!==1)checks['charVerified:'+char]=[...new Set([...(checks['charVerified:'+char]||[]),n])];
       const stepKey='daySteps:'+activeDay+':'+char,dayKey='dayChars:'+activeDay;
       const currentSteps=[...new Set([...(checks[stepKey]||[]),n])];
       checks[stepKey]=currentSteps;
@@ -445,7 +456,7 @@
       if(data?.completed_at)payload.completed_at=data.completed_at;
       const result=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
       if(result.error)throw result.error;
-      if(unit===FIRST_UNIT&&finishedChar&&!previouslyDone){
+      if(finishedChar&&!previouslyDone){
         todayChars=new Set(checks[dayKey]);
         updateUnitProgress();
         const count=todayChars.size;
@@ -455,7 +466,7 @@
         }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！');
       }
     }).catch(e=>console.warn('[Koepanda] stage sync pending:',e));
-    if(unit===FIRST_UNIT&&unitIsReady())setTimeout(offerUnitTest,1250);
+    if(unitIsReady())setTimeout(offerUnitTest,1250);
   }
   // Completion must be earned by finishing the demo, not by opening/closing it.
   const strokeCounter=$('strokeCount');
@@ -478,7 +489,7 @@
         if(!key.startsWith('char:')||!Array.isArray(value))return;
         const ch=key.slice(5),verified=data.review_checks['charVerified:'+ch]||[];
         const existing=state.completed.get(ch)||new Set();
-        (unit===FIRST_UNIT?value.filter(n=>n===1||verified.includes(n)):value).forEach(n=>existing.add(n));
+        value.filter(n=>n===1||verified.includes(n)).forEach(n=>existing.add(n));
         state.completed.set(ch,existing);
       });
       updateUnitProgress();
@@ -511,7 +522,18 @@
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
   $('kp316QuizClose').onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};
-  $('kp321Close').onclick=()=>{taskPopup.hidden=true;setStudyStep(2);resetModeSelection();updateUnitProgress();if(window.KP_HANZI_UNIT_TEST?.isWriting?.())window.dispatchEvent(new Event('kp-hanzi-test-writing-cancel'))};
+  const closeStrokePopup=()=>{
+    if(taskPopup.hidden)return;
+    // Hide the modal first: a touch must not fall through to the canvas.
+    taskPopup.hidden=true;
+    if(window.KP_HANZI_UNIT_TEST?.isWriting?.())window.dispatchEvent(new Event('kp-hanzi-test-writing-cancel'));
+    setStudyStep(2);resetModeSelection();updateUnitProgress();
+  };
+  $('kp321Close').onclick=event=>{event.stopPropagation();closeStrokePopup()};
+  $('kp321Close').addEventListener('pointerup',event=>{
+    if(event.pointerType==='mouse')return;
+    event.preventDefault();event.stopPropagation();closeStrokePopup();
+  },true);
   window.addEventListener('kp-hanzi-test-writing-start',event=>{
     if(!firstUnitActive()||event.detail?.lessonId!==activeLesson())return;
     switchCharacter(event.detail.char,0);selectStage(3);

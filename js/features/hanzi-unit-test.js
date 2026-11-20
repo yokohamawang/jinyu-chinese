@@ -35,8 +35,8 @@
    questions=[{type:'listen',item:pick(0)},{type:'pinyin',item:pick(1)},
      {type:'stroke',item:pick(2)},{type:'writing',item:pick(0)},
      {type:'listen',item:pick(1)},{type:'pinyin',item:pick(2)}];
-   if(lessonId==='pre4-u01'&&entries.length>3){
-     questions=[...entries.map((item,i)=>({item,type:['listen','pinyin','stroke','writing'][i%4]}))];
+   if(lessonId===window.KP_HANZI_SCOPE?.unitId&&entries.length>3){
+     questions=shuffle(entries).slice(0,10).map((item,i)=>({item,type:['listen','pinyin','stroke','writing'][i%4]}));
    }
    if(reviewOnly){
      const allowed=new Set(['listen','pinyin','stroke','writing']);
@@ -76,7 +76,7 @@
  }
  function intro(){
    body.replaceChildren();add('div','kp351-mascot','🐼');add('h3','kp351-title','今日の漢字、覚えたかな？');
-   add('p','kp351-description',reviewOnly?'以前まちがえた問題を復習しよう。':('聞く・ピンイン・筆順・書く の'+(lessonId==='pre4-u01'?'10問。8問':'6問。5問')+'正解でクリア！'));
+   add('p','kp351-description',reviewOnly?'以前まちがえた問題を復習しよう。':('聞く・ピンイン・筆順・書く の'+(lessonId===window.KP_HANZI_SCOPE?.unitId?'10問。8問':'6問。5問')+'正解でクリア！'));
    add('p','kp351-description','まちがえても大丈夫。答えを確認して、もう一度挑戦しよう。');
    button('テストを始める',()=>{makeQuestions();renderQuestion()},'primary');
    const note=add('p','kp351-description','まちがえた問題は復習記録に残ります。');note.style.fontSize='12px';
@@ -148,7 +148,7 @@
    let saved=false;try{saved=await recordAttempt()}catch(error){console.warn('[Koepanda] mistakes save failed',error)}
    saving=false;
    if(!saved){body.replaceChildren();add('h3','kp351-title','記録を保存できませんでした');add('p','kp351-description','ログインと通信を確認して、もう一度保存しよう。');button('保存を再試行',result,'primary');return}
-   const passed=reviewOnly||score>=(lessonId==='pre4-u01'?8:5);body.replaceChildren();add('div','kp351-mascot',passed?'🎉':'🌱');
+   const passed=reviewOnly||score>=(lessonId===window.KP_HANZI_SCOPE?.unitId?8:5);body.replaceChildren();add('div','kp351-mascot',passed?'🎉':'🌱');
    add('h3','kp351-title',passed?'合格！ 今日のレッスンクリア！':'あと少し！ 復習してみよう');
    add('div','kp351-score',score+' / '+questions.length+'問 正解');
    if(errors.length){add('p','kp351-description','まちがえた漢字は復習ノートに記録しました。');
