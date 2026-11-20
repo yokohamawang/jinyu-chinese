@@ -48,20 +48,52 @@
   function updateUndo(){undoButton.disabled=undoHistory.length===0}
   traceCanvas.addEventListener('pointerdown',()=>{
     if(!document.body.classList.contains('kp316-active')||state.stage!==3||taskPopup.hidden)return;
-    pendingTrace={index:strokeIndex,image:ctx.getImageData(0,0,traceCanvas.width,traceCanvas.height)};
+    pendingTrace={index:strokeIndex};
   },true);
+  // Rebuild the accepted ink from vector paths. Canvas pixel snapshots become
+  // stale whenever Safari changes its visual viewport and calls resize().
+  function repaintAccepted(){
+    const box=traceCanvas.getBoundingClientRect();
+    if(!box.width||!box.height)return;
+    ctx.clearRect(0,0,box.width,box.height);
+    undoHistory.forEach(item=>{
+      const points=item.points;if(points.length<2)return;
+      ctx.beginPath();
+      ctx.moveTo(points[0].x*box.width,points[0].y*box.height);
+      for(let i=1;i<points.length;i++)ctx.lineTo(points[i].x*box.width,points[i].y*box.height);
+      ctx.stroke();
+    });
+  }
   const finishUndoCapture=()=>{
     if(!pendingTrace)return;
-    if(strokeIndex>pendingTrace.index)undoHistory.push(pendingTrace);
+    if(strokeIndex>pendingTrace.index){
+      const box=traceCanvas.getBoundingClientRect();
+      if(box.width&&box.height){
+        pendingTrace.points=tracePoints.map(p=>({x:p.x/box.width,y:p.y/box.height}));
+        undoHistory.push(pendingTrace);
+      }
+    }
     pendingTrace=null;updateUndo();
   };
   ['pointerup','pointercancel','lostpointercapture'].forEach(n=>traceCanvas.addEventListener(n,finishUndoCapture));
   undoButton.onclick=()=>{
     const previous=undoHistory.pop();if(!previous)return;
-    ctx.putImageData(previous.image,0,0);strokeIndex=previous.index;
-    drawStrokeDemo();updateUndo();
+    // A last-stroke celebration may still be queued: do not let it leave the
+    // writing screen after the learner has undone that stroke.
+    clearTimeout(window.koepandaPraiseTimer);
+    const praise=$('praisePop');
+    if(praise){praise.classList.remove('on');praise.hidden=true;}
+    strokeIndex=previous.index;
+    repaintAccepted();
+    drawStrokeDemo();
+    const hint=$('strokeHint');
+    if(hint)hint.textContent='最後の一画を戻しました。同じ画をもう一度なぞりましょう。';
+    updateUndo();
   };
   $('clear')?.addEventListener('click',()=>{undoHistory=[];pendingTrace=null;updateUndo()});
+  window.addEventListener('resize',()=>requestAnimationFrame(()=>{
+    if(state.stage===3&&!taskPopup.hidden&&undoHistory.length)repaintAccepted();
+  }));
   updateUndo();
   let taskInteracted=false;
   $('kp321Body').addEventListener('pointerdown',e=>{
