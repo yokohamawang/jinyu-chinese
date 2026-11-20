@@ -73,9 +73,32 @@
   // Compact undo sits in the pad's empty lower-right corner, without adding a row.
   paper.append(undoButton);
   let undoHistory=[],pendingTrace=null;
+  const traceNotice=document.createElement('div');
+  traceNotice.id='kp349TraceNotice';
+  traceNotice.setAttribute('role','status');
+  traceNotice.setAttribute('aria-live','polite');
+  traceNotice.hidden=true;
+  paper.append(traceNotice);
+  let traceNoticeTimer=null;
+  function showTraceNotice(kind,message,persistent=false){
+    clearTimeout(traceNoticeTimer);
+    traceNotice.dataset.kind=kind;
+    traceNotice.textContent=message;
+    traceNotice.hidden=false;
+    if(!persistent)traceNoticeTimer=setTimeout(()=>{traceNotice.hidden=true},1900);
+  }
+  function resetTraceNotice(){
+    clearTimeout(traceNoticeTimer);
+    traceNotice.hidden=true;
+    traceNotice.textContent='';
+  }
   function updateUndo(){undoButton.disabled=undoHistory.length===0}
-  traceCanvas.addEventListener('pointerdown',()=>{
+  traceCanvas.addEventListener('pointerdown',event=>{
     if(!document.body.classList.contains('kp316-active')||state.stage!==3||taskPopup.hidden)return;
+    if(strokeIndex>=HANZI_LESSONS[current].strokes.length){
+      // Completion is a stable result, not the beginning of another trace.
+      event.preventDefault();event.stopImmediatePropagation();return;
+    }
     pendingTrace={index:strokeIndex};
   },true);
   // Rebuild the accepted ink from vector paths. Canvas pixel snapshots become
@@ -94,11 +117,27 @@
   }
   const finishUndoCapture=()=>{
     if(!pendingTrace)return;
-    if(strokeIndex>pendingTrace.index){
+    const accepted=strokeIndex>pendingTrace.index;
+    if(accepted){
       const box=traceCanvas.getBoundingClientRect();
       if(box.width&&box.height){
         pendingTrace.points=tracePoints.map(p=>({x:p.x/box.width,y:p.y/box.height}));
         undoHistory.push(pendingTrace);
+      }
+    }
+    if(state.stage===3&&!taskPopup.hidden){
+      const total=HANZI_LESSONS[current].strokes.length;
+      if(accepted&&strokeIndex===total){
+        // The legacy renderer schedules setStudyStep(2) after 1.6 s. That
+        // silently resets the pad while keeping our undo history alive.
+        clearTimeout(window.koepandaPraiseTimer);
+        const praise=$('praisePop');
+        if(praise){praise.classList.remove('on');praise.hidden=true;}
+        showTraceNotice('success','✓ 正解！ 全'+total+'画、上手に書けました！',true);
+      }else if(accepted){
+        resetTraceNotice();
+      }else if(tracePoints.length>=2){
+        showTraceNotice('retry','順番・始点・方向を確認して、もう一度なぞろう');
       }
     }
     pendingTrace=null;updateUndo();
@@ -111,6 +150,7 @@
     clearTimeout(window.koepandaPraiseTimer);
     const praise=$('praisePop');
     if(praise){praise.classList.remove('on');praise.hidden=true;}
+    resetTraceNotice();
     strokeIndex=previous.index;
     repaintAccepted();
     drawStrokeDemo();
@@ -118,7 +158,7 @@
     if(hint)hint.textContent='最後の一画を戻しました。同じ画をもう一度なぞりましょう。';
     updateUndo();
   };
-  $('clear')?.addEventListener('click',()=>{undoHistory=[];pendingTrace=null;updateUndo()});
+  $('clear')?.addEventListener('click',()=>{undoHistory=[];pendingTrace=null;resetTraceNotice();updateUndo()});
   window.addEventListener('resize',()=>requestAnimationFrame(()=>{
     if(state.stage===3&&!taskPopup.hidden&&undoHistory.length)repaintAccepted();
   }));
@@ -154,6 +194,8 @@
     [1,2,3].forEach(n=>{stageButton(n).classList.remove('on');stageButton(n).setAttribute('aria-pressed','false')});
   }
   function selectStage(n){
+    clearTimeout(window.koepandaPraiseTimer);
+    resetTraceNotice();
     state.stage=n;
     quiz.hidden=true;overlay.hidden=true;
     document.body.classList.toggle('kp316-read',n===1);
@@ -186,7 +228,7 @@
     if(state.character&&state.character!==ch&&!state.returnTo)state.returnTo=state.character;
     state.character=ch;
     const i=HANZI_LESSONS.findIndex(x=>x.char===ch);
-    render(i);undoHistory=[];pendingTrace=null;updateUndo();updateNavigation();
+    render(i);undoHistory=[];pendingTrace=null;resetTraceNotice();updateUndo();updateNavigation();
     if(stage)selectStage(stage);
     else{quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;setStudyStep(2);resetModeSelection()}
   }
