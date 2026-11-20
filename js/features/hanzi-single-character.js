@@ -7,6 +7,8 @@
   if(!lesson||!game||!app)return;
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
   const FIRST_UNIT='pre4-u01';
+  const activeLesson=()=>window.KP_HANZI_SCOPE?.lessonId||FIRST_UNIT;
+  const lessonLabel=()=>window.KP_HANZI_SCOPE?.lessonTitle||'第一単元';
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
   const teacherArea=document.querySelector('.pre4-learning-nav');
@@ -60,7 +62,7 @@
   const unitFinish=document.createElement('section');
   unitFinish.id='kp350UnitFinish';unitFinish.className='kp350-unit-finish';unitFinish.hidden=true;
   unitFinish.setAttribute('role','dialog');unitFinish.setAttribute('aria-modal','true');
-  unitFinish.innerHTML='<div class="kp350-unit-finish-card"><img src="./assets/hanzi/teacher-welcome-resting.webp" alt="小音先生"><span>✦ 第一単元クリア ✦</span><h2>10文字、全部できたね！</h2><p>読む・筆順・なぞり書き、ぜんぶがんばりました。</p><p id="kp350SaveStatus" role="status">学習記録を保存しています…</p><button type="button" id="kp350FinishRetry" hidden>記録をもう一度保存する</button><button type="button" id="kp350FinishClose">学習画面へ戻る</button></div>';
+  unitFinish.innerHTML='<div class="kp350-unit-finish-card"><img src="./assets/hanzi/teacher-welcome-resting.webp" alt="小音先生"><span>✦ レッスンクリア ✦</span><h2>ミニテスト合格！</h2><p>読む・筆順・なぞり書き、ぜんぶがんばりました。</p><p id="kp350SaveStatus" role="status">学習記録を保存しています…</p><button type="button" id="kp350FinishRetry" hidden>記録をもう一度保存する</button><button type="button" id="kp350FinishClose">学習画面へ戻る</button></div>';
   document.body.append(unitFinish);
   $('kp350FinishClose').onclick=()=>{unitFinish.hidden=true};
   $('kp350FinishRetry').onclick=()=>{
@@ -160,10 +162,12 @@
         if(praise){praise.classList.remove('on');praise.hidden=true;}
         showTraceNotice('success','✓ 正解！ 全'+total+'画、上手に書けました！',true);
         markStage(3);
+        if(window.KP_HANZI_UNIT_TEST?.isWriting?.()){window.dispatchEvent(new CustomEvent('kp-hanzi-test-writing-complete',{detail:{char:state.character}}));}
       }else if(accepted){
         resetTraceNotice();
       }else if(tracePoints.length>=2){
         showTraceNotice('retry','順番・始点・方向を確認して、もう一度なぞろう');
+        if(window.KP_HANZI_UNIT_TEST?.isWriting?.())window.dispatchEvent(new CustomEvent('kp-hanzi-test-writing-error',{detail:{char:state.character,stroke:pendingTrace.index+1}}));
       }
     }
     pendingTrace=null;updateUndo();
@@ -297,17 +301,17 @@
     dailyToast.textContent=text;dailyToast.hidden=false;
     dailyToastTimer=setTimeout(()=>{dailyToast.hidden=true},2700);
   }
-  function firstUnitActive(){return document.body.classList.contains('kp316-active')&&window.KP_HANZI_SCOPE?.unitId===FIRST_UNIT}
+  function firstUnitActive(){return document.body.classList.contains('kp316-active')&&window.KP_HANZI_SCOPE?.unitId===FIRST_UNIT&&!!window.KP_HANZI_SCOPE?.lessonId}
   function unitIsReady(){return firstUnitActive()&&scoped().length>0&&scoped().every(ch=>[1,2,3].every(stage=>state.completed.get(ch)?.has(stage)))}
   function updateUnitProgress(){
     const visible=firstUnitActive();unitProgress.hidden=!visible;if(!visible)return;
     const chars=scoped(),done=chars.filter(ch=>[1,2,3].every(n=>state.completed.get(ch)?.has(n))).length;
-    unitProgress.textContent='第一単元の進み具合　'+done+' / '+chars.length+'文字';
+    unitProgress.textContent=lessonLabel()+'　'+done+' / '+chars.length+'文字';
     if(done===chars.length){
-      unitProgress.textContent=unitTestPassed?'✓ 第一単元　テスト合格':'✓ '+chars.length+'文字の学習完了 · 単元テストへ';
+      unitProgress.textContent=unitTestPassed?'✓ '+lessonLabel()+'　テスト合格':'✓ '+chars.length+'文字の学習完了 · ミニテストへ';
       if(!unitTestPassed){
         const takeTest=document.createElement('button');takeTest.type='button';takeTest.className='kp351-take-test';
-        takeTest.textContent='テストに進む';takeTest.onclick=offerUnitTest;
+        takeTest.textContent='ミニテストへ';takeTest.onclick=offerUnitTest;
         unitProgress.append(takeTest);
       }
     }
@@ -332,10 +336,10 @@
       checks['char:'+ch]=[...new Set([...(checks['char:'+ch]||[]),...verified])];
       checks['charVerified:'+ch]=[...new Set([...(checks['charVerified:'+ch]||[]),...verified.filter(n=>n===2||n===3)])];
     });
-    if(unitTestPassed)checks['unitTest:'+FIRST_UNIT]=checks['unitTest:'+FIRST_UNIT]||{passed_at:nowIso(),score:unitTestScore,total:10};
+    if(unitTestPassed)checks['unitTest:'+activeLesson()]=checks['unitTest:'+activeLesson()]||{passed_at:nowIso(),score:unitTestScore,total:activeLesson()===FIRST_UNIT?10:6};
     const now=new Date().toISOString();
     const payload={user_id:auth.user.id,course_id:'hanzi-pre4-course',unit_id:FIRST_UNIT,
-      status:previous?.status||'in_progress',last_visited_at:now,review_checks:checks,updated_at:now};
+      status:previous?.status||'started',last_visited_at:now,review_checks:checks,updated_at:now};
     if(previous?.completed_at)payload.completed_at=previous.completed_at;
     const {error:writeError}=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
     if(writeError)throw writeError;
@@ -349,7 +353,7 @@
     unitFinish.dataset.needsLogin='false';retry.textContent='記録をもう一度保存する';
     try{
       await saves;
-      const already=window.KP_HANZI_PROGRESS?.completed()?.has(FIRST_UNIT);
+      const already=window.KP_HANZI_PROGRESS?.completed()?.has(activeLesson());
       if(already){finishedHere=true;finishPending=false;updateUnitProgress();return;}
       const synced=await syncVerifiedFirstUnit();
       if(!synced){
@@ -358,7 +362,7 @@
         retry.hidden=false;retry.textContent='ログインして記録する';unitFinish.dataset.needsLogin='true';
         return;
       }
-      const saved=await window.KP_HANZI_PROGRESS?.markComplete?.(FIRST_UNIT);
+      const saved=await window.KP_HANZI_PROGRESS?.markComplete?.(activeLesson());
       if(!saved){
         unitFinish.hidden=false;
         status.textContent='学習はできました。記録とごほうびにはログインが必要です。';
@@ -372,12 +376,12 @@
       resetModeSelection();
       unitFinish.hidden=false;
       status.textContent='✓ 学習記録を保存しました。ごほうびを準備しています！';
-      const completion=window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',FIRST_UNIT);
+      const completion=window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',activeLesson());
       // Allow the child to read their result before opening the sticker reveal.
       setTimeout(()=>{
         if(!firstUnitActive())return;
         unitFinish.hidden=true;
-        window.KPStandaloneReward?.show?.({activityKey:'hanzi.'+FIRST_UNIT,score:1,total:1,completion});
+        window.KPStandaloneReward?.show?.({activityKey:'hanzi.'+activeLesson(),score:1,total:1,completion});
       },2100);
       updateUnitProgress();
     }catch(error){
@@ -389,15 +393,15 @@
   }
   function nowIso(){return new Date().toISOString()}
   function offerUnitTest(){
-    if(!unitIsReady()||unitTestPassed||finishedHere)return;
+    if(!unitIsReady()||unitTestPassed||finishedHere||window.KP_HANZI_UNIT_TEST?.isOpen?.())return;
     taskPopup.hidden=true;quiz.hidden=true;overlay.hidden=true;
     setStudyStep(2);resetModeSelection();
-    window.KP_HANZI_UNIT_TEST?.open?.(scoped());
+    window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:lessonLabel()});
   }
   window.addEventListener('kp-hanzi-unit-test-passed',event=>{
-    if(!firstUnitActive()||!unitIsReady()||unitTestPassed)return;
+    if(!firstUnitActive()||!unitIsReady()||unitTestPassed||event.detail?.lessonId!==activeLesson())return;
     unitTestPassed=true;
-    unitTestScore=Number(event.detail?.score)||8;
+    unitTestScore=Number(event.detail?.score)||5;
     window.KP_HANZI_UNIT_TEST?.close?.();
     updateUnitProgress();
     setTimeout(completeFirstUnit,900);
@@ -437,7 +441,7 @@
       const finishedChar=currentSteps.length===3;
       if(finishedChar)checks[dayKey]=[...new Set([...(checks[dayKey]||[]),char])];
       const now=new Date().toISOString();
-      const payload={user_id:user.id,course_id:'hanzi-pre4-course',unit_id:unit,status:data?.status||'in_progress',last_visited_at:now,review_checks:checks,updated_at:now};
+      const payload={user_id:user.id,course_id:'hanzi-pre4-course',unit_id:unit,status:data?.status||'started',last_visited_at:now,review_checks:checks,updated_at:now};
       if(data?.completed_at)payload.completed_at=data.completed_at;
       const result=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
       if(result.error)throw result.error;
@@ -446,8 +450,8 @@
         updateUnitProgress();
         const count=todayChars.size;
         if(count===1){
-          showDailyToast('🌱 今日の学習達成！ 1文字できたね！');
-          window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',unit+':'+char)?.catch?.(error=>console.warn('[Koepanda] daily record delayed:',error));
+          showDailyToast('🌱 1文字できたね！ ミニテストまであと少し！');
+          // Streak and sticker are granted only after the lesson quiz passes.
         }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！');
       }
     }).catch(e=>console.warn('[Koepanda] stage sync pending:',e));
@@ -465,8 +469,8 @@
     try{
       const client=await window.KP_ACCOUNT_API?.getClient?.();const {data:auth}=await client?.auth.getUser();if(!auth?.user)return;
       const {data}=await client.from('course_progress').select('review_checks').eq('user_id',auth.user.id).eq('course_id','hanzi-pre4-course').eq('unit_id',unit).maybeSingle();
-      unitTestPassed=!!data?.review_checks?.['unitTest:'+FIRST_UNIT]?.passed_at;
-      unitTestScore=Number(data?.review_checks?.['unitTest:'+FIRST_UNIT]?.score)||0;
+      unitTestPassed=!!data?.review_checks?.['unitTest:'+activeLesson()]?.passed_at;
+      unitTestScore=Number(data?.review_checks?.['unitTest:'+activeLesson()]?.score)||0;
       const today=tokyoDay();lastPracticeDay=today;
       todayChars=new Set([...(data?.review_checks?.['dayChars:'+today]||[]),...todayChars]);
       dailySteps=new Map(scoped().map(ch=>[ch,new Set([...(data?.review_checks?.['daySteps:'+today+':'+ch]||[]),...(dailySteps.get(ch)||[])])]));
@@ -507,7 +511,15 @@
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
   $('kp316QuizClose').onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};
-  $('kp321Close').onclick=()=>{taskPopup.hidden=true;setStudyStep(2);resetModeSelection();updateUnitProgress()};
+  $('kp321Close').onclick=()=>{taskPopup.hidden=true;setStudyStep(2);resetModeSelection();updateUnitProgress();if(window.KP_HANZI_UNIT_TEST?.isWriting?.())window.dispatchEvent(new Event('kp-hanzi-test-writing-cancel'))};
+  window.addEventListener('kp-hanzi-test-writing-start',event=>{
+    if(!firstUnitActive()||event.detail?.lessonId!==activeLesson())return;
+    switchCharacter(event.detail.char,0);selectStage(3);
+  });
+  window.addEventListener('kp-hanzi-test-writing-complete',()=>{
+    if(!firstUnitActive())return;
+    taskPopup.hidden=true;setStudyStep(2);resetModeSelection();
+  });
   $('kp316Speak').onclick=()=>speak(state.character);
   // Existing next/previous shortcuts should not change the word-level position.
   for(const [id,delta] of [['prevCharacter',-1],['nextCharacter',1],['writePrevCharacter',-1],['writeNextCharacter',1]])$(id)?.addEventListener('click',e=>{

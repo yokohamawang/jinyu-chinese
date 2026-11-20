@@ -15,6 +15,8 @@
       completedUnit=scope.unitId;recognitionDone=false;strokeSeen=false;writingSeen=false;
       finish.disabled=false;finish.textContent='この単元を完了する ✦';
     }
+    // Lesson quizzes own all first-theme completion; legacy finish must never bypass them.
+    if(scope.unitId==='pre4-u01'){finish.hidden=true;return scope;}
     const match=(counter?.textContent||'').match(/(\d+)\s*\/\s*(\d+)/);
     const onLast=!!match&&Number(match[1])===Number(match[2]);
     finish.hidden=!(onLast&&document.body.classList.contains('copy-mode'));
@@ -39,7 +41,7 @@
   watch.observe(counter,{childList:true,characterData:true,subtree:true});
   watch.observe(document.body,{attributes:true,attributeFilter:['class']});
   finish.addEventListener('click',async()=>{
-    const scope=state();if(!scope||finish.disabled)return;
+    const scope=state();if(!scope||finish.disabled||scope.unitId==='pre4-u01')return;
     if(!recognitionDone||!strokeSeen||!writingSeen){
       finish.textContent='認読・筆順・なぞり書きの順に進めよう';
       window.setTimeout(()=>{if(!finish.disabled)finish.textContent='この単元を完了する ✦';},2600);
