@@ -8,14 +8,36 @@
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
-  const nav=document.querySelector('.pre4-learning-nav');
-  if(nav){
-    const teacher=document.createElement('span');
+  const teacherArea=document.querySelector('.pre4-learning-nav');
+  let teacher=null;
+  if(teacherArea){
+    teacher=document.createElement('span');
     teacher.className='kp330-nav-teacher';
     teacher.setAttribute('role','img');teacher.setAttribute('aria-label','めがねの小音先生');
     teacher.innerHTML='<img class="kp331-teacher-resting" src="./assets/hanzi/teacher-resting.webp" alt=""><img class="kp331-teacher-speaking" src="./assets/hanzi/teacher-speaking.webp" alt="">';
-    nav.append(teacher);
+    teacherArea.append(teacher);
   }
+  // Arm once for each pronunciation request. A single request can toggle the
+  // legacy is-speaking class more than once (TTS retries/fallbacks), so never
+  // replay the mouth animation just because that class toggled again.
+  let speechArmed=false,teacherMouthOpen=false,mouthSafetyTimer=null;
+  const armTeacher=()=>{speechArmed=true;};
+  $('speak')?.addEventListener('click',armTeacher,true);
+  const settleTeacher=()=>{
+    if(!teacher||!teacherMouthOpen)return;
+    teacherMouthOpen=false;teacher.classList.remove('kp335-mouth-open');
+    clearTimeout(mouthSafetyTimer);
+  };
+  new MutationObserver(()=>{
+    if(!teacher)return;
+    const speaking=app.classList.contains('is-speaking');
+    if(speaking&&speechArmed){
+      speechArmed=false;teacherMouthOpen=true;
+      teacher.classList.add('kp335-mouth-open');
+      clearTimeout(mouthSafetyTimer);
+      mouthSafetyTimer=setTimeout(settleTeacher,1500);
+    }else if(!speaking&&teacherMouthOpen)settleTeacher();
+  }).observe(app,{attributes:true,attributeFilter:['class']});
   shell.className='kp316-shell';
   shell.innerHTML='<div class="kp316-character-nav"><button type="button" id="kp316Prev" aria-label="前の漢字">‹</button><button type="button" id="kp316Picker" aria-label="漢字一覧を開く">1 / 10</button><button type="button" id="kp316Next" aria-label="次の漢字">›</button></div><div class="kp316-character-list" id="kp316List" hidden></div>';
   const progress=document.querySelector('.progress');
@@ -109,7 +131,7 @@
   function scoped(){return window.KP_HANZI_SCOPE?.characters||HANZI_LESSONS.map(x=>x.char)}
   function index(){return Math.max(0,scoped().indexOf(state.character))}
   function entry(ch){return HANZI_LESSONS.find(x=>x.char===ch)}
-  function speak(ch){try{if(typeof playHanziSystemVoice==='function')playHanziSystemVoice(ch);else if(typeof playHanziPronunciation==='function')playHanziPronunciation()}catch(_){}}
+  function speak(ch){armTeacher();try{if(typeof playHanziSystemVoice==='function')playHanziSystemVoice(ch);else if(typeof playHanziPronunciation==='function')playHanziPronunciation()}catch(_){}}
   function stageButton(n){return [null,$('readTab'),$('strokeTab'),$('practiceTab')][n]}
   function resetModeSelection(){
     [1,2,3].forEach(n=>{stageButton(n).classList.remove('on');stageButton(n).setAttribute('aria-pressed','false')});
