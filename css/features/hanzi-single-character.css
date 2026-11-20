@@ -257,3 +257,10 @@ body.kp316-active .kp321-task.kp321-tracing .kp321-body .paper{width:min(100%,40
 /* 301.346: any point on the main glyph card plays its pronunciation once. */
 body.kp316-active:not(.focus-write) .lesson{cursor:pointer}
 body.kp316-active:not(.focus-write) .lesson:focus-visible{outline:3px solid #228e79;outline-offset:3px}
+/* 301.347: calm centered lesson-modal heading and a true right-side speed hitbox. */
+.kp321-head{position:relative;justify-content:center!important;padding-left:56px!important;padding-right:56px!important}
+.kp321-head>div{flex:1 1 auto;min-width:0;text-align:center!important}
+.kp321-head strong,.kp321-head span{text-align:center!important}
+#kp321Close{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+body.kp316-active .kp321-body .stroke-controls .speed{grid-column:5;justify-self:end!important;width:max-content!important;max-width:100%;margin:0!important;justify-content:flex-end!important}
+@media(max-width:380px){body.kp316-active .kp321-body .stroke-controls .speed{grid-column:1/-1}}
