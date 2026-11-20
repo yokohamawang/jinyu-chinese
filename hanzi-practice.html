@@ -169,7 +169,7 @@ let strokeIndex=0,strokeTimer=null;function medianPath(points){return points.map
    const launch=selection=>{
      activeUnit=u;unitEntries=entries;window.KP_HANZI_UNIT_ENTRIES=unitEntries;entryIndex=0;
      window.KP_HANZI_SCOPE={unitId:u.unit_id,title:u.title_ja,characters:selection?.chars||characters,
-       lessonId:selection?.lessonId||null,lessonTitle:selection?.lessonTitle||'',themeCharacters:characters};
+       lessonId:selection?.lessonId||null,lessonTitle:selection?.lessonTitle||'',themeCharacters:characters,launchTest:!!selection?.launchTest,themeTest:!!selection?.themeTest};
      route.hidden=true;learning.hidden=false;document.body.classList.remove('pre4-map-mode');
      document.getElementById('pre4LessonProgress').textContent=u.title_ja+(selection?' · '+selection.lessonTitle:'');
      renderEntry();window.dispatchEvent(new CustomEvent('kp:open-hanzi-recognition'));
@@ -285,4 +285,4 @@ let strokeIndex=0,strokeTimer=null;function medianPath(points){return points.map
  soundToggle.onclick=()=>setSoundEnabled(!soundEnabled);document.getElementById('rgAudio').onclick=()=>playTargetCharacter();
   next.onclick=()=>{if(!answered||index+1>=round.length)return;index++;render()};document.getElementById('rgReplayRound').onclick=()=>{index=0;render()};document.getElementById('rgGoStroke').onclick=()=>{game.hidden=true;document.body.style.overflow='';setStudyStep(2)};window.addEventListener('kp:open-hanzi-recognition',openGame);
 })();
-</script><script src="./js/features/hanzi-completion.js?v=10.108.301.354"></script><script src="./js/36-fixed-home-back-102.js?v=10.108.301.102"></script><link rel="stylesheet" href="./css/features/hanzi-single-character.css?v=10.108.301.354"><script src="./js/features/hanzi-single-character.js?v=10.108.301.354"></script><link rel="stylesheet" href="./css/features/hanzi-unit-test.css?v=10.108.301.354"><script src="./js/features/hanzi-unit-test.js?v=10.108.301.354"></script><link rel="stylesheet" href="./css/features/hanzi-lesson-plan.css?v=10.108.301.354"><script src="./js/features/hanzi-lesson-plan.js?v=10.108.301.354"></script></body></html>
+</script><script src="./js/features/hanzi-completion.js?v=10.108.301.356"></script><script src="./js/36-fixed-home-back-102.js?v=10.108.301.102"></script><link rel="stylesheet" href="./css/features/hanzi-single-character.css?v=10.108.301.356"><script src="./js/features/hanzi-single-character.js?v=10.108.301.356"></script><link rel="stylesheet" href="./css/features/hanzi-unit-test.css?v=10.108.301.356"><script src="./js/features/hanzi-unit-test.js?v=10.108.301.356"></script><link rel="stylesheet" href="./css/features/hanzi-lesson-plan.css?v=10.108.301.356"><script src="./js/features/hanzi-lesson-plan.js?v=10.108.301.356"></script></body></html>
