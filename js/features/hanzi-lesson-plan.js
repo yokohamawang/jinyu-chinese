@@ -1,4 +1,4 @@
-/* 301.354: theme-tree lesson organization; existing study modes remain unchanged. */
+/* 301.356: lesson/test pairs in theme tree; existing study modes remain unchanged. */
 (()=>{
  'use strict';
  const COURSE='hanzi-pre4-course';
@@ -24,14 +24,39 @@
      slots.replaceChildren();
      groups.forEach((g,i)=>{
        const done=!!checks['unitTest:'+g.lessonId]?.passed_at;
+       const started=!done&&g.chars.some(ch=>Array.isArray(checks['char:'+ch])&&checks['char:'+ch].length>0);
+       const ready=g.chars.every(ch=>{const stages=checks['char:'+ch]||[],verified=checks['charVerified:'+ch]||[];return stages.includes(1)&&verified.includes(2)&&verified.includes(3);});
+
        const item=document.createElement('button');item.type='button';item.className='kp354-branch-item';
-       item.innerHTML='<span class="kp354-branch-marker" aria-hidden="true"></span>';
+       item.classList.toggle('is-complete',done);
+       item.classList.toggle('is-in-progress',started);
+       item.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">'+(done?'✓':started?'◐':'')+'</span>';
+       item.setAttribute('aria-label','第'+(i+1)+'課 '+(done?'クリア済み':started?'学習中':'未開始'));
+
        const content=document.createElement('span');content.className='kp354-branch-copy';
        const title=document.createElement('strong');title.textContent='第'+(i+1)+'課 · '+g.chars.join('・');
-       const hint=document.createElement('small');hint.textContent=done?'✓ クリア · もう一度練習':g.reviewChars.length?'新しい字 '+g.newChars.join('・')+' ＋ 復習':'3文字 · ミニテストつき';
+       const hint=document.createElement('small');
+       hint.textContent=done?'✓ クリア':started?'学習中':g.reviewChars.length?'復習をふくむ':'';
+       hint.hidden=!hint.textContent;
        content.append(title,hint);item.append(content);
        item.onclick=()=>onSelect({...theme,...g,lessonTitle:'第'+(i+1)+'課',lessonIndex:i,lessonCount:groups.length});
        slots.append(item);
+       // The quiz is a visible, separate tree branch, not an invisible final step.
+       const test=document.createElement('button');test.type='button';
+       test.className='kp354-branch-item kp356-lesson-test';
+       test.classList.toggle('is-complete',done);
+       test.classList.toggle('is-ready',ready&&!done);
+       const unlocked=ready||done;
+       test.disabled=!unlocked;
+       test.setAttribute('aria-disabled',String(!unlocked));
+       test.setAttribute('aria-label','第'+(i+1)+'課 テスト・'+(done?'合格済み':unlocked?'受験可能':'学習後に解放'));
+       const marker=document.createElement('span');marker.className='kp354-branch-marker';marker.setAttribute('aria-hidden','true');marker.textContent=done?'✓':unlocked?'✎':'🔒';
+       const testCopy=document.createElement('span');testCopy.className='kp354-branch-copy';
+       const testTitle=document.createElement('strong');testTitle.textContent='第'+(i+1)+'課 テスト';
+       const testHint=document.createElement('small');testHint.textContent=done?'合格済み・復習できます':unlocked?'6問 · テストを始める':'3文字の学習後に解放';
+       testCopy.append(testTitle,testHint);test.append(marker,testCopy);
+       test.onclick=()=>onSelect({...theme,...g,lessonTitle:'第'+(i+1)+'課',lessonIndex:i,lessonCount:groups.length,launchTest:true});
+       slots.append(test);
        const mistakes=(checks['mistakes:'+g.lessonId]||[]).filter(m=>!m.reviewed_at);
        if(mistakes.length){
          const review=document.createElement('button');review.type='button';review.className='kp354-branch-review';
@@ -43,9 +68,9 @@
      const finished=groups.every(g=>checks['unitTest:'+g.lessonId]?.passed_at);
      const summary=document.createElement('button');summary.type='button';summary.className='kp354-branch-item kp354-summary';
      summary.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">★</span><span class="kp354-branch-copy"><strong>テーマ総合テスト</strong><small></small></span>';
-     summary.querySelector('small').textContent=finished?'テーマの漢字を10問で確認':groups.length+'課クリアで解放';
+     summary.querySelector('small').textContent=finished?'10問 · まとめテスト':'全'+groups.length+'課のテスト合格で解放';
      summary.disabled=!finished;summary.setAttribute('aria-disabled',String(!finished));
-     summary.onclick=()=>onSelect({...theme,lessonId:theme.unitId,lessonTitle:'まとめテスト',chars:theme.characters,themeTest:true});
+     summary.onclick=()=>onSelect({...theme,lessonId:theme.unitId,lessonTitle:'まとめテスト',chars:theme.characters,themeTest:true,launchTest:true});
      slots.append(summary);
    };
    addItems({});

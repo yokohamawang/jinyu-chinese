@@ -137,7 +137,19 @@
     const r=traceCanvas.getBoundingClientRect();
     const p={x:event.clientX-r.left,y:event.clientY-r.top};
     const last=tracePoints[tracePoints.length-1];
-    if(Math.hypot(p.x-last.x,p.y-last.y)>1)tracePoints.push(p);
+    const movement=Math.hypot(p.x-last.x,p.y-last.y);
+    if(movement>1){tracePoints.push(p);return;}
+    // 谢 starts with a short 点 stroke. On iOS a small tap/dab can generate
+    // only pointerdown and pointerup at virtually the same coordinate. Accept
+    // that gesture ONLY when it lands close to the first stroke's real guide.
+    // Other strokes and characters retain the original path checker.
+    if(tracePoints.length===1){
+      const first=HANZI_LESSONS[current].medians?.[0]?.[0];
+      const sample=[((p.x/r.width-.12)/.76)*1024,900-((p.y/r.height-.12)/.76)*1024];
+      if(first&&Math.hypot(sample[0]-first[0],sample[1]-first[1])<95){
+        tracePoints.push({x:p.x+.5,y:p.y+.5});
+      }
+    }
   },true);
   // Rebuild the accepted ink from vector paths. Canvas pixel snapshots become
   // stale whenever Safari changes its visual viewport and calls resize().
@@ -315,18 +327,17 @@
   function firstUnitActive(){return document.body.classList.contains('kp316-active')&&!!window.KP_HANZI_SCOPE?.unitId&&!!window.KP_HANZI_SCOPE?.lessonId}
   function unitIsReady(){return firstUnitActive()&&scoped().length>0&&scoped().every(ch=>[1,2,3].every(stage=>state.completed.get(ch)?.has(stage)))}
   function updateUnitProgress(){
-    const visible=firstUnitActive();unitProgress.hidden=!visible;if(!visible)return;
+    const visible=firstUnitActive();if(!visible){unitProgress.hidden=true;return;}
     const chars=scoped(),done=chars.filter(ch=>[1,2,3].every(n=>state.completed.get(ch)?.has(n))).length;
-    unitProgress.textContent=lessonLabel()+'　'+done+' / '+chars.length+'文字';
-    if(done===chars.length){
-      unitProgress.textContent=unitTestPassed?'✓ '+lessonLabel()+'　テスト合格':'✓ '+chars.length+'文字の学習完了 · ミニテストへ';
-      if(!unitTestPassed){
-        const takeTest=document.createElement('button');takeTest.type='button';takeTest.className='kp351-take-test';
-        takeTest.textContent='ミニテストへ';takeTest.onclick=offerUnitTest;
-        unitProgress.append(takeTest);
-      }
+    // The 1/3 character navigation already communicates progress. Show only
+    // the actionable test entry after the lesson's three characters are ready.
+    unitProgress.replaceChildren();
+    unitProgress.hidden=done!==chars.length||unitTestPassed;
+    if(!unitProgress.hidden){
+      const takeTest=document.createElement('button');takeTest.type='button';takeTest.className='kp351-take-test';
+      takeTest.textContent='✓ 3文字できた！ ミニテストへ';takeTest.onclick=offerUnitTest;
+      unitProgress.append(takeTest);
     }
-    if(todayChars.size)unitProgress.append(document.createTextNode('　·　今日 '+todayChars.size+'文字'));
     [1,2,3].forEach(n=>{
       const button=stageButton(n);button.classList.toggle('kp350-complete',!!state.completed.get(state.character)?.has(n));
       button.setAttribute('aria-label',stages[n-1]+(state.completed.get(state.character)?.has(n)?' 完了':''));
@@ -466,7 +477,8 @@
         }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！');
       }
     }).catch(e=>console.warn('[Koepanda] stage sync pending:',e));
-    if(unitIsReady())setTimeout(offerUnitTest,1250);
+    // The learner chooses when to take the visible lesson-tree test;
+    // do not abruptly open a quiz after the final writing stroke.
   }
   // Completion must be earned by finishing the demo, not by opening/closing it.
   const strokeCounter=$('strokeCount');
@@ -502,8 +514,24 @@
     document.body.classList.add('kp316-active');
     state.returnTo='';state.completed.clear();unitTestPassed=false;unitTestScore=0;finishedHere=false;
     dailySteps=new Map();todayChars=new Set();lastPracticeDay=tokyoDay();dailyToast.hidden=true;
-    restoreStages();
+    const restore=restoreStages();
     switchCharacter(scoped()[0],0);
+    if(window.KP_HANZI_SCOPE?.launchTest){
+      // A tree test entry must launch the actual quiz only after remote
+      // progress restores; otherwise a valid unlocked test appears empty.
+      Promise.resolve(restore).then(()=>{
+        if(!firstUnitActive()||!window.KP_HANZI_SCOPE?.launchTest)return;
+        window.KP_HANZI_SCOPE.launchTest=false;
+        if(!unitIsReady()){
+          const missing=scoped().filter(ch=>![1,2,3].every(n=>state.completed.get(ch)?.has(n)));
+          showDailyToast('先に '+missing.join('・')+' の学習を終えよう');
+          return;
+        }
+        taskPopup.hidden=true;quiz.hidden=true;overlay.hidden=true;
+        resetModeSelection();
+        window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:lessonLabel()});
+      }).catch(error=>console.warn('[Koepanda] lesson test entry failed',error));
+    }
   }
   // Intercept the old unit-wide recognition autostart; preserve legacy routes outside units.
   window.addEventListener('kp:open-hanzi-recognition',e=>{
@@ -530,9 +558,13 @@
     setStudyStep(2);resetModeSelection();updateUnitProgress();
   };
   $('kp321Close').onclick=event=>{event.stopPropagation();closeStrokePopup()};
+  // On some mobile browsers pressing the circular X moves the touch target
+  // onto the surrounding header before click. Defer closing until AFTER the
+  // synthetic click so the dialog remains in place for its entire gesture.
   $('kp321Close').addEventListener('pointerup',event=>{
     if(event.pointerType==='mouse')return;
-    event.preventDefault();event.stopPropagation();closeStrokePopup();
+    event.preventDefault();event.stopPropagation();
+    setTimeout(closeStrokePopup,0);
   },true);
   window.addEventListener('kp-hanzi-test-writing-start',event=>{
     if(!firstUnitActive()||event.detail?.lessonId!==activeLesson())return;
