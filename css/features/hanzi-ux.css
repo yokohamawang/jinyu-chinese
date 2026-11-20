@@ -464,19 +464,3 @@ body.copy-mode:has(.pre4-finish-unit:not([hidden])) .pre4-learning{padding-botto
  .reading-game.is-answered .rg-feedback .rg-answer-reason{font-size:13px!important;line-height:1.4!important;}
  .reading-game.is-answered .rg-result-actions{padding-top:7px!important;}
 }
-/* 301.344: move the reading audio target toward the thumb-friendly right side. */
-@media(max-width:600px){
- .reading-game .rg-card .rg-audio{transform:translateX(24px)!important;}
-}
-/* 301.345: the complete reading prompt card responds to a single audio tap. */
-.reading-game .rg-card{cursor:pointer}
-.reading-game .rg-card:focus-visible{outline:3px solid #228e79;outline-offset:3px}
-/* 301.347: pinyin is the centered hero; the smaller speaker has its own quiet right margin. */
-@media(max-width:600px){
- .reading-game .rg-card .rg-target-row{display:flex!important;justify-content:center!important;align-items:center!important;position:relative!important}
- .reading-game .rg-card .rg-character{grid-column:auto!important;justify-self:auto!important}
- .reading-game .rg-card .rg-character:not(.is-phrase):not(.is-long):not(.is-extended){font-size:clamp(76px,20vw,92px)!important}
- .reading-game .rg-card .rg-pinyin{font-size:21px!important}
- .reading-game .rg-card .rg-audio{position:absolute!important;right:18px!important;top:50%!important;transform:translateY(-50%)!important;width:37px!important;height:37px!important;margin:0!important;grid-column:auto!important}
- .reading-game .rg-card .rg-audio svg{width:20px!important;height:20px!important}
-}

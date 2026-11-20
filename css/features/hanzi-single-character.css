@@ -264,3 +264,12 @@ body.kp316-active:not(.focus-write) .lesson:focus-visible{outline:3px solid #228
 #kp321Close{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
 body.kp316-active .kp321-body .stroke-controls .speed{grid-column:5;justify-self:end!important;width:max-content!important;max-width:100%;margin:0!important;justify-content:flex-end!important}
 @media(max-width:380px){body.kp316-active .kp321-body .stroke-controls .speed{grid-column:1/-1}}
+/* 301.348: fix the actual active reading popup, not the dormant legacy reading-game. */
+.kp316-quiz .kp316-quiz-info{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;gap:0!important;align-items:center!important;padding:0 18px!important;cursor:pointer;touch-action:manipulation}
+.kp316-quiz .kp316-quiz-info #kp316SoundText{grid-column:2;min-width:0;justify-self:center;font-size:clamp(30px,8vw,38px)!important;line-height:1.1;white-space:nowrap}
+.kp316-quiz .kp316-quiz-info #kp316Speak{grid-column:3;justify-self:end;width:42px!important;height:42px!important;font-size:20px!important;flex:none}
+.kp316-quiz .kp316-quiz-info:focus-visible{outline:3px solid #228e79;outline-offset:3px}
+/* A full-card audio tap must not trigger the global pressed-state flash. */
+body.kp316-active .lesson #speak:is(:active,.is-pressed){transform:none!important;filter:none!important;box-shadow:0 5px 0 #08766c!important}
+/* All four stroke transport keys share the same button treatment. */
+body.kp316-active .kp321-body #replayStroke{border:1px solid #d4e7dc!important;border-radius:12px!important;background:#e3f3eb!important;box-shadow:0 3px 0 #dbe8e0!important;color:#15564e!important}
