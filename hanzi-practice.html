@@ -109,7 +109,7 @@ body.focus-write .animation-hint{max-width:calc(100% - 24px);white-space:nowrap;
 <script src="./js/koepanda-cloud-config-301.165.js?v=10.108.301.229"></script><script src="./js/koepanda-account-301.168.js?v=10.108.301.256"></script>
 <link rel="stylesheet" href="./css/features/reward-reveal.css?v=10.108.301.307">
 <script src="./js/features/sticker-data.js?v=10.108.301.307"></script><script src="./js/features/reward-reveal.js?v=10.108.301.307"></script><script src="./js/features/standalone-reward.js?v=10.108.301.307"></script>
-<script src="./js/features/hanzi-progress.js?v=10.108.301.307"></script>
+<script src="./js/features/hanzi-progress.js?v=10.108.301.350"></script>
 <script>
 // Character content is data-only; shared page renderer and canvas work for every island.
 const HANZI_LESSONS=[
@@ -272,4 +272,4 @@ let strokeIndex=0,strokeTimer=null;function medianPath(points){return points.map
  soundToggle.onclick=()=>setSoundEnabled(!soundEnabled);document.getElementById('rgAudio').onclick=()=>playTargetCharacter();
   next.onclick=()=>{if(!answered||index+1>=round.length)return;index++;render()};document.getElementById('rgReplayRound').onclick=()=>{index=0;render()};document.getElementById('rgGoStroke').onclick=()=>{game.hidden=true;document.body.style.overflow='';setStudyStep(2)};window.addEventListener('kp:open-hanzi-recognition',openGame);
 })();
-</script><script src="./js/features/hanzi-completion.js?v=10.108.301.307"></script><script src="./js/36-fixed-home-back-102.js?v=10.108.301.102"></script><link rel="stylesheet" href="./css/features/hanzi-single-character.css?v=10.108.301.349"><script src="./js/features/hanzi-single-character.js?v=10.108.301.349"></script></body></html>
+</script><script src="./js/features/hanzi-completion.js?v=10.108.301.307"></script><script src="./js/36-fixed-home-back-102.js?v=10.108.301.102"></script><link rel="stylesheet" href="./css/features/hanzi-single-character.css?v=10.108.301.352"><script src="./js/features/hanzi-single-character.js?v=10.108.301.352"></script><link rel="stylesheet" href="./css/features/hanzi-unit-test.css?v=10.108.301.352"><script src="./js/features/hanzi-unit-test.js?v=10.108.301.352"></script></body></html>
