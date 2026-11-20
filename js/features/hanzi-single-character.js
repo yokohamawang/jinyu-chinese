@@ -8,11 +8,13 @@
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
-  const headerSlot=document.querySelector('.app > .top > span:last-child');
-  if(headerSlot){
-    headerSlot.classList.add('kp327-mascot-slot');
-    headerSlot.removeAttribute('style');
-    headerSlot.innerHTML='<img src="./assets/hanzi/xiaoyin/xiaoyin-oops-puzzled.webp" alt="めがねの小音">';
+  const nav=document.querySelector('.pre4-learning-nav');
+  if(nav){
+    const teacher=document.createElement('span');
+    teacher.className='kp330-nav-teacher';
+    teacher.setAttribute('role','img');teacher.setAttribute('aria-label','めがねの小音先生');
+    teacher.innerHTML='<img class="kp331-teacher-resting" src="./assets/hanzi/teacher-resting.webp" alt=""><img class="kp331-teacher-speaking" src="./assets/hanzi/teacher-speaking.webp" alt="">';
+    nav.append(teacher);
   }
   shell.className='kp316-shell';
   shell.innerHTML='<div class="kp316-character-nav"><button type="button" id="kp316Prev" aria-label="前の漢字">‹</button><button type="button" id="kp316Picker" aria-label="漢字一覧を開く">1 / 10</button><button type="button" id="kp316Next" aria-label="次の漢字">›</button></div><div class="kp316-character-list" id="kp316List" hidden></div>';
@@ -39,7 +41,7 @@
   const paper=$('paper'),traceCanvas=$('canvas');
   const undoButton=document.createElement('button');
   undoButton.id='kp325Undo';undoButton.type='button';
-  undoButton.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M12 10H9c-4 0-6 3-6 7s3 7 8 7h11c5 0 8-3 8-8s-3-8-8-8H12m0 0 6-6m-6 6 6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  undoButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   undoButton.setAttribute('aria-label','一画戻す');undoButton.title='一画戻す';
   paper.append(undoButton);
   let undoHistory=[],pendingTrace=null;
