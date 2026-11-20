@@ -136,3 +136,20 @@ body.kp316-active .kp321-body .controls{margin:7px 0 0!important;gap:8px!importa
 body.kp316-active .kp321-body .controls button{min-height:44px!important}
 .kp321-footer{display:none!important}
 @media(max-height:700px){.kp321-head{min-height:48px;padding:5px 12px}body.kp316-active .kp321-body .paper{width:min(100%,max(195px,calc(100dvh - 365px)))!important}body.kp316-active .kp321-body .board-head{min-height:36px!important}}
+/* 301.323: separate the tool sets by mode and give the main character room. */
+body.kp316-active:not(.focus-write) .lesson{min-height:148px;grid-template-columns:100px minmax(0,1fr) 58px;gap:16px;padding:16px 19px;margin:14px 0 16px;border-radius:28px}
+body.kp316-active:not(.focus-write) .hanzi{width:100px;height:100px;font-size:73px;border-radius:22px}
+body.kp316-active:not(.focus-write) .lesson .reading{font-size:clamp(24px,6vw,31px)}
+body.kp316-active:not(.focus-write) .lesson .speaker{width:56px;height:56px}
+body.kp316-active .kp316-character-nav{margin:14px 0}
+body.kp316-active .progress{margin:12px 0 19px}
+body.kp316-active .progress .phase{min-height:52px;font-size:16px}
+body.kp316-active .kp316-next{margin-top:17px}
+/* Stroke demo has its own transport controls; no handwriting buttons below. */
+body.kp316-active .kp321-task:not(.kp321-tracing) .kp321-body .controls{display:none!important}
+body.kp316-active .kp321-task:not(.kp321-tracing) .kp321-body .paper{width:min(100%,365px,max(225px,calc(100dvh - 345px)))!important}
+/* Tracing has fewer controls, so the square writing surface can be larger. */
+body.kp316-active .kp321-task.kp321-tracing .kp321-body .paper{width:min(100%,405px,max(245px,calc(100dvh - 280px)))!important;max-width:405px!important}
+body.kp316-active .kp321-task.kp321-tracing .kp321-body .animation-hint{margin:8px 0 5px}
+body.kp316-active .kp321-body .animation-hint{display:none!important}
+@media(max-width:390px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:86px minmax(0,1fr) 52px;gap:10px;padding:14px}body.kp316-active:not(.focus-write) .hanzi{width:86px;height:86px;font-size:65px}body.kp316-active:not(.focus-write) .lesson .speaker{width:50px;height:50px}}
