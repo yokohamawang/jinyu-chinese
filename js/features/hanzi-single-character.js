@@ -22,6 +22,15 @@
   const nextBar=document.createElement('div');nextBar.className='kp316-next';
   nextBar.innerHTML='<button type="button" id="kp316Continue">次へ進む</button><button type="button" id="kp316Return" hidden>学習のつづきへ戻る</button>';
   document.querySelector('.controls').after(nextBar);
+  // Dedicated, scroll-safe learning panel. Reuse the real stroke canvas and
+  // its existing listeners; cloning the canvas would break handwriting.
+  const workPanel=document.createElement('section');workPanel.id='kp320Panel';workPanel.className='kp320-overlay';workPanel.hidden=true;
+  workPanel.setAttribute('role','dialog');workPanel.setAttribute('aria-modal','true');
+  workPanel.setAttribute('aria-label','漢字の筆順となぞり書き');
+  workPanel.innerHTML='<div class="kp320-sheet"><header class="kp320-head"><span class="kp320-word" id="kp320Word">你</span><span class="kp320-reading" id="kp320Reading">nǐ</span><span class="kp320-counter" id="kp320Counter">1 / 10</span><button type="button" id="kp320Close" aria-label="学習を閉じる">×</button></header><div class="kp320-body" id="kp320Body"></div></div>';
+  document.body.append(workPanel);
+  const panelBody=$('kp320Body');
+  panelBody.append(shell,progress,lessonBoard,document.querySelector('.controls'),nextBar);
   const overlay=document.createElement('section');overlay.className='kp316-overlay';overlay.id='kp316Overlay';overlay.hidden=true;
   overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-labelledby','kp316ModalTitle');
   overlay.innerHTML='<div class="kp316-modal"><button type="button" class="kp316-close" id="kp316Close" aria-label="閉じる">×</button><div class="kp316-mascot"><img alt="小音" src="./assets/hanzi/xiaoyin/xiaoyin-oops-puzzled.webp"></div><h2 id="kp316ModalTitle">ここを確認しよう</h2><div class="kp316-compare"><div class="kp316-example correct"><span class="kp316-glyph" id="kp316Correct"></span><strong>○ 正しい漢字</strong></div><div class="kp316-example wrong"><span class="kp316-glyph" id="kp316Wrong"></span><strong>× 選んだ漢字</strong></div></div><p id="kp316Hint">形をよく見比べてみよう。</p><button type="button" class="kp316-primary" id="kp316Retry">もう一度やってみる</button></div>';
@@ -39,16 +48,22 @@
     quiz.hidden=true;overlay.hidden=true;
     document.body.classList.toggle('kp316-read',n===1);
     setStudyStep(n===1?2:n);
+    workPanel.hidden=n===1;
+    workPanel.classList.toggle('kp320-writing',n===3);
     for(let i=1;i<=3;i++){stageButton(i).classList.toggle('on',i===n);stageButton(i).setAttribute('aria-pressed',String(i===n));}
     stageButton(1).innerHTML='認読';stageButton(2).innerHTML='筆順';stageButton(3).innerHTML='なぞり書き';
     if(n===1)openQuiz();
     $('kp316Continue').textContent=n===1?'筆順へ進む':n===2?'なぞり書きへ進む':'次の漢字へ';
-    window.scrollTo({top:0,behavior:'instant'});
+    panelBody.scrollTop=0;
+    if(n!==1)requestAnimationFrame(()=>{window.dispatchEvent(new Event('resize'))});
   }
   function updateNavigation(){
     const chars=scoped(),i=index();
     $('kp316Prev').disabled=i===0;$('kp316Next').disabled=i>=chars.length-1;
     $('kp316Picker').textContent=(i+1)+' / '+chars.length;
+    $('kp320Word').textContent=state.character;
+    $('kp320Reading').textContent=entry(state.character)?.pinyin||'';
+    $('kp320Counter').textContent=(i+1)+' / '+chars.length;
     $('kp316List').replaceChildren();
     chars.forEach((ch,j)=>{const b=document.createElement('button');b.textContent=ch;b.className=ch===state.character?'current':'';b.type='button';b.onclick=()=>{switchCharacter(ch,1);$('kp316List').hidden=true};$('kp316List').append(b)});
     $('kp316Return').hidden=!state.returnTo||state.returnTo===state.character;
@@ -147,11 +162,12 @@
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
   $('kp316QuizClose').onclick=()=>{quiz.hidden=true;selectStage(2)};
+  $('kp320Close').onclick=()=>{workPanel.hidden=true;$('backToPre4Route')?.click()};
   $('kp316Speak').onclick=()=>speak(state.character);
   // Existing next/previous shortcuts should not change the word-level position.
   for(const [id,delta] of [['prevCharacter',-1],['nextCharacter',1],['writePrevCharacter',-1],['writeNextCharacter',1]])$(id)?.addEventListener('click',e=>{
     if(!document.body.classList.contains('kp316-active'))return;
     e.stopImmediatePropagation();const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,state.stage);
   },true);
-  $('backToPre4Route')?.addEventListener('click',()=>{document.body.classList.remove('kp316-active');quiz.hidden=true;overlay.hidden=true},true);
+  $('backToPre4Route')?.addEventListener('click',()=>{document.body.classList.remove('kp316-active');quiz.hidden=true;overlay.hidden=true;workPanel.hidden=true},true);
 })();
