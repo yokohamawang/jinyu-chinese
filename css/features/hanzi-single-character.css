@@ -229,3 +229,10 @@ body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 132px!i
 body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:121px;height:114px;transform:translate(-17px,-8px)}
 body.kp316-active .kp331-teacher-speaking{clip-path:ellipse(10% 7.5% at 54% 48%)}
 @media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 111px!important;grid-template-rows:95px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:107px;height:101px;transform:translate(-12px,-7px)}}
+/* 301.339: the speaking frame itself has an open mouth; show the full expression. */
+body.kp316-active .kp331-teacher-speaking{clip-path:ellipse(11.5% 9.5% at 54% 48%)}
+/* 301.340: matched full frames, no facial patch boundary; slightly quieter upper-right placement. */
+body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 126px!important;grid-template-rows:101px auto!important}
+body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:115px;height:108px;transform:translate(-16px,-7px)}
+body.kp316-active .kp331-teacher-speaking{clip-path:none!important}
+@media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 106px!important;grid-template-rows:92px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:102px;height:96px;transform:translate(-12px,-6px)}}
