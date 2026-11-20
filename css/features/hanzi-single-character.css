@@ -168,3 +168,20 @@ body.kp316-active .kp316-next{display:none!important}
 #kp325Undo:disabled{opacity:.38;box-shadow:none}
 #kp325Undo:active:not(:disabled){transform:translateY(2px)}
 @media(max-width:390px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:86px minmax(0,1fr) 52px;gap:10px;padding:14px}body.kp316-active:not(.focus-write) .hanzi{width:86px;height:86px;font-size:65px}body.kp316-active:not(.focus-write) .lesson .speaker{width:50px;height:50px}}
+/* 301.326: chapter is its own quiet line; the character is the hero. */
+body.kp316-active .pre4-learning-nav{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;margin:8px 0 19px!important;min-height:0!important}
+body.kp316-active #backToPre4Route{align-self:flex-start!important;min-height:43px!important}
+body.kp316-active #pre4LessonProgress{width:100%!important;text-align:center!important;font-size:18px!important;line-height:1.4!important;color:#526f65!important;letter-spacing:.025em!important;padding:0 16px!important}
+body.kp316-active:not(.focus-write) .lesson{grid-template-columns:138px minmax(0,1fr) 56px!important;gap:15px!important;min-height:204px!important;padding:20px!important;border-radius:32px!important;margin:17px 0 21px!important}
+body.kp316-active:not(.focus-write) .hanzi{width:138px!important;height:138px!important;font-size:103px!important;border-radius:26px!important}
+body.kp316-active:not(.focus-write) .lesson .reading{font-size:clamp(29px,7vw,36px)!important}
+body.kp316-active:not(.focus-write) .lesson .speaker{width:56px!important;height:56px!important}
+body.kp316-active .kp316-character-nav{margin:17px 0!important}
+body.kp316-active .progress{margin:15px 0 24px!important}
+body.kp316-active .progress .phase{min-height:56px!important;border-radius:17px!important}
+body.kp316-active .progress .phase:not(.on){background:#ecf6ef!important;color:#476c60!important;border-color:#d4e8db!important}
+/* A disabled undo remains legible, while still clearly less prominent. */
+#kp325Undo{width:50px;height:50px;border:2px solid #a4cbbb;background:#fffdf8;color:#20594f;box-shadow:0 3px 10px #174a382a}
+#kp325Undo svg{display:block;width:30px;height:30px;stroke:currentColor}
+#kp325Undo:disabled{opacity:.76!important;color:#49796c;border-color:#bbd6c7;box-shadow:none}
+@media(max-width:400px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:120px minmax(0,1fr) 50px!important;gap:10px!important;min-height:184px!important;padding:16px!important}body.kp316-active:not(.focus-write) .hanzi{width:120px!important;height:120px!important;font-size:92px!important}body.kp316-active:not(.focus-write) .lesson .speaker{width:50px!important;height:50px!important}body.kp316-active #pre4LessonProgress{font-size:17px!important}}
