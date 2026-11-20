@@ -279,3 +279,24 @@ body.kp316-active .kp321-body #replayStroke{border:1px solid #d4e7dc!important;b
 .kp321-task.kp321-tracing #kp349TraceNotice{position:absolute;z-index:9;left:10px;right:59px;bottom:11px;box-sizing:border-box;padding:9px 10px;border-radius:12px;background:#fef2dc;border:1px solid #dfc79e;color:#7b4e1e;font-size:clamp(12px,3.5vw,15px);font-weight:750;line-height:1.35;text-align:center;box-shadow:0 2px 8px #20463818;pointer-events:none}
 .kp321-task.kp321-tracing #kp349TraceNotice[data-kind="success"]{background:#e2f6e9;border-color:#91c9a8;color:#175c47;font-size:clamp(13px,3.9vw,17px);font-weight:900}
 #kp349TraceNotice[hidden]{display:none!important}
+/* 301.350: completion is earned per character, with a quiet progress cue. */
+#kp350UnitProgress{margin:5px 0 9px;text-align:center;font-size:13px;font-weight:750;color:#607e71;letter-spacing:.025em}
+#kp350UnitProgress[hidden]{display:none!important}
+body.kp316-active .progress .phase.kp350-complete{position:relative;border-color:#a9d9bc!important}
+body.kp316-active .progress .phase.kp350-complete::after{content:'✓';position:absolute;right:7px;top:3px;font-size:12px;font-weight:900;color:#188466}
+body.kp316-active .progress .phase.kp350-complete.on::after{color:white}
+body.kp316-active .pre4-finish-unit{display:none!important}
+.kp350-unit-finish{position:fixed;inset:0;z-index:1300;display:grid;place-items:center;padding:18px;background:#163e358a;box-sizing:border-box}
+.kp350-unit-finish[hidden]{display:none!important}
+.kp350-unit-finish-card{width:min(100%,410px);box-sizing:border-box;text-align:center;padding:26px 22px 22px;border-radius:29px;background:#fffdf5;border:2px solid #d9eadc;box-shadow:0 18px 50px #184c3940;color:#205e51}
+.kp350-unit-finish-card img{display:block;width:108px;height:108px;object-fit:contain;margin:0 auto 7px}
+.kp350-unit-finish-card span{display:block;color:#3c977d;font-weight:850;font-size:14px;letter-spacing:.06em}
+.kp350-unit-finish-card h2{margin:10px 0 7px;font-size:clamp(22px,6vw,29px);line-height:1.3}
+.kp350-unit-finish-card p{font-size:15px;line-height:1.55;margin:8px 0;color:#627f70}
+.kp350-unit-finish-card #kp350SaveStatus{min-height:24px;font-size:14px;font-weight:700;color:#347966;margin-top:12px}
+.kp350-unit-finish-card button{display:block;width:100%;min-height:46px;border-radius:14px;background:#eaf5ed;color:#215e51;font-weight:800;margin-top:9px}
+.kp350-unit-finish-card #kp350FinishRetry{background:#138e7d;color:white}
+.kp350-unit-finish-card button[hidden]{display:none!important}
+/* 301.352: reward each completed character without interrupting the lesson. */
+#kp352DailyToast{position:fixed;left:50%;bottom:calc(103px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:1410;box-sizing:border-box;max-width:min(90vw,400px);width:max-content;padding:13px 19px;border:2px solid #a9dbc0;border-radius:18px;background:#fffdf4;color:#1d6752;box-shadow:0 11px 28px #174d3d38;text-align:center;font-size:clamp(15px,3.8vw,18px);font-weight:850;line-height:1.4;pointer-events:none}
+#kp352DailyToast[hidden]{display:none!important}
