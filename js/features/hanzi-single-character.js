@@ -26,9 +26,13 @@
   // tools move to the popup; the three mode buttons stay on the main page.
   const taskPopup=document.createElement('section');taskPopup.id='kp321Task';taskPopup.className='kp321-task';taskPopup.hidden=true;
   taskPopup.setAttribute('role','dialog');taskPopup.setAttribute('aria-modal','true');
-  taskPopup.innerHTML='<div class="kp321-panel"><div class="kp321-head"><div><strong id="kp321Title">筆順</strong><span id="kp321Character">你 · nǐ</span></div><button type="button" id="kp321Close" aria-label="主画面に戻る">×</button></div><div class="kp321-body" id="kp321Body"></div><div class="kp321-footer"><button type="button" id="kp321Done">おわって戻る</button></div></div>';
+  taskPopup.innerHTML='<div class="kp321-panel"><div class="kp321-head"><div><strong id="kp321Title">筆順</strong><span id="kp321Character">你 · nǐ</span></div><button type="button" id="kp321Close" aria-label="主画面に戻る">×</button></div><div class="kp321-body" id="kp321Body"></div></div>';
   document.body.append(taskPopup);
   $('kp321Body').append(lessonBoard,document.querySelector('.controls'));
+  let taskInteracted=false;
+  $('kp321Body').addEventListener('pointerdown',e=>{
+    if(e.target.closest('canvas,.stroke-controls button,.controls button'))taskInteracted=true;
+  });
   const overlay=document.createElement('section');overlay.className='kp316-overlay';overlay.id='kp316Overlay';overlay.hidden=true;
   overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-labelledby','kp316ModalTitle');
   overlay.innerHTML='<div class="kp316-modal"><button type="button" class="kp316-close" id="kp316Close" aria-label="閉じる">×</button><div class="kp316-mascot"><img alt="小音" src="./assets/hanzi/xiaoyin/xiaoyin-oops-puzzled.webp"></div><h2 id="kp316ModalTitle">ここを確認しよう</h2><div class="kp316-compare"><div class="kp316-example correct"><span class="kp316-glyph" id="kp316Correct"></span><strong>○ 正しい漢字</strong></div><div class="kp316-example wrong"><span class="kp316-glyph" id="kp316Wrong"></span><strong>× 選んだ漢字</strong></div></div><p id="kp316Hint">形をよく見比べてみよう。</p><button type="button" class="kp316-primary" id="kp316Retry">もう一度やってみる</button></div>';
@@ -47,6 +51,7 @@
     document.body.classList.toggle('kp316-read',n===1);
     setStudyStep(n===1?2:n);
     taskPopup.hidden=n===1;
+    taskInteracted=false;
     taskPopup.classList.toggle('kp321-tracing',n===3);
     $('kp321Title').textContent=n===3?'なぞり書き':'筆順アニメーション';
     $('kp321Character').textContent=state.character+' · '+(entry(state.character)?.pinyin||'');
@@ -156,8 +161,7 @@
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
   $('kp316QuizClose').onclick=()=>{quiz.hidden=true;overlay.hidden=true};
-  $('kp321Close').onclick=()=>{taskPopup.hidden=true;setStudyStep(2)};
-  $('kp321Done').onclick=()=>{markStage(state.stage);taskPopup.hidden=true;setStudyStep(2)};
+  $('kp321Close').onclick=()=>{if(taskInteracted)markStage(state.stage);taskPopup.hidden=true;setStudyStep(2)};
   $('kp316Speak').onclick=()=>speak(state.character);
   // Existing next/previous shortcuts should not change the word-level position.
   for(const [id,delta] of [['prevCharacter',-1],['nextCharacter',1],['writePrevCharacter',-1],['writeNextCharacter',1]])$(id)?.addEventListener('click',e=>{
