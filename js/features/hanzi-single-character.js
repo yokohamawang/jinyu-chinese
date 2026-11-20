@@ -32,7 +32,8 @@
   // Undo only the last accepted trace stroke, preserving earlier strokes.
   const paper=$('paper'),traceCanvas=$('canvas');
   const undoButton=document.createElement('button');
-  undoButton.id='kp325Undo';undoButton.type='button';undoButton.textContent='↶';
+  undoButton.id='kp325Undo';undoButton.type='button';
+  undoButton.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M12 10H9c-4 0-6 3-6 7s3 7 8 7h11c5 0 8-3 8-8s-3-8-8-8H12m0 0 6-6m-6 6 6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   undoButton.setAttribute('aria-label','一画戻す');undoButton.title='一画戻す';
   paper.append(undoButton);
   let undoHistory=[],pendingTrace=null;
@@ -70,6 +71,9 @@
   function entry(ch){return HANZI_LESSONS.find(x=>x.char===ch)}
   function speak(ch){try{if(typeof playHanziSystemVoice==='function')playHanziSystemVoice(ch);else if(typeof playHanziPronunciation==='function')playHanziPronunciation()}catch(_){}}
   function stageButton(n){return [null,$('readTab'),$('strokeTab'),$('practiceTab')][n]}
+  function resetModeSelection(){
+    [1,2,3].forEach(n=>{stageButton(n).classList.remove('on');stageButton(n).setAttribute('aria-pressed','false')});
+  }
   function selectStage(n){
     state.stage=n;
     quiz.hidden=true;overlay.hidden=true;
@@ -104,7 +108,7 @@
     const i=HANZI_LESSONS.findIndex(x=>x.char===ch);
     render(i);undoHistory=[];pendingTrace=null;updateUndo();updateNavigation();
     if(stage)selectStage(stage);
-    else{quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;setStudyStep(2)}
+    else{quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;setStudyStep(2);resetModeSelection()}
   }
   function openQuiz(){
     const chars=scoped(),right=state.character,answer=entry(right);
@@ -124,7 +128,7 @@
       $('kp316Feedback').textContent='○ 正解！ よくできました。';
       $('kp316Choices').querySelectorAll('button').forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.textContent===ch)});
       markStage(1);
-      const next=document.createElement('button');next.className='kp316-inline-next';next.type='button';next.textContent='主画面に戻る';next.onclick=()=>{quiz.hidden=true;overlay.hidden=true};$('kp316Feedback').append(next);
+      const next=document.createElement('button');next.className='kp316-inline-next';next.type='button';next.textContent='主画面に戻る';next.onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};$('kp316Feedback').append(next);
     }else{
       $('kp316Correct').textContent=state.character;$('kp316Wrong').textContent=ch;
       $('kp316Hint').textContent='「'+state.character+'」と「'+ch+'」の形を見比べてみよう。';
@@ -189,8 +193,8 @@
   };
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
-  $('kp316QuizClose').onclick=()=>{quiz.hidden=true;overlay.hidden=true};
-  $('kp321Close').onclick=()=>{if(taskInteracted)markStage(state.stage);taskPopup.hidden=true;setStudyStep(2)};
+  $('kp316QuizClose').onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};
+  $('kp321Close').onclick=()=>{if(taskInteracted)markStage(state.stage);taskPopup.hidden=true;setStudyStep(2);resetModeSelection()};
   $('kp316Speak').onclick=()=>speak(state.character);
   // Existing next/previous shortcuts should not change the word-level position.
   for(const [id,delta] of [['prevCharacter',-1],['nextCharacter',1],['writePrevCharacter',-1],['writeNextCharacter',1]])$(id)?.addEventListener('click',e=>{
