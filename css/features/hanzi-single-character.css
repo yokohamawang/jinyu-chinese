@@ -224,3 +224,8 @@ body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:134px;height:126px
 body.kp316-active .kp331-teacher-speaking{clip-path:ellipse(7% 5% at 54% 48%);animation:none!important;transition:none!important}
 body.kp316-active .kp330-nav-teacher.kp335-mouth-open .kp331-teacher-speaking{opacity:1!important}
 @media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 120px!important;grid-template-rows:99px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:118px;height:111px;transform:translate(-16px,-8px)}}
+/* 301.338: balance the teacher against the surrounding whitespace and expose the mouth clearly. */
+body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 132px!important;grid-template-rows:105px auto!important;row-gap:6px!important}
+body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:121px;height:114px;transform:translate(-17px,-8px)}
+body.kp316-active .kp331-teacher-speaking{clip-path:ellipse(10% 7.5% at 54% 48%)}
+@media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 111px!important;grid-template-rows:95px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:107px;height:101px;transform:translate(-12px,-7px)}}
