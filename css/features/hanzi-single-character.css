@@ -273,3 +273,9 @@ body.kp316-active .kp321-body .stroke-controls .speed{grid-column:5;justify-self
 body.kp316-active .lesson #speak:is(:active,.is-pressed){transform:none!important;filter:none!important;box-shadow:0 5px 0 #08766c!important}
 /* All four stroke transport keys share the same button treatment. */
 body.kp316-active .kp321-body #replayStroke{border:1px solid #d4e7dc!important;border-radius:12px!important;background:#e3f3eb!important;box-shadow:0 3px 0 #dbe8e0!important;color:#15564e!important}
+/* 301.349: make the handwriting outcome legible and keep it on the pad. */
+.kp321-task.kp321-tracing .kp321-head strong{font-size:21px!important;letter-spacing:.025em}
+.kp321-task.kp321-tracing .kp321-head #kp321Character{font-size:19px!important;font-weight:700!important;color:#376c60!important;line-height:1.35}
+.kp321-task.kp321-tracing #kp349TraceNotice{position:absolute;z-index:9;left:10px;right:59px;bottom:11px;box-sizing:border-box;padding:9px 10px;border-radius:12px;background:#fef2dc;border:1px solid #dfc79e;color:#7b4e1e;font-size:clamp(12px,3.5vw,15px);font-weight:750;line-height:1.35;text-align:center;box-shadow:0 2px 8px #20463818;pointer-events:none}
+.kp321-task.kp321-tracing #kp349TraceNotice[data-kind="success"]{background:#e2f6e9;border-color:#91c9a8;color:#175c47;font-size:clamp(13px,3.9vw,17px);font-weight:900}
+#kp349TraceNotice[hidden]{display:none!important}
