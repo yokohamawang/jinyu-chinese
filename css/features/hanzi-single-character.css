@@ -236,3 +236,6 @@ body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 126px!i
 body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:115px;height:108px;transform:translate(-16px,-7px)}
 body.kp316-active .kp331-teacher-speaking{clip-path:none!important}
 @media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 106px!important;grid-template-rows:92px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:102px;height:96px;transform:translate(-12px,-6px)}}
+/* 301.341: the open-mouth overlay is alpha-preserving; keep both poses fixed with no animation flicker. */
+body.kp316-active .kp330-nav-teacher img{transform:none!important;transition:none!important;backface-visibility:hidden}
+body.kp316-active .kp330-nav-teacher .kp331-teacher-speaking{animation:none!important;transition:none!important}
