@@ -8,6 +8,12 @@
   const state={character:'',stage:1,returnTo:'',answered:false,choice:'',currentCorrect:'',completed:new Map(),busy:false,legacyTest:false};
   const stages=['認読','筆順','なぞり書き'];
   const shell=document.createElement('div');
+  const headerSlot=document.querySelector('.app > .top > span:last-child');
+  if(headerSlot){
+    headerSlot.classList.add('kp327-mascot-slot');
+    headerSlot.removeAttribute('style');
+    headerSlot.innerHTML='<img src="./assets/hanzi/xiaoyin/xiaoyin-oops-puzzled.webp" alt="めがねの小音">';
+  }
   shell.className='kp316-shell';
   shell.innerHTML='<div class="kp316-character-nav"><button type="button" id="kp316Prev" aria-label="前の漢字">‹</button><button type="button" id="kp316Picker" aria-label="漢字一覧を開く">1 / 10</button><button type="button" id="kp316Next" aria-label="次の漢字">›</button></div><div class="kp316-character-list" id="kp316List" hidden></div>';
   const progress=document.querySelector('.progress');
@@ -92,8 +98,9 @@
   }
   function updateNavigation(){
     const chars=scoped(),i=index();
-    $('kp316Prev').disabled=i===0;$('kp316Next').disabled=false;
-    $('kp316Next').setAttribute('aria-label',i===chars.length-1?'単元のテストへ':'次の漢字');
+    $('kp316Prev').disabled=i===0;
+    $('kp316Next').disabled=i===chars.length-1;
+    $('kp316Next').setAttribute('aria-label','次の漢字');
     $('kp316Picker').textContent=(i+1)+' / '+chars.length;
     $('kp316List').replaceChildren();
     chars.forEach((ch,j)=>{const b=document.createElement('button');b.textContent=ch;b.className=ch===state.character?'current':'';b.type='button';b.onclick=()=>{switchCharacter(ch,0);$('kp316List').hidden=true};$('kp316List').append(b)});
@@ -177,19 +184,13 @@
     e.stopImmediatePropagation();launch();
   },true);
   [1,2,3].forEach(n=>stageButton(n).addEventListener('click',e=>{if(!document.body.classList.contains('kp316-active'))return;e.stopImmediatePropagation();selectStage(n)},true));
-  function finishUnit(){
-    state.legacyTest=true;document.body.classList.remove('kp316-active');
-    quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;
-    window.dispatchEvent(new Event('kp:open-hanzi-recognition'));
-    state.legacyTest=false;
-  }
-  for(const [id,delta] of [['kp316Prev',-1],['kp316Next',1]])$(id).onclick=()=>{const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,0);else if(delta===1)finishUnit()};
+  for(const [id,delta] of [['kp316Prev',-1],['kp316Next',1]])$(id).onclick=()=>{const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,0)};
   $('kp316Picker').onclick=()=>$('kp316List').hidden=!$('kp316List').hidden;
   $('kp316Return').onclick=()=>{const ch=state.returnTo;state.returnTo='';switchCharacter(ch,0)};
   $('kp316Continue').onclick=()=>{
     const next=scoped()[index()+1];
     if(next){switchCharacter(next,0);return}
-    finishUnit();
+    return;
   };
   $('kp316Close').onclick=()=>{overlay.hidden=true;quiz.hidden=false;state.answered=false;openQuiz()};
   $('kp316Retry').onclick=()=>{overlay.hidden=true;openQuiz()};
