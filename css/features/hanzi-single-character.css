@@ -218,3 +218,9 @@ body.kp316-active #pre4LessonProgress{grid-column:1 / -1;grid-row:2;width:100%!i
 body.kp316-active .pre4-learning-nav .kp330-nav-teacher{display:block!important;position:relative!important;grid-column:2;grid-row:1;justify-self:end;width:110px;height:102px;transform:translate(-12px,-7px);pointer-events:none}
 body.kp316-active:not(.focus-write) .lesson .speaker{transform:none!important}
 @media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 98px!important;grid-template-rows:90px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:98px;height:92px;transform:translate(-9px,-6px)}}
+/* 301.337: intentional upper-right composition and one stable mouth frame. */
+body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 145px!important;grid-template-rows:110px auto!important;row-gap:7px!important}
+body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:134px;height:126px;transform:translate(-24px,-10px)}
+body.kp316-active .kp331-teacher-speaking{clip-path:ellipse(7% 5% at 54% 48%);animation:none!important;transition:none!important}
+body.kp316-active .kp330-nav-teacher.kp335-mouth-open .kp331-teacher-speaking{opacity:1!important}
+@media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 120px!important;grid-template-rows:99px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:118px;height:111px;transform:translate(-16px,-8px)}}
