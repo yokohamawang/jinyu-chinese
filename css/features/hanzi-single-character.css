@@ -96,3 +96,8 @@ body.kp316-active.focus-write .paper{display:block!important;flex:none!important
 body.kp316-active.focus-write .stroke-controls{display:grid!important;position:static!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;max-width:none!important;box-shadow:none!important;border:0!important;background:transparent!important;padding:10px 2px 0!important}
 body.kp316-active.focus-write .controls{display:grid!important;position:static!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;grid-template-columns:1fr 1fr!important;margin:8px 0 10px!important;padding:0!important;background:transparent!important;border:0!important}
 body.kp316-active.focus-write .paper canvas{touch-action:none!important;pointer-events:auto!important}
+/* 301.319: tracing needs a pencil surface, not playback transport controls. */
+body.kp316-active.focus-write .stroke-controls{display:none!important}
+body.kp316-active.focus-write .animation-hint{font-size:14px;margin:10px 3px 6px;padding:8px 12px;text-align:center}
+body.kp316-active.focus-write .controls{margin:10px 0 8px!important}
+body.kp316-active.focus-write .kp316-next{margin:8px 0 12px}
