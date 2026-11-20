@@ -250,3 +250,10 @@ body.kp316-active .kp321-task.kp321-tracing .kp321-body .paper{width:min(100%,42
 body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 122px!important;grid-template-rows:99px auto!important}
 body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:110px;height:104px;transform:translate(-16px,-7px)}
 @media(max-width:400px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 102px!important;grid-template-rows:90px auto!important}body.kp316-active .pre4-learning-nav .kp330-nav-teacher{width:98px;height:92px;transform:translate(-11px,-6px)}}
+/* 301.343: restore the unclipped action row; keep undo small and out of the glyph's reach. */
+body.kp316-active .kp321-task.kp321-tracing .kp321-body .paper{width:min(100%,405px,max(245px,calc(100dvh - 280px)))!important;max-width:405px!important}
+.kp321-task.kp321-tracing #kp325Undo{display:flex!important;position:absolute!important;inset:auto 8px 8px auto!important;margin:0!important;width:38px;height:38px;border-radius:12px;border-width:1.5px;box-shadow:0 2px 6px #174a3820}
+.kp321-task.kp321-tracing #kp325Undo svg{width:23px;height:23px}
+/* 301.346: any point on the main glyph card plays its pronunciation once. */
+body.kp316-active:not(.focus-write) .lesson{cursor:pointer}
+body.kp316-active:not(.focus-write) .lesson:focus-visible{outline:3px solid #228e79;outline-offset:3px}
