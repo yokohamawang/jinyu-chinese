@@ -185,10 +185,16 @@ body.kp316-active .progress .phase:not(.on){background:#ecf6ef!important;color:#
 #kp325Undo svg{display:block;width:30px;height:30px;stroke:currentColor}
 #kp325Undo:disabled{opacity:.76!important;color:#49796c;border-color:#bbd6c7;box-shadow:none}
 @media(max-width:400px){body.kp316-active:not(.focus-write) .lesson{grid-template-columns:120px minmax(0,1fr) 50px!important;gap:10px!important;min-height:184px!important;padding:16px!important}body.kp316-active:not(.focus-write) .hanzi{width:120px!important;height:120px!important;font-size:92px!important}body.kp316-active:not(.focus-write) .lesson .speaker{width:50px!important;height:50px!important}body.kp316-active #pre4LessonProgress{font-size:17px!important}}
-/* 301.327: a small, quiet mascot balances the home icon without competing with the glyph. */
-.kp327-mascot-slot{display:flex;width:44px;height:44px;flex:none;align-items:center;justify-content:center}
-.kp327-mascot-slot img{display:none;width:100%;height:100%;object-fit:contain}
-body.kp316-active .kp327-mascot-slot img{display:block}
-body.kp316-active .app > .top{align-items:center}
-body.kp316-active .app > .top .brand{min-width:0;text-align:center}
-@media(max-width:360px){.kp327-mascot-slot{width:38px;height:38px}}
+/* 301.329: conventional undo curve, visually lighter than the handwriting strokes. */
+#kp325Undo svg{width:29px;height:29px}
+/* 301.330: the teacher belongs beside the lesson-back control, not in the brand header. */
+.kp330-nav-teacher{display:none}
+body.kp316-active .pre4-learning-nav{display:grid!important;grid-template-columns:minmax(0,1fr) 70px!important;grid-template-rows:64px auto!important;column-gap:12px!important;row-gap:6px!important;align-items:center!important;margin:8px 0 18px!important}
+body.kp316-active #backToPre4Route{grid-column:1;grid-row:1;justify-self:start;align-self:center!important}
+body.kp316-active .kp330-nav-teacher{display:block;position:relative;grid-column:2;grid-row:1;width:69px;height:64px;justify-self:end}
+body.kp316-active .kp330-nav-teacher img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+body.kp316-active .kp331-teacher-speaking{opacity:0}
+body.kp316-active .app.is-speaking .kp331-teacher-speaking{animation:kp331-talk .42s steps(1,end) infinite}
+@keyframes kp331-talk{0%,48%{opacity:1}49%,100%{opacity:0}}
+body.kp316-active #pre4LessonProgress{grid-column:1 / -1;grid-row:2;justify-self:center;align-self:center;margin:0!important}
+@media(max-width:380px){body.kp316-active .pre4-learning-nav{grid-template-columns:minmax(0,1fr) 58px!important;grid-template-rows:58px auto!important}body.kp316-active .kp330-nav-teacher{width:58px;height:56px}}
