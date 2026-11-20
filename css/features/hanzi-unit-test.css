@@ -32,3 +32,7 @@
 .kp351-review span{border:1px solid #d4e6d9;border-radius:11px;padding:7px 10px;background:#eef8f0;font-size:16px;font-weight:700}
 .kp351-take-test{display:inline-block;margin-left:9px;background:#148b79;border-radius:11px;padding:6px 10px;color:white;font-size:12px;font-weight:850}
 @media(max-height:700px){.kp351-test-body{gap:7px;padding:10px 14px}.kp351-stimulus{min-height:95px}.kp351-options button{min-height:62px}.kp351-mascot{font-size:48px}}
+/* 301.353 additions for genuine test question types. */
+.kp353-pinyin-input{height:52px;border:2px solid #bedccf;border-radius:14px;font-size:25px;text-align:center;color:#235c50;background:white;outline-offset:3px;width:100%;box-sizing:border-box}
+.kp353-stroke-quiz{width:min(100%,168px);height:clamp(105px,18dvh,165px)}
+.kp351-stimulus:has(.kp353-stroke-quiz){min-height:110px}
