@@ -14,7 +14,7 @@
     teacher=document.createElement('span');
     teacher.className='kp330-nav-teacher';
     teacher.setAttribute('role','img');teacher.setAttribute('aria-label','めがねの小音先生');
-    teacher.innerHTML='<img class="kp331-teacher-resting" src="./assets/hanzi/teacher-welcome-resting.webp" alt=""><img class="kp331-teacher-speaking" src="./assets/hanzi/teacher-welcome-speaking-matched-340.webp" alt="">';
+    teacher.innerHTML='<img class="kp331-teacher-resting" src="./assets/hanzi/teacher-welcome-resting.webp" alt=""><img class="kp331-teacher-speaking" src="./assets/hanzi/teacher-welcome-speaking-alpha-341.webp" alt="">';
     teacherArea.append(teacher);
   }
   // One pronunciation request = precisely one mouth opening. The older
