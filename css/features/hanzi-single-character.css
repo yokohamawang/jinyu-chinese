@@ -118,3 +118,21 @@ body.kp316-active .kp321-body .controls{position:static!important;display:grid!i
 #kp321Done{display:block;width:100%;min-height:52px;background:#098f81;border-radius:16px;color:white;font-weight:850;font-size:17px;box-shadow:0 3px 0 #08756c}
 body.kp316-active .kp321-body .paper canvas{pointer-events:auto!important;touch-action:none!important}
 @media(max-height:760px){.kp321-head{min-height:56px;padding:6px 12px}.kp321-body{padding:7px 10px}body.kp316-active .kp321-body .paper{width:min(100%,340px)!important}}
+/* 301.322: one-screen lesson; remove duplicate exit footer and reserve tool space. */
+.kp321-task{padding:max(8px,env(safe-area-inset-top)) 9px max(8px,env(safe-area-inset-bottom))}
+.kp321-panel{height:auto;max-height:100%;overflow:hidden}
+.kp321-head{min-height:54px;padding:8px 14px;gap:9px}
+.kp321-head strong{font-size:17px;line-height:1.2}
+.kp321-head span{font-size:13px;margin-top:2px}
+#kp321Close{width:40px;height:40px}
+.kp321-body{overflow:hidden!important;padding:7px 12px 10px}
+body.kp316-active .kp321-body .board{padding:8px!important;margin:2px 0!important;border-radius:21px}
+body.kp316-active .kp321-body .board-head{min-height:40px!important;padding:0 5px 4px!important}
+body.kp316-active .kp321-body .paper{width:min(100%,370px,max(205px,calc(100dvh - 385px)))!important;max-width:370px!important;min-height:0!important;height:auto!important;aspect-ratio:1/1!important}
+body.kp316-active .kp321-body .animation-hint{font-size:13px;line-height:1.3;padding:5px 8px;margin:5px 0 3px}
+body.kp316-active .kp321-body .stroke-controls{gap:5px!important;padding:6px 1px 0!important}
+body.kp316-active .kp321-body .stroke-controls button{min-height:42px!important}
+body.kp316-active .kp321-body .controls{margin:7px 0 0!important;gap:8px!important}
+body.kp316-active .kp321-body .controls button{min-height:44px!important}
+.kp321-footer{display:none!important}
+@media(max-height:700px){.kp321-head{min-height:48px;padding:5px 12px}body.kp316-active .kp321-body .paper{width:min(100%,max(195px,calc(100dvh - 365px)))!important}body.kp316-active .kp321-body .board-head{min-height:36px!important}}
