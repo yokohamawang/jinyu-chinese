@@ -312,7 +312,7 @@
       $('kp316Retry').focus();
     }
   }
-  let saves=Promise.resolve(),finishPending=false,finishedHere=false,unitTestPassed=false,unitTestScore=0;
+  let saves=Promise.resolve(),lastSaveError=null,finishPending=false,finishedHere=false,unitTestPassed=false,unitTestScore=0;
   let dailySteps=new Map(),todayChars=new Set(),dailyToastTimer=null,lastPracticeDay='';
   function tokyoDay(){
     const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -413,6 +413,17 @@
       retry.hidden=false;
     }finally{finishPending=false}
   }
+  // Navigation must wait for queued stage writes before rebuilding the lesson tree.
+  window.KP_HANZI_LESSON_FLUSH=async()=>{
+    try{
+      await saves;
+      // Reconcile all locally verified stages before the route reads progress.
+      // This also repairs an earlier individual stage upsert that failed.
+      const synced=await syncVerifiedFirstUnit();
+      if(synced)lastSaveError=null;
+      return !!synced;
+    }catch(error){console.warn('[Koepanda] pending lesson progress',error);return false}
+  };
   function nowIso(){return new Date().toISOString()}
   function offerUnitTest(){
     if(!unitIsReady()||unitTestPassed||finishedHere||window.KP_HANZI_UNIT_TEST?.isOpen?.())return;
@@ -441,6 +452,7 @@
     steps.add(n);dailySteps.set(char,steps);
     updateUnitProgress();
     const api=window.KP_ACCOUNT_API;
+    lastSaveError=null;
     saves=saves.then(async()=>{
       const client=await api?.getClient?.();if(!client)return;
       const {data:userData}=await client.auth.getUser();const user=userData?.user;if(!user)return;
@@ -476,7 +488,7 @@
           // Streak and sticker are granted only after the lesson quiz passes.
         }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！');
       }
-    }).catch(e=>console.warn('[Koepanda] stage sync pending:',e));
+    }).catch(e=>{lastSaveError=e;console.warn('[Koepanda] stage sync failed:',e);showDailyToast('学習記録を保存できませんでした。接続を確認してね。')});
     // The learner chooses when to take the visible lesson-tree test;
     // do not abruptly open a quiz after the final writing stroke.
   }
