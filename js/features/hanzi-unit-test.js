@@ -47,7 +47,7 @@
    index=0;score=0;errors=[];corrects=[];locked=false;awaitingWriting=false;writingMistake=false;
  }
  async function getProgress(){
-   const client=await window.KP_ACCOUNT_API?.getClient?.();const {data:auth}=await client?.auth.getUser();
+   const client=await window.KP_ACCOUNT_API?.getClient?.();const auth=client?(await client.auth.getUser()).data:null;
    if(!auth?.user)return null;
    const unitId=window.KP_HANZI_SCOPE?.unitId||'pre4-u01';
    const {data,error}=await client.from('course_progress').select('status,completed_at,review_checks').eq('user_id',auth.user.id).eq('course_id','hanzi-pre4-course').eq('unit_id',unitId).maybeSingle();
@@ -56,7 +56,21 @@
  // Keep mistake history (attempt count, last wrong answer and correction status).
  // A correct later answer marks a record reviewed, but never erases the mistake.
  async function recordAttempt(){
-   const account=await getProgress();if(!account)return false;
+   const account=await getProgress();
+   if(!account){
+     const unit=window.KP_HANZI_SCOPE?.unitId||'pre4-u01';
+     window.KP_HANZI_GUEST?.update(unit,checks=>{
+       const key='mistakes:'+lessonId,records=Array.isArray(checks[key])?checks[key]:[],now=new Date().toISOString();
+       errors.forEach(err=>{let row=records.find(r=>r.char===err.char&&r.type===err.type);
+         if(!row){row={char:err.char,type:err.type,first_at:now,attempts:0};records.push(row)}
+         row.attempts++;row.last_at=now;row.wrong=err.wrong;row.correct=err.correct;row.reviewed_at=null;
+       });
+       corrects.forEach(item=>{const row=records.find(r=>r.char===item.char&&r.type===item.type);if(row&&!errors.some(e=>e.char===item.char&&e.type===item.type))row.reviewed_at=now});
+       checks[key]=records;
+       const history='testHistory:'+lessonId;checks[history]=[...(checks[history]||[]),{date:now,score,total:questions.length}].slice(-25);
+     });
+     return true;
+   }
    const {client,user,unitId,data}=account,checks={...(data?.review_checks||{})},key='mistakes:'+lessonId;
    const records=Array.isArray(checks[key])?checks[key].map(r=>({...r})):[];
    const now=new Date().toISOString();

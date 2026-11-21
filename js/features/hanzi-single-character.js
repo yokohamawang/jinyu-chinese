@@ -225,7 +225,7 @@
   overlay.innerHTML='<div class="kp316-modal"><button type="button" class="kp316-close" id="kp316Close" aria-label="閉じる">×</button><div class="kp316-mascot"><img alt="小音" src="./assets/hanzi/xiaoyin/xiaoyin-oops-puzzled.webp"></div><h2 id="kp316ModalTitle">ここを確認しよう</h2><div class="kp316-compare"><div class="kp316-example correct"><span class="kp316-glyph" id="kp316Correct"></span><strong>○ 正しい漢字</strong></div><div class="kp316-example wrong"><span class="kp316-glyph" id="kp316Wrong"></span><strong>× 選んだ漢字</strong></div></div><p id="kp316Hint">形をよく見比べてみよう。</p><button type="button" class="kp316-primary" id="kp316Retry">もう一度やってみる</button></div>';
   document.body.append(overlay);
   const quiz=document.createElement('section');quiz.className='kp316-quiz';quiz.id='kp316Quiz';quiz.hidden=true;
-  quiz.innerHTML='<div class="kp316-quiz-panel"><div class="kp316-quiz-head"><strong>漢字を読んでみよう</strong><button type="button" id="kp316QuizClose" aria-label="認読を閉じる">×</button></div><p class="kp316-quiz-prompt">読み方に合う漢字を選んでね</p><div class="kp316-quiz-info"><span id="kp316SoundText"></span><button type="button" id="kp316Speak" aria-label="発音を聞く">🔊</button></div><div class="kp316-choices" id="kp316Choices"></div><p class="kp316-quiz-feedback" id="kp316Feedback" aria-live="polite"></p></div>';
+  quiz.innerHTML='<div class="kp316-quiz-panel"><div class="kp316-quiz-head"><strong>漢字を読んでみよう</strong><button type="button" id="kp316QuizClose" aria-label="認読を閉じる">×</button></div><p class="kp316-quiz-prompt">意味に合う絵を選んでね</p><div class="kp316-quiz-info"><span id="kp316SoundText"></span><button type="button" id="kp316Speak" aria-label="発音を聞く">🔊</button></div><div class="kp316-choices" id="kp316Choices"></div><p class="kp316-quiz-feedback" id="kp316Feedback" aria-live="polite"></p></div>';
   document.body.append(quiz);
   const liveReadingPrompt=quiz.querySelector('.kp316-quiz-info');
   liveReadingPrompt.tabIndex=0;
@@ -286,30 +286,63 @@
     if(stage)selectStage(stage);
     else{quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true;setStudyStep(2);resetModeSelection()}
   }
+  // Reuse the existing Pre-4 semantic picture bank; never invent new artwork.
+  const semanticBank=()=>{
+    const all=window.KP_HANZI_ALL_ENTRIES||window.KP_HANZI_UNIT_ENTRIES||[];
+    return all.filter(e=>e?.recognition?.image_data||e?.recognition?.image).map(e=>({
+      id:e.entry_id,word:e.simplified,meaning:e.ja_meaning,chars:e.character_sequence||[],
+      imageData:e.recognition?.image_data||'',image:window.KP_HANZI_RECOGNITION_SCENES?.[e.entry_id]||e.recognition?.image||''
+    }));
+  };
+  let selectedMeaning=null;
   function openQuiz(){
-    const chars=scoped(),right=state.character,answer=entry(right);
-    if(!answer)return;
-    state.answered=false;state.currentCorrect=right;
-    const others=[...new Set([...chars,...HANZI_LESSONS.map(x=>x.char)])].filter(ch=>ch!==right);
-    const choices=[right,...others.sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);
-    $('kp316SoundText').textContent=answer.pinyin||right;
-    $('kp316Choices').replaceChildren();$('kp316Feedback').textContent='';
-    choices.forEach(ch=>{const b=document.createElement('button');b.type='button';b.textContent=ch;b.onclick=()=>choose(ch);$('kp316Choices').append(b)});
+    const right=state.character,bank=semanticBank();
+    if(!entry(right))return;
+    const theme=window.KP_HANZI_UNIT_ENTRIES||[];
+    const anchor=(theme.find(e=>(e.character_sequence||[]).includes(right))||
+       (window.KP_HANZI_ALL_ENTRIES||[]).find(e=>(e.character_sequence||[]).includes(right)));
+    const correct=bank.find(item=>item.id===anchor?.entry_id);
+    if(!correct)return;
+    state.answered=false;selectedMeaning=correct;
+    const pool=bank.filter(x=>x.id!==correct.id&&x.meaning!==correct.meaning);
+    // Prefer variety from the same topic, then the existing picture catalog.
+    const same=pool.filter(x=>theme.some(e=>e.entry_id===x.id));
+    const distractors=[...same.sort(()=>Math.random()-.5),...pool.filter(x=>!same.includes(x)).sort(()=>Math.random()-.5)]
+      .filter((item,i,arr)=>arr.findIndex(x=>x.id===item.id)===i).slice(0,3);
+    const choices=[correct,...distractors].sort(()=>Math.random()-.5);
+    $('kp316SoundText').textContent=right;
+    const container=$('kp316Choices');container.replaceChildren();$('kp316Feedback').textContent='';
+    container.classList.add('kp358-meaning-choices');
+    choices.forEach(item=>{
+      const b=document.createElement('button');b.type='button';b.className='kp358-meaning-card';
+      b.setAttribute('aria-label',item.meaning);b.dataset.answer=item.id;
+      const img=document.createElement('img');img.alt='';img.loading='eager';
+      img.src=(window.KP_HANZI_RECOGNITION_SCENES?.[item.id]?'./assets/hanzi/recognition/'+item.image:item.imageData||('./assets/hanzi/recognition/'+item.image));
+      const label=document.createElement('span');label.textContent=item.meaning;
+      b.append(img,label);b.onclick=()=>choose(item.id);container.append(b);
+    });
     quiz.hidden=false;requestAnimationFrame(()=>speak(right));
   }
-  function choose(ch){
-    if(state.answered)return;
-    state.answered=true;state.choice=ch;
-    if(ch===state.character){
-      $('kp316Feedback').textContent='○ 正解！ よくできました。';
-      $('kp316Choices').querySelectorAll('button').forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.textContent===ch)});
+  function choose(id){
+    if(state.answered||!selectedMeaning)return;
+    state.answered=true;
+    const correct=id===selectedMeaning.id;
+    const cards=[...$('kp316Choices').querySelectorAll('button')];
+    cards.forEach(card=>{
+      card.disabled=true;
+      card.classList.toggle('correct',card.dataset.answer===selectedMeaning.id);
+      card.classList.toggle('wrong',!correct&&card.dataset.answer===id);
+    });
+    if(correct){
+      $('kp316Feedback').textContent='○ 正解！ '+selectedMeaning.word+' · '+selectedMeaning.meaning;
       markStage(1);
-      const next=document.createElement('button');next.className='kp316-inline-next';next.type='button';next.textContent='主画面に戻る';next.onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};$('kp316Feedback').append(next);
+      const next=document.createElement('button');next.className='kp316-inline-next';next.type='button';next.textContent='主画面に戻る';
+      next.onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};$('kp316Feedback').append(next);
     }else{
-      $('kp316Correct').textContent=state.character;$('kp316Wrong').textContent=ch;
-      $('kp316Hint').textContent='「'+state.character+'」と「'+ch+'」の形を見比べてみよう。';
-      quiz.hidden=true;overlay.hidden=false;
-      $('kp316Retry').focus();
+      $('kp316Feedback').textContent='おしい！ 正解は「'+selectedMeaning.meaning+'」。絵を見て覚えよう。';
+      const retry=document.createElement('button');retry.type='button';retry.className='kp316-inline-next';retry.textContent='もう一度やってみる';
+      retry.onclick=()=>openQuiz();$('kp316Feedback').append(retry);
+      // Incorrect recognition never counts as learned.
     }
   }
   let saves=Promise.resolve(),lastSaveError=null,finishPending=false,finishedHere=false,unitTestPassed=false,unitTestScore=0;
@@ -343,11 +376,24 @@
       button.setAttribute('aria-label',stages[n-1]+(state.completed.get(state.character)?.has(n)?' 完了':''));
     });
   }
+  function syncGuestStages(){
+    const unit=window.KP_HANZI_SCOPE?.unitId;
+    if(!unit)return false;
+    window.KP_HANZI_GUEST?.update(unit,checks=>{
+      scoped().forEach(ch=>{
+        const verified=[...(state.completed.get(ch)||[])];
+        checks['char:'+ch]=[...new Set([...(checks['char:'+ch]||[]),...verified])];
+        checks['charVerified:'+ch]=[...new Set([...(checks['charVerified:'+ch]||[]),...verified.filter(n=>n===2||n===3)])];
+      });
+      if(unitTestPassed)checks['unitTest:'+activeLesson()]=checks['unitTest:'+activeLesson()]||{passed_at:nowIso(),score:unitTestScore,total:activeLesson()===unit?10:6};
+    });
+    return true;
+  }
   async function syncVerifiedFirstUnit(){
     const client=await window.KP_ACCOUNT_API?.getClient?.();
-    if(!client)return false;
+    if(!client)return syncGuestStages();
     const {data:auth,error:authError}=await client.auth.getUser();
-    if(authError||!auth?.user)return false;
+    if(authError||!auth?.user)return syncGuestStages();
     const {data:previous,error:readError}=await client.from('course_progress')
       .select('status,completed_at,review_checks').eq('user_id',auth.user.id)
       .eq('course_id','hanzi-pre4-course').eq('unit_id',window.KP_HANZI_SCOPE.unitId).maybeSingle();
@@ -384,6 +430,9 @@
         retry.hidden=false;retry.textContent='ログインして記録する';unitFinish.dataset.needsLogin='true';
         return;
       }
+      const client=await window.KP_ACCOUNT_API?.getClient?.();
+      const session=client?(await client.auth.getUser()).data:null;
+      const guest=!session?.user;
       const saved=await window.KP_HANZI_PROGRESS?.markComplete?.(activeLesson());
       if(!saved){
         unitFinish.hidden=false;
@@ -397,11 +446,16 @@
       setStudyStep(2);
       resetModeSelection();
       unitFinish.hidden=false;
-      status.textContent='✓ 学習記録を保存しました。ごほうびを準備しています！';
-      const completion=window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',activeLesson());
+      status.textContent=guest?'🎉 合格！ 次のレッスンが開きました。ログインすると学習記録を保存できます。':'✓ 学習記録を保存しました。ごほうびを準備しています！';
+      const completion=guest?null:window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',activeLesson());
       // Allow the child to read their result before opening the sticker reveal.
       setTimeout(()=>{
         if(!firstUnitActive())return;
+        if(guest){
+          // Leave the existing completion card visible until dismissed.
+          // No sticker claim and no persistent progress for visitors.
+          return;
+        }
         unitFinish.hidden=true;
         window.KPStandaloneReward?.show?.({activityKey:'hanzi.'+activeLesson(),score:1,total:1,completion});
       },2100);
@@ -451,6 +505,8 @@
     if(!isNewStage&&steps.has(n))return;
     steps.add(n);dailySteps.set(char,steps);
     updateUnitProgress();
+    // Unregistered visitors can unlock immediately using volatile verified stages.
+    // The guest session is never written to cookies, storage or Supabase.
     const api=window.KP_ACCOUNT_API;
     lastSaveError=null;
     saves=saves.then(async()=>{
@@ -502,8 +558,9 @@
   async function restoreStages(){
     const unit=window.KP_HANZI_SCOPE?.unitId;if(!unit)return;
     try{
-      const client=await window.KP_ACCOUNT_API?.getClient?.();const {data:auth}=await client?.auth.getUser();if(!auth?.user)return;
-      const {data}=await client.from('course_progress').select('review_checks').eq('user_id',auth.user.id).eq('course_id','hanzi-pre4-course').eq('unit_id',unit).maybeSingle();
+      const client=await window.KP_ACCOUNT_API?.getClient?.();const auth=client?(await client.auth.getUser()).data:null;
+      const guest=!auth?.user;
+      const data=guest?{review_checks:window.KP_HANZI_GUEST?.checks(unit)||{}}:(await client.from('course_progress').select('review_checks').eq('user_id',auth.user.id).eq('course_id','hanzi-pre4-course').eq('unit_id',unit).maybeSingle()).data;
       unitTestPassed=!!data?.review_checks?.['unitTest:'+activeLesson()]?.passed_at;
       unitTestScore=Number(data?.review_checks?.['unitTest:'+activeLesson()]?.score)||0;
       const today=tokyoDay();lastPracticeDay=today;

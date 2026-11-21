@@ -3,7 +3,7 @@
  'use strict';
  const COURSE='hanzi-pre4-course';
  async function getStatus(unitId){
-   try{const client=await window.KP_ACCOUNT_API?.getClient?.();const {data:auth}=await client?.auth.getUser();if(!auth?.user)return {};
+   try{const client=await window.KP_ACCOUNT_API?.getClient?.();const auth=client?(await client.auth.getUser()).data:null;if(!auth?.user)return window.KP_HANZI_GUEST?.checks(unitId)||{};
      const {data}=await client.from('course_progress').select('review_checks').eq('user_id',auth.user.id).eq('course_id',COURSE).eq('unit_id',unitId).maybeSingle();
      return data?.review_checks||{};
    }catch(error){console.warn('[Koepanda] lesson status unavailable',error);return {}}
@@ -83,7 +83,7 @@
    const refresh=async()=>{const request=++revision;const checks=await getStatus(theme.unitId);if(request===revision&&branch.isConnected)addItems(checks)};
    branch.kpRefresh=refresh;
    // renderBranches runs before insertion. Defer the first fetch until the tree exists.
-   queueMicrotask(()=>refresh().catch(e=>console.warn('[Koepanda] lesson tree progress',e)));
+   Promise.resolve().then(()=>refresh().catch(e=>console.warn('[Koepanda] lesson tree progress',e)));
    return branch;
  }
  window.KP_HANZI_LESSON_PLAN={renderBranches,split};

@@ -16,10 +16,11 @@
     loading=(async()=>{
       try{
         const account=await auth();
-        if(!account){identity='';completed=new Set();changed();return false;}
+        if(!account){identity='';completed=window.KP_HANZI_GUEST?.completed()||new Set();changed();return true;}
         const {data,error}=await account.client.from('course_progress')
           .select('unit_id,status').eq('user_id',account.user.id).eq('course_id',COURSE);
         if(error)throw error;
+        if(identity!==account.user.id)window.KP_HANZI_GUEST?.clear();
         identity=account.user.id;
         completed=new Set((data||[]).filter(row=>row.status==='completed').map(row=>row.unit_id));
         /* One-time migration only. Old devices stored chapter clears locally;
@@ -42,11 +43,18 @@
   }
   async function markComplete(unitId){
     if(completed.has(unitId))return false;
-    const account=await auth();if(!account)return false;
+    const account=await auth();if(!account){const fresh=window.KP_HANZI_GUEST?.complete(unitId)||false;completed=window.KP_HANZI_GUEST?.completed()||new Set();changed();return fresh;}
+    const {data:previous,error:readError}=await account.client.from('course_progress')
+      .select('status,review_checks').eq('user_id',account.user.id)
+      .eq('course_id',COURSE).eq('unit_id',unitId).maybeSingle();
+    if(readError)throw readError;
+    if(previous?.status==='completed'){
+      completed.add(unitId);changed();return false;
+    }
     const now=new Date().toISOString();
     const {error}=await account.client.from('course_progress').upsert({
       user_id:account.user.id,course_id:COURSE,unit_id:unitId,status:'completed',
-      completed_at:now,last_visited_at:now,review_checks:{},updated_at:now
+      completed_at:now,last_visited_at:now,review_checks:previous?.review_checks||{},updated_at:now
     },{onConflict:'user_id,course_id,unit_id'});
     if(error)throw error;
     identity=account.user.id;completed.add(unitId);changed();return true;
