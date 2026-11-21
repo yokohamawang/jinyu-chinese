@@ -225,7 +225,7 @@
   overlay.innerHTML='<div class="kp316-modal"><button type="button" class="kp316-close" id="kp316Close" aria-label="閉じる">×</button><div class="kp316-mascot"><img alt="小音" src="./assets/hanzi/xiaoyin/xiaoyin-oops-puzzled.webp"></div><h2 id="kp316ModalTitle">ここを確認しよう</h2><div class="kp316-compare"><div class="kp316-example correct"><span class="kp316-glyph" id="kp316Correct"></span><strong>○ 正しい漢字</strong></div><div class="kp316-example wrong"><span class="kp316-glyph" id="kp316Wrong"></span><strong>× 選んだ漢字</strong></div></div><p id="kp316Hint">形をよく見比べてみよう。</p><button type="button" class="kp316-primary" id="kp316Retry">もう一度やってみる</button></div>';
   document.body.append(overlay);
   const quiz=document.createElement('section');quiz.className='kp316-quiz';quiz.id='kp316Quiz';quiz.hidden=true;
-  quiz.innerHTML='<div class="kp316-quiz-panel"><div class="kp316-quiz-head"><strong>漢字を読んでみよう</strong><button type="button" id="kp316QuizClose" aria-label="認読を閉じる">×</button></div><p class="kp316-quiz-prompt">意味に合う絵を選んでね</p><div class="kp316-quiz-info"><span class="kp360-reading"><span id="kp316SoundText"></span><span id="kp360Pinyin" class="kp360-pinyin"></span></span><button type="button" id="kp316Speak" aria-label="発音を聞く">🔊</button></div><div class="kp316-choices" id="kp316Choices"></div><p class="kp316-quiz-feedback" id="kp316Feedback" aria-live="polite"></p></div>';
+  quiz.innerHTML='<div class="kp316-quiz-panel"><div class="kp316-quiz-head"><strong>漢字を読んでみよう</strong><button type="button" id="kp316QuizClose" aria-label="認読を閉じる">×</button></div><p class="kp316-quiz-prompt">意味に合う絵を選んでね</p><div class="kp316-quiz-info"><span class="kp360-reading"><span id="kp316SoundText"></span><span id="kp360Pinyin" class="kp360-pinyin"></span></span><button type="button" id="kp316Speak" aria-label="発音を聞く">🔊</button></div><div class="kp316-choices" id="kp316Choices"></div><div class="kp316-quiz-result"><p class="kp316-quiz-feedback" id="kp316Feedback" aria-live="polite"></p><button type="button" class="kp316-inline-next" id="kp316QuizRetry" hidden>もう一度やってみる</button></div></div>';
   document.body.append(quiz);
   const liveReadingPrompt=quiz.querySelector('.kp316-quiz-info');
   liveReadingPrompt.tabIndex=0;
@@ -295,6 +295,23 @@
     }));
   };
   let selectedMeaning=null;
+  const quizPanel=quiz.querySelector('.kp316-quiz-panel');
+  const quizChoices=$('kp316Choices');
+  const quizFeedback=$('kp316Feedback');
+  const quizRetry=$('kp316QuizRetry');
+  quizRetry.onclick=()=>{
+    state.answered=false;
+    quizChoices.querySelectorAll('button').forEach(card=>{
+      card.disabled=false;
+      card.classList.remove('correct','wrong');
+    });
+    quizFeedback.textContent='';
+    quizRetry.hidden=true;
+    quizPanel.scrollTop=0;
+    quizChoices.querySelector('button')?.focus({preventScroll:true});
+    const character=state.character;
+    requestAnimationFrame(()=>{if(!quiz.hidden&&state.character===character)speak(character)});
+  };
   function openQuiz(){
     const right=state.character,bank=semanticBank();
     if(!entry(right))return;
@@ -302,10 +319,11 @@
     const anchor=(theme.find(e=>(e.character_sequence||[]).includes(right))||
        (window.KP_HANZI_ALL_ENTRIES||[]).find(e=>(e.character_sequence||[]).includes(right)));
     const correct=bank.find(item=>item.id===anchor?.entry_id);
+    quizRetry.hidden=true;
+    quizPanel.scrollTop=0;
     if(!correct){
-      const info=$('kp316Feedback');
-      info.textContent='この漢字の絵を読み込めませんでした。ページを更新してみてね。';
-      $('kp316Choices').replaceChildren();quiz.hidden=false;
+      quizFeedback.textContent='この漢字の絵を読み込めませんでした。ページを更新してみてね。';
+      quizChoices.replaceChildren();quiz.hidden=false;
       console.warn('[Koepanda] semantic scene unavailable',right,anchor?.entry_id,bank.length);
       return;
     }
@@ -318,15 +336,15 @@
     const choices=[correct,...distractors].sort(()=>Math.random()-.5);
     $('kp316SoundText').textContent=right;
     $('kp360Pinyin').textContent=entry(right)?.pinyin||'';
-    const container=$('kp316Choices');container.replaceChildren();$('kp316Feedback').textContent='';
-    container.classList.add('kp358-meaning-choices');
+    quizChoices.replaceChildren();quizFeedback.textContent='';
+    quizChoices.classList.add('kp358-meaning-choices');
     choices.forEach(item=>{
       const b=document.createElement('button');b.type='button';b.className='kp358-meaning-card';
       b.setAttribute('aria-label',item.meaning);b.dataset.answer=item.id;
       const img=document.createElement('img');img.alt='';img.loading='eager';
       img.src=(window.KP_HANZI_RECOGNITION_SCENES?.[item.id]?'./assets/hanzi/recognition/'+item.image:item.imageData||('./assets/hanzi/recognition/'+item.image));
       const label=document.createElement('span');label.textContent=item.meaning;
-      b.append(img,label);b.onclick=()=>choose(item.id);container.append(b);
+      b.append(img,label);b.onclick=()=>choose(item.id);quizChoices.append(b);
     });
     quiz.hidden=false;requestAnimationFrame(()=>speak(right));
   }
@@ -334,19 +352,18 @@
     if(state.answered||!selectedMeaning)return;
     state.answered=true;
     const correct=id===selectedMeaning.id;
-    const cards=[...$('kp316Choices').querySelectorAll('button')];
+    const cards=quizChoices.querySelectorAll('button');
     cards.forEach(card=>{
       card.disabled=true;
       card.classList.toggle('correct',card.dataset.answer===selectedMeaning.id);
       card.classList.toggle('wrong',!correct&&card.dataset.answer===id);
     });
     if(correct){
-      $('kp316Feedback').textContent='○ 正解！ '+selectedMeaning.word+' · '+selectedMeaning.meaning;
+      quizFeedback.textContent='○ 正解！ '+selectedMeaning.word+' · '+selectedMeaning.meaning;
       markStage(1);
     }else{
-      $('kp316Feedback').textContent='おしい！ 正解は「'+selectedMeaning.meaning+'」。絵を見て覚えよう。';
-      const retry=document.createElement('button');retry.type='button';retry.className='kp316-inline-next';retry.textContent='もう一度やってみる';
-      retry.onclick=()=>openQuiz();$('kp316Feedback').append(retry);
+      quizFeedback.textContent='おしい！ 正解は「'+selectedMeaning.meaning+'」。';
+      quizRetry.hidden=false;
       // Incorrect recognition never counts as learned.
     }
   }
