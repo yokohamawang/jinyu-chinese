@@ -184,8 +184,8 @@
         const praise=$('praisePop');
         if(praise){praise.classList.remove('on');praise.hidden=true;}
         showTraceNotice('success','✓ 正解！ 全'+total+'画、上手に書けました！',true);
-        markStage(3);
         if(window.KP_HANZI_UNIT_TEST?.isWriting?.()){window.dispatchEvent(new CustomEvent('kp-hanzi-test-writing-complete',{detail:{char:state.character}}));}
+        else markStage(3);
       }else if(accepted){
         resetTraceNotice();
       }else if(tracePoints.length>=2){
@@ -439,14 +439,17 @@
   }
   async function completeFirstUnit(){
     if(!unitIsReady()||!unitTestPassed||finishPending||finishedHere)return;
+    const completedLesson=activeLesson();
     finishPending=true;
-    const status=$('kp350SaveStatus');
+    const status=$('kp350SaveStatus'),close=$('kp350FinishClose');
+    unitFinish.hidden=false;close.disabled=true;
+    status.textContent='学習記録を保存しています…';
     const retry=$('kp350FinishRetry');retry.hidden=true;
     unitFinish.dataset.needsLogin='false';retry.textContent='記録をもう一度保存する';
     try{
       await saves;
       const already=window.KP_HANZI_PROGRESS?.completed()?.has(activeLesson());
-      if(already){finishedHere=true;finishPending=false;updateUnitProgress();return;}
+      if(already){finishedHere=true;unitFinish.hidden=true;updateUnitProgress();return;}
       const synced=await syncVerifiedFirstUnit();
       if(!synced){
         unitFinish.hidden=false;
@@ -474,14 +477,13 @@
       const completion=guest?null:window.KP_ACCOUNT_API?.recordLearningCompletion?.('hanzi',activeLesson());
       // Allow the child to read their result before opening the sticker reveal.
       setTimeout(()=>{
-        if(!firstUnitActive())return;
         if(guest){
           // Leave the existing completion card visible until dismissed.
           // No sticker claim and no persistent progress for visitors.
           return;
         }
         unitFinish.hidden=true;
-        window.KPStandaloneReward?.show?.({activityKey:'hanzi.'+activeLesson(),score:1,total:1,completion});
+        window.KPStandaloneReward?.show?.({activityKey:'hanzi.'+completedLesson,score:1,total:1,completion});
       },2100);
       updateUnitProgress();
     }catch(error){
@@ -489,7 +491,7 @@
       unitFinish.hidden=false;
       status.textContent='保存できませんでした。通信を確認してもう一度試してください。';
       retry.hidden=false;
-    }finally{finishPending=false}
+    }finally{finishPending=false;close.disabled=false}
   }
   // Navigation must wait for queued stage writes before rebuilding the lesson tree.
   window.KP_HANZI_LESSON_FLUSH=async()=>{
@@ -507,7 +509,7 @@
     if(!unitIsReady()||unitTestPassed||finishedHere||window.KP_HANZI_UNIT_TEST?.isOpen?.())return;
     taskPopup.hidden=true;quiz.hidden=true;overlay.hidden=true;
     setStudyStep(2);resetModeSelection();
-    window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:lessonLabel()});
+    window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:lessonLabel(),previewOnly:!!window.KP_HANZI_SCOPE?.testUnlocked});
   }
   window.addEventListener('kp-hanzi-unit-test-passed',event=>{
     if(!firstUnitActive()||!unitIsReady()||unitTestPassed||event.detail?.lessonId!==activeLesson())return;
@@ -515,7 +517,7 @@
     unitTestScore=Number(event.detail?.score)||5;
     window.KP_HANZI_UNIT_TEST?.close?.();
     updateUnitProgress();
-    setTimeout(completeFirstUnit,900);
+    void completeFirstUnit();
   });
   function markStage(n){
     if(!window.KP_HANZI_SCOPE?.unitId||!state.character)return;
@@ -612,20 +614,22 @@
     dailySteps=new Map();todayChars=new Set();lastPracticeDay=tokyoDay();dailyToast.hidden=true;
     const restore=restoreStages();
     switchCharacter(scoped()[0],0);
-    if(window.KP_HANZI_SCOPE?.launchTest){
+    const scope=window.KP_HANZI_SCOPE;
+    if(scope.launchTest){
       // A tree test entry must launch the actual quiz only after remote
       // progress restores; otherwise a valid unlocked test appears empty.
       Promise.resolve(restore).then(()=>{
-        if(!firstUnitActive()||!window.KP_HANZI_SCOPE?.launchTest)return;
-        window.KP_HANZI_SCOPE.launchTest=false;
-        if(!unitIsReady()){
+        if(!firstUnitActive()||window.KP_HANZI_SCOPE!==scope||!scope.launchTest)return;
+        scope.launchTest=false;
+        const reviewOnly=Array.isArray(scope.reviewRows);
+        if(!unitIsReady()&&!scope.testUnlocked&&!reviewOnly){
           const missing=scoped().filter(ch=>![1,2,3].every(n=>state.completed.get(ch)?.has(n)));
           showDailyToast('先に '+missing.join('・')+' の学習を終えよう');
           return;
         }
         taskPopup.hidden=true;quiz.hidden=true;overlay.hidden=true;
         resetModeSelection();
-        window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:lessonLabel()});
+        window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:reviewOnly?'まちがい復習':lessonLabel(),previewOnly:scope.testUnlocked,reviewOnly,reviewRows:scope.reviewRows,resumeCorrected:scope.resumeCorrected});
       }).catch(error=>console.warn('[Koepanda] lesson test entry failed',error));
     }
   }

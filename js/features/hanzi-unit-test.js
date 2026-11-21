@@ -7,7 +7,7 @@
  popup.innerHTML='<div class="kp351-test-card"><header><div><small id="kp353TestLesson">今日の漢字</small><h2>ミニテスト</h2></div><button type="button" id="kp351Close" aria-label="テストを閉じる">×</button></header><div id="kp351TestBody" class="kp351-test-body" aria-live="polite"></div></div>';
  document.body.append(popup);
  const body=popup.querySelector('#kp351TestBody'),subtitle=popup.querySelector('#kp353TestLesson');
- let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false;
+ let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false;
  const shuffle=arr=>{const result=arr.slice();for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result};
  const add=(tag,cls,text,parent=body)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;parent.append(n);return n};
  const button=(label,fn,cls='')=>{const n=add('button','kp351-action '+cls,label);n.type='button';n.onclick=fn;return n};
@@ -27,7 +27,7 @@
  };
  const allRows=()=>entries.map(e=>e.char);
  const play=char=>{try{if(typeof playHanziSystemVoice==='function')playHanziSystemVoice(char);else if(typeof playHanziRecognitionCharacter==='function')playHanziRecognitionCharacter(char)}catch(_){}};
- popup.querySelector('#kp351Close').onclick=()=>{popup.hidden=true;awaitingWriting=false};
+ popup.querySelector('#kp351Close').onclick=()=>{if(!saving){popup.hidden=true;awaitingWriting=false}};
  function makeQuestions(){
    // A six-question lesson assessment with all four required question families.
    const order=shuffle(entries);
@@ -55,38 +55,48 @@
  }
  // Keep mistake history (attempt count, last wrong answer and correction status).
  // A correct later answer marks a record reviewed, but never erases the mistake.
+ const passingScore=()=>lessonId===window.KP_HANZI_SCOPE?.unitId?8:5;
+ function canCompleteAfterReview(checks){
+   const fullTotal=passingScore()===8?10:6;
+   const records=checks['mistakes:'+lessonId]||[];
+   return !checks['unitTest:'+lessonId]?.passed_at&&records.length>0&&records.every(row=>row.reviewed_at)&&
+     (checks['testHistory:'+lessonId]||[]).some(a=>a.total===fullTotal&&a.review!==true);
+ }
+ function updateAttempt(checks){
+   const key='mistakes:'+lessonId,historyKey='testHistory:'+lessonId;
+   const records=Array.isArray(checks[key])?checks[key].map(row=>({...row})):[];
+   const history=checks[historyKey]||[],now=new Date().toISOString();
+   errors.forEach(err=>{
+     let row=records.find(r=>r.char===err.char&&r.type===err.type);
+     if(!row){row={char:err.char,type:err.type,first_at:now,attempts:0};records.push(row)}
+     row.attempts++;row.last_at=now;row.wrong=err.wrong;row.correct=err.correct;row.reviewed_at=null;
+   });
+   corrects.forEach(item=>{
+     const row=records.find(r=>r.char===item.char&&r.type===item.type);
+     if(row&&!errors.some(err=>err.char===item.char&&err.type===item.type))row.reviewed_at=now;
+   });
+   checks[key]=records;
+   checks[historyKey]=[...history,{date:now,score,total:questions.length,review:reviewOnly,
+     errors:errors.map(err=>({char:err.char,type:err.type}))}].slice(-25);
+   return reviewOnly&&errors.length===0&&corrects.length>0&&canCompleteAfterReview(checks);
+ }
  async function recordAttempt(){
+   if(previewOnly)return {correctedPass:false};
    const account=await getProgress();
    if(!account){
      const unit=window.KP_HANZI_SCOPE?.unitId||'pre4-u01';
-     window.KP_HANZI_GUEST?.update(unit,checks=>{
-       const key='mistakes:'+lessonId,records=Array.isArray(checks[key])?checks[key]:[],now=new Date().toISOString();
-       errors.forEach(err=>{let row=records.find(r=>r.char===err.char&&r.type===err.type);
-         if(!row){row={char:err.char,type:err.type,first_at:now,attempts:0};records.push(row)}
-         row.attempts++;row.last_at=now;row.wrong=err.wrong;row.correct=err.correct;row.reviewed_at=null;
-       });
-       corrects.forEach(item=>{const row=records.find(r=>r.char===item.char&&r.type===item.type);if(row&&!errors.some(e=>e.char===item.char&&e.type===item.type))row.reviewed_at=now});
-       checks[key]=records;
-       const history='testHistory:'+lessonId;checks[history]=[...(checks[history]||[]),{date:now,score,total:questions.length}].slice(-25);
-     });
-     return true;
+     let correctedPass=false;
+     window.KP_HANZI_GUEST?.update(unit,checks=>{correctedPass=updateAttempt(checks)});
+     return {correctedPass};
    }
-   const {client,user,unitId,data}=account,checks={...(data?.review_checks||{})},key='mistakes:'+lessonId;
-   const records=Array.isArray(checks[key])?checks[key].map(r=>({...r})):[];
+   const {client,user,unitId,data}=account,checks={...(data?.review_checks||{})};
+   const correctedPass=updateAttempt(checks);
    const now=new Date().toISOString();
-   errors.forEach(err=>{
-     let record=records.find(r=>r.char===err.char&&r.type===err.type);
-     if(!record){record={char:err.char,type:err.type,first_at:now,attempts:0};records.push(record)}
-     record.attempts++;record.last_at=now;record.wrong=err.wrong;record.correct=err.correct;record.reviewed_at=null;
-   });
-   corrects.forEach(correct=>{const r=records.find(r=>r.char===correct.char&&r.type===correct.type);if(r&&!errors.some(e=>e.char===correct.char&&e.type===correct.type))r.reviewed_at=now});
-   checks[key]=records;
-   const historyKey='testHistory:'+lessonId;
-   checks[historyKey]=[...(checks[historyKey]||[]),{date:now,score,total:questions.length,errors:errors.map(e=>({char:e.char,type:e.type}))}].slice(-25);
    const payload={user_id:user.id,course_id:'hanzi-pre4-course',unit_id:unitId,status:data?.status||'started',review_checks:checks,last_visited_at:now,updated_at:now};
    if(data?.completed_at)payload.completed_at=data.completed_at;
    const {error}=await client.from('course_progress').upsert(payload,{onConflict:'user_id,course_id,unit_id'});
-   if(error)throw error;return true;
+   if(error)throw error;
+   return {correctedPass};
  }
  function intro(){
    body.replaceChildren();add('div','kp351-mascot','🐼');add('h3','kp351-title','今日の漢字、覚えたかな？');
@@ -176,29 +186,62 @@
    resolve(questions[index],writingMistake?(writingWrongStroke?('第'+writingWrongStroke+'画で修正'):'筆画の修正あり'):'完了',!writingMistake);
  });
  window.addEventListener('kp-hanzi-test-writing-cancel',()=>{if(awaitingWriting){awaitingWriting=false;popup.hidden=false;renderQuestion()}});
+ function confirmPass(score,total){
+   button('合格を記録してごほうびへ',()=>{
+     if(popup.hidden)return;
+     popup.hidden=true;
+     window.dispatchEvent(new CustomEvent('kp-hanzi-unit-test-passed',{detail:{score,total,lessonId}}));
+   },'primary');
+ }
+ async function recoverCorrectedTest(){
+   saving=true;
+   body.replaceChildren();add('h3','kp351-title','訂正した記録を確認しています…');
+   try{
+     const account=await getProgress();
+     const checks=account?account.data?.review_checks:window.KP_HANZI_GUEST?.checks(window.KP_HANZI_SCOPE?.unitId);
+     body.replaceChildren();
+     if(canCompleteAfterReview(checks||{})){
+       add('h3','kp351-title','訂正が終わりました');
+       confirmPass(6,6);
+     }else add('h3','kp351-title','訂正の記録を確認できませんでした');
+   }catch(error){
+     body.replaceChildren();add('h3','kp351-title','記録を読み込めませんでした');
+     button('もう一度確認する',recoverCorrectedTest,'primary');
+   }finally{
+     saving=false;button('戻る',()=>{popup.hidden=true});
+   }
+ }
  async function result(){
    if(saving)return;saving=true;body.replaceChildren();add('h3','kp351-title','学習記録を保存しています…');
-   let saved=false;try{saved=await recordAttempt()}catch(error){console.warn('[Koepanda] mistakes save failed',error)}
+   let saved=null;try{saved=await recordAttempt()}catch(error){console.warn('[Koepanda] mistakes save failed',error)}
    saving=false;
    if(!saved){body.replaceChildren();add('h3','kp351-title','記録を保存できませんでした');add('p','kp351-description','ログインと通信を確認して、もう一度保存しよう。');button('保存を再試行',result,'primary');return}
-   const passed=reviewOnly||score>=(lessonId===window.KP_HANZI_SCOPE?.unitId?8:5);body.replaceChildren();add('div','kp351-mascot',passed?'🎉':'🌱');
-   add('h3','kp351-title',passed?'合格！ 今日のレッスンクリア！':'あと少し！ 復習してみよう');
+   const passed=reviewOnly?saved.correctedPass:score>=passingScore();
+   body.replaceChildren();add('div','kp351-mascot',passed?'🎉':'🌱');
+   const title=previewOnly?'テストモードの結果':passed?'合格！ レッスンクリア！':
+     reviewOnly?(errors.length?'もう一度、まちがいを確認しよう':'復習ができました'):'あと少し！ 復習してみよう';
+   add('h3','kp351-title',title);
    add('div','kp351-score',score+' / '+questions.length+'問 正解');
-   if(errors.length){add('p','kp351-description','まちがえた漢字は復習ノートに記録しました。');
-     const review=add('div','kp351-review');errors.forEach(e=>add('span','',e.char+' · '+e.type+' · '+e.correct,review));}
-   if(reviewOnly){button('復習を終わる',()=>{popup.hidden=true},'primary');return;}
-   if(passed)button('合格を記録してごほうびへ',()=>{
-     popup.hidden=true;window.dispatchEvent(new CustomEvent('kp-hanzi-unit-test-passed',{detail:{score,total:questions.length,lessonId}}));
-   },'primary');
+   if(errors.length){
+     if(!previewOnly)add('p','kp351-description','まちがえた問題は復習ノートに記録しました。');
+     const review=add('div','kp351-review');errors.forEach(e=>add('span','',e.char+' · '+e.type+' · '+e.correct,review));
+   }
+   if(passed&&!previewOnly){
+     const total=reviewOnly?(passingScore()===8?10:6):questions.length;
+     confirmPass(reviewOnly?total:score,total);
+   }
+   else if(reviewOnly||previewOnly)button('戻る',()=>{popup.hidden=true},'primary');
    else{button('もう一度チャレンジ',()=>{makeQuestions();renderQuestion()},'primary');button('学習に戻る',()=>{popup.hidden=true})}
+
  }
  window.KP_HANZI_UNIT_TEST={
    open(chars,options={}){
-     if(!Array.isArray(chars)||chars.length<3)return;
+     if(saving||!Array.isArray(chars)||chars.length<3)return;
      lessonId=options.lessonId||'pre4-u01';
      entries=chars.map(char=>{const source=HANZI_LESSONS.find(x=>x.char===char);return source?{char,pinyin:source.pinyin,strokes:source.strokes}:null}).filter(Boolean);
      if(entries.length!==chars.length||entries.some(e=>!e.pinyin||!Array.isArray(e.strokes)||!e.strokes.length))return;
-     hideAnswerFeedback();subtitle.textContent=options.lessonTitle||'今日の漢字';reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];popup.hidden=false;intro();
+     hideAnswerFeedback();subtitle.textContent=options.lessonTitle||'今日の漢字';previewOnly=!!options.previewOnly;reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];popup.hidden=false;
+     if(options.resumeCorrected&&reviewOnly&&!previewOnly)void recoverCorrectedTest();else intro();
    },close(){popup.hidden=true;awaitingWriting=false},isWriting:()=>awaitingWriting,isOpen:()=>!popup.hidden||awaitingWriting
  };
 })();
