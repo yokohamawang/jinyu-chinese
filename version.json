@@ -1,6 +1,6 @@
 {
-  "version": "301.370",
-  "base_version": "301.369",
+  "version": "301.372",
+  "base_version": "301.371",
   "status": "integration-candidate",
   "deployed": false
 }
