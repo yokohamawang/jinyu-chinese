@@ -36,3 +36,21 @@
 .kp353-pinyin-input{height:52px;border:2px solid #bedccf;border-radius:14px;font-size:25px;text-align:center;color:#235c50;background:white;outline-offset:3px;width:100%;box-sizing:border-box}
 .kp353-stroke-quiz{width:min(100%,168px);height:clamp(105px,18dvh,165px)}
 .kp351-stimulus:has(.kp353-stroke-quiz){min-height:110px}
+
+/* 301.356: calm, spacious single-question layout and reliable mobile targets. */
+.kp351-test-card{width:min(100%,480px);border-radius:30px}
+.kp351-test-card header{padding:15px 20px;gap:14px}
+.kp351-test-card header h2{font-size:22px}
+#kp351Close{flex:none;min-width:46px;min-height:46px}
+.kp351-test-body{gap:clamp(12px,1.9vh,18px);padding:clamp(17px,4vw,24px)}
+.kp351-stimulus{border:1px solid #dbede1;min-height:clamp(110px,20dvh,180px)}
+.kp351-options{gap:12px}
+.kp351-options button{min-height:clamp(68px,12dvh,105px);touch-action:manipulation}
+.kp351-action{min-height:54px;touch-action:manipulation}
+.kp351-pinyin-input,.kp353-pinyin-input{min-height:56px}
+.kp351-feedback{font-size:15px;line-height:1.5}
+@media(max-height:690px){.kp351-test-body{gap:8px;padding:12px 15px}.kp351-stimulus{min-height:92px}.kp351-options button{min-height:59px}}
+/* Three choices should form one balanced row, not leave an orphan card. */
+.kp351-options:has(>button:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
+.kp351-options:has(>button:nth-child(3):last-child) button{font-size:clamp(28px,8vw,43px)}
+#kp351Close{border:1px solid #d5e7da;box-shadow:0 2px 0 #e2ece4;appearance:none}
