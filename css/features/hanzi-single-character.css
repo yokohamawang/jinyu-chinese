@@ -296,6 +296,13 @@ body.kp316-active .pre4-finish-unit{display:none!important}
 .kp350-unit-finish-card button[hidden]{display:none!important}
 /* 301.352: reward each completed character without interrupting the lesson. */
 #kp352DailyToast{position:fixed;left:50%;bottom:calc(103px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:1410;box-sizing:border-box;max-width:min(90vw,400px);width:max-content;padding:13px 19px;border:2px solid #a9dbc0;border-radius:18px;background:#fffdf4;color:#1d6752;box-shadow:0 11px 28px #174d3d38;text-align:center;font-size:clamp(15px,3.8vw,18px);font-weight:850;line-height:1.4;pointer-events:none}
+#kp352DailyToast.is-celebration{
+  bottom:calc(127px + env(safe-area-inset-bottom));
+  max-width:min(94vw,440px);
+  text-wrap:balance;
+  padding:15px 19px;
+  font-size:clamp(17px,4.2vw,20px);
+}
 #kp352DailyToast[hidden]{display:none!important}
 
 /* 301.358: comfortable 2x2 semantic illustration choices in the existing reading modal. */
