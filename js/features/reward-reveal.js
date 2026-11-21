@@ -41,7 +41,8 @@
     const node=document.createElement('section');node.className='kp-reward-screen is-loading';node.setAttribute('role','dialog');node.setAttribute('aria-modal','true');node.setAttribute('aria-labelledby','kpRewardTitle');
     node.innerHTML='<div class="kp-reward-stars" aria-hidden="true">'+Array.from({length:24},(_,i)=>'<i style="left:'+((i*43+7)%100)+'%;top:'+((i*67+11)%100)+'%;font-size:'+(10+(i%4)*5)+'px;animation-delay:'+(i*24)+'ms">✦</i>').join('')+'</div><div class="kp-reward-halo" aria-hidden="true"></div><div class="kp-reward-content"><div class="kp-reward-brand">KOEPANDA · REWARD TIME</div><div class="kp-reward-mascot"><img src="./assets/brand/xiaoyin-mascot.png" alt="小音"></div><p class="kp-reward-kicker">よくがんばったね！</p><h1 id="kpRewardTitle">ごほうびを開けよう</h1><p class="kp-reward-subtitle">小音からのプレゼントを準備中…</p><div class="kp-reward-box" aria-hidden="true"><span>✦</span><b>?</b></div><div class="kp-reward-items" aria-live="polite"></div><div class="kp-reward-actions"></div></div>';
     document.body.appendChild(node);document.body.classList.add('kp-reward-open');
-    const keydown=e=>{if(e.key==='Escape'&&active){e.preventDefault();e.stopPropagation();if(!active.node.classList.contains('is-loading'))remove();}};
+    const continueLearning=()=>{remove();options.onContinue?.()};
+    const keydown=e=>{if(e.key==='Escape'&&active){e.preventDefault();e.stopPropagation();if(active.node.classList.contains('has-rewards'))continueLearning();else if(!active.node.classList.contains('is-loading'))remove();}};
     document.addEventListener('keydown',keydown,true);active={node,keydown,timer:0};
     requestAnimationFrame(()=>node.classList.add('is-celebrating'));
     const showError=(message,canRetry)=>{
@@ -114,10 +115,10 @@
           },delay);
         });
         const actions=node.querySelector('.kp-reward-actions');
-        actions.innerHTML='<button type="button" class="kp-reward-sound" data-sound-toggle aria-pressed="'+soundEnabled()+'">'+(soundEnabled()?'🔊 お祝い音 ON':'🔇 お祝い音 OFF')+'</button><button type="button" class="kp-reward-primary" data-book>シール帳で見る <span>→</span></button><button type="button" class="kp-reward-secondary" data-close>学習を続ける</button><p class="kp-reward-idempotent" hidden>このごほうびは受け取り済みです</p>';
+        actions.innerHTML='<button type="button" class="kp-reward-sound" data-sound-toggle aria-pressed="'+soundEnabled()+'">'+(soundEnabled()?'🔊 お祝い音 ON':'🔇 お祝い音 OFF')+'</button><button type="button" class="kp-reward-primary" data-book>シール帳で見る <span>→</span></button><button type="button" class="kp-reward-secondary" data-close>'+(options.onContinue?'単元一覧へ戻る':'学習を続ける')+'</button><p class="kp-reward-idempotent" hidden>このごほうびは受け取り済みです</p>';
         if(ordered.every(x=>x.already_claimed))actions.querySelector('.kp-reward-idempotent').hidden=false;
         actions.querySelector('[data-sound-toggle]').onclick=e=>{const enabled=e.currentTarget.getAttribute('aria-pressed')!=='true';setSoundEnabled(enabled);e.currentTarget.setAttribute('aria-pressed',String(enabled));e.currentTarget.textContent=enabled?'🔊 お祝い音 ON':'🔇 お祝い音 OFF';if(enabled)playFanfare(modeKey);else stopFanfare();};
-        actions.querySelector('[data-close]').onclick=remove;
+        actions.querySelector('[data-close]').onclick=continueLearning;
         actions.querySelector('[data-book]').onclick=()=>{
           remove();
           if(typeof window.KP_OPEN_STICKER_BOOK==='function'){window.KP_OPEN_STICKER_BOOK();return;}

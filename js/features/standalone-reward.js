@@ -13,7 +13,7 @@
   };
   window.KP_OPEN_STICKER_BOOK=()=>{window.location.href='./index.html?open=book';};
   window.KPStandaloneReward={
-    show({activityKey,score,total,completion}){
+    show({activityKey,score,total,completion,onContinue}){
       if(!activityKey||completed.has(activityKey))return;
       completed.add(activityKey);
       Promise.resolve(completion).catch(error=>{
@@ -21,7 +21,7 @@
       }).finally(()=>{
         if(!window.KoepandaRewardReveal?.award)return;
         const claimToken=window.crypto?.randomUUID?.()||'claim-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-        window.KoepandaRewardReveal.award(context,{claimToken,score,total,activityKey});
+        window.KoepandaRewardReveal.award(context,{claimToken,score,total,activityKey,onContinue});
       });
     }
   };
