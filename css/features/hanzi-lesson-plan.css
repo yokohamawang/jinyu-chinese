@@ -1,9 +1,26 @@
 /* 301.354 theme route branches; no modifications to lesson study modes. */
-.kp354-theme-branches{position:relative;margin:-4px 0 10px 37px;padding:2px 0 4px 19px;border-left:2px solid #b9dccc;display:block}
+.kp354-theme-branches{
+  --hanzi-branch-gap:27px;
+  --hanzi-test-indent:15px;
+  position:relative;
+  margin:-4px 0 10px var(--hanzi-route-axis);
+  padding:2px 0 4px var(--hanzi-branch-gap);
+  display:block;
+}
 .kp354-theme-branches[hidden]{display:none!important}
 .kp354-branch-list{display:grid;gap:8px}
 .kp354-branch-item{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:66px;padding:10px 13px;text-align:left;color:#235f54;background:#f7fcf7;border:1px solid #d5e9df;border-radius:16px;box-shadow:0 2px 4px #1a5e4112;touch-action:manipulation}
-.kp354-branch-item::before{content:"";position:absolute;left:-21px;top:50%;width:19px;height:2px;background:#b9dccc}
+.kp354-branch-item::before{
+  content:"";
+  position:absolute;
+  left:calc(-1 * (var(--hanzi-branch-gap) + 1px));
+  top:50%;
+  transform:translateY(-50%);
+  width:calc(var(--hanzi-branch-gap) + 1px);
+  height:var(--hanzi-route-line);
+  background:var(--hanzi-route-color);
+  pointer-events:none;
+}
 .kp354-branch-marker{display:grid;place-items:center;width:28px;height:28px;flex:none;border:2px solid #a6d9c0;border-radius:50%;background:#e8f7ee;color:#218875}
 .kp354-branch-copy{display:grid;gap:3px;min-width:0}
 .kp354-branch-copy strong{font-size:15px;line-height:1.35}
@@ -12,7 +29,7 @@
 .kp354-branch-item:disabled{opacity:.56;cursor:default;transform:none}
 .kp354-summary{background:#edf7f0;border-color:#b7dcc8}
 .kp354-branch-review{justify-self:start;padding:7px 11px;border:1px solid #cde5d5;border-radius:12px;color:#267868;background:#f1faf3;font-size:12px;font-weight:750}
-@media(max-width:380px){.kp354-theme-branches{margin-left:29px;padding-left:13px}.kp354-branch-item{gap:8px;padding:9px}.kp354-branch-item::before{left:-15px;width:13px}}
+@media(max-width:380px){.kp354-theme-branches{--hanzi-branch-gap:13px;--hanzi-test-indent:10px}.kp354-branch-item{gap:8px;padding:9px}}
 
 /* 301.355: lesson state shown by a compact marker, not redundant counters. */
 .kp354-branch-item.is-in-progress{border-color:#98cdbc;background:#f5faf5}
@@ -22,7 +39,7 @@
 .kp354-branch-copy small[hidden]{display:none!important}
 
 /* 301.356: balanced lesson/test pairs directly in the theme tree. */
-.kp356-lesson-test{min-height:56px;margin-top:-5px;margin-left:15px;width:calc(100% - 15px);background:#f3f9f5;border-color:#cee4d7;box-shadow:none}
+.kp356-lesson-test{min-height:56px;margin-top:-5px;margin-left:var(--hanzi-test-indent);width:calc(100% - var(--hanzi-test-indent));background:#f3f9f5;border-color:#cee4d7;box-shadow:none}
 .kp356-lesson-test .kp354-branch-marker{width:28px;height:28px;border-radius:10px;background:#e8f3eb;font-size:15px}
 .kp356-lesson-test .kp354-branch-copy strong{font-size:14px}
 .kp356-lesson-test .kp354-branch-copy small{font-size:11px}
@@ -31,4 +48,7 @@
 .kp356-lesson-test:disabled{opacity:.78}
 .kp356-lesson-test:disabled .kp354-branch-marker{background:#eff3f0;border-color:#d9e3da;color:#829b8f}
 .kp354-summary{margin-top:10px;min-height:70px}
-@media(max-width:380px){.kp356-lesson-test{margin-left:10px;width:calc(100% - 10px)}}
+.kp356-lesson-test::before{
+  left:calc(-1 * (var(--hanzi-branch-gap) + var(--hanzi-test-indent) + 1px));
+  width:calc(var(--hanzi-branch-gap) + var(--hanzi-test-indent) + 1px);
+}
