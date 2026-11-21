@@ -343,8 +343,6 @@
     if(correct){
       $('kp316Feedback').textContent='○ 正解！ '+selectedMeaning.word+' · '+selectedMeaning.meaning;
       markStage(1);
-      const next=document.createElement('button');next.className='kp316-inline-next';next.type='button';next.textContent='主画面に戻る';
-      next.onclick=()=>{quiz.hidden=true;overlay.hidden=true;resetModeSelection()};$('kp316Feedback').append(next);
     }else{
       $('kp316Feedback').textContent='おしい！ 正解は「'+selectedMeaning.meaning+'」。絵を見て覚えよう。';
       const retry=document.createElement('button');retry.type='button';retry.className='kp316-inline-next';retry.textContent='もう一度やってみる';
