@@ -378,7 +378,8 @@
     const part=type=>parts.find(item=>item.type===type)?.value||'';
     return part('year')+'-'+part('month')+'-'+part('day');
   }
-  function showDailyToast(text){
+  function showDailyToast(text,celebration=false){
+    dailyToast.classList.toggle('is-celebration',celebration);
     clearTimeout(dailyToastTimer);
     dailyToast.textContent=text;dailyToast.hidden=false;
     dailyToastTimer=setTimeout(()=>{dailyToast.hidden=true},2700);
@@ -568,9 +569,9 @@
         updateUnitProgress();
         const count=todayChars.size;
         if(count===1){
-          showDailyToast('🌱 1文字できたね！ ミニテストまであと少し！');
+          showDailyToast('🌱 1文字できたね！ ミニテストまであと少し！',true);
           // Streak and sticker are granted only after the lesson quiz passes.
-        }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！');
+        }else showDailyToast('🌟 今日 '+count+'文字できたね！ よくがんばったね！',true);
       }
     }).catch(e=>{lastSaveError=e;console.warn('[Koepanda] stage sync failed:',e);showDailyToast('学習記録を保存できませんでした。接続を確認してね。')});
     // The learner chooses when to take the visible lesson-tree test;
