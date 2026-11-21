@@ -2975,8 +2975,8 @@
         "image": "units/pre4-109-scene.svg",
         "character_pinyin": [
           "xīng",
-          "qīè",
-          "r"
+          "qī",
+          "èr"
         ],
         "image_data": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzIwIDIwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLmmJ/mnJ/kuowiPgo8ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZlOGE1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZjNzZjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMjAwIiByeD0iMjQiIGZpbGw9InVybCgjZykiLz4KPGNpcmNsZSBjeD0iMjY3IiBjeT0iNDgiIHI9IjMyIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMzgiLz4KPHBhdGggZD0iTTAgMTYwIFE2NiAxMzIgMTI2IDE2MCBUMjUyIDE1NiBUMzIwIDE1NCBWMjAwIEgwWiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjE4Ii8+CjxlbGxpcHNlIGN4PSIxNTgiIGN5PSIxNjYiIHJ4PSI1NyIgcnk9IjEwIiBmaWxsPSIjYjI3NjE5IiBvcGFjaXR5PSIuMTIiLz4KPHRleHQgeD0iMTU4IiB5PSIxMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iOTIiIGZvbnQtZmFtaWx5PSJBcHBsZSBDb2xvciBFbW9qaSxTZWdvZSBVSSBFbW9qaSxOb3RvIENvbG9yIEVtb2ppLHNhbnMtc2VyaWYiPvCfk4U8L3RleHQ+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1NCAxMTgpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIyNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjg2Ii8+PHRleHQgeD0iMjQiIHk9IjM0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjI3IiBmb250LWZhbWlseT0iQXBwbGUgQ29sb3IgRW1vamksU2Vnb2UgVUkgRW1vamksTm90byBDb2xvciBFbW9qaSxzYW5zLXNlcmlmIj4yPC90ZXh0PjwvZz4KPHBhdGggZD0iTTMwIDQ1bDUgMTAgMTEgMi04IDcgMiAxMS0xMC01LTEwIDUgMi0xMS04LTcgMTEtMnoiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43OCIvPgo8L3N2Zz4="
       }
@@ -3411,6 +3411,7 @@
     {
       "character_id": "hanzi-662f",
       "character": "是",
+      "standalone_pinyin": "shì",
       "word_occurrence_count": 5,
       "entry_ids": [
         "pre4-012",
@@ -3622,6 +3623,7 @@
     {
       "character_id": "hanzi-513f",
       "character": "儿",
+      "standalone_pinyin": "ér",
       "word_occurrence_count": 2,
       "entry_ids": [
         "pre4-020",
@@ -3945,6 +3947,7 @@
     {
       "character_id": "hanzi-4e0a",
       "character": "上",
+      "standalone_pinyin": "shàng",
       "word_occurrence_count": 3,
       "entry_ids": [
         "pre4-059",
