@@ -7,7 +7,7 @@
  popup.innerHTML='<div class="kp351-test-card"><header><div><small id="kp353TestLesson">今日の漢字</small><h2>ミニテスト</h2></div><button type="button" id="kp351Close" aria-label="テストを閉じる">×</button></header><div id="kp351TestBody" class="kp351-test-body" aria-live="polite"></div></div>';
  document.body.append(popup);
  const body=popup.querySelector('#kp351TestBody'),subtitle=popup.querySelector('#kp353TestLesson');
- let entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false;
+ let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false;
  const shuffle=arr=>{const result=arr.slice();for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result};
  const add=(tag,cls,text,parent=body)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;parent.append(n);return n};
  const button=(label,fn,cls='')=>{const n=add('button','kp351-action '+cls,label);n.type='button';n.onclick=fn;return n};
@@ -102,10 +102,26 @@
    const message=correct?'○ 正解！ よくできました。':q.type==='writing'
      ?('× '+String(value)+'。その筆画の始点・方向を確認して、もう一度練習しよう。')
      :('× 「'+q.item.char+'」は「'+q.item.pinyin+'」。正解：'+answerKey(q));
-   add('p','kp351-feedback '+(correct?'good':'retry'),message);
-   const next=button(index===questions.length-1?'結果を見る':'次の問題へ',()=>{if(index===questions.length-1)result();else{index++;renderQuestion()}},'primary');
-   next.focus?.({preventScroll:true});
+   showAnswerFeedback(q,value,correct,message);
+ 
  }
+ function showAnswerFeedback(q,value,correct,message){
+   // Separate feedback layer: avoids pushing the question, input and next action offscreen.
+   const overlay=document.createElement('div');overlay.id='kp361AnswerOverlay';overlay.className='kp361-answer-overlay';
+   overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');body.append(overlay);feedbackOverlay=overlay;
+   const inner=document.createElement('section');inner.className='kp361-answer-card';overlay.append(inner);
+   const head=document.createElement('h3');head.className=correct?'kp361-correct':'kp361-incorrect';head.textContent=correct?'○ 正解！':'× おしい！';inner.append(head);
+   const summary=document.createElement('p');summary.className='kp361-answer-summary';summary.textContent=message.replace(/^[○×]\\s*/, '');inner.append(summary);
+   if(!correct){
+     const given=document.createElement('p');given.className='kp361-answer-detail';given.textContent='あなたの答え：'+String(value);inner.append(given);
+     const expected=document.createElement('p');expected.className='kp361-answer-detail';expected.textContent='正解：'+answerKey(q)+(q.type==='pinyin'?'':('（'+q.item.pinyin+'）'));inner.append(expected);
+   }
+   const next=document.createElement('button');next.type='button';next.className='kp351-action primary';
+   next.textContent=index===questions.length-1?'結果を見る':'次の問題へ';
+   next.onclick=()=>{overlay.hidden=true;if(index===questions.length-1)result();else{index++;renderQuestion()}};
+   inner.append(next);next.focus({preventScroll:true});
+ }
+ function hideAnswerFeedback(){if(feedbackOverlay)feedbackOverlay.hidden=true;feedbackOverlay=null}
  function choices(options,correct,q){
    const grid=add('div','kp351-options');
    options.forEach(value=>{
@@ -117,7 +133,7 @@
    });
  }
  function renderQuestion(){
-   locked=false;awaitingWriting=false;body.replaceChildren();const q=questions[index];
+   hideAnswerFeedback();locked=false;awaitingWriting=false;body.replaceChildren();const q=questions[index];
    add('div','kp351-counter',(index+1)+' / '+questions.length+'問');
    const line=add('div','kp351-bar');add('span','',undefined,line).style.width=((index+1)/questions.length*100)+'%';
    const labels={listen:'音を聞いて、漢字を選ぼう',pinyin:'この字のピンインを書こう',stroke:'色のついた線は何画目？',writing:'いつもの書き方で、最後まで書こう'};
@@ -136,8 +152,11 @@
      button('答え合わせ',()=>{if(!input.value.trim())return;input.disabled=true;resolve(q,input.value,normalize(input.value)===normalize(q.item.pinyin))},'primary');
    }else if(q.type==='stroke'){
      const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 1024 1024');svg.setAttribute('class','kp353-stroke-quiz');
-     q.item.strokes.forEach((path,i)=>{const shape=document.createElementNS('http://www.w3.org/2000/svg','path');shape.setAttribute('d',path);shape.setAttribute('fill',i===q.stroke?'#14957b':'#d4dcd6');svg.append(shape)});
-     display.append(svg);
+     // Match the learning-page SVG coordinate system. Source stroke paths use Y-up coordinates.
+     const glyph=document.createElementNS('http://www.w3.org/2000/svg','g');
+     glyph.setAttribute('transform','scale(1,-1) translate(0,-900)');
+     q.item.strokes.forEach((path,i)=>{const shape=document.createElementNS('http://www.w3.org/2000/svg','path');shape.setAttribute('d',path);shape.setAttribute('fill',i===q.stroke?'#14957b':'#d4dcd6');glyph.append(shape)});
+     svg.append(glyph);display.append(svg);
      const indexes=Array.from({length:q.item.strokes.length},(_,i)=>String(i+1));
      choices(shuffle([String(q.stroke+1),...shuffle(indexes.filter(x=>x!==String(q.stroke+1))).slice(0,3)]),String(q.stroke+1),q);
    }else{
@@ -179,7 +198,7 @@
      lessonId=options.lessonId||'pre4-u01';
      entries=chars.map(char=>{const source=HANZI_LESSONS.find(x=>x.char===char);return source?{char,pinyin:source.pinyin,strokes:source.strokes}:null}).filter(Boolean);
      if(entries.length!==chars.length||entries.some(e=>!e.pinyin||!Array.isArray(e.strokes)||!e.strokes.length))return;
-     subtitle.textContent=options.lessonTitle||'今日の漢字';reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];popup.hidden=false;intro();
+     hideAnswerFeedback();subtitle.textContent=options.lessonTitle||'今日の漢字';reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];popup.hidden=false;intro();
    },close(){popup.hidden=true;awaitingWriting=false},isWriting:()=>awaitingWriting,isOpen:()=>!popup.hidden||awaitingWriting
  };
 })();
