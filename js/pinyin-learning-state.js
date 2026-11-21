@@ -31,7 +31,7 @@
     loading=(async()=>{
       try{
         const auth=await connection();
-        if(!auth){client=null;userId=null;rows=new Map();rebuild();return snapshot;}
+        if(!auth){if(userId)rows=new Map();client=null;userId=null;rebuild();return snapshot;}
         const {data,error}=await auth.c.from('course_progress')
           .select('unit_id,status,completed_at,last_visited_at,review_checks,updated_at')
           .eq('user_id',auth.id).eq('course_id',COURSE);
@@ -48,7 +48,12 @@
     if(!VALID.has(id))return Promise.resolve(false);
     const job=async()=>{
       if(!client||!userId)await refresh();
-      if(!client||!userId)return false;
+      if(!client||!userId){
+        const previous=rows.get(id)||{},patch=typeof change==='function'?change(previous):change;
+        if(!patch)return false;
+        rows.set(id,{...previous,unit_id:id,status:'started',review_checks:{},...patch});
+        rebuild();return true;
+      }
       const previous=rows.get(id)||{};
       const patch=typeof change==='function'?change(previous):change;
       if(!patch)return false;
