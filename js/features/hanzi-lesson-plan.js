@@ -6,7 +6,11 @@
    try{const client=await window.KP_ACCOUNT_API?.getClient?.();const auth=client?(await client.auth.getUser()).data:null;if(!auth?.user)return window.KP_HANZI_GUEST?.checks(unitId)||{};
      const {data}=await client.from('course_progress').select('review_checks').eq('user_id',auth.user.id).eq('course_id',COURSE).eq('unit_id',unitId).maybeSingle();
      return data?.review_checks||{};
-   }catch(error){console.warn('[Koepanda] lesson status unavailable',error);return {}}
+   }catch(error){
+     console.warn('[Koepanda] lesson status unavailable',error);
+     // An unavailable auth client must not erase the visitor's verified work.
+     return window.KP_HANZI_GUEST?.checks(unitId)||{};
+   }
  }
  function split(chars,unitId="pre4-u01"){
    const groups=[];
@@ -81,6 +85,12 @@
    };
    addItems({});
    const refresh=async()=>{const request=++revision;const checks=await getStatus(theme.unitId);if(request===revision&&branch.isConnected)addItems(checks)};
+   // A guest completing a stage can unlock the test without a route reload.
+   const onGuestChange=()=>{
+     if(!branch.isConnected){window.removeEventListener?.('kp-hanzi-guest-changed',onGuestChange);return;}
+     refresh().catch(error=>console.warn('[Koepanda] guest lesson refresh',error));
+   };
+   window.addEventListener?.('kp-hanzi-guest-changed',onGuestChange);
    branch.kpRefresh=refresh;
    // renderBranches runs before insertion. Defer the first fetch until the tree exists.
    Promise.resolve().then(()=>refresh().catch(e=>console.warn('[Koepanda] lesson tree progress',e)));

@@ -302,7 +302,13 @@
     const anchor=(theme.find(e=>(e.character_sequence||[]).includes(right))||
        (window.KP_HANZI_ALL_ENTRIES||[]).find(e=>(e.character_sequence||[]).includes(right)));
     const correct=bank.find(item=>item.id===anchor?.entry_id);
-    if(!correct)return;
+    if(!correct){
+      const info=$('kp316Feedback');
+      info.textContent='この漢字の絵を読み込めませんでした。ページを更新してみてね。';
+      $('kp316Choices').replaceChildren();quiz.hidden=false;
+      console.warn('[Koepanda] semantic scene unavailable',right,anchor?.entry_id,bank.length);
+      return;
+    }
     state.answered=false;selectedMeaning=correct;
     const pool=bank.filter(x=>x.id!==correct.id&&x.meaning!==correct.meaning);
     // Prefer variety from the same topic, then the existing picture catalog.
@@ -499,6 +505,9 @@
     const existing=state.completed.get(char)||new Set();
     const isNewStage=!existing.has(n);
     if(isNewStage){existing.add(n);state.completed.set(char,existing);}
+    // Guest stages must be visible to the lesson tree as soon as verified.
+    // Do not depend on a later navigation/flush to persist volatile progress.
+    syncGuestStages();
     const activeDay=tokyoDay();
     if(lastPracticeDay!==activeDay){dailySteps=new Map();todayChars=new Set();lastPracticeDay=activeDay;}
     const steps=dailySteps.get(char)||new Set();
