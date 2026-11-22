@@ -92,6 +92,51 @@
       console.warn('[Koepanda] audio session unavailable:', error.name);
     }
   }
+  var stopMandarin = null;
+  function speakMandarin(text, callbacks) {
+    var synth = window.speechSynthesis;
+    if (!synth || !window.SpeechSynthesisUtterance) throw new Error('unsupported');
+    if (stopMandarin) stopMandarin();
+    else synth.cancel();
+
+    var utterance = new window.SpeechSynthesisUtterance(text);
+    utterance.lang = 'zh-CN';
+    utterance.rate = 0.82;
+    var voices = synth.getVoices();
+    utterance.voice = voices.find(function (voice) {
+      return /^zh[-_](CN|Hans)/i.test(voice.lang);
+    }) || voices.find(function (voice) {
+      return /^zh([-_]|$)/i.test(voice.lang);
+    }) || null;
+
+    var finished = false;
+    function finish(callback) {
+      if (finished) return;
+      finished = true;
+      stopMandarin = null;
+      if (callback) callback();
+    }
+    function stop() {
+      if (finished) return;
+      finish(callbacks.onEnd);
+      synth.cancel();
+    }
+    utterance.onstart = function () {
+      if (!finished && callbacks.onStart) callbacks.onStart();
+    };
+    utterance.onend = function () { finish(callbacks.onEnd); };
+    utterance.onerror = function () { finish(callbacks.onError); };
+    stopMandarin = stop;
+    try {
+      preparePlayback();
+      synth.resume();
+      synth.speak(utterance);
+    } catch (error) {
+      finish();
+      throw error;
+    }
+    return stop;
+  }
   function reconnectOnNextPlay() { needsReconnect = true; }
   window.addEventListener('pageshow', reconnectOnNextPlay);
   window.addEventListener('focus', reconnectOnNextPlay);
@@ -105,5 +150,5 @@
     Array.from(externalCaptures).forEach(function (release) { release(); });
     Array.from(microphoneStreams).forEach(releaseMicrophone);
   });
-  window.KP_AUDIO_SESSION = { preparePlayback: preparePlayback, getMicrophone: getMicrophone, releaseMicrophone: releaseMicrophone, createRecorder: createRecorder, microphoneErrorMessage: microphoneErrorMessage, beginCapture: beginCapture };
+  window.KP_AUDIO_SESSION = { speakMandarin: speakMandarin, preparePlayback: preparePlayback, getMicrophone: getMicrophone, releaseMicrophone: releaseMicrophone, createRecorder: createRecorder, microphoneErrorMessage: microphoneErrorMessage, beginCapture: beginCapture };
 })();
