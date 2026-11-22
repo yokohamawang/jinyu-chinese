@@ -1,1 +1,1 @@
-Koepanda 301.377 — China Explore integration, based on 301.376, not deployed
+Koepanda 301.378 — Mountain, Water, Stories and Travel with Pinyin and read-aloud, not deployed
