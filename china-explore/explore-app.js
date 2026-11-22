@@ -22,10 +22,16 @@ function bilingual(copy, level) {
 
 function photo(key, alt, caption = '') {
   const image = photos[key];
+  if (!image) return '';
+  const licenseUrl = image.license === 'pd'
+    ? image.file
+    : `https://creativecommons.org/licenses/${image.license}/`;
+  const licenseLabel = image.license === 'pd' ? 'Public domain' : `CC ${image.license.replace('/', ' ').toUpperCase()}`;
+  const resized = image.url.startsWith('./photos/') ? ' · サイズ調整' : '';
   return `<figure class="photo">
     <img src="${image.url}" alt="${alt}" decoding="async" loading="lazy" referrerpolicy="no-referrer">
     <figcaption>${caption ? `<span class="photo-label" lang="zh-Hans">${caption}</span>` : ''}<a href="${image.file}" target="_blank" rel="noopener">${image.author}</a> ·
-    <a href="https://creativecommons.org/licenses/${image.license}/" target="_blank" rel="noopener">CC ${image.license.replace('/', ' ').toUpperCase()}</a></figcaption>
+    <a href="${licenseUrl}" target="_blank" rel="noopener">${licenseLabel}</a>${resized}</figcaption>
   </figure>`;
 }
 
@@ -75,8 +81,8 @@ function dialogue() {
   </section>`;
 }
 
-function chapter(heading, lines, photos = []) {
-  return `<section class="pane"><h2>${heading}</h2>${photos.length ? `<div class="chapter-photos">${photos.map(([key, caption]) => photo(key, caption, caption)).join('')}</div>` : ''}${lines.map(copy => bilingual(copy)).join('')}</section>`;
+function chapter(heading, lines, photos = [], index) {
+  return `<section class="pane"${index === undefined ? '' : ` id="chapter-${index}"`}><h2>${heading}</h2>${photos.length ? `<div class="chapter-photos">${photos.map(([key, caption]) => photo(key, caption, caption)).join('')}</div>` : ''}${lines.map(copy => bilingual(copy)).join('')}</section>`;
 }
 
 function exercise(question, options, correct, explanation, audio = '') {
@@ -157,17 +163,21 @@ function palaceRoute() {
 }
 
 function placePage() {
-  const chapters = place.chapters || (place === places.westlake ? westLakeStory : []);
-  const refs = place.refs || [place.source, place.booking,
+  const chapters = place.chapters || (place === places.westlake ? westLakeStory : expandedReadings[place.name[0]] || []);
+  const id = Object.keys(lessons).find(key => lessons[key] === place);
+  const refs = [...(attractionGuides[id] || []), ...(place.refs || [place.source, place.booking,
     place === places.westlake && ['中国無形文化遺産網 · 白蛇伝','https://www.ihchina.cn/project_details/12185.html']
-  ].filter(Boolean);
+  ].filter(Boolean))];
   return `<button type="button" class="back" data-back>‹ ${topic.title[2]}</button>
     <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}</header>
     <div class="feature-reading">
+      ${chapters.length > 1 ? `<nav class="pane sight-overview" aria-label="この課の見どころ">
+        <ol>${chapters.map(([heading], i) => `<li><button type="button" data-chapter="${i}">${heading}</button></li>`).join('')}</ol>
+      </nav>` : ''}
       ${place.sights ? '' : photo(place.photo, place.caption || place.name[0], place.caption)}
       ${place.intro ? chapter('見どころ', place.intro) : ''}
       ${place.sights ? palaceRoute() : ''}
-      ${chapters.map(([heading, lines, photos]) => chapter(heading, lines, photos)).join('')}
+      ${chapters.map(([heading, lines, photos], i) => chapter(heading, lines, photos, i)).join('')}
       ${reviewContent()}
       ${refs.length ? `<details class="reading-sources"><summary>参考資料・公式案内</summary>
         <ul>${refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul></details>` : ''}
@@ -186,14 +196,14 @@ function render(reset = true) {
 }
 
 let active = null;
+
 function stopSpeaking() {
   const previous = active;
   active = null;
-  if (previous) {
-    previous.button.setAttribute('aria-pressed', 'false');
-    previous.button.querySelector('.listen-label').textContent = '聞く';
-    window.speechSynthesis.cancel();
-  }
+  if (!previous) return;
+  previous.audio.pause();
+  previous.button.setAttribute('aria-pressed', 'false');
+  previous.button.querySelector('.listen-label').textContent = '聞く';
 }
 
 function speak(button) {
@@ -202,32 +212,24 @@ function speak(button) {
   stopSpeaking();
   status.textContent = '';
   if (stopOnly) return;
-  const synth = window.speechSynthesis;
-  if (!synth || !window.SpeechSynthesisUtterance) {
-    status.textContent = 'このブラウザでは読み上げを利用できません。';
+  const file = typeof exploreAudio === 'undefined' ? null : exploreAudio[button.dataset.say];
+  if (!file) {
+    status.textContent = '音声ファイルが見つかりません。';
     return;
   }
-  const utterance = new window.SpeechSynthesisUtterance(button.dataset.say);
-  utterance.lang = 'zh-CN';
-  utterance.rate = 0.8;
-  const voices = synth.getVoices();
-  const voice = voices.find(item => /^zh[-_](CN|Hans)/i.test(item.lang))
-    || voices.find(item => /^(zh)([-_]|$)/i.test(item.lang));
-  if (voice) utterance.voice = voice;
-  const request = { button, utterance };
+  const audio = new Audio(`./audio/${file}`);
+  const request = { button, audio };
   active = request;
   button.setAttribute('aria-pressed', 'true');
   button.querySelector('.listen-label').textContent = '停止';
-  const finish = error => {
+  const finish = failed => {
     if (active !== request) return;
-    active = null;
-    button.setAttribute('aria-pressed', 'false');
-    button.querySelector('.listen-label').textContent = '聞く';
-    if (error) status.textContent = '読み上げに失敗しました。端末の中国語音声設定をご確認ください。';
+    stopSpeaking();
+    if (failed) status.textContent = '音声を読み込めませんでした。もう一度お試しください。';
   };
-  utterance.onend = () => finish(false);
-  utterance.onerror = () => finish(true);
-  try { synth.speak(utterance); } catch { finish(true); }
+  audio.addEventListener('ended', () => finish(false), { once: true });
+  audio.addEventListener('error', () => finish(true), { once: true });
+  audio.play().catch(() => finish(true));
 }
 
 app.addEventListener('click', event => {
@@ -248,8 +250,9 @@ app.addEventListener('click', event => {
     place = lessons[button.dataset.place];
     scene = 0;
     answer = null;
-  } else if (button.dataset.sight !== undefined) {
-    const stop = app.querySelector(`#sight-${button.dataset.sight}`);
+  } else if (button.dataset.sight !== undefined || button.dataset.chapter !== undefined) {
+    const target = button.dataset.sight !== undefined ? `sight-${button.dataset.sight}` : `chapter-${button.dataset.chapter}`;
+    const stop = document.getElementById(target);
     if (stop) {
       stop.tabIndex = -1;
       stop.focus({ preventScroll: true });
