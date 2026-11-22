@@ -67,3 +67,53 @@ h2 { font-size: 1rem; margin-bottom: 12px; }
 .ruby-text { line-height: 2.12; }
 .ruby-text ruby { ruby-align: center; margin-inline: 1px; }
 .ruby-text rt { color: #685644; font-size: .67rem; font-weight: 550; }
+
+.mountain { --wash: #e0e9dc; }
+.water { --wash: #dce9ec; }
+.story { --wash: #f1e6d3; }
+.travel { --wash: #f1ddd3; }
+.topic { align-items: stretch; }
+.topic-body { padding-block: 9px 14px; }
+.topic-body .py { font-size: .88rem; }
+.topic-body .jp { font-size: .79rem; }
+.bilingual { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: start; }
+.copy-text { min-width: 0; }
+.pane > .bilingual + .bilingual { padding-top: 13px; margin-top: 13px; border-top: 1px solid #dfe8df; }
+.listen, .steps button, .pager button, .choices button {
+  min-height: 44px;
+  border: 1px solid #d2e4d6;
+  border-radius: 12px;
+  background: #eef5ed;
+  font-size: .82rem;
+  font-weight: 700;
+}
+.listen { min-width: 54px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 5px 7px; }
+.listen[aria-pressed="true"], .steps [aria-current="step"], .choices [aria-pressed="true"] {
+  background: #286650;
+  color: #fff;
+  border-color: #286650;
+}
+button:disabled { opacity: .45; cursor: default; }
+.steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-bottom: 12px; }
+.steps button { padding: 5px; }
+@media (min-width: 445px) {
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.photo { margin: 0 0 15px; }
+.photo img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #e5ebe2; border-radius: 11px; color: #274f42; }
+.photo figcaption { margin-top: 4px; font-size: .68rem; color: #4c655b; text-align: right; }
+.photo a, .source { color: #27634d; }
+.source { display: inline-block; font-size: .85rem; margin-top: 14px; }
+.route { padding-left: 27px; margin: 0 0 14px; }
+.route li { padding: 5px 0; }
+.sights { display: grid; gap: 12px; }
+.scene-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.scene-top > span { font-size: .8rem; white-space: nowrap; }
+.dialogue { margin-bottom: 12px; padding: 10px; border-radius: 12px; background: #f1f5ee; }
+.dialogue:nth-child(odd) { background: #f4efe5; }
+.role { display: block; color: #44655a; font-size: .76rem; font-weight: 700; }
+.choices, .pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.choices button, .pager button { padding: 6px; }
+.pager { margin-top: 12px; }
+.pane h3 { font-size: .9rem; margin: 8px 0; }
+.speech-status:not(:empty) { position: sticky; bottom: 8px; padding: 8px; background: #fff6dc; font-size: .83rem; }
