@@ -13,7 +13,7 @@
       if (mode === 'story') {
         return '<div class="cx-return"><button type="button" data-action="cx-return-explore">‹ 中国探索へ戻る</button></div>' + original(ctx);
       }
-      return '<section class="cx-embed" aria-label="中国探索"><iframe title="中国探索" src="./china-explore/index.html?v=301.395&amp;embedded=1" loading="eager"></iframe></section>';
+      return '<section class="cx-embed" aria-label="中国探索"><iframe title="中国探索" src="./china-explore/index.html?v=301.396&amp;embedded=1" loading="eager"></iframe></section>';
     }
     function wrapped(ctx) { return renderFeature(ctx); }
     wrapped.mount = function(ctx) {
@@ -41,10 +41,15 @@
       if (e.data.type === 'koepanda-explore-layout') {
         const height = e.data.height;
         if (Number.isFinite(height) && height > 0) iframe.style.height = Math.ceil(height) + 'px';
-        if (e.data.reset && mountedContext) {
+        if (mountedContext) {
           const root = mountedContext.root;
-          const nav = root.querySelector('.kp-feature-nav');
-          root.scrollTop = Math.min(root.scrollTop, nav.offsetTop);
+          if (e.data.reset) {
+            root.scrollTop = 0;
+          } else if (Number.isFinite(e.data.sectionTop)) {
+            const navHeight = root.querySelector('.kp-feature-nav')?.offsetHeight || 0;
+            const iframeTop = iframe.getBoundingClientRect().top - root.getBoundingClientRect().top;
+            root.scrollTop += iframeTop + e.data.sectionTop - navHeight - 8;
+          }
         }
         return;
       }

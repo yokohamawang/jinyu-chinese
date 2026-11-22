@@ -39,7 +39,7 @@ const foodCultureLessons = {
       ]],
       ['劉伶 · 三年眠ったという民話', [
         ['在一个民间故事里，刘伶喝了杜家的酒，一睡就是三年。', 'Zài yí ge mín jiān gù shi lǐ, Liú Líng hē le Dù jiā de jiǔ, yí shuì jiù shì sān nián.', 'ある民話では、劉伶が杜家の酒を飲み、そのまま三年も眠ったと語られます。'],
-        ["故事说，三年后他醒了过来，开口还在夸那坛酒。", "Gù shi shuō, sān nián hòu tā xǐng le guò lái, kāi kǒu hái zài kuā nà tán jiǔ.", "話では、三年後に目を覚ました劉伶が、口を開くなり、あの酒をほめたといいます。"],
+        ["故事说，三年后他醒过来，开口还在夸那坛酒。", "Gù shi shuō, sān nián hòu tā xǐng guo lái, kāi kǒu hái zài kuā nà tán jiǔ.", "話では、三年後に目を覚ました劉伶が、口を開くなり、あの酒をほめたといいます。"],
         ['这个夸张的故事流传下来，讲的是人们对酒香的想象。', 'Zhè ge kuā zhāng de gù shi liú chuán xià lái, jiǎng de shì rén men duì jiǔ xiāng de xiǎng xiàng.', 'この大げさな物語は、酒の香りをめぐる人々の想像を伝えています。']
       ]]
     ],

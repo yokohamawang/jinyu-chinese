@@ -21,3 +21,7 @@
 #kpFeatureMain .cx-return button:active {
   background: #e6f1e8;
 }
+
+#kpFeatureRoot:has(.cx-embed) {
+  overflow-anchor: none;
+}

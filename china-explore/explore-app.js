@@ -45,12 +45,13 @@ function source([label, url]) {
   return `<a class="source" href="${url}" target="_blank" rel="noopener">${label} ↗</a>`;
 }
 
-function reportLayout(reset = false) {
+function reportLayout(reset = false, sectionTop) {
   if (!embedded) return;
   window.parent.postMessage({
     type: 'koepanda-explore-layout',
     height: app.getBoundingClientRect().height,
-    reset
+    reset,
+    sectionTop
   }, location.origin);
 }
 
@@ -116,9 +117,9 @@ function reviewContent() {
   const vocabulary = [...(place.words || extra.words), ...(additionalWords[id] || []), ...practiceWords];
   const words = [...new Map(vocabulary.map(word => [word[0], word])).values()];
   const meaningChoices = words.filter((word, i) => words.findIndex(entry => entry[2] === word[2]) === i);
-  const listeningGroups = place.extraExercises
-    ? [meaningChoices.slice(1, 4), meaningChoices.slice(4, 7), meaningChoices.slice(7, 10)]
-    : [meaningChoices.slice(-6, -3), meaningChoices.slice(-3)];
+  const listeningCount = place.extraGaps ? Math.floor(meaningChoices.length / 3) : 2;
+  const listeningWords = meaningChoices.slice(-listeningCount * 3);
+  const listeningGroups = Array.from({ length: listeningCount }, (_, i) => listeningWords.slice(i * 3, i * 3 + 3));
   const listening = listeningGroups.map((options, round) => {
     const correct = (round + 1) % 3;
     const [chinese, pinyin, meaning] = options[correct];
@@ -131,7 +132,6 @@ function reviewContent() {
     place.intro[0]
   ];
   const dictation = practiceWords[0];
-  const [extraGap, comparison] = place.extraExercises || [];
   return `<section class="pane">
       <h2>ことばを確認</h2>
       <div class="word-list">${words.map(copy => bilingual(copy)).join('')}</div>
@@ -143,7 +143,7 @@ function reviewContent() {
     <section class="pane">
       <h2>文の中で使う</h2>
       ${exercise(sentence, options, correct, reason)}
-      ${extraGap ? exercise(...extraGap) : ''}
+      ${(place.extraGaps || []).map(args => exercise(...args)).join('')}
       <form class="lesson-exercise dictation" data-word="${dictation[0]}">
         <label for="lesson-dictation">聞いて漢字を入力</label>
         <div>${readButton(dictation[0])}</div>
@@ -155,7 +155,7 @@ function reviewContent() {
     </section>
     <section class="pane">
       <h2>読んで確かめる</h2>
-      ${comparison ? exercise(...comparison) : ''}
+      ${(place.readingExercises || []).map(args => exercise(...args)).join('')}
       <p class="speaking-task">${question}</p>
       <details class="model-answer"><summary>解説を見る</summary><p class="speaking-task">${explanation}</p></details>
     </section>
@@ -207,7 +207,7 @@ function placePage() {
 function render(reset = true) {
   app.innerHTML = (!topic ? topicCards() : !place ? placeList() : placePage()) + '<p class="speech-status" role="status"></p>';
   if (reset) {
-    if (!embedded) window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     const heading = app.querySelector('h1');
     heading.tabIndex = -1;
     heading.focus({ preventScroll: true });
@@ -285,7 +285,8 @@ app.addEventListener('click', event => {
     if (stop) {
       stop.tabIndex = -1;
       stop.focus({ preventScroll: true });
-      stop.scrollIntoView({ block: 'center' });
+      if (embedded) reportLayout(false, stop.getBoundingClientRect().top + window.scrollY);
+      else stop.scrollIntoView({ block: 'start' });
     }
     return;
   } else if (button.dataset.scene !== undefined) {
@@ -350,4 +351,4 @@ app.addEventListener('error', event => {
 
 window.addEventListener('pagehide', stopSpeaking);
 new ResizeObserver(() => reportLayout()).observe(app);
-render(false);
+render();
