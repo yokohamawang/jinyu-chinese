@@ -1,4 +1,4 @@
-/* 301.356: lesson/test pairs in theme tree; existing study modes remain unchanged. */
+/* Draw the small stations for a Hanzi theme. Progress uses the original lesson IDs. */
 (()=>{
  'use strict';
  const COURSE='hanzi-pre4-course';
@@ -18,9 +18,10 @@
      groups.push({lessonId:unitId+'-l'+String(groups.length+1).padStart(2,'0'),chars:[...review,...next],newChars:next,reviewChars:review});}
    return groups;
  }
+ function stationLabel(group){return (group.newChars || group.chars).join('・')+'の駅';}
  function renderBranches(theme, onSelect){
    const branch=document.createElement('div');branch.className='kp354-theme-branches';
-   branch.setAttribute('aria-label',theme.title+' のレッスン');
+   branch.setAttribute('aria-label',theme.title+' の小さな駅');
    const groups=split(theme.characters,theme.unitId);
    const slots=document.createElement('div');slots.className='kp354-branch-list';branch.append(slots);
    let revision=0;
@@ -28,6 +29,8 @@
 
      slots.replaceChildren();
      groups.forEach((g,i)=>{
+       const station=stationLabel(g);
+       const stop=document.createElement('div');stop.className='hanzi-small-stop';
        const done=!!checks['unitTest:'+g.lessonId]?.passed_at;
        const previousPassed=i===0||groups.slice(0,i).every(prev=>!!checks['unitTest:'+prev.lessonId]?.passed_at);
        const lessonUnlocked=theme.testUnlocked||previousPassed||done;
@@ -40,18 +43,18 @@
        item.disabled=!lessonUnlocked;
        item.setAttribute('aria-disabled',String(!lessonUnlocked));
        item.classList.toggle('is-in-progress',started);
-       item.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">'+(done?'✓':started?'◐':'')+'</span>';
-       item.setAttribute('aria-label','第'+(i+1)+'課 '+(!lessonUnlocked?'前の課に合格すると解放':done?'クリア済み':started?'学習中':'未開始'));
+       item.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">'+(done?'✓':started?'▶':lessonUnlocked?'🚩':'🔒')+'</span>';
+       item.setAttribute('aria-label',station+' '+(!lessonUnlocked?'ひとつ前の駅をクリアすると進めます':done?'クリア済み':started?'学習中':'未開始'));
 
        const content=document.createElement('span');content.className='kp354-branch-copy';
-       const title=document.createElement('strong');title.textContent='第'+(i+1)+'課 · '+g.chars.join('・');
+       const title=document.createElement('strong');title.textContent=station;
        const hint=document.createElement('small');
-       hint.textContent=!lessonUnlocked?'🔒 前の課のテスト合格で解放':done?'✓ クリア':started?'学習中':g.reviewChars.length?'復習をふくむ':'';
+       hint.textContent=!lessonUnlocked?'前の駅をクリアすると進めるよ':done?'✓ クリア':started?'学習中':g.reviewChars.length?'復習をふくむ':'';
        hint.hidden=!hint.textContent;
        content.append(title,hint);item.append(content);
-       item.onclick=()=>onSelect({...theme,...g,lessonTitle:'第'+(i+1)+'課',lessonIndex:i,lessonCount:groups.length});
-       slots.append(item);
-       // The quiz is a visible, separate tree branch, not an invisible final step.
+       item.onclick=()=>onSelect({...theme,...g,lessonTitle:station,lessonIndex:i,lessonCount:groups.length});
+       stop.append(item);
+       // The challenge stays accessible at the same station.
        const test=document.createElement('button');test.type='button';
        test.className='kp354-branch-item kp356-lesson-test';
        test.classList.toggle('is-complete',done);
@@ -59,14 +62,14 @@
        const unlocked=theme.testUnlocked||(ready&&previousPassed)||done;
        test.disabled=!unlocked;
        test.setAttribute('aria-disabled',String(!unlocked));
-       test.setAttribute('aria-label','第'+(i+1)+'課 テスト・'+(done?'合格済み':unlocked?'受験可能':'学習後に解放'));
+       test.setAttribute('aria-label',station+' チャレンジ・'+(done?'合格済み':unlocked?'受験可能':'学習後に解放'));
        const marker=document.createElement('span');marker.className='kp354-branch-marker';marker.setAttribute('aria-hidden','true');marker.textContent=done?'✓':unlocked?'✎':'🔒';
        const testCopy=document.createElement('span');testCopy.className='kp354-branch-copy';
-       const testTitle=document.createElement('strong');testTitle.textContent='第'+(i+1)+'課 テスト';
-       const testHint=document.createElement('small');testHint.textContent=done?'合格済み・復習できます':unlocked?'6問 · テストを始める':'3文字の学習後に解放';
+       const testTitle=document.createElement('strong');testTitle.textContent='チャレンジ';
+       const testHint=document.createElement('small');testHint.textContent=done?'合格済み・復習できます':unlocked?'6問':'漢字を練習すると挑戦できるよ';
        testCopy.append(testTitle,testHint);test.append(marker,testCopy);
-       test.onclick=()=>onSelect({...theme,...g,lessonTitle:'第'+(i+1)+'課',lessonIndex:i,lessonCount:groups.length,launchTest:true});
-       slots.append(test);
+       test.onclick=()=>onSelect({...theme,...g,lessonTitle:station,lessonIndex:i,lessonCount:groups.length,launchTest:true});
+       stop.append(test);
        const records=checks['mistakes:'+g.lessonId]||[];
        const mistakes=records.filter(m=>!m.reviewed_at);
        const canRecover=ready&&previousPassed&&!done&&records.length>0&&!mistakes.length&&
@@ -74,14 +77,15 @@
        if((mistakes.length||canRecover)&&!theme.testUnlocked){
          const review=document.createElement('button');review.type='button';review.className='kp354-branch-review';
          review.textContent=canRecover?'✓ 訂正済み・合格を記録':'↳ まちがい復習 · '+mistakes.length+'件';
-         review.onclick=()=>onSelect({...theme,...g,lessonTitle:'第'+(i+1)+'課',lessonIndex:i,lessonCount:groups.length,launchTest:true,reviewRows:mistakes,resumeCorrected:canRecover});
-         slots.append(review);
+         review.onclick=()=>onSelect({...theme,...g,lessonTitle:station,lessonIndex:i,lessonCount:groups.length,launchTest:true,reviewRows:mistakes,resumeCorrected:canRecover});
+         stop.append(review);
        }
+       slots.append(stop);
      });
      const finished=theme.testUnlocked||groups.every(g=>checks['unitTest:'+g.lessonId]?.passed_at);
      const summary=document.createElement('button');summary.type='button';summary.className='kp354-branch-item kp354-summary';
-     summary.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">★</span><span class="kp354-branch-copy"><strong>テーマ総合テスト</strong><small></small></span>';
-     summary.querySelector('small').textContent=finished?'10問 · まとめテスト':'全'+groups.length+'課のテスト合格で解放';
+     summary.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">★</span><span class="kp354-branch-copy"><strong>まとめチャレンジ</strong><small></small></span>';
+     summary.querySelector('small').textContent=finished?'10問 · まとめテスト':'すべての駅をクリアすると挑戦できるよ';
      summary.disabled=!finished;summary.setAttribute('aria-disabled',String(!finished));
      summary.onclick=()=>onSelect({...theme,lessonId:theme.unitId,lessonTitle:'まとめテスト',chars:theme.characters,themeTest:true,launchTest:true});
      slots.append(summary);
@@ -99,5 +103,5 @@
    Promise.resolve().then(()=>refresh().catch(e=>console.warn('[Koepanda] lesson tree progress',e)));
    return branch;
  }
- window.KP_HANZI_LESSON_PLAN={renderBranches,split};
+ window.KP_HANZI_LESSON_PLAN={renderBranches,split,stationLabel};
 })();
