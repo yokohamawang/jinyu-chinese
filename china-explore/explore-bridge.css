@@ -1,0 +1,23 @@
+#kpFeatureMain .cx-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+  background: transparent;
+}
+#kpFeatureMain .cx-return {
+  margin: 0 0 14px;
+}
+#kpFeatureMain .cx-return button {
+  background: #fffefa;
+  border: 1px solid #d9e7dd;
+  border-radius: 12px;
+  padding: 8px 14px;
+  color: #285548;
+  font: inherit;
+  font-weight: 700;
+  min-height: 44px;
+}
+#kpFeatureMain .cx-return button:active {
+  background: #e6f1e8;
+}
