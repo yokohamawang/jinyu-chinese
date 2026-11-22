@@ -201,7 +201,8 @@ function stopSpeaking() {
   const previous = active;
   active = null;
   if (!previous) return;
-  previous.audio.pause();
+  clearTimeout(previous.timer);
+  previous.stop?.();
   previous.button.setAttribute('aria-pressed', 'false');
   previous.button.querySelector('.listen-label').textContent = '聞く';
 }
@@ -212,24 +213,32 @@ function speak(button) {
   stopSpeaking();
   status.textContent = '';
   if (stopOnly) return;
-  const file = typeof exploreAudio === 'undefined' ? null : exploreAudio[button.dataset.say];
-  if (!file) {
-    status.textContent = '音声ファイルが見つかりません。';
-    return;
-  }
-  const audio = new Audio(`./audio/${file}`);
-  const request = { button, audio };
+
+  const session = window.KP_AUDIO_SESSION;
+  const text = button.dataset.say;
+  const request = { button };
   active = request;
   button.setAttribute('aria-pressed', 'true');
   button.querySelector('.listen-label').textContent = '停止';
-  const finish = failed => {
+
+  function finish(message = '') {
     if (active !== request) return;
     stopSpeaking();
-    if (failed) status.textContent = '音声を読み込めませんでした。もう一度お試しください。';
-  };
-  audio.addEventListener('ended', () => finish(false), { once: true });
-  audio.addEventListener('error', () => finish(true), { once: true });
-  audio.play().catch(() => finish(true));
+    status.textContent = message;
+  }
+
+  const failed = () => finish('端末の中国語音声を再生できませんでした。中国語の音声設定を確認してください。');
+  try {
+    request.timer = setTimeout(failed, 2500);
+    const stop = session.speakMandarin(text, {
+      onStart: () => clearTimeout(request.timer),
+      onEnd: () => finish(),
+      onError: failed
+    });
+    if (active === request) request.stop = stop;
+  } catch {
+    failed();
+  }
 }
 
 app.addEventListener('click', event => {
