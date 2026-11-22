@@ -100,7 +100,7 @@ const features = {
         ['从嵩山少室山一带走进少林寺，可以从山门一路看到寺院的殿堂。','Cóng Sōng shān Shào shì shān yí dài zǒu jìn Shào lín sì, kě yǐ cóng shān mén yí lù kàn dào sì yuàn de diàn táng.','嵩山の少室山一帯から少林寺に入り、山門から寺の堂宇へと進みます。'],
         ['山门是寺院的入口，塔林里的古塔则让人看见寺院的历史。','Shān mén shì sì yuàn de rù kǒu, tǎ lín lǐ de gǔ tǎ zé ràng rén kàn jiàn sì yuàn de lì shǐ.','山門は寺院の入口で、塔林の古い塔は寺の歴史を伝えます。'],
         ['少林寺是登封世界遗产的一部分。','Shào lín sì shì Dēng fēng shì jiè yí chǎn de yí bù fen.','少林寺は登封の世界遺産を構成する一部です。']
-      ]],
+      ], [["shaolinForest", "河南登封 · 少林寺塔林"]]],
       ['千仏殿で武術を想像する', [
         ['走进千佛殿，可以留意地面上的凹坑。','Zǒu jìn Qiān fó diàn, kě yǐ liú yì dì miàn shàng de āo kēng.','千仏殿に入ったら、床のくぼみに注目してみましょう。'],
         ['人们常把这些凹坑和僧人练拳联系起来。','Rén men cháng bǎ zhè xiē āo kēng hé sēng rén liàn quán lián xì qǐ lái.','このくぼみは、僧侶の拳法の稽古と結びつけて語られます。'],
@@ -126,12 +126,12 @@ const features = {
         ['武当山在湖北十堰，以道教古建筑群闻名。','Wǔ dāng shān zài Hú běi Shí yàn, yǐ Dào jiào gǔ jiàn zhù qún wén míng.','湖北省十堰の武当山は、道教の古建築群で知られます。'],
         ['从山间的宫观到山顶的金殿，建筑顺着山势展开。','Cóng shān jiān de gōng guàn dào shān dǐng de Jīn diàn, jiàn zhù shùn zhe shān shì zhǎn kāi.','山中の道観から山頂の金殿まで、建物が地形に沿って広がっています。'],
         ['明代大规模修建武当山的宫观，留下了今天还能看到的建筑。','Míng dài dà guī mó xiū jiàn Wǔ dāng shān de gōng guàn, liú xià le jīn tiān hái néng kàn dào de jiàn zhù.','明代に大規模な造営が行われ、今も見られる建物が残りました。']
-      ]],
+      ], [["wudangPalace", "湖北十堰 · 武当山紫霄宫"]]],
       ['金殿まで登り、山の形を見る', [
         ['在山下看金殿，只能看见一个小小的屋顶。','Zài shān xià kàn Jīn diàn, zhǐ néng kàn jiàn yí ge xiǎo xiǎo de wū dǐng.','山の下から金殿を見上げると、屋根は小さく見えます。'],
         ['登上天柱峰，回头看看来时的路，宫观随着山势高低错落。','Dēng shàng Tiān zhù fēng, huí tóu kàn kan lái shí de lù, gōng guàn suí zhe shān shì gāo dī cuò luò.','天柱峰に登って来た道を振り返ると、道観が地形に沿って高低をつけて並んでいます。'],
         ['一路走来，既能看古建筑，也能听当地人讲张三丰的传说。','Yí lù zǒu lái, jì néng kàn gǔ jiàn zhù, yě néng tīng dāng dì rén jiǎng Zhāng Sān fēng de chuán shuō.','この道をたどりながら、古建築を見たり、地元に伝わる張三豊の話を聞いたりできます。']
-      ]],
+      ], [["wudanghall", "武当山 · 金殿"]]],
       ['張三豊の伝説と太極拳', [
         ['有人把武当武术的起源和张三丰联系起来，这个说法流传很广。','Yǒu rén bǎ Wǔ dāng wǔ shù de qǐ yuán hé Zhāng Sān fēng lián xì qǐ lái, zhè ge shuō fǎ liú chuán hěn guǎng.','武当武術の起源を張三豊と結びつける話が広く伝わっています。'],
         ['关于谁最早创立太极拳，还有不同的说法。','Guān yú shéi zuì zǎo chuàng lì tài jí quán, hái yǒu bù tóng de shuō fǎ.','太極拳を最初に創始した人物については、異なる説があります。'],
@@ -231,3 +231,89 @@ const lessonExercises = {
   songshan: ['走进寺院之前，我们先经过＿＿。', ['烽火台','山门','沙滩'], 1, '「山门」は寺院の門。少林寺を歩く場面で使える。'],
   wudang: ['沿着＿＿往上走，可以去看金殿。', ['海岸线','入海口','山路'], 2, '「山路」は山道。「沿着山路」で山道に沿って進む。']
 };
+
+const expandedReadings = {
+  '漓江': [
+    ['船から山を眺める', [
+      ['从桂林顺流而下，两岸的山峰时远时近。','Cóng Guì lín shùn liú ér xià, liǎng àn de shān fēng shí yuǎn shí jìn.','桂林から川を下ると、両岸の山々が近づいたり遠ざかったりします。'],
+      ['经过九马画山时，不妨看看石壁上的花纹像什么。','Jīng guò Jiǔ mǎ huà shān shí, bù fáng kàn kan shí bì shàng de huā wén xiàng shén me.','九馬画山を通るときは、岩肌の模様が何に見えるか観察してみましょう。']
+    ], [['xingping1','广西阳朔 · 兴坪江面']]],
+    ['興坪で水面の山を探す', [
+      ['风小的时候，山峰的倒影会映在江面上。','Fēng xiǎo de shí hou, shān fēng de dào yǐng huì yìng zài jiāng miàn shàng.','風が弱いときには、山の影が川面に映ります。'],
+      ['在兴坪，可以先看看远处的山，再低头找水里的倒影。','Zài Xīng píng, kě yǐ xiān kàn kan yuǎn chù de shān, zài dī tóu zhǎo shuǐ lǐ de dào yǐng.','興坪では、まず遠くの山を見て、それから目を落として水面の影を探してみましょう。']
+    ], [['xingping2','兴坪 · 江岸与山峰']]]
+  ],
+  '黄山': [
+    ['松・岩・雲を見比べる', [
+      ['有的松树长在岩石旁，枝条向外伸展。','Yǒu de sōng shù zhǎng zài yán shí páng, zhī tiáo xiàng wài shēn zhǎn.','岩のそばに生え、枝を外へ伸ばす松もあります。'],
+      ['云雾升起来时，远处的山峰有时只露出山顶。','Yún wù shēng qǐ lái shí, yuǎn chù de shān fēng yǒu shí zhǐ lù chū shān dǐng.','霧が上がってくると、遠くの峰は頂上だけが見えることがあります。']
+    ], [['huangshanCloud','黄山 · 云海']]]
+  ],
+  '泰山': [
+    ['石段を上りながら見る', [
+      ['登山时，可以一边走石阶，一边留意路旁的石刻。','Dēng shān shí, kě yǐ yì biān zǒu shí jiē, yì biān liú yì lù páng de shí kè.','登山中は石段を上りながら、道沿いの石刻にも注目してみましょう。'],
+      ['到了高处再回头，就能比较山脚和山上的景色。','Dào le gāo chù zài huí tóu, jiù néng bǐ jiào shān jiǎo hé shān shàng de jǐng sè.','高い所まで来たら振り返り、ふもとと山の上の景色を比べられます。']
+    ], [["taiStairs", "泰山 · 登山石阶"]]]
+  ],
+  '青岛海滨': [
+    ['栈橋から海を見る', [
+      ['沿着栈桥往前走，回头可以看到海岸线。','Yán zhe Zhàn qiáo wǎng qián zǒu, huí tóu kě yǐ kàn dào hǎi àn xiàn.','桟橋を進んで振り返ると、海岸線が見えます。'],
+      ['海风大的时候，可以听到海浪拍打桥边的声音。','Hǎi fēng dà de shí hou, kě yǐ tīng dào hǎi làng pāi dǎ qiáo biān de shēng yīn.','風が強いときは、橋のそばに打ち寄せる波の音が聞こえます。']
+    ], [['qingdaoPier','青岛 · 栈桥']]]
+  ],
+  '慕田峪长城': [
+    ['城壁の上から地形を読む', [
+      ['站在城墙上，可以看到长城随着山势起伏。','Zhàn zài chéng qiáng shàng, kě yǐ kàn dào Cháng chéng suí zhe shān shì qǐ fú.','城壁の上からは、長城が山の起伏に沿って続く様子が見えます。'],
+      ['走过一段台阶，不妨回头看看刚才经过的城墙。','Zǒu guò yí duàn tái jiē, bù fáng huí tóu kàn kan gāng cái jīng guò de chéng qiáng.','階段を一つ過ぎたら、歩いてきた城壁を振り返ってみましょう。']
+    ]]
+  ]
+};
+
+expandedReadings['慕田峪长城'].unshift(
+  ['長城はどこから見に行く？', [
+    ['八达岭和慕田峪在北京，金山岭在河北。','Bā dá lǐng hé Mù tián yù zài Běi jīng, Jīn shān lǐng zài Hé běi.','八達嶺と慕田峪は北京、金山嶺は河北省にあります。'],
+    ['司马台靠近古北水镇，山海关则靠近渤海。','Sī mǎ tái kào jìn Gǔ běi shuǐ zhèn, Shān hǎi guān zé kào jìn Bó hǎi.','司馬台は古北水鎮の近く、山海関は渤海の近くにあります。']
+  ], [["wallBadaling", "北京 · 八达岭长城"]]],
+  ['慕田峪の入口と十四号展望台', [
+    ['从北检票口进景区，可以搭缆车到十四号观景平台。','Cóng běi jiǎn piào kǒu jìn jǐng qū, kě yǐ dā lǎn chē dào shí sì hào guān jǐng píng tái.','北側の改札から入ると、ロープウェイで14号展望台へ行けます。'],
+    ['到了观景平台，先看看城墙沿着哪一道山脊延伸。','Dào le guān jǐng píng tái, xiān kàn kan chéng qiáng yán zhe nǎ yí dào shān jǐ yán shēn.','展望台に着いたら、まず城壁がどの尾根に沿って続くか眺めましょう。']
+  ]],
+  ['七号と六号の敵台を歩く', [
+    ['在七号敌台向西望，可以看到城墙在群山之间弯曲。','Zài qī hào dí tái xiàng xī wàng, kě yǐ kàn dào chéng qiáng zài qún shān zhī jiān wān qū.','7号敵台から西を向くと、山々の間を曲がって続く城壁が見えます。'],
+    ['走到六号敌台附近，可以按景区指引选择下山方式。','Zǒu dào liù hào dí tái fù jìn, kě yǐ àn jǐng qū zhǐ yǐn xuǎn zé xià shān fāng shì.','6号敵台付近に着いたら、現地案内を見て下山方法を選べます。']
+  ], [["wallWatchtower", "慕田峪 · 敌台与石阶"]]]
+);
+
+const attractionGuides = {
+  wall: [
+    ['北京市 · 慕田峪のモデルルート','https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202610/t20261022_4914353.html'],
+    ['慕田峪長城 · 公式案内','https://www.mutianyugreatwall.com/cnInformation'],
+    ['北京市文化観光局 · 長城の区間','https://www.beijing.gov.cn/renwen/zt/cjyjc/ldzn/xltj/202501/t20250117_3992088.html']
+  ],
+  lijiang: [['桂林漓江景区 · 船のルート','https://www.lijiangriver.com.cn/page/article/ylxl.ljpfy']]
+};
+
+features.lijiangTown = {
+  name: ['丽江古城','Lì jiāng gǔ chéng','雲南 · 麗江の町と水路'],
+  photo: 'lijiangOldTown',
+  caption: '云南 · 丽江古城',
+  chapters: [
+    ['大研古城で水路をたどる', [
+      ['云南的丽江古城由大研、束河和白沙等部分组成。','Yún nán de Lì jiāng gǔ chéng yóu Dà yán, Shù hé hé Bái shā děng bù fen zǔ chéng.','雲南の麗江古城は大研、束河、白沙などから成ります。'],
+      ['在大研古城，可以沿着水渠走过一座座小桥。','Zài Dà yán gǔ chéng, kě yǐ yán zhe shuǐ qú zǒu guò yí zuò zuò xiǎo qiáo.','大研古城では水路沿いに小橋を渡りながら歩けます。']
+    ]],
+    ['黒龍潭から雪山へ', [
+      ['玉龙雪山的水汇入黑龙潭，再流进古城的水渠。','Yù lóng xuě shān de shuǐ huì rù Hēi lóng tán, zài liú jìn gǔ chéng de shuǐ qú.','玉龍雪山からの水は黒龍潭に集まり、古城の水路に流れ込みます。'],
+      ['走到黑龙潭时，不妨看看水面上有没有雪山的倒影。','Zǒu dào Hēi lóng tán shí, bù fáng kàn kan shuǐ miàn shàng yǒu méi yǒu xuě shān de dào yǐng.','黒龍潭に着いたら、水面に雪山の姿が映っているか探してみましょう。']
+    ], [["lijiangPool", "云南丽江 · 黑龙潭"]]],
+    ['束河と白沙にも足を延ばす', [
+      ['除了大研，还可以去束河和白沙，看看不同的街巷和民居。','Chú le Dà yán, hái kě yǐ qù Shù hé hé Bái shā, kàn kan bù tóng de jiē xiàng hé mín jū.','大研に加えて束河や白沙にも足を延ばし、街路や民家の違いを見てみましょう。']
+    ]]
+  ],
+  words: [['古城','gǔ chéng','歴史ある町'],['水渠','shuǐ qú','水路'],['雪山','xuě shān','雪山'],['街巷','jiē xiàng','通りと路地']],
+  check: ['黒龍潭の水はどこから来て、黒龍潭の先ではどこに流れますか。','玉龍雪山から来て、黒龍潭を経て古城の水路へ流れます。'],
+  task: ['友達に、麗江で先にどこを見て、そのあとどこへ行くか伝えましょう。',['我们先沿水渠逛古城，再去黑龙潭看倒影。','Wǒ men xiān yán shuǐ qú guàng gǔ chéng, zài qù Hēi lóng tán kàn dào yǐng.','まず水路沿いに古城を歩いて、それから黒龍潭へ水面の影を見に行きましょう。']],
+  refs: [['ユネスコ · 麗江古城','https://whc.unesco.org/en/list/811/']]
+};
+practiceVocabulary.lijiangTown = [['民居','mín jū','民家'],['倒影','dào yǐng','水に映る影'],['汇入','huì rù','流れ込む'],['街道','jiē dào','通り']];
+lessonExercises.lijiangTown = ['雪山的水先汇入黑龙潭，再流进古城的＿＿。',['城墙','水渠','石阶'],1,'「水渠」は水路。古城の中を水路が流れています。'];

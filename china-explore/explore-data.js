@@ -1,87 +1,189 @@
 const photos = {
   "palace": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Forbidden_City_%2854448344157%29.jpg",
+    "url": "./photos/palace.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Forbidden_City_%2854448344157%29.jpg",
     "author": "Xiquinho Silva",
     "license": "by/2.0"
   },
   "gate": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Meridian_Gate_of_the_Forbidden_City.jpg",
+    "url": "./photos/gate.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Meridian_Gate_of_the_Forbidden_City.jpg",
     "author": "そらみみ",
     "license": "by-sa/4.0"
   },
   "hall": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Hall_of_Supreme_Harmony_%2854448353192%29.jpg",
+    "url": "./photos/hall.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Hall_of_Supreme_Harmony_%2854448353192%29.jpg",
     "author": "Xiquinho Silva",
     "license": "by/2.0"
   },
   "garden": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Imperial_Garden_%2854448349292%29.jpg",
+    "url": "./photos/garden.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Imperial_Garden_%2854448349292%29.jpg",
     "author": "Xiquinho Silva",
     "license": "by/2.0"
   },
   "huangshan": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Pine_of_Huangshan_20141109.jpg",
+    "url": "./photos/huangshan.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Pine_of_Huangshan_20141109.jpg",
     "author": "颐园居",
     "license": "by-sa/4.0"
   },
   "lijiang": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Guilin_Li_River.jpg",
+    "url": "./photos/lijiang.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Guilin_Li_River.jpg",
     "author": "xiquinhosilva",
     "license": "by/2.0"
   },
   "westlake": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Leifeng_Pagoda%2C_West_Lake.jpg",
+    "url": "./photos/westlake.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Leifeng_Pagoda%2C_West_Lake.jpg",
     "author": "钉钉",
     "license": "by-sa/4.0"
   },
   "wall": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/The_Mutianyu_section_of_the_Great_Wall_of_China.jpg",
+    "url": "./photos/wall.webp",
     "file": "https://commons.wikimedia.org/wiki/File:The_Mutianyu_section_of_the_Great_Wall_of_China.jpg",
     "author": "Lloyd Tudor",
     "license": "by-sa/4.0"
   },
   "taishan": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Mountain_Tai.jpg",
+    "url": "./photos/taishan.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Mountain_Tai.jpg",
     "author": "煎饼卷",
     "license": "by-sa/4.0"
   },
   "qingdao": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Qingdao%EF%BC%8C%E9%9D%92%E5%B2%9B%E6%B5%B7%E6%BB%A8%EF%BC%8C%E9%9D%92%E5%B2%9B%E5%BB%BA%E7%AD%91%EF%BC%8C2019%E5%B9%B4.jpg",
+    "url": "./photos/qingdao.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Qingdao%EF%BC%8C%E9%9D%92%E5%B2%9B%E6%B5%B7%E6%BB%A8%EF%BC%8C%E9%9D%92%E5%B2%9B%E5%BB%BA%E7%AD%91%EF%BC%8C2019%E5%B9%B4.jpg",
     "author": "Trychmi",
     "license": "by-sa/4.0"
   },
   "qutang": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/The_Qutang_Gorge_along_the_Yangtze_river.JPG",
+    "url": "./photos/qutang.webp",
     "file": "https://commons.wikimedia.org/wiki/File:The_Qutang_Gorge_along_the_Yangtze_river.JPG",
     "author": "Chen Hualin",
     "license": "by-sa/3.0"
   },
   "hukou": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Hukou_Waterfall_banner.jpg",
+    "url": "./photos/hukou.webp",
     "file": "https://commons.wikimedia.org/wiki/File:Hukou_Waterfall_banner.jpg",
     "author": "Leruswing",
     "license": "by-sa/3.0"
   },
   "shaolin": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/20241103_Gate_of_Shaolin_Temple.jpg",
+    "url": "./photos/shaolin.webp",
     "file": "https://commons.wikimedia.org/wiki/File:20241103_Gate_of_Shaolin_Temple.jpg",
     "author": "Windmemories",
     "license": "by-sa/4.0"
   },
   "wudanghall": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/%E6%AD%A6%E5%BD%93%E5%B1%B1%E9%87%91%E6%AE%BF.JPG",
+    "url": "./photos/wudanghall.webp",
     "file": "https://commons.wikimedia.org/wiki/File:%E6%AD%A6%E5%BD%93%E5%B1%B1%E9%87%91%E6%AE%BF.JPG",
     "author": "Gisling",
     "license": "by/3.0"
+  },
+  "baidicheng": {
+    "url": "./photos/baidicheng.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:%E7%99%BD%E5%B8%9D%E5%9F%8E_Baidicheng_-_panoramio.jpg",
+    "author": "lienyuan lee",
+    "license": "by/3.0"
+  },
+  "shaolinPractice": {
+    "url": "./photos/shaolinPractice.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Shaolin_monks.jpg",
+    "author": "podoboq",
+    "license": "by/2.0"
+  },
+  "brokenBridge": {
+    "url": "./photos/brokenBridge.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:West_Lake_2025.06_02.jpg",
+    "author": "Shujianyang",
+    "license": "by-sa/4.0"
+  },
+  "lingyin": {
+    "url": "./photos/lingyin.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Hangzhou-Lingyin-Tempel-30-Muenzenwurf-2012-gje.jpg",
+    "author": "Gerd Eichmann",
+    "license": "by-sa/4.0"
+  },
+  "feilai": {
+    "url": "./photos/feilai.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Hangzhou-Lingyin-Tempel-60-Buddha-Grotten-2012-gje.jpg",
+    "author": "Gerd Eichmann",
+    "license": "by-sa/4.0"
+  },
+  "hukouClose": {
+    "url": "./photos/hukouClose.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:HukouWaterfall3.jpg",
+    "author": "Fanghong",
+    "license": "by-sa/2.5"
+  },
+  "xingping1": {
+    "url": "./photos/xingping1.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Li_River_at_Xingping_1.jpg",
+    "author": "ChinaTravelSavvy.Com – China Travel Guide",
+    "license": "by-sa/3.0"
+  },
+  "xingping2": {
+    "url": "./photos/xingping2.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Li_River_at_Xingping_2.jpg",
+    "author": "ChinaTravelSavvy.Com – China Travel Guide",
+    "license": "by-sa/3.0"
+  },
+  "huangshanCloud": {
+    "url": "./photos/huangshanCloud.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Cloud_sea_-_huangshan.jpg",
+    "author": "The Pocket",
+    "license": "by/2.0"
+  },
+  "wudangPalace": {
+    "url": "./photos/wudangPalace.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:%E7%B4%AB%E9%9C%84%E5%AE%AE.JPG",
+    "author": "Gisling",
+    "license": "by/3.0"
+  },
+  "shaolinForest": {
+    "url": "./photos/shaolinForest.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Pagoda_Forest1.JPG",
+    "author": "Angus Cepka",
+    "license": "by-sa/2.5"
+  },
+  "qingdaoPier": {
+    "url": "./photos/qingdaoPier.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Qingdao_Zhan_Qiao.jpg",
+    "author": "M. Weitzel",
+    "license": "by-sa/2.5"
+  },
+  "lijiangOldTown": {
+    "url": "./photos/lijiangOldTown.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Lijiang_roof_tops.jpg",
+    "author": "Gilad Rom",
+    "license": "by/2.5"
+  },
+  "lijiangPool": {
+    "url": "./photos/lijiangPool.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:The_black_dragon_pool.jpg",
+    "author": "Alexander Savin",
+    "license": "by/2.0"
+  },
+  "taiStairs": {
+    "url": "./photos/taiStairs.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Mount_tai_stairs_2006_09_2.jpg",
+    "author": "Rolf Müller",
+    "license": "by-sa/3.0"
+  },
+  "wallBadaling": {
+    "url": "./photos/wallBadaling.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:The_Great_Wall_of_China_-_Badaling.jpg",
+    "author": "Doyleconan",
+    "license": "by-sa/4.0"
+  },
+  "wallWatchtower": {
+    "url": "./photos/wallWatchtower.webp",
+    "file": "https://commons.wikimedia.org/wiki/File:Ascending_stone_path_and_watchtower_at_Mutianyu_Great_Wall.jpg",
+    "author": "Allen Lubitz",
+    "license": "pd"
   }
 };
 
@@ -89,7 +191,7 @@ const topics = [
   { id: 'mountain', title: ['山', 'shān', '中国の名山'], photo: 'huangshan', places: ['wuyue', 'songshan', 'wudang', 'huangshan', 'taishan'] },
   { id: 'water', title: ['川', 'chuān', '川・湖・海'], photo: 'lijiang', places: ['yangtze', 'yellowriver', 'lijiang', 'westlake', 'qingdao'] },
   { id: 'story', title: ['文', 'wén', '中国の物語'], places: [] },
-  { id: 'travel', title: ['旅', 'lǚ', '名所を訪ねる'], photo: 'palace', places: ['palace', 'wall'] }
+  { id: 'travel', title: ['旅', 'lǚ', '名所を訪ねる'], photo: 'palace', places: ['palace', 'wall', 'lijiangTown'] }
 ];
 
 const places = {
