@@ -259,3 +259,136 @@ Object.assign(foodCultureLessons, {
     ]
   }
 });
+
+/* Story leads and details keep each reading short enough to finish on a phone. */
+const foodCultureStories = {
+  winePoets: ['月の下から雪の夜へ', [
+    ['同样是一杯酒，李白邀来月亮，苏轼想念弟弟，白居易却盼朋友来敲门。', 'Tóng yàng shì yì bēi jiǔ, Lǐ Bái yāo lái yuè liang, Sū Shì xiǎng niàn dì di, Bái Jū yì què pàn péng you lái qiāo mén.', '同じ一杯でも、李白は月を招き、蘇軾は弟を思い、白居易は友が戸をたたくのを待ちました。']
+  ]],
+  wineLegends: ['空洞の木と、三年の眠り', [
+    ['一个故事从树洞里飘出的香气说起，另一个故事则从一家酒坊门口说起。', 'Yí ge gù shi cóng shù dòng lǐ piāo chū de xiāng qì shuō qǐ, lìng yí ge gù shi zé cóng yì jiā jiǔ fāng mén kǒu shuō qǐ.', '一つの話は木のうろから漂う香りで始まり、もう一つは酒蔵の店先から始まります。']
+  ]],
+  baijiu: ['赤水河から杏花村へ', [
+    ['从贵州的赤水河到山西的杏花村，同样是白酒，酒香却各有性格。', 'Cóng Guì zhōu de Chì shuǐ hé dào Shān xī de Xìng huā cūn, tóng yàng shì bái jiǔ, jiǔ xiāng què gè yǒu xìng gé.', '貴州の赤水河から山西の杏花村へ。同じ白酒でも、土地が変われば香りの個性も変わります。'],
+    ['说到浓香，四川有宜宾与泸州；说到米香，路线又转向广西桂林。', 'Shuō dào nóng xiāng, Sì chuān yǒu Yí bīn yǔ Lú zhōu， shuō dào mǐ xiāng, lù xiàn yòu zhuǎn xiàng Guǎng xī Guì lín.', '濃香をたどれば四川の宜賓と瀘州へ。米香をたどれば、旅は広西の桂林へ向かいます。']
+  ]],
+  huangjiu: ['水郷に並ぶ、模様のある酒がめ', [
+    ['绍兴的水巷边，酒坛上的花纹也会讲故事。', 'Shào xīng de shuǐ xiàng biān, jiǔ tán shàng de huā wén yě huì jiǎng gù shi.', '紹興の水路沿いでは、酒がめに描かれた模様にも物語があります。'],
+    ['民间有一种说法：孩子出生时封好一坛酒，等到婚礼那天才开坛。', 'Mín jiān yǒu yì zhǒng shuō fǎ: hái zi chū shēng shí fēng hǎo yì tán jiǔ, děng dào hūn lǐ nà tiān cái kāi tán.', '子どもが生まれたとき酒がめに封をし、婚礼の日に開けるという言い伝えがあります。']
+  ]],
+  coastDrinks: ['港町のレンガ工場と地下の酒蔵', [
+    ['在青岛，旧厂房留下了啤酒工业的记忆；到了烟台，故事又延伸到葡萄酒窖。', 'Zài Qīng dǎo, jiù chǎng fáng liú xià le pí jiǔ gōng yè de jì yì; dào le Yān tái, gù shi yòu yán shēn dào pú tao jiǔ jiào.', '青島の古い工場にはビール産業の記憶が残り、煙台では物語がワインの貯蔵庫へ続きます。']
+  ]],
+  luCuisine: ['鯉の姿を丸ごと皿に', [
+    ['一条鲤鱼端上桌，鱼身弯起，像刚跃出水面。', 'Yì tiáo lǐ yú duān shàng zhuō, yú shēn wān qǐ, xiàng gāng yuè chū shuǐ miàn.', '皿に載った一尾の鯉は、たった今水面から跳ねたように、体が反り返っています。'],
+    ['同一桌鲁菜，可以从糖醋的酸甜，换到葱烧海参的咸鲜。', 'Tóng yì zhuō Lǔ cài, kě yǐ cóng táng cù de suān tián, huàn dào cōng shāo hǎi shēn de xián xiān.', '同じ山東料理の食卓で、鯉の甘酢から、葱で煮たナマコの塩気とうま味へ。']
+  ]],
+  chuanCuisine: ['成都の橋のそばから広まった豆腐', [
+    ['关于麻婆豆腐的来历，成都有个流传很广的故事。', 'Guān yú Má pó dòu fu de lái lì, Chéng dū yǒu ge liú chuán hěn guǎng de gù shi.', '麻婆豆腐の由来について、成都には広く知られた話があります。'],
+    ['据传，万福桥边的小饭馆里，陈家女主人做的豆腐出了名。', 'Jù chuán, Wàn fú qiáo biān de xiǎo fàn guǎn lǐ, Chén jiā nǚ zhǔ rén zuò de dòu fu chū le míng.', '言い伝えでは、万福橋のそばにあった小さな食堂で、陳家の女主人が作る豆腐が評判になりました。']
+  ]],
+  yueCuisine: ['ふたを取った瞬間に香る葱', [
+    ['鱼刚蒸好，葱丝还绿，热油一淋就飘出香气。', 'Yú gāng zhēng hǎo, cōng sī hái lǜ, rè yóu yì lín jiù piāo chū xiāng qì.', '蒸し上がった魚の上で、細切りの葱はまだ青々としています。熱い油をかけると香りが立ちます。'],
+    ['在广东，一条鱼蒸得嫩不嫩，往往就看最后那一点火候。', 'Zài Guǎng dōng, yì tiáo yú zhēng de nèn bu nèn, wǎng wǎng jiù kàn zuì hòu nà yì diǎn huǒ hou.', '広東の蒸し魚は、最後のわずかな火加減で身のやわらかさが変わります。']
+  ]],
+  suCuisine: ['魚なのに、どうして「リス」？', [
+    ['鱼肉切成花刀，入油锅后张开，像松鼠蓬松的尾巴。', 'Yú ròu qiē chéng huā dāo, rù yóu guō hòu zhāng kāi, xiàng sōng shǔ péng sōng de wěi ba.', '切れ目を入れた魚を油で揚げると、リスのふさふさした尾のように開きます。'],
+    ['苏州老店松鹤楼有不少乾隆南巡的传说，松鼠鳜鱼则是店里的名菜。', 'Sū zhōu lǎo diàn Sōng hè lóu yǒu bù shǎo Qián lóng nán xún de chuán shuō, Sōng shǔ guì yú zé shì diàn lǐ de míng cài.', '蘇州の老舗・松鶴楼には乾隆帝の南巡をめぐる伝説が伝わり、松鼠桂魚はこの店の名物です。']
+  ]],
+  minCuisine: ['酒がめから漂う香りが、壁を越える', [
+    ['相传，福州厨师郑春发见过用酒坛煨菜的做法，后来又反复改进。', 'Xiāng chuán, Fú zhōu chú shī Zhèng Chūn fā jiàn guo yòng jiǔ tán wēi cài de zuò fǎ, hòu lái yòu fǎn fù gǎi jìn.', '福州の料理人・鄭春発は、酒がめで料理を煮込む作り方に出会い、工夫を重ねたと伝えられます。'],
+    ['一种说法拿菜香开玩笑：香得连和尚都想翻墙来看看。', 'Yì zhǒng shuō fǎ ná cài xiāng kāi wán xiào: xiāng de lián hé shang dōu xiǎng fān qiáng lái kàn kan.', '料理名の由来を語る説の一つには、「あまりの香りにお坊さんも塀を乗り越えたくなる」という冗談が出てきます。']
+  ]],
+  zheCuisine: ['西湖の堤と東坡の豚肉', [
+    ['杭州流传着一个故事：苏东坡疏浚西湖后，把烧好的肉分给修堤的人。', 'Háng zhōu liú chuán zhe yí ge gù shi: Sū Dōng pō shū jùn Xī hú hòu, bǎ shāo hǎo de ròu fēn gěi xiū dī de rén.', '杭州には、西湖を整備した蘇東坡が、堤を築いた人たちに煮込んだ肉を分けたという伝説があります。'],
+    ['从西湖边再走到茶山，又是另一种杭州味道：虾仁里添一缕龙井清香。', 'Cóng Xī hú biān zài zǒu dào chá shān, yòu shì lìng yì zhǒng Háng zhōu wèi dao: xiā rén lǐ tiān yì lǚ Lóng jǐng qīng xiāng.', '西湖畔から茶畑へ足を延ばすと、むきエビに龍井茶の香りを添えた、もう一つの杭州の味に出会います。']
+  ]],
+  xiangCuisine: ['赤い唐辛子の下に隠れた魚', [
+    ['揭开蒸笼，鱼头几乎被一层鲜红的剁椒盖住。', 'Jiē kāi zhēng lóng, yú tóu jī hū bèi yì céng xiān hóng de duò jiāo gài zhù.', '蒸籠を開けると、魚の頭は鮮やかな赤い刻み唐辛子でほとんど見えません。'],
+    ['蒸出的汁又鲜又辣，鱼肉吃完后，有人还会拿汤汁拌面。', 'Zhēng chū de zhī yòu xiān yòu là, yú ròu chī wán hòu, yǒu rén hái huì ná tāng zhī bàn miàn.', '蒸して出た汁にはうま味と辛みがあり、魚を食べた後、その汁を麺に絡める人もいます。']
+  ]],
+  huiCuisine: ['山里の食卓で、魚を箸でほぐす', [
+    ['徽州一桌菜里，山笋是山里的鲜味，腌过的鳜鱼则是另一种鲜。', 'Huī zhōu yì zhuō cài lǐ, shān sǔn shì shān lǐ de xiān wèi, yān guo de guì yú zé shì lìng yì zhǒng xiān.', '徽州の食卓では、タケノコの山のうま味と、漬け込んだ桂魚のうま味が並びます。'],
+    ['夹开红烧鳜鱼，鱼肉一瓣一瓣分开，像白色的蒜瓣。', 'Jiā kāi hóng shāo guì yú, yú ròu yí bàn yí bàn fēn kāi, xiàng bái sè de suàn bàn.', '煮付けた桂魚を箸でほぐすと、白いニンニクのかけらのように身が分かれます。']
+  ]],
+  northernSnacks: ['麺を伸ばす音、鉄板をこする音', [
+    ['兰州的面馆里，师傅边拉边抖，面在手中越变越长。', 'Lán zhōu de miàn guǎn lǐ, shī fu biān lā biān dǒu, miàn zài shǒu zhōng yuè biàn yuè cháng.', '蘭州の麺屋では、職人が生地を引っ張りながら振るたびに、手の中の麺が長くなります。'],
+    ['到了西安和天津，麦香又换了样子，一边是烤馍，一边是铁板上的薄饼。', 'Dào le Xī ān hé Tiān jīn, mài xiāng yòu huàn le yàng zi, yì biān shì kǎo mó, yì biān shì tiě bǎn shàng de báo bǐng.', '西安と天津へ行くと、小麦の香りも姿を変えます。西安では焼いた饃、天津では鉄板に広げた薄い生地です。']
+  ]],
+  southernNoodles: ['橋を渡っても冷めなかったスープ', [
+    ['蒙自有个传说：书生在南湖的小岛读书，妻子每天提着饭篮过桥。', 'Méng zì yǒu ge chuán shuō: shū shēng zài Nán hú de xiǎo dǎo dú shū, qī zi měi tiān tí zhe fàn lán guò qiáo.', '蒙自の伝説では、南湖の小島で学ぶ書生のために、妻が毎日、食事のかごを下げて橋を渡りました。'],
+    ['为了让米线吃起来还是热的，她把汤和米线分开带，过桥后才放进汤里。', 'Wèi le ràng mǐ xiàn chī qǐ lái hái shì rè de, tā bǎ tāng hé mǐ xiàn fēn kāi dài, guò qiáo hòu cái fàng jìn tāng lǐ.', '温かい麺を食べてもらえるよう、妻はスープと米麺を別々に運び、橋を渡ってから合わせたそうです。']
+  ]],
+  snackStalls: ['蒸気が消えると、小さな包子が見える', [
+    ['在上海南翔，小笼馒头一掀盖，薄皮下藏着一口鲜汤。', 'Zài Shàng hǎi Nán xiáng, xiǎo lóng mán tou yì xiān gài, báo pí xià cáng zhe yì kǒu xiān tāng.', '上海の南翔で蒸籠のふたを開けると、薄い皮の下にひと口分のスープを包んだ小籠包が現れます。'],
+    ['同样是带馅的面食，沙县用水煮扁肉，新疆则把包子贴在馕坑内壁上烤。', 'Tóng yàng shì dài xiàn de miàn shí, Shā xiàn yòng shuǐ zhǔ biǎn ròu, Xīn jiāng zé bǎ bāo zi tiē zài náng kēng nèi bì shàng kǎo.', '餡を包んだ小麦料理でも、沙県の扁肉はゆで、新疆の包子は窯の内壁に貼り付けて焼きます。']
+  ]]
+};
+
+for (const [id, [heading, lines]] of Object.entries(foodCultureStories)) {
+  foodCultureLessons[id].chapters.unshift([heading, lines]);
+}
+
+foodCultureLessons.huangjiu.refs.push(['江南大学 · 花雕と女児紅の伝承', 'https://rctff.jiangnan.edu.cn/info/1071/1641.htm']);
+foodCultureLessons.chuanCuisine.refs.push(['中国商務部 · 陳麻婆豆腐', 'https://lzhbwg.mofcom.gov.cn/edi_ecms_web_front/thb/detail/f7ab3a6e7ea0426d8fd104fc7c93df79']);
+foodCultureLessons.suCuisine.refs.push(['蘇州市地方志 · 松鶴楼', 'https://dfzb.suzhou.gov.cn/dfzb/szdq/201511/16eff57279ec489487d8583568411cab.shtml']);
+foodCultureLessons.minCuisine.refs.push(['福州市 · 聚春園と仏跳牆', 'https://gzw.fuzhou.gov.cn/zwgk/gqfc/202409/t20240923_4896963.htm']);
+foodCultureLessons.zheCuisine.refs.push(['中国教育部 · 杭州の料理と東坡肉の伝承', 'https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/jyzt_2019n/2019_zt28/2019_zt28_ssfw/2019_zt28_sszn/201910/P020191014410281546053.pdf']);
+foodCultureLessons.southernNoodles.refs.push(['紅河州 · 過橋米線の伝説', 'https://www.hh.gov.cn/info/9021/795922.htm']);
+
+foodCultureLessons.winePoets.chapters[1][1].push(
+  ['采石矶的传说还给他安排了一条鲸鱼，让诗人骑鲸远去。', 'Cǎi shí jī de chuán shuō hái gěi tā ān pái le yì tiáo jīng yú, ràng shī rén qí jīng yuǎn qù.', '采石磯の伝説ではさらにクジラが現れ、詩人はその背に乗って遠くへ去ります。']
+);
+foodCultureLessons.winePoets.chapters[2][1].push(
+  ['李白把月亮请到身边，苏轼却让月亮把相隔千里的亲人连在一起。', 'Lǐ Bái bǎ yuè liang qǐng dào shēn biān, Sū Shì què ràng yuè liang bǎ xiāng gé qiān lǐ de qīn rén lián zài yì qǐ.', '李白は月を自分のそばへ招き、蘇軾は月に、遠く離れた家族をつなぐ役目を託しました。']
+);
+foodCultureLessons.winePoets.chapters[3][1].push(
+  ['这首诗停在一问：雪就要下了，朋友会不会来？', 'Zhè shǒu shī tíng zài yí wèn: xuě jiù yào xià le, péng you huì bu huì lái?', '詩は問いかけで結ばれます。もうすぐ雪が降る。友は来てくれるだろうか。']
+);
+
+const foodCultureIllustrations = {
+  winePoets: [
+    ['li-bai', '月と影を招く李白'],
+    ['catching-moon', '采石磯の月とクジラの伝説'],
+    ['su-shi', '中秋の月を見上げる蘇軾'],
+    ['bai-juyi', '雪の夕暮れ、炉を囲む支度']
+  ],
+  wineLegends: [['du-kang', '杜康の伝承に登場する木のうろ']],
+  baijiu: [['baijiu-vessels', '山あいの白酒のかめとコウリャン']],
+  huangjiu: [['shaoxing-jars', '紹興の水路と模様入りの酒がめ']],
+  coastDrinks: [['coastal-drinks', 'レンガ造りの工場とホップ、ブドウ']],
+  luCuisine: [['sweet-sour-carp', '山東の鯉の甘酢あんかけ']],
+  chuanCuisine: [['mapo-tofu', '豆板醤と花椒が香る麻婆豆腐'], ['chengdu-bridge', '成都の橋のそばにあった食堂を描いた場面']],
+  yueCuisine: [['steamed-fish', '葱と生姜をのせた広東の蒸し魚']],
+  suCuisine: [['squirrel-fish', '切り身がリスの尾のように開く松鼠桂魚']],
+  minCuisine: [['soup-jar', '陶器のつぼで煮込む仏跳牆'], ['fuzhou-kitchen', '福州の厨房と仏跳牆に使われる食材']],
+  zheCuisine: [['dongpo-pork', '杭州の東坡肉'], ['west-lake-dike', '西湖の堤を築く人々と東坡肉の伝承']],
+  xiangCuisine: [['chopped-chili-fish', '刻み唐辛子を敷き詰めた蒸し魚の頭']],
+  huiCuisine: [['huizhou-fish', '徽州の町並みと煮付けた桂魚']],
+  northernSnacks: [['hand-pulled-noodles', '蘭州の麺屋で手延べする職人'], ['northern-stall', '西安の肉夾饃と天津の煎餅果子']],
+  southernNoodles: [['crossing-noodles', 'スープ・米麺・具を別々に並べる過橋米線'], [], [], ['mengzi-bridge', '食事を持って蒙自の橋を渡る伝説']],
+  snackStalls: [['xiaolongbao', '竹の蒸籠で蒸した南翔の小籠包'], [], ['filled-snacks', '福建の扁肉と新疆の焼き包子']]
+};
+
+for (const [id, pictures] of Object.entries(foodCultureIllustrations)) {
+  const lesson = foodCultureLessons[id];
+  lesson.thumbnail = pictures[0][0];
+  pictures.forEach(([key, caption], chapterIndex) => {
+    if (!key) return;
+    photos[key] = { url: `./photos/food-culture/${key}.webp`, illustrated: true, width: 480, height: 360 };
+    lesson.chapters[chapterIndex][2] = [[key, caption]];
+  });
+}
+
+foodCultureLessons.huangjiu.chapters[0][1].push(
+  ['在这段故事里，一坛酒封存的也是一家人共同度过的岁月。', 'Zài zhè duàn gù shi lǐ, yì tán jiǔ fēng cún de yě shì yì jiā rén gòng tóng dù guò de suì yuè.', 'この物語で酒がめに封じ込められるのは、一家が一緒に過ごした年月でもあります。']
+);
+foodCultureLessons.chuanCuisine.chapters[0][1].push(
+  ['如今提起“陈麻婆”，不少人先想到的就是那碗又麻又辣的豆腐。', 'Rú jīn tí qǐ Chén Má pó, bù shǎo rén xiān xiǎng dào de jiù shì nà wǎn yòu má yòu là de dòu fu.', '今「陳麻婆」と聞いて、まず思い浮かぶのはあのしびれて辛い豆腐料理、という人も少なくありません。']
+);
+foodCultureLessons.minCuisine.chapters[0][1].push(
+  ['听到“佛跳墙”三个字，人们还没掀盖，就已经开始想象坛里的香气。', 'Tīng dào Fó tiào qiáng sān ge zì, rén men hái méi xiān gài, jiù yǐ jīng kāi shǐ xiǎng xiàng tán lǐ de xiāng qì.', '「仏跳牆」という名を聞くと、ふたを開ける前から、つぼの中の香りを想像してしまいます。']
+);
+foodCultureLessons.southernNoodles.chapters[0][1].push(
+  ['今天在蒙自，热汤和米线分开上桌，还是这道菜最容易认出的地方。', 'Jīn tiān zài Méng zì, rè tāng hé mǐ xiàn fēn kāi shàng zhuō, hái shì zhè dào cài zuì róng yì rèn chū de dì fang.', '今も蒙自では、熱いスープと米麺が別々に出てくるのが、この料理の見分けやすい特徴です。']
+);

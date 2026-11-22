@@ -23,6 +23,12 @@ function bilingual(copy, level) {
 function photo(key, alt, caption = '') {
   const image = photos[key];
   if (!image) return '';
+  if (image.illustrated) {
+    return `<figure class="photo food-illustration">
+      <img src="${image.url}" alt="${alt}" width="${image.width}" height="${image.height}" decoding="async" loading="lazy">
+      <figcaption>${caption} · イメージイラスト</figcaption>
+    </figure>`;
+  }
   const licenseUrl = image.license === 'pd'
     ? image.file
     : `https://creativecommons.org/licenses/${image.license}/`;
@@ -60,6 +66,7 @@ function topicCards() {
 function lessonList(ids) {
   return `<div class="lessons">${ids.map(id => `
     <button type="button" class="lesson" data-place="${id}">
+      ${lessons[id].thumbnail ? `<img class="lesson-thumbnail" src="${photos[lessons[id].thumbnail].url}" alt="" decoding="async" loading="lazy">` : ''}
       <span>${title(lessons[id].name, 'span')}</span><span class="arrow" aria-hidden="true">›</span>
     </button>`).join('')}</div>`;
 }
@@ -323,7 +330,12 @@ app.addEventListener('error', event => {
   event.target.hidden = true;
   const fallback = document.createElement('a');
   fallback.className = 'photo-fallback';
-  fallback.href = figure.querySelector('figcaption a').href;
+  const credit = figure.querySelector('figcaption a');
+  if (!credit) {
+    figure.hidden = true;
+    return;
+  }
+  fallback.href = credit.href;
   fallback.target = '_blank';
   fallback.rel = 'noopener';
   fallback.textContent = '写真を出典ページで見る';
