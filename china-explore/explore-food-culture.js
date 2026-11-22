@@ -39,6 +39,7 @@ const foodCultureLessons = {
       ]],
       ['劉伶 · 三年眠ったという民話', [
         ['在一个民间故事里，刘伶喝了杜家的酒，一睡就是三年。', 'Zài yí ge mín jiān gù shi lǐ, Liú Líng hē le Dù jiā de jiǔ, yí shuì jiù shì sān nián.', 'ある民話では、劉伶が杜家の酒を飲み、そのまま三年も眠ったと語られます。'],
+        ["故事说，三年后他醒了过来，开口还在夸那坛酒。", "Gù shi shuō, sān nián hòu tā xǐng le guò lái, kāi kǒu hái zài kuā nà tán jiǔ.", "話では、三年後に目を覚ました劉伶が、口を開くなり、あの酒をほめたといいます。"],
         ['这个夸张的故事流传下来，讲的是人们对酒香的想象。', 'Zhè ge kuā zhāng de gù shi liú chuán xià lái, jiǎng de shì rén men duì jiǔ xiāng de xiǎng xiàng.', 'この大げさな物語は、酒の香りをめぐる人々の想像を伝えています。']
       ]]
     ],
@@ -67,7 +68,7 @@ const foodCultureLessons = {
     refs: [whiteLiquorReference, ['中国商務部 · 西鳳酒', 'https://lzhbwg.mofcom.gov.cn/edi_ecms_web_front/thb/detail/39b63a3b51b3479d881ae8f269e48521']]
   },
   huangjiu: {
-    name: ['绍兴黄酒', 'Shào xīng huáng jiǔ', '水郷・紹興の醸造酒'],
+    name: ['绍兴黄酒', 'Shào xīng huáng jiǔ', '水郷・紹興の醸造酒と女児紅'],
     chapters: [
       ['原料と風味', [
         ['浙江绍兴用糯米、麦曲和鉴湖水酿造黄酒。', 'Zhè jiāng Shào xīng yòng nuò mǐ, mài qū hé Jiàn hú shuǐ niàng zào huáng jiǔ.', '浙江省紹興ではもち米、小麦の麹、鑑湖の水を使って黄酒を醸します。'],
@@ -104,7 +105,10 @@ const cuisines = {
     name: ['鲁菜', 'Lǔ cài', '山東 · だしと葱の香り'],
     chapters: [
       ['味の特徴', [
-        ['山东鲁菜讲究咸鲜，常用高汤提鲜。', 'Shān dōng Lǔ cài jiǎng jiu xián xiān, cháng yòng gāo tāng tí xiān.', '山東の魯菜は塩気とうま味を重んじ、だしで素材の味を引き立てます。']
+        ['山东鲁菜讲究咸鲜，常用高汤提鲜。', 'Shān dōng Lǔ cài jiǎng jiu xián xiān, cháng yòng gāo tāng tí xiān.', '山東の魯菜は塩気とうま味を重んじ、だしで素材の味を引き立てます。'],
+        ["济南菜善于用高汤，胶东靠海，擅长烹制海鲜。", "Jǐ nán cài shàn yú yòng gāo tāng, Jiāo dōng kào hǎi, shàn cháng pēng zhì hǎi xiān.", "済南ではだしを使いこなし、海に面した膠東では魚介の調理に長けています。"],
+        ["明清时期，不少山东厨师进了御膳房，鲁菜成为宫廷饮食的重要来源之一。", "Míng Qīng shí qī, bù shǎo Shān dōng chú shī jìn le yù shàn fáng, Lǔ cài chéng wéi gōng tíng yǐn shí de zhòng yào lái yuán zhī yī.", "明・清の時代には山東の料理人が宮廷の厨房に入り、魯菜は宮廷料理を形作った重要な流れの一つになりました。"],
+        ["曲阜孔府的宴席另有一套家传做法，也吸收了地方菜和宫廷菜的长处。", "Qū fù Kǒng fǔ de yàn xí lìng yǒu yí tào jiā chuán zuò fǎ, yě xī shōu le dì fāng cài hé gōng tíng cài de cháng chu.", "曲阜の孔府の宴席には一族に伝わる作り方があり、土地の料理や宮廷料理のよいところも取り入れました。"]
       ]],
       ['代表料理と技法', [
         ['葱烧海参先把葱炸香，再用汤汁把海参烧入味。', 'Cōng shāo hǎi shēn xiān bǎ cōng zhá xiāng, zài yòng tāng zhī bǎ hǎi shēn shāo rù wèi.', 'ナマコの葱風味煮は、葱の香りを油に移してから、煮汁の味をナマコに含ませます。'],
@@ -116,7 +120,9 @@ const cuisines = {
     name: ['川菜', 'Chuān cài', '四川 · 麻辣から魚香まで'],
     chapters: [
       ['味の特徴', [
-        ['四川川菜有麻辣、鱼香等多种味型。', 'Sì chuān Chuān cài yǒu má là, yú xiāng děng duō zhǒng wèi xíng.', '四川料理には、しびれる辛さの麻辣や甘酸っぱく香る魚香など、多彩な味付けがあります。']
+        ['四川川菜有麻辣、鱼香等多种味型。', 'Sì chuān Chuān cài yǒu má là, yú xiāng děng duō zhǒng wèi xíng.', '四川料理には、しびれる辛さの麻辣や甘酸っぱく香る魚香など、多彩な味付けがあります。'],
+        ["跟湘菜的剁椒鱼头相比，麻婆豆腐多了一层花椒带来的麻感。", "Gēn Xiāng cài de duò jiāo yú tóu xiāng bǐ, má pó dòu fu duō le yì céng huā jiāo dài lái de má gǎn.", "湖南の唐辛子蒸しの魚と比べると、麻婆豆腐には花椒のしびれが加わります。"],
+        ["鱼香肉丝常用泡椒、糖和醋调味，酸甜中带辣，菜名里有鱼，菜里却常常没有鱼。", "Yú xiāng ròu sī cháng yòng pào jiāo, táng hé cù tiáo wèi, suān tián zhōng dài là, cài míng lǐ yǒu yú, cài lǐ què cháng cháng méi yǒu yú.", "魚香肉絲は漬け唐辛子、砂糖、酢をよく使い、甘酸っぱさの中に辛みがあります。名前に「魚」が入っていますが、普通は魚を使いません。"]
       ]],
       ['代表料理と技法', [
         ['麻婆豆腐用豆瓣酱烧出鲜辣，再用花椒添麻香。', 'Má pó dòu fu yòng dòu bàn jiàng shāo chū xiān là, zài yòng huā jiāo tiān má xiāng.', '麻婆豆腐は豆板醤でうま味と辛みを出すように煮て、花椒のしびれる香りを加えます。'],
@@ -128,7 +134,9 @@ const cuisines = {
     name: ['粤菜', 'Yuè cài', '広東 · 素材の鮮味を生かす'],
     chapters: [
       ['味の特徴', [
-        ['广东粤菜重视食材本味，讲究火候。', 'Guǎng dōng Yuè cài zhòng shì shí cái běn wèi, jiǎng jiu huǒ hou.', '広東料理は素材そのものの味を大切にし、火加減を細かく調整します。']
+        ['广东粤菜重视食材本味，讲究火候。', 'Guǎng dōng Yuè cài zhòng shì shí cái běn wèi, jiǎng jiu huǒ hou.', '広東料理は素材そのものの味を大切にし、火加減を細かく調整します。'],
+        ["同样是一条鱼，广式清蒸留住鱼肉的鲜嫩，鲁菜糖醋鲤鱼则先炸出脆皮，再浇糖醋汁。", "Tóng yàng shì yì tiáo yú, Guǎng shì qīng zhēng liú zhù yú ròu de xiān nèn, Lǔ cài táng cù lǐ yú zé xiān zhá chū cuì pí, zài jiāo táng cù zhī.", "同じ丸ごとの魚でも、広東の清蒸は身のみずみずしさを保ち、山東の糖醋鯉魚は皮をカリッと揚げてから甘酢をかけます。"],
+        ["粤菜也有甜咸鲜明的叉烧，烤的时候刷上酱汁，表面带着焦香。", "Yuè cài yě yǒu tián xián xiān míng de chā shāo, kǎo de shí hou shuā shàng jiàng zhī, biǎo miàn dài zhe jiāo xiāng.", "広東料理には甘辛いチャーシューもあります。焼くときにたれを塗り、表面に香ばしさをつけます。"]
       ]],
       ['代表料理と技法', [
         ['清蒸鱼用蒸汽把鱼蒸熟，保留鱼肉的鲜嫩。', 'Qīng zhēng yú yòng zhēng qì bǎ yú zhēng shú, bǎo liú yú ròu de xiān nèn.', '魚の清蒸は蒸気で火を通し、魚のうま味と身のやわらかさを保ちます。'],
@@ -140,7 +148,9 @@ const cuisines = {
     name: ['苏菜', 'Sū cài', '江蘇 · 包丁さばきと煮込み'],
     chapters: [
       ['味の特徴', [
-        ['江苏苏菜讲究刀工，淮扬菜尤其注重鲜味和细腻的口感。', 'Jiāng sū Sū cài jiǎng jiu dāo gōng, Huái yáng cài yóu qí zhù zhòng xiān wèi hé xì nì de kǒu gǎn.', '江蘇料理は包丁さばきを重視します。なかでも淮揚料理はうま味と繊細な食感を大切にします。']
+        ['江苏苏菜讲究刀工，淮扬菜尤其注重鲜味和细腻的口感。', 'Jiāng sū Sū cài jiǎng jiu dāo gōng, Huái yáng cài yóu qí zhù zhòng xiān wèi hé xì nì de kǒu gǎn.', '江蘇料理は包丁さばきを重視します。なかでも淮揚料理はうま味と繊細な食感を大切にします。'],
+        ["淮扬菜有一道大煮干丝，把豆腐干切成细丝，再用汤煮入味，刀工和汤都很重要。", "Huái yáng cài yǒu yí dào dà zhǔ gān sī, bǎ dòu fu gān qiē chéng xì sī, zài yòng tāng zhǔ rù wèi, dāo gōng hé tāng dōu hěn zhòng yào.", "淮揚の大煮干絲は、硬めの豆腐を細く切り、だしで煮て味を含ませます。包丁さばきとだしの両方が大切です。"],
+        ["苏州的松鼠鳜鱼和山东的糖醋鲤鱼都有酸甜汁，松鼠鳜鱼尤其能看出细密的花刀。", "Sū zhōu de sōng shǔ guì yú hé Shān dōng de táng cù lǐ yú dōu yǒu suān tián zhī, sōng shǔ guì yú yóu qí néng kàn chū xì mì de huā dāo.", "蘇州の松鼠桂魚も山東の糖醋鯉魚も甘酢を使います。松鼠桂魚では細かな飾り包丁に注目できます。"]
       ]],
       ['代表料理と技法', [
         ['清炖狮子头把大肉丸用小火慢炖，口感松软。', 'Qīng dùn shī zi tóu bǎ dà ròu wán yòng xiǎo huǒ màn dùn, kǒu gǎn sōng ruǎn.', '清燉獅子頭は、大きな肉団子を弱火でじっくり煮て、ふんわり仕上げます。'],
@@ -152,7 +162,9 @@ const cuisines = {
     name: ['闽菜', 'Mǐn cài', '福建 · 海の幸とスープ'],
     chapters: [
       ['味の特徴', [
-        ['福建闽菜常用海产，擅长用汤衬托鲜味。', 'Fú jiàn Mǐn cài cháng yòng hǎi chǎn, shàn cháng yòng tāng chèn tuō xiān wèi.', '福建料理は海産物をよく使い、スープでうま味を引き立てるのが得意です。']
+        ['福建闽菜常用海产，擅长用汤衬托鲜味。', 'Fú jiàn Mǐn cài cháng yòng hǎi chǎn, shàn cháng yòng tāng chèn tuō xiān wèi.', '福建料理は海産物をよく使い、スープでうま味を引き立てるのが得意です。'],
+        ["粤菜的清蒸鱼让人留意鱼肉本身的鲜嫩，闽菜的佛跳墙则把几种食材的味道煨进一坛汤里。", "Yuè cài de qīng zhēng yú ràng rén liú yì yú ròu běn shēn de xiān nèn, Mǐn cài de fó tiào qiáng zé bǎ jǐ zhǒng shí cái de wèi dao wēi jìn yì tán tāng lǐ.", "広東の蒸し魚では身そのもののうま味に注目し、福建の仏跳牆では何種類もの食材の味がつぼの中のスープに溶け込みます。"],
+        ["福建菜还用红糟调味，醉糟鸡就带着红糟的香气。", "Fú jiàn cài hái yòng hóng zāo tiáo wèi, zuì zāo jī jiù dài zhe hóng zāo de xiāng qì.", "福建では紅色の酒かす「紅糟」も調味に使い、醉糟鶏にはその香りが移ります。"]
       ]],
       ['代表料理と技法', [
         ['福州佛跳墙把多种海味和肉料放进坛中慢煨。', 'Fú zhōu Fó tiào qiáng bǎ duō zhǒng hǎi wèi hé ròu liào fàng jìn tán zhōng màn wēi.', '福州の仏跳牆は、さまざまな海産物や肉をつぼに入れ、弱火でじっくり煮込みます。'],
@@ -164,7 +176,9 @@ const cuisines = {
     name: ['浙菜', 'Zhè cài', '浙江 · 季節の食材と香り'],
     chapters: [
       ['味の特徴', [
-        ['浙江浙菜重视时令，河鲜、海味和茶叶都能入菜。', 'Zhè jiāng Zhè cài zhòng shì shí lìng, hé xiān, hǎi wèi hé chá yè dōu néng rù cài.', '浙江料理は旬を大切にし、川魚や海産物、茶葉も料理に使います。']
+        ['浙江浙菜重视时令，河鲜、海味和茶叶都能入菜。', 'Zhè jiāng Zhè cài zhòng shì shí lìng, hé xiān, hǎi wèi hé chá yè dōu néng rù cài.', '浙江料理は旬を大切にし、川魚や海産物、茶葉も料理に使います。'],
+        ["龙井虾仁借新茶的清香，西湖醋鱼用糖醋衬鱼鲜，杭州菜的清爽有不同的做法。", "Lóng jǐng xiā rén jiè xīn chá de qīng xiāng, Xī hú cù yú yòng táng cù chèn yú xiān, Háng zhōu cài de qīng shuǎng yǒu bù tóng de zuò fǎ.", "龍井蝦仁は新茶の香り、西湖醋魚は甘酢で魚のうま味を引き立てます。杭州料理のすっきりした風味にも、いろいろな出し方があります。"],
+        ["同在江南，淮扬大煮干丝用细切和高汤做出滋味，杭州龙井虾仁则从时令茶叶取香。", "Tóng zài Jiāng nán, Huái yáng dà zhǔ gān sī yòng xì qiē hé gāo tāng zuò chū zī wèi, Háng zhōu Lóng jǐng xiā rén zé cóng shí lìng chá yè qǔ xiāng.", "同じ江南でも、淮揚の大煮干絲は細切りとだしが味を支え、杭州の龍井蝦仁は旬の茶葉から香りを引き出します。"]
       ]],
       ['代表料理と技法', [
         ['龙井虾仁把虾仁和龙井茶搭配，滑炒出嫩滑口感和清香。', 'Lóng jǐng xiā rén bǎ xiā rén hé Lóng jǐng chá dā pèi, huá chǎo chū nèn huá kǒu gǎn hé qīng xiāng.', '龍井蝦仁はむきエビと龍井茶を合わせ、さっと炒めてエビのなめらかさと茶の香りを引き出します。'],
@@ -176,7 +190,9 @@ const cuisines = {
     name: ['湘菜', 'Xiāng cài', '湖南 · 唐辛子・発酵・燻製'],
     chapters: [
       ['味の特徴', [
-        ['湖南湘菜常见鲜辣、酸辣，也善用烟熏腊味。', 'Hú nán Xiāng cài cháng jiàn xiān là, suān là, yě shàn yòng yān xūn là wèi.', '湖南料理では唐辛子の鮮烈な辛さや酸味のある辛さがよく見られ、燻製の保存肉も活用します。']
+        ['湖南湘菜常见鲜辣、酸辣，也善用烟熏腊味。', 'Hú nán Xiāng cài cháng jiàn xiān là, suān là, yě shàn yòng yān xūn là wèi.', '湖南料理では唐辛子の鮮烈な辛さや酸味のある辛さがよく見られ、燻製の保存肉も活用します。'],
+        ["比起麻婆豆腐的花椒麻香，剁椒鱼头更突出辣椒腌过后的鲜辣。", "Bǐ qǐ má pó dòu fu de huā jiāo má xiāng, duò jiāo yú tóu gèng tū chū là jiāo yān guo hòu de xiān là.", "麻婆豆腐の花椒が香るしびれに比べ、剁椒魚頭では漬け唐辛子の鮮烈な辛さが際立ちます。"],
+        ["蒸鱼头时，剁椒的味道渗进鱼肉，蒸腊味时，几种腊肉的香气又会互相融合。", "Zhēng yú tóu shí, duò jiāo de wèi dao shèn jìn yú ròu, zhēng là wèi shí, jǐ zhǒng là ròu de xiāng qì yòu huì hù xiāng róng hé.", "魚の頭を蒸すと漬け唐辛子の味が身にしみ込み、保存肉を一緒に蒸すと互いの香りがなじみます。"]
       ]],
       ['代表料理と技法', [
         ['剁椒鱼头把剁碎腌制的辣椒铺在鱼头上蒸。', 'Duò jiāo yú tóu bǎ duò suì yān zhì de là jiāo pū zài yú tóu shàng zhēng.', '剁椒魚頭は、刻んで漬けた唐辛子を魚の頭に敷き詰めて蒸す料理です。'],
@@ -188,7 +204,9 @@ const cuisines = {
     name: ['徽菜', 'Huī cài', '安徽・徽州 · 山里の食材と火加減'],
     chapters: [
       ['味の特徴', [
-        ['徽菜以徽州风味为代表，善用山间食材，也讲究烧、炖和火候。', 'Huī cài yǐ Huī zhōu fēng wèi wéi dài biǎo, shàn yòng shān jiān shí cái, yě jiǎng jiu shāo, dùn hé huǒ hou.', '徽州を代表とする徽菜は山の食材を活用し、煮付けや煮込みの火加減を重視します。']
+        ['徽菜以徽州风味为代表，善用山间食材，也讲究烧、炖和火候。', 'Huī cài yǐ Huī zhōu fēng wèi wéi dài biǎo, shàn yòng shān jiān shí cái, yě jiǎng jiu shāo, dùn hé huǒ hou.', '徽州を代表とする徽菜は山の食材を活用し、煮付けや煮込みの火加減を重視します。'],
+        ["同样用鳜鱼，苏州松鼠鳜鱼靠花刀和油炸做出脆皮，徽州臭鳜鱼先腌制，再烧入味。", "Tóng yàng yòng guì yú, Sū zhōu sōng shǔ guì yú kào huā dāo hé yóu zhá zuò chū cuì pí, Huī zhōu chòu guì yú xiān yān zhì, zài shāo rù wèi.", "同じケツギョでも、蘇州では飾り包丁を入れてカリッと揚げ、徽州では漬け込んでから煮て味を含ませます。"],
+        ["徽州人也善用山笋和火腿。慢慢加热，火腿的咸鲜能衬出笋的清鲜。", "Huī zhōu rén yě shàn yòng shān sǔn hé huǒ tuǐ. Màn màn jiā rè, huǒ tuǐ de xián xiān néng chèn chū sǔn de qīng xiān.", "徽州では山のタケノコやハムも活用します。ゆっくり火を通すと、ハムの塩気とうま味がタケノコのすがすがしい味を引き立てます。"]
       ]],
       ['代表料理と技法', [
         ['臭鳜鱼先经过腌制，再红烧，味道鲜香，鱼肉呈蒜瓣状。', 'Chòu guì yú xiān jīng guò yān zhì, zài hóng shāo, wèi dao xiān xiāng, yú ròu chéng suàn bàn zhuàng.', '臭桂魚は桂魚を漬け込んでから醤油などで煮付ける料理。ほぐした身はニンニクの一片のような形です。'],
@@ -272,9 +290,11 @@ const foodCultureStories = {
     ['从贵州的赤水河到山西的杏花村，同样是白酒，酒香却各有性格。', 'Cóng Guì zhōu de Chì shuǐ hé dào Shān xī de Xìng huā cūn, tóng yàng shì bái jiǔ, jiǔ xiāng què gè yǒu xìng gé.', '貴州の赤水河から山西の杏花村へ。同じ白酒でも、土地が変われば香りの個性も変わります。'],
     ['说到浓香，四川有宜宾与泸州；说到米香，路线又转向广西桂林。', 'Shuō dào nóng xiāng, Sì chuān yǒu Yí bīn yǔ Lú zhōu， shuō dào mǐ xiāng, lù xiàn yòu zhuǎn xiàng Guǎng xī Guì lín.', '濃香をたどれば四川の宜賓と瀘州へ。米香をたどれば、旅は広西の桂林へ向かいます。']
   ]],
-  huangjiu: ['水郷に並ぶ、模様のある酒がめ', [
-    ['绍兴的水巷边，酒坛上的花纹也会讲故事。', 'Shào xīng de shuǐ xiàng biān, jiǔ tán shàng de huā wén yě huì jiǎng gù shi.', '紹興の水路沿いでは、酒がめに描かれた模様にも物語があります。'],
-    ['民间有一种说法：孩子出生时封好一坛酒，等到婚礼那天才开坛。', 'Mín jiān yǒu yì zhǒng shuō fǎ: hái zi chū shēng shí fēng hǎo yì tán jiǔ, děng dào hūn lǐ nà tiān cái kāi tán.', '子どもが生まれたとき酒がめに封をし、婚礼の日に開けるという言い伝えがあります。']
+  huangjiu: ['女児紅 · 娘が生まれた年の酒がめ', [
+    ['绍兴流传着一个故事：一位裁缝在女儿出生那年酿了酒，把酒坛埋在桂花树下。', 'Shào xīng liú chuán zhe yí ge gù shi: yí wèi cái feng zài nǚ ér chū shēng nà nián niàng le jiǔ, bǎ jiǔ tán mái zài guì huā shù xià.', '紹興に伝わる話では、仕立屋が娘の生まれた年に酒を造り、キンモクセイの木の下に酒がめを埋めました。'],
+    ['多年以后，女儿办婚礼，裁缝才想起树下的那坛酒。', 'Duō nián yǐ hòu, nǚ ér bàn hūn lǐ, cái feng cái xiǎng qǐ shù xià de nà tán jiǔ.', '何年もたち、娘の婚礼の日になって、仕立屋は木の下の酒がめを思い出しました。'],
+    ['他挖出酒坛，开坛时酒香飘了出来，便拿这坛陈酒招待宾客。', 'Tā wā chū jiǔ tán, kāi tán shí jiǔ xiāng piāo le chū lái, biàn ná zhè tán chén jiǔ zhāo dài bīn kè.', '掘り出したかめを開けると酒の香りが漂い、その熟成酒で招いた人々をもてなしました。'],
+    ['这就是“女儿红”的一种民间讲法。酒坛从出生留到婚礼，记下了一个家庭的岁月。', 'Zhè jiù shì Nǚ ér hóng de yì zhǒng mín jiān jiǎng fǎ. Jiǔ tán cóng chū shēng liú dào hūn lǐ, jì xià le yí ge jiā tíng de suì yuè.', 'これが「女児紅」をめぐる言い伝えの一つ。生まれた日から婚礼まで残した酒がめは、家族の年月を刻んでいます。']
   ]],
   coastDrinks: ['港町のレンガ工場と地下の酒蔵', [
     ['在青岛，旧厂房留下了啤酒工业的记忆；到了烟台，故事又延伸到葡萄酒窖。', 'Zài Qīng dǎo, jiù chǎng fáng liú xià le pí jiǔ gōng yè de jì yì; dào le Yān tái, gù shi yòu yán shēn dào pú tao jiǔ jiào.', '青島の古い工場にはビール産業の記憶が残り、煙台では物語がワインの貯蔵庫へ続きます。']
@@ -301,6 +321,8 @@ const foodCultureStories = {
   ]],
   zheCuisine: ['西湖の堤と東坡の豚肉', [
     ['杭州流传着一个故事：苏东坡疏浚西湖后，把烧好的肉分给修堤的人。', 'Háng zhōu liú chuán zhe yí ge gù shi: Sū Dōng pō shū jùn Xī hú hòu, bǎ shāo hǎo de ròu fēn gěi xiū dī de rén.', '杭州には、西湖を整備した蘇東坡が、堤を築いた人たちに煮込んだ肉を分けたという伝説があります。'],
+    ["相传，大家吃了这道肉，便用苏东坡的名字叫它“东坡肉”。", "Xiāng chuán, dà jiā chī le zhè dào ròu, biàn yòng Sū Dōng pō de míng zi jiào tā Dōng pō ròu.", "言い伝えでは、肉を食べた人たちが蘇東坡の名を取って「東坡肉」と呼ぶようになりました。"],
+    ["后来杭州的菜馆也做起了这道菜。如今说到杭州名菜，许多人就会想起这块烧得软糯的东坡肉。", "Hòu lái Háng zhōu de cài guǎn yě zuò qǐ le zhè dào cài. Rú jīn shuō dào Háng zhōu míng cài, xǔ duō rén jiù huì xiǎng qǐ zhè kuài shāo de ruǎn nuò de Dōng pō ròu.", "その後、杭州の料理店にも広まり、今では杭州の名物と聞いて、このとろりと煮込んだ東坡肉を思い浮かべる人がたくさんいます。"],
     ['从西湖边再走到茶山，又是另一种杭州味道：虾仁里添一缕龙井清香。', 'Cóng Xī hú biān zài zǒu dào chá shān, yòu shì lìng yì zhǒng Háng zhōu wèi dao: xiā rén lǐ tiān yì lǚ Lóng jǐng qīng xiāng.', '西湖畔から茶畑へ足を延ばすと、むきエビに龍井茶の香りを添えた、もう一つの杭州の味に出会います。']
   ]],
   xiangCuisine: ['赤い唐辛子の下に隠れた魚', [
@@ -320,7 +342,7 @@ const foodCultureStories = {
     ['为了让米线吃起来还是热的，她把汤和米线分开带，过桥后才放进汤里。', 'Wèi le ràng mǐ xiàn chī qǐ lái hái shì rè de, tā bǎ tāng hé mǐ xiàn fēn kāi dài, guò qiáo hòu cái fàng jìn tāng lǐ.', '温かい麺を食べてもらえるよう、妻はスープと米麺を別々に運び、橋を渡ってから合わせたそうです。']
   ]],
   snackStalls: ['蒸気が消えると、小さな包子が見える', [
-    ['在上海南翔，小笼馒头一掀盖，薄皮下藏着一口鲜汤。', 'Zài Shàng hǎi Nán xiáng, xiǎo lóng mán tou yì xiān gài, báo pí xià cáng zhe yì kǒu xiān tāng.', '上海の南翔で蒸籠のふたを開けると、薄い皮の下にひと口分のスープを包んだ小籠包が現れます。'],
+    ['在上海南翔，掀开蒸笼，小笼馒头的薄皮下藏着一口鲜汤。', 'Zài Shàng hǎi Nán xiáng, xiān kāi zhēng lóng, xiǎo lóng mán tou de báo pí xià cáng zhe yì kǒu xiān tāng.', '上海の南翔で蒸籠のふたを開けると、薄い皮の下にひと口分のスープを包んだ小籠包が現れます。'],
     ['同样是带馅的面食，沙县用水煮扁肉，新疆则把包子贴在馕坑内壁上烤。', 'Tóng yàng shì dài xiàn de miàn shí, Shā xiàn yòng shuǐ zhǔ biǎn ròu, Xīn jiāng zé bǎ bāo zi tiē zài náng kēng nèi bì shàng kǎo.', '餡を包んだ小麦料理でも、沙県の扁肉はゆで、新疆の包子は窯の内壁に貼り付けて焼きます。']
   ]]
 };
@@ -329,7 +351,7 @@ for (const [id, [heading, lines]] of Object.entries(foodCultureStories)) {
   foodCultureLessons[id].chapters.unshift([heading, lines]);
 }
 
-foodCultureLessons.huangjiu.refs.push(['江南大学 · 花雕と女児紅の伝承', 'https://rctff.jiangnan.edu.cn/info/1071/1641.htm']);
+foodCultureLessons.huangjiu.refs.push(['江南大学 · 花雕と女児紅の伝承', 'https://rctff.jiangnan.edu.cn/info/1071/1926.htm'], ['浙江広電 · 女児紅をめぐる民話', 'https://www.cztv.com/newsDetail/791151']);
 foodCultureLessons.chuanCuisine.refs.push(['中国商務部 · 陳麻婆豆腐', 'https://lzhbwg.mofcom.gov.cn/edi_ecms_web_front/thb/detail/f7ab3a6e7ea0426d8fd104fc7c93df79']);
 foodCultureLessons.suCuisine.refs.push(['蘇州市地方志 · 松鶴楼', 'https://dfzb.suzhou.gov.cn/dfzb/szdq/201511/16eff57279ec489487d8583568411cab.shtml']);
 foodCultureLessons.minCuisine.refs.push(['福州市 · 聚春園と仏跳牆', 'https://gzw.fuzhou.gov.cn/zwgk/gqfc/202409/t20240923_4896963.htm']);
@@ -380,15 +402,30 @@ for (const [id, pictures] of Object.entries(foodCultureIllustrations)) {
   });
 }
 
-foodCultureLessons.huangjiu.chapters[0][1].push(
-  ['在这段故事里，一坛酒封存的也是一家人共同度过的岁月。', 'Zài zhè duàn gù shi lǐ, yì tán jiǔ fēng cún de yě shì yì jiā rén gòng tóng dù guò de suì yuè.', 'この物語で酒がめに封じ込められるのは、一家が一緒に過ごした年月でもあります。']
-);
 foodCultureLessons.chuanCuisine.chapters[0][1].push(
+  ["后来，这道豆腐以“麻婆豆腐”的名字传开，从成都的小饭馆走上了各地的餐桌。", "Hòu lái, zhè dào dòu fu yǐ Má pó dòu fu de míng zi chuán kāi, cóng Chéng dū de xiǎo fàn guǎn zǒu shàng le gè dì de cān zhuō.", "やがて「麻婆豆腐」の名で広まり、成都の小さな食堂から各地の食卓へと伝わりました。"],
   ['如今提起“陈麻婆”，不少人先想到的就是那碗又麻又辣的豆腐。', 'Rú jīn tí qǐ Chén Má pó, bù shǎo rén xiān xiǎng dào de jiù shì nà wǎn yòu má yòu là de dòu fu.', '今「陳麻婆」と聞いて、まず思い浮かぶのはあのしびれて辛い豆腐料理、という人も少なくありません。']
 );
 foodCultureLessons.minCuisine.chapters[0][1].push(
+  ["按这个说法，人们就从“翻墙”的玩笑里取了菜名。后来，佛跳墙成了福州聚春园的招牌菜。", "Àn zhè ge shuō fǎ, rén men jiù cóng fān qiáng de wán xiào lǐ qǔ le cài míng. Hòu lái, Fó tiào qiáng chéng le Fú zhōu Jù chūn yuán de zhāo pái cài.", "この説では「塀を乗り越える」という冗談から料理名が生まれたといいます。やがて仏跳牆は福州の聚春園を代表する一品になりました。"],
   ['听到“佛跳墙”三个字，人们还没掀盖，就已经开始想象坛里的香气。', 'Tīng dào Fó tiào qiáng sān ge zì, rén men hái méi xiān gài, jiù yǐ jīng kāi shǐ xiǎng xiàng tán lǐ de xiāng qì.', '「仏跳牆」という名を聞くと、ふたを開ける前から、つぼの中の香りを想像してしまいます。']
 );
 foodCultureLessons.southernNoodles.chapters[0][1].push(
+  ["传说里，那座每天要走过的桥，后来也留在了“过桥米线”这个名字里。", "Chuán shuō lǐ, nà zuò měi tiān yào zǒu guò de qiáo, hòu lái yě liú zài le Guò qiáo mǐ xiàn zhè ge míng zi lǐ.", "言い伝えの中で毎日渡ったあの橋が、やがて「過橋米線」という名前に残りました。"],
   ['今天在蒙自，热汤和米线分开上桌，还是这道菜最容易认出的地方。', 'Jīn tiān zài Méng zì, rè tāng hé mǐ xiàn fēn kāi shàng zhuō, hái shì zhè dào cài zuì róng yì rèn chū de dì fang.', '今も蒙自では、熱いスープと米麺が別々に出てくるのが、この料理の見分けやすい特徴です。']
+);
+
+foodCultureLessons.luCuisine.chapters.push(['済南・九転大腸の名がつくまで', [
+  ['相传，清末济南九华楼端出一道烧大肠，席间有客人给它起名“九转大肠”。', 'Xiāng chuán, Qīng mò Jǐ nán Jiǔ huá lóu duān chū yí dào shāo dà cháng, xí jiān yǒu kè ren gěi tā qǐ míng Jiǔ zhuǎn dà cháng.', '清末の済南にあった九華楼で豚の大腸の煮込みが出され、客の一人が「九転大腸」と名付けたと伝わります。'],
+  ['“九”呼应店名，“九转”又让人想到道家反复炼制的仙丹，借此夸厨师做得精细。', 'Jiǔ hū yìng diàn míng, jiǔ zhuǎn yòu ràng rén xiǎng dào Dào jiā fǎn fù liàn zhì de xiān dān, jiè cǐ kuā chú shī zuò de jīng xì.', '「九」は店名にちなんだもの。「九転」には道家が何度も練り上げる仙丹を重ね、料理人の手の込んだ仕事をたたえる意味もあったそうです。'],
+  ['大肠先煮，再炸，最后用小火烧到收汁，成菜软嫩红亮。', 'Dà cháng xiān zhǔ, zài zhá, zuì hòu yòng xiǎo huǒ shāo dào shōu zhī, chéng cài ruǎn nèn hóng liàng.', '豚の大腸をまずゆで、次に揚げ、最後に弱火で煮汁を煮詰めます。つやのある赤褐色に、柔らかく仕上がります。'],
+  ['醋、糖和香料层层入味，酸、甜、香、辣、咸都能尝到。', 'Cù, táng hé xiāng liào céng céng rù wèi, suān, tián, xiāng, là, xián dōu néng cháng dào.', '酢、砂糖、香辛料の風味が重なり、酸味、甘み、香り、辛み、塩気がそろいます。']
+], [['nine-turns', '済南の九転大腸']]]);
+
+photos['nine-turns'] = { url: './photos/food-culture/nine-turns.webp', illustrated: true, width: 480, height: 360 };
+foodCultureLessons.luCuisine.refs.push(['中国地情網 · 九転大腸の技法と由来', 'https://zhongguodiqing.cn/msdg/201903/t20190321_4851276.shtml']);
+
+foodCultureLessons.luCuisine.refs.push(
+  ['山東地情档案 · 魯菜と宮廷の御膳', 'https://shandong-chorography.org/database/a/section/81/article/116/'],
+  ['山東地情档案 · 孔府料理', 'https://shandong-chorography.org/database/a/section/81/article/120/']
 );

@@ -112,12 +112,15 @@ function exercise(question, options, correct, explanation, audio = '') {
 function reviewContent() {
   const id = Object.keys(lessons).find(key => lessons[key] === place);
   const extra = lessonReview[id];
-  const vocabulary = [...(place.words || extra.words), ...(additionalWords[id] || []), ...practiceVocabulary[id]];
+  const practiceWords = practiceVocabulary[id] || place.words;
+  const vocabulary = [...(place.words || extra.words), ...(additionalWords[id] || []), ...practiceWords];
   const words = [...new Map(vocabulary.map(word => [word[0], word])).values()];
   const meaningChoices = words.filter((word, i) => words.findIndex(entry => entry[2] === word[2]) === i);
-  const listening = [0, 1].map((round) => {
-    const options = meaningChoices.slice(-6).slice(round * 3, round * 3 + 3);
-    const correct = round === 0 ? 1 : 2;
+  const listeningGroups = place.extraExercises
+    ? [meaningChoices.slice(1, 4), meaningChoices.slice(4, 7), meaningChoices.slice(7, 10)]
+    : [meaningChoices.slice(-6, -3), meaningChoices.slice(-3)];
+  const listening = listeningGroups.map((options, round) => {
+    const correct = (round + 1) % 3;
     const [chinese, pinyin, meaning] = options[correct];
     return exercise('聞こえた中国語の意味は？', options.map(word => word[2]), correct, `${chinese}（${pinyin}）は「${meaning}」。`, chinese);
   }).join('');
@@ -127,7 +130,8 @@ function reviewContent() {
     'この場所を初めて訪れる友達に、中国語で一文紹介しましょう。',
     place.intro[0]
   ];
-  const dictation = practiceVocabulary[id][0];
+  const dictation = practiceWords[0];
+  const [extraGap, comparison] = place.extraExercises || [];
   return `<section class="pane">
       <h2>ことばを確認</h2>
       <div class="word-list">${words.map(copy => bilingual(copy)).join('')}</div>
@@ -139,6 +143,7 @@ function reviewContent() {
     <section class="pane">
       <h2>文の中で使う</h2>
       ${exercise(sentence, options, correct, reason)}
+      ${extraGap ? exercise(...extraGap) : ''}
       <form class="lesson-exercise dictation" data-word="${dictation[0]}">
         <label for="lesson-dictation">聞いて漢字を入力</label>
         <div>${readButton(dictation[0])}</div>
@@ -150,6 +155,7 @@ function reviewContent() {
     </section>
     <section class="pane">
       <h2>読んで確かめる</h2>
+      ${comparison ? exercise(...comparison) : ''}
       <p class="speaking-task">${question}</p>
       <details class="model-answer"><summary>解説を見る</summary><p class="speaking-task">${explanation}</p></details>
     </section>
@@ -192,7 +198,7 @@ function placePage() {
       ${place.intro ? chapter('見どころ', place.intro) : ''}
       ${place.sights ? palaceRoute() : ''}
       ${chapters.map(([heading, lines, photos], i) => chapter(heading, lines, photos, i)).join('')}
-      ${foodCultureLessons[id] ? '' : reviewContent()}
+      ${reviewContent()}
       ${refs.length ? `<details class="reading-sources"><summary>参考資料・公式案内</summary>
         <ul>${refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul></details>` : ''}
     </div>`;
