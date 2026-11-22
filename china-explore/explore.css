@@ -46,6 +46,10 @@ h2 { font-size: 1rem; margin-bottom: 12px; }
 .culture { --wash: #f1ded6; }
 .food { --wash: #f2e7ca; }
 .story { --wash: #dde7ef; }
+.wine { --wash: #eadbe5; }
+.cuisine { --wash: #f4e4bf; }
+.lesson-group + .lesson-group { margin-top: 24px; }
+.lesson-group h2 { margin-inline: 4px; }
 .topic-body { display: block; padding: 10px clamp(9px, 2.7vw, 17px) 13px; }
 .topic .zh { font-size: clamp(.95rem, 4.45vw, 1.16rem); }
 .topic .jp { font-size: clamp(.72rem, 3.4vw, .82rem); }

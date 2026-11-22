@@ -191,7 +191,15 @@ const topics = [
   { id: 'mountain', title: ['山', 'shān', '中国の名山'], photo: 'huangshan', places: ['wuyue', 'songshan', 'wudang', 'huangshan', 'taishan'] },
   { id: 'water', title: ['川', 'chuān', '川・湖・海'], photo: 'lijiang', places: ['yangtze', 'yellowriver', 'lijiang', 'westlake', 'qingdao'] },
   { id: 'story', title: ['文', 'wén', '中国の物語'], places: [] },
-  { id: 'travel', title: ['旅', 'lǚ', '名所を訪ねる'], photo: 'palace', places: ['palace', 'wall', 'lijiangTown'] }
+  { id: 'travel', title: ['旅', 'lǚ', '名所を訪ねる'], photo: 'palace', places: ['palace', 'wall', 'lijiangTown'] },
+  { id: 'wine', title: ['酒', 'jiǔ', '中国の酒と文人の物語'], groups: [
+    ['文人と酒の物語', ['winePoets', 'wineLegends']],
+    ['産地と風味', ['baijiu', 'huangjiu', 'coastDrinks']]
+  ] },
+  { id: 'cuisine', title: ['肴', 'yáo', '八大料理とご当地の味'], groups: [
+    ['中国の八大料理', ['luCuisine', 'chuanCuisine', 'yueCuisine', 'suCuisine', 'minCuisine', 'zheCuisine', 'xiangCuisine', 'huiCuisine']],
+    ['ご当地の軽食', ['northernSnacks', 'southernNoodles', 'snackStalls']]
+  ] }
 ];
 
 const places = {

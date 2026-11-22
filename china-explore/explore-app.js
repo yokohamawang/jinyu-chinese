@@ -1,6 +1,6 @@
 const app = document.getElementById('app');
 const embedded = window.parent !== window;
-const lessons = { ...places, ...features };
+const lessons = { ...places, ...features, ...foodCultureLessons };
 let topic = null;
 let place = null;
 let scene = 0;
@@ -49,7 +49,7 @@ function reportLayout(reset = false) {
 }
 
 function topicCards() {
-  return `<header class="hero"><h1 lang="zh-Hans">中国探索</h1><p>中国の風景と物語を、中国語で。</p></header>
+  return `<header class="hero"><h1 lang="zh-Hans">中国探索</h1><p>中国の風景・食文化・物語を、中国語で。</p></header>
     <div class="grid">${topics.map(({ id, title: [name, reading, label] }) => `
       <button type="button" class="topic ${id}" data-topic="${id}">
         <span class="visual" lang="zh-Hans">${name}</span>
@@ -57,13 +57,20 @@ function topicCards() {
       </button>`).join('')}</div>`;
 }
 
+function lessonList(ids) {
+  return `<div class="lessons">${ids.map(id => `
+    <button type="button" class="lesson" data-place="${id}">
+      <span>${title(lessons[id].name, 'span')}</span><span class="arrow" aria-hidden="true">›</span>
+    </button>`).join('')}</div>`;
+}
+
 function placeList() {
+  const list = topic.groups
+    ? topic.groups.map(([heading, ids]) => `<section class="lesson-group"><h2>${heading}</h2>${lessonList(ids)}</section>`).join('')
+    : lessonList(topic.places);
   return `<button type="button" class="back" data-back>‹ テーマ一覧</button>
     <header class="hero ${topic.id}">${bilingual(topic.title, 'h1')}</header>
-    <div class="lessons">${topic.places.map(id => `
-      <button type="button" class="lesson" data-place="${id}">
-        <span>${title(lessons[id].name, 'span')}</span><span class="arrow" aria-hidden="true">›</span>
-      </button>`).join('')}</div>`;
+    ${list}`;
 }
 
 function dialogue() {
@@ -178,7 +185,7 @@ function placePage() {
       ${place.intro ? chapter('見どころ', place.intro) : ''}
       ${place.sights ? palaceRoute() : ''}
       ${chapters.map(([heading, lines, photos], i) => chapter(heading, lines, photos, i)).join('')}
-      ${reviewContent()}
+      ${foodCultureLessons[id] ? '' : reviewContent()}
       ${refs.length ? `<details class="reading-sources"><summary>参考資料・公式案内</summary>
         <ul>${refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul></details>` : ''}
     </div>`;
