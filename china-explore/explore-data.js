@@ -58,12 +58,36 @@ const photos = {
     "file": "https://commons.wikimedia.org/wiki/File:Qingdao%EF%BC%8C%E9%9D%92%E5%B2%9B%E6%B5%B7%E6%BB%A8%EF%BC%8C%E9%9D%92%E5%B2%9B%E5%BB%BA%E7%AD%91%EF%BC%8C2019%E5%B9%B4.jpg",
     "author": "Trychmi",
     "license": "by-sa/4.0"
+  },
+  "qutang": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/The_Qutang_Gorge_along_the_Yangtze_river.JPG",
+    "file": "https://commons.wikimedia.org/wiki/File:The_Qutang_Gorge_along_the_Yangtze_river.JPG",
+    "author": "Chen Hualin",
+    "license": "by-sa/3.0"
+  },
+  "hukou": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Hukou_Waterfall_banner.jpg",
+    "file": "https://commons.wikimedia.org/wiki/File:Hukou_Waterfall_banner.jpg",
+    "author": "Leruswing",
+    "license": "by-sa/3.0"
+  },
+  "shaolin": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/20241103_Gate_of_Shaolin_Temple.jpg",
+    "file": "https://commons.wikimedia.org/wiki/File:20241103_Gate_of_Shaolin_Temple.jpg",
+    "author": "Windmemories",
+    "license": "by-sa/4.0"
+  },
+  "wudanghall": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/%E6%AD%A6%E5%BD%93%E5%B1%B1%E9%87%91%E6%AE%BF.JPG",
+    "file": "https://commons.wikimedia.org/wiki/File:%E6%AD%A6%E5%BD%93%E5%B1%B1%E9%87%91%E6%AE%BF.JPG",
+    "author": "Gisling",
+    "license": "by/3.0"
   }
 };
 
 const topics = [
-  { id: 'mountain', title: ['山', 'shān', '中国の名山'], photo: 'huangshan', places: ['huangshan', 'taishan'] },
-  { id: 'water', title: ['川', 'chuān', '川・湖・海'], photo: 'lijiang', places: ['lijiang', 'westlake', 'qingdao'] },
+  { id: 'mountain', title: ['山', 'shān', '中国の名山'], photo: 'huangshan', places: ['wuyue', 'songshan', 'wudang', 'huangshan', 'taishan'] },
+  { id: 'water', title: ['川', 'chuān', '川・湖・海'], photo: 'lijiang', places: ['yangtze', 'yellowriver', 'lijiang', 'westlake', 'qingdao'] },
   { id: 'story', title: ['文', 'wén', '中国の物語'], places: [] },
   { id: 'travel', title: ['旅', 'lǚ', '名所を訪ねる'], photo: 'palace', places: ['palace', 'wall'] }
 ];
@@ -121,11 +145,22 @@ const places = {
     sights: [
       { name: ['午门', 'Wǔ mén', '最初に通る南の門'], photo: 'gate',
         intro: [['午门是故宫南边的入口。', 'Wǔ mén shì Gù gōng nán biān de rù kǒu.', '午門は故宮の南側の入口です。']] },
+      { name: ['内金水桥', 'Nèi jīn shuǐ qiáo', '午門の先に並ぶ石橋'],
+        intro: [['过了午门，可以看到五座石桥。','Guò le Wǔ mén, kě yǐ kàn dào wǔ zuò shí qiáo.','午門を過ぎると、五つの石橋が見えます。']] },
       { name: ['太和殿', 'Tài hé diàn', '大きな儀式の舞台'], photo: 'hall',
         intro: [['这里曾举行重要的典礼。', 'Zhè lǐ céng jǔ xíng zhòng yào de diǎn lǐ.', 'かつてここで重要な儀式が行われました。']] },
+      { name: ['中和殿', 'Zhōng hé diàn', '儀式前に皇帝が休んだ場所'],
+        intro: [['大典开始前，皇帝可以在这里休息。','Dà diǎn kāi shǐ qián, huáng dì kě yǐ zài zhè lǐ xiū xi.','大典が始まる前、皇帝はここで休むことがありました。']] },
+      { name: ['保和殿', 'Bǎo hé diàn', '清代の殿試の舞台'],
+        intro: [['清代曾在这里举行殿试。','Qīng dài céng zài zhè lǐ jǔ xíng diàn shì.','清代には、ここで科挙の最終試験が行われました。']] },
+      { name: ['乾清宫', 'Qián qīng gōng', '外朝から内廷へ'],
+        intro: [['走到乾清宫，就进入了故宫的内廷。','Zǒu dào Qián qīng gōng, jiù jìn rù le Gù gōng de nèi tíng.','乾清宮まで来ると、故宮の内廷に入っています。']] },
       { name: ['御花园', 'Yù huā yuán', '宮殿の奥にある庭園'], photo: 'garden',
-        intro: [['园里有古树、假山和亭子。', 'Yuán lǐ yǒu gǔ shù, jiǎ shān hé tíng zi.', '庭園には古木、築山、あずまやがあります。']] }
+        intro: [['园里有古树、假山和亭子。', 'Yuán lǐ yǒu gǔ shù, jiǎ shān hé tíng zi.', '庭園には古木、築山、あずまやがあります。']] },
+      { name: ['神武门', 'Shén wǔ mén', '北側の出口'],
+        intro: [['走出神武门，故宫的中轴线之旅就结束了。','Zǒu chū Shén wǔ mén, Gù gōng de zhōng zhóu xiàn zhī lǚ jiù jié shù le.','神武門を出ると、故宮の中軸線をたどる旅は終わりです。']] }
     ],
+    takeaway: ['从午门到神武门，我们先看外朝的礼仪空间，再走进内廷，最后经过御花园。','Cóng Wǔ mén dào Shén wǔ mén, wǒ men xiān kàn wài cháo de lǐ yí kōng jiān, zài zǒu jìn nèi tíng, zuì hòu jīng guò Yù huā yuán.','午門から神武門へ。まず外朝の儀礼の場を見て、次に内廷へ進み、最後に御花園を通ります。'],
     scenes: [
       { situation: '入口を尋ねる', lines: [
         ['请问，故宫的入口在哪里？', 'Qǐng wèn, Gù gōng de rù kǒu zài nǎ lǐ?', 'すみません、故宮の入口はどこですか。'],

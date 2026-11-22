@@ -117,3 +117,27 @@ button:disabled { opacity: .45; cursor: default; }
 .pager { margin-top: 12px; }
 .pane h3 { font-size: .9rem; margin: 8px 0; }
 .speech-status:not(:empty) { position: sticky; bottom: 8px; padding: 8px; background: #fff6dc; font-size: .83rem; }
+
+.feature-reading { display: grid; gap: 14px; }
+.feature-reading > .photo { margin: 0; }
+.photo-label { float: left; color: #385b50; }
+.feature-reading .pane > h2 { color: #275344; font-size: 1.05rem; }
+.feature-reading .ruby-text { line-height: 2.2; }
+.feature-reading .jp { line-height: 1.65; }
+.word-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 10px; }
+.word-list > .bilingual { background: #f1f6ef; border-radius: 10px; padding: 9px; }
+.speaking-task { font-size: .91rem; }
+.model-answer { margin-top: 12px; border-top: 1px solid #dfe8df; }
+.model-answer summary, .reading-sources summary { display: list-item; cursor: pointer; padding: 11px 0; font-weight: 700; font-size: .86rem; }
+.model-answer > .bilingual { padding-top: 5px; }
+.reading-sources { padding-inline: 8px; }
+.reading-sources ul { margin: 0; padding-left: 20px; }
+.reading-sources .source { margin-top: 4px; }
+
+.sight-overview { margin-bottom: 14px; }
+.sight-overview ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 0; list-style: none; }
+.sight-overview button { width: 100%; height: 100%; padding: 8px; text-align: left; border: 1px solid #d8e5d9; border-radius: 10px; background: #f0f6ef; color: inherit; cursor: pointer; }
+.sight-overview .zh { font-size: 1rem; }
+.sight-detail summary { cursor: pointer; font-weight: 700; }
+.sight-detail summary small { display: block; font-weight: 400; margin-top: 4px; }
+.sight-detail[open] summary { margin-bottom: 14px; }

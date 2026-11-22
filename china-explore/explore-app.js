@@ -5,6 +5,7 @@ const steps = ['図文ガイド', '見学の準備', '見どころ', '会話練�
 let topic = null;
 let place = null;
 let step = 0;
+let selectedSight = 0;
 let scene = 0;
 let answer = null;
 
@@ -84,12 +85,23 @@ function placeContent() {
       ${place.guide.map(line => bilingual(line)).join('')}${source(place.booking)}</section>`;
   }
   if (step === 2) {
-    return `<section class="sights">${place.sights.map(sight => `
-      <article class="pane">${photo(sight.photo, sight.name[0])}${bilingual(sight.name, 'h2')}
-      ${sight.intro.map(line => bilingual(line)).join('')}</article>`).join('')}</section>`;
+    return `<section class="sights">
+      ${place.sights.map((sight, i) => `<details class="pane sight-detail" id="sight-${i}" ${i === selectedSight ? 'open' : ''}>
+        <summary><span lang="zh-Hans">${sight.name[0]}</span><small>${sight.name[2]}</small></summary>
+        ${sight.photo ? photo(sight.photo, sight.name[0]) : ''}
+        ${bilingual(sight.name)}${sight.intro.map(line => bilingual(line)).join('')}
+      </details>`).join('')}
+      <section class="pane"><h2>歩いたルートを振り返る</h2>${bilingual(place.takeaway)}</section>
+    </section>`;
   }
   if (step === 3) return dialogue();
-  return `<section class="pane">${photo(place.photo, place.name[0])}
+  const overview = place.sights ? `<section class="pane sight-overview">
+    <h2>中軸線の見どころ</h2>
+    <ol>${place.sights.map((sight, i) => `<li><button type="button" data-sight="${i}">
+      ${title(sight.name, 'span')}
+    </button></li>`).join('')}</ol>
+  </section>` : '';
+  return overview + `<section class="pane">${photo(place.photo, place.name[0])}
     ${place.intro.map(line => bilingual(line)).join('')}${place.source ? source(place.source) : ''}</section>`;
 }
 
@@ -204,8 +216,17 @@ app.addEventListener('click', event => {
   } else if (button.dataset.place) {
     place = lessons[button.dataset.place];
     step = 0;
+    selectedSight = 0;
     scene = 0;
     answer = null;
+  } else if (button.dataset.sight !== undefined) {
+    selectedSight = Number(button.dataset.sight);
+    step = 2;
+    render();
+    const summary = app.querySelector(`#sight-${selectedSight} summary`);
+    summary?.focus({ preventScroll: true });
+    requestAnimationFrame(() => summary?.scrollIntoView({ block: 'center' }));
+    return;
   } else if (button.dataset.step !== undefined) {
     step = Number(button.dataset.step);
   } else if (button.dataset.scene !== undefined) {
