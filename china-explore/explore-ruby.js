@@ -21,6 +21,7 @@
   }
   function updateAnnotations(){
     document.querySelectorAll('#app .zh').forEach(zh=>{
+      if (zh.classList.contains('ruby-text')) return;
       const p=zh.nextElementSibling;
       if(!p || !p.classList.contains('py')) return;
       const ruby=makeRuby(zh.textContent.trim(),p.textContent.trim());
@@ -31,7 +32,7 @@
   }
   const container=document.getElementById('app');
   const observer=new MutationObserver(updateAnnotations);
-  observer.observe(container,{childList:true,subtree:false});
+  observer.observe(container,{childList:true,subtree:true});
   updateAnnotations();
 })();
 

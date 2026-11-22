@@ -54,6 +54,7 @@ const features = {
         ['河套的灌溉农业，把沿河的水资源变成了粮食生产的条件。','Hé tào de guàn gài nóng yè, bǎ yán hé de shuǐ zī yuán biàn chéng le liáng shi shēng chǎn de tiáo jiàn.','河套の灌漑農業は、川の水を食料生産に活かしています。']
       ]],
       ['壺口の水音と大禹の伝説', [
+        ['壶口瀑布位于山西吉县与陕西宜川之间。','Hú kǒu pù bù wèi yú Shān xī Jí xiàn yǔ Shǎn xī Yí chuān zhī jiān.','壺口瀑布は山西省吉県と陝西省宜川の間にあります。'],
         ['在壶口，河道突然收窄，水从高处奔腾而下。','Zài Hú kǒu, hé dào tū rán shōu zhǎi, shuǐ cóng gāo chù bēn téng ér xià.','壺口では川幅が急に狭まり、水が高い所から勢いよく落ちます。'],
         ['传说大禹为了治水，三次经过家门却没有进去。','Chuán shuō Dà Yǔ wèi le zhì shuǐ, sān cì jīng guò jiā mén què méi yǒu jìn qù.','伝説では、大禹は治水のため三度も家の前を通りながら、中に入りませんでした。']
       ]]
@@ -62,7 +63,7 @@ const features = {
     check: ['黄河の水は、中流でなぜ濁るのでしょう。', '黄土高原を流れる支流が、本流へ土砂を運び込むためです。'],
     task: ['なぜ黄河は農業を支えながら洪水の原因にもなるのでしょう。「能」「但」を使って旅行仲間に説明しましょう。',
       ['黄河能灌溉农田，但泥沙淤积会增加洪水风险。','Huáng hé néng guàn gài nóng tián, dàn ní shā yū jī huì zēng jiā hóng shuǐ fēng xiǎn.','黄河は農地を潤しますが、土砂の堆積は洪水の危険を高めます。']],
-    refs: [['中国科学院 · 黄河の地理','https://www.igsnrr.cas.cn/cbkx/kpyd/zgdl/cnszy/202009/t20200910_5692424.html'],['中国社会科学網 · 仰韶の農耕','https://www.cssn.cn/kgxc/kgxc_xccz/202312/t20231221_5720492.shtml'],['河南省档案館 · 三門峡の大禹伝説','https://www.hada.gov.cn/2022/06-29/154792.html'],['四川公共文化雲 · 禹の伝説','https://www.scc.org.cn/culturaldetail.fds?id=36398']]
+    refs: [['中国科学院 · 黄河の地理','https://www.igsnrr.cas.cn/cbkx/kpyd/zgdl/cnszy/202009/t20200910_5692424.html'],['中国社会科学網 · 仰韶の農耕','https://www.cssn.cn/kgxc/kgxc_xccz/202312/t20231221_5720492.shtml'],['新華網 · 壺口瀑布','https://www.xinhuanet.com/local/20260601/f0964a9aba7c42c5bc7074a1373a5b61/c.html'],['河南省档案館 · 三門峡の大禹伝説','https://www.hada.gov.cn/2022/06-29/154792.html'],['四川公共文化雲 · 禹の伝説','https://www.scc.org.cn/culturaldetail.fds?id=36398']]
   },
   wuyue: {
     name: ['五岳', 'Wǔ yuè', '方角で覚える中国の五つの名山'],
@@ -96,6 +97,7 @@ const features = {
     chapters: [
       ['少林寺の入り口から', [
         ['在河南登封，少林寺位于嵩山的少室山一带。','Zài Hé nán Dēng fēng, Shào lín sì wèi yú Sōng shān de Shào shì shān yí dài.','河南省登封にある少林寺は、嵩山の少室山一帯に位置します。'],
+        ['从嵩山少室山一带走进少林寺，可以从山门一路看到寺院的殿堂。','Cóng Sōng shān Shào shì shān yí dài zǒu jìn Shào lín sì, kě yǐ cóng shān mén yí lù kàn dào sì yuàn de diàn táng.','嵩山の少室山一帯から少林寺に入り、山門から寺の堂宇へと進みます。'],
         ['山门是寺院的入口，塔林里的古塔则让人看见寺院的历史。','Shān mén shì sì yuàn de rù kǒu, tǎ lín lǐ de gǔ tǎ zé ràng rén kàn jiàn sì yuàn de lì shǐ.','山門は寺院の入口で、塔林の古い塔は寺の歴史を伝えます。'],
         ['少林寺是登封世界遗产的一部分。','Shào lín sì shì Dēng fēng shì jiè yí chǎn de yí bù fen.','少林寺は登封の世界遺産を構成する一部です。']
       ]],
@@ -142,4 +144,59 @@ const features = {
       ['请问，金殿怎么走？在哪里能看到武术表演？','Qǐng wèn, Jīn diàn zěn me zǒu? Zài nǎ lǐ néng kàn dào wǔ shù biǎo yǎn?','金殿へはどう行きますか。どこで演武を見られますか。']],
     refs: [['ユネスコ · 武当山の古建築群','https://whc.unesco.org/en/list/705/'],['中国無形文化遺産網 · 武当武術','https://www.ihchina.cn/art/detail/id/13787.html']]
   }
+};
+
+const westLakeStory = [
+  ['断橋で出会う', [
+    ['传说白娘子化作一位女子，在西湖遇见了许仙。','Chuán shuō Bái niáng zǐ huà zuò yí wèi nǚ zǐ, zài Xī hú yù jiàn le Xǔ Xiān.','伝説では、白蛇が白娘子という女性に姿を変え、西湖で許仙に出会います。'],
+    ['断桥边下起了雨，一把伞让两个人有了交谈的机会。','Duàn qiáo biān xià qǐ le yǔ, yì bǎ sǎn ràng liǎng ge rén yǒu le jiāo tán de jī huì.','断橋のそばで雨が降り出し、一本の傘が二人の会話のきっかけになります。']
+  ]],
+  ['雷峰塔に残る物語', [
+    ['在流传很广的版本里，法海把白娘子镇在雷峰塔下。','Zài liú chuán hěn guǎng de bǎn běn lǐ, Fǎ Hǎi bǎ Bái niáng zǐ zhèn zài Léi fēng tǎ xià.','広く伝わる版では、法海が白娘子を雷峰塔の下に封じます。'],
+    ['从断桥走到雷峰塔，回想两人从相遇到分离的故事。','Cóng Duàn qiáo zǒu dào Léi fēng tǎ, huí xiǎng liǎng rén cóng xiāng yù dào fēn lí de gù shi.','断橋から雷峰塔へ。二人の出会いから別れまでの物語を思い返してみましょう。']
+  ]],
+  ['湖の西、霊隠寺へ', [
+    ['灵隐寺在西湖西边，附近的飞来峰有石刻造像。','Líng yǐn sì zài Xī hú xī biān, fù jìn de Fēi lái fēng yǒu shí kè zào xiàng.','霊隠寺は西湖の西にあり、近くの飛来峰には石刻の仏像があります。'],
+    ['在白蛇传的常见版本里，法海与镇江金山寺有关。','Zài Bái shé zhuàn de cháng jiàn bǎn běn lǐ, Fǎ Hǎi yǔ Zhèn jiāng Jīn shān sì yǒu guān.','『白蛇伝』のよく知られた版で、法海と結びつくのは鎮江の金山寺です。']
+  ]]
+];
+
+const lessonReview = {
+  huangshan: {
+    words: [['奇松','qí sōng','形の珍しい松'],['怪石','guài shí','奇岩'],['云海','yún hǎi','雲海'],['有名','yǒu míng','有名']],
+    check: ['黄山の景観を特徴づけるものを三つ挙げましょう。','奇松・怪石・云海です。']
+  },
+  taishan: {
+    words: [['古代','gǔ dài','古代'],['皇帝','huáng dì','皇帝'],['祭祀','jì sì','祭祀'],['山东省','Shān dōng shěng','山東省']],
+    check: ['昔の皇帝はなぜ泰山を訪れましたか。','祭祀を行うためです。']
+  },
+  lijiang: {
+    words: [['流经','liú jīng','を流れる'],['两岸','liǎng àn','両岸'],['山峰','shān fēng','山の峰'],['一座座','yí zuò zuò','いくつもの']],
+    check: ['漓江はどこを流れ、両岸には何が見えますか。','桂林を流れ、両岸には山々が連なっています。']
+  },
+  qingdao: {
+    words: [['海滨','hǎi bīn','海辺'],['沿岸','yán àn','沿岸'],['散步','sàn bù','散歩する'],['帆船','fān chuán','ヨット・帆船']],
+    check: ['青島はどの海に面していますか。','黄海です。']
+  },
+  wall: {
+    words: [['城墙','chéng qiáng','城壁'],['山脊','shān jǐ','山の尾根'],['沿着','yán zhe','に沿って'],['延伸','yán shēn','延びる']],
+    check: ['慕田峪長城の城壁は何に沿って延びていますか。','山の尾根に沿って延びています。']
+  },
+  westlake: {
+    words: [['传说','chuán shuō','伝説'],['相遇','xiāng yù','出会う'],['借伞','jiè sǎn','傘を借りる'],['分离','fēn lí','別れる'],['版本','bǎn běn','版'],['石刻造像','shí kè zào xiàng','石に刻んだ仏像'],['灵隐寺','Líng yǐn sì','霊隠寺'],['雷峰塔','Léi fēng tǎ','雷峰塔']],
+    check: ['白娘子と許仙が出会う場所と、白娘子が封じられる場所を答えましょう。','出会いは断橋、封じられるのは雷峰塔の下です。'],
+    task: ['「先」「后来」を使って、二人の出会いから別れまでを話しましょう。',['他们先在断桥相遇，后来白娘子被镇在雷峰塔下。','Tā men xiān zài Duàn qiáo xiāng yù, hòu lái Bái niáng zǐ bèi zhèn zài Léi fēng tǎ xià.','二人はまず断橋で出会い、その後、白娘子は雷峰塔の下に封じられました。']]
+  },
+  palace: {
+    words: [['中轴线','zhōng zhóu xiàn','中軸線'],['入口','rù kǒu','入口'],['出口','chū kǒu','出口'],['预约','yù yuē','予約する'],['出示','chū shì','提示する'],['典礼','diǎn lǐ','儀式'],['殿试','diàn shì','科挙の最終試験'],['外朝','wài cháo','外朝'],['内廷','nèi tíng','内廷'],['假山','jiǎ shān','築山']],
+    check: ['午門から入って、外朝・内廷・御花園をどの順に見ますか。','外朝、内廷、御花園の順です。']
+  }
+};
+
+const additionalWords = {
+  yangtze: [['干流','gàn liú','本流'],['入海口','rù hǎi kǒu','河口'],['峡谷','xiá gǔ','峡谷'],['货船','huò chuán','貨物船']],
+  yellowriver: [['河道','hé dào','河道'],['收窄','shōu zhǎi','狭まる'],['奔腾','bēn téng','勢いよく流れる'],['瀑布','pù bù','滝']],
+  wuyue: [['方位','fāng wèi','方角'],['山顶','shān dǐng','山頂'],['登顶','dēng dǐng','頂上に登る'],['形容','xíng róng','描写する']],
+  songshan: [['僧人','sēng rén','僧侶'],['壁画','bì huà','壁画'],['碑刻','bēi kè','碑の刻文'],['凹坑','āo kēng','くぼみ']],
+  wudang: [['道教','Dào jiào','道教'],['金殿','Jīn diàn','金殿'],['留意','liú yì','注意を向ける'],['起源','qǐ yuán','起源']]
 };

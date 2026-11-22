@@ -141,3 +141,6 @@ button:disabled { opacity: .45; cursor: default; }
 .sight-detail summary { cursor: pointer; font-weight: 700; }
 .sight-detail summary small { display: block; font-weight: 400; margin-top: 4px; }
 .sight-detail[open] summary { margin-bottom: 14px; }
+
+.feature-reading > .sight-overview { margin-bottom: 0; }
+.feature-reading .practice-heading { margin: 3px 0 -4px; }

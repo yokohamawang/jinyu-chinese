@@ -1,11 +1,8 @@
 const app = document.getElementById('app');
 const embedded = window.parent !== window;
 const lessons = { ...places, ...features };
-const steps = ['図文ガイド', '見学の準備', '見どころ', '会話練習'];
 let topic = null;
 let place = null;
-let step = 0;
-let selectedSight = 0;
 let scene = 0;
 let answer = null;
 
@@ -78,69 +75,64 @@ function dialogue() {
   </section>`;
 }
 
-function placeContent() {
-  if (step === 1) {
-    return `<section class="pane"><h2>見学の準備</h2>
-      <ol class="route">${place.route.map(stop => `<li>${bilingual(stop)}</li>`).join('')}</ol>
-      ${place.guide.map(line => bilingual(line)).join('')}${source(place.booking)}</section>`;
-  }
-  if (step === 2) {
-    return `<section class="sights">
-      ${place.sights.map((sight, i) => `<details class="pane sight-detail" id="sight-${i}" ${i === selectedSight ? 'open' : ''}>
-        <summary><span lang="zh-Hans">${sight.name[0]}</span><small>${sight.name[2]}</small></summary>
-        ${sight.photo ? photo(sight.photo, sight.name[0]) : ''}
-        ${bilingual(sight.name)}${sight.intro.map(line => bilingual(line)).join('')}
-      </details>`).join('')}
-      <section class="pane"><h2>歩いたルートを振り返る</h2>${bilingual(place.takeaway)}</section>
-    </section>`;
-  }
-  if (step === 3) return dialogue();
-  const overview = place.sights ? `<section class="pane sight-overview">
-    <h2>中軸線の見どころ</h2>
-    <ol>${place.sights.map((sight, i) => `<li><button type="button" data-sight="${i}">
-      ${title(sight.name, 'span')}
-    </button></li>`).join('')}</ol>
-  </section>` : '';
-  return overview + `<section class="pane">${photo(place.photo, place.name[0])}
-    ${place.intro.map(line => bilingual(line)).join('')}${place.source ? source(place.source) : ''}</section>`;
+function chapter(heading, lines) {
+  return `<section class="pane"><h2>${heading}</h2>${lines.map(copy => bilingual(copy)).join('')}</section>`;
 }
 
-function featureContent() {
-  return `<div class="feature-reading">
-    ${photo(place.photo, place.caption, place.caption)}
-    ${place.chapters.map(([heading, lines]) => `<section class="pane">
-      <h2>${heading}</h2>
-      ${lines.map(copy => bilingual(copy)).join('')}
-    </section>`).join('')}
-    <section class="pane">
+function reviewContent() {
+  const id = Object.keys(lessons).find(key => lessons[key] === place);
+  const extra = lessonReview[id];
+  const words = [...(place.words || extra.words), ...(additionalWords[id] || [])];
+  const [question, explanation] = place.check || extra.check;
+  const task = place.task || extra?.task;
+  return `<section class="pane">
       <h2>ことばを確認</h2>
-      <div class="word-list">${place.words.map(copy => bilingual(copy)).join('')}</div>
+      <div class="word-list">${words.map(copy => bilingual(copy)).join('')}</div>
     </section>
     <section class="pane">
       <h2>読んで確かめる</h2>
-      <p class="speaking-task">${place.check[0]}</p>
-      <details class="model-answer"><summary>解説を見る</summary><p class="speaking-task">${place.check[1]}</p></details>
+      <p class="speaking-task">${question}</p>
+      <details class="model-answer"><summary>解説を見る</summary><p class="speaking-task">${explanation}</p></details>
     </section>
-    <section class="pane">
+    ${task ? `<section class="pane">
       <h2>中国語で話してみよう</h2>
-      <p class="speaking-task">${place.task[0]}</p>
-      <details class="model-answer">
-        <summary>回答例を見る</summary>
-        ${bilingual(place.task[1])}
-      </details>
+      <p class="speaking-task">${task[0]}</p>
+      <details class="model-answer"><summary>回答例を見る</summary>${bilingual(task[1])}</details>
+    </section>` : ''}
+    ${place.scenes ? `<h2 class="practice-heading">会話練習</h2>${dialogue()}` : ''}`;
+}
+
+function palaceRoute() {
+  return `<section class="pane sight-overview">
+      <h2>中軸線の見どころ</h2>
+      <ol>${place.sights.map((sight, i) => `<li><button type="button" data-sight="${i}">${title(sight.name, 'span')}</button></li>`).join('')}</ol>
     </section>
-    <details class="reading-sources"><summary>参考資料</summary>
-      <ul>${place.refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul>
-    </details>
-  </div>`;
+    ${photo(place.photo, place.name[0])}
+    ${chapter('見学の準備', place.guide)}
+    ${place.sights.map((sight, i) => `<section class="pane" id="sight-${i}">
+      ${bilingual(sight.name, 'h2')}
+      ${sight.photo ? photo(sight.photo, sight.name[0]) : ''}
+      ${sight.intro.map(copy => bilingual(copy)).join('')}
+    </section>`).join('')}
+    ${chapter('歩いたルートを振り返る', [place.takeaway])}`;
 }
 
 function placePage() {
+  const chapters = place.chapters || (place === places.westlake ? westLakeStory : []);
+  const refs = place.refs || [place.source, place.booking,
+    place === places.westlake && ['中国無形文化遺産網 · 白蛇伝','https://www.ihchina.cn/project_details/12185.html']
+  ].filter(Boolean);
   return `<button type="button" class="back" data-back>‹ ${topic.title[2]}</button>
     <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}</header>
-    ${place.guide ? `<nav class="steps" aria-label="見学レッスン">${steps.map((label, i) =>
-      `<button type="button" data-step="${i}" aria-current="${i === step ? 'step' : 'false'}">${label}</button>`).join('')}</nav>` : ''}
-    ${place.chapters ? featureContent() : placeContent()}`;
+    <div class="feature-reading">
+      ${place.sights ? '' : photo(place.photo, place.caption || place.name[0], place.caption)}
+      ${place.intro ? chapter('見どころ', place.intro) : ''}
+      ${place.sights ? palaceRoute() : ''}
+      ${chapters.map(([heading, lines]) => chapter(heading, lines)).join('')}
+      ${reviewContent()}
+      ${refs.length ? `<details class="reading-sources"><summary>参考資料・公式案内</summary>
+        <ul>${refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul></details>` : ''}
+    </div>`;
 }
 
 function render(reset = true) {
@@ -215,23 +207,24 @@ app.addEventListener('click', event => {
     topic = topics.find(item => item.id === button.dataset.topic);
   } else if (button.dataset.place) {
     place = lessons[button.dataset.place];
-    step = 0;
-    selectedSight = 0;
     scene = 0;
     answer = null;
   } else if (button.dataset.sight !== undefined) {
-    selectedSight = Number(button.dataset.sight);
-    step = 2;
-    render();
-    const summary = app.querySelector(`#sight-${selectedSight} summary`);
-    summary?.focus({ preventScroll: true });
-    requestAnimationFrame(() => summary?.scrollIntoView({ block: 'center' }));
+    const stop = app.querySelector(`#sight-${button.dataset.sight}`);
+    if (stop) {
+      stop.tabIndex = -1;
+      stop.focus({ preventScroll: true });
+      stop.scrollIntoView({ block: 'center' });
+    }
     return;
-  } else if (button.dataset.step !== undefined) {
-    step = Number(button.dataset.step);
   } else if (button.dataset.scene !== undefined) {
     scene = Number(button.dataset.scene);
     answer = null;
+    const current = button.closest('.pane');
+    current.outerHTML = dialogue();
+    reportLayout();
+    app.querySelector('.scene-top h2')?.scrollIntoView({ block: 'nearest' });
+    return;
   } else if (button.dataset.answer !== undefined) {
     answer = Number(button.dataset.answer);
     const current = place.scenes[scene];

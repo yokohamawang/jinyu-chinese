@@ -13,7 +13,7 @@
       if (mode === 'story') {
         return '<div class="cx-return"><button type="button" data-action="cx-return-explore">‹ 中国探索へ戻る</button></div>' + original(ctx);
       }
-      return '<section class="cx-embed" aria-label="中国探索"><iframe title="中国探索" src="./china-explore/index.html?v=301.381&amp;embedded=1" loading="eager"></iframe></section>';
+      return '<section class="cx-embed" aria-label="中国探索"><iframe title="中国探索" src="./china-explore/index.html?v=301.382&amp;embedded=1" loading="eager"></iframe></section>';
     }
     function wrapped(ctx) { return renderFeature(ctx); }
     wrapped.mount = function(ctx) {
