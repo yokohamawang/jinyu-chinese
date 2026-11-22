@@ -144,3 +144,17 @@ button:disabled { opacity: .45; cursor: default; }
 
 .feature-reading > .sight-overview { margin-bottom: 0; }
 .feature-reading .practice-heading { margin: 3px 0 -4px; }
+
+.chapter-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; margin: 12px 0 16px; }
+.chapter-photos .photo { min-width: 0; margin: 0; }
+.chapter-photos .photo img { aspect-ratio: 3 / 2; object-fit: contain; background: #f1f5f1; }
+.photo img[hidden] { display: none; }
+.photo-fallback { display: block; padding: 12px; border-radius: 10px; background: #eef4ef; }
+
+.lesson-exercise { min-width: 0; border: 1px solid #d7e3d8; border-radius: 12px; margin: 12px 0 0; padding: 10px; }
+.lesson-exercise legend { padding: 0 5px; font-weight: 700; }
+.lesson-exercise > .listen { margin-bottom: 8px; }
+.lesson-exercise .choices { grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr)); }
+.dictation { display: grid; gap: 8px; }
+.dictation input { min-width: 0; min-height: 44px; padding: 6px; font: inherit; }
+.dictation button[type="submit"] { min-height: 44px; }

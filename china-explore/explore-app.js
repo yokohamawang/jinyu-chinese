@@ -75,19 +75,58 @@ function dialogue() {
   </section>`;
 }
 
-function chapter(heading, lines) {
-  return `<section class="pane"><h2>${heading}</h2>${lines.map(copy => bilingual(copy)).join('')}</section>`;
+function chapter(heading, lines, photos = []) {
+  return `<section class="pane"><h2>${heading}</h2>${photos.length ? `<div class="chapter-photos">${photos.map(([key, caption]) => photo(key, caption, caption)).join('')}</div>` : ''}${lines.map(copy => bilingual(copy)).join('')}</section>`;
+}
+
+function exercise(question, options, correct, explanation, audio = '') {
+  return `<fieldset class="lesson-exercise" data-correct="${correct}">
+      <legend>${question}</legend>
+      ${audio ? readButton(audio) : ''}
+      <div class="choices">${options.map((option, i) => `<button type="button" data-lesson-choice="${i}" aria-pressed="false">${option}</button>`).join('')}</div>
+      <p class="feedback" role="status"></p>
+      <template>${explanation}</template>
+    </fieldset>`;
 }
 
 function reviewContent() {
   const id = Object.keys(lessons).find(key => lessons[key] === place);
   const extra = lessonReview[id];
-  const words = [...(place.words || extra.words), ...(additionalWords[id] || [])];
+  const vocabulary = [...(place.words || extra.words), ...(additionalWords[id] || []), ...practiceVocabulary[id]];
+  const words = [...new Map(vocabulary.map(word => [word[0], word])).values()];
+  const meaningChoices = words.filter((word, i) => words.findIndex(entry => entry[2] === word[2]) === i);
+  const listening = [0, 1].map((round) => {
+    const options = meaningChoices.slice(-6).slice(round * 3, round * 3 + 3);
+    const correct = round === 0 ? 1 : 2;
+    const [chinese, pinyin, meaning] = options[correct];
+    return exercise('聞こえた中国語の意味は？', options.map(word => word[2]), correct, `${chinese}（${pinyin}）は「${meaning}」。`, chinese);
+  }).join('');
+  const [sentence, options, correct, reason] = lessonExercises[id];
   const [question, explanation] = place.check || extra.check;
-  const task = place.task || extra?.task;
+  const task = place.task || extra?.task || [
+    'この場所を初めて訪れる友達に、中国語で一文紹介しましょう。',
+    place.intro[0]
+  ];
+  const dictation = practiceVocabulary[id][0];
   return `<section class="pane">
       <h2>ことばを確認</h2>
       <div class="word-list">${words.map(copy => bilingual(copy)).join('')}</div>
+    </section>
+    <section class="pane">
+      <h2>聞いて選ぶ</h2>
+      ${listening}
+    </section>
+    <section class="pane">
+      <h2>文の中で使う</h2>
+      ${exercise(sentence, options, correct, reason)}
+      <form class="lesson-exercise dictation" data-word="${dictation[0]}">
+        <label for="lesson-dictation">聞いて漢字を入力</label>
+        <div>${readButton(dictation[0])}</div>
+        <input id="lesson-dictation" name="word" type="text" lang="zh-Hans" autocomplete="off" required>
+        <button type="submit">答え合わせ</button>
+        <p class="feedback" role="status"></p>
+        <details><summary>ヒント・答え</summary>${bilingual(dictation)}</details>
+      </form>
     </section>
     <section class="pane">
       <h2>読んで確かめる</h2>
@@ -128,7 +167,7 @@ function placePage() {
       ${place.sights ? '' : photo(place.photo, place.caption || place.name[0], place.caption)}
       ${place.intro ? chapter('見どころ', place.intro) : ''}
       ${place.sights ? palaceRoute() : ''}
-      ${chapters.map(([heading, lines]) => chapter(heading, lines)).join('')}
+      ${chapters.map(([heading, lines, photos]) => chapter(heading, lines, photos)).join('')}
       ${reviewContent()}
       ${refs.length ? `<details class="reading-sources"><summary>参考資料・公式案内</summary>
         <ul>${refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul></details>` : ''}
@@ -225,6 +264,16 @@ app.addEventListener('click', event => {
     reportLayout();
     app.querySelector('.scene-top h2')?.scrollIntoView({ block: 'nearest' });
     return;
+  } else if (button.dataset.lessonChoice !== undefined) {
+    const card = button.closest('.lesson-exercise');
+    card.querySelectorAll('[data-lesson-choice]').forEach(choice => {
+      choice.setAttribute('aria-pressed', String(choice === button));
+    });
+    const correct = button.dataset.lessonChoice === card.dataset.correct;
+    card.querySelector('[role="status"]').textContent = correct
+      ? `正解！ ${card.querySelector('template').content.textContent}`
+      : 'もう一度、音や文の意味を確かめよう。';
+    return;
   } else if (button.dataset.answer !== undefined) {
     answer = Number(button.dataset.answer);
     const current = place.scenes[scene];
@@ -238,6 +287,29 @@ app.addEventListener('click', event => {
   }
   render();
 });
+
+app.addEventListener('submit', event => {
+  const form = event.target;
+  if (!form.matches('.dictation')) return;
+  event.preventDefault();
+  const entered = form.elements.word.value.trim();
+  form.querySelector('[role="status"]').textContent = entered === form.dataset.word
+    ? `正解！「${form.dataset.word}」です。`
+    : 'もう一度聞いて、漢字を確かめよう。';
+});
+
+app.addEventListener('error', event => {
+  if (!event.target.matches('.photo img')) return;
+  const figure = event.target.closest('figure');
+  event.target.hidden = true;
+  const fallback = document.createElement('a');
+  fallback.className = 'photo-fallback';
+  fallback.href = figure.querySelector('figcaption a').href;
+  fallback.target = '_blank';
+  fallback.rel = 'noopener';
+  fallback.textContent = '写真を出典ページで見る';
+  figure.prepend(fallback);
+}, true);
 
 window.addEventListener('pagehide', stopSpeaking);
 new ResizeObserver(() => reportLayout()).observe(app);
