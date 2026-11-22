@@ -1,1 +1,1 @@
-Koepanda 301.314 — Balanced Hanzi card and spacious result dialog, cumulative from 301.304, NOT DEPLOYED
+Koepanda 301.377 — China Explore integration, based on 301.376, not deployed
