@@ -629,7 +629,7 @@
         }
         taskPopup.hidden=true;quiz.hidden=true;overlay.hidden=true;
         resetModeSelection();
-        window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:reviewOnly?'まちがい復習':lessonLabel(),previewOnly:scope.testUnlocked,reviewOnly,reviewRows:scope.reviewRows,resumeCorrected:scope.resumeCorrected});
+        window.KP_HANZI_UNIT_TEST?.open?.(scoped(),{lessonId:activeLesson(),lessonTitle:reviewOnly?'まちがい復習':lessonLabel(),previewOnly:scope.testUnlocked,reviewOnly,reviewRows:scope.reviewRows,resumeCorrected:scope.resumeCorrected,onExit:scope.themeTest?returnToHanziRoute:undefined});
       }).catch(error=>console.warn('[Koepanda] lesson test entry failed',error));
     }
   }

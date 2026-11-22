@@ -7,7 +7,7 @@
  popup.innerHTML='<div class="kp351-test-card"><header><div><small id="kp353TestLesson">今日の漢字</small><h2>ミニテスト</h2></div><button type="button" id="kp351Close" aria-label="テストを閉じる">×</button></header><div id="kp351TestBody" class="kp351-test-body" aria-live="polite"></div></div>';
  document.body.append(popup);
  const body=popup.querySelector('#kp351TestBody'),subtitle=popup.querySelector('#kp353TestLesson');
- let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false;
+ let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false,onExit;
  const shuffle=arr=>{const result=arr.slice();for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result};
  const add=(tag,cls,text,parent=body)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;parent.append(n);return n};
  const button=(label,fn,cls='')=>{const n=add('button','kp351-action '+cls,label);n.type='button';n.onclick=fn;return n};
@@ -27,7 +27,13 @@
  };
  const allRows=()=>entries.map(e=>e.char);
  const play=char=>{try{if(typeof playHanziSystemVoice==='function')playHanziSystemVoice(char);else if(typeof playHanziRecognitionCharacter==='function')playHanziRecognitionCharacter(char)}catch(_){}};
- popup.querySelector('#kp351Close').onclick=()=>{if(!saving){popup.hidden=true;awaitingWriting=false}};
+ function exitTest(){
+   if(saving||popup.hidden)return;
+   popup.hidden=true;
+   awaitingWriting=false;
+   onExit?.();
+ }
+ popup.querySelector('#kp351Close').onclick=exitTest;
  function makeQuestions(){
    // A six-question lesson assessment with all four required question families.
    const order=shuffle(entries);
@@ -230,8 +236,8 @@
      const total=reviewOnly?(passingScore()===8?10:6):questions.length;
      confirmPass(reviewOnly?total:score,total);
    }
-   else if(reviewOnly||previewOnly)button('戻る',()=>{popup.hidden=true},'primary');
-   else{button('もう一度チャレンジ',()=>{makeQuestions();renderQuestion()},'primary');button('学習に戻る',()=>{popup.hidden=true})}
+   else if(reviewOnly||previewOnly)button(onExit?'単元一覧へ戻る':'戻る',exitTest,'primary');
+   else{button('もう一度チャレンジ',()=>{makeQuestions();renderQuestion()},'primary');button(onExit?'単元一覧へ戻る':'学習に戻る',exitTest)}
 
  }
  window.KP_HANZI_UNIT_TEST={
@@ -240,7 +246,7 @@
      lessonId=options.lessonId||'pre4-u01';
      entries=chars.map(char=>{const source=HANZI_LESSONS.find(x=>x.char===char);return source?{char,pinyin:source.pinyin,strokes:source.strokes}:null}).filter(Boolean);
      if(entries.length!==chars.length||entries.some(e=>!e.pinyin||!Array.isArray(e.strokes)||!e.strokes.length))return;
-     hideAnswerFeedback();subtitle.textContent=options.lessonTitle||'今日の漢字';previewOnly=!!options.previewOnly;reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];popup.hidden=false;
+     hideAnswerFeedback();subtitle.textContent=options.lessonTitle||'今日の漢字';previewOnly=!!options.previewOnly;reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];onExit=options.onExit;popup.hidden=false;
      if(options.resumeCorrected&&reviewOnly&&!previewOnly)void recoverCorrectedTest();else intro();
    },close(){popup.hidden=true;awaitingWriting=false},isWriting:()=>awaitingWriting,isOpen:()=>!popup.hidden||awaitingWriting
  };
