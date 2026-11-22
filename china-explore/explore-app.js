@@ -1,5 +1,6 @@
 const app = document.getElementById('app');
 const embedded = window.parent !== window;
+const lessons = { ...places, ...features };
 const steps = ['図文ガイド', '見学の準備', '見どころ', '会話練習'];
 let topic = null;
 let place = null;
@@ -21,11 +22,11 @@ function bilingual(copy, level) {
   return `<div class="bilingual"><div class="copy-text">${title(copy, level)}</div>${readButton(copy[0])}</div>`;
 }
 
-function photo(key, alt) {
+function photo(key, alt, caption = '') {
   const image = photos[key];
   return `<figure class="photo">
     <img src="${image.url}" alt="${alt}" decoding="async" loading="lazy" referrerpolicy="no-referrer">
-    <figcaption><a href="${image.file}" target="_blank" rel="noopener">${image.author}</a> ·
+    <figcaption>${caption ? `<span class="photo-label" lang="zh-Hans">${caption}</span>` : ''}<a href="${image.file}" target="_blank" rel="noopener">${image.author}</a> ·
     <a href="https://creativecommons.org/licenses/${image.license}/" target="_blank" rel="noopener">CC ${image.license.replace('/', ' ').toUpperCase()}</a></figcaption>
   </figure>`;
 }
@@ -57,7 +58,7 @@ function placeList() {
     <header class="hero ${topic.id}">${bilingual(topic.title, 'h1')}</header>
     <div class="lessons">${topic.places.map(id => `
       <button type="button" class="lesson" data-place="${id}">
-        <span>${title(places[id].name, 'span')}</span><span class="arrow" aria-hidden="true">›</span>
+        <span>${title(lessons[id].name, 'span')}</span><span class="arrow" aria-hidden="true">›</span>
       </button>`).join('')}</div>`;
 }
 
@@ -65,7 +66,7 @@ function dialogue() {
   const current = place.scenes[scene];
   return `<section class="pane">
     <div class="scene-top"><h2>${current.situation}</h2><span>${scene + 1} / ${place.scenes.length}</span></div>
-    ${current.lines.map((line, i) => `<div class="dialogue"><span class="role">${(scene === 1 ? ['係員', '旅行者'] : ['旅行者', '係員'])[i]}</span>${bilingual(line)}</div>`).join('')}
+    ${current.lines.map((line, i) => `<div class="dialogue"><span class="role">${(scene === 1 ? ['小音老师', '旅行者'] : ['旅行者', '小音老师'])[i]}</span>${bilingual(line)}</div>`).join('')}
     <h3>この場面ではどうする？</h3>
     <div class="choices">${current.choices.map((choice, i) => `<button type="button" data-answer="${i}" aria-pressed="${answer === i}">${choice}</button>`).join('')}</div>
     <p class="feedback" role="status">${answer === null ? '' : answer === current.answer ? '正解！ もう一度聞いて、声に出してみよう。' : '返事の中国語をもう一度聞いてみよう。'}</p>
@@ -92,12 +93,42 @@ function placeContent() {
     ${place.intro.map(line => bilingual(line)).join('')}${place.source ? source(place.source) : ''}</section>`;
 }
 
+function featureContent() {
+  return `<div class="feature-reading">
+    ${photo(place.photo, place.caption, place.caption)}
+    ${place.chapters.map(([heading, lines]) => `<section class="pane">
+      <h2>${heading}</h2>
+      ${lines.map(copy => bilingual(copy)).join('')}
+    </section>`).join('')}
+    <section class="pane">
+      <h2>ことばを確認</h2>
+      <div class="word-list">${place.words.map(copy => bilingual(copy)).join('')}</div>
+    </section>
+    <section class="pane">
+      <h2>読んで確かめる</h2>
+      <p class="speaking-task">${place.check[0]}</p>
+      <details class="model-answer"><summary>解説を見る</summary><p class="speaking-task">${place.check[1]}</p></details>
+    </section>
+    <section class="pane">
+      <h2>中国語で話してみよう</h2>
+      <p class="speaking-task">${place.task[0]}</p>
+      <details class="model-answer">
+        <summary>回答例を見る</summary>
+        ${bilingual(place.task[1])}
+      </details>
+    </section>
+    <details class="reading-sources"><summary>参考資料</summary>
+      <ul>${place.refs.map(ref => `<li>${source(ref)}</li>`).join('')}</ul>
+    </details>
+  </div>`;
+}
+
 function placePage() {
   return `<button type="button" class="back" data-back>‹ ${topic.title[2]}</button>
     <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}</header>
     ${place.guide ? `<nav class="steps" aria-label="見学レッスン">${steps.map((label, i) =>
       `<button type="button" data-step="${i}" aria-current="${i === step ? 'step' : 'false'}">${label}</button>`).join('')}</nav>` : ''}
-    ${placeContent()}`;
+    ${place.chapters ? featureContent() : placeContent()}`;
 }
 
 function render(reset = true) {
@@ -171,7 +202,7 @@ app.addEventListener('click', event => {
   } else if (button.dataset.topic) {
     topic = topics.find(item => item.id === button.dataset.topic);
   } else if (button.dataset.place) {
-    place = places[button.dataset.place];
+    place = lessons[button.dataset.place];
     step = 0;
     scene = 0;
     answer = null;
