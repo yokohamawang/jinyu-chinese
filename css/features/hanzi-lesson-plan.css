@@ -166,3 +166,15 @@
 }
 .kp354-summary { justify-self: center; }
 .kp354-summary .kp354-branch-marker { border-color: #dfc786; background: #fff1cc; color: #806127; }
+
+#pre4RouteList .pre4-route-item[aria-expanded]::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+#pre4RouteList .pre4-route-item[aria-expanded="true"]::after {
+  transform: translateY(2px) rotate(225deg);
+}
