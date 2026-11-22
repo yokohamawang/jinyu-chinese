@@ -1,17 +1,16 @@
-/* The stamp trail is confined to the Hanzi route. */
 #pre4Route {
-  padding: clamp(11px, 3.5vw, 24px);
-  background: #fbfaf3;
-  border-color: #e8e4d7;
+  padding: clamp(10px, 3vw, 22px);
+  background: #fcfaf1;
+  border-color: #e7e6d7;
 }
 #pre4Route .pre4-route-intro {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 16px;
-  padding: 8px 10px 8px 14px;
+  padding: 12px 14px;
   border-radius: 18px;
   background: #eaf3e6;
 }
@@ -19,51 +18,56 @@
   display: block;
   font-size: clamp(17px, 4.8vw, 23px);
 }
-#pre4Route .pre4-route-intro span { display: block; margin-top: 5px; color: #345c4e; }
+#pre4Route .pre4-route-intro span { display: block; margin-top: 4px; color: #345c4e; }
 #pre4Route .pre4-route-intro img { width: 66px; height: 66px; object-fit: contain; }
-#pre4RouteList { gap: 14px; }
+#pre4RouteList { gap: 44px; max-width: 520px; margin-inline: auto; padding: 8px 0 14px; }
 #pre4RouteList::before { display: none; }
+.hanzi-route-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.hanzi-route-path path {
+  fill: none;
+  stroke: #d7e6bf;
+  stroke-width: 13px;
+  stroke-linecap: round;
+}
 .hanzi-map-stop {
   --station-ink: #27624d;
   --station-tint: #e4f2e6;
-  --rail: #86ad96;
-  --rail-axis: 22px;
   position: relative;
-  padding-left: 0;
 }
 .hanzi-map-stop[data-palette="1"] { --station-ink: #754b20; --station-tint: #fbedd3; }
 .hanzi-map-stop[data-palette="2"] { --station-ink: #335e77; --station-tint: #e3f0f5; }
 .hanzi-map-stop[data-palette="3"] { --station-ink: #75506b; --station-tint: #f5e9f0; }
-.hanzi-map-stop:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  inset: 48px auto -15px var(--rail-axis);
-  border-inline-start: 2px dashed var(--rail);
-  pointer-events: none;
-}
 #pre4RouteList .pre4-route-item {
-  z-index: 1;
-  min-height: 67px;
-  padding: 8px 11px 8px 8px;
-  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 68px;
+  margin-inline: auto;
+  padding: 8px 12px 8px 8px;
+  gap: 9px;
   background: var(--station-tint);
   color: var(--station-ink);
-  border: 1px solid color-mix(in srgb, var(--station-ink) 25%, white);
-  border-radius: 15px 15px 15px 6px;
-  box-shadow: 0 2px 0 #29463b19;
+  border: 1px solid color-mix(in srgb, var(--station-ink) 28%, white);
+  border-radius: 22px;
+  box-shadow: 0 3px 0 #29463b15;
   touch-action: manipulation;
 }
-#pre4RouteList .pre4-route-item.is-current { outline: 2px solid var(--station-ink); outline-offset: 1px; }
-#pre4RouteList .pre4-route-item.is-locked { background: #f2f1e9; border-color: #e5e3da; color: #586b60; }
+#pre4RouteList .pre4-route-item.is-current { border: 2px solid #589576; }
+#pre4RouteList .pre4-route-item.is-locked { background: #f3f2e9; border-color: #e1e3d4; color: #526357; }
 #pre4RouteList .pre4-route-number {
-  width: 43px;
-  height: 43px;
-  border: 1px dashed currentColor;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #fffdf8;
+  border-radius: 50%;
   background: #fffdf8;
-  font-size: 22px;
+  font-size: 24px;
 }
-#pre4RouteList .pre4-route-item.is-locked .pre4-route-number { background: #f9f8f2; }
 #pre4RouteList .pre4-route-title { font-size: clamp(15px, 4.3vw, 19px); }
 #pre4RouteList .pre4-route-count { color: inherit; font-size: 11px; }
 .hanzi-map-badge {
@@ -74,64 +78,84 @@
   font-size: 12px;
   font-weight: 850;
 }
-.kp354-theme-branches[hidden] { display: none !important; }
-.kp354-theme-branches {
-  position: relative;
-  z-index: 1;
-  margin: 12px 0 4px 38px;
-}
-.kp354-branch-list { display: grid; gap: 10px; }
+.hanzi-map-badge:empty { display: none; }
+.kp354-theme-branches[hidden], .kp356-lesson-test[hidden] { display: none !important; }
+.kp354-branch-list { display: grid; gap: 34px; padding-top: 40px; }
 .hanzi-small-stop {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: stretch;
-  gap: 5px;
-  border: 1px solid #e4e8de;
-  border-radius: 13px;
-  padding: 4px;
-  background: #fffef9;
+  justify-items: center;
+  width: 62%;
+  min-height: 90px;
 }
-.hanzi-small-stop::before, .kp354-summary::before {
-  content: "";
+.hanzi-small-stop:nth-child(even) { justify-self: end; }
+.hanzi-small-stop::after {
+  content: '';
   position: absolute;
-  left: -17px;
-  top: 24px;
-  width: 15px;
-  border-top: 2px dashed var(--rail);
+  inset-block-start: 29px;
+  inset-inline-start: calc(100% + 12px);
+  width: 34px;
+  height: 24px;
+  background:
+    radial-gradient(ellipse at center, #dce9c7 62%, transparent 66%) 0 10px / 21px 12px no-repeat,
+    radial-gradient(ellipse at center, #e8e9c9 62%, transparent 66%) 16px 0 / 18px 11px no-repeat;
   pointer-events: none;
 }
+.hanzi-small-stop:nth-child(even)::after { inset-inline: auto calc(100% + 12px); }
 .kp354-branch-item {
   position: relative;
-  display: flex;
-  align-items: center;
+  display: grid;
+  justify-items: center;
+  align-content: start;
   min-width: 0;
-  min-height: 51px;
+  min-height: 46px;
   gap: 6px;
-  padding: 6px;
-  text-align: left;
+  padding: 0 4px;
+  text-align: center;
   color: #254e41;
-  background: #f0f7eb;
+  background: transparent;
   border: 0;
-  border-radius: 9px;
+  border-radius: 13px;
   touch-action: manipulation;
 }
-.kp354-branch-item:active:not(:disabled) { transform: translateY(1px); background: #dcefd9; }
-.kp354-branch-item:disabled { background: #f4f3ed; color: #5d6a5f; cursor: default; }
-.kp354-branch-marker { display: grid; place-items: center; width: 22px; flex: none; }
-.kp354-branch-copy { display: grid; gap: 3px; }
-.kp354-branch-copy strong { overflow-wrap: anywhere; font-size: clamp(12px, 3.5vw, 15px); line-height: 1.35; }
-.kp354-branch-copy small { color: inherit; font-size: 10px; line-height: 1.3; }
-.kp354-branch-copy small[hidden] { display: none; }
+.kp354-branch-item:active:not(:disabled) { transform: translateY(1px); }
+.kp354-branch-item:disabled { color: #58685d; cursor: default; opacity: 1; }
+.kp354-branch-marker {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #98c8a6;
+  background: #ecf7e8;
+  box-shadow: 0 3px 0 #4266471a;
+  font-size: 22px;
+}
+.kp354-branch-item:disabled .kp354-branch-marker { border-color: #cdd9bd; background: #f4f4e6; box-shadow: none; }
+.kp354-branch-copy { display: grid; gap: 3px; padding: 4px 9px; border-radius: 12px; background: #fffdf5; }
+.kp354-branch-copy strong { overflow-wrap: anywhere; font-size: clamp(13px, 3.9vw, 16px); line-height: 1.3; }
+.kp354-branch-copy small { font-size: 11px; line-height: 1.3; }
+.kp354-branch-copy small[hidden], .kp354-branch-copy small:empty { display: none; }
 .kp354-branch-item.is-complete .kp354-branch-marker { color: #146b48; font-weight: 900; }
-.kp354-branch-item.is-in-progress { background: #e4f3df; }
-.kp356-lesson-test { max-width: 100px; padding-inline: 7px; background: #fff2d5; }
-.kp356-lesson-test .kp354-branch-copy strong { font-size: clamp(10px, 3.1vw, 13px); }
-.kp356-lesson-test.is-ready { background: #ffecc0; box-shadow: inset 0 0 0 1px #d4aa64; }
+.kp354-branch-item.is-in-progress .kp354-branch-marker { background: #dbefd5; }
+.kp356-lesson-test {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 0 9px;
+  border: 1px solid #e6d9a8;
+  background: #fff5db;
+}
+.kp356-lesson-test .kp354-branch-marker { display: inline; width: auto; height: auto; border: 0; box-shadow: none; font-size: 13px; background: transparent; }
+.kp356-lesson-test .kp354-branch-copy { display: flex; align-items: baseline; gap: 5px; padding: 0; background: transparent; }
+.kp356-lesson-test .kp354-branch-copy strong { font-size: 12px; }
+.kp356-lesson-test .kp354-branch-copy small { display: none; }
+.kp356-lesson-test.is-ready { border-color: #cda75a; }
 .kp354-branch-review {
-  grid-column: 1 / -1;
-  justify-self: start;
+  position: relative;
   min-height: 44px;
+  margin-top: 6px;
   padding: 6px 9px;
   border: 1px solid #dbe8d8;
   border-radius: 10px;
@@ -140,13 +164,5 @@
   font-size: 11px;
   font-weight: 750;
 }
-.kp354-summary { padding: 8px; background: #fcf0d6; }
-@media (max-width: 350px) {
-  .kp354-theme-branches { margin-left: 31px; }
-  .hanzi-small-stop::before, .kp354-summary::before { left: -10px; width: 8px; }
-  .kp356-lesson-test .kp354-branch-marker { display: none; }
-}
-
-/* Continue the rail alongside the expanded small stations. */
-.hanzi-map-stop:has(.kp354-theme-branches:not([hidden]))::after { display: block; }
-.hanzi-map-stop:last-child:has(.kp354-theme-branches:not([hidden]))::after { bottom: 27px; }
+.kp354-summary { justify-self: center; }
+.kp354-summary .kp354-branch-marker { border-color: #dfc786; background: #fff1cc; color: #806127; }
