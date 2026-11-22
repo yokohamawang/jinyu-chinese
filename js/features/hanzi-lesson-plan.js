@@ -1,6 +1,7 @@
 /* Draw the small stations for a Hanzi theme. Progress uses the original lesson IDs. */
 (()=>{
  'use strict';
+ const routeChecks=new Map();
  const COURSE='hanzi-pre4-course';
  async function getStatus(unitId){
    try{const client=await window.KP_ACCOUNT_API?.getClient?.();const auth=client?(await client.auth.getUser()).data:null;if(!auth?.user)return window.KP_HANZI_GUEST?.checks(unitId)||{};
@@ -33,7 +34,7 @@
        const stop=document.createElement('div');stop.className='hanzi-small-stop';
        const done=!!checks['unitTest:'+g.lessonId]?.passed_at;
        const previousPassed=i===0||groups.slice(0,i).every(prev=>!!checks['unitTest:'+prev.lessonId]?.passed_at);
-       const lessonUnlocked=theme.testUnlocked||previousPassed||done;
+       const lessonUnlocked=!theme.previewOnly&&(theme.testUnlocked||previousPassed||done);
        const started=!done&&g.chars.some(ch=>Array.isArray(checks['char:'+ch])&&checks['char:'+ch].length>0);
        const ready=g.chars.every(ch=>{const stages=checks['char:'+ch]||[],verified=checks['charVerified:'+ch]||[];return stages.includes(1)&&verified.includes(2)&&verified.includes(3);});
 
@@ -43,8 +44,8 @@
        item.disabled=!lessonUnlocked;
        item.setAttribute('aria-disabled',String(!lessonUnlocked));
        item.classList.toggle('is-in-progress',started);
-       item.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">'+(done?'✓':started?'▶':lessonUnlocked?'🚩':'·')+'</span>';
-       item.setAttribute('aria-label',station+' '+(!lessonUnlocked?'ひとつ前の駅をクリアすると進めます':done?'クリア済み':started?'学習中':'未開始'));
+       item.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">'+(!lessonUnlocked?'🔒':done?'✓':started?'▶':'🚩')+'</span>';
+       item.setAttribute('aria-label',station+' '+(!lessonUnlocked?(theme.previewOnly?'前の大きな駅をクリアすると進めます':'ひとつ前の駅をクリアすると進めます'):done?'クリア済み':started?'学習中':'未開始'));
 
        const content=document.createElement('span');content.className='kp354-branch-copy';
        const title=document.createElement('strong');title.textContent=station;
@@ -54,6 +55,7 @@
        content.append(title,hint);item.append(content);
        item.onclick=()=>onSelect({...theme,...g,lessonTitle:station,lessonIndex:i,lessonCount:groups.length});
        stop.append(item);
+       if(theme.previewOnly){slots.append(stop);return;}
        // The challenge stays accessible at the same station.
        const test=document.createElement('button');test.type='button';
        test.className='kp354-branch-item kp356-lesson-test';
@@ -83,6 +85,7 @@
        }
        slots.append(stop);
      });
+     if(theme.previewOnly)return;
      const finished=theme.testUnlocked||groups.every(g=>checks['unitTest:'+g.lessonId]?.passed_at);
      const summary=document.createElement('button');summary.type='button';summary.className='kp354-branch-item kp354-summary';
      summary.innerHTML='<span class="kp354-branch-marker" aria-hidden="true">★</span><span class="kp354-branch-copy"><strong>まとめチャレンジ</strong><small></small></span>';
@@ -91,8 +94,18 @@
      summary.onclick=()=>onSelect({...theme,lessonId:theme.unitId,lessonTitle:'まとめテスト',chars:theme.characters,themeTest:true,launchTest:true});
      slots.append(summary);
    };
-   addItems({});
-   const refresh=async()=>{const request=++revision;const checks=await getStatus(theme.unitId);if(request===revision&&branch.isConnected)addItems(checks)};
+   let checks=theme.previewOnly?{}:routeChecks.get(theme.unitId)||{};
+   addItems(checks);
+   if(theme.previewOnly)return branch;
+   const refresh=async()=>{
+     const request=++revision;
+     const latest=await getStatus(theme.unitId);
+     if(request!==revision||!branch.isConnected)return;
+     routeChecks.set(theme.unitId,latest);
+     if(JSON.stringify(latest)===JSON.stringify(checks))return;
+     checks=latest;
+     addItems(checks);
+   };
    // A guest completing a stage can unlock the test without a route reload.
    const onGuestChange=()=>{
      if(!branch.isConnected){window.removeEventListener?.('kp-hanzi-guest-changed',onGuestChange);return;}

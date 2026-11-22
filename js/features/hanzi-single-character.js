@@ -680,7 +680,13 @@
     if(!document.body.classList.contains('kp316-active'))return;
     e.stopImmediatePropagation();const ch=scoped()[index()+delta];if(ch)switchCharacter(ch,state.stage);
   },true);
-  $('backToPre4Route')?.addEventListener('click',()=>{document.body.classList.remove('kp316-active');quiz.hidden=true;overlay.hidden=true;taskPopup.hidden=true},true);
+  window.addEventListener('kp:leave-hanzi-lesson',()=>{
+    document.body.classList.remove('kp316-active','focus-write');
+    quiz.hidden=true;
+    overlay.hidden=true;
+    taskPopup.hidden=true;
+    window.KP_HANZI_UNIT_TEST?.close?.();
+  });
   window.addEventListener('kp-account-state-changed',()=>{
     if(unitIsReady()&&!finishedHere)setTimeout(completeFirstUnit,400);
   });
