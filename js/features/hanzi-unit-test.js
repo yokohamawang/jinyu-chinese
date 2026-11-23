@@ -7,7 +7,7 @@
  popup.innerHTML='<div class="kp351-test-card"><header><div><small id="kp353TestLesson">今日の漢字</small><h2>ミニテスト</h2></div><button type="button" id="kp351Close" aria-label="テストを閉じる">×</button></header><div id="kp351TestBody" class="kp351-test-body" aria-live="polite"></div></div>';
  document.body.append(popup);
  const body=popup.querySelector('#kp351TestBody'),subtitle=popup.querySelector('#kp353TestLesson');
- let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false,onExit,originalPass=null,immediateReview=false;
+ let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false,onExit,originalPass=null,immediateReview=false,stopQuizAudio=null;
  const shuffle=arr=>{const result=arr.slice();for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result};
  const add=(tag,cls,text,parent=body)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;parent.append(n);return n};
  const button=(label,fn,cls='')=>{const n=add('button','kp351-action '+cls,label);n.type='button';n.onclick=fn;return n};
@@ -29,6 +29,7 @@
  const play=char=>{try{if(typeof playHanziSystemVoice==='function')playHanziSystemVoice(char);else if(typeof playHanziRecognitionCharacter==='function')playHanziRecognitionCharacter(char)}catch(_){}};
  function exitTest(){
    if(saving||popup.hidden)return;
+   stopQuizAudio?.();
    popup.hidden=true;
    awaitingWriting=false;
    onExit?.();
@@ -130,11 +131,27 @@
    const summary=document.createElement('p');summary.className='kp361-answer-summary';summary.textContent=message.replace(/^[○×]\\s*/, '');inner.append(summary);
    if(!correct){
      const given=document.createElement('p');given.className='kp361-answer-detail';given.textContent='あなたの答え：'+String(value);inner.append(given);
-     const expected=document.createElement('p');expected.className='kp361-answer-detail';expected.textContent='正解：'+answerKey(q)+(q.type==='pinyin'?'':('（'+q.item.pinyin+'）'));inner.append(expected);
+     const expected=document.createElement('p');expected.className='kp361-answer-detail';
+     expected.textContent='正解：'+answerKey(q)+(q.type==='listen'?'（'+q.item.pinyin+'）':'');
+     inner.append(expected);
+     if(q.type==='listen'||q.type==='pinyin'){
+       const replay=document.createElement('button');replay.type='button';replay.className='kp351-action';
+       replay.textContent='正しい発音を聞く';inner.append(replay);
+       const status=document.createElement('p');status.setAttribute('role','status');inner.append(status);
+       replay.onclick=()=>{
+         stopQuizAudio?.();
+         if(window.KP_HANZI_QUIZ_AUDIO){
+           status.textContent='';
+           stopQuizAudio=window.KP_HANZI_QUIZ_AUDIO(q.item.char,()=>{},()=>{
+             status.textContent='音声を再生できませんでした。もう一度お試しください。';
+           });
+         }else play(q.item.char);
+       };
+     }
    }
    const next=document.createElement('button');next.type='button';next.className='kp351-action primary';
    next.textContent=index===questions.length-1?'結果を見る':'次の問題へ';
-   next.onclick=()=>{overlay.hidden=true;if(index===questions.length-1)result();else{index++;renderQuestion()}};
+   next.onclick=()=>{stopQuizAudio?.();overlay.hidden=true;if(index===questions.length-1)result();else{index++;renderQuestion()}};
    inner.append(next);next.focus({preventScroll:true});
  }
  function hideAnswerFeedback(){if(feedbackOverlay)feedbackOverlay.hidden=true;feedbackOverlay=null}
@@ -149,17 +166,37 @@
    });
  }
  function renderQuestion(){
-   hideAnswerFeedback();locked=false;awaitingWriting=false;body.replaceChildren();const q=questions[index];
+   stopQuizAudio?.();hideAnswerFeedback();locked=false;awaitingWriting=false;body.replaceChildren();const q=questions[index];
    add('div','kp351-counter',(index+1)+' / '+questions.length+'問');
    const line=add('div','kp351-bar');add('span','',undefined,line).style.width=((index+1)/questions.length*100)+'%';
    const labels={listen:'音を聞いて、漢字を選ぼう',pinyin:'この字のピンインを書こう',stroke:'色のついた線は何画目？',writing:'いつもの書き方で、最後まで書こう'};
    add('h3','kp351-question',labels[q.type]);
    const display=add('div','kp351-stimulus');
    if(q.type==='listen'){
-     const audio=add('button','kp351-audio','🔊',display);audio.type='button';audio.setAttribute('aria-label','発音を聞く');audio.onclick=()=>play(q.item.char);
+     const audio=add('button','kp351-audio','🔊',display);audio.type='button';audio.setAttribute('aria-label','発音を聞く');
      const others=shuffle(entries.filter(x=>x.char!==q.item.char)).map(x=>x.char);
      choices(shuffle([q.item.char,...others].slice(0,3)),q.item.char,q);
-     play(q.item.char);
+     const launch=window.KP_HANZI_QUIZ_AUDIO;
+     if(launch){
+       const options=body.querySelectorAll('.kp351-options button');
+       const status=add('p','kp351-description','');status.setAttribute('role','status');
+       let heard=false;
+       options.forEach(option=>{option.disabled=true;});
+       audio.onclick=()=>{
+         stopQuizAudio?.();audio.disabled=true;status.textContent='音声を再生しています…';
+         stopQuizAudio=launch(q.item.char,()=>{
+           heard=true;audio.disabled=false;status.textContent='';
+           options.forEach(option=>{option.disabled=false;});
+         },()=>{
+           audio.disabled=false;
+           status.textContent=heard?'もう一度聞くには音声ボタンを押してください。':'音声を再生できませんでした。音声ボタンで再試行してください。';
+         });
+       };
+       audio.onclick();
+     }else{
+       audio.onclick=()=>play(q.item.char);
+       play(q.item.char);
+     }
    }else if(q.type==='pinyin'){
      add('strong','',q.item.char,display);
      const input=add('input','kp353-pinyin-input');input.type='text';input.autocapitalize='off';input.autocomplete='off';input.spellcheck=false;
@@ -263,6 +300,6 @@
      if(entries.length!==chars.length||entries.some(e=>!e.pinyin||!Array.isArray(e.strokes)||!e.strokes.length))return;
      hideAnswerFeedback();subtitle.textContent=options.lessonTitle||'今日の漢字';previewOnly=!!options.previewOnly;reviewOnly=!!options.reviewOnly;reviewRows=options.reviewRows||[];onExit=options.onExit;popup.hidden=false;
      if(options.resumeCorrected&&reviewOnly&&!previewOnly)void recoverCorrectedTest();else intro();
-   },close(){popup.hidden=true;awaitingWriting=false},isWriting:()=>awaitingWriting,isOpen:()=>!popup.hidden||awaitingWriting
+   },close(){stopQuizAudio?.();popup.hidden=true;awaitingWriting=false},isWriting:()=>awaitingWriting,isOpen:()=>!popup.hidden||awaitingWriting
  };
 })();

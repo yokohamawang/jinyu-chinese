@@ -19,7 +19,7 @@
     return `<section class="kp-practice-routes" aria-label="練習コース"><div class="kp-practice-route-grid">${routes.map(route=>`<button class="kp-practice-route kp-route-${route.id}" data-action="practice-route" data-track="${route.id}"><span class="kp-route-icon" aria-hidden="true">${route.icon}</span><span class="kp-route-copy"><b>${safe(route.title)}</b><small>${safe(route.description)}</small><em>${safe(route.meta)}</em></span><span class="kp-route-arrow" aria-hidden="true">›</span></button>`).join('')}</div></section>`;
   }
   window.KoepandaFeatures.practice = function({head,state,safe,QUESTIONS}){
-    return `${head('どの練習にする？','練習ひろば','好きなコースを選んで、ゆっくり進もう。')}<div class="kp-practice-welcome"><span aria-hidden="true">🌱</span><p>ひとつずつで大丈夫。気になる練習からはじめよう。</p></div>${renderPracticeTracks(state.practiceCatalog,state.completedUnitIds||[],safe)}`;
+    return `${head('どの練習にする？','練習ひろば','好きなコースを選んで、ゆっくり進もう。')}<div class="kp-practice-welcome"><span aria-hidden="true">🌱</span><p>ひとつずつで大丈夫。気になる練習からはじめよう。</p></div><section class="kp-practice-routes" aria-label="復習"><div class="kp-practice-route-grid"><button class="kp-practice-route" data-action="pinyin-due-review"><span class="kp-route-copy"><b>ピンインの今日の復習</b><small>聞きまちがえた音をもう一度</small></span></button><button class="kp-practice-route" data-action="review"><span class="kp-route-copy"><b>ことば・会話の復習</b><small>まちがいノートをひらく</small></span></button></div></section>${renderPracticeTracks(state.practiceCatalog,state.completedUnitIds||[],safe)}`;
   }
   window.KoepandaFeatures.practice.mount=function(ctx){
     const requestedAction=new URLSearchParams(location.search);
@@ -29,10 +29,10 @@
     const progressKey='koepanda.hanzi.unit-progress.v1';try{const ids=JSON.parse(localStorage.getItem(progressKey)||'[]');if(Array.isArray(ids))ctx.state.completedUnitIds=ids.filter(x=>typeof x==='string')}catch(_){}
   };
   const QUESTIONS=[
-    {id:'nihao',q:'「你好」はどんなあいさつ？',a:['こんにちは','ありがとう','おやすみ'],correct:0,sticker:'a',why:'你好（nǐ hǎo）は相手に会ったときのあいさつです。ありがとうは「谢谢」です。'},
-    {id:'shui',q:'「水」の意味は？',a:['山','水','人'],correct:1,sticker:'shui',why:'水（shuǐ）は飲む水のこと。山は shān、人は rén です。'},
-    {id:'ren',q:'「人」のピンインは？',a:['rén','shuǐ','hǎo'],correct:0,sticker:'ren',why:'人は rén（2声）。声を低めから上げます。shuǐ は水、hǎo は好です。'},
-    {id:'hao',q:'「好」の意味に近いのは？',a:['よい','大きい','あした'],correct:0,sticker:'hao',why:'好（hǎo）は「よい・好き」という意味です。大きいは「大」、明日は「明天」です。'},
+    {id:'nihao',q:'「你好」はどんなあいさつ？',a:['こんにちは','ありがとう','おやすみ'],correct:0,sticker:'a',why:'你好（nǐ hǎo）は相手に会ったときのあいさつ。ありがとうは「谢谢」です。'},
+    {id:'shui',q:'「水」の意味は？',a:['山','水','人'],correct:1,sticker:'shui',why:'水（shuǐ）は飲む水。山は shān、人は rén です。'},
+    {id:'ren',q:'「人」のピンインは？',a:['rén','shuǐ','hǎo'],correct:0,sticker:'ren',why:'人は rén（2声）。低めから上げる音です。shuǐ は水、hǎo は好です。'},
+    {id:'hao',q:'「好」の意味に近いのは？',a:['よい','大きい','あした'],correct:0,sticker:'hao',why:'好（hǎo）は「よい・好き」の意味。大きいは「大」、明日は「明天」です。'},
     {id:'shan',q:'「山」のピンインは？',a:['mā','shān','nǐ'],correct:1,sticker:'shan',why:'山は shān（1声）。高い声を平らに保ちます。mā と nǐ は別の音です。'}
   ];
   let quizIndex=0,quizSet=[],quizMode='challenge',quizClaimToken=null,quizScore=0;
@@ -48,7 +48,7 @@
   };
   window.KoepandaFeatures.practice.questions=QUESTIONS;
   function startQuiz(ctx){quizMode='challenge';quizClaimToken=newClaimToken();quizScore=0;quizSet=QUESTIONS.map((q,i)=>i).sort(()=>Math.random()-.5);quizIndex=0;renderQuiz(ctx);}
-  function renderQuiz(ctx,feedback){const main=ctx.root.querySelector('#kpFeatureMain'),q=QUESTIONS[quizSet[quizIndex]];main.innerHTML=`${ctx.head('ミニクイズ','5問チャレンジ','答えた問題は、次の復習タイミングに反映するよ。')}<div class="kp-quiz-progress"><span style="width:${(quizIndex/quizSet.length)*100}%"></span></div><section class="kp-quiz-card"><span class="kp-eyebrow">${quizIndex+1} / ${quizSet.length} 問</span><h2>${q.q}</h2><div class="kp-quiz-options">${q.a.map((x,i)=>`<button data-action="quiz-answer" data-answer="${i}" ${feedback?'disabled':''} ${feedback&&i===q.correct?'aria-label="正解：'+ctx.safe(x)+'"':''}>${ctx.safe(x)}${feedback&&i===q.correct?' ✓':''}${feedback&&i===feedback.selected&&!feedback.ok?' ✕':''}</button>`).join('')}</div>${feedback?`<div class="kp-quiz-feedback ${feedback.ok?'good':'again'}" role="status">${feedback.ok?'せいかい！ ✨':'おしい！ 正解は「'+ctx.safe(q.a[q.correct])+'」です。'}<p class="kp-quiz-explanation">${ctx.safe(q.why)}</p><button data-action="quiz-next" class="kp-primary">${quizIndex===quizSet.length-1?'結果を見る':'つぎへ'}</button></div>`:''}</section><button class="kp-text-button" data-go="practice">練習ひろばへ戻る</button>`;}
+  function renderQuiz(ctx,feedback){const main=ctx.root.querySelector('#kpFeatureMain'),q=QUESTIONS[quizSet[quizIndex]];main.innerHTML=`${ctx.head('ミニクイズ',quizMode==='review'?'まちがい復習':'5問チャレンジ','答えた問題は、次の復習タイミングに反映するよ。')}<div class="kp-quiz-progress"><span style="width:${(quizIndex/quizSet.length)*100}%"></span></div><section class="kp-quiz-card"><span class="kp-eyebrow">${quizIndex+1} / ${quizSet.length} 問</span><h2>${q.q}</h2><div class="kp-quiz-options">${q.a.map((x,i)=>`<button data-action="quiz-answer" data-answer="${i}" ${feedback?'disabled':''}>${ctx.safe(x)}${feedback&&i===q.correct?' ✓':''}${feedback&&i===feedback.selected&&!feedback.ok?' ✕':''}</button>`).join('')}</div>${feedback?`<div class="kp-quiz-feedback ${feedback.ok?'good':'again'}" role="status">${feedback.ok?'せいかい！ ✨':'おしい！ 正解は「'+ctx.safe(q.a[q.correct])+'」です。'}<p class="kp-quiz-explanation">${ctx.safe(q.why)}</p><button data-action="quiz-next" class="kp-primary">${quizIndex===quizSet.length-1?'結果を見る':'つぎへ'}</button></div>`:''}</section><button class="kp-text-button" data-go="practice">練習ひろばへ戻る</button>`;}
   function answer(ctx,index){const q=QUESTIONS[quizSet[quizIndex]],ok=index===q.correct;ctx.state.lastQuiz=Date.now();recordAttempt(q.id,'intro-mini-quiz',ok);if(ok){quizScore++;ctx.state.mastered[q.id]=(ctx.state.mastered[q.id]||0)+1;const old=ctx.state.wrongs[q.id];if(old){old.streak=(old.streak||0)+1;if(old.streak>=5)delete ctx.state.wrongs[q.id];else{const intervals=[3,7,14,30];old.due=Date.now()+intervals[Math.min(old.streak-1,intervals.length-1)]*86400000;}}}else{const old=ctx.state.wrongs[q.id]||{count:0,streak:0};old.count++;old.streak=0;old.due=Date.now()+86400000;old.question=q.id;ctx.state.wrongs[q.id]=old;}ctx.save();renderQuiz(ctx,{ok,selected:index});}
   function recordAttempt(itemKey,courseKey,isCorrect){
     const api=window.KP_ACCOUNT_API;
@@ -71,7 +71,8 @@
     if(api&&typeof api.getPracticeReviewQueue==='function'){
       let cloudRows=null;
       try{
-        const rows=await api.getPracticeReviewQueue();
+        const queue=await api.getPracticeReviewQueue();
+        const rows=queue?.filter(row=>row.course_key!=='pinyin-listening')??null;
         if(Array.isArray(rows)){cloudRows=rows;const dueRows=rows.filter(x=>new Date(x.due_at).getTime()<=Date.now());if(dueRows.length){
           const row=dueRows[0];
           if(row.item_key.startsWith('pre4-char:')&&row.course_key==='hanzi-basic'){
@@ -81,7 +82,7 @@
             const params=new URLSearchParams({review:row.item_key,course:row.course_key});window.location.href='./practice-session.html?'+params.toString();return;
           }
           const q=QUESTIONS.find(x=>'quiz:'+x.id===row.item_key);
-          if(q){quizMode='review';quizClaimToken=null;quizSet=[QUESTIONS.indexOf(q)];quizIndex=0;renderQuiz(ctx);return;}
+          if(q){quizMode='review';quizClaimToken=null;quizSet=dueRows.map(item=>QUESTIONS.findIndex(x=>'quiz:'+x.id===item.item_key)).filter(i=>i>=0).slice(0,5);quizScore=0;quizIndex=0;renderQuiz(ctx);return;}
         }
         }
         if(rows===null)throw new Error('signed_out');
@@ -90,6 +91,6 @@
     }
     const due=Object.values(ctx.state.wrongs).filter(x=>x.due<=Date.now());
     if(!due.length){ctx.modal('まちがいノート',`<p class="kp-modal-copy">今は復習する問題がないよ。学習ページの単元練習かミニクイズに挑戦してみよう。</p><button data-action="modal-close" class="kp-primary">とじる</button>`);return;}
-    const q=QUESTIONS.find(x=>x.id===due[0].question);if(!q)return;quizMode='review';quizClaimToken=null;quizSet=[QUESTIONS.indexOf(q)];quizIndex=0;renderQuiz(ctx);
+    quizSet=due.map(item=>QUESTIONS.findIndex(x=>x.id===item.question)).filter(i=>i>=0).slice(0,5);if(!quizSet.length)return;quizMode='review';quizClaimToken=null;quizScore=0;quizIndex=0;renderQuiz(ctx);
   }
 })();
