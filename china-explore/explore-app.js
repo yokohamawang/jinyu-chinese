@@ -296,7 +296,9 @@ function spokenUnits(target, text) {
     target.replaceChildren(fragment);
   }
   let offset = 0;
-  const units = Array.from(target.children, element => {
+  const elements = Array.from(target.children).flatMap(element =>
+    element.matches('.kp-lookup-word') ? Array.from(element.children) : [element]);
+  const units = elements.map(element => {
     const value = element.querySelector('rb')?.textContent ?? element.textContent;
     const unit = { element, value, offset };
     offset += value.length;
@@ -407,7 +409,7 @@ app.addEventListener('change', event => {
 
 app.addEventListener('click', event => {
   const button = event.target.closest('button');
-  if (!button) return;
+  if (!button || button.matches('.kp-lookup-word')) return;
   if (button.matches('[data-shadow-record], [data-shadow-replay]')) return shadowAction(button);
   if (button.dataset.say) {
     if (recording) {
@@ -514,7 +516,10 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pagehide', stopLessonAudio);
 window.addEventListener('message', event => {
   if (embedded && event.source === window.parent && event.origin === location.origin &&
-      event.data?.type === 'koepanda-explore-stop') stopLessonAudio();
+      event.data?.type === 'koepanda-explore-stop') {
+    window.KP_READING_LOOKUP?.close();
+    stopLessonAudio();
+  }
 });
 new ResizeObserver(() => reportLayout()).observe(app);
 render();
