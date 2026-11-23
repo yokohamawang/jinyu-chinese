@@ -176,3 +176,64 @@ button:disabled { opacity: .45; cursor: default; }
 .chapter-photos .food-illustration { margin-inline: 0; }
 .chapter-photos .food-illustration img { aspect-ratio: 4 / 3; object-fit: cover; }
 .food-illustration figcaption { font-size: .76rem; text-align: left; }
+
+.reading-speed {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: .87rem;
+}
+.reading-speed select {
+  min-height: 44px;
+  padding: 4px 10px;
+  border: 1px solid #d4e5d8;
+  border-radius: 10px;
+  background: #fffefa;
+  color: #275747;
+  font: inherit;
+}
+.zh.is-reading {
+  border-radius: 5px;
+  background: #f2f8ed;
+}
+.zh .is-reading-char {
+  border-radius: 4px;
+  background: #ffecaa;
+  color: #153d2c;
+  box-shadow: 0 1px #d49c36;
+}
+
+.shadowing {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid #d8e7da;
+  border-radius: 14px;
+  background: #f5f9f5;
+}
+.shadowing summary {
+  min-height: 32px;
+  color: #275747;
+  cursor: pointer;
+  font-weight: 700;
+}
+.shadowing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.shadowing-actions button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #b9d6c4;
+  border-radius: 10px;
+  background: #fffefa;
+  color: #275747;
+}
+.shadowing-actions button[hidden] { display: none; }
+.shadowing-actions button.is-recording {
+  background: #fbe8e5;
+  color: #852e27;
+}
+.shadowing-status { margin: 8px 0 0; font-size: .83rem; }
+.shadowing-status:empty { display: none; }

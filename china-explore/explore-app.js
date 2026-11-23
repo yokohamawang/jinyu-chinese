@@ -5,13 +5,24 @@ let topic = null;
 let place = null;
 let scene = 0;
 let answer = null;
+let readingRate = .22;
+
+function readingSpeed() {
+  return `<label class="reading-speed">再生速度
+    <select data-reading-speed>
+      <option value="0.22" ${readingRate === .22 ? 'selected' : ''}>ゆっくり</option>
+      <option value="0.45" ${readingRate === .45 ? 'selected' : ''}>ふつう</option>
+    </select>
+  </label>`;
+}
 
 function title([text, reading, translation], level = 'div') {
   return `<${level} class="zh" lang="zh-Hans">${text}</${level}><span class="py">${reading}</span><span class="jp">${translation}</span>`;
 }
 
 function readButton(text) {
-  return `<button type="button" class="listen" data-say="${text}" aria-label="中国語を聞く" aria-pressed="false">
+  const speech = text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  return `<button type="button" class="listen" data-say="${speech}" aria-label="中国語を聞く" aria-pressed="false">
     <span aria-hidden="true">♪</span><span class="listen-label">聞く</span>
   </button>`;
 }
@@ -77,7 +88,7 @@ function placeList() {
     ? topic.groups.map(([heading, ids]) => `<section class="lesson-group"><h2>${heading}</h2>${lessonList(ids)}</section>`).join('')
     : lessonList(topic.places);
   return `<button type="button" class="back" data-back>‹ テーマ一覧</button>
-    <header class="hero ${topic.id}">${bilingual(topic.title, 'h1')}</header>
+    <header class="hero ${topic.id}">${bilingual(topic.title, 'h1')}${readingSpeed()}</header>
     ${list}`;
 }
 
@@ -108,6 +119,58 @@ function exercise(question, options, correct, explanation, audio = '') {
       <p class="feedback" role="status"></p>
       <template>${explanation}</template>
     </fieldset>`;
+}
+
+function shadowing(copy) {
+  return `<details class="shadowing">
+    <summary>一文をまねしてみる</summary>
+    <div class="shadowing-prompt">
+      ${bilingual(copy)}
+      <div class="shadowing-actions">
+        <button type="button" data-shadow-record aria-pressed="false">● 録音する</button>
+        <button type="button" data-shadow-replay hidden>▶ 自分の声を聞く</button>
+      </div>
+      <p class="shadowing-status" role="status"></p>
+    </div>
+  </details>`;
+}
+
+let recording = null;
+
+function disposeRecording() {
+  if (!recording) return;
+  const { controller, container, button, replay, note } = recording;
+  recording = null;
+  controller.dispose();
+  button.disabled = false;
+  button.textContent = '● 録音する';
+  button.classList.remove('is-recording');
+  button.setAttribute('aria-pressed', 'false');
+  button.removeAttribute('aria-busy');
+  replay.hidden = true;
+  note.textContent = '';
+  container.querySelector('.listen').disabled = false;
+}
+
+function shadowAction(button) {
+  const container = button.closest('.shadowing');
+  if (button.hasAttribute('data-shadow-replay')) {
+    if (recording?.container === container) recording.controller.play();
+    return;
+  }
+  if (recording?.container !== container) {
+    disposeRecording();
+    const replay = container.querySelector('[data-shadow-replay]');
+    const note = container.querySelector('.shadowing-status');
+    const controller = window.KoepandaPracticeRecorder.create({
+      button, replay, note, bind: false,
+      listenButtons: [container.querySelector('.listen')],
+      beforeRecord: stopSpeaking,
+      beforeReplay: stopSpeaking
+    });
+    recording = { controller, container, button, replay, note };
+  }
+  recording.controller.toggle();
 }
 
 function reviewContent() {
@@ -163,6 +226,7 @@ function reviewContent() {
       <h2>中国語で話してみよう</h2>
       <p class="speaking-task">${task[0]}</p>
       <details class="model-answer"><summary>回答例を見る</summary>${bilingual(task[1])}</details>
+      ${shadowing(shadowingSentences[id] || task[1])}
     </section>` : ''}
     ${place.scenes ? `<h2 class="practice-heading">会話練習</h2>${dialogue()}` : ''}`;
 }
@@ -189,7 +253,7 @@ function placePage() {
     place === places.westlake && ['中国無形文化遺産網 · 白蛇伝','https://www.ihchina.cn/project_details/12185.html']
   ].filter(Boolean))];
   return `<button type="button" class="back" data-back>‹ ${topic.title[2]}</button>
-    <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}</header>
+    <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}${readingSpeed()}</header>
     <div class="feature-reading">
       ${chapters.length > 1 ? `<nav class="pane sight-overview" aria-label="この課の見どころ">
         <ol>${chapters.map(([heading], i) => `<li><button type="button" data-chapter="${i}">${heading}</button></li>`).join('')}</ol>
@@ -205,6 +269,8 @@ function placePage() {
 }
 
 function render(reset = true) {
+  disposeRecording();
+  stopSpeaking();
   app.innerHTML = (!topic ? topicCards() : !place ? placeList() : placePage()) + '<p class="speech-status" role="status"></p>';
   if (reset) {
     window.scrollTo(0, 0);
@@ -217,26 +283,75 @@ function render(reset = true) {
 
 let active = null;
 
+// Use ruby bases as the spoken text. The pinyin annotations stay intact.
+function spokenUnits(target, text) {
+  if (!target) return [];
+  if (!target.classList.contains('ruby-text') && !target.firstElementChild) {
+    const fragment = document.createDocumentFragment();
+    for (const character of target.textContent) {
+      const unit = document.createElement('span');
+      unit.textContent = character;
+      fragment.append(unit);
+    }
+    target.replaceChildren(fragment);
+  }
+  let offset = 0;
+  const units = Array.from(target.children, element => {
+    const value = element.querySelector('rb')?.textContent ?? element.textContent;
+    const unit = { element, value, offset };
+    offset += value.length;
+    return unit;
+  });
+  return units.map(unit => unit.value).join('') === text ? units : [];
+}
+
+function revealUnit(element) {
+  const rect = element.getBoundingClientRect();
+  if (embedded) {
+    window.parent.postMessage({
+      type: 'koepanda-explore-reading',
+      top: rect.top,
+      bottom: rect.bottom
+    }, location.origin);
+  } else if (rect.top < 10 || rect.bottom > (window.visualViewport?.height || window.innerHeight) - 18) {
+    element.scrollIntoView({ block: 'nearest' });
+  }
+}
+
+function highlight(request, offset, length = 1) {
+  const selected = request.units.filter((unit, index, units) =>
+    unit.offset < offset + length && (units[index + 1]?.offset ?? request.text.length) > offset);
+  if (!selected.length) return;
+  request.highlighted?.forEach(unit => unit.element.classList.remove('is-reading-char'));
+  selected.forEach(unit => unit.element.classList.add('is-reading-char'));
+  if (request.highlighted?.[0] !== selected[0]) revealUnit(selected[0].element);
+  request.highlighted = selected;
+}
+
 function stopSpeaking() {
   const previous = active;
   active = null;
   if (!previous) return;
   clearTimeout(previous.timer);
+  clearInterval(previous.fallback);
   previous.stop?.();
+  previous.target?.classList.remove('is-reading');
+  previous.highlighted?.forEach(unit => unit.element.classList.remove('is-reading-char'));
   previous.button.setAttribute('aria-pressed', 'false');
   previous.button.querySelector('.listen-label').textContent = '聞く';
 }
 
-function speak(button) {
+function speak(button, restart = false) {
   const status = app.querySelector('.speech-status');
-  const stopOnly = active?.button === button;
+  const stopOnly = !restart && active?.button === button;
   stopSpeaking();
   status.textContent = '';
   if (stopOnly) return;
 
   const session = window.KP_AUDIO_SESSION;
   const text = button.dataset.say;
-  const request = { button };
+  const target = button.closest('.bilingual')?.querySelector('.zh');
+  const request = { button, target, text, units: spokenUnits(target, text) };
   active = request;
   button.setAttribute('aria-pressed', 'true');
   button.querySelector('.listen-label').textContent = '停止';
@@ -249,9 +364,32 @@ function speak(button) {
 
   const failed = () => finish('端末の中国語音声を再生できませんでした。中国語の音声設定を確認してください。');
   try {
-    request.timer = setTimeout(failed, 2500);
+    request.timer = setTimeout(failed, 5000);
     const stop = session.speakMandarin(text, {
-      onStart: () => clearTimeout(request.timer),
+      rate: target ? readingRate : undefined,
+      onStart: () => {
+        if (active !== request) return;
+        clearTimeout(request.timer);
+        target?.classList.add('is-reading');
+        if (target && !request.units.length) revealUnit(target);
+        if (!request.units.length || request.hasBoundary) return;
+        // Follow the story player's cadence on voices without boundary events.
+        let index = 0;
+        highlight(request, 0);
+        if (request.units.length > 1) {
+          request.fallback = setInterval(() => {
+            if (++index < request.units.length) highlight(request, request.units[index].offset);
+            else clearInterval(request.fallback);
+          }, Math.round(210 / readingRate));
+        }
+      },
+      onBoundary: event => {
+        if (active !== request || event.name === 'sentence' || !Number.isInteger(event.charIndex) ||
+            event.charIndex < 0 || event.charIndex >= text.length) return;
+        request.hasBoundary = true;
+        clearInterval(request.fallback);
+        highlight(request, event.charIndex, event.charLength || 1);
+      },
       onEnd: () => finish(),
       onError: failed
     });
@@ -261,11 +399,24 @@ function speak(button) {
   }
 }
 
+app.addEventListener('change', event => {
+  if (!event.target.matches('[data-reading-speed]')) return;
+  readingRate = event.target.value === '0.45' ? .45 : .22;
+  if (active?.target) speak(active.button, true);
+});
+
 app.addEventListener('click', event => {
   const button = event.target.closest('button');
   if (!button) return;
-  if (button.dataset.say) return speak(button);
-  stopSpeaking();
+  if (button.matches('[data-shadow-record], [data-shadow-replay]')) return shadowAction(button);
+  if (button.dataset.say) {
+    if (recording) {
+      if (recording.container.contains(button)) recording.controller.pauseReplay();
+      else disposeRecording();
+    }
+    return speak(button);
+  }
+  stopLessonAudio();
   if (button.hasAttribute('data-back')) {
     if (place) place = null;
     else topic = null;
@@ -325,6 +476,7 @@ app.addEventListener('submit', event => {
   const form = event.target;
   if (!form.matches('.dictation')) return;
   event.preventDefault();
+  stopLessonAudio();
   const entered = form.elements.word.value.trim();
   form.querySelector('[role="status"]').textContent = entered === form.dataset.word
     ? `正解！「${form.dataset.word}」です。`
@@ -349,6 +501,20 @@ app.addEventListener('error', event => {
   figure.prepend(fallback);
 }, true);
 
-window.addEventListener('pagehide', stopSpeaking);
+function stopLessonAudio() {
+  stopSpeaking();
+  disposeRecording();
+}
+app.addEventListener('toggle', event => {
+  if (event.target === recording?.container && !event.target.open) stopLessonAudio();
+}, true);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopLessonAudio();
+});
+window.addEventListener('pagehide', stopLessonAudio);
+window.addEventListener('message', event => {
+  if (embedded && event.source === window.parent && event.origin === location.origin &&
+      event.data?.type === 'koepanda-explore-stop') stopLessonAudio();
+});
 new ResizeObserver(() => reportLayout()).observe(app);
 render();
