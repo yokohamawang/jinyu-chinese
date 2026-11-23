@@ -1,1 +1,1 @@
-Koepanda 301.404 — Explore shadowing and Pinyin result button layout
+Koepanda 301.405 — Reading word lookup and personalized review lessons
