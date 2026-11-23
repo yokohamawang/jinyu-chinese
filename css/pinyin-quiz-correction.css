@@ -27,3 +27,20 @@
 #kidsCourse .kp-chapter-correction button:disabled { opacity: .55; }
 #kidsCourse .kp-chapter-correction span,
 #kidsCourse .kp-chapter-correction p { font-size: .87rem; line-height: 1.45; }
+
+/* Results and correction panels are full rows beneath the badge and score. */
+#kidsCourse .koepanda-result-reopen {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  min-height: 44px;
+  padding-inline: 12px;
+  box-sizing: border-box;
+  white-space: nowrap !important;
+  text-align: center;
+}
+#kidsCourse .koepanda-result-reopen[hidden] { display: none !important; }
+#kidsCourse .kp-chapter-correction { grid-column: 1 / -1; }
+#kidsCourse :is(.kp18-next, .kp198-next, .kp223-test-next, .kp-pc-next,
+  #kp163Next, #kp175Next, #kp192QuizNext, #p0GameNext) {
+  white-space: nowrap;
+}
