@@ -1,6 +1,6 @@
 {
-  "version": "301.405",
-  "base_version": "301.404",
+  "version": "301.406",
+  "base_version": "301.405",
   "status": "integration-candidate",
   "deployed": false
 }
