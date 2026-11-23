@@ -4,7 +4,7 @@
   var course=window.KOEPANDA_PINYIN_COURSE;
   if(!course)return;
   var root=null, detail=null;
-  var lastStageId=null, lastStageTop=0, lastStageStatus=null;
+  var lastStageId=null, lastStageEntry=null, lastStageTop=0, lastStageStatus=null;
   var lessonState=null;
   var lessonMarker=null;
 
@@ -114,6 +114,7 @@
     var returnToDock=lessonState.returnToDock;
     var returnY=lessonState.returnY;
     var target=lessonState.target;
+    var returnUnitId=lessonState.returnUnitId;
     if(target?.id==='p0ToneAdventure')window.dispatchEvent(new Event('koepandaToneGuideClose'));
     if(target){
       target.hidden=true; target.classList.remove('is-roadmap-lesson-active');
@@ -135,7 +136,10 @@
       /* Keep the active consonant/finals stage directory open on return. */
       root.classList.add('is-stage-detail-open');
       detail.hidden=false;
-      requestAnimationFrame(function(){detail.scrollIntoView({block:'start',behavior:'auto'})});
+      requestAnimationFrame(function(){
+        window.scrollTo({top:returnY,left:0,behavior:'auto'});
+        detail.querySelector('[data-unit-id="'+returnUnitId+'"]')?.focus({preventScroll:true});
+      });
     }else{
       restoreRoadmap();
       if(returnToDock){
@@ -160,7 +164,7 @@
     var fromInitialsDirectory=!!(detail&&!detail.hidden&&lastStageId==='P3-P8'&&/^P[3-8]$/.test(unit.id));
     var fromFinalsDirectory=!!(detail&&!detail.hidden&&lastStageId==='P9-P13'&&/^P(9|1[0-3])$/.test(unit.id));
     var returnToOwnDirectory=fromInitialsDirectory||fromFinalsDirectory;
-    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top,returnToDock:button&&button.classList.contains('kp197-tone-dock')?button:null,returnToOwnDirectory:returnToOwnDirectory,p19PaddingTop:unit.id==='P19'?target.style.paddingTop:undefined};
+    lessonState={target:target,returnY:window.scrollY,returnOffset:rect.top,returnToDock:button&&button.classList.contains('kp197-tone-dock')?button:null,returnToOwnDirectory:returnToOwnDirectory,returnUnitId:unit.id,p19PaddingTop:unit.id==='P19'?target.style.paddingTop:undefined};
     showRoadmapChrome(false);
     setLessonBodiesHidden();
 
@@ -250,20 +254,22 @@
     root.classList.remove('is-stage-detail-open');
     detail.hidden=true;
     root.querySelectorAll('.pinyin-world').forEach(function(w){w.hidden=false});
-    var target=lastStageId?document.querySelector('.pinyin-world[data-stage-id="'+lastStageId+'"]'):null;
+    var target=lastStageEntry;
     requestAnimationFrame(function(){
       if(target){
         var y=target.getBoundingClientRect().top+window.scrollY-lastStageTop;
         window.scrollTo({top:Math.max(0,y),left:0,behavior:'auto'});
+        target.focus({preventScroll:true});
       }
     });
   }
 
-  function openStage(stage,world,stageStatus){
+  function openStage(stage,entry,stageStatus){
+    lastStageEntry=entry;
+    lastStageTop=entry.getBoundingClientRect().top;
     lastStageId=stage.id;
     lastStageStatus=stageStatus||effectiveStageStatus(stage);
     if(root)root.classList.add('is-stage-detail-open');
-    lastStageTop=world.getBoundingClientRect().top;
     root.querySelectorAll('.pinyin-world').forEach(function(w){w.hidden=true});
     detail.replaceChildren();
     detail.hidden=false;
@@ -276,6 +282,14 @@
 
     var path=document.createElement('div'); path.className='pinyin-path pinyin-stage-detail-path';
     stageStatus=lastStageStatus;
+    if(stage.id==='P3-P8'||stage.id==='P9-P13'){
+      detail.classList.add('pinyin-island-detail');
+      path.classList.add('pinyin-island-trail');
+      path.setAttribute('aria-label',stage.title+'の学習ルート');
+      path.setAttribute('role','group');
+    }else{
+      detail.classList.remove('pinyin-island-detail');
+    }
     stage.units.forEach(function(unit){path.appendChild(unitButton(unit,stageStatus))});
     detail.appendChild(head); detail.appendChild(path);
 
@@ -283,6 +297,15 @@
       var note=document.createElement('div'); note.className='pinyin-stage-locked-note'; note.textContent='🔒 ここは前のステージを進めると開くよ。'; detail.appendChild(note);
     }
     requestAnimationFrame(function(){detail.scrollIntoView({block:'start',behavior:'auto'})});
+  }
+
+  function refreshStageStations(){
+    var path=detail?.querySelector('.pinyin-stage-detail-path');
+    var stage=course.stages.find(function(item){return item.id===lastStageId});
+    if(!path||!stage)return;
+    var focusedUnit=path.contains(document.activeElement)?document.activeElement.dataset.unitId:null;
+    path.replaceChildren(...stage.units.map(function(unit){return unitButton(unit,lastStageStatus)}));
+    if(focusedUnit)path.querySelector('[data-unit-id="'+focusedUnit+'"]')?.focus({preventScroll:true});
   }
 
   function stageCard(stage,index){
@@ -316,7 +339,7 @@
         openLesson(stage.units[0],open);
         return;
       }
-      openStage(stage,world,liveStatus);
+      openStage(stage,open,liveStatus);
     });
     world.appendChild(open);
     return world;
@@ -380,13 +403,12 @@
         /* 240: the consonant island opens the full P3–P8 unit picker, not only b·p·m·f. */
         button.addEventListener('click',function(){
           var stage=course.stages.find(function(item){return item.id==='P3-P8'});
-          var world=root.querySelector('.pinyin-world[data-stage-id="P3-P8"]');
           if(!stage)return;
           /* Island 2 has always been an entry point; preserve that access while keeping per-unit progression locks. */
-          openStage(stage,world||button,'next');
+          openStage(stage,button,'next');
         });
       }
-      else if(spec.n===3){button.addEventListener('click',function(){var stage=course.stages.find(function(item){return item.id==='P9-P13'});if(!stage)return;var world=root.querySelector('.pinyin-world[data-stage-id="P9-P13"]');openStage(stage,world||button,effectiveStageStatus(stage))})}
+      else if(spec.n===3){button.addEventListener('click',function(){var stage=course.stages.find(function(item){return item.id==='P9-P13'});if(!stage)return;openStage(stage,button,effectiveStageStatus(stage))})}
       else if(spec.n===7){
         /* P15 is already a finished lesson. Resolve its node at CLICK time, not
            during the roadmap render, to avoid a permanently dead sixth island
@@ -589,9 +611,7 @@
     refreshIslandCompletion();
     refreshRoadmapLocks();
     if(lessonState||!detail||detail.hidden)return;
-    var world=document.querySelector('.pinyin-world[data-stage-id="'+lastStageId+'"]');
-    var stage=course.stages.find(function(item){return item.id===lastStageId});
-    if(world&&stage)openStage(stage,world,lastStageStatus||effectiveStageStatus(stage));
+    refreshStageStations();
   });
 
   window.addEventListener('koepandaDevModeChanged',function(){
@@ -604,11 +624,7 @@
     if(!root)return;
     refreshIslandCompletion();
     refreshRoadmapLocks();
-    var world=document.querySelector('.pinyin-world[data-stage-id="'+lastStageId+'"]');
-    if(detail && !detail.hidden && (lastStageId==='P3-P8'||lastStageId==='P9-P13') && world){
-      var stage=course.stages.find(function(x){return x.id===lastStageId});
-      if(stage)openStage(stage,world,lastStageStatus||effectiveStageStatus(stage));
-    }
+    if(!lessonState && detail && !detail.hidden)refreshStageStations();
   });
 
   window.addEventListener('koepandaVowelProgressChanged',function(){
