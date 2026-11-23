@@ -18,7 +18,9 @@ h2 { font-size: 1rem; margin-bottom: 12px; }
 }
 .zh { display: block; font-size: 1.14rem; font-weight: 750; line-height: 1.45; }
 .hero .zh { font-size: clamp(1.55rem, 6.5vw, 2rem); }
-.zh:focus { outline: none; }
+/* Navigation moves focus here for screen readers while scrolling to the content. */
+.hero h1[tabindex="-1"]:focus,
+.pane[tabindex="-1"]:focus { outline: none; }
 .py { display: block; font-size: .75rem; color: #685644; }
 .jp { display: block; color: #4b655b; font-size: .82rem; margin-top: 4px; }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 3vw, 18px); }
