@@ -8,3 +8,22 @@
 #kidsThreeSpellingLesson.kp223-three-spelling .kp223-hear.is-playing{width:94px;min-width:86px;max-width:94px;height:36px;padding:0 7px;font-size:.64rem;flex:0 0 auto}
 #kidsWholeSyllableLesson.kp240-whole .kp240-whole-hero-label{pointer-events:none}
 @media(max-width:380px){#kidsCourse>#kidsThreeSpellingLesson.kp223-three-spelling{padding-right:11px!important;padding-left:11px!important}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-reading{grid-template-columns:minmax(0,1fr) 68px;gap:4px 8px;padding:12px 11px 10px!important}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-cue-art{width:68px;height:68px}#kidsThreeSpellingLesson.kp223-three-spelling .kp223-hear.is-playing{width:80px;min-width:76px;max-width:80px;font-size:.59rem}}
+
+/* Whole syllables sit directly on Xiao Yin's illustrated board. */
+:is(#kidsWholeSyllableLesson, #kidsWholeSyllableP15).kp205 .kp192-blend > .kp240-whole-hero-label {
+  left: 66% !important;
+  top: 63% !important;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #315f52 !important;
+  line-height: 1.15 !important;
+  white-space: nowrap;
+}
+
+:is(#kidsWholeSyllableLesson, #kidsWholeSyllableP15).kp205 .kp192-blend > .kp156-speaking-target {
+  color: #77551f !important;
+}
