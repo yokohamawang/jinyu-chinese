@@ -2,11 +2,11 @@
 (function(){
 'use strict';
 var practiceBank=[
-      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/p14-sequence-177/zhi.wav?v=301.290',choices:['zhī','zī','chī','shī'],answer:'zhī',hint:'整体認読の音は、声母と韻母を一つずつ分けずに読みます。',explain:'zhī は整体認読の音です。舌を巻く zh の音をそのまま一つのまとまりで聞こう。'},
+      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/course-134/zhi1.wav',choices:['zhī','zī','chī','shī'],answer:'zhī',hint:'整体認読の音は、声母と韻母を一つずつ分けずに読みます。',explain:'zhī は整体認読の音です。舌を巻く zh の音をそのまま一つのまとまりで聞こう。'},
       {interaction:'listen',kind:'二拼',prompt:'音声と同じ音節はどれ？',audio:'assets/audio/p16-sequence/bo.wav',choices:['mō','pō','bō','fō'],answer:'bō',hint:'声母の違いを聞き分けよう。二拼は声母と韻母をつなぎます。',explain:'音声は bō（b＋o）。mō・pō・fō も二拼ですが、音声と同じなのは bō です。'},
       {interaction:'structure3',kind:'三拼',prompt:'声母・介音・韻母の三つでできている音節はどれ？',choices:['qiáo','bō','zhī','yī'],answer:'qiáo',hint:'三拼は「声母＋介音＋韻母」の三つでできています。',explain:'qiáo は q＋i＋ao。bō は二拼、zhī と yī は整体認読です。'},
       {interaction:'listen',kind:'声調',prompt:'音声と同じ声調の「wu」を選ぼう。',audio:'assets/audio/course-134/wu3.wav',choices:['wū','wú','wǔ','wù'],answer:'wǔ',hint:'一声は平ら、二声は上がる、三声は下がって上がる、四声は下がります。',explain:'これは第三声の wǔ。声調記号の位置と形も一緒に確認しよう。'},
-      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/p15-staged-177/yue.wav?v=301.290',choices:['yuè','yè','yú','yuán'],answer:'yuè',hint:'音の最初と最後をよく聞いて比べましょう。',explain:'聞こえた音は yuè。整体認読のまとまりとして覚えます。'},
+      {interaction:'listen',kind:'整体認読',prompt:'音声と同じ音節を選ぼう。',audio:'assets/audio/course-134/yue1.wav',choices:['yuē','yē','yū','yuān'],answer:'yuē',hint:'音の最初と最後をよく聞いて比べましょう。',explain:'聞こえた音は yuē。整体認読のまとまりとして覚えます。'},
       {interaction:'structure2',kind:'二拼',prompt:'声母と韻母の二つでできている音節はどれ？',choices:['dé','guā','zhī','yī'],answer:'dé',hint:'二拼は「声母＋韻母」の二つでできています。',explain:'dé は d＋e。guā は三拼、zhī と yī は整体認読です。'},
       {interaction:'structure3',kind:'三拼',prompt:'声母・介音・韻母の三つでできている音節はどれ？',choices:['guā','bō','chī','yī'],answer:'guā',hint:'三拼は「声母＋介音＋韻母」の三つでできています。',explain:'guā は g＋u＋a。bō は二拼、chī と yī は整体認読です。'},
       {interaction:'listen',kind:'声調',prompt:'音声と同じ声調を選ぼう。',audio:'assets/audio/course-134/yi4.wav',choices:['yī','yí','yǐ','yì'],answer:'yì',hint:'声調記号の向きと音の動きを一緒に確認しましょう。',explain:'聞こえたのは第四声 yì。短く下がる音です。'},
@@ -29,38 +29,82 @@ var writtenExam=[
 var finalBank=practiceBank.filter(function(q){return q.interaction==='listen'}).slice(0,4).concat(
   [1,2,4,5,6,8].map(function(i){var q=writtenExam[i];return {kind:['','声調','つづり','','三拼','声母','軽声','','韻母'][i],prompt:q.q,choices:q.a,answer:q.a[q.ok],hint:q.note,explain:q.note}})
 );
+var comparisonGroups=[
+  {labels:['zhī','zī','chī','shī'],files:['zhi1','zi1','chi1','shi1'],folder:'course-134',
+   tips:['zh：舌先を少し反らせる。','z：舌先を前歯の裏に近づける。','ch：舌先を少し反らせ、息を強く出す。','sh：舌先を少し反らせ、息をすべらせる。']},
+  {labels:['bō','mō','pō','fō'],files:['bo','mo','po','fo'],folder:'p16-sequence',
+   tips:['b：唇を閉じてから、息を強く出さずに開く。','m：唇を閉じて、鼻に響かせる。','p：唇を閉じてから、息を強く出す。','f：上の歯を下唇に軽く当てて息を出す。']},
+  {labels:['yuē','yē','yū','yuān'],files:['yue1','ye1','yu1','yuan1'],folder:'course-134',
+   tips:['yuē：唇を丸めた音から e へつなぐ。','yē：唇を丸めず、i に近い音から e へつなぐ。','yū：丸めた唇のまま一つの母音を伸ばす。','yuān：最後に n の音が聞こえる。']},
+  {labels:['wū','wú','wǔ','wù'],files:['wu1','wu2','wu3','wu4'],folder:'course-134'},
+  {labels:['yī','yí','yǐ','yì'],files:['yi1','yi2','yi3','yi4'],folder:'course-134'}
+];
+var toneTips=['高さを保つ。','下から上に上がる。','いったん低くしてから上げる。','上から下に落とす。'];
+function addComparison(parent,q,selected,play){
+ if(!q.audio)return false;
+ var group=comparisonGroups.find(function(item){return item.labels.includes(q.answer)&&item.labels.includes(selected)});
+ if(!group)return false;
+ var card=document.createElement('div');card.className='kp-pc-compare';
+ var title=document.createElement('strong');title.textContent='小音と聞きくらべ';card.appendChild(title);
+ [selected,q.answer].forEach(function(label,i){
+  var index=group.labels.indexOf(label),row=document.createElement('div');
+  var button=document.createElement('button');button.type='button';
+  button.textContent='▶ '+(i?'正解 ':'えらんだ音 ')+label;
+  button.addEventListener('click',function(){
+   var source=i?q.audio:'assets/audio/'+group.folder+'/'+group.files[index]+'.wav';
+   play(source);
+  });
+  var tip=document.createElement('span');tip.textContent=(group.tips||toneTips)[index];
+  row.append(button,tip);card.appendChild(row);
+ });
+ parent.appendChild(card);return true;
+}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),v=a[i];a[i]=a[j];a[j]=v}return a}
 function mount(root,isFinal){
  if(!root||root.dataset.largeCards)return;root.dataset.largeCards='1';root.classList.add('kp-pinyin-cards');
  root.innerHTML='<div class="kp-pc-scroll"><header class="kp-pc-heading"><img src="./assets/brand/xiaoyin-mascot.png" alt="小音"><div><span class="kp-pc-island"></span><h2></h2></div></header>'+
  '<div class="kp-pc-modes" role="group" aria-label="練習モード"><button type="button" data-mode="practice">自由練習</button><button type="button" data-mode="test">10問チャレンジ</button></div>'+
  '<div class="kp-pc-progress"><span></span><div role="progressbar" aria-label="回答した問題" aria-valuemin="0" aria-valuemax="10"><i></i></div></div>'+
- '<article class="kp-pc-card"><div class="kp-pc-kind"></div><h3 tabindex="-1"></h3><button type="button" class="kp-pc-audio">▶ 音を聞く</button><div class="kp-pc-parts" aria-label="音の構成" hidden></div><div class="kp-pc-choices"></div><details class="kp-pc-hint"><summary>ヒントを見る</summary><p></p></details><p class="kp-pc-feedback" role="status" aria-live="polite"></p><section class="kp-pc-results" hidden></section></article>'+
+ '<article class="kp-pc-card"><div class="kp-pc-kind"></div><h3 tabindex="-1"></h3><button type="button" class="kp-pc-audio">▶ 音を聞く</button><div class="kp-pc-parts" aria-label="音の構成" hidden></div><div class="kp-pc-choices"></div><details class="kp-pc-hint"><summary>ヒントを見る</summary><p></p></details><p class="kp-pc-feedback" role="status" aria-live="polite"></p><div class="kp-pc-correction"></div><section class="kp-pc-results" hidden></section></article>'+
  '</div><footer class="kp-pc-actions"><button type="button" class="kp-pc-secondary">やり直す</button><button type="button" class="kp-pc-next">次へ →</button></footer>';
- var $=function(s){return root.querySelector(s)}, modes=$('.kp-pc-modes'),count=$('.kp-pc-progress>span'),track=$('[role="progressbar"]'),bar=$('.kp-pc-progress i'),kind=$('.kp-pc-kind'),prompt=$('h3'),hear=$('.kp-pc-audio'),parts=$('.kp-pc-parts'),hint=$('details'),choices=$('.kp-pc-choices'),feedback=$('.kp-pc-feedback'),results=$('.kp-pc-results'),next=$('.kp-pc-next'),secondary=$('.kp-pc-secondary');
+ var $=function(s){return root.querySelector(s)}, modes=$('.kp-pc-modes'),count=$('.kp-pc-progress>span'),track=$('[role="progressbar"]'),bar=$('.kp-pc-progress i'),kind=$('.kp-pc-kind'),prompt=$('h3'),hear=$('.kp-pc-audio'),parts=$('.kp-pc-parts'),hint=$('details'),choices=$('.kp-pc-choices'),feedback=$('.kp-pc-feedback'),correction=$('.kp-pc-correction'),results=$('.kp-pc-results'),next=$('.kp-pc-next'),secondary=$('.kp-pc-secondary');
  $('.kp-pc-island').textContent=isFinal?'島10 ・最後のチャレンジ':'島9 ・音のまとめ';$('h2').textContent=isFinal?'最終テスト':'総合練習';modes.hidden=isFinal;
- var mode=isFinal?'test':'practice',session=[],index=0,score=0,wrong=[],answered=false,finished=false,retryOnly=false,audio=null,generation=0;
+ var mode=isFinal?'test':'practice',session=[],index=0,score=0,wrong=new Map(),answered=false,finished=false,retryOnly=false,audio=null,generation=0;
  function stop(){generation++;if(audio){audio.pause();audio.onended=null;audio.onerror=null;audio=null}hear.disabled=false;hear.classList.remove('is-playing')}
- function play(){stop();var q=session[index];if(!q||!q.audio||finished)return;var token=generation,clip=new Audio(new URL(q.audio,document.baseURI).href);audio=clip;hear.disabled=true;hear.classList.add('is-playing');
- function end(message){if(token!==generation)return;stop();if(message)feedback.textContent=message}
- clip.onended=function(){end()};clip.onerror=function(){end('音を読み込めませんでした。もう一度押してね。')};try{var p=clip.play();if(p&&p.catch)p.catch(function(){end('もう一度「音を聞く」を押してね。')})}catch(e){end('もう一度「音を聞く」を押してね。')}
+ function playAudio(source){
+  stop();if(!source)return;
+  var token=generation,clip=new Audio(new URL(source,document.baseURI).href);audio=clip;
+  hear.disabled=true;hear.classList.add('is-playing');
+  function end(message){
+   if(token!==generation)return;
+   stop();if(message)feedback.textContent=message;
+  }
+  clip.onended=function(){end()};
+  clip.onerror=function(){end('音を読み込めませんでした。もう一度押してね。')};
+  try{var playback=clip.play();if(playback)playback.catch(function(){end('もう一度、音声ボタンを押してね。')})}
+  catch(e){end('もう一度、音声ボタンを押してね。')}
  }
+ function play(){if(!finished)playAudio(session[index]?.audio)}
  function progress(value){track.setAttribute('aria-valuemax',session.length);track.setAttribute('aria-valuenow',value);bar.style.width=(value/session.length*100)+'%'}
- function draw(focus){stop();answered=false;finished=false;root.classList.remove('is-result');var q=session[index];results.hidden=true;results.replaceChildren();kind.textContent=q.kind;prompt.textContent=q.prompt;count.textContent=(index+1)+' / '+session.length+(retryOnly?' ・復習':'');progress(index);hear.hidden=!q.audio;hint.hidden=mode!=='practice';hint.open=false;hint.querySelector('p').textContent=q.hint||q.explain;parts.replaceChildren();parts.hidden=!/^structure/.test(q.interaction||'');if(!parts.hidden){(q.interaction==='structure3'?['声母','介音','韻母']:['声母','韻母']).forEach(function(label,i){if(i){var plus=document.createElement('b');plus.textContent='＋';parts.appendChild(plus)}var s=document.createElement('span');s.textContent=label;parts.appendChild(s)})}
- choices.hidden=false;choices.replaceChildren();choices.classList.toggle('has-long-text',q.choices.some(function(c){return c.length>13}));shuffle(q.choices.slice()).forEach(function(choice){var b=document.createElement('button');b.type='button';var label=document.createElement('span');label.textContent=choice;b.appendChild(label);b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){if(answered)return;stop();var ok=choice===q.answer;b.setAttribute('aria-pressed','true');if(mode==='practice'&&!ok){b.classList.add('is-wrong');b.setAttribute('aria-label',choice+'：もう一度');feedback.textContent='もう一度！ ヒントも見てみよう。';return}answered=true;if(ok)score++;else wrong.push(q);choices.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.firstChild.textContent===q.answer){x.classList.add('is-answer');x.setAttribute('aria-label',x.firstChild.textContent+'：正解');var mark=document.createElement('small');mark.textContent='✓ 正解';x.appendChild(mark)}else if(x===b){x.classList.add('is-wrong');var mark=document.createElement('small');mark.textContent='もう一度覚えよう';x.appendChild(mark)}});feedback.textContent=(ok?'正解！ ':'正解は「'+q.answer+'」。 ')+q.explain;next.disabled=false;progress(index+1)});choices.appendChild(b)});
+ function draw(focus){stop();answered=false;finished=false;root.classList.remove('is-result');var q=session[index];results.hidden=true;results.replaceChildren();correction.replaceChildren();kind.textContent=q.kind;prompt.textContent=q.prompt;count.textContent=(index+1)+' / '+session.length+(retryOnly?' ・復習':'');progress(index);hear.hidden=!q.audio;hint.hidden=mode!=='practice';hint.open=false;hint.querySelector('p').textContent=q.hint||q.explain;parts.replaceChildren();parts.hidden=!/^structure/.test(q.interaction||'');if(!parts.hidden){(q.interaction==='structure3'?['声母','介音','韻母']:['声母','韻母']).forEach(function(label,i){if(i){var plus=document.createElement('b');plus.textContent='＋';parts.appendChild(plus)}var s=document.createElement('span');s.textContent=label;parts.appendChild(s)})}
+ choices.hidden=false;choices.replaceChildren();choices.classList.toggle('has-long-text',q.choices.some(function(c){return c.length>13}));shuffle(q.choices.slice()).forEach(function(choice){var b=document.createElement('button');b.type='button';var label=document.createElement('span');label.textContent=choice;b.appendChild(label);b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){if(answered)return;stop();var ok=choice===q.answer;b.setAttribute('aria-pressed','true');if(mode==='practice'&&!ok){b.classList.add('is-wrong');b.setAttribute('aria-label',choice+'：もう一度');wrong.set(q,choice);
+ correction.replaceChildren();
+ var compared=addComparison(correction,q,choice,playAudio);
+ feedback.textContent=compared?'二つの音を聞いて、もう一度えらぼう。':'おしい！ '+q.explain;
+ if(compared)correction.scrollIntoView({block:'nearest'});return}answered=true;if(ok)score++;else wrong.set(q,choice);choices.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.firstChild.textContent===q.answer){x.classList.add('is-answer');x.setAttribute('aria-label',x.firstChild.textContent+'：正解');var mark=document.createElement('small');mark.textContent='✓ 正解';x.appendChild(mark)}else if(x===b){x.classList.add('is-wrong');var mark=document.createElement('small');mark.textContent='もう一度覚えよう';x.appendChild(mark)}});feedback.textContent=(ok?'正解！ ':'正解は「'+q.answer+'」。 ')+q.explain;next.disabled=false;progress(index+1)});choices.appendChild(b)});
  feedback.textContent=q.audio?'音を聞いて、カードを選ぼう。':'カードを選ぼう。';next.disabled=mode!=='practice';next.textContent=index===session.length-1?'結果を見る':'次へ →';secondary.hidden=isFinal;secondary.disabled=false;secondary.textContent=mode==='practice'?'やり直す':'最初から';if(focus){prompt.focus({preventScroll:true})}
  }
  function align(){root.querySelector('.kp-pc-scroll').scrollTop=0}
- function begin(newMode,subset){stop();mode=newMode;retryOnly=!!subset;session=shuffle((subset|| (isFinal?finalBank:practiceBank)).slice());index=0;score=0;wrong=[];modes.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});draw(false)}
- function finish(){if(finished)return;stop();finished=true;root.classList.add('is-result');kind.textContent='チャレンジ完了';count.textContent='おつかれさま！';progress(session.length);prompt.textContent=mode==='practice'?'いろいろな音を練習できたね！':score===session.length?'全問正解！ おめでとう！':'最後までよくがんばったね！';hear.hidden=true;parts.hidden=true;hint.hidden=true;choices.hidden=true;feedback.textContent=mode==='practice'?'次は10問チャレンジで力だめし！':'正解 '+score+' / '+session.length+'問';results.hidden=false;results.replaceChildren();
- if(wrong.length){var title=document.createElement('h4');title.textContent='もう一度覚えよう';results.appendChild(title);wrong.forEach(function(q){var d=document.createElement('details'),s=document.createElement('summary'),p=document.createElement('p');s.textContent=q.kind+'：'+q.answer;p.textContent=q.prompt+' '+q.explain;d.append(s,p);results.appendChild(d)})}
- secondary.hidden=!wrong.length;secondary.textContent='間違えた問題だけ';next.disabled=false;next.textContent=mode==='practice'?'10問チャレンジへ':'もう一度チャレンジ';
+ function begin(newMode,subset){stop();mode=newMode;retryOnly=!!subset;session=shuffle((subset|| (isFinal?finalBank:practiceBank)).slice());index=0;score=0;wrong=new Map();modes.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});draw(false)}
+ function finish(){if(finished)return;stop();finished=true;root.classList.add('is-result');kind.textContent='チャレンジ完了';count.textContent='おつかれさま！';progress(session.length);prompt.textContent=retryOnly?'聞きくらべができたね！':mode==='practice'?'いろいろな音を練習できたね！':score===session.length?'全問正解！ おめでとう！':'最後までよくがんばったね！';hear.hidden=true;parts.hidden=true;hint.hidden=true;choices.hidden=true;feedback.textContent=retryOnly?'復習 '+session.length+'問':mode==='practice'?'次は10問チャレンジで力だめし！':'正解 '+score+' / '+session.length+'問';results.hidden=false;results.replaceChildren();correction.replaceChildren();
+ if(wrong.size){var title=document.createElement('h4');title.textContent='もう一度覚えよう';results.appendChild(title);wrong.forEach(function(selected,q){var d=document.createElement('details'),s=document.createElement('summary'),p=document.createElement('p');s.textContent=q.kind+'：'+q.answer;p.textContent=q.prompt+' '+q.explain;d.append(s,p);addComparison(d,q,selected,playAudio);results.appendChild(d)})}
+ secondary.hidden=!wrong.size;secondary.textContent='間違えた問題だけ';next.disabled=false;next.textContent=retryOnly?(isFinal?'最終テストへ':'総合練習へ'):mode==='practice'?'10問チャレンジへ':'もう一度チャレンジ';
  if(mode==='test'&&!retryOnly){if(isFinal&&score===session.length){try{localStorage.setItem('koepandaFinalP21Complete','1')}catch(e){}window.dispatchEvent(new Event('koepandaCompoundProgressChanged'))}
- var config={score:score,total:session.length,title:score===session.length?'全問正解！':'最後までできたね！',kicker:isFinal?'最終テスト':'総合練習',message:wrong.length?'間違えた問題を、小音ともう一度練習しよう。':'小音も大よろこび！ よくがんばりました。'};
+ var config={score:score,total:session.length,title:score===session.length?'全問正解！':'最後までできたね！',kicker:isFinal?'最終テスト':'総合練習',message:wrong.size?'間違えた問題を、小音ともう一度練習しよう。':'小音も大よろこび！ よくがんばりました。'};
  if(typeof window.koepandaQueueResultCelebration==='function')window.koepandaQueueResultCelebration(config,120);
  }align();prompt.focus({preventScroll:true})
  }
- hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){begin('test');align();return}if(index<session.length-1){index++;draw(event.detail===0);align()}else finish()});secondary.addEventListener('click',function(){if(finished){begin('test',wrong);align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
+ hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){begin(retryOnly&&!isFinal?'practice':'test');align();return}if(index<session.length-1){index++;draw(event.detail===0);align()}else finish()});secondary.addEventListener('click',function(){if(finished){begin('practice',Array.from(wrong.keys()));align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
  window.addEventListener('koepandaP18Stop',stop);window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',function(){if(document.hidden)stop()});
  var visibility=new MutationObserver(function(){if(root.hidden)stop()});visibility.observe(root,{attributes:true,attributeFilter:['hidden']});
  if(!isFinal)window.addEventListener('koepandaP18Reset',function(){begin('practice');requestAnimationFrame(function(){requestAnimationFrame(align)})});begin(mode);
