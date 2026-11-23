@@ -7,7 +7,7 @@
  popup.innerHTML='<div class="kp351-test-card"><header><div><small id="kp353TestLesson">今日の漢字</small><h2>ミニテスト</h2></div><button type="button" id="kp351Close" aria-label="テストを閉じる">×</button></header><div id="kp351TestBody" class="kp351-test-body" aria-live="polite"></div></div>';
  document.body.append(popup);
  const body=popup.querySelector('#kp351TestBody'),subtitle=popup.querySelector('#kp353TestLesson');
- let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false,onExit;
+ let feedbackOverlay=null,entries=[],questions=[],index=0,score=0,errors=[],corrects=[],locked=false,awaitingWriting=false,writingMistake=false,writingWrongStroke=0,lessonId='',reviewOnly=false,reviewRows=[],saving=false,previewOnly=false,onExit,originalPass=null,immediateReview=false;
  const shuffle=arr=>{const result=arr.slice();for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result};
  const add=(tag,cls,text,parent=body)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;parent.append(n);return n};
  const button=(label,fn,cls='')=>{const n=add('button','kp351-action '+cls,label);n.type='button';n.onclick=fn;return n};
@@ -46,10 +46,10 @@
    }
    if(reviewOnly){
      const allowed=new Set(['listen','pinyin','stroke','writing']);
-     questions=reviewRows.filter(row=>allowed.has(row.type)).map(row=>({type:row.type,item:entries.find(e=>e.char===row.char)})).filter(q=>q.item);
+     questions=reviewRows.filter(row=>allowed.has(row.type)).map(row=>({type:row.type,stroke:row.stroke,item:entries.find(e=>e.char===row.char)})).filter(q=>q.item);
      if(!questions.length)questions=[{type:'listen',item:pick(0)}];
    }
-   questions.forEach(q=>{if(q.type==='stroke')q.stroke=Math.floor(Math.random()*q.item.strokes.length)});
+   questions.forEach(q=>{if(q.type==='stroke'&&!Number.isInteger(q.stroke))q.stroke=Math.floor(Math.random()*q.item.strokes.length)});
    index=0;score=0;errors=[];corrects=[];locked=false;awaitingWriting=false;writingMistake=false;
  }
  async function getProgress(){
@@ -114,7 +114,7 @@
  function resolve(q,value,correct){
    if(locked)return;locked=true;
    if(correct){score++;corrects.push({char:q.item.char,type:q.type})}
-   else errors.push({char:q.item.char,type:q.type,wrong:String(value),correct:answerKey(q)});
+   else errors.push({char:q.item.char,type:q.type,wrong:String(value),correct:answerKey(q),stroke:q.stroke});
    const message=correct?'○ 正解！ よくできました。':q.type==='writing'
      ?('× '+String(value)+'。その筆画の始点・方向を確認して、もう一度練習しよう。')
      :('× 「'+q.item.char+'」は「'+q.item.pinyin+'」。正解：'+answerKey(q));
@@ -225,24 +225,39 @@
    const passed=reviewOnly?saved.correctedPass:score>=passingScore();
    body.replaceChildren();add('div','kp351-mascot',passed?'🎉':'🌱');
    const title=previewOnly?'テストモードの結果':passed?'合格！ レッスンクリア！':
-     reviewOnly?(errors.length?'もう一度、まちがいを確認しよう':'復習ができました'):'あと少し！ 復習してみよう';
+     reviewOnly?(errors.length?'もう一度、まちがいを確認しよう':immediateReview?'まちがえた問題を直せたね！':'復習ができました'):'あと少し！ 復習してみよう';
    add('h3','kp351-title',title);
    add('div','kp351-score',score+' / '+questions.length+'問 正解');
    if(errors.length){
      if(!previewOnly)add('p','kp351-description','まちがえた問題は復習ノートに記録しました。');
      const review=add('div','kp351-review');errors.forEach(e=>add('span','',e.char+' · '+e.type+' · '+e.correct,review));
    }
-   if(passed&&!previewOnly){
-     const total=reviewOnly?(passingScore()===8?10:6):questions.length;
-     confirmPass(reviewOnly?total:score,total);
+   if(passed&&!previewOnly&&!reviewOnly)originalPass={score,total:questions.length};
+   if(errors.length){
+     button('まちがえた問題だけ練習',()=>{
+       const seen=new Set();
+       reviewRows=errors.filter(row=>{
+         const key=JSON.stringify([row.char,row.type,row.stroke]);
+         if(seen.has(key))return false;
+         seen.add(key);return true;
+       });
+       reviewOnly=true;immediateReview=true;
+       makeQuestions();renderQuestion();
+     },passed?'':'primary');
    }
-   else if(reviewOnly||previewOnly)button(onExit?'単元一覧へ戻る':'戻る',exitTest,'primary');
-   else{button('もう一度チャレンジ',()=>{makeQuestions();renderQuestion()},'primary');button(onExit?'単元一覧へ戻る':'学習に戻る',exitTest)}
+   if(originalPass)confirmPass(originalPass.score,originalPass.total);
+   else if(passed&&!previewOnly){
+     const total=passingScore()===8?10:6;
+     confirmPass(total,total);
+   }
+   else if(reviewOnly||previewOnly)button(onExit?'単元一覧へ戻る':'戻る',exitTest,errors.length?'':'primary');
+   else{button('もう一度チャレンジ',()=>{makeQuestions();renderQuestion()},errors.length?'':'primary');button(onExit?'単元一覧へ戻る':'学習に戻る',exitTest)}
 
  }
  window.KP_HANZI_UNIT_TEST={
    open(chars,options={}){
      if(saving||!Array.isArray(chars)||chars.length<3)return;
+     originalPass=null;immediateReview=false;
      lessonId=options.lessonId||'pre4-u01';
      entries=chars.map(char=>{const source=HANZI_LESSONS.find(x=>x.char===char);return source?{char,pinyin:source.pinyin,strokes:source.strokes}:null}).filter(Boolean);
      if(entries.length!==chars.length||entries.some(e=>!e.pinyin||!Array.isArray(e.strokes)||!e.strokes.length))return;
