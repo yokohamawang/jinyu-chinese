@@ -181,7 +181,7 @@
     if(!user){
       snapshot=null;
       setMessage(main,'ログインすると友だち機能を使えます。',false);
-      body.innerHTML=`<section class="kp-friends-card kp-friends-login"><img class="kp-friends-illustration kp-friends-xiaoyin" src="./assets/brand/xiaoyin-mascot.png" alt="小音"><h2>アカウントで友だちとつながろう</h2><p>招待コード、申請、カード、シール交換はアカウントに保存されます。端末を変えても続けられます。</p><button class="kp-primary" data-action="account">新規登録・ログイン</button></section>`;
+      body.innerHTML=`<section class="kp-friends-card kp-friends-login"><img class="kp-friends-xiaoyin" src="./assets/brand/xiaoyin-friends.webp" alt="小音"><div class="kp-friends-login-copy"><h2>アカウントで友だちとつながろう</h2><p>招待コード、申請、カード、シール交換はアカウントに保存されます。端末を変えても続けられます。</p><button class="kp-primary" data-action="account">新規登録・ログイン</button></div></section>`;
       return;
     }
     setMessage(main,'データベースと同期しています…',false);
@@ -248,7 +248,7 @@
     const incomingGreetingsUnread=incomingGreetings.filter(g=>!g.read_at).length;
     const onlineCount=Object.values(onlineByFriend).filter(Boolean).length;
     const tab=(id,label,count)=>`<button class="kp-friends-tab ${activeTab===id?'is-active':''}" role="tab" aria-selected="${activeTab===id}" data-action="friends-tab" data-tab="${id}">${label}${count?`<span>${count}</span>`:''}</button>`;
-    const friendsPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon"><img src="./assets/brand/xiaoyin-mascot.png" alt=""></span><div><h2>友だち一覧</h2><p>学習の様子を見て、カードやシールで応援できます。</p></div></div>
+    const friendsPanel=`<section class="kp-friends-card"><div class="kp-friends-section-heading"><span class="kp-friends-section-icon"><img src="./assets/brand/xiaoyin-friends.webp" alt=""></span><div><h2>友だち一覧</h2><p>学習の様子を見て、カードやシールで応援できます。</p></div></div>
       ${friends.length?`<div class="kp-friends-list">${friends.map(id=>{
         const p=profiles[id]||{};const summary=progress[id];
         const presence=!p.online_visible?'オンライン状態は非公開':onlineByFriend[id]===true?'オンライン':onlineByFriend[id]===false?'オフライン':'確認中';
