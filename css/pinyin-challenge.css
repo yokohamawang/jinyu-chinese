@@ -79,3 +79,27 @@ body.app-kids-mode:has(.kp-pinyin-cards.is-roadmap-lesson-active){overflow:hidde
   font-size: .82rem;
   line-height: 1.45;
 }
+
+.kp-pc-reward {
+  display: block;
+  min-height: 44px;
+  margin: 12px auto 0;
+  padding: 8px 16px;
+  border: 1px solid #d3e4d7;
+  border-radius: 12px;
+  background: #f4f8ef;
+  color: #315d4c;
+  font-weight: 800;
+}
+.kp-pinyin-cards.is-result .kp-pc-secondary {
+  order: 1;
+  background: #357465;
+  border-color: #357465;
+  color: #fff;
+}
+.kp-pinyin-cards.is-result .kp-pc-secondary:not([hidden]) ~ .kp-pc-next {
+  order: 2;
+  background: #fffefa;
+  border-color: #d3e4d7;
+  color: #315d4c;
+}

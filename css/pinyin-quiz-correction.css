@@ -1,0 +1,29 @@
+#kidsCourse .kp-chapter-correction {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #d5e4d8;
+  border-radius: 14px;
+  background: #f3f8ef;
+  color: #315d4c;
+}
+#kidsCourse .kp-chapter-correction[hidden] { display: none; }
+#kidsCourse .kp-chapter-correction > div,
+#kidsCourse .kp-chapter-review-compare > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-block: 6px;
+}
+#kidsCourse .kp-chapter-correction button {
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid #cddfd1;
+  border-radius: 10px;
+  background: #fffefa;
+  color: #315d4c;
+  font-weight: 700;
+}
+#kidsCourse .kp-chapter-correction button:disabled { opacity: .55; }
+#kidsCourse .kp-chapter-correction span,
+#kidsCourse .kp-chapter-correction p { font-size: .87rem; line-height: 1.45; }
