@@ -149,7 +149,35 @@ let strokeIndex=0,strokeTimer=null;function medianPath(points){return points.map
     onEnd:()=>app.classList.remove('is-speaking'),
     onError:()=>{app.classList.remove('is-speaking');showToast('端末の中国語音声を再生できませんでした')}
   });
-}function playHanziPronunciation(){const text=String($('#char').textContent||'').trim(),app=$('.app'),url=hanziTtsCache.get(text);if(!text)return;if(url){if(hanziAudio){hanziAudio.pause();hanziAudio.currentTime=0}hanziAudio=new Audio(url);hanziAudio.preload='auto';hanziAudio.playsInline=true;hanziAudio.onplaying=()=>app.classList.add('is-speaking');hanziAudio.onended=()=>app.classList.remove('is-speaking');hanziAudio.onerror=()=>{app.classList.remove('is-speaking');try{playHanziSystemVoice(text)}catch(e){showToast('端末で中国語音声を利用できません')}};hanziAudio.play().catch(()=>{try{playHanziSystemVoice(text)}catch(e){showToast('端末で中国語音声を利用できません')}});return}try{playHanziSystemVoice(text)}catch(e){showToast('端末で中国語音声を利用できません')}getHanziTtsUrl(text).catch(()=>{})}function playHanziRecognitionCharacter(text){const key=String(text||'').trim();if(!key)return;try{if(hanziAudio){hanziAudio.pause();hanziAudio.currentTime=0;hanziAudio=null}playHanziSystemVoice(key)}catch(e){showToast('端末で中国語音声を利用できません')}}$('#speak').onclick=playHanziPronunciation;function showToast(message){$('#toast').textContent=message;$('#toast').classList.add('on');setTimeout(()=>$('#toast').classList.remove('on'),2200)}function syncVisualHeight(){if(window.visualViewport){document.documentElement.style.setProperty('--koepanda-visual-height',window.visualViewport.height+'px');document.documentElement.style.setProperty('--koepanda-visual-top',window.visualViewport.offsetTop+'px')}}syncVisualHeight();window.visualViewport?.addEventListener('resize',syncVisualHeight);window.addEventListener('resize',syncVisualHeight);new ResizeObserver(resize).observe($('#paper'));render(0);
+}function playHanziPronunciation(){const text=String($('#char').textContent||'').trim(),app=$('.app'),url=hanziTtsCache.get(text);if(!text)return;if(url){if(hanziAudio){hanziAudio.pause();hanziAudio.currentTime=0}hanziAudio=new Audio(url);hanziAudio.preload='auto';hanziAudio.playsInline=true;hanziAudio.onplaying=()=>app.classList.add('is-speaking');hanziAudio.onended=()=>app.classList.remove('is-speaking');hanziAudio.onerror=()=>{app.classList.remove('is-speaking');try{playHanziSystemVoice(text)}catch(e){showToast('端末で中国語音声を利用できません')}};hanziAudio.play().catch(()=>{try{playHanziSystemVoice(text)}catch(e){showToast('端末で中国語音声を利用できません')}});return}try{playHanziSystemVoice(text)}catch(e){showToast('端末で中国語音声を利用できません')}getHanziTtsUrl(text).catch(()=>{})}function playHanziRecognitionCharacter(text){const key=String(text||'').trim();if(!key)return;try{if(hanziAudio){hanziAudio.pause();hanziAudio.currentTime=0;hanziAudio=null}playHanziSystemVoice(key)}catch(e){showToast('端末で中国語音声を利用できません')}}window.KP_HANZI_QUIZ_AUDIO=function(text,onEnd,onError){
+ let active=true,clip=null,stopVoice=null;
+ const timer=setTimeout(fail,9000);
+ function stop(){
+   if(!active)return;
+   active=false;clearTimeout(timer);
+   if(clip){clip.onended=null;clip.onerror=null;clip.pause();}
+   stopVoice?.();
+ }
+ function complete(){if(active){stop();onEnd();}}
+ function fail(){if(active){stop();onError();}}
+ function playFile(url){
+   if(!active)return;
+   try{
+     clip=new Audio(url);clip.playsInline=true;clip.onended=complete;clip.onerror=fail;
+     clip.play().catch(fail);
+   }catch(_){fail();}
+ }
+ function fetchAudio(){if(active)getHanziTtsUrl(text).then(playFile,fail);}
+ if(hanziAudio){hanziAudio.pause();hanziAudio=null;}
+ const cached=hanziTtsCache.get(text);
+ if(cached)playFile(cached);
+ else{
+   try{stopVoice=window.KP_AUDIO_SESSION.speakMandarin(text,{onEnd:complete,onError:fetchAudio});}
+   catch(_){fetchAudio();}
+ }
+ return stop;
+};
+$('#speak').onclick=playHanziPronunciation;function showToast(message){$('#toast').textContent=message;$('#toast').classList.add('on');setTimeout(()=>$('#toast').classList.remove('on'),2200)}function syncVisualHeight(){if(window.visualViewport){document.documentElement.style.setProperty('--koepanda-visual-height',window.visualViewport.height+'px');document.documentElement.style.setProperty('--koepanda-visual-top',window.visualViewport.offsetTop+'px')}}syncVisualHeight();window.visualViewport?.addEventListener('resize',syncVisualHeight);window.addEventListener('resize',syncVisualHeight);new ResizeObserver(resize).observe($('#paper'));render(0);
 </script>
 <script>
 (async function(){
@@ -409,4 +437,4 @@ let strokeIndex=0,strokeTimer=null;function medianPath(points){return points.map
  soundToggle.onclick=()=>setSoundEnabled(!soundEnabled);document.getElementById('rgAudio').onclick=()=>playTargetCharacter();
   next.onclick=()=>{if(!answered||index+1>=round.length)return;index++;render()};document.getElementById('rgReplayRound').onclick=()=>{index=0;render()};document.getElementById('rgGoStroke').onclick=()=>{game.hidden=true;document.body.style.overflow='';setStudyStep(2)};window.addEventListener('kp:open-hanzi-recognition',openGame);
 })();
-</script><script src="./js/features/hanzi-completion.js?v=10.108.301.359"></script><script src="./js/36-fixed-home-back-102.js?v=10.108.301.102"></script><link rel="stylesheet" href="./css/features/hanzi-single-character.css?v=10.108.301.377"><script src="./js/features/hanzi-single-character.js?v=10.108.301.390"></script><link rel="stylesheet" href="./css/features/hanzi-unit-test.css?v=10.108.301.362"><script src="./js/features/hanzi-unit-test.js?v=301.400"></script><link rel="stylesheet" href="./css/features/hanzi-lesson-plan.css?v=10.108.301.390"><script src="./js/features/hanzi-lesson-plan.js?v=10.108.301.390"></script></body></html>
+</script><script src="./js/features/hanzi-completion.js?v=10.108.301.359"></script><script src="./js/36-fixed-home-back-102.js?v=10.108.301.102"></script><link rel="stylesheet" href="./css/features/hanzi-single-character.css?v=10.108.301.377"><script src="./js/features/hanzi-single-character.js?v=10.108.301.390"></script><link rel="stylesheet" href="./css/features/hanzi-unit-test.css?v=10.108.301.362"><script src="./js/features/hanzi-unit-test.js?v=301.401"></script><link rel="stylesheet" href="./css/features/hanzi-lesson-plan.css?v=10.108.301.390"><script src="./js/features/hanzi-lesson-plan.js?v=10.108.301.390"></script></body></html>

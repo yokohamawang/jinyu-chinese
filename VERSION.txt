@@ -1,1 +1,1 @@
-Koepanda 301.400 — Pinyin sound comparison and Hanzi mistake retry
+Koepanda 301.402 — Pinyin chapter corrections and targeted review
