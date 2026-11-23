@@ -49,3 +49,33 @@ body.app-kids-mode:has(.kp-pinyin-cards.is-roadmap-lesson-active){overflow:hidde
     padding-block: 8px max(12px, env(safe-area-inset-bottom));
   }
 }
+
+.kp-pc-compare {
+  display: grid;
+  gap: 8px;
+  margin-block: 10px;
+  padding: 12px;
+  border: 1px solid #dce9da;
+  border-radius: 16px;
+  background: #f4f8ef;
+  color: #365c4b;
+}
+.kp-pc-compare > div {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, auto) 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.kp-pc-compare button {
+  min-height: 44px;
+  padding: 5px 8px;
+  border: 1px solid #cddfd1;
+  border-radius: 12px;
+  background: #fffefa;
+  color: #315d4c;
+  font-weight: 800;
+}
+.kp-pc-compare span {
+  font-size: .82rem;
+  line-height: 1.45;
+}
