@@ -129,6 +129,7 @@
   }
   var kpMatchState={active:null,matched:{},first:{},firstScore:0};
   function renderQuestion(){
+    window.KP_CHAPTER_CORRECTION.reset('nsv',el('nsvQuizFeedback').parentElement,el('nsvResult'));
     var box=el('nsvQuizChoices');if(!box)return;box.replaceChildren();
     var panel=el('nsvQuizPanel');var board=panel.querySelector('.kp-match-board');
     if(!board){board=document.createElement('div');board.className='kp-match-board';board.setAttribute('aria-label','音声と発音のペア合わせ');
@@ -149,8 +150,8 @@
   function answer(letter,button){
     var i=kpMatchState.active;if(i===null||!quiz.heard||kpMatchState.matched[i])return;var correct=quiz.order[i]===letter,answers=el('nsvMatchAnswers'),audio=el('nsvMatchAudio'),card=audio.children[i];quiz.heard=false;answers.querySelectorAll('button').forEach(function(b){b.disabled=true});
     if(!Object.prototype.hasOwnProperty.call(kpMatchState.first,i))kpMatchState.first[i]=correct;
-    if(correct){kpMatchState.matched[i]=true;if(kpMatchState.first[i])kpMatchState.firstScore++;button.classList.add('is-matched');button.disabled=true;card.classList.remove('is-active','is-playing');card.classList.add('is-matched');card.disabled=true;var done=Object.keys(kpMatchState.matched).length;var count=el('nsvQuizCount');if(count)count.textContent=done+' / '+quiz.order.length+' ペア · 初回 '+kpMatchState.firstScore+' 正解';feedback('nsvQuizFeedback','ぴったり！ペアがつながったよ ✨','good');kpMatchState.active=null;if(done===quiz.order.length){quiz.score=kpMatchState.firstScore;quiz.active=true;setTimeout(finishQuiz,520)}else answers.querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')})}
-    else{button.classList.add('is-wrong');setTimeout(function(){button.classList.remove('is-wrong')},460);card.classList.add('is-try-again');feedback('nsvQuizFeedback','おしい！同じ音声カードをもう一度聞いてみよう 👂','bad')}
+    if(correct){window.KP_CHAPTER_CORRECTION.clear(el('nsvQuizFeedback').parentElement);kpMatchState.matched[i]=true;if(kpMatchState.first[i])kpMatchState.firstScore++;button.classList.add('is-matched');button.disabled=true;card.classList.remove('is-active','is-playing');card.classList.add('is-matched');card.disabled=true;var done=Object.keys(kpMatchState.matched).length;var count=el('nsvQuizCount');if(count)count.textContent=done+' / '+quiz.order.length+' ペア · 初回 '+kpMatchState.firstScore+' 正解';feedback('nsvQuizFeedback','ぴったり！ペアがつながったよ ✨','good');kpMatchState.active=null;if(done===quiz.order.length){quiz.score=kpMatchState.firstScore;quiz.active=true;setTimeout(finishQuiz,520)}else answers.querySelectorAll('button').forEach(function(b){b.disabled=b.classList.contains('is-matched')})}
+    else{button.classList.add('is-wrong');setTimeout(function(){button.classList.remove('is-wrong')},460);card.classList.add('is-try-again');feedback('nsvQuizFeedback','おしい！同じ音声カードをもう一度聞いてみよう 👂','bad');window.KP_CHAPTER_CORRECTION.wrong('nsv',el('nsvQuizFeedback').parentElement,window.KP_CHAPTER_CORRECTION.model(quiz.order[i]),window.KP_CHAPTER_CORRECTION.model(letter));}
   }
   function nextQuestion(){if(!quiz.active||!quiz.answered||quiz.index>=quizTotal-1)return;quiz.index++;renderQuestion();playModel(quiz.order[quiz.index],el('nsvQuizListen'),true)}
   function showResultStage(){
@@ -164,7 +165,7 @@
     if(passed){try{localStorage.setItem('koepandaCompoundP12Complete','1')}catch(e){}el('nsvCompleteBadge').hidden=false}
     celebration={score:quiz.score,total:quiz.order.length,passed:passed,title:passed?'前鼻韻母 クリア！':'あと一歩！',message:message};
     if(window.koepandaAttachResultReplay){window.koepandaAttachResultReplay(el('nsvResult'),celebration);var replay=el('nsvResult').querySelector('.koepanda-result-reopen');if(replay)replay.onclick=showResultStage}
-    resultTimer=setTimeout(showResultStage,90);
+    if(!window.KP_CHAPTER_CORRECTION.finish('nsv',el('nsvResult')))resultTimer=setTimeout(showResultStage,90);
     el('nsvResult').scrollIntoView({block:'center',behavior:'smooth'});
   }
   function cleanup(){

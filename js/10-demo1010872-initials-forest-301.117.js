@@ -153,6 +153,7 @@
     select(letter)
   }
   function renderQuiz(){
+    window.KP_CHAPTER_CORRECTION.reset('initials',el('initialsQuizFeedback').parentElement,el('initialsResult'));
     var box=el('initialsQuizChoices'),audio=el('initialsQuizAudioCards');if(!box||!audio)return;box.replaceChildren();audio.replaceChildren();
     window.KP134.shuffle(letters.slice()).forEach(function(letter){var b=document.createElement('button');b.type='button';b.className='kp-match-answer';b.textContent=letter;b.dataset.answer=letter;b.disabled=true;b.setAttribute('aria-label','発音 '+letter);b.addEventListener('click',function(){answerQuiz(letter,b)});box.appendChild(b)});
     quizOrder.forEach(function(letter){var b=document.createElement('button');b.type='button';b.className='kp-match-audio';b.dataset.letter=letter;b.innerHTML='<span class="kp-match-speaker" aria-hidden="true">🔊</span>';b.setAttribute('aria-label','音声を聞く');b.addEventListener('click',function(){if(quizMatched[letter])return;quizActiveLetter=letter;activeQuizButton=b;audio.querySelectorAll('.kp-match-audio').forEach(function(x){x.classList.toggle('is-active',x===b);x.classList.remove('is-try-again')});var fb=el('initialsQuizFeedback');if(fb){fb.textContent='聞こえた音と同じ発音を左から選ぼう';fb.className='initials-feedback'}playGuide(letter,true)});audio.appendChild(b)});
@@ -161,7 +162,7 @@
   function answerQuiz(letter,button){
     if(!quizHeard||!quizActiveLetter||quizMatched[quizActiveLetter])return;var correct=quizActiveLetter===letter,fb=el('initialsQuizFeedback'),card=Array.prototype.find.call(el('initialsQuizAudioCards').children,function(x){return x.dataset.letter===quizActiveLetter});if(!Object.prototype.hasOwnProperty.call(quizFirst,quizActiveLetter))quizFirst[quizActiveLetter]=correct;
     el('initialsQuizChoices').querySelectorAll('button').forEach(function(b){b.disabled=true});quizHeard=false;
-    if(correct){quizMatched[quizActiveLetter]=true;if(quizFirst[quizActiveLetter])quizScore++;button.classList.add('is-matched');button.disabled=true;if(card){card.classList.remove('is-active','is-playing');card.classList.add('is-matched');card.disabled=true}quizIndex++;var count=el('initialsQuizCount');if(count)count.textContent=quizIndex+' / 4 ペア · 初回 '+quizScore+' 正解';if(fb){fb.textContent='いい耳！ペアがつながったよ ✨';fb.className='initials-feedback is-good'}quizActiveLetter=null;activeQuizButton=null;if(quizIndex===quizOrder.length)window.setTimeout(finishQuiz,520)}else{button.classList.add('is-wrong');window.setTimeout(function(){button.classList.remove('is-wrong')},460);if(fb){fb.textContent='おしい！同じ音声カードをもう一度聞いてみよう 👂';fb.className='initials-feedback is-bad'}if(card)card.classList.add('is-try-again')}
+    if(correct){window.KP_CHAPTER_CORRECTION.clear(el('initialsQuizFeedback').parentElement);quizMatched[quizActiveLetter]=true;if(quizFirst[quizActiveLetter])quizScore++;button.classList.add('is-matched');button.disabled=true;if(card){card.classList.remove('is-active','is-playing');card.classList.add('is-matched');card.disabled=true}quizIndex++;var count=el('initialsQuizCount');if(count)count.textContent=quizIndex+' / 4 ペア · 初回 '+quizScore+' 正解';if(fb){fb.textContent='いい耳！ペアがつながったよ ✨';fb.className='initials-feedback is-good'}quizActiveLetter=null;activeQuizButton=null;if(quizIndex===quizOrder.length)window.setTimeout(finishQuiz,520)}else{button.classList.add('is-wrong');window.setTimeout(function(){button.classList.remove('is-wrong')},460);if(fb){fb.textContent='おしい！同じ音声カードをもう一度聞いてみよう 👂';fb.className='initials-feedback is-bad'}if(card)card.classList.add('is-try-again');window.KP_CHAPTER_CORRECTION.wrong('initials',el('initialsQuizFeedback').parentElement,window.KP_CHAPTER_CORRECTION.model(quizActiveLetter),window.KP_CHAPTER_CORRECTION.model(letter));}
   }
   function goBackToInitialRoad(){
     var back=document.getElementById('pinyinLessonBack');
@@ -204,8 +205,8 @@
       try{localStorage.setItem('koepandaInitialP3Complete','1');window.dispatchEvent(new CustomEvent('koepandaInitialProgressChanged',{detail:{P3:true}}))}catch(e){}
     }
     var celebration={score:quizScore,total:total,passed:passed,title:passed?'ミニチェック合格！':'あと一歩！',message:passed?(quizScore===total?'b・p・m・f、4問ぜんぶ正解！ 音の違いをばっちり聞き分けられたよ。':'b・p・m・f の違いを聞き分けられたよ。あと1問で満点！'):'苦手な音をもう一度確認して、再チャレンジしよう。'};
-    if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
-    if(!window.KP134.lessonVisible(el('kidsInitialsLesson')))return;
+    var hasCorrections=window.KP_CHAPTER_CORRECTION.finish('initials',el('initialsResult'));if(window.koepandaAttachResultReplay)window.koepandaAttachResultReplay(result,celebration);
+    if(hasCorrections||!window.KP134.lessonVisible(el('kidsInitialsLesson')))return;
     if(window.koepandaQueueResultCelebration)window.koepandaQueueResultCelebration(celebration,90);
     else if(window.koepandaShowResultCelebration)window.setTimeout(function(){window.koepandaShowResultCelebration(celebration)},90);
   }

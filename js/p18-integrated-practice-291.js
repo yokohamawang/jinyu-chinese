@@ -59,6 +59,14 @@ function addComparison(parent,q,selected,play){
  });
  parent.appendChild(card);return true;
 }
+var listeningQuestions=practiceBank.filter(function(q){return q.interaction==='listen'});
+var reviewCourse='pinyin-listening';
+function reviewKey(q,choice){return 'pinyin:'+q.answer+':'+choice}
+function recordReview(q,choice,correct){
+ if(!listeningQuestions.includes(q))return;
+ window.KP_ACCOUNT_API?.recordPracticeAttempt?.(reviewKey(q,choice),reviewCourse,correct)
+  .catch(function(error){console.warn('[Koepanda] Pinyin review sync unavailable',error)});
+}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),v=a[i];a[i]=a[j];a[j]=v}return a}
 function mount(root,isFinal){
  if(!root||root.dataset.largeCards)return;root.dataset.largeCards='1';root.classList.add('kp-pinyin-cards');
@@ -69,7 +77,7 @@ function mount(root,isFinal){
  '</div><footer class="kp-pc-actions"><button type="button" class="kp-pc-secondary">やり直す</button><button type="button" class="kp-pc-next">次へ →</button></footer>';
  var $=function(s){return root.querySelector(s)}, modes=$('.kp-pc-modes'),count=$('.kp-pc-progress>span'),track=$('[role="progressbar"]'),bar=$('.kp-pc-progress i'),kind=$('.kp-pc-kind'),prompt=$('h3'),hear=$('.kp-pc-audio'),parts=$('.kp-pc-parts'),hint=$('details'),choices=$('.kp-pc-choices'),feedback=$('.kp-pc-feedback'),correction=$('.kp-pc-correction'),results=$('.kp-pc-results'),next=$('.kp-pc-next'),secondary=$('.kp-pc-secondary');
  $('.kp-pc-island').textContent=isFinal?'島10 ・最後のチャレンジ':'島9 ・音のまとめ';$('h2').textContent=isFinal?'最終テスト':'総合練習';modes.hidden=isFinal;
- var mode=isFinal?'test':'practice',session=[],index=0,score=0,wrong=new Map(),answered=false,finished=false,retryOnly=false,audio=null,generation=0;
+ var mode=isFinal?'test':'practice',session=[],index=0,score=0,wrong=new Map(),attemptedPairs=new Set(),answered=false,finished=false,retryOnly=false,dueReview=null,reward=null,audio=null,generation=0;
  function stop(){generation++;if(audio){audio.pause();audio.onended=null;audio.onerror=null;audio=null}hear.disabled=false;hear.classList.remove('is-playing')}
  function playAudio(source){
   stop();if(!source)return;
@@ -87,28 +95,72 @@ function mount(root,isFinal){
  function play(){if(!finished)playAudio(session[index]?.audio)}
  function progress(value){track.setAttribute('aria-valuemax',session.length);track.setAttribute('aria-valuenow',value);bar.style.width=(value/session.length*100)+'%'}
  function draw(focus){stop();answered=false;finished=false;root.classList.remove('is-result');var q=session[index];results.hidden=true;results.replaceChildren();correction.replaceChildren();kind.textContent=q.kind;prompt.textContent=q.prompt;count.textContent=(index+1)+' / '+session.length+(retryOnly?' ・復習':'');progress(index);hear.hidden=!q.audio;hint.hidden=mode!=='practice';hint.open=false;hint.querySelector('p').textContent=q.hint||q.explain;parts.replaceChildren();parts.hidden=!/^structure/.test(q.interaction||'');if(!parts.hidden){(q.interaction==='structure3'?['声母','介音','韻母']:['声母','韻母']).forEach(function(label,i){if(i){var plus=document.createElement('b');plus.textContent='＋';parts.appendChild(plus)}var s=document.createElement('span');s.textContent=label;parts.appendChild(s)})}
- choices.hidden=false;choices.replaceChildren();choices.classList.toggle('has-long-text',q.choices.some(function(c){return c.length>13}));shuffle(q.choices.slice()).forEach(function(choice){var b=document.createElement('button');b.type='button';var label=document.createElement('span');label.textContent=choice;b.appendChild(label);b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){if(answered)return;stop();var ok=choice===q.answer;b.setAttribute('aria-pressed','true');if(mode==='practice'&&!ok){b.classList.add('is-wrong');b.setAttribute('aria-label',choice+'：もう一度');wrong.set(q,choice);
+ choices.hidden=false;choices.replaceChildren();choices.classList.toggle('has-long-text',q.choices.some(function(c){return c.length>13}));shuffle(q.choices.slice()).forEach(function(choice){var b=document.createElement('button');b.type='button';var label=document.createElement('span');label.textContent=choice;b.appendChild(label);b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){if(answered)return;stop();var ok=choice===q.answer;b.setAttribute('aria-pressed','true');if(!ok&&listeningQuestions.includes(q)&&!dueReview&&!attemptedPairs.has(reviewKey(q,choice))){
+ attemptedPairs.add(reviewKey(q,choice));recordReview(q,choice,false);
+ }if(mode==='practice'&&!ok){b.classList.add('is-wrong');b.setAttribute('aria-label',choice+'：もう一度');wrong.set(q,choice);
  correction.replaceChildren();
  var compared=addComparison(correction,q,choice,playAudio);
  feedback.textContent=compared?'二つの音を聞いて、もう一度えらぼう。':'おしい！ '+q.explain;
- if(compared)correction.scrollIntoView({block:'nearest'});return}answered=true;if(ok)score++;else wrong.set(q,choice);choices.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.firstChild.textContent===q.answer){x.classList.add('is-answer');x.setAttribute('aria-label',x.firstChild.textContent+'：正解');var mark=document.createElement('small');mark.textContent='✓ 正解';x.appendChild(mark)}else if(x===b){x.classList.add('is-wrong');var mark=document.createElement('small');mark.textContent='もう一度覚えよう';x.appendChild(mark)}});feedback.textContent=(ok?'正解！ ':'正解は「'+q.answer+'」。 ')+q.explain;next.disabled=false;progress(index+1)});choices.appendChild(b)});
- feedback.textContent=q.audio?'音を聞いて、カードを選ぼう。':'カードを選ぼう。';next.disabled=mode!=='practice';next.textContent=index===session.length-1?'結果を見る':'次へ →';secondary.hidden=isFinal;secondary.disabled=false;secondary.textContent=mode==='practice'?'やり直す':'最初から';if(focus){prompt.focus({preventScroll:true})}
+ if(compared)correction.scrollIntoView({block:'nearest'});return}answered=true;if(ok){
+ if(dueReview){var pair=dueReview.find(function(item){return item.question===q});recordReview(q,pair.choice,!wrong.has(q))}
+ score++;
+ }else wrong.set(q,choice);choices.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.firstChild.textContent===q.answer){x.classList.add('is-answer');x.setAttribute('aria-label',x.firstChild.textContent+'：正解');var mark=document.createElement('small');mark.textContent='✓ 正解';x.appendChild(mark)}else if(x===b){x.classList.add('is-wrong');var mark=document.createElement('small');mark.textContent='もう一度覚えよう';x.appendChild(mark)}});feedback.textContent=(ok?'正解！ ':'正解は「'+q.answer+'」。 ')+q.explain;next.disabled=false;progress(index+1)});choices.appendChild(b)});
+ feedback.textContent=q.audio?'音を聞いて、カードを選ぼう。':'カードを選ぼう。';next.disabled=mode!=='practice'||retryOnly;next.textContent=index===session.length-1?'結果を見る':'次へ →';secondary.hidden=isFinal;secondary.disabled=false;secondary.textContent=mode==='practice'?'やり直す':'最初から';if(focus){prompt.focus({preventScroll:true})}
  }
  function align(){root.querySelector('.kp-pc-scroll').scrollTop=0}
- function begin(newMode,subset){stop();mode=newMode;retryOnly=!!subset;session=shuffle((subset|| (isFinal?finalBank:practiceBank)).slice());index=0;score=0;wrong=new Map();modes.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});draw(false)}
- function finish(){if(finished)return;stop();finished=true;root.classList.add('is-result');kind.textContent='チャレンジ完了';count.textContent='おつかれさま！';progress(session.length);prompt.textContent=retryOnly?'聞きくらべができたね！':mode==='practice'?'いろいろな音を練習できたね！':score===session.length?'全問正解！ おめでとう！':'最後までよくがんばったね！';hear.hidden=true;parts.hidden=true;hint.hidden=true;choices.hidden=true;feedback.textContent=retryOnly?'復習 '+session.length+'問':mode==='practice'?'次は10問チャレンジで力だめし！':'正解 '+score+' / '+session.length+'問';results.hidden=false;results.replaceChildren();correction.replaceChildren();
+ function begin(newMode,subset){stop();mode=newMode;retryOnly=!!subset;session=shuffle((subset|| (isFinal?finalBank:practiceBank)).slice());index=0;score=0;wrong=new Map();attemptedPairs.clear();modes.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});draw(false)}
+ function addReward(){
+  if(!reward)return;
+  var button=document.createElement('button');
+  button.type='button';button.className='kp-pc-reward';button.textContent='ごほうびを見る';
+  button.addEventListener('click',function(){
+   var config=reward;reward=null;button.remove();
+   window.koepandaQueueResultCelebration?.(config,0);
+  });
+  results.appendChild(button);
+ }
+ function finish(){if(finished)return;stop();finished=true;root.classList.add('is-result');kind.textContent='チャレンジ完了';count.textContent='おつかれさま！';progress(session.length);prompt.textContent=retryOnly?'復習ができたね！':mode==='practice'?'いろいろな音を練習できたね！':score===session.length?'全問正解！ おめでとう！':'最後までよくがんばったね！';hear.hidden=true;parts.hidden=true;hint.hidden=true;choices.hidden=true;feedback.textContent=retryOnly?'復習 '+session.length+'問':mode==='practice'?'次は10問チャレンジで力だめし！':'正解 '+score+' / '+session.length+'問';results.hidden=false;results.replaceChildren();correction.replaceChildren();
  if(wrong.size){var title=document.createElement('h4');title.textContent='もう一度覚えよう';results.appendChild(title);wrong.forEach(function(selected,q){var d=document.createElement('details'),s=document.createElement('summary'),p=document.createElement('p');s.textContent=q.kind+'：'+q.answer;p.textContent=q.prompt+' '+q.explain;d.append(s,p);addComparison(d,q,selected,playAudio);results.appendChild(d)})}
  secondary.hidden=!wrong.size;secondary.textContent='間違えた問題だけ';next.disabled=false;next.textContent=retryOnly?(isFinal?'最終テストへ':'総合練習へ'):mode==='practice'?'10問チャレンジへ':'もう一度チャレンジ';
  if(mode==='test'&&!retryOnly){if(isFinal&&score===session.length){try{localStorage.setItem('koepandaFinalP21Complete','1')}catch(e){}window.dispatchEvent(new Event('koepandaCompoundProgressChanged'))}
  var config={score:score,total:session.length,title:score===session.length?'全問正解！':'最後までできたね！',kicker:isFinal?'最終テスト':'総合練習',message:wrong.size?'間違えた問題を、小音ともう一度練習しよう。':'小音も大よろこび！ よくがんばりました。'};
- if(typeof window.koepandaQueueResultCelebration==='function')window.koepandaQueueResultCelebration(config,120);
- }align();prompt.focus({preventScroll:true})
+ if(wrong.size)reward=config;
+ else window.koepandaQueueResultCelebration?.(config,120);
+ }addReward();align();prompt.focus({preventScroll:true})
  }
- hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){begin(retryOnly&&!isFinal?'practice':'test');align();return}if(index<session.length-1){index++;draw(event.detail===0);align()}else finish()});secondary.addEventListener('click',function(){if(finished){begin('practice',Array.from(wrong.keys()));align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;begin(b.dataset.mode);align()})});
+ hear.addEventListener('click',play);next.addEventListener('click',function(event){if(next.disabled)return;if(finished){dueReview=null;begin(retryOnly&&!isFinal?'practice':'test');align();return}if(index<session.length-1){index++;draw(event.detail===0);align()}else finish()});secondary.addEventListener('click',function(){if(finished){dueReview=null;begin('practice',Array.from(wrong.keys()));align()}else if(mode==='practice')draw(false);else{begin(mode);align()}});modes.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(mode===b.dataset.mode)return;dueReview=null;begin(b.dataset.mode);align()})});
  window.addEventListener('koepandaP18Stop',stop);window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',function(){if(document.hidden)stop()});
  var visibility=new MutationObserver(function(){if(root.hidden)stop()});visibility.observe(root,{attributes:true,attributeFilter:['hidden']});
- if(!isFinal)window.addEventListener('koepandaP18Reset',function(){begin('practice');requestAnimationFrame(function(){requestAnimationFrame(align)})});begin(mode);
+ if(!isFinal){
+  window.addEventListener('koepandaP18Reset',function(){dueReview=null;reward=null;begin('practice');requestAnimationFrame(function(){requestAnimationFrame(align)})});
+  window.addEventListener('koepandaPinyinDueReview',function(event){
+   dueReview=event.detail;begin('practice',dueReview.map(function(item){return item.question}));align();
+  });
+ }
+ begin(mode);
 }
+window.KP_PINYIN_REVIEW={
+ async load(){
+  var rows=await window.KP_ACCOUNT_API?.getPracticeReviewQueue?.(reviewCourse);
+  if(!Array.isArray(rows))return null;
+  var items=[],seen=new Set();
+  for(var row of rows){
+   if(!(Date.parse(row.due_at)<=Date.now()))continue;
+   var question=listeningQuestions.find(function(q){
+    return q.choices.some(function(choice){return choice!==q.answer&&reviewKey(q,choice)===row.item_key});
+   });
+   if(!question||seen.has(question))continue;
+   seen.add(question);
+   items.push({question:question,choice:question.choices.find(function(choice){return reviewKey(question,choice)===row.item_key})});
+   if(items.length===5)break;
+  }
+  return items;
+ },
+ open(items){
+  if(!items.length||!window.koepandaOpenPinyinUnit?.('P18'))return false;
+  window.dispatchEvent(new CustomEvent('koepandaPinyinDueReview',{detail:items}));return true;
+ }
+};
 function init(){mount(document.getElementById('kidsIslandReviewLesson'),false);mount(document.getElementById('kidsFinalPinyinExam'),true);return !!document.querySelector('#kidsIslandReviewLesson[data-large-cards]')&&!!document.querySelector('#kidsFinalPinyinExam[data-large-cards]')}
 var observer=new MutationObserver(function(){if(init())observer.disconnect()});if(!init())observer.observe(document.documentElement,{childList:true,subtree:true});
 })();

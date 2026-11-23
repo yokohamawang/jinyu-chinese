@@ -20,10 +20,10 @@
       ready=enabled;
       choices.querySelectorAll('button').forEach(button=>{button.disabled=!enabled;});
     }
-    async function playQuestion(manual=false){
+    async function playQuestion(){
       if(answered||finished||lesson.hidden)return;
       const previouslyReady=ready;
-      if(manual)enableAnswers(true);
+      enableAnswers(false);
       listen.textContent='🔊 読み込み中…';
       const ticket=++request;
       const audio=await window.koepandaPlayToneIntro(tones[questions[round].answer].tone);
@@ -37,7 +37,7 @@
       }else{
         enableAnswers(previouslyReady);
         listen.textContent='🔊 問題の音を聞く';
-        feedback.textContent='音を聞いてから選んでね。';
+        feedback.textContent='音声を再生できませんでした。もう一度押してね。';
       }
     }
     function finish(){
@@ -49,10 +49,12 @@
       next.textContent='もう一度挑戦する';
       next.hidden=false;
       window.KP_PINYIN_CHAPTER_STATE?.markComplete('P0-U1');
-      window.koepandaShowResultCelebration?.({
+      const celebration={
         score:score,total:4,kicker:'四声の聞き分け',title:'ミニチェック終了！',
         message:'4問できたね。スコアは最初に選んだ答えの正解数だよ。'
-      });
+      };
+      if(window.KP_CHAPTER_CORRECTION.finish(quiz,quiz))window.koepandaAttachResultReplay?.(quiz,celebration);
+      else window.koepandaShowResultCelebration?.(celebration);
     }
     function select(index,button){
       if(!ready||answered||finished)return;
@@ -60,9 +62,10 @@
       if(index!==answer){
         attempted=true;
         feedback.textContent='もう一度聞いて、選び直してね。';
-        playQuestion();
+        window.KP_CHAPTER_CORRECTION.wrong(quiz,quiz,window.KP_CHAPTER_CORRECTION.tone('a',tones[answer].tone,tones[answer].mark),window.KP_CHAPTER_CORRECTION.tone('a',tones[index].tone,tones[index].mark));
         return;
       }
+      window.KP_CHAPTER_CORRECTION.clear(quiz);
       if(!attempted)score++;
       answered=true;
       listen.textContent='🔊 もういちど聞く';
@@ -78,6 +81,7 @@
       ++request;
       attempted=false; answered=false; ready=false;
       choices.replaceChildren();
+      quiz.querySelector('.koepanda-result-reopen')?.remove();
       listen.hidden=false;
       listen.textContent='🔊 問題の音を聞く';
       next.hidden=true;
@@ -95,13 +99,13 @@
     }
     listen.addEventListener('click',()=>{
       if(answered&&!finished){window.koepandaPlayToneIntro(tones[questions[round].answer].tone);return;}
-      playQuestion(true);
+      playQuestion();
     });
     next.addEventListener('click',()=>{
       if(!answered&&!finished)return;
-      if(finished){round=0; score=0; finished=false;}else{round++;}
+      if(finished){window.KP_CHAPTER_CORRECTION.reset(quiz,quiz);round=0; score=0; finished=false;}else{round++;}
       render();
-      playQuestion(true);
+      playQuestion();
     });
     const cards=lesson.querySelectorAll('.p0-road-card[data-tone]');
     const labels=['高く平ら','低めから一気に上へ','低く下げてから上がる','高い所から一気に下へ'];
@@ -116,6 +120,7 @@
     window.addEventListener('koepandaToneGuideClose',()=>{
       ++request;
       window.KP134?.stop();
+      window.KP_CHAPTER_CORRECTION.reset(quiz,quiz);
       round=0; score=0; finished=false;
       render();
     });

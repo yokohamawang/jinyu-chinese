@@ -507,22 +507,31 @@
       var feedback=document.createElement('p');feedback.className='kp198-feedback';feedback.setAttribute('aria-live','polite');wrap.appendChild(feedback);
       var score=document.createElement('p');score.className='kp198-score';wrap.appendChild(score);if(el.id==='kidsFinalPinyinExam'){var examHeading=el.querySelector(':scope > h2');if(examHeading){var examTitleRow=document.createElement('div');examTitleRow.className='kp198-exam-title-row';examHeading.parentNode.insertBefore(examTitleRow,examHeading);examTitleRow.appendChild(examHeading);examTitleRow.appendChild(score)}}
       var next=document.createElement('button');next.type='button';next.className='kp198-next';next.textContent='次へ →';next.hidden=true;wrap.appendChild(next);
-      var index=0,correct=0,answered=false;
+      var index=0,correct=0,answered=false,chapterReview=el.id==='kidsNeutralToneLesson';
+      if(chapterReview)window.KP_CHAPTER_CORRECTION.reset(wrap,wrap);
       function draw(){
-        var q=questions[index];answered=false;var oldReplay=wrap.querySelector('.koepanda-result-reopen');if(oldReplay)oldReplay.remove();prompt.textContent=q.q;feedback.textContent='';next.hidden=true;
+        var q=questions[index];answered=false;if(chapterReview)window.KP_CHAPTER_CORRECTION.clear(wrap);var oldReplay=wrap.querySelector('.koepanda-result-reopen');if(oldReplay)oldReplay.remove();prompt.textContent=q.q;feedback.textContent='';next.hidden=true;
         score.textContent=(index+1)+' / '+questions.length;answers.replaceChildren();
-        q.a.forEach(function(val,i){var b=document.createElement('button');b.type='button';b.textContent=val;
+        if(chapterReview&&q.voice){
+          var listen=document.createElement('button');listen.type='button';
+          listen.textContent='▶ '+q.voice+' を聞く';listen.setAttribute('class','kp198-next');listen.style.marginBottom='8px';
+          listen.onclick=function(){window.KP_CHAPTER_CORRECTION.example(q.voice,feedback)};
+          answers.appendChild(listen);
+        }
+        q.a.forEach(function(val,i){var b=document.createElement('button');b.type='button';b.textContent=val;b.dataset.choice='';
           b.addEventListener('click',function(){if(answered)return;answered=true;
             if(i===q.ok){correct++;feedback.textContent='正解！ '+(q.note||'')}else{feedback.textContent='もう一度覚えよう。正解：'+q.a[q.ok]+'。 '+(q.note||'')}
-            Array.prototype.forEach.call(answers.children,function(x,j){x.disabled=true;if(j===q.ok)x.classList.add('is-answer')});
+            Array.prototype.forEach.call(answers.querySelectorAll('[data-choice]'),function(x,j){x.disabled=true;if(j===q.ok)x.classList.add('is-answer')});
+            if(chapterReview&&i!==q.ok)window.KP_CHAPTER_CORRECTION.wrong(wrap,wrap,{label:q.a[q.ok],tip:q.note,voice:q.voice},{label:val},q.q);
             next.hidden=false;next.textContent=index===questions.length-1?'結果を見る':'次へ →';
           });answers.appendChild(b)});
       }
-      next.addEventListener('click',function(){if(next.dataset.restart==='1'){delete next.dataset.restart;index=0;correct=0;draw();return}if(index<questions.length-1){index++;draw();return}
+      next.addEventListener('click',function(){if(next.dataset.restart==='1'){delete next.dataset.restart;index=0;correct=0;if(chapterReview)window.KP_CHAPTER_CORRECTION.reset(wrap,wrap);draw();return}if(index<questions.length-1){index++;draw();return}
         var isFinalExam=el.id==='kidsFinalPinyinExam',perfect=correct===questions.length;
         prompt.textContent=isFinalExam&&perfect?'ピンインマスター認定！':'結果：'+correct+' / '+questions.length;answers.replaceChildren();feedback.textContent=isFinalExam?(perfect?'全問正解おめでとう！拼音・声調・拼読・軽声をすべてマスターしたね。':'よくがんばりました！ 間違えた問題を確認して、もう一度挑戦しよう。'):(perfect?'やった！ 全問正解！':'間違えたところをもう一度練習しよう。');score.textContent=isFinalExam?'結果':'';next.textContent='もう一度チャレンジ';next.hidden=false;
         try{if(perfect&&storageKey)localStorage.setItem(storageKey,'1')}catch(e){}
         next.dataset.restart='1';
+        if(chapterReview)window.KP_CHAPTER_CORRECTION.finish(wrap,wrap);
         if(isFinalExam&&typeof window.koepandaQueueResultCelebration==='function'){
           var resultConfig={score:correct,total:questions.length,title:perfect?'ピンインマスター！':'あと一歩！',kicker:perfect?'全問正解！ おめでとう！':correct>=questions.length-1?'あと1問！ おしい！':'最後までよくがんばったね！',message:perfect?'拼音・声調・拼読・軽声を全部クリア。小音と一緒にピンインマスターになったよ！':correct>=questions.length-1?'あと少しで満点。もう一度チャレンジして、ピンインマスターを目指そう！':'間違えた問題を見直して、もう一度挑戦しよう。'};
           if(typeof window.koepandaAttachResultReplay==='function')window.koepandaAttachResultReplay(wrap,resultConfig);
@@ -561,11 +570,18 @@
       record.addEventListener('click',async function(){if(recordPending)return;if(recorder&&recorder.state==='recording'){stopRecording();return}if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){recordState.textContent='この環境では録音できません。';return}stopPlayback();var request=recordRequest;recordPending=true;record.disabled=true;try{stream=await window.KP_AUDIO_SESSION.getMicrophone({audio:true});if(request!==recordRequest){window.KP_AUDIO_SESSION.releaseMicrophone(stream);stream=null;return}var chunks=[],key=questions[current].audioKey;recorder=window.KP_AUDIO_SESSION.createRecorder(stream);recorder.ondataavailable=function(event){if(event.data&&event.data.size)chunks.push(event.data)};recorder.onstop=function(){var blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});if(clipUrls[key])URL.revokeObjectURL(clipUrls[key]);clipUrls[key]=URL.createObjectURL(blob);clips[key]=clipUrls[key];replayRecord.disabled=false;record.textContent='● 録音する';recordState.textContent='録音できたよ！';if(stream)stream.getTracks().forEach(function(track){track.stop()});stream=null};recorder.start();record.textContent='■ 録音を止める';recordState.textContent='録音中…';recordTimer=window.setTimeout(function(){recordTimer=null;if(recorder&&recorder.state==='recording')stopRecording()},5000)}catch(e){window.KP_AUDIO_SESSION.releaseMicrophone(stream);stream=null;recordState.textContent=window.KP_AUDIO_SESSION.microphoneErrorMessage(e)}finally{recordPending=false;record.disabled=false}});
       replayRecord.addEventListener('click',function(){var clip=clips[questions[current].audioKey];if(!clip)return;stopPlayback();audio=new Audio(clip);audio.onended=function(){audio=null};var p;try{p=audio.play()}catch(e){p=Promise.reject(e)}if(p&&p.catch)p.catch(function(){recordState.textContent='録音を再生できません。'})});
       function shuffle(array){for(var i=array.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),temp=array[i];array[i]=array[j];array[j]=temp}return array}
-      function askTestQuestion(){answered=false;testHear.hidden=false;var q=quiz[quizIndex];testQuestion.textContent=(quizIndex+1)+' / '+quiz.length+'　聞こえた三拼はどれ？';testFeedback.textContent='';testSelected.textContent='選んだ音：？';testNext.hidden=true;testNext.textContent=quizIndex===quiz.length-1?'結果を見る':'次へ →';testOptions.replaceChildren();var choices=shuffle(q.options.slice());choices.forEach(function(option){var button=document.createElement('button');button.type='button';button.textContent=option.text;button.addEventListener('click',function(){if(answered)return;answered=true;stopPlayback();var correct=option.text===q.syllable;if(correct)quizScore++;testSelected.textContent='選んだ音：'+option.text+'（'+option.word+'）';testFeedback.textContent=correct?'正解！':'もう一度覚えよう。正解は「'+q.syllable+'」（'+q.word+'）だよ。';testOptions.querySelectorAll('button').forEach(function(item){item.disabled=true;if(item.textContent===q.syllable)item.classList.add('is-correct');if(item===button&&!correct)item.classList.add('is-wrong')});testNext.hidden=false});testOptions.appendChild(button)});play(q,false,'test')}
+      function quizSound(q){return window.KP_CHAPTER_CORRECTION.sound(q.syllable,'./assets/audio/p17-merged/'+q.audioKey+'.wav','声母・介音・韻母：'+q.parts.join(' → '));}
+      function choiceSound(option){
+        var motion={'gāo':'ao で終わる。','guǒ':'uo に第三声をつける。','hóu':'ou に第二声をつける。','hǎo':'ao に第三声をつける。','jiǎ':'ia に第三声をつける。','jiāo':'iao で終わる。','qiāo':'高さを保つ第一声。','qiǎo':'いったん低くする第三声。'};
+        // Quiet (悄) is polyphonic; a device voice may choose the wrong reading.
+        return {label:option.text,tip:motion[option.text],voice:option.word==='悄'?null:option.word};
+      }
+      function quizListen(q){window.KP_CHAPTER_CORRECTION.listen(quizSound(q).url,testFeedback,testOptions,!answered);}
+      function askTestQuestion(){window.KP_CHAPTER_CORRECTION.clear(test);answered=false;testHear.hidden=false;var q=quiz[quizIndex];testQuestion.textContent=(quizIndex+1)+' / '+quiz.length+'　聞こえた三拼はどれ？';testFeedback.textContent='';testSelected.textContent='選んだ音：？';testNext.hidden=true;testNext.textContent=quizIndex===quiz.length-1?'結果を見る':'次へ →';testOptions.replaceChildren();var choices=shuffle(q.options.slice());choices.forEach(function(option){var button=document.createElement('button');button.type='button';button.textContent=option.text;button.addEventListener('click',function(){if(answered)return;answered=true;stopPlayback();var correct=option.text===q.syllable;if(correct)quizScore++;else window.KP_CHAPTER_CORRECTION.wrong(test,test,quizSound(q),choiceSound(option));testSelected.textContent='選んだ音：'+option.text+'（'+option.word+'）';testFeedback.textContent=correct?'正解！':'もう一度覚えよう。正解は「'+q.syllable+'」（'+q.word+'）だよ。';testOptions.querySelectorAll('button').forEach(function(item){item.disabled=true;if(item.textContent===q.syllable)item.classList.add('is-correct');if(item===button&&!correct)item.classList.add('is-wrong')});testNext.hidden=false});testOptions.appendChild(button)});quizListen(q)}
       function hideOldTestReplay(){test.querySelectorAll('.koepanda-result-reopen').forEach(function(button){button.hidden=true})}
-      function startTest(){stopPlayback();stopRecording();hideOldTestReplay();delete testNext.dataset.restart;picker.open=false;picker.hidden=true;practice.hidden=true;test.hidden=false;testGo.setAttribute('aria-expanded','true');quiz=shuffle(questions.slice());quizIndex=0;quizScore=0;askTestQuestion();test.scrollIntoView({block:'nearest',behavior:'smooth'})}
-      testGo.addEventListener('click',startTest);testHear.addEventListener('click',function(){if(quiz[quizIndex])play(quiz[quizIndex],false,'test')});
-      testNext.addEventListener('click',function(){if(testNext.dataset.restart==='1'){delete testNext.dataset.restart;hideOldTestReplay();quiz=shuffle(questions.slice());quizIndex=0;quizScore=0;askTestQuestion();return}quizIndex++;if(quizIndex<quiz.length){askTestQuestion();return}stopPlayback();testQuestion.textContent='ミニテスト結果　'+quizScore+' / '+quiz.length;testOptions.replaceChildren();testFeedback.textContent=quizScore===quiz.length?'全問正解！ 小音も大よろこび！':'よくがんばりました！';testSelected.textContent='';testHear.hidden=true;testNext.hidden=false;testNext.textContent='もう一度テスト';testNext.dataset.restart='1';if(quizScore>=Math.ceil(quiz.length*.6)){try{localStorage.setItem('koepandaThreeP17Complete','1')}catch(e){}window.dispatchEvent(new Event('koepandaCompoundProgressChanged'))}});
+      function startTest(){window.KP_CHAPTER_CORRECTION.reset(test,test);stopPlayback();stopRecording();hideOldTestReplay();delete testNext.dataset.restart;picker.open=false;picker.hidden=true;practice.hidden=true;test.hidden=false;testGo.setAttribute('aria-expanded','true');quiz=shuffle(questions.slice());quizIndex=0;quizScore=0;askTestQuestion();test.scrollIntoView({block:'nearest',behavior:'smooth'})}
+      testGo.addEventListener('click',startTest);testHear.addEventListener('click',function(){if(quiz[quizIndex])quizListen(quiz[quizIndex])});
+      testNext.addEventListener('click',function(){if(testNext.dataset.restart==='1'){delete testNext.dataset.restart;window.KP_CHAPTER_CORRECTION.reset(test,test);hideOldTestReplay();quiz=shuffle(questions.slice());quizIndex=0;quizScore=0;askTestQuestion();return}quizIndex++;if(quizIndex<quiz.length){askTestQuestion();return}stopPlayback();testQuestion.textContent='ミニテスト結果　'+quizScore+' / '+quiz.length;testOptions.replaceChildren();testFeedback.textContent=quizScore===quiz.length?'全問正解！ 小音も大よろこび！':'よくがんばりました！';testSelected.textContent='';testHear.hidden=true;testNext.hidden=false;testNext.textContent='もう一度テスト';testNext.dataset.restart='1';window.KP_CHAPTER_CORRECTION.finish(test,test);if(quizScore>=Math.ceil(quiz.length*.6)){try{localStorage.setItem('koepandaThreeP17Complete','1')}catch(e){}window.dispatchEvent(new Event('koepandaCompoundProgressChanged'))}});
       testBack.addEventListener('click',function(){stopPlayback();test.hidden=true;testHear.hidden=false;picker.hidden=false;practice.hidden=false;testGo.setAttribute('aria-expanded','false');selectPractice(current,false)});
       window.addEventListener('koepandaP17Open',function(){test.hidden=true;picker.hidden=false;practice.hidden=false;testGo.hidden=false;testGo.setAttribute('aria-expanded','false');testNext.hidden=true;delete testNext.dataset.restart;testOptions.replaceChildren();testFeedback.textContent='';testSelected.textContent='選んだ音：？';testHear.hidden=false;hideOldTestReplay();quiz=[];quizIndex=0;quizScore=0;answered=false;selectPractice(0,true)});
       window.addEventListener('koepandaP17Close',function(){recordRequest++;stopPlayback();stopRecording();test.hidden=true;picker.hidden=false;practice.hidden=false;testGo.hidden=false;testGo.setAttribute('aria-expanded','false');testNext.hidden=true;delete testNext.dataset.restart;testOptions.replaceChildren();testFeedback.textContent='';testSelected.textContent='選んだ音：？';testHear.hidden=false;hideOldTestReplay();quiz=[];quizIndex=0;quizScore=0;answered=false;selectPractice(0,false)});
@@ -573,10 +589,10 @@
     }
     var neutral=make('kidsNeutralToneLesson','軽声のひみつ','軽声は「第五声」ではなく、前の音節に続く短く軽い音。音の高さは前の音節により変わるよ。');
     question(neutral,[
-      {q:'「妈妈（māma）」の二つ目の ma は？',a:['第一声','軽声','第四声'],ok:1,note:'短く、軽く発音するよ。'},
-      {q:'「爸爸（bàba）」の二つ目の ba は？',a:['軽声','第二声','第三声'],ok:0,note:'bà のあとに自然に続けよう。'},
+      {voice:'妈妈',q:'「妈妈（māma）」の二つ目の ma は？',a:['第一声','軽声','第四声'],ok:1,note:'短く、軽く発音するよ。'},
+      {voice:'爸爸',q:'「爸爸（bàba）」の二つ目の ba は？',a:['軽声','第二声','第三声'],ok:0,note:'bà のあとに自然に続けよう。'},
       {q:'軽声の音の高さは？',a:['常に高い','前の音節によって変わる','必ず低い'],ok:1,note:'第五声として固定しないよ。'},
-      {q:'「好吗（hǎo ma）」の ma は？',a:['第三声','第四声','軽声'],ok:2,note:'疑問を表す ma は軽声。'}
+      {voice:'好吗',q:'「好吗（hǎo ma）」の ma は？',a:['第三声','第四声','軽声'],ok:2,note:'疑問を表す ma は軽声。'}
     ],'koepandaNeutralP19Complete');
     var exam=make('kidsFinalPinyinExam','最終テスト','これまでの拼音、声調、拼読、軽声をまとめて確認しよう。');
     question(exam,[
@@ -643,6 +659,7 @@
   });
 
   window.koepandaOpenPinyinUnit=function(id){
+    if(id==='P18')return openLesson({id:'P18',title:'総合練習'},null)===true;
     var stage=null,unit=null;
     course.stages.some(function(candidate){var found=candidate.units.find(function(item){return item.id===id});if(found){stage=candidate;unit=found;return true}return false});
     if(!unit||!targetForUnit(id)||unitLocked(unit,effectiveStageStatus(stage)))return false;

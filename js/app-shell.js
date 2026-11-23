@@ -20,7 +20,9 @@
   function img(id){const s=STICKERS.find(x=>x.id===id);return s?'./assets/stickers/'+s.art:'';}
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  let root, page=new URLSearchParams(location.search).get('open')==='practice'?'practice':'learn', selectedSticker=null, pendingPinyin=false;
+  const initialPage=new URLSearchParams(location.search).get('open');
+  let root, page=['practice','book'].includes(initialPage)?initialPage:'learn', selectedSticker=null, pendingPinyin=false;
+  if(initialPage==='book'){state.bookOpen=true;state.bookReady=false;state.bookFocusInventory=true;}
   let ownPresenceClient=null,ownPresenceChannel=null,ownPresenceAuth=null,ownPresenceBusy=false;
   async function syncOwnPresence(){
     if(ownPresenceBusy)return;ownPresenceBusy=true;
@@ -71,7 +73,7 @@
     window.addEventListener('pageshow',event=>{if(event.persisted){state.remoteReviewLoadedAt=0;if(page==='practice')render();}});
     const bindHomeReturn=()=>{const previousHome=window.returnToAppHome;window.returnToAppHome=function(){if(previousHome)previousHome();open('learn');};};
     const lessonsReady=()=>{bindHomeReturn();};
-    window.addEventListener('kp-pinyin-ready',()=>{if(pendingPinyin&&page==='learn')enterPinyin();});
+    window.addEventListener('kp-pinyin-ready',()=>{if(pendingPinyin&&page==='learn'){const tone=pendingPinyin==='tone';enterPinyin();if(tone)requestAnimationFrame(()=>window.koepandaOpenPinyinUnit?.('P0-U1'));}});
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(lessonsReady,0),{once:true});else lessonsReady();
   }
   function open(where='practice'){pendingPinyin=false;page=where;root.scrollTop=0;window.scrollTo(0,0);root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.classList.add('kp-feature-active');render();}
@@ -119,6 +121,20 @@
     if(action==='close'){open('learn');return;}
     if(action==='account'){const account=window.KP_ACCOUNT_API;if(account&&typeof account.open==='function')account.open();else toast('ログイン画面を読み込めませんでした。ページを再読み込みしてください。');return;}
     if(action==='pinyin-course'){if(!window.KP_PINYIN_READY){pendingPinyin=true;toast('ピンイン教材を準備しています。準備ができると自動で開きます。');return;}enterPinyin();return;}
+    if(action==='pinyin-due-review'){
+      const review=window.KP_PINYIN_REVIEW;
+      if(!window.KP_PINYIN_READY||!review){toast('ピンイン教材を準備しています。');return;}
+      b.disabled=true;
+      review.load().then(items=>{
+        if(!b.isConnected||page!=='practice')return;
+        if(items===null){toast('ログインするとピンインの復習を使えます。');return;}
+        if(!items.length){toast('今日は復習するピンインの問題がありません。');return;}
+        enterPinyin();
+        if(!review.open(items))open('practice');
+      }).catch(()=>toast('復習を読み込めませんでした。もう一度お試しください。')).finally(()=>{b.disabled=false});
+      return;
+    }
+    if(action==='pinyin-tone-start'){if(!window.KP_PINYIN_READY){pendingPinyin='tone';toast('四声の学習を準備しています。');return;}enterPinyin();requestAnimationFrame(()=>window.koepandaOpenPinyinUnit?.('P0-U1'));return;}
     if(action==='pinyin-resume'){
       const id=window.KP_PINYIN_CHAPTER_STATE?.read()?.lastUnit;
       if(!window.KP_PINYIN_READY||!id){enterPinyin();return;}
