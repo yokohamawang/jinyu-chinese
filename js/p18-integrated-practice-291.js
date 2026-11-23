@@ -140,6 +140,16 @@ function mount(root,isFinal){
  begin(mode);
 }
 window.KP_PINYIN_REVIEW={
+ questionForKey(key){
+  const original=listeningQuestions.find(q=>q.choices.some(choice=>choice!==q.answer&&reviewKey(q,choice)===key));
+  if(!original)return null;
+  const wrong=original.choices.find(choice=>reviewKey(original,choice)===key);
+  const group=comparisonGroups.find(group=>group.labels.includes(original.answer)&&group.labels.includes(wrong));
+  // Reverse the same contrast so the learner can't answer from memory of the first item.
+  const reversed=group?'assets/audio/'+group.folder+'/'+group.files[group.labels.indexOf(wrong)]+'.wav':null;
+  return {audioUrl:reversed||original.audio,answer:reversed?wrong:original.answer,
+    choices:[original.answer,wrong],note:group?(group.tips||toneTips)[group.labels.indexOf(reversed?wrong:original.answer)]:original.explain};
+ },
  async load(){
   var rows=await window.KP_ACCOUNT_API?.getPracticeReviewQueue?.(reviewCourse);
   if(!Array.isArray(rows))return null;
@@ -162,5 +172,5 @@ window.KP_PINYIN_REVIEW={
  }
 };
 function init(){mount(document.getElementById('kidsIslandReviewLesson'),false);mount(document.getElementById('kidsFinalPinyinExam'),true);return !!document.querySelector('#kidsIslandReviewLesson[data-large-cards]')&&!!document.querySelector('#kidsFinalPinyinExam[data-large-cards]')}
-var observer=new MutationObserver(function(){if(init())observer.disconnect()});if(!init())observer.observe(document.documentElement,{childList:true,subtree:true});
+if(document.getElementById('kidsCourse')){var observer=new MutationObserver(function(){if(init())observer.disconnect()});if(!init())observer.observe(document.documentElement,{childList:true,subtree:true});}
 })();

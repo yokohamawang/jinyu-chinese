@@ -21,7 +21,7 @@
   function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
   function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   const initialPage=new URLSearchParams(location.search).get('open');
-  let root, page=['practice','book'].includes(initialPage)?initialPage:'learn', selectedSticker=null, pendingPinyin=false;
+  let root, page=['practice','book','records'].includes(initialPage)?initialPage:'learn', selectedSticker=null, pendingPinyin=false;
   if(initialPage==='book'){state.bookOpen=true;state.bookReady=false;state.bookFocusInventory=true;}
   let ownPresenceClient=null,ownPresenceChannel=null,ownPresenceAuth=null,ownPresenceBusy=false;
   async function syncOwnPresence(){

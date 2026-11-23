@@ -76,10 +76,22 @@
       box.append(row);
     }
   }
+  function recordMissedSound({correct,wrong}) {
+    const selected=wrong.label;
+    const audio=correct.url?.match(/^(?:\.\/)?assets\/audio\/([a-z0-9_./-]+\.wav)(?:\?.*)?$/i);
+    if(!audio||correct.label===selected)return;
+    const key='chapter-sound:'+JSON.stringify([correct.label,selected,audio[1]]);
+    if([...key].length>100)return;
+    window.KP_ACCOUNT_API?.recordPracticeAttempt?.(key,'pinyin-chapter-review',false)
+      .catch(error=>console.warn('[Koepanda] chapter review sync unavailable:',error));
+  }
   function wrong(key,owner,correct,selected,prompt){
     if(!rounds.has(key))rounds.set(key,new Map());
     const pair={correct,wrong:selected,prompt};
-    rounds.get(key).set(JSON.stringify([prompt,correct.label,selected.label]),pair);
+    const signature=JSON.stringify([prompt,correct.label,selected.label]);
+    const round=rounds.get(key);
+    if(!round.has(signature))recordMissedSound(pair);
+    round.set(signature,pair);
     const box=panel(owner),status=node('p');status.setAttribute('role','status');
     box.replaceChildren(node('strong',correct.url?'小音と聞きくらべ':'答えを見くらべよう'));
     cue(box,pair,status);box.append(status);

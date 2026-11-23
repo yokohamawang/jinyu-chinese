@@ -402,7 +402,7 @@
       window.dispatchEvent(new CustomEvent('kp-practice-state-changed'));
       return true;
     },
-    getPracticeReviewQueue: async function (courseKey) {
+    getPracticeReviewQueue: async function (courseKey, options) {
       var c = await getClient();
       if (!c) return null;
       var sessionResult = await c.auth.getSession();
@@ -414,6 +414,8 @@
         .order('due_at', { ascending: true })
         .limit(100);
       if (courseKey) query = query.eq('course_key', String(courseKey));
+      if (options?.excludeCourse) query = query.neq('course_key', options.excludeCourse);
+      if (options?.dueOnly) query = query.lte('due_at', new Date().toISOString());
       var result = await query;
       if (result.error) throw result.error;
       return result.data || [];
