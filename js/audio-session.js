@@ -101,7 +101,7 @@
 
     var utterance = new window.SpeechSynthesisUtterance(text);
     utterance.lang = 'zh-CN';
-    utterance.rate = 0.82;
+    utterance.rate = callbacks.rate ?? 0.82;
     var voices = synth.getVoices();
     utterance.voice = voices.find(function (voice) {
       return /^zh[-_](CN|Hans)/i.test(voice.lang);
@@ -124,6 +124,11 @@
     utterance.onstart = function () {
       if (!finished && callbacks.onStart) callbacks.onStart();
     };
+    if (callbacks.onBoundary) {
+      utterance.onboundary = function (event) {
+        if (!finished) callbacks.onBoundary(event);
+      };
+    }
     utterance.onend = function () { finish(callbacks.onEnd); };
     utterance.onerror = function () { finish(callbacks.onError); };
     stopMandarin = stop;
