@@ -1,0 +1,33 @@
+.kp-lookup-word {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+  cursor: pointer;
+}
+.kp-lookup-word:is(:hover,:focus-visible) { background: #eaf3e7; }
+.kp-lookup-dialog {
+  width: min(420px, calc(100vw - 28px));
+  max-height: 78vh;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #cedfd1;
+  border-radius: 18px;
+  background: #fffefa;
+  color: #254a3b;
+  text-align: left;
+}
+.kp-lookup-dialog::backdrop { background: #173b2f70; }
+.kp-lookup-dialog h2 { margin: 0 0 8px; }
+.kp-lookup-dialog p { margin: 8px 0; white-space: normal; overflow-wrap: anywhere; }
+.kp-lookup-dialog p:empty, .kp-lookup-source:empty { display: none; }
+.kp-lookup-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.kp-lookup-actions button { min-height: 44px; padding: 6px 10px; border: 1px solid #cbdfd1; border-radius: 10px; background: #f0f6ee; color: #254a3b; }
