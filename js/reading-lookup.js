@@ -115,7 +115,7 @@
       japanese: false
     };
   }
-  function segments(text, local) {
+  function segments(text, local, splitUnmatched) {
     const boundaries = new Map();
     for (let index = 0; index < text.length; index++) {
       for (let end = Math.min(text.length, index + 12); end >= index + 2; end--) {
@@ -135,8 +135,11 @@
       let index = start;
       for (const segment of segmenter ? Array.from(segmenter.segment(gap), row => row.segment) : gap) {
         if (/^\p{Script=Han}+$/u.test(segment)) {
-          result.push({term:segment,index});
-          index += segment.length;
+          const parts = splitUnmatched?.(segment,local) || [segment];
+          for (const term of parts) {
+            result.push({term,index});
+            index += term.length;
+          }
         } else {
           for (const term of segment) {
             result.push({term,index});
@@ -158,7 +161,7 @@
     return node.querySelector('rb, .kp-story-char > b')?.textContent ||
       (node.classList.contains('kp-story-char') ? node.querySelector('b')?.textContent : node.textContent);
   }
-  function decorate(element, local) {
+  function decorate(element, local, splitUnmatched) {
     if (element.dataset.lookupReady) return;
     element.dataset.lookupReady = '1';
     if (!element.firstElementChild) {
@@ -169,7 +172,7 @@
     const children = Array.from(element.children);
     const text = children.map(base).join('');
     let cursor = 0, index = 0;
-    for (const {term} of segments(text, local)) {
+    for (const {term} of segments(text, local, splitUnmatched)) {
       const nodes = [];
       const end = cursor + term.length;
       while (index < children.length && cursor < end) {
@@ -257,7 +260,7 @@
     const getLocal = options.getLocal || (() => new Map());
     function update() {
       const local=getLocal();
-      root.querySelectorAll(selector).forEach(element=>decorate(element,local));
+      root.querySelectorAll(selector).forEach(element=>decorate(element,local,options.splitUnmatched));
     }
     const observer = new MutationObserver(update);
     observer.observe(root,{childList:true,subtree:true});
