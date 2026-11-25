@@ -16,7 +16,7 @@ const pre4Quiz = track === 'pre4' && !reviewOnly;
 const pre4Review = reviewLesson === 'pre4' || reviewKey.startsWith(pre4.prefix);
 const lesson = Number(params.get('lesson'));
 const mockPaper = pre4Quiz && unitId === 'mock' && mode === 'paper';
-const correctItems = [];
+const mockAnswers = [];
 const missed = [];
 let immediateRetry = false;
 let quizMarkup = '', quizDock;
@@ -26,7 +26,7 @@ lookup.mount(main,localWords);
 // touch, mouse and keyboard without cancelling Safari's pointer events.
 function prepareQuestionLayout(){
  document.body.classList.add('ps-question-session');
- const title=reviewLesson==='words'?'保存したことば':reviewLesson?'まちがいレッスン':reviewOnly?'もういちどチャレンジ':pageTitles[track]||'練習';
+ const title=mockPaper?'準4級 模擬試験 第'+lesson+'回':reviewLesson==='words'?'保存したことば':reviewLesson?'まちがいレッスン':reviewOnly?'もういちどチャレンジ':pageTitles[track]||'練習';
  document.getElementById('practiceTopTitle').textContent=title;
  const heading=main.querySelector('.ps-session-heading');
  if(heading)heading.hidden=true;
@@ -202,7 +202,7 @@ function listenReference(q){
    clip.onerror=fail;clip.play().catch(fail);
  }catch(_){}
 }
-function nextLabel(){return position===questions.length-1?(reviewOnly?'復習を終える':'結果を見る'):'次の問題へ';}
+function nextLabel(){return position===questions.length-1?(reviewOnly?'復習を終える':mockPaper&&!immediateRetry?'提出して採点':'結果を見る'):'次の問題へ';}
 function buildDailyQuestion(q){const phrases=new Map(catalog.daily_phrase_bank.map(x=>[x.id,x])),p=phrases.get(q.prompt_id);return[{kind:'choice',context:q.context,prompt:'音声にぴったりの返事は？',target:'音声を聞いて選ぼう',audioText:p.simplified,choices:q.choice_ids.map(id=>{const x=phrases.get(id);return{id,label:x.simplified,pinyin:x.pinyin}}),answerId:q.answer_id,explain:`${p.simplified} → ${phrases.get(q.answer_id).simplified} · ${phrases.get(q.answer_id).ja_meaning}`,reviewKey:'daily:'+q.id,course:'practice-daily'}]}
 function loadQuestion(q){document.getElementById('pre4AnswerReading').replaceChildren();stopReference();if(window.speechSynthesis)speechSynthesis.cancel();answered=false;selected=[];document.getElementById('questionCount').textContent=`${position+1} / ${questions.length}`;document.getElementById('progressFill').style.width=`${Math.round(position/questions.length*100)}%`;const context=document.getElementById('sceneLabel'),prompt=document.getElementById('promptText'),target=document.getElementById('promptTarget'),audio=document.getElementById('listenButton'),slots=document.getElementById('answerSlots'),choices=document.getElementById('choiceGrid'),feedback=document.getElementById('feedback'),primary=document.getElementById('primaryAction'),detail=document.getElementById('answerDetail');context.textContent=q.context||'';context.hidden=!q.context;prompt.textContent=q.prompt;target.textContent=q.target||'';audio.hidden=!q.audioText&&!q.audioUrl;audio.onclick=()=>listenReference(q);slots.hidden=q.kind!=='order';slots.replaceChildren();choices.replaceChildren();feedback.textContent='';feedback.className='ps-feedback';detail.textContent='';primary.disabled=true;primary.textContent=q.kind==='order'?'ことばを選んでね':(reviewOnly?'答え合わせ': '答えを選んでね');primary.onclick=()=>{if(q.kind==='order'&&!answered){checkOrder(q);return}if(!answered){return}advance()};
  if(q.kind==='order'){for(let i=0;i<q.answerIds.length;i++){const b=document.createElement('button');b.type='button';b.className='ps-slot is-empty';b.textContent='＋';b.setAttribute('aria-label',`空欄 ${i+1}`);b.onclick=()=>{if(answered)return;const ix=Number(b.dataset.selectedIndex);if(Number.isInteger(ix)){selected.splice(ix,1);drawOrder(q)}};slots.append(b)}drawOrder(q);}
@@ -282,7 +282,7 @@ function record(q,ok,actual){
    document.getElementById('pre4AnswerReading').innerHTML=lookup.review(q);
  }
  if(pre4Quiz&&!ok)missed.push({...q,actual,number:position+1});
- if(mockPaper&&ok&&!immediateRetry)correctItems.push(q);
+ if(mockPaper&&!immediateRetry)mockAnswers.push({question:q,actual,ok,number:position+1});
  // A retry during the same quiz leaves the scheduled review date intact.
  if(immediateRetry)return;
  const api=window.KP_ACCOUNT_API;
@@ -297,6 +297,30 @@ function advance(){
  if(position>=questions.length){finish(reviewOnly);return;}
  loadQuestion(questions[position]);
 }
+function renderMockReview(entries,fullResult){
+ if(!entries.length)return '';
+ const reviewRow=({question:q,actual,ok,number})=>{
+   const audio=q.audioText||q.choices&&q.choiceAudio&&q.answerId;
+   const choiceIndex=q.choices?.findIndex(choice=>choice.id===q.answerId);
+   const correct=q.choiceAudio?`${choiceIndex+1}：${q.answerId}`:q.answerId;
+   const selected=q.choiceAudio?`${q.choices.findIndex(choice=>choice.label===actual)+1}：${actual}`:actual;
+   return `<li value="${number}" class="ps-pre4-review-item">
+     <details><summary>${number}. ${esc(q.context)} · ${ok?'正解':'不正解'}</summary>
+       <p>${[q.prompt,q.target].filter(Boolean).map(esc).join(' · ')}</p>
+       <p>あなたの答え：${esc(selected)}<br>正解：<strong>${esc(correct)}</strong></p>
+       <p>${esc(q.explain)}</p>
+       ${lookup.review(q)}
+       ${audio?`<button class="pre4-button" type="button" data-pre4-review-audio="${esc(audio)}">
+         ${q.choiceAudio?'正解の音声を聞く':'問題の音声を聞く'}</button><p role="status"></p>`:''}
+     </details></li>`;
+ };
+ const section=(name,items)=>items.length?
+   `<section><h3>${name}</h3><ol>${items.map(reviewRow).join('')}</ol></section>`:'';
+ return `<details class="ps-pre4-corrections"><summary>${fullResult?'全問の答えと解説':'まちがいの解説'}（${entries.length}問）</summary>
+   ${fullResult?section('聞き取り',entries.filter(({question})=>question.section==='listen'))+
+     section('筆記',entries.filter(({question})=>question.section==='written')):section('まちがえた問題',entries)}
+   </details>`;
+}
 function finishPre4Quiz(){
  quizDock.remove();
  window.speechSynthesis?.cancel();
@@ -304,15 +328,13 @@ function finishPre4Quiz(){
  main.scrollTop=0;
  const pending=missed.splice(0);
  const fullResult=mockPaper&&!immediateRetry;
- const points=section=>correctItems.filter(q=>q.section===section).reduce((sum,q)=>sum+q.points,0);
+ const points=section=>mockAnswers.reduce((sum,{question,ok})=>
+   sum+(ok&&question.section===section?question.points:0),0);
  const listen=points('listen'), written=points('written');
- const corrections=pending.length&&unitId==='mock'?`<details class="ps-pre4-corrections"><summary>まちがいの解説（${pending.length}問）</summary><ol>
-   ${pending.map(q=>`<li value="${q.number}"><strong>${esc(q.context)}</strong>
-${[q.prompt,q.target].filter(Boolean).map(esc).join(' · ')}
-あなたの答え：${esc(q.actual)}
-正解：${esc(q.answerId)}
-${esc(q.explain)}${lookup.review(q)}</li>`).join('')}</ol></details>`:'';
- 
+ const entries=fullResult?mockAnswers:pending.map(question=>({
+   question, actual:question.actual, number:question.number, ok:false
+ }));
+ const corrections=unitId==='mock'?renderMockReview(entries,fullResult):'';
  main.innerHTML=`<section class="ps-finish-card"><img src="./assets/hanzi/teacher-speaking.webp" alt="">
    <h2>${immediateRetry?'解き直しの結果':'テストの結果'}</h2>
    <span class="ps-score">${fullResult?`${listen+written} / 100`:`${score} / ${questions.length}`}</span>
@@ -321,6 +343,13 @@ ${esc(q.explain)}${lookup.review(q)}</li>`).join('')}</ol></details>`:'';
    ${corrections}<p role="status" id="pre4SaveStatus"></p>
    ${pending.length?'<button type="button" id="pre4Retry" class="ps-primary ps-return">まちがえた問題を解き直す</button>':''}
    <a class="ps-secondary ps-return" href="${backHref()}">${params.get('from')==='past'?'過去問に戻る':unitId==='exam'||unitId==='mock'?'テスト一覧に戻る':'レッスンに戻る'}</a></section>`;
+ for(const button of main.querySelectorAll('[data-pre4-review-audio]')){
+   button.onclick=()=>{
+     const status=button.nextElementSibling;
+     status.textContent='';
+     speak(button.dataset.pre4ReviewAudio,()=>{status.textContent='音声を再生できませんでした。';});
+   };
+ }
  if(!immediateRetry&&pending.length){
    const status=document.getElementById('pre4SaveStatus');
    status.textContent='復習の記録を確認しています…';

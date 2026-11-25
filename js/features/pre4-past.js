@@ -29,8 +29,9 @@
   const external = 'target="_blank" rel="noopener noreferrer"';
 
   function render(main, heading) {
-    main.innerHTML = heading('過去問で練習', '中検公式の問題と解答を開き、採点したあとに間違えた問題を確認しよう。') +
+    main.innerHTML = heading('過去問で練習', '公式の問題冊子と答えは中検サイトで確認できます。画面で解いて自動採点するなら、KoePandaの模試へ。') +
       `<section class="pre4-card pre4-past-card">
+      <a class="pre4-button pre4-primary" href="./pre4.html?unit=exam">画面で解く模試へ</a>
       <label for="pre4PastEdition">試験回</label>
       <select class="pre4-button" id="pre4PastEdition">${Array.from({length:last-first+1},(_,i) =>
         `<option value="${last-i}">第${last-i}回</option>`).join('')}</select>

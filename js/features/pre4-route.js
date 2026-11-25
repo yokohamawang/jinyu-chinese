@@ -38,7 +38,7 @@
 
   function showMap(data) {
     main.innerHTML = heading('準4級のぼうけん', `${data.units.length}テーマ・${data.vocabulary_entries.length}の基礎語句から始めよう。`) +
-      `<nav class="pre4-tools" aria-label="テストと復習"><a class="pre4-button pre4-primary" href="${route('exam')}">模試・分野別練習</a>
+      `<nav class="pre4-tools" aria-label="テストと復習"><a class="pre4-button pre4-primary" href="${route('exam')}">画面で解く模試・練習</a>
       <a class="pre4-button" href="${route('past')}">公式過去問</a>
       <a class="pre4-button" href="./practice-session.html?reviewLesson=pre4">まちがいレッスン</a></nav>
       <details class="pr-footnote"><summary>準4級までの進め方</summary>
@@ -53,7 +53,7 @@
     setBack('./pre4.html','準4級のルートへ戻る');
     main.innerHTML = heading('準4級の模試と練習', '本番を想定して、模試は50分を目安に。苦手な形式は5問ずつ練習できます。') +
       `<ol class="pr-map-list">${[1,2,3].map(round =>
-        node(quiz('mock','paper',round), round, '模擬試験 第'+round+'回', '聞き取り25問・筆記20問')).join('')}</ol>
+        node(quiz('mock','paper',round), round, '模擬試験 第'+round+'回', '聞き取り25問・筆記20問 · 自動採点・全問解説')).join('')}</ol>
       <h2>分野別練習</h2><ul class="pr-map-list">${window.KP_PRE4_MOCK.groups.map(([id,title,description]) =>
         node(quiz('mock',id), '›',title,description)).join('')}</ul><h2>短いテスト</h2>` +
       `<ul class="pr-map-list">
