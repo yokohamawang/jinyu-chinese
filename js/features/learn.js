@@ -132,13 +132,13 @@
       ${stampCard(state,STICKERS,img,safe)}
       <div class="kp-learning-map">
         <img class="kp-learning-art" src="./assets/home/koepanda-learning-roadmap.png?v=301.266" alt="ピンイン、漢字、中国語検定の学習ロード" width="739" height="1454" loading="eager" decoding="async" fetchpriority="high">
-        <section class="kp-map-recovery" role="status"><p>学習マップを表示できませんでした。</p><button type="button" data-action="retry-home-map">マップをもう一度読み込む</button><button type="button" data-action="pinyin-course">ピンインのぼうけんへ</button><a href="./hanzi-practice.html">漢字のたんけんへ</a><a href="./help-station.html?v=10.108.301.64">手書き漢字辞典へ</a></section>
+        <section class="kp-map-recovery" role="status"><p>学習マップを表示できませんでした。</p><button type="button" data-action="retry-home-map">マップをもう一度読み込む</button><button type="button" data-action="pinyin-course">ピンインのぼうけんへ</button><a href="./pre4.html">準4級のぼうけんへ</a><a href="./hanzi-practice.html">漢字のたんけんへ</a><a href="./help-station.html?v=10.108.301.64">手書き漢字辞典へ</a></section>
         <button type="button" class="kp-home-hotspot kp-home-pinyin" data-action="pinyin-course" aria-label="ピンインのぼうけんを始める"></button>
         <a class="kp-home-hotspot kp-help-station" href="./help-station.html?v=10.108.301.64" aria-label="小音の手書き漢字辞典：手書きで文字を調べる">
           <img src="./assets/home/help-station-handwriting-dictionary.svg?v=301.197" alt="" width="128" height="77">
         </a>
         <a class="kp-home-hotspot kp-home-hanzi" href="./hanzi-practice.html" aria-label="漢字のたんけんを開く"></a>
-        <a class="kp-home-hotspot kp-home-pre4" href="./hanzi-practice.html" aria-label="準4級の漢字ルートを開く"></a>
+        <a class="kp-home-hotspot kp-home-pre4" href="./pre4.html" aria-label="準4級のぼうけんを開く"></a>
         <button type="button" class="kp-home-hotspot kp-home-grade4" data-action="roadmap-coming" data-level="4級" aria-label="4級コースの案内"></button>
         <button type="button" class="kp-home-hotspot kp-home-grade3" data-action="roadmap-coming" data-level="3級" aria-label="3級コースの案内"></button>
         <button type="button" class="kp-home-hotspot kp-home-grade2" data-action="roadmap-coming" data-level="2級" aria-label="2級コースの案内"></button>

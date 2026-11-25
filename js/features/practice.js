@@ -78,7 +78,7 @@
           if(row.item_key.startsWith('pre4-char:')&&row.course_key==='hanzi-basic'){
             const params=new URLSearchParams({review:row.item_key,course:row.course_key});window.location.href='./hanzi-practice.html?'+params.toString();return;
           }
-          if(row.item_key.startsWith('pre4-entry:')||row.item_key.startsWith('pre4-char:')||row.item_key.startsWith('daily:')||row.item_key.startsWith('scenario:')||row.item_key.startsWith('dialogue:')){
+          if(row.item_key.startsWith('pre4-prep:')||row.item_key.startsWith('pre4-entry:')||row.item_key.startsWith('pre4-char:')||row.item_key.startsWith('daily:')||row.item_key.startsWith('scenario:')||row.item_key.startsWith('dialogue:')){
             const params=new URLSearchParams({review:row.item_key,course:row.course_key});window.location.href='./practice-session.html?'+params.toString();return;
           }
           const q=QUESTIONS.find(x=>'quiz:'+x.id===row.item_key);
