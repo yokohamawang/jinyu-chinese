@@ -1,0 +1,3464 @@
+{
+  "units": [
+    {
+      "unit_id": "pre4-extra-01",
+      "title_ja": "人と家族",
+      "entry_ids": [
+        "pre4-extra-word-001",
+        "pre4-extra-word-002",
+        "pre4-extra-word-003",
+        "pre4-extra-word-004",
+        "pre4-extra-word-005",
+        "pre4-extra-word-006",
+        "pre4-extra-word-007",
+        "pre4-extra-word-008",
+        "pre4-extra-word-009",
+        "pre4-extra-word-010",
+        "pre4-extra-word-011",
+        "pre4-extra-word-012",
+        "pre4-extra-word-013",
+        "pre4-extra-word-014",
+        "pre4-extra-word-015",
+        "pre4-extra-word-016",
+        "pre4-extra-word-017",
+        "pre4-extra-word-018",
+        "pre4-extra-word-019",
+        "pre4-extra-word-020",
+        "pre4-extra-word-021",
+        "pre4-extra-word-022",
+        "pre4-extra-word-023",
+        "pre4-extra-word-024"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-02",
+      "title_ja": "時間と予定",
+      "entry_ids": [
+        "pre4-extra-word-025",
+        "pre4-extra-word-026",
+        "pre4-extra-word-027",
+        "pre4-extra-word-028",
+        "pre4-extra-word-029",
+        "pre4-extra-word-030",
+        "pre4-extra-word-031",
+        "pre4-extra-word-032",
+        "pre4-extra-word-033",
+        "pre4-extra-word-034",
+        "pre4-extra-word-035",
+        "pre4-extra-word-036"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-03",
+      "title_ja": "場所と道案内",
+      "entry_ids": [
+        "pre4-extra-word-037",
+        "pre4-extra-word-038",
+        "pre4-extra-word-039",
+        "pre4-extra-word-040",
+        "pre4-extra-word-041",
+        "pre4-extra-word-042",
+        "pre4-extra-word-043",
+        "pre4-extra-word-044",
+        "pre4-extra-word-045",
+        "pre4-extra-word-046",
+        "pre4-extra-word-047",
+        "pre4-extra-word-048",
+        "pre4-extra-word-049",
+        "pre4-extra-word-050",
+        "pre4-extra-word-051",
+        "pre4-extra-word-052",
+        "pre4-extra-word-053",
+        "pre4-extra-word-054",
+        "pre4-extra-word-055",
+        "pre4-extra-word-056",
+        "pre4-extra-word-057",
+        "pre4-extra-word-058",
+        "pre4-extra-word-059"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-04",
+      "title_ja": "食べ物と飲み物",
+      "entry_ids": [
+        "pre4-extra-word-060",
+        "pre4-extra-word-061",
+        "pre4-extra-word-062",
+        "pre4-extra-word-063",
+        "pre4-extra-word-064",
+        "pre4-extra-word-065",
+        "pre4-extra-word-066",
+        "pre4-extra-word-067",
+        "pre4-extra-word-068",
+        "pre4-extra-word-069",
+        "pre4-extra-word-070",
+        "pre4-extra-word-071",
+        "pre4-extra-word-072",
+        "pre4-extra-word-073",
+        "pre4-extra-word-074",
+        "pre4-extra-word-075",
+        "pre4-extra-word-076",
+        "pre4-extra-word-077",
+        "pre4-extra-word-078",
+        "pre4-extra-word-079",
+        "pre4-extra-word-080",
+        "pre4-extra-word-081",
+        "pre4-extra-word-082"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-05",
+      "title_ja": "暮らしの道具",
+      "entry_ids": [
+        "pre4-extra-word-083",
+        "pre4-extra-word-084",
+        "pre4-extra-word-085",
+        "pre4-extra-word-086",
+        "pre4-extra-word-087",
+        "pre4-extra-word-088",
+        "pre4-extra-word-089",
+        "pre4-extra-word-090",
+        "pre4-extra-word-091",
+        "pre4-extra-word-092",
+        "pre4-extra-word-093",
+        "pre4-extra-word-094",
+        "pre4-extra-word-095",
+        "pre4-extra-word-096",
+        "pre4-extra-word-097",
+        "pre4-extra-word-098",
+        "pre4-extra-word-099",
+        "pre4-extra-word-100",
+        "pre4-extra-word-101",
+        "pre4-extra-word-102",
+        "pre4-extra-word-103"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-06",
+      "title_ja": "買い物と身につけるもの",
+      "entry_ids": [
+        "pre4-extra-word-104",
+        "pre4-extra-word-105",
+        "pre4-extra-word-106",
+        "pre4-extra-word-107",
+        "pre4-extra-word-108",
+        "pre4-extra-word-109",
+        "pre4-extra-word-110",
+        "pre4-extra-word-111",
+        "pre4-extra-word-112",
+        "pre4-extra-word-113",
+        "pre4-extra-word-114",
+        "pre4-extra-word-115",
+        "pre4-extra-word-116",
+        "pre4-extra-word-117",
+        "pre4-extra-word-118",
+        "pre4-extra-word-119",
+        "pre4-extra-word-120",
+        "pre4-extra-word-121",
+        "pre4-extra-word-122"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-07",
+      "title_ja": "動作と日課",
+      "entry_ids": [
+        "pre4-extra-word-123",
+        "pre4-extra-word-124",
+        "pre4-extra-word-125",
+        "pre4-extra-word-126",
+        "pre4-extra-word-127",
+        "pre4-extra-word-128",
+        "pre4-extra-word-129",
+        "pre4-extra-word-130",
+        "pre4-extra-word-131",
+        "pre4-extra-word-132",
+        "pre4-extra-word-133",
+        "pre4-extra-word-134",
+        "pre4-extra-word-135",
+        "pre4-extra-word-136",
+        "pre4-extra-word-137",
+        "pre4-extra-word-138",
+        "pre4-extra-word-139",
+        "pre4-extra-word-140",
+        "pre4-extra-word-141",
+        "pre4-extra-word-142",
+        "pre4-extra-word-143",
+        "pre4-extra-word-144",
+        "pre4-extra-word-145"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-08",
+      "title_ja": "学習と仕事",
+      "entry_ids": [
+        "pre4-extra-word-146",
+        "pre4-extra-word-147",
+        "pre4-extra-word-148",
+        "pre4-extra-word-149",
+        "pre4-extra-word-150",
+        "pre4-extra-word-151",
+        "pre4-extra-word-152",
+        "pre4-extra-word-153",
+        "pre4-extra-word-154",
+        "pre4-extra-word-155",
+        "pre4-extra-word-156",
+        "pre4-extra-word-157",
+        "pre4-extra-word-158",
+        "pre4-extra-word-159",
+        "pre4-extra-word-160",
+        "pre4-extra-word-161",
+        "pre4-extra-word-162"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-09",
+      "title_ja": "移動と旅",
+      "entry_ids": [
+        "pre4-extra-word-163",
+        "pre4-extra-word-164",
+        "pre4-extra-word-165",
+        "pre4-extra-word-166",
+        "pre4-extra-word-167",
+        "pre4-extra-word-168",
+        "pre4-extra-word-169",
+        "pre4-extra-word-170",
+        "pre4-extra-word-171",
+        "pre4-extra-word-172",
+        "pre4-extra-word-173",
+        "pre4-extra-word-174",
+        "pre4-extra-word-175",
+        "pre4-extra-word-176",
+        "pre4-extra-word-177",
+        "pre4-extra-word-178",
+        "pre4-extra-word-179",
+        "pre4-extra-word-180",
+        "pre4-extra-word-181",
+        "pre4-extra-word-182",
+        "pre4-extra-word-183",
+        "pre4-extra-word-184",
+        "pre4-extra-word-185",
+        "pre4-extra-word-186"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-10",
+      "title_ja": "自然と体調",
+      "entry_ids": [
+        "pre4-extra-word-187",
+        "pre4-extra-word-188",
+        "pre4-extra-word-189",
+        "pre4-extra-word-190",
+        "pre4-extra-word-191",
+        "pre4-extra-word-192",
+        "pre4-extra-word-193",
+        "pre4-extra-word-194",
+        "pre4-extra-word-195",
+        "pre4-extra-word-196",
+        "pre4-extra-word-197",
+        "pre4-extra-word-198",
+        "pre4-extra-word-199",
+        "pre4-extra-word-200",
+        "pre4-extra-word-201",
+        "pre4-extra-word-202",
+        "pre4-extra-word-203",
+        "pre4-extra-word-204",
+        "pre4-extra-word-205",
+        "pre4-extra-word-206",
+        "pre4-extra-word-207",
+        "pre4-extra-word-208",
+        "pre4-extra-word-209",
+        "pre4-extra-word-210"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-11",
+      "title_ja": "様子と気持ち",
+      "entry_ids": [
+        "pre4-extra-word-211",
+        "pre4-extra-word-212",
+        "pre4-extra-word-213",
+        "pre4-extra-word-214",
+        "pre4-extra-word-215",
+        "pre4-extra-word-216",
+        "pre4-extra-word-217",
+        "pre4-extra-word-218",
+        "pre4-extra-word-219",
+        "pre4-extra-word-220",
+        "pre4-extra-word-221",
+        "pre4-extra-word-222",
+        "pre4-extra-word-223",
+        "pre4-extra-word-224",
+        "pre4-extra-word-225",
+        "pre4-extra-word-226",
+        "pre4-extra-word-227",
+        "pre4-extra-word-228",
+        "pre4-extra-word-229"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-12",
+      "title_ja": "文を組み立てる語",
+      "entry_ids": [
+        "pre4-extra-word-230",
+        "pre4-extra-word-231",
+        "pre4-extra-word-232",
+        "pre4-extra-word-233",
+        "pre4-extra-word-234",
+        "pre4-extra-word-235",
+        "pre4-extra-word-236",
+        "pre4-extra-word-237",
+        "pre4-extra-word-238",
+        "pre4-extra-word-239",
+        "pre4-extra-word-240",
+        "pre4-extra-word-241",
+        "pre4-extra-word-242",
+        "pre4-extra-word-243",
+        "pre4-extra-word-244",
+        "pre4-extra-word-245",
+        "pre4-extra-word-246",
+        "pre4-extra-word-247",
+        "pre4-extra-word-248",
+        "pre4-extra-word-249",
+        "pre4-extra-word-250"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-13",
+      "title_ja": "あいさつと頼み方",
+      "entry_ids": [
+        "pre4-extra-word-251",
+        "pre4-extra-word-252",
+        "pre4-extra-word-253",
+        "pre4-extra-word-254",
+        "pre4-extra-word-255",
+        "pre4-extra-word-256",
+        "pre4-extra-word-257",
+        "pre4-extra-word-258",
+        "pre4-extra-word-259",
+        "pre4-extra-word-260",
+        "pre4-extra-word-261",
+        "pre4-extra-word-262",
+        "pre4-extra-word-263",
+        "pre4-extra-word-264",
+        "pre4-extra-word-265",
+        "pre4-extra-word-266",
+        "pre4-extra-word-267",
+        "pre4-extra-word-268",
+        "pre4-extra-word-269",
+        "pre4-extra-word-270",
+        "pre4-extra-word-271",
+        "pre4-extra-word-272",
+        "pre4-extra-word-273",
+        "pre4-extra-word-274",
+        "pre4-extra-word-275"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-14",
+      "title_ja": "趣味と毎日の会話",
+      "entry_ids": [
+        "pre4-extra-word-276",
+        "pre4-extra-word-277",
+        "pre4-extra-word-278",
+        "pre4-extra-word-279",
+        "pre4-extra-word-280",
+        "pre4-extra-word-281",
+        "pre4-extra-word-282",
+        "pre4-extra-word-283",
+        "pre4-extra-word-284",
+        "pre4-extra-word-285",
+        "pre4-extra-word-286",
+        "pre4-extra-word-287",
+        "pre4-extra-word-288",
+        "pre4-extra-word-289",
+        "pre4-extra-word-290",
+        "pre4-extra-word-291",
+        "pre4-extra-word-292",
+        "pre4-extra-word-293",
+        "pre4-extra-word-294",
+        "pre4-extra-word-295",
+        "pre4-extra-word-296",
+        "pre4-extra-word-297",
+        "pre4-extra-word-298"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-15",
+      "title_ja": "動詞とよく使う表現",
+      "entry_ids": [
+        "pre4-extra-word-299",
+        "pre4-extra-word-300",
+        "pre4-extra-word-301",
+        "pre4-extra-word-302",
+        "pre4-extra-word-303",
+        "pre4-extra-word-304",
+        "pre4-extra-word-305",
+        "pre4-extra-word-306",
+        "pre4-extra-word-307",
+        "pre4-extra-word-308",
+        "pre4-extra-word-309",
+        "pre4-extra-word-310",
+        "pre4-extra-word-311",
+        "pre4-extra-word-312",
+        "pre4-extra-word-313",
+        "pre4-extra-word-314",
+        "pre4-extra-word-315",
+        "pre4-extra-word-316",
+        "pre4-extra-word-317",
+        "pre4-extra-word-318",
+        "pre4-extra-word-319",
+        "pre4-extra-word-320",
+        "pre4-extra-word-321",
+        "pre4-extra-word-322"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-16",
+      "title_ja": "会話で使う数と単位",
+      "entry_ids": [
+        "pre4-extra-word-323",
+        "pre4-extra-word-324",
+        "pre4-extra-word-325",
+        "pre4-extra-word-326",
+        "pre4-extra-word-327",
+        "pre4-extra-word-328",
+        "pre4-extra-word-329",
+        "pre4-extra-word-330",
+        "pre4-extra-word-331",
+        "pre4-extra-word-332",
+        "pre4-extra-word-333",
+        "pre4-extra-word-334",
+        "pre4-extra-word-335",
+        "pre4-extra-word-336",
+        "pre4-extra-word-337",
+        "pre4-extra-word-338",
+        "pre4-extra-word-339",
+        "pre4-extra-word-340",
+        "pre4-extra-word-341",
+        "pre4-extra-word-342",
+        "pre4-extra-word-343",
+        "pre4-extra-word-344"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-17",
+      "title_ja": "体の部位と身近なもの",
+      "entry_ids": [
+        "pre4-extra-word-345",
+        "pre4-extra-word-346",
+        "pre4-extra-word-347",
+        "pre4-extra-word-348",
+        "pre4-extra-word-349",
+        "pre4-extra-word-350",
+        "pre4-extra-word-351",
+        "pre4-extra-word-352",
+        "pre4-extra-word-353",
+        "pre4-extra-word-354",
+        "pre4-extra-word-355",
+        "pre4-extra-word-356",
+        "pre4-extra-word-357",
+        "pre4-extra-word-358",
+        "pre4-extra-word-359",
+        "pre4-extra-word-360",
+        "pre4-extra-word-361",
+        "pre4-extra-word-362",
+        "pre4-extra-word-363",
+        "pre4-extra-word-364",
+        "pre4-extra-word-365",
+        "pre4-extra-word-366",
+        "pre4-extra-word-367",
+        "pre4-extra-word-368"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-18",
+      "title_ja": "会話を広げる語",
+      "entry_ids": [
+        "pre4-extra-word-369",
+        "pre4-extra-word-370",
+        "pre4-extra-word-371",
+        "pre4-extra-word-372",
+        "pre4-extra-word-373",
+        "pre4-extra-word-374",
+        "pre4-extra-word-375",
+        "pre4-extra-word-376",
+        "pre4-extra-word-377",
+        "pre4-extra-word-378",
+        "pre4-extra-word-379",
+        "pre4-extra-word-380",
+        "pre4-extra-word-381",
+        "pre4-extra-word-382",
+        "pre4-extra-word-383",
+        "pre4-extra-word-384",
+        "pre4-extra-word-385",
+        "pre4-extra-word-386",
+        "pre4-extra-word-387",
+        "pre4-extra-word-388",
+        "pre4-extra-word-389",
+        "pre4-extra-word-390",
+        "pre4-extra-word-391",
+        "pre4-extra-word-392",
+        "pre4-extra-word-393"
+      ]
+    },
+    {
+      "unit_id": "pre4-extra-19",
+      "title_ja": "生活の場面",
+      "entry_ids": [
+        "pre4-extra-word-394",
+        "pre4-extra-word-395",
+        "pre4-extra-word-396",
+        "pre4-extra-word-397",
+        "pre4-extra-word-398",
+        "pre4-extra-word-399",
+        "pre4-extra-word-400",
+        "pre4-extra-word-401",
+        "pre4-extra-word-402",
+        "pre4-extra-word-403",
+        "pre4-extra-word-404",
+        "pre4-extra-word-405",
+        "pre4-extra-word-406",
+        "pre4-extra-word-407",
+        "pre4-extra-word-408",
+        "pre4-extra-word-409",
+        "pre4-extra-word-410",
+        "pre4-extra-word-411",
+        "pre4-extra-word-412",
+        "pre4-extra-word-413",
+        "pre4-extra-word-414",
+        "pre4-extra-word-415",
+        "pre4-extra-word-416",
+        "pre4-extra-word-417",
+        "pre4-extra-word-418"
+      ]
+    }
+  ],
+  "vocabulary_entries": [
+    {
+      "entry_id": "pre4-extra-word-001",
+      "unit_id": "pre4-extra-01",
+      "simplified": "爷爷",
+      "pinyin": "yéye",
+      "ja_meaning": "父方の祖父"
+    },
+    {
+      "entry_id": "pre4-extra-word-002",
+      "unit_id": "pre4-extra-01",
+      "simplified": "奶奶",
+      "pinyin": "nǎinai",
+      "ja_meaning": "父方の祖母"
+    },
+    {
+      "entry_id": "pre4-extra-word-003",
+      "unit_id": "pre4-extra-01",
+      "simplified": "外公",
+      "pinyin": "wàigōng",
+      "ja_meaning": "母方の祖父"
+    },
+    {
+      "entry_id": "pre4-extra-word-004",
+      "unit_id": "pre4-extra-01",
+      "simplified": "外婆",
+      "pinyin": "wàipó",
+      "ja_meaning": "母方の祖母"
+    },
+    {
+      "entry_id": "pre4-extra-word-005",
+      "unit_id": "pre4-extra-01",
+      "simplified": "父亲",
+      "pinyin": "fùqīn",
+      "ja_meaning": "父"
+    },
+    {
+      "entry_id": "pre4-extra-word-006",
+      "unit_id": "pre4-extra-01",
+      "simplified": "母亲",
+      "pinyin": "mǔqīn",
+      "ja_meaning": "母"
+    },
+    {
+      "entry_id": "pre4-extra-word-007",
+      "unit_id": "pre4-extra-01",
+      "simplified": "叔叔",
+      "pinyin": "shūshu",
+      "ja_meaning": "おじ"
+    },
+    {
+      "entry_id": "pre4-extra-word-008",
+      "unit_id": "pre4-extra-01",
+      "simplified": "阿姨",
+      "pinyin": "āyí",
+      "ja_meaning": "おばさん"
+    },
+    {
+      "entry_id": "pre4-extra-word-009",
+      "unit_id": "pre4-extra-01",
+      "simplified": "丈夫",
+      "pinyin": "zhàngfu",
+      "ja_meaning": "夫"
+    },
+    {
+      "entry_id": "pre4-extra-word-010",
+      "unit_id": "pre4-extra-01",
+      "simplified": "妻子",
+      "pinyin": "qīzi",
+      "ja_meaning": "妻"
+    },
+    {
+      "entry_id": "pre4-extra-word-011",
+      "unit_id": "pre4-extra-01",
+      "simplified": "邻居",
+      "pinyin": "línjū",
+      "ja_meaning": "近所の人"
+    },
+    {
+      "entry_id": "pre4-extra-word-012",
+      "unit_id": "pre4-extra-01",
+      "simplified": "同事",
+      "pinyin": "tóngshì",
+      "ja_meaning": "同僚"
+    },
+    {
+      "entry_id": "pre4-extra-word-013",
+      "unit_id": "pre4-extra-01",
+      "simplified": "同学",
+      "pinyin": "tóngxué",
+      "ja_meaning": "クラスメート"
+    },
+    {
+      "entry_id": "pre4-extra-word-014",
+      "unit_id": "pre4-extra-01",
+      "simplified": "客人",
+      "pinyin": "kèrén",
+      "ja_meaning": "客"
+    },
+    {
+      "entry_id": "pre4-extra-word-015",
+      "unit_id": "pre4-extra-01",
+      "simplified": "护士",
+      "pinyin": "hùshi",
+      "ja_meaning": "看護師"
+    },
+    {
+      "entry_id": "pre4-extra-word-016",
+      "unit_id": "pre4-extra-01",
+      "simplified": "司机",
+      "pinyin": "sījī",
+      "ja_meaning": "運転手"
+    },
+    {
+      "entry_id": "pre4-extra-word-017",
+      "unit_id": "pre4-extra-01",
+      "simplified": "服务员",
+      "pinyin": "fúwùyuán",
+      "ja_meaning": "店員"
+    },
+    {
+      "entry_id": "pre4-extra-word-018",
+      "unit_id": "pre4-extra-01",
+      "simplified": "孩子",
+      "pinyin": "háizi",
+      "ja_meaning": "子ども"
+    },
+    {
+      "entry_id": "pre4-extra-word-019",
+      "unit_id": "pre4-extra-01",
+      "simplified": "男孩",
+      "pinyin": "nánhái",
+      "ja_meaning": "男の子"
+    },
+    {
+      "entry_id": "pre4-extra-word-020",
+      "unit_id": "pre4-extra-01",
+      "simplified": "女孩",
+      "pinyin": "nǚhái",
+      "ja_meaning": "女の子"
+    },
+    {
+      "entry_id": "pre4-extra-word-021",
+      "unit_id": "pre4-extra-01",
+      "simplified": "大家",
+      "pinyin": "dàjiā",
+      "ja_meaning": "みんな"
+    },
+    {
+      "entry_id": "pre4-extra-word-022",
+      "unit_id": "pre4-extra-01",
+      "simplified": "自己",
+      "pinyin": "zìjǐ",
+      "ja_meaning": "自分"
+    },
+    {
+      "entry_id": "pre4-extra-word-023",
+      "unit_id": "pre4-extra-01",
+      "simplified": "别人",
+      "pinyin": "biérén",
+      "ja_meaning": "ほかの人"
+    },
+    {
+      "entry_id": "pre4-extra-word-024",
+      "unit_id": "pre4-extra-01",
+      "simplified": "姓名",
+      "pinyin": "xìngmíng",
+      "ja_meaning": "氏名"
+    },
+    {
+      "entry_id": "pre4-extra-word-025",
+      "unit_id": "pre4-extra-02",
+      "simplified": "今年",
+      "pinyin": "jīnnián",
+      "ja_meaning": "今年"
+    },
+    {
+      "entry_id": "pre4-extra-word-026",
+      "unit_id": "pre4-extra-02",
+      "simplified": "去年",
+      "pinyin": "qùnián",
+      "ja_meaning": "去年"
+    },
+    {
+      "entry_id": "pre4-extra-word-027",
+      "unit_id": "pre4-extra-02",
+      "simplified": "明年",
+      "pinyin": "míngnián",
+      "ja_meaning": "来年"
+    },
+    {
+      "entry_id": "pre4-extra-word-028",
+      "unit_id": "pre4-extra-02",
+      "simplified": "星期",
+      "pinyin": "xīngqī",
+      "ja_meaning": "週・曜日"
+    },
+    {
+      "entry_id": "pre4-extra-word-029",
+      "unit_id": "pre4-extra-02",
+      "simplified": "周末",
+      "pinyin": "zhōumò",
+      "ja_meaning": "週末"
+    },
+    {
+      "entry_id": "pre4-extra-word-030",
+      "unit_id": "pre4-extra-02",
+      "simplified": "时间",
+      "pinyin": "shíjiān",
+      "ja_meaning": "時間"
+    },
+    {
+      "entry_id": "pre4-extra-word-031",
+      "unit_id": "pre4-extra-02",
+      "simplified": "时候",
+      "pinyin": "shíhou",
+      "ja_meaning": "時"
+    },
+    {
+      "entry_id": "pre4-extra-word-032",
+      "unit_id": "pre4-extra-02",
+      "simplified": "刻",
+      "pinyin": "kè",
+      "ja_meaning": "15分"
+    },
+    {
+      "entry_id": "pre4-extra-word-033",
+      "unit_id": "pre4-extra-02",
+      "simplified": "以前",
+      "pinyin": "yǐqián",
+      "ja_meaning": "以前"
+    },
+    {
+      "entry_id": "pre4-extra-word-034",
+      "unit_id": "pre4-extra-02",
+      "simplified": "以后",
+      "pinyin": "yǐhòu",
+      "ja_meaning": "以後"
+    },
+    {
+      "entry_id": "pre4-extra-word-035",
+      "unit_id": "pre4-extra-02",
+      "simplified": "刚才",
+      "pinyin": "gāngcái",
+      "ja_meaning": "さっき"
+    },
+    {
+      "entry_id": "pre4-extra-word-036",
+      "unit_id": "pre4-extra-02",
+      "simplified": "马上",
+      "pinyin": "mǎshàng",
+      "ja_meaning": "すぐに"
+    },
+    {
+      "entry_id": "pre4-extra-word-037",
+      "unit_id": "pre4-extra-03",
+      "simplified": "学校",
+      "pinyin": "xuéxiào",
+      "ja_meaning": "学校"
+    },
+    {
+      "entry_id": "pre4-extra-word-038",
+      "unit_id": "pre4-extra-03",
+      "simplified": "医院",
+      "pinyin": "yīyuàn",
+      "ja_meaning": "病院"
+    },
+    {
+      "entry_id": "pre4-extra-word-039",
+      "unit_id": "pre4-extra-03",
+      "simplified": "银行",
+      "pinyin": "yínháng",
+      "ja_meaning": "銀行"
+    },
+    {
+      "entry_id": "pre4-extra-word-040",
+      "unit_id": "pre4-extra-03",
+      "simplified": "邮局",
+      "pinyin": "yóujú",
+      "ja_meaning": "郵便局"
+    },
+    {
+      "entry_id": "pre4-extra-word-041",
+      "unit_id": "pre4-extra-03",
+      "simplified": "图书馆",
+      "pinyin": "túshūguǎn",
+      "ja_meaning": "図書館"
+    },
+    {
+      "entry_id": "pre4-extra-word-042",
+      "unit_id": "pre4-extra-03",
+      "simplified": "书店",
+      "pinyin": "shūdiàn",
+      "ja_meaning": "書店"
+    },
+    {
+      "entry_id": "pre4-extra-word-043",
+      "unit_id": "pre4-extra-03",
+      "simplified": "超市",
+      "pinyin": "chāoshì",
+      "ja_meaning": "スーパー"
+    },
+    {
+      "entry_id": "pre4-extra-word-044",
+      "unit_id": "pre4-extra-03",
+      "simplified": "机场",
+      "pinyin": "jīchǎng",
+      "ja_meaning": "空港"
+    },
+    {
+      "entry_id": "pre4-extra-word-045",
+      "unit_id": "pre4-extra-03",
+      "simplified": "火车站",
+      "pinyin": "huǒchēzhàn",
+      "ja_meaning": "駅"
+    },
+    {
+      "entry_id": "pre4-extra-word-046",
+      "unit_id": "pre4-extra-03",
+      "simplified": "地铁站",
+      "pinyin": "dìtiězhàn",
+      "ja_meaning": "地下鉄の駅"
+    },
+    {
+      "entry_id": "pre4-extra-word-047",
+      "unit_id": "pre4-extra-03",
+      "simplified": "酒店",
+      "pinyin": "jiǔdiàn",
+      "ja_meaning": "ホテル"
+    },
+    {
+      "entry_id": "pre4-extra-word-048",
+      "unit_id": "pre4-extra-03",
+      "simplified": "饭馆",
+      "pinyin": "fànguǎn",
+      "ja_meaning": "食堂・レストラン"
+    },
+    {
+      "entry_id": "pre4-extra-word-049",
+      "unit_id": "pre4-extra-03",
+      "simplified": "教室",
+      "pinyin": "jiàoshì",
+      "ja_meaning": "教室"
+    },
+    {
+      "entry_id": "pre4-extra-word-050",
+      "unit_id": "pre4-extra-03",
+      "simplified": "办公室",
+      "pinyin": "bàngōngshì",
+      "ja_meaning": "事務室"
+    },
+    {
+      "entry_id": "pre4-extra-word-051",
+      "unit_id": "pre4-extra-03",
+      "simplified": "洗手间",
+      "pinyin": "xǐshǒujiān",
+      "ja_meaning": "トイレ"
+    },
+    {
+      "entry_id": "pre4-extra-word-052",
+      "unit_id": "pre4-extra-03",
+      "simplified": "门口",
+      "pinyin": "ménkǒu",
+      "ja_meaning": "出入口"
+    },
+    {
+      "entry_id": "pre4-extra-word-053",
+      "unit_id": "pre4-extra-03",
+      "simplified": "前面",
+      "pinyin": "qiánmiàn",
+      "ja_meaning": "前"
+    },
+    {
+      "entry_id": "pre4-extra-word-054",
+      "unit_id": "pre4-extra-03",
+      "simplified": "后面",
+      "pinyin": "hòumiàn",
+      "ja_meaning": "後ろ"
+    },
+    {
+      "entry_id": "pre4-extra-word-055",
+      "unit_id": "pre4-extra-03",
+      "simplified": "旁边",
+      "pinyin": "pángbiān",
+      "ja_meaning": "そば"
+    },
+    {
+      "entry_id": "pre4-extra-word-056",
+      "unit_id": "pre4-extra-03",
+      "simplified": "里面",
+      "pinyin": "lǐmiàn",
+      "ja_meaning": "中"
+    },
+    {
+      "entry_id": "pre4-extra-word-057",
+      "unit_id": "pre4-extra-03",
+      "simplified": "外面",
+      "pinyin": "wàimiàn",
+      "ja_meaning": "外"
+    },
+    {
+      "entry_id": "pre4-extra-word-058",
+      "unit_id": "pre4-extra-03",
+      "simplified": "左边",
+      "pinyin": "zuǒbiān",
+      "ja_meaning": "左側"
+    },
+    {
+      "entry_id": "pre4-extra-word-059",
+      "unit_id": "pre4-extra-03",
+      "simplified": "右边",
+      "pinyin": "yòubiān",
+      "ja_meaning": "右側"
+    },
+    {
+      "entry_id": "pre4-extra-word-060",
+      "unit_id": "pre4-extra-04",
+      "simplified": "面条",
+      "pinyin": "miàntiáo",
+      "ja_meaning": "麺"
+    },
+    {
+      "entry_id": "pre4-extra-word-061",
+      "unit_id": "pre4-extra-04",
+      "simplified": "饺子",
+      "pinyin": "jiǎozi",
+      "ja_meaning": "ギョーザ"
+    },
+    {
+      "entry_id": "pre4-extra-word-062",
+      "unit_id": "pre4-extra-04",
+      "simplified": "包子",
+      "pinyin": "bāozi",
+      "ja_meaning": "中華まん"
+    },
+    {
+      "entry_id": "pre4-extra-word-063",
+      "unit_id": "pre4-extra-04",
+      "simplified": "馒头",
+      "pinyin": "mántou",
+      "ja_meaning": "蒸しパン"
+    },
+    {
+      "entry_id": "pre4-extra-word-064",
+      "unit_id": "pre4-extra-04",
+      "simplified": "面包",
+      "pinyin": "miànbāo",
+      "ja_meaning": "パン"
+    },
+    {
+      "entry_id": "pre4-extra-word-065",
+      "unit_id": "pre4-extra-04",
+      "simplified": "鸡蛋",
+      "pinyin": "jīdàn",
+      "ja_meaning": "卵"
+    },
+    {
+      "entry_id": "pre4-extra-word-066",
+      "unit_id": "pre4-extra-04",
+      "simplified": "牛肉",
+      "pinyin": "niúròu",
+      "ja_meaning": "牛肉"
+    },
+    {
+      "entry_id": "pre4-extra-word-067",
+      "unit_id": "pre4-extra-04",
+      "simplified": "猪肉",
+      "pinyin": "zhūròu",
+      "ja_meaning": "豚肉"
+    },
+    {
+      "entry_id": "pre4-extra-word-068",
+      "unit_id": "pre4-extra-04",
+      "simplified": "鸡肉",
+      "pinyin": "jīròu",
+      "ja_meaning": "鶏肉"
+    },
+    {
+      "entry_id": "pre4-extra-word-069",
+      "unit_id": "pre4-extra-04",
+      "simplified": "鱼",
+      "pinyin": "yú",
+      "ja_meaning": "魚"
+    },
+    {
+      "entry_id": "pre4-extra-word-070",
+      "unit_id": "pre4-extra-04",
+      "simplified": "蔬菜",
+      "pinyin": "shūcài",
+      "ja_meaning": "野菜"
+    },
+    {
+      "entry_id": "pre4-extra-word-071",
+      "unit_id": "pre4-extra-04",
+      "simplified": "土豆",
+      "pinyin": "tǔdòu",
+      "ja_meaning": "ジャガイモ"
+    },
+    {
+      "entry_id": "pre4-extra-word-072",
+      "unit_id": "pre4-extra-04",
+      "simplified": "西红柿",
+      "pinyin": "xīhóngshì",
+      "ja_meaning": "トマト"
+    },
+    {
+      "entry_id": "pre4-extra-word-073",
+      "unit_id": "pre4-extra-04",
+      "simplified": "白菜",
+      "pinyin": "báicài",
+      "ja_meaning": "ハクサイ"
+    },
+    {
+      "entry_id": "pre4-extra-word-074",
+      "unit_id": "pre4-extra-04",
+      "simplified": "水果",
+      "pinyin": "shuǐguǒ",
+      "ja_meaning": "果物"
+    },
+    {
+      "entry_id": "pre4-extra-word-075",
+      "unit_id": "pre4-extra-04",
+      "simplified": "香蕉",
+      "pinyin": "xiāngjiāo",
+      "ja_meaning": "バナナ"
+    },
+    {
+      "entry_id": "pre4-extra-word-076",
+      "unit_id": "pre4-extra-04",
+      "simplified": "西瓜",
+      "pinyin": "xīguā",
+      "ja_meaning": "スイカ"
+    },
+    {
+      "entry_id": "pre4-extra-word-077",
+      "unit_id": "pre4-extra-04",
+      "simplified": "葡萄",
+      "pinyin": "pútao",
+      "ja_meaning": "ブドウ"
+    },
+    {
+      "entry_id": "pre4-extra-word-078",
+      "unit_id": "pre4-extra-04",
+      "simplified": "橙子",
+      "pinyin": "chéngzi",
+      "ja_meaning": "オレンジ"
+    },
+    {
+      "entry_id": "pre4-extra-word-079",
+      "unit_id": "pre4-extra-04",
+      "simplified": "牛奶",
+      "pinyin": "niúnǎi",
+      "ja_meaning": "牛乳"
+    },
+    {
+      "entry_id": "pre4-extra-word-080",
+      "unit_id": "pre4-extra-04",
+      "simplified": "咖啡",
+      "pinyin": "kāfēi",
+      "ja_meaning": "コーヒー"
+    },
+    {
+      "entry_id": "pre4-extra-word-081",
+      "unit_id": "pre4-extra-04",
+      "simplified": "果汁",
+      "pinyin": "guǒzhī",
+      "ja_meaning": "ジュース"
+    },
+    {
+      "entry_id": "pre4-extra-word-082",
+      "unit_id": "pre4-extra-04",
+      "simplified": "汤",
+      "pinyin": "tāng",
+      "ja_meaning": "スープ"
+    },
+    {
+      "entry_id": "pre4-extra-word-083",
+      "unit_id": "pre4-extra-05",
+      "simplified": "桌子",
+      "pinyin": "zhuōzi",
+      "ja_meaning": "机"
+    },
+    {
+      "entry_id": "pre4-extra-word-084",
+      "unit_id": "pre4-extra-05",
+      "simplified": "椅子",
+      "pinyin": "yǐzi",
+      "ja_meaning": "椅子"
+    },
+    {
+      "entry_id": "pre4-extra-word-085",
+      "unit_id": "pre4-extra-05",
+      "simplified": "床",
+      "pinyin": "chuáng",
+      "ja_meaning": "ベッド"
+    },
+    {
+      "entry_id": "pre4-extra-word-086",
+      "unit_id": "pre4-extra-05",
+      "simplified": "门",
+      "pinyin": "mén",
+      "ja_meaning": "ドア"
+    },
+    {
+      "entry_id": "pre4-extra-word-087",
+      "unit_id": "pre4-extra-05",
+      "simplified": "窗户",
+      "pinyin": "chuānghu",
+      "ja_meaning": "窓"
+    },
+    {
+      "entry_id": "pre4-extra-word-088",
+      "unit_id": "pre4-extra-05",
+      "simplified": "房间",
+      "pinyin": "fángjiān",
+      "ja_meaning": "部屋"
+    },
+    {
+      "entry_id": "pre4-extra-word-089",
+      "unit_id": "pre4-extra-05",
+      "simplified": "厨房",
+      "pinyin": "chúfáng",
+      "ja_meaning": "台所"
+    },
+    {
+      "entry_id": "pre4-extra-word-090",
+      "unit_id": "pre4-extra-05",
+      "simplified": "钥匙",
+      "pinyin": "yàoshi",
+      "ja_meaning": "鍵"
+    },
+    {
+      "entry_id": "pre4-extra-word-091",
+      "unit_id": "pre4-extra-05",
+      "simplified": "杯子",
+      "pinyin": "bēizi",
+      "ja_meaning": "コップ"
+    },
+    {
+      "entry_id": "pre4-extra-word-092",
+      "unit_id": "pre4-extra-05",
+      "simplified": "筷子",
+      "pinyin": "kuàizi",
+      "ja_meaning": "箸"
+    },
+    {
+      "entry_id": "pre4-extra-word-093",
+      "unit_id": "pre4-extra-05",
+      "simplified": "勺子",
+      "pinyin": "sháozi",
+      "ja_meaning": "スプーン"
+    },
+    {
+      "entry_id": "pre4-extra-word-094",
+      "unit_id": "pre4-extra-05",
+      "simplified": "盘子",
+      "pinyin": "pánzi",
+      "ja_meaning": "皿"
+    },
+    {
+      "entry_id": "pre4-extra-word-095",
+      "unit_id": "pre4-extra-05",
+      "simplified": "灯",
+      "pinyin": "dēng",
+      "ja_meaning": "照明"
+    },
+    {
+      "entry_id": "pre4-extra-word-096",
+      "unit_id": "pre4-extra-05",
+      "simplified": "手表",
+      "pinyin": "shǒubiǎo",
+      "ja_meaning": "腕時計"
+    },
+    {
+      "entry_id": "pre4-extra-word-097",
+      "unit_id": "pre4-extra-05",
+      "simplified": "电脑",
+      "pinyin": "diànnǎo",
+      "ja_meaning": "パソコン"
+    },
+    {
+      "entry_id": "pre4-extra-word-098",
+      "unit_id": "pre4-extra-05",
+      "simplified": "照片",
+      "pinyin": "zhàopiàn",
+      "ja_meaning": "写真"
+    },
+    {
+      "entry_id": "pre4-extra-word-099",
+      "unit_id": "pre4-extra-05",
+      "simplified": "地图",
+      "pinyin": "dìtú",
+      "ja_meaning": "地図"
+    },
+    {
+      "entry_id": "pre4-extra-word-100",
+      "unit_id": "pre4-extra-05",
+      "simplified": "雨伞",
+      "pinyin": "yǔsǎn",
+      "ja_meaning": "傘"
+    },
+    {
+      "entry_id": "pre4-extra-word-101",
+      "unit_id": "pre4-extra-05",
+      "simplified": "铅笔",
+      "pinyin": "qiānbǐ",
+      "ja_meaning": "鉛筆"
+    },
+    {
+      "entry_id": "pre4-extra-word-102",
+      "unit_id": "pre4-extra-05",
+      "simplified": "纸",
+      "pinyin": "zhǐ",
+      "ja_meaning": "紙"
+    },
+    {
+      "entry_id": "pre4-extra-word-103",
+      "unit_id": "pre4-extra-05",
+      "simplified": "信",
+      "pinyin": "xìn",
+      "ja_meaning": "手紙"
+    },
+    {
+      "entry_id": "pre4-extra-word-104",
+      "unit_id": "pre4-extra-06",
+      "simplified": "裤子",
+      "pinyin": "kùzi",
+      "ja_meaning": "ズボン"
+    },
+    {
+      "entry_id": "pre4-extra-word-105",
+      "unit_id": "pre4-extra-06",
+      "simplified": "裙子",
+      "pinyin": "qúnzi",
+      "ja_meaning": "スカート"
+    },
+    {
+      "entry_id": "pre4-extra-word-106",
+      "unit_id": "pre4-extra-06",
+      "simplified": "鞋",
+      "pinyin": "xié",
+      "ja_meaning": "靴"
+    },
+    {
+      "entry_id": "pre4-extra-word-107",
+      "unit_id": "pre4-extra-06",
+      "simplified": "袜子",
+      "pinyin": "wàzi",
+      "ja_meaning": "靴下"
+    },
+    {
+      "entry_id": "pre4-extra-word-108",
+      "unit_id": "pre4-extra-06",
+      "simplified": "帽子",
+      "pinyin": "màozi",
+      "ja_meaning": "帽子"
+    },
+    {
+      "entry_id": "pre4-extra-word-109",
+      "unit_id": "pre4-extra-06",
+      "simplified": "眼镜",
+      "pinyin": "yǎnjìng",
+      "ja_meaning": "眼鏡"
+    },
+    {
+      "entry_id": "pre4-extra-word-110",
+      "unit_id": "pre4-extra-06",
+      "simplified": "颜色",
+      "pinyin": "yánsè",
+      "ja_meaning": "色"
+    },
+    {
+      "entry_id": "pre4-extra-word-111",
+      "unit_id": "pre4-extra-06",
+      "simplified": "红色",
+      "pinyin": "hóngsè",
+      "ja_meaning": "赤"
+    },
+    {
+      "entry_id": "pre4-extra-word-112",
+      "unit_id": "pre4-extra-06",
+      "simplified": "白色",
+      "pinyin": "báisè",
+      "ja_meaning": "白"
+    },
+    {
+      "entry_id": "pre4-extra-word-113",
+      "unit_id": "pre4-extra-06",
+      "simplified": "黑色",
+      "pinyin": "hēisè",
+      "ja_meaning": "黒"
+    },
+    {
+      "entry_id": "pre4-extra-word-114",
+      "unit_id": "pre4-extra-06",
+      "simplified": "蓝色",
+      "pinyin": "lánsè",
+      "ja_meaning": "青"
+    },
+    {
+      "entry_id": "pre4-extra-word-115",
+      "unit_id": "pre4-extra-06",
+      "simplified": "绿色",
+      "pinyin": "lǜsè",
+      "ja_meaning": "緑"
+    },
+    {
+      "entry_id": "pre4-extra-word-116",
+      "unit_id": "pre4-extra-06",
+      "simplified": "黄色",
+      "pinyin": "huángsè",
+      "ja_meaning": "黄色"
+    },
+    {
+      "entry_id": "pre4-extra-word-117",
+      "unit_id": "pre4-extra-06",
+      "simplified": "块",
+      "pinyin": "kuài",
+      "ja_meaning": "元（口語）"
+    },
+    {
+      "entry_id": "pre4-extra-word-118",
+      "unit_id": "pre4-extra-06",
+      "simplified": "元",
+      "pinyin": "yuán",
+      "ja_meaning": "元"
+    },
+    {
+      "entry_id": "pre4-extra-word-119",
+      "unit_id": "pre4-extra-06",
+      "simplified": "角",
+      "pinyin": "jiǎo",
+      "ja_meaning": "角（0.1元）"
+    },
+    {
+      "entry_id": "pre4-extra-word-120",
+      "unit_id": "pre4-extra-06",
+      "simplified": "分",
+      "pinyin": "fēn",
+      "ja_meaning": "分（0.01元）"
+    },
+    {
+      "entry_id": "pre4-extra-word-121",
+      "unit_id": "pre4-extra-06",
+      "simplified": "斤",
+      "pinyin": "jīn",
+      "ja_meaning": "斤（500グラム）"
+    },
+    {
+      "entry_id": "pre4-extra-word-122",
+      "unit_id": "pre4-extra-06",
+      "simplified": "双",
+      "pinyin": "shuāng",
+      "ja_meaning": "足・組"
+    },
+    {
+      "entry_id": "pre4-extra-word-123",
+      "unit_id": "pre4-extra-07",
+      "simplified": "起床",
+      "pinyin": "qǐchuáng",
+      "ja_meaning": "起きる"
+    },
+    {
+      "entry_id": "pre4-extra-word-124",
+      "unit_id": "pre4-extra-07",
+      "simplified": "洗脸",
+      "pinyin": "xǐliǎn",
+      "ja_meaning": "顔を洗う"
+    },
+    {
+      "entry_id": "pre4-extra-word-125",
+      "unit_id": "pre4-extra-07",
+      "simplified": "刷牙",
+      "pinyin": "shuāyá",
+      "ja_meaning": "歯を磨く"
+    },
+    {
+      "entry_id": "pre4-extra-word-126",
+      "unit_id": "pre4-extra-07",
+      "simplified": "睡觉",
+      "pinyin": "shuìjiào",
+      "ja_meaning": "寝る"
+    },
+    {
+      "entry_id": "pre4-extra-word-127",
+      "unit_id": "pre4-extra-07",
+      "simplified": "回家",
+      "pinyin": "huíjiā",
+      "ja_meaning": "家に帰る"
+    },
+    {
+      "entry_id": "pre4-extra-word-128",
+      "unit_id": "pre4-extra-07",
+      "simplified": "上班",
+      "pinyin": "shàngbān",
+      "ja_meaning": "出勤する"
+    },
+    {
+      "entry_id": "pre4-extra-word-129",
+      "unit_id": "pre4-extra-07",
+      "simplified": "下班",
+      "pinyin": "xiàbān",
+      "ja_meaning": "仕事を終える"
+    },
+    {
+      "entry_id": "pre4-extra-word-130",
+      "unit_id": "pre4-extra-07",
+      "simplified": "上课",
+      "pinyin": "shàngkè",
+      "ja_meaning": "授業を受ける"
+    },
+    {
+      "entry_id": "pre4-extra-word-131",
+      "unit_id": "pre4-extra-07",
+      "simplified": "打电话",
+      "pinyin": "dǎ diànhuà",
+      "ja_meaning": "電話をかける"
+    },
+    {
+      "entry_id": "pre4-extra-word-132",
+      "unit_id": "pre4-extra-07",
+      "simplified": "写信",
+      "pinyin": "xiě xìn",
+      "ja_meaning": "手紙を書く"
+    },
+    {
+      "entry_id": "pre4-extra-word-133",
+      "unit_id": "pre4-extra-07",
+      "simplified": "看书",
+      "pinyin": "kàn shū",
+      "ja_meaning": "本を読む"
+    },
+    {
+      "entry_id": "pre4-extra-word-134",
+      "unit_id": "pre4-extra-07",
+      "simplified": "看报",
+      "pinyin": "kàn bào",
+      "ja_meaning": "新聞を読む"
+    },
+    {
+      "entry_id": "pre4-extra-word-135",
+      "unit_id": "pre4-extra-07",
+      "simplified": "做饭",
+      "pinyin": "zuò fàn",
+      "ja_meaning": "料理を作る"
+    },
+    {
+      "entry_id": "pre4-extra-word-136",
+      "unit_id": "pre4-extra-07",
+      "simplified": "洗澡",
+      "pinyin": "xǐzǎo",
+      "ja_meaning": "入浴する"
+    },
+    {
+      "entry_id": "pre4-extra-word-137",
+      "unit_id": "pre4-extra-07",
+      "simplified": "走路",
+      "pinyin": "zǒulù",
+      "ja_meaning": "歩く"
+    },
+    {
+      "entry_id": "pre4-extra-word-138",
+      "unit_id": "pre4-extra-07",
+      "simplified": "跑步",
+      "pinyin": "pǎobù",
+      "ja_meaning": "走る"
+    },
+    {
+      "entry_id": "pre4-extra-word-139",
+      "unit_id": "pre4-extra-07",
+      "simplified": "开门",
+      "pinyin": "kāi mén",
+      "ja_meaning": "ドアを開ける"
+    },
+    {
+      "entry_id": "pre4-extra-word-140",
+      "unit_id": "pre4-extra-07",
+      "simplified": "关门",
+      "pinyin": "guān mén",
+      "ja_meaning": "ドアを閉める"
+    },
+    {
+      "entry_id": "pre4-extra-word-141",
+      "unit_id": "pre4-extra-07",
+      "simplified": "进来",
+      "pinyin": "jìnlái",
+      "ja_meaning": "入ってくる"
+    },
+    {
+      "entry_id": "pre4-extra-word-142",
+      "unit_id": "pre4-extra-07",
+      "simplified": "出去",
+      "pinyin": "chūqù",
+      "ja_meaning": "出ていく"
+    },
+    {
+      "entry_id": "pre4-extra-word-143",
+      "unit_id": "pre4-extra-07",
+      "simplified": "回来",
+      "pinyin": "huílái",
+      "ja_meaning": "戻ってくる"
+    },
+    {
+      "entry_id": "pre4-extra-word-144",
+      "unit_id": "pre4-extra-07",
+      "simplified": "打扫",
+      "pinyin": "dǎsǎo",
+      "ja_meaning": "掃除する"
+    },
+    {
+      "entry_id": "pre4-extra-word-145",
+      "unit_id": "pre4-extra-07",
+      "simplified": "休息",
+      "pinyin": "xiūxi",
+      "ja_meaning": "休む"
+    },
+    {
+      "entry_id": "pre4-extra-word-146",
+      "unit_id": "pre4-extra-08",
+      "simplified": "学生",
+      "pinyin": "xuésheng",
+      "ja_meaning": "学生"
+    },
+    {
+      "entry_id": "pre4-extra-word-147",
+      "unit_id": "pre4-extra-08",
+      "simplified": "复习",
+      "pinyin": "fùxí",
+      "ja_meaning": "復習する"
+    },
+    {
+      "entry_id": "pre4-extra-word-148",
+      "unit_id": "pre4-extra-08",
+      "simplified": "预习",
+      "pinyin": "yùxí",
+      "ja_meaning": "予習する"
+    },
+    {
+      "entry_id": "pre4-extra-word-149",
+      "unit_id": "pre4-extra-08",
+      "simplified": "考试",
+      "pinyin": "kǎoshì",
+      "ja_meaning": "試験"
+    },
+    {
+      "entry_id": "pre4-extra-word-150",
+      "unit_id": "pre4-extra-08",
+      "simplified": "题",
+      "pinyin": "tí",
+      "ja_meaning": "問題"
+    },
+    {
+      "entry_id": "pre4-extra-word-151",
+      "unit_id": "pre4-extra-08",
+      "simplified": "问题",
+      "pinyin": "wèntí",
+      "ja_meaning": "質問・問題"
+    },
+    {
+      "entry_id": "pre4-extra-word-152",
+      "unit_id": "pre4-extra-08",
+      "simplified": "答案",
+      "pinyin": "dá’àn",
+      "ja_meaning": "答え"
+    },
+    {
+      "entry_id": "pre4-extra-word-153",
+      "unit_id": "pre4-extra-08",
+      "simplified": "课本",
+      "pinyin": "kèběn",
+      "ja_meaning": "教科書"
+    },
+    {
+      "entry_id": "pre4-extra-word-154",
+      "unit_id": "pre4-extra-08",
+      "simplified": "练习",
+      "pinyin": "liànxí",
+      "ja_meaning": "練習する"
+    },
+    {
+      "entry_id": "pre4-extra-word-155",
+      "unit_id": "pre4-extra-08",
+      "simplified": "问",
+      "pinyin": "wèn",
+      "ja_meaning": "尋ねる"
+    },
+    {
+      "entry_id": "pre4-extra-word-156",
+      "unit_id": "pre4-extra-08",
+      "simplified": "回答",
+      "pinyin": "huídá",
+      "ja_meaning": "答える"
+    },
+    {
+      "entry_id": "pre4-extra-word-157",
+      "unit_id": "pre4-extra-08",
+      "simplified": "懂",
+      "pinyin": "dǒng",
+      "ja_meaning": "理解する"
+    },
+    {
+      "entry_id": "pre4-extra-word-158",
+      "unit_id": "pre4-extra-08",
+      "simplified": "记得",
+      "pinyin": "jìde",
+      "ja_meaning": "覚えている"
+    },
+    {
+      "entry_id": "pre4-extra-word-159",
+      "unit_id": "pre4-extra-08",
+      "simplified": "忘记",
+      "pinyin": "wàngjì",
+      "ja_meaning": "忘れる"
+    },
+    {
+      "entry_id": "pre4-extra-word-160",
+      "unit_id": "pre4-extra-08",
+      "simplified": "工作",
+      "pinyin": "gōngzuò",
+      "ja_meaning": "仕事・働く"
+    },
+    {
+      "entry_id": "pre4-extra-word-161",
+      "unit_id": "pre4-extra-08",
+      "simplified": "公司",
+      "pinyin": "gōngsī",
+      "ja_meaning": "会社"
+    },
+    {
+      "entry_id": "pre4-extra-word-162",
+      "unit_id": "pre4-extra-08",
+      "simplified": "会议",
+      "pinyin": "huìyì",
+      "ja_meaning": "会議"
+    },
+    {
+      "entry_id": "pre4-extra-word-163",
+      "unit_id": "pre4-extra-09",
+      "simplified": "飞机",
+      "pinyin": "fēijī",
+      "ja_meaning": "飛行機"
+    },
+    {
+      "entry_id": "pre4-extra-word-164",
+      "unit_id": "pre4-extra-09",
+      "simplified": "火车",
+      "pinyin": "huǒchē",
+      "ja_meaning": "列車"
+    },
+    {
+      "entry_id": "pre4-extra-word-165",
+      "unit_id": "pre4-extra-09",
+      "simplified": "地铁",
+      "pinyin": "dìtiě",
+      "ja_meaning": "地下鉄"
+    },
+    {
+      "entry_id": "pre4-extra-word-166",
+      "unit_id": "pre4-extra-09",
+      "simplified": "公共汽车",
+      "pinyin": "gōnggòng qìchē",
+      "ja_meaning": "バス"
+    },
+    {
+      "entry_id": "pre4-extra-word-167",
+      "unit_id": "pre4-extra-09",
+      "simplified": "出租车",
+      "pinyin": "chūzūchē",
+      "ja_meaning": "タクシー"
+    },
+    {
+      "entry_id": "pre4-extra-word-168",
+      "unit_id": "pre4-extra-09",
+      "simplified": "自行车",
+      "pinyin": "zìxíngchē",
+      "ja_meaning": "自転車"
+    },
+    {
+      "entry_id": "pre4-extra-word-169",
+      "unit_id": "pre4-extra-09",
+      "simplified": "汽车",
+      "pinyin": "qìchē",
+      "ja_meaning": "自動車"
+    },
+    {
+      "entry_id": "pre4-extra-word-170",
+      "unit_id": "pre4-extra-09",
+      "simplified": "船",
+      "pinyin": "chuán",
+      "ja_meaning": "船"
+    },
+    {
+      "entry_id": "pre4-extra-word-171",
+      "unit_id": "pre4-extra-09",
+      "simplified": "车票",
+      "pinyin": "chēpiào",
+      "ja_meaning": "乗車券"
+    },
+    {
+      "entry_id": "pre4-extra-word-172",
+      "unit_id": "pre4-extra-09",
+      "simplified": "机票",
+      "pinyin": "jīpiào",
+      "ja_meaning": "航空券"
+    },
+    {
+      "entry_id": "pre4-extra-word-173",
+      "unit_id": "pre4-extra-09",
+      "simplified": "站",
+      "pinyin": "zhàn",
+      "ja_meaning": "駅・停留所"
+    },
+    {
+      "entry_id": "pre4-extra-word-174",
+      "unit_id": "pre4-extra-09",
+      "simplified": "路",
+      "pinyin": "lù",
+      "ja_meaning": "道"
+    },
+    {
+      "entry_id": "pre4-extra-word-175",
+      "unit_id": "pre4-extra-09",
+      "simplified": "街",
+      "pinyin": "jiē",
+      "ja_meaning": "通り"
+    },
+    {
+      "entry_id": "pre4-extra-word-176",
+      "unit_id": "pre4-extra-09",
+      "simplified": "过",
+      "pinyin": "guò",
+      "ja_meaning": "通る・渡る"
+    },
+    {
+      "entry_id": "pre4-extra-word-177",
+      "unit_id": "pre4-extra-09",
+      "simplified": "到",
+      "pinyin": "dào",
+      "ja_meaning": "着く"
+    },
+    {
+      "entry_id": "pre4-extra-word-178",
+      "unit_id": "pre4-extra-09",
+      "simplified": "出发",
+      "pinyin": "chūfā",
+      "ja_meaning": "出発する"
+    },
+    {
+      "entry_id": "pre4-extra-word-179",
+      "unit_id": "pre4-extra-09",
+      "simplified": "坐",
+      "pinyin": "zuò",
+      "ja_meaning": "座る・乗る"
+    },
+    {
+      "entry_id": "pre4-extra-word-180",
+      "unit_id": "pre4-extra-09",
+      "simplified": "上车",
+      "pinyin": "shàngchē",
+      "ja_meaning": "車に乗る"
+    },
+    {
+      "entry_id": "pre4-extra-word-181",
+      "unit_id": "pre4-extra-09",
+      "simplified": "下车",
+      "pinyin": "xiàchē",
+      "ja_meaning": "車を降りる"
+    },
+    {
+      "entry_id": "pre4-extra-word-182",
+      "unit_id": "pre4-extra-09",
+      "simplified": "远",
+      "pinyin": "yuǎn",
+      "ja_meaning": "遠い"
+    },
+    {
+      "entry_id": "pre4-extra-word-183",
+      "unit_id": "pre4-extra-09",
+      "simplified": "近",
+      "pinyin": "jìn",
+      "ja_meaning": "近い"
+    },
+    {
+      "entry_id": "pre4-extra-word-184",
+      "unit_id": "pre4-extra-09",
+      "simplified": "旅行",
+      "pinyin": "lǚxíng",
+      "ja_meaning": "旅行する"
+    },
+    {
+      "entry_id": "pre4-extra-word-185",
+      "unit_id": "pre4-extra-09",
+      "simplified": "行李",
+      "pinyin": "xíngli",
+      "ja_meaning": "荷物"
+    },
+    {
+      "entry_id": "pre4-extra-word-186",
+      "unit_id": "pre4-extra-09",
+      "simplified": "护照",
+      "pinyin": "hùzhào",
+      "ja_meaning": "パスポート"
+    },
+    {
+      "entry_id": "pre4-extra-word-187",
+      "unit_id": "pre4-extra-10",
+      "simplified": "春天",
+      "pinyin": "chūntiān",
+      "ja_meaning": "春"
+    },
+    {
+      "entry_id": "pre4-extra-word-188",
+      "unit_id": "pre4-extra-10",
+      "simplified": "夏天",
+      "pinyin": "xiàtiān",
+      "ja_meaning": "夏"
+    },
+    {
+      "entry_id": "pre4-extra-word-189",
+      "unit_id": "pre4-extra-10",
+      "simplified": "秋天",
+      "pinyin": "qiūtiān",
+      "ja_meaning": "秋"
+    },
+    {
+      "entry_id": "pre4-extra-word-190",
+      "unit_id": "pre4-extra-10",
+      "simplified": "冬天",
+      "pinyin": "dōngtiān",
+      "ja_meaning": "冬"
+    },
+    {
+      "entry_id": "pre4-extra-word-191",
+      "unit_id": "pre4-extra-10",
+      "simplified": "天气",
+      "pinyin": "tiānqì",
+      "ja_meaning": "天気"
+    },
+    {
+      "entry_id": "pre4-extra-word-192",
+      "unit_id": "pre4-extra-10",
+      "simplified": "太阳",
+      "pinyin": "tàiyáng",
+      "ja_meaning": "太陽"
+    },
+    {
+      "entry_id": "pre4-extra-word-193",
+      "unit_id": "pre4-extra-10",
+      "simplified": "月亮",
+      "pinyin": "yuèliang",
+      "ja_meaning": "月"
+    },
+    {
+      "entry_id": "pre4-extra-word-194",
+      "unit_id": "pre4-extra-10",
+      "simplified": "雨",
+      "pinyin": "yǔ",
+      "ja_meaning": "雨"
+    },
+    {
+      "entry_id": "pre4-extra-word-195",
+      "unit_id": "pre4-extra-10",
+      "simplified": "雪",
+      "pinyin": "xuě",
+      "ja_meaning": "雪"
+    },
+    {
+      "entry_id": "pre4-extra-word-196",
+      "unit_id": "pre4-extra-10",
+      "simplified": "山",
+      "pinyin": "shān",
+      "ja_meaning": "山"
+    },
+    {
+      "entry_id": "pre4-extra-word-197",
+      "unit_id": "pre4-extra-10",
+      "simplified": "河",
+      "pinyin": "hé",
+      "ja_meaning": "川"
+    },
+    {
+      "entry_id": "pre4-extra-word-198",
+      "unit_id": "pre4-extra-10",
+      "simplified": "海",
+      "pinyin": "hǎi",
+      "ja_meaning": "海"
+    },
+    {
+      "entry_id": "pre4-extra-word-199",
+      "unit_id": "pre4-extra-10",
+      "simplified": "树",
+      "pinyin": "shù",
+      "ja_meaning": "木"
+    },
+    {
+      "entry_id": "pre4-extra-word-200",
+      "unit_id": "pre4-extra-10",
+      "simplified": "花",
+      "pinyin": "huā",
+      "ja_meaning": "花"
+    },
+    {
+      "entry_id": "pre4-extra-word-201",
+      "unit_id": "pre4-extra-10",
+      "simplified": "猫",
+      "pinyin": "māo",
+      "ja_meaning": "猫"
+    },
+    {
+      "entry_id": "pre4-extra-word-202",
+      "unit_id": "pre4-extra-10",
+      "simplified": "狗",
+      "pinyin": "gǒu",
+      "ja_meaning": "犬"
+    },
+    {
+      "entry_id": "pre4-extra-word-203",
+      "unit_id": "pre4-extra-10",
+      "simplified": "鸟",
+      "pinyin": "niǎo",
+      "ja_meaning": "鳥"
+    },
+    {
+      "entry_id": "pre4-extra-word-204",
+      "unit_id": "pre4-extra-10",
+      "simplified": "身体",
+      "pinyin": "shēntǐ",
+      "ja_meaning": "体"
+    },
+    {
+      "entry_id": "pre4-extra-word-205",
+      "unit_id": "pre4-extra-10",
+      "simplified": "头",
+      "pinyin": "tóu",
+      "ja_meaning": "頭"
+    },
+    {
+      "entry_id": "pre4-extra-word-206",
+      "unit_id": "pre4-extra-10",
+      "simplified": "手",
+      "pinyin": "shǒu",
+      "ja_meaning": "手"
+    },
+    {
+      "entry_id": "pre4-extra-word-207",
+      "unit_id": "pre4-extra-10",
+      "simplified": "脚",
+      "pinyin": "jiǎo",
+      "ja_meaning": "足"
+    },
+    {
+      "entry_id": "pre4-extra-word-208",
+      "unit_id": "pre4-extra-10",
+      "simplified": "眼睛",
+      "pinyin": "yǎnjing",
+      "ja_meaning": "目"
+    },
+    {
+      "entry_id": "pre4-extra-word-209",
+      "unit_id": "pre4-extra-10",
+      "simplified": "生病",
+      "pinyin": "shēngbìng",
+      "ja_meaning": "病気になる"
+    },
+    {
+      "entry_id": "pre4-extra-word-210",
+      "unit_id": "pre4-extra-10",
+      "simplified": "发烧",
+      "pinyin": "fāshāo",
+      "ja_meaning": "熱が出る"
+    },
+    {
+      "entry_id": "pre4-extra-word-211",
+      "unit_id": "pre4-extra-11",
+      "simplified": "高",
+      "pinyin": "gāo",
+      "ja_meaning": "高い"
+    },
+    {
+      "entry_id": "pre4-extra-word-212",
+      "unit_id": "pre4-extra-11",
+      "simplified": "矮",
+      "pinyin": "ǎi",
+      "ja_meaning": "背が低い"
+    },
+    {
+      "entry_id": "pre4-extra-word-213",
+      "unit_id": "pre4-extra-11",
+      "simplified": "长",
+      "pinyin": "cháng",
+      "ja_meaning": "長い"
+    },
+    {
+      "entry_id": "pre4-extra-word-214",
+      "unit_id": "pre4-extra-11",
+      "simplified": "短",
+      "pinyin": "duǎn",
+      "ja_meaning": "短い"
+    },
+    {
+      "entry_id": "pre4-extra-word-215",
+      "unit_id": "pre4-extra-11",
+      "simplified": "多",
+      "pinyin": "duō",
+      "ja_meaning": "多い"
+    },
+    {
+      "entry_id": "pre4-extra-word-216",
+      "unit_id": "pre4-extra-11",
+      "simplified": "少",
+      "pinyin": "shǎo",
+      "ja_meaning": "少ない"
+    },
+    {
+      "entry_id": "pre4-extra-word-217",
+      "unit_id": "pre4-extra-11",
+      "simplified": "新",
+      "pinyin": "xīn",
+      "ja_meaning": "新しい"
+    },
+    {
+      "entry_id": "pre4-extra-word-218",
+      "unit_id": "pre4-extra-11",
+      "simplified": "旧",
+      "pinyin": "jiù",
+      "ja_meaning": "古い"
+    },
+    {
+      "entry_id": "pre4-extra-word-219",
+      "unit_id": "pre4-extra-11",
+      "simplified": "快",
+      "pinyin": "kuài",
+      "ja_meaning": "速い"
+    },
+    {
+      "entry_id": "pre4-extra-word-220",
+      "unit_id": "pre4-extra-11",
+      "simplified": "慢",
+      "pinyin": "màn",
+      "ja_meaning": "遅い"
+    },
+    {
+      "entry_id": "pre4-extra-word-221",
+      "unit_id": "pre4-extra-11",
+      "simplified": "忙",
+      "pinyin": "máng",
+      "ja_meaning": "忙しい"
+    },
+    {
+      "entry_id": "pre4-extra-word-222",
+      "unit_id": "pre4-extra-11",
+      "simplified": "凉",
+      "pinyin": "liáng",
+      "ja_meaning": "涼しい"
+    },
+    {
+      "entry_id": "pre4-extra-word-223",
+      "unit_id": "pre4-extra-11",
+      "simplified": "难",
+      "pinyin": "nán",
+      "ja_meaning": "難しい"
+    },
+    {
+      "entry_id": "pre4-extra-word-224",
+      "unit_id": "pre4-extra-11",
+      "simplified": "容易",
+      "pinyin": "róngyì",
+      "ja_meaning": "易しい"
+    },
+    {
+      "entry_id": "pre4-extra-word-225",
+      "unit_id": "pre4-extra-11",
+      "simplified": "干净",
+      "pinyin": "gānjìng",
+      "ja_meaning": "清潔だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-226",
+      "unit_id": "pre4-extra-11",
+      "simplified": "漂亮",
+      "pinyin": "piàoliang",
+      "ja_meaning": "きれいだ"
+    },
+    {
+      "entry_id": "pre4-extra-word-227",
+      "unit_id": "pre4-extra-11",
+      "simplified": "好吃",
+      "pinyin": "hǎochī",
+      "ja_meaning": "おいしい（食べ物）"
+    },
+    {
+      "entry_id": "pre4-extra-word-228",
+      "unit_id": "pre4-extra-11",
+      "simplified": "好喝",
+      "pinyin": "hǎohē",
+      "ja_meaning": "おいしい（飲み物）"
+    },
+    {
+      "entry_id": "pre4-extra-word-229",
+      "unit_id": "pre4-extra-11",
+      "simplified": "喜欢",
+      "pinyin": "xǐhuan",
+      "ja_meaning": "好む"
+    },
+    {
+      "entry_id": "pre4-extra-word-230",
+      "unit_id": "pre4-extra-12",
+      "simplified": "都",
+      "pinyin": "dōu",
+      "ja_meaning": "すべて"
+    },
+    {
+      "entry_id": "pre4-extra-word-231",
+      "unit_id": "pre4-extra-12",
+      "simplified": "也",
+      "pinyin": "yě",
+      "ja_meaning": "～も"
+    },
+    {
+      "entry_id": "pre4-extra-word-232",
+      "unit_id": "pre4-extra-12",
+      "simplified": "就",
+      "pinyin": "jiù",
+      "ja_meaning": "すぐ・その時点で"
+    },
+    {
+      "entry_id": "pre4-extra-word-233",
+      "unit_id": "pre4-extra-12",
+      "simplified": "再",
+      "pinyin": "zài",
+      "ja_meaning": "もう一度（これから）"
+    },
+    {
+      "entry_id": "pre4-extra-word-234",
+      "unit_id": "pre4-extra-12",
+      "simplified": "又",
+      "pinyin": "yòu",
+      "ja_meaning": "また（再び）"
+    },
+    {
+      "entry_id": "pre4-extra-word-235",
+      "unit_id": "pre4-extra-12",
+      "simplified": "太",
+      "pinyin": "tài",
+      "ja_meaning": "～すぎる"
+    },
+    {
+      "entry_id": "pre4-extra-word-236",
+      "unit_id": "pre4-extra-12",
+      "simplified": "很",
+      "pinyin": "hěn",
+      "ja_meaning": "とても"
+    },
+    {
+      "entry_id": "pre4-extra-word-237",
+      "unit_id": "pre4-extra-12",
+      "simplified": "真",
+      "pinyin": "zhēn",
+      "ja_meaning": "本当に"
+    },
+    {
+      "entry_id": "pre4-extra-word-238",
+      "unit_id": "pre4-extra-12",
+      "simplified": "最",
+      "pinyin": "zuì",
+      "ja_meaning": "最も"
+    },
+    {
+      "entry_id": "pre4-extra-word-239",
+      "unit_id": "pre4-extra-12",
+      "simplified": "常常",
+      "pinyin": "chángcháng",
+      "ja_meaning": "よく"
+    },
+    {
+      "entry_id": "pre4-extra-word-240",
+      "unit_id": "pre4-extra-12",
+      "simplified": "有时",
+      "pinyin": "yǒushí",
+      "ja_meaning": "ときどき"
+    },
+    {
+      "entry_id": "pre4-extra-word-241",
+      "unit_id": "pre4-extra-12",
+      "simplified": "已经",
+      "pinyin": "yǐjīng",
+      "ja_meaning": "すでに"
+    },
+    {
+      "entry_id": "pre4-extra-word-242",
+      "unit_id": "pre4-extra-12",
+      "simplified": "还",
+      "pinyin": "hái",
+      "ja_meaning": "まだ・さらに"
+    },
+    {
+      "entry_id": "pre4-extra-word-243",
+      "unit_id": "pre4-extra-12",
+      "simplified": "会",
+      "pinyin": "huì",
+      "ja_meaning": "～できる"
+    },
+    {
+      "entry_id": "pre4-extra-word-244",
+      "unit_id": "pre4-extra-12",
+      "simplified": "能",
+      "pinyin": "néng",
+      "ja_meaning": "～できる（能力・条件）"
+    },
+    {
+      "entry_id": "pre4-extra-word-245",
+      "unit_id": "pre4-extra-12",
+      "simplified": "可以",
+      "pinyin": "kěyǐ",
+      "ja_meaning": "～してよい"
+    },
+    {
+      "entry_id": "pre4-extra-word-246",
+      "unit_id": "pre4-extra-12",
+      "simplified": "应该",
+      "pinyin": "yīnggāi",
+      "ja_meaning": "～すべきだ"
+    },
+    {
+      "entry_id": "pre4-extra-word-247",
+      "unit_id": "pre4-extra-12",
+      "simplified": "要",
+      "pinyin": "yào",
+      "ja_meaning": "必要とする・～するつもり"
+    },
+    {
+      "entry_id": "pre4-extra-word-248",
+      "unit_id": "pre4-extra-12",
+      "simplified": "和",
+      "pinyin": "hé",
+      "ja_meaning": "～と"
+    },
+    {
+      "entry_id": "pre4-extra-word-249",
+      "unit_id": "pre4-extra-12",
+      "simplified": "或者",
+      "pinyin": "huòzhě",
+      "ja_meaning": "または"
+    },
+    {
+      "entry_id": "pre4-extra-word-250",
+      "unit_id": "pre4-extra-12",
+      "simplified": "因为",
+      "pinyin": "yīnwèi",
+      "ja_meaning": "～なので"
+    },
+    {
+      "entry_id": "pre4-extra-word-251",
+      "unit_id": "pre4-extra-13",
+      "simplified": "早上好",
+      "pinyin": "zǎoshang hǎo",
+      "ja_meaning": "おはようございます"
+    },
+    {
+      "entry_id": "pre4-extra-word-252",
+      "unit_id": "pre4-extra-13",
+      "simplified": "晚上好",
+      "pinyin": "wǎnshang hǎo",
+      "ja_meaning": "こんばんは"
+    },
+    {
+      "entry_id": "pre4-extra-word-253",
+      "unit_id": "pre4-extra-13",
+      "simplified": "晚安",
+      "pinyin": "wǎn’ān",
+      "ja_meaning": "おやすみなさい"
+    },
+    {
+      "entry_id": "pre4-extra-word-254",
+      "unit_id": "pre4-extra-13",
+      "simplified": "明天见",
+      "pinyin": "míngtiān jiàn",
+      "ja_meaning": "また明日"
+    },
+    {
+      "entry_id": "pre4-extra-word-255",
+      "unit_id": "pre4-extra-13",
+      "simplified": "好久不见",
+      "pinyin": "hǎojiǔ bú jiàn",
+      "ja_meaning": "お久しぶり"
+    },
+    {
+      "entry_id": "pre4-extra-word-256",
+      "unit_id": "pre4-extra-13",
+      "simplified": "谢谢你",
+      "pinyin": "xièxie nǐ",
+      "ja_meaning": "ありがとう"
+    },
+    {
+      "entry_id": "pre4-extra-word-257",
+      "unit_id": "pre4-extra-13",
+      "simplified": "不用谢",
+      "pinyin": "bú yòng xiè",
+      "ja_meaning": "お礼はいいですよ"
+    },
+    {
+      "entry_id": "pre4-extra-word-258",
+      "unit_id": "pre4-extra-13",
+      "simplified": "没关系",
+      "pinyin": "méi guānxi",
+      "ja_meaning": "大丈夫です"
+    },
+    {
+      "entry_id": "pre4-extra-word-259",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请进",
+      "pinyin": "qǐng jìn",
+      "ja_meaning": "お入りください"
+    },
+    {
+      "entry_id": "pre4-extra-word-260",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请坐",
+      "pinyin": "qǐng zuò",
+      "ja_meaning": "お掛けください"
+    },
+    {
+      "entry_id": "pre4-extra-word-261",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请问",
+      "pinyin": "qǐngwèn",
+      "ja_meaning": "お尋ねします"
+    },
+    {
+      "entry_id": "pre4-extra-word-262",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请等一下",
+      "pinyin": "qǐng děng yíxià",
+      "ja_meaning": "少々お待ちください"
+    },
+    {
+      "entry_id": "pre4-extra-word-263",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请喝茶",
+      "pinyin": "qǐng hē chá",
+      "ja_meaning": "お茶をどうぞ"
+    },
+    {
+      "entry_id": "pre4-extra-word-264",
+      "unit_id": "pre4-extra-13",
+      "simplified": "慢走",
+      "pinyin": "màn zǒu",
+      "ja_meaning": "お気をつけて（見送り）"
+    },
+    {
+      "entry_id": "pre4-extra-word-265",
+      "unit_id": "pre4-extra-13",
+      "simplified": "一路平安",
+      "pinyin": "yílù píng’ān",
+      "ja_meaning": "よい旅を"
+    },
+    {
+      "entry_id": "pre4-extra-word-266",
+      "unit_id": "pre4-extra-13",
+      "simplified": "生日快乐",
+      "pinyin": "shēngrì kuàilè",
+      "ja_meaning": "お誕生日おめでとう"
+    },
+    {
+      "entry_id": "pre4-extra-word-267",
+      "unit_id": "pre4-extra-13",
+      "simplified": "新年快乐",
+      "pinyin": "xīnnián kuàilè",
+      "ja_meaning": "明けましておめでとう"
+    },
+    {
+      "entry_id": "pre4-extra-word-268",
+      "unit_id": "pre4-extra-13",
+      "simplified": "欢迎光临",
+      "pinyin": "huānyíng guānglín",
+      "ja_meaning": "いらっしゃいませ"
+    },
+    {
+      "entry_id": "pre4-extra-word-269",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请再说一遍",
+      "pinyin": "qǐng zài shuō yí biàn",
+      "ja_meaning": "もう一度言ってください"
+    },
+    {
+      "entry_id": "pre4-extra-word-270",
+      "unit_id": "pre4-extra-13",
+      "simplified": "请说慢一点",
+      "pinyin": "qǐng shuō màn yìdiǎn",
+      "ja_meaning": "ゆっくり言ってください"
+    },
+    {
+      "entry_id": "pre4-extra-word-271",
+      "unit_id": "pre4-extra-13",
+      "simplified": "我没听懂",
+      "pinyin": "wǒ méi tīngdǒng",
+      "ja_meaning": "聞き取れませんでした"
+    },
+    {
+      "entry_id": "pre4-extra-word-272",
+      "unit_id": "pre4-extra-13",
+      "simplified": "我知道了",
+      "pinyin": "wǒ zhīdào le",
+      "ja_meaning": "分かりました"
+    },
+    {
+      "entry_id": "pre4-extra-word-273",
+      "unit_id": "pre4-extra-13",
+      "simplified": "我不明白",
+      "pinyin": "wǒ bù míngbai",
+      "ja_meaning": "分かりません"
+    },
+    {
+      "entry_id": "pre4-extra-word-274",
+      "unit_id": "pre4-extra-13",
+      "simplified": "没问题",
+      "pinyin": "méi wèntí",
+      "ja_meaning": "問題ありません"
+    },
+    {
+      "entry_id": "pre4-extra-word-275",
+      "unit_id": "pre4-extra-13",
+      "simplified": "辛苦了",
+      "pinyin": "xīnkǔ le",
+      "ja_meaning": "お疲れさまでした"
+    },
+    {
+      "entry_id": "pre4-extra-word-276",
+      "unit_id": "pre4-extra-14",
+      "simplified": "电影",
+      "pinyin": "diànyǐng",
+      "ja_meaning": "映画"
+    },
+    {
+      "entry_id": "pre4-extra-word-277",
+      "unit_id": "pre4-extra-14",
+      "simplified": "歌曲",
+      "pinyin": "gēqǔ",
+      "ja_meaning": "歌"
+    },
+    {
+      "entry_id": "pre4-extra-word-278",
+      "unit_id": "pre4-extra-14",
+      "simplified": "唱歌",
+      "pinyin": "chànggē",
+      "ja_meaning": "歌を歌う"
+    },
+    {
+      "entry_id": "pre4-extra-word-279",
+      "unit_id": "pre4-extra-14",
+      "simplified": "跳舞",
+      "pinyin": "tiàowǔ",
+      "ja_meaning": "踊る"
+    },
+    {
+      "entry_id": "pre4-extra-word-280",
+      "unit_id": "pre4-extra-14",
+      "simplified": "游泳",
+      "pinyin": "yóuyǒng",
+      "ja_meaning": "泳ぐ"
+    },
+    {
+      "entry_id": "pre4-extra-word-281",
+      "unit_id": "pre4-extra-14",
+      "simplified": "打球",
+      "pinyin": "dǎqiú",
+      "ja_meaning": "球技をする"
+    },
+    {
+      "entry_id": "pre4-extra-word-282",
+      "unit_id": "pre4-extra-14",
+      "simplified": "足球",
+      "pinyin": "zúqiú",
+      "ja_meaning": "サッカー"
+    },
+    {
+      "entry_id": "pre4-extra-word-283",
+      "unit_id": "pre4-extra-14",
+      "simplified": "篮球",
+      "pinyin": "lánqiú",
+      "ja_meaning": "バスケットボール"
+    },
+    {
+      "entry_id": "pre4-extra-word-284",
+      "unit_id": "pre4-extra-14",
+      "simplified": "比赛",
+      "pinyin": "bǐsài",
+      "ja_meaning": "試合"
+    },
+    {
+      "entry_id": "pre4-extra-word-285",
+      "unit_id": "pre4-extra-14",
+      "simplified": "新闻",
+      "pinyin": "xīnwén",
+      "ja_meaning": "ニュース"
+    },
+    {
+      "entry_id": "pre4-extra-word-286",
+      "unit_id": "pre4-extra-14",
+      "simplified": "报纸",
+      "pinyin": "bàozhǐ",
+      "ja_meaning": "新聞紙"
+    },
+    {
+      "entry_id": "pre4-extra-word-287",
+      "unit_id": "pre4-extra-14",
+      "simplified": "杂志",
+      "pinyin": "zázhì",
+      "ja_meaning": "雑誌"
+    },
+    {
+      "entry_id": "pre4-extra-word-288",
+      "unit_id": "pre4-extra-14",
+      "simplified": "上网",
+      "pinyin": "shàngwǎng",
+      "ja_meaning": "インターネットを使う"
+    },
+    {
+      "entry_id": "pre4-extra-word-289",
+      "unit_id": "pre4-extra-14",
+      "simplified": "聊天",
+      "pinyin": "liáotiān",
+      "ja_meaning": "おしゃべりする"
+    },
+    {
+      "entry_id": "pre4-extra-word-290",
+      "unit_id": "pre4-extra-14",
+      "simplified": "拍照",
+      "pinyin": "pāizhào",
+      "ja_meaning": "写真を撮る"
+    },
+    {
+      "entry_id": "pre4-extra-word-291",
+      "unit_id": "pre4-extra-14",
+      "simplified": "画画",
+      "pinyin": "huàhuà",
+      "ja_meaning": "絵を描く"
+    },
+    {
+      "entry_id": "pre4-extra-word-292",
+      "unit_id": "pre4-extra-14",
+      "simplified": "散步",
+      "pinyin": "sànbù",
+      "ja_meaning": "散歩する"
+    },
+    {
+      "entry_id": "pre4-extra-word-293",
+      "unit_id": "pre4-extra-14",
+      "simplified": "玩",
+      "pinyin": "wán",
+      "ja_meaning": "遊ぶ"
+    },
+    {
+      "entry_id": "pre4-extra-word-294",
+      "unit_id": "pre4-extra-14",
+      "simplified": "动物",
+      "pinyin": "dòngwù",
+      "ja_meaning": "動物"
+    },
+    {
+      "entry_id": "pre4-extra-word-295",
+      "unit_id": "pre4-extra-14",
+      "simplified": "礼物",
+      "pinyin": "lǐwù",
+      "ja_meaning": "贈り物"
+    },
+    {
+      "entry_id": "pre4-extra-word-296",
+      "unit_id": "pre4-extra-14",
+      "simplified": "生日",
+      "pinyin": "shēngrì",
+      "ja_meaning": "誕生日"
+    },
+    {
+      "entry_id": "pre4-extra-word-297",
+      "unit_id": "pre4-extra-14",
+      "simplified": "节日",
+      "pinyin": "jiérì",
+      "ja_meaning": "祝日・記念日"
+    },
+    {
+      "entry_id": "pre4-extra-word-298",
+      "unit_id": "pre4-extra-14",
+      "simplified": "假期",
+      "pinyin": "jiàqī",
+      "ja_meaning": "休暇"
+    },
+    {
+      "entry_id": "pre4-extra-word-299",
+      "unit_id": "pre4-extra-15",
+      "simplified": "开始",
+      "pinyin": "kāishǐ",
+      "ja_meaning": "始める"
+    },
+    {
+      "entry_id": "pre4-extra-word-300",
+      "unit_id": "pre4-extra-15",
+      "simplified": "结束",
+      "pinyin": "jiéshù",
+      "ja_meaning": "終わる"
+    },
+    {
+      "entry_id": "pre4-extra-word-301",
+      "unit_id": "pre4-extra-15",
+      "simplified": "买",
+      "pinyin": "mǎi",
+      "ja_meaning": "買う"
+    },
+    {
+      "entry_id": "pre4-extra-word-302",
+      "unit_id": "pre4-extra-15",
+      "simplified": "借",
+      "pinyin": "jiè",
+      "ja_meaning": "借りる・貸す"
+    },
+    {
+      "entry_id": "pre4-extra-word-303",
+      "unit_id": "pre4-extra-15",
+      "simplified": "给",
+      "pinyin": "gěi",
+      "ja_meaning": "渡す"
+    },
+    {
+      "entry_id": "pre4-extra-word-304",
+      "unit_id": "pre4-extra-15",
+      "simplified": "找",
+      "pinyin": "zhǎo",
+      "ja_meaning": "探す"
+    },
+    {
+      "entry_id": "pre4-extra-word-305",
+      "unit_id": "pre4-extra-15",
+      "simplified": "等",
+      "pinyin": "děng",
+      "ja_meaning": "待つ"
+    },
+    {
+      "entry_id": "pre4-extra-word-306",
+      "unit_id": "pre4-extra-15",
+      "simplified": "告诉",
+      "pinyin": "gàosu",
+      "ja_meaning": "伝える"
+    },
+    {
+      "entry_id": "pre4-extra-word-307",
+      "unit_id": "pre4-extra-15",
+      "simplified": "帮助",
+      "pinyin": "bāngzhù",
+      "ja_meaning": "助ける"
+    },
+    {
+      "entry_id": "pre4-extra-word-308",
+      "unit_id": "pre4-extra-15",
+      "simplified": "认识",
+      "pinyin": "rènshi",
+      "ja_meaning": "知り合う"
+    },
+    {
+      "entry_id": "pre4-extra-word-309",
+      "unit_id": "pre4-extra-15",
+      "simplified": "准备",
+      "pinyin": "zhǔnbèi",
+      "ja_meaning": "準備する"
+    },
+    {
+      "entry_id": "pre4-extra-word-310",
+      "unit_id": "pre4-extra-15",
+      "simplified": "参加",
+      "pinyin": "cānjiā",
+      "ja_meaning": "参加する"
+    },
+    {
+      "entry_id": "pre4-extra-word-311",
+      "unit_id": "pre4-extra-15",
+      "simplified": "介绍",
+      "pinyin": "jièshào",
+      "ja_meaning": "紹介する"
+    },
+    {
+      "entry_id": "pre4-extra-word-312",
+      "unit_id": "pre4-extra-15",
+      "simplified": "选择",
+      "pinyin": "xuǎnzé",
+      "ja_meaning": "選ぶ"
+    },
+    {
+      "entry_id": "pre4-extra-word-313",
+      "unit_id": "pre4-extra-15",
+      "simplified": "希望",
+      "pinyin": "xīwàng",
+      "ja_meaning": "望む"
+    },
+    {
+      "entry_id": "pre4-extra-word-314",
+      "unit_id": "pre4-extra-15",
+      "simplified": "需要",
+      "pinyin": "xūyào",
+      "ja_meaning": "必要とする"
+    },
+    {
+      "entry_id": "pre4-extra-word-315",
+      "unit_id": "pre4-extra-15",
+      "simplified": "用",
+      "pinyin": "yòng",
+      "ja_meaning": "使う"
+    },
+    {
+      "entry_id": "pre4-extra-word-316",
+      "unit_id": "pre4-extra-15",
+      "simplified": "拿",
+      "pinyin": "ná",
+      "ja_meaning": "手に取る"
+    },
+    {
+      "entry_id": "pre4-extra-word-317",
+      "unit_id": "pre4-extra-15",
+      "simplified": "放",
+      "pinyin": "fàng",
+      "ja_meaning": "置く"
+    },
+    {
+      "entry_id": "pre4-extra-word-318",
+      "unit_id": "pre4-extra-15",
+      "simplified": "穿",
+      "pinyin": "chuān",
+      "ja_meaning": "着る・履く"
+    },
+    {
+      "entry_id": "pre4-extra-word-319",
+      "unit_id": "pre4-extra-15",
+      "simplified": "戴",
+      "pinyin": "dài",
+      "ja_meaning": "身につける（帽子・眼鏡など）"
+    },
+    {
+      "entry_id": "pre4-extra-word-320",
+      "unit_id": "pre4-extra-15",
+      "simplified": "送",
+      "pinyin": "sòng",
+      "ja_meaning": "贈る・見送る"
+    },
+    {
+      "entry_id": "pre4-extra-word-321",
+      "unit_id": "pre4-extra-15",
+      "simplified": "接",
+      "pinyin": "jiē",
+      "ja_meaning": "迎える・受け取る"
+    },
+    {
+      "entry_id": "pre4-extra-word-322",
+      "unit_id": "pre4-extra-15",
+      "simplified": "带",
+      "pinyin": "dài",
+      "ja_meaning": "持っていく・連れていく"
+    },
+    {
+      "entry_id": "pre4-extra-word-323",
+      "unit_id": "pre4-extra-16",
+      "simplified": "零",
+      "pinyin": "líng",
+      "ja_meaning": "ゼロ"
+    },
+    {
+      "entry_id": "pre4-extra-word-324",
+      "unit_id": "pre4-extra-16",
+      "simplified": "十一",
+      "pinyin": "shíyī",
+      "ja_meaning": "11"
+    },
+    {
+      "entry_id": "pre4-extra-word-325",
+      "unit_id": "pre4-extra-16",
+      "simplified": "十二",
+      "pinyin": "shí’èr",
+      "ja_meaning": "12"
+    },
+    {
+      "entry_id": "pre4-extra-word-326",
+      "unit_id": "pre4-extra-16",
+      "simplified": "二十",
+      "pinyin": "èrshí",
+      "ja_meaning": "20"
+    },
+    {
+      "entry_id": "pre4-extra-word-327",
+      "unit_id": "pre4-extra-16",
+      "simplified": "三十",
+      "pinyin": "sānshí",
+      "ja_meaning": "30"
+    },
+    {
+      "entry_id": "pre4-extra-word-328",
+      "unit_id": "pre4-extra-16",
+      "simplified": "五十",
+      "pinyin": "wǔshí",
+      "ja_meaning": "50"
+    },
+    {
+      "entry_id": "pre4-extra-word-329",
+      "unit_id": "pre4-extra-16",
+      "simplified": "一百",
+      "pinyin": "yìbǎi",
+      "ja_meaning": "100"
+    },
+    {
+      "entry_id": "pre4-extra-word-330",
+      "unit_id": "pre4-extra-16",
+      "simplified": "一千",
+      "pinyin": "yìqiān",
+      "ja_meaning": "1000"
+    },
+    {
+      "entry_id": "pre4-extra-word-331",
+      "unit_id": "pre4-extra-16",
+      "simplified": "万",
+      "pinyin": "wàn",
+      "ja_meaning": "万"
+    },
+    {
+      "entry_id": "pre4-extra-word-332",
+      "unit_id": "pre4-extra-16",
+      "simplified": "一半",
+      "pinyin": "yíbàn",
+      "ja_meaning": "半分"
+    },
+    {
+      "entry_id": "pre4-extra-word-333",
+      "unit_id": "pre4-extra-16",
+      "simplified": "一共",
+      "pinyin": "yígòng",
+      "ja_meaning": "合計"
+    },
+    {
+      "entry_id": "pre4-extra-word-334",
+      "unit_id": "pre4-extra-16",
+      "simplified": "第",
+      "pinyin": "dì",
+      "ja_meaning": "第（順番）"
+    },
+    {
+      "entry_id": "pre4-extra-word-335",
+      "unit_id": "pre4-extra-16",
+      "simplified": "次",
+      "pinyin": "cì",
+      "ja_meaning": "回"
+    },
+    {
+      "entry_id": "pre4-extra-word-336",
+      "unit_id": "pre4-extra-16",
+      "simplified": "遍",
+      "pinyin": "biàn",
+      "ja_meaning": "回（最初から最後まで）"
+    },
+    {
+      "entry_id": "pre4-extra-word-337",
+      "unit_id": "pre4-extra-16",
+      "simplified": "辆",
+      "pinyin": "liàng",
+      "ja_meaning": "台（車）"
+    },
+    {
+      "entry_id": "pre4-extra-word-338",
+      "unit_id": "pre4-extra-16",
+      "simplified": "只",
+      "pinyin": "zhī",
+      "ja_meaning": "匹・個（動物など）"
+    },
+    {
+      "entry_id": "pre4-extra-word-339",
+      "unit_id": "pre4-extra-16",
+      "simplified": "口",
+      "pinyin": "kǒu",
+      "ja_meaning": "人（家族の人数）"
+    },
+    {
+      "entry_id": "pre4-extra-word-340",
+      "unit_id": "pre4-extra-16",
+      "simplified": "位",
+      "pinyin": "wèi",
+      "ja_meaning": "名（丁寧）"
+    },
+    {
+      "entry_id": "pre4-extra-word-341",
+      "unit_id": "pre4-extra-16",
+      "simplified": "杯",
+      "pinyin": "bēi",
+      "ja_meaning": "杯"
+    },
+    {
+      "entry_id": "pre4-extra-word-342",
+      "unit_id": "pre4-extra-16",
+      "simplified": "碗",
+      "pinyin": "wǎn",
+      "ja_meaning": "杯（茶わん）"
+    },
+    {
+      "entry_id": "pre4-extra-word-343",
+      "unit_id": "pre4-extra-16",
+      "simplified": "瓶",
+      "pinyin": "píng",
+      "ja_meaning": "本（瓶）"
+    },
+    {
+      "entry_id": "pre4-extra-word-344",
+      "unit_id": "pre4-extra-16",
+      "simplified": "盒",
+      "pinyin": "hé",
+      "ja_meaning": "箱"
+    },
+    {
+      "entry_id": "pre4-extra-word-345",
+      "unit_id": "pre4-extra-17",
+      "simplified": "耳朵",
+      "pinyin": "ěrduo",
+      "ja_meaning": "耳"
+    },
+    {
+      "entry_id": "pre4-extra-word-346",
+      "unit_id": "pre4-extra-17",
+      "simplified": "鼻子",
+      "pinyin": "bízi",
+      "ja_meaning": "鼻"
+    },
+    {
+      "entry_id": "pre4-extra-word-347",
+      "unit_id": "pre4-extra-17",
+      "simplified": "嘴",
+      "pinyin": "zuǐ",
+      "ja_meaning": "口"
+    },
+    {
+      "entry_id": "pre4-extra-word-348",
+      "unit_id": "pre4-extra-17",
+      "simplified": "牙",
+      "pinyin": "yá",
+      "ja_meaning": "歯"
+    },
+    {
+      "entry_id": "pre4-extra-word-349",
+      "unit_id": "pre4-extra-17",
+      "simplified": "脸",
+      "pinyin": "liǎn",
+      "ja_meaning": "顔"
+    },
+    {
+      "entry_id": "pre4-extra-word-350",
+      "unit_id": "pre4-extra-17",
+      "simplified": "头发",
+      "pinyin": "tóufa",
+      "ja_meaning": "髪"
+    },
+    {
+      "entry_id": "pre4-extra-word-351",
+      "unit_id": "pre4-extra-17",
+      "simplified": "腿",
+      "pinyin": "tuǐ",
+      "ja_meaning": "脚"
+    },
+    {
+      "entry_id": "pre4-extra-word-352",
+      "unit_id": "pre4-extra-17",
+      "simplified": "心",
+      "pinyin": "xīn",
+      "ja_meaning": "心"
+    },
+    {
+      "entry_id": "pre4-extra-word-353",
+      "unit_id": "pre4-extra-17",
+      "simplified": "肚子",
+      "pinyin": "dùzi",
+      "ja_meaning": "おなか"
+    },
+    {
+      "entry_id": "pre4-extra-word-354",
+      "unit_id": "pre4-extra-17",
+      "simplified": "药",
+      "pinyin": "yào",
+      "ja_meaning": "薬"
+    },
+    {
+      "entry_id": "pre4-extra-word-355",
+      "unit_id": "pre4-extra-17",
+      "simplified": "疼",
+      "pinyin": "téng",
+      "ja_meaning": "痛い"
+    },
+    {
+      "entry_id": "pre4-extra-word-356",
+      "unit_id": "pre4-extra-17",
+      "simplified": "健康",
+      "pinyin": "jiànkāng",
+      "ja_meaning": "健康"
+    },
+    {
+      "entry_id": "pre4-extra-word-357",
+      "unit_id": "pre4-extra-17",
+      "simplified": "水杯",
+      "pinyin": "shuǐbēi",
+      "ja_meaning": "水を飲むコップ"
+    },
+    {
+      "entry_id": "pre4-extra-word-358",
+      "unit_id": "pre4-extra-17",
+      "simplified": "书架",
+      "pinyin": "shūjià",
+      "ja_meaning": "本棚"
+    },
+    {
+      "entry_id": "pre4-extra-word-359",
+      "unit_id": "pre4-extra-17",
+      "simplified": "冰箱",
+      "pinyin": "bīngxiāng",
+      "ja_meaning": "冷蔵庫"
+    },
+    {
+      "entry_id": "pre4-extra-word-360",
+      "unit_id": "pre4-extra-17",
+      "simplified": "电梯",
+      "pinyin": "diàntī",
+      "ja_meaning": "エレベーター"
+    },
+    {
+      "entry_id": "pre4-extra-word-361",
+      "unit_id": "pre4-extra-17",
+      "simplified": "楼",
+      "pinyin": "lóu",
+      "ja_meaning": "建物・階"
+    },
+    {
+      "entry_id": "pre4-extra-word-362",
+      "unit_id": "pre4-extra-17",
+      "simplified": "楼上",
+      "pinyin": "lóushàng",
+      "ja_meaning": "上の階"
+    },
+    {
+      "entry_id": "pre4-extra-word-363",
+      "unit_id": "pre4-extra-17",
+      "simplified": "楼下",
+      "pinyin": "lóuxià",
+      "ja_meaning": "下の階"
+    },
+    {
+      "entry_id": "pre4-extra-word-364",
+      "unit_id": "pre4-extra-17",
+      "simplified": "门票",
+      "pinyin": "ménpiào",
+      "ja_meaning": "入場券"
+    },
+    {
+      "entry_id": "pre4-extra-word-365",
+      "unit_id": "pre4-extra-17",
+      "simplified": "钱包",
+      "pinyin": "qiánbāo",
+      "ja_meaning": "財布"
+    },
+    {
+      "entry_id": "pre4-extra-word-366",
+      "unit_id": "pre4-extra-17",
+      "simplified": "洗衣机",
+      "pinyin": "xǐyījī",
+      "ja_meaning": "洗濯機"
+    },
+    {
+      "entry_id": "pre4-extra-word-367",
+      "unit_id": "pre4-extra-17",
+      "simplified": "镜子",
+      "pinyin": "jìngzi",
+      "ja_meaning": "鏡"
+    },
+    {
+      "entry_id": "pre4-extra-word-368",
+      "unit_id": "pre4-extra-17",
+      "simplified": "牙刷",
+      "pinyin": "yáshuā",
+      "ja_meaning": "歯ブラシ"
+    },
+    {
+      "entry_id": "pre4-extra-word-369",
+      "unit_id": "pre4-extra-18",
+      "simplified": "怎么样",
+      "pinyin": "zěnmeyàng",
+      "ja_meaning": "どうですか"
+    },
+    {
+      "entry_id": "pre4-extra-word-370",
+      "unit_id": "pre4-extra-18",
+      "simplified": "为什么",
+      "pinyin": "wèishénme",
+      "ja_meaning": "なぜ"
+    },
+    {
+      "entry_id": "pre4-extra-word-371",
+      "unit_id": "pre4-extra-18",
+      "simplified": "哪里",
+      "pinyin": "nǎlǐ",
+      "ja_meaning": "どこ"
+    },
+    {
+      "entry_id": "pre4-extra-word-372",
+      "unit_id": "pre4-extra-18",
+      "simplified": "哪个",
+      "pinyin": "nǎge",
+      "ja_meaning": "どれ"
+    },
+    {
+      "entry_id": "pre4-extra-word-373",
+      "unit_id": "pre4-extra-18",
+      "simplified": "多少",
+      "pinyin": "duōshao",
+      "ja_meaning": "いくら・どれくらい"
+    },
+    {
+      "entry_id": "pre4-extra-word-374",
+      "unit_id": "pre4-extra-18",
+      "simplified": "一点儿",
+      "pinyin": "yìdiǎnr",
+      "ja_meaning": "少し"
+    },
+    {
+      "entry_id": "pre4-extra-word-375",
+      "unit_id": "pre4-extra-18",
+      "simplified": "一些",
+      "pinyin": "yìxiē",
+      "ja_meaning": "いくつか"
+    },
+    {
+      "entry_id": "pre4-extra-word-376",
+      "unit_id": "pre4-extra-18",
+      "simplified": "每",
+      "pinyin": "měi",
+      "ja_meaning": "～ごと・毎～"
+    },
+    {
+      "entry_id": "pre4-extra-word-377",
+      "unit_id": "pre4-extra-18",
+      "simplified": "别",
+      "pinyin": "bié",
+      "ja_meaning": "～するな"
+    },
+    {
+      "entry_id": "pre4-extra-word-378",
+      "unit_id": "pre4-extra-18",
+      "simplified": "从",
+      "pinyin": "cóng",
+      "ja_meaning": "～から"
+    },
+    {
+      "entry_id": "pre4-extra-word-379",
+      "unit_id": "pre4-extra-18",
+      "simplified": "往",
+      "pinyin": "wǎng",
+      "ja_meaning": "～の方へ"
+    },
+    {
+      "entry_id": "pre4-extra-word-380",
+      "unit_id": "pre4-extra-18",
+      "simplified": "离",
+      "pinyin": "lí",
+      "ja_meaning": "～から離れて"
+    },
+    {
+      "entry_id": "pre4-extra-word-381",
+      "unit_id": "pre4-extra-18",
+      "simplified": "比",
+      "pinyin": "bǐ",
+      "ja_meaning": "～より"
+    },
+    {
+      "entry_id": "pre4-extra-word-382",
+      "unit_id": "pre4-extra-18",
+      "simplified": "向",
+      "pinyin": "xiàng",
+      "ja_meaning": "～に向かって"
+    },
+    {
+      "entry_id": "pre4-extra-word-383",
+      "unit_id": "pre4-extra-18",
+      "simplified": "跟",
+      "pinyin": "gēn",
+      "ja_meaning": "～と一緒に"
+    },
+    {
+      "entry_id": "pre4-extra-word-384",
+      "unit_id": "pre4-extra-18",
+      "simplified": "所以",
+      "pinyin": "suǒyǐ",
+      "ja_meaning": "だから"
+    },
+    {
+      "entry_id": "pre4-extra-word-385",
+      "unit_id": "pre4-extra-18",
+      "simplified": "但是",
+      "pinyin": "dànshì",
+      "ja_meaning": "しかし"
+    },
+    {
+      "entry_id": "pre4-extra-word-386",
+      "unit_id": "pre4-extra-18",
+      "simplified": "如果",
+      "pinyin": "rúguǒ",
+      "ja_meaning": "もし"
+    },
+    {
+      "entry_id": "pre4-extra-word-387",
+      "unit_id": "pre4-extra-18",
+      "simplified": "一样",
+      "pinyin": "yíyàng",
+      "ja_meaning": "同じ"
+    },
+    {
+      "entry_id": "pre4-extra-word-388",
+      "unit_id": "pre4-extra-18",
+      "simplified": "不好意思",
+      "pinyin": "bù hǎoyìsi",
+      "ja_meaning": "すみません"
+    },
+    {
+      "entry_id": "pre4-extra-word-389",
+      "unit_id": "pre4-extra-18",
+      "simplified": "没事儿",
+      "pinyin": "méi shìr",
+      "ja_meaning": "大丈夫です"
+    },
+    {
+      "entry_id": "pre4-extra-word-390",
+      "unit_id": "pre4-extra-18",
+      "simplified": "好的",
+      "pinyin": "hǎo de",
+      "ja_meaning": "はい・分かりました"
+    },
+    {
+      "entry_id": "pre4-extra-word-391",
+      "unit_id": "pre4-extra-18",
+      "simplified": "行",
+      "pinyin": "xíng",
+      "ja_meaning": "大丈夫・できます"
+    },
+    {
+      "entry_id": "pre4-extra-word-392",
+      "unit_id": "pre4-extra-18",
+      "simplified": "加油",
+      "pinyin": "jiāyóu",
+      "ja_meaning": "頑張って"
+    },
+    {
+      "entry_id": "pre4-extra-word-393",
+      "unit_id": "pre4-extra-18",
+      "simplified": "当然",
+      "pinyin": "dāngrán",
+      "ja_meaning": "もちろん"
+    },
+    {
+      "entry_id": "pre4-extra-word-394",
+      "unit_id": "pre4-extra-19",
+      "simplified": "打折",
+      "pinyin": "dǎzhé",
+      "ja_meaning": "値引きする"
+    },
+    {
+      "entry_id": "pre4-extra-word-395",
+      "unit_id": "pre4-extra-19",
+      "simplified": "收银台",
+      "pinyin": "shōuyíntái",
+      "ja_meaning": "レジ"
+    },
+    {
+      "entry_id": "pre4-extra-word-396",
+      "unit_id": "pre4-extra-19",
+      "simplified": "发票",
+      "pinyin": "fāpiào",
+      "ja_meaning": "領収書"
+    },
+    {
+      "entry_id": "pre4-extra-word-397",
+      "unit_id": "pre4-extra-19",
+      "simplified": "菜单",
+      "pinyin": "càidān",
+      "ja_meaning": "メニュー"
+    },
+    {
+      "entry_id": "pre4-extra-word-398",
+      "unit_id": "pre4-extra-19",
+      "simplified": "点菜",
+      "pinyin": "diǎn cài",
+      "ja_meaning": "注文する"
+    },
+    {
+      "entry_id": "pre4-extra-word-399",
+      "unit_id": "pre4-extra-19",
+      "simplified": "结账",
+      "pinyin": "jiézhàng",
+      "ja_meaning": "会計する"
+    },
+    {
+      "entry_id": "pre4-extra-word-400",
+      "unit_id": "pre4-extra-19",
+      "simplified": "早餐",
+      "pinyin": "zǎocān",
+      "ja_meaning": "朝食"
+    },
+    {
+      "entry_id": "pre4-extra-word-401",
+      "unit_id": "pre4-extra-19",
+      "simplified": "午饭",
+      "pinyin": "wǔfàn",
+      "ja_meaning": "昼食"
+    },
+    {
+      "entry_id": "pre4-extra-word-402",
+      "unit_id": "pre4-extra-19",
+      "simplified": "晚饭",
+      "pinyin": "wǎnfàn",
+      "ja_meaning": "夕食"
+    },
+    {
+      "entry_id": "pre4-extra-word-403",
+      "unit_id": "pre4-extra-19",
+      "simplified": "甜",
+      "pinyin": "tián",
+      "ja_meaning": "甘い"
+    },
+    {
+      "entry_id": "pre4-extra-word-404",
+      "unit_id": "pre4-extra-19",
+      "simplified": "酸",
+      "pinyin": "suān",
+      "ja_meaning": "酸っぱい"
+    },
+    {
+      "entry_id": "pre4-extra-word-405",
+      "unit_id": "pre4-extra-19",
+      "simplified": "辣",
+      "pinyin": "là",
+      "ja_meaning": "辛い"
+    },
+    {
+      "entry_id": "pre4-extra-word-406",
+      "unit_id": "pre4-extra-19",
+      "simplified": "咸",
+      "pinyin": "xián",
+      "ja_meaning": "塩辛い"
+    },
+    {
+      "entry_id": "pre4-extra-word-407",
+      "unit_id": "pre4-extra-19",
+      "simplified": "饿",
+      "pinyin": "è",
+      "ja_meaning": "おなかがすく"
+    },
+    {
+      "entry_id": "pre4-extra-word-408",
+      "unit_id": "pre4-extra-19",
+      "simplified": "渴",
+      "pinyin": "kě",
+      "ja_meaning": "のどが渇く"
+    },
+    {
+      "entry_id": "pre4-extra-word-409",
+      "unit_id": "pre4-extra-19",
+      "simplified": "饱",
+      "pinyin": "bǎo",
+      "ja_meaning": "満腹だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-410",
+      "unit_id": "pre4-extra-19",
+      "simplified": "新鲜",
+      "pinyin": "xīnxiān",
+      "ja_meaning": "新鮮だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-411",
+      "unit_id": "pre4-extra-19",
+      "simplified": "方便",
+      "pinyin": "fāngbiàn",
+      "ja_meaning": "便利だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-412",
+      "unit_id": "pre4-extra-19",
+      "simplified": "安静",
+      "pinyin": "ānjìng",
+      "ja_meaning": "静かだ"
+    },
+    {
+      "entry_id": "pre4-extra-word-413",
+      "unit_id": "pre4-extra-19",
+      "simplified": "认真",
+      "pinyin": "rènzhēn",
+      "ja_meaning": "まじめに"
+    },
+    {
+      "entry_id": "pre4-extra-word-414",
+      "unit_id": "pre4-extra-19",
+      "simplified": "清楚",
+      "pinyin": "qīngchu",
+      "ja_meaning": "はっきりしている"
+    },
+    {
+      "entry_id": "pre4-extra-word-415",
+      "unit_id": "pre4-extra-19",
+      "simplified": "安全",
+      "pinyin": "ānquán",
+      "ja_meaning": "安全だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-416",
+      "unit_id": "pre4-extra-19",
+      "simplified": "重要",
+      "pinyin": "zhòngyào",
+      "ja_meaning": "大切だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-417",
+      "unit_id": "pre4-extra-19",
+      "simplified": "简单",
+      "pinyin": "jiǎndān",
+      "ja_meaning": "簡単だ"
+    },
+    {
+      "entry_id": "pre4-extra-word-418",
+      "unit_id": "pre4-extra-19",
+      "simplified": "特别",
+      "pinyin": "tèbié",
+      "ja_meaning": "特に・特別だ"
+    }
+  ]
+}
