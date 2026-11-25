@@ -1,1 +1,1 @@
-Koepanda 301.406 — Reading proper names and Japanese definitions
+Koepanda 301.409 — Pre-4 example and correction word lookup
