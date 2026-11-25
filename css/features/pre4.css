@@ -1,0 +1,109 @@
+.pre4-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 28px;
+}
+.pre4-button {
+  display: inline-grid;
+  place-items: center;
+  min-height: 48px;
+  padding: 10px 17px;
+  border: 1px solid #d8e9dd;
+  border-radius: 16px;
+  background: #fff;
+  color: #265d47;
+  font: inherit;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+}
+.pre4-button:active:not(:disabled) { transform: translateY(2px); }
+.pre4-button:focus-visible { outline: 3px solid #75d3ae; outline-offset: 3px; }
+.pre4-button:disabled { opacity: .45; cursor: default; }
+.pre4-primary { background: #216b50; color: #fff; }
+.pre4-card {
+  margin: 20px 0;
+  padding: clamp(18px, 5vw, 32px);
+  border: 1px solid #e3ede6;
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 8px 22px #2947370a;
+  text-align: center;
+}
+.pre4-card ruby { font-size: clamp(33px, 9vw, 60px); }
+.pre4-card rt { color: #38725b; font-size: .42em; }
+.pre4-card p { margin: 16px 0; }
+.pre4-word-nav {
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  gap: 12px;
+}
+.pre4-word-nav .pre4-button { padding: 0; font-size: 25px; }
+.pre4-card .pre4-tools { justify-content: center; margin: 20px 0 0; }
+.pre4-lesson-list { margin-top: 20px; }
+
+.ps-dictation {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 53px;
+  padding: 10px 15px;
+  border: 1px solid #a6c9b6;
+  border-radius: 16px;
+  color: #2e4439;
+  background: #fff;
+  font: inherit;
+}
+.ps-dictation:focus-visible { outline: 3px solid #75d3ae; outline-offset: 2px; }
+#pre4Retry { white-space: normal; }
+
+.pre4-past-card {
+  text-align: left;
+  display: grid;
+  gap: 12px;
+}
+.pre4-past-card :is(h2,h3,p) { margin: 0; }
+.pre4-past-card select { max-width: 100%; }
+.pre4-past-card input { cursor: text; min-width: 0; }
+.pre4-past-card .pre4-tools { justify-content: flex-start; margin: 0; }
+.ps-pre4-corrections {
+  text-align: left;
+  padding: 14px 20px;
+  white-space: pre-line;
+}
+.ps-pre4-corrections li { margin-bottom: 13px; }
+.ps-choice.is-selected { border-color: #278765; background: #e4f6ed; }
+.ps-pre4-audio-option { display: grid; grid-template-columns: minmax(0,1fr) 44px; gap: 5px; align-items: stretch; }
+.ps-pre4-audio-option .ps-choice { width: 100%; min-width: 0; padding-inline: 4px; }
+.ps-pre4-audio-option .ps-audio { width: 44px; min-width: 0; padding: 0; margin: 0; }
+.pre4-past-card [hidden] { display: none; }
+
+.pre4-example {
+  padding: 15px 18px;
+  margin: 18px 0;
+  border: 1px solid #dcebe0;
+  border-radius: 20px;
+  background: #fff;
+}
+.pre4-example h2 { font-size: 15px; margin: 0 0 8px; }
+.pre4-example p { margin: 0 0 6px; }
+.pre4-example .jp { margin: 0; color: #496153; font-size: .9rem; }
+.pre4-lookup-sentence {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  margin: 4px 0;
+}
+.pre4-lookup-sentence .kp-lookup-word {
+  text-decoration: underline dotted #4a8a72;
+  text-underline-offset: .19em;
+}
+.pre4-review-sentences {
+  padding: 4px 12px;
+  margin: 8px 0;
+  max-width: 100%;
+  border-inline-start: 3px solid #9ad1b7;
+  background: #eff8f2;
+  text-align: start;
+}
+.pre4-review-sentences:empty { display: none; }
