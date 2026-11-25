@@ -277,12 +277,33 @@ function loadDictation(q,choices,primary){
 function drawOrder(q){const slots=document.getElementById('answerSlots'),choices=document.getElementById('choiceGrid');slots.replaceChildren();q.answerIds.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.className='ps-slot';if(selected[i]){const token=byId(selected[i]);b.textContent=token?.simplified||'';b.dataset.selectedIndex=String(i);b.setAttribute('aria-label',`${token?.simplified||''} を取り消す`);b.onclick=()=>{if(answered)return;selected.splice(i,1);drawOrder(q)}}else{b.classList.add('is-empty');b.textContent='＋';b.setAttribute('aria-label',`空欄 ${i+1}`)}slots.append(b);if(q.punctuationAfter?.includes(i+1)){const punctuation=document.createElement('span');punctuation.className='ps-punctuation';punctuation.textContent='，';slots.append(punctuation)}if(i===q.answerIds.length-1&&/[。？！]$/.test(q.text||'')){const punctuation=document.createElement('span');punctuation.className='ps-punctuation';punctuation.textContent=q.text.slice(-1);slots.append(punctuation)}});choices.replaceChildren();q.tileIds.forEach(id=>{const token=byId(id);if(!token)return;const b=document.createElement('button');b.type='button';b.className='ps-choice ps-order-choice';b.dataset.itemId=id;b.disabled=answered||selected.includes(id);b.innerHTML=`<small>${esc(token.pinyin)}</small><b>${esc(token.simplified)}</b>`;b.setAttribute('aria-label',`${token.pinyin} ${token.simplified}`);b.onclick=()=>{if(answered||selected.length>=q.answerIds.length)return;selected.push(id);drawOrder(q)};choices.append(b)});document.getElementById('primaryAction').disabled=answered||selected.length!==q.answerIds.length;document.getElementById('primaryAction').textContent=answered?(reviewOnly?'復習を終える':position===questions.length-1?'結果を見る':'答え合わせ'):selected.length===q.answerIds.length?'答え合わせ':`ことばを選んでね（${selected.length}/${q.answerIds.length}）`}
 function checkOrder(q){if(selected.length!==q.answerIds.length)return;answered=true;const ok=selected.every((id,i)=>id===q.answerIds[i]);score+=ok?1:0;drawOrder(q);showAnswer(q,ok);record(q,ok);document.getElementById('primaryAction').disabled=false;document.getElementById('primaryAction').textContent=nextLabel()}
 function showAnswer(q,ok){const f=document.getElementById('feedback'),detail=document.getElementById('answerDetail');f.textContent=ok?'できた！ぴったりだよ ✨':'おしい！ここを確認しよう';f.className='ps-feedback '+(ok?'':'is-wrong');const explanation=q.explain||q.text||'';if(!ok&&q.kind==='order'){const expected=q.answerIds.map(id=>byId(id)?.simplified||'').join('');const actual=selected.map(id=>byId(id)?.simplified||'').join('');const first=selected.findIndex((id,i)=>id!==q.answerIds[i]);detail.textContent=`あなたの答え：${actual}\n正しい順番：${expected}\n${first>=0?`${first+1}番目から語順が違います。`:'語順をもう一度確認しましょう。'}\n${explanation}`;}else if(!ok&&q.kind==='choice'){const right=q.choices.find(x=>x.id===q.answerId);detail.textContent=`正しい答え：${right?.label||''}${right?.pinyin?' · '+right.pinyin:''}\n${explanation}\n選んだ答えと、正しい意味・発音を比べてみよう。`;}else detail.textContent=explanation}
+function offerMockFeedback(q,ok,actual){
+ const area=document.getElementById('pre4AnswerReading');
+ area.innerHTML=`<details class="ps-pre4-question-review">
+   <summary>正誤・解説を見る</summary>
+   <div class="ps-pre4-question-review-body"></div>
+ </details>`;
+ const panel=area.querySelector('details');
+ panel.addEventListener('toggle',()=>{
+   if(!panel.open||panel.dataset.revealed)return;
+   panel.dataset.revealed='true';
+   const correct=q.choices?.find(choice=>choice.id===q.answerId)?.label ?? q.answerId;
+   panel.querySelector('summary').textContent='正誤・解説';
+   panel.querySelector('.ps-pre4-question-review-body').innerHTML=`
+     <p class="ps-pre4-verdict ${ok?'is-correct':'is-wrong'}">${ok?'○ 正解':'× 不正解'}</p>
+     <p>あなたの答え：${esc(actual)}<br>正解：<strong>${esc(correct)}</strong></p>
+     <p>${esc(q.explain)}</p>${lookup.review(q)}`;
+ });
+}
 function record(q,ok,actual){
  if(q.course===pre4.course&&(!mockPaper||immediateRetry)){
    document.getElementById('pre4AnswerReading').innerHTML=lookup.review(q);
  }
  if(pre4Quiz&&!ok)missed.push({...q,actual,number:position+1});
- if(mockPaper&&!immediateRetry)mockAnswers.push({question:q,actual,ok,number:position+1});
+ if(mockPaper&&!immediateRetry){
+   mockAnswers.push({question:q,actual,ok,number:position+1});
+   offerMockFeedback(q,ok,actual);
+ }
  // A retry during the same quiz leaves the scheduled review date intact.
  if(immediateRetry)return;
  const api=window.KP_ACCOUNT_API;
