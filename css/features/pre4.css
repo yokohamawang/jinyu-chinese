@@ -139,3 +139,11 @@
 .ps-pre4-question-review-body p { margin: 6px 0; }
 .ps-pre4-verdict { font-weight: 800; color: #216b50; }
 .ps-pre4-verdict.is-wrong { color: #a03f34; }
+
+.station-card {display:grid;gap:.65rem}
+.station-line {border-bottom:1px solid #cdded4;padding-bottom:.6rem}
+.station-line p[lang] {font-size:1.5rem;margin:.25rem 0}
+.station-word {color:inherit;font:inherit;border:0;padding:.18em .08em;background:transparent;cursor:pointer}
+.station-word:focus-visible,.station-word:hover {background:#e4f4ea}
+.station-line details {display:inline-block;margin-inline-start:1em}
+.station-gloss:not(:empty) {padding:.5rem;background:#eef7ef;border-radius:.6rem}
