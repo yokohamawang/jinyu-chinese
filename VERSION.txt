@@ -1,1 +1,3 @@
-Koepanda 301.415 — 準4級 会話・発音・まちがい復習
+301.417
+Base: 301.416
+Status: integration-candidate
