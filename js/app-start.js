@@ -851,6 +851,7 @@ try {
   let friendPresenceChannels=[];
   let qrScanFrame=0;
   let qrVideoStream=null;
+  let qrScanSession=0;
   const qrScriptLoads={};
 
   function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
@@ -927,6 +928,7 @@ try {
     }).catch(()=>{if(host.isConnected)host.textContent='QRを表示できません。招待コードを使ってください。';});
   }
   function stopQrCamera(){
+    qrScanSession++;
     if(qrScanFrame)cancelAnimationFrame(qrScanFrame);qrScanFrame=0;
     if(qrVideoStream){qrVideoStream.getTracks().forEach(track=>track.stop());qrVideoStream=null;}
   }
@@ -934,33 +936,56 @@ try {
     const value=String(raw||'').trim();
     const valid=code=>/^KP-[A-Z0-9]{4}-[A-Z0-9]{3}$/.test(String(code||'').trim().toUpperCase());
     if(valid(value))return value.toUpperCase();
-    try{const url=new URL(value);if(url.origin!==location.origin)return'';const code=url.searchParams.get('friend')||url.searchParams.get('invite')||'';return valid(code)?code.toUpperCase():'';}catch(_){return'';}
+    try{const url=new URL(value);if(url.origin!==location.origin)return'';const code=(url.searchParams.get('friend')||url.searchParams.get('invite')||'').trim();return valid(code)?code.toUpperCase():'';}catch(_){return'';}
   }
   async function openQrScanner(ctx){
     stopQrCamera();
+    const session=qrScanSession;
     ctx.modal('QRコードを読み取る',`<div class="kp-friend-qr-scanner"><div class="kp-friend-qr-camera"><video id="kpFriendQrVideo" playsinline muted aria-label="友だちの招待QRコードを映すカメラ"></video><span aria-hidden="true"></span></div><p id="kpFriendQrStatus" role="status" aria-live="polite">カメラを準備しています…</p><small>QRが枠に入るように、ゆっくり合わせてください。読み取り後、申請内容を確認できます。</small></div>`);
     const dialog=ctx.root.querySelector('#kpModal'),video=ctx.root.querySelector('#kpFriendQrVideo'),status=ctx.root.querySelector('#kpFriendQrStatus');
-    dialog?.addEventListener('close',stopQrCamera,{once:true});
+    const isCurrent=()=>session===qrScanSession && dialog?.open && video?.isConnected;
+    dialog?.addEventListener('close',()=>{if(session===qrScanSession)stopQrCamera();},{once:true});
     try{
       await loadQrReader();
+      if(!isCurrent())return;
       if(!navigator.mediaDevices?.getUserMedia)throw new Error('camera_unavailable');
-      qrVideoStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'}}});
-      if(!dialog?.open){stopQrCamera();return;}
-      video.srcObject=qrVideoStream;await video.play();
+      const stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'}}});
+      if(!isCurrent()){stream.getTracks().forEach(track=>track.stop());return;}
+      qrVideoStream=stream;
+      video.srcObject=stream;await video.play();
+      if(!isCurrent())return;
       if(status)status.textContent='QRコードを枠に合わせてください';
       const canvas=document.createElement('canvas'),scanContext=canvas.getContext('2d',{willReadFrequently:true});let lastScan=0;
       const scan=now=>{
-        if(!qrVideoStream||!dialog?.open)return;
+        if(!isCurrent()){if(session===qrScanSession)stopQrCamera();return;}
         if(video.readyState>=2&&video.videoWidth&&now-lastScan>140){
           lastScan=now;const scale=Math.min(1,720/video.videoWidth);canvas.width=Math.round(video.videoWidth*scale);canvas.height=Math.round(video.videoHeight*scale);
           scanContext.drawImage(video,0,0,canvas.width,canvas.height);
           const result=window.jsQR(scanContext.getImageData(0,0,canvas.width,canvas.height).data,canvas.width,canvas.height,{inversionAttempts:'dontInvert'});
-          if(result?.data){const code=inviteCodeFromQr(result.data);if(code){stopQrCamera();ctx.closeModal();const input=ctx.main.querySelector('#kpFriendCodeInput');if(input){input.value=code;setMessage(ctx.main,'QRコードを読み取りました。コードを確認してから友だち申請を送ってください。',false);input.scrollIntoView({behavior:'smooth',block:'center'});input.focus();}ctx.toast('招待コードを読み取りました。');return;}if(status)status.textContent='Koepandaの招待QRではありません。手入力もできます。';}
+          if(result?.data){
+            const code=inviteCodeFromQr(result.data);
+            if(code){
+              const input=ctx.root.querySelector('#kpFriendForm #kpFriendCodeInput');
+              stopQrCamera();
+              ctx.closeModal();
+              if(!input){
+                ctx.toast('申請画面を開いて、もう一度QRコードを読み取ってください。');
+                return;
+              }
+              input.value=code;
+              setMessage(ctx.root,'QRコードを読み取りました。コードを確認してから友だち申請を送ってください。',false);
+              input.focus({preventScroll:true});
+              input.scrollIntoView({behavior:'smooth',block:'center'});
+              return;
+            }
+            status.textContent='Koepandaの招待QRではありません。手入力もできます。';
+          }
         }
         qrScanFrame=requestAnimationFrame(scan);
       };
       qrScanFrame=requestAnimationFrame(scan);
     }catch(error){
+      if(!isCurrent())return;
       stopQrCamera();if(status)status.textContent=/NotAllowed|Permission|denied/i.test(String(error))?'カメラの使用が許可されませんでした。ブラウザの設定を確認するか、招待コードを手入力してください。':'カメラを起動できませんでした。招待コードを手入力してください。';
     }
   }

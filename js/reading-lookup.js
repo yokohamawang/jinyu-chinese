@@ -158,7 +158,7 @@
     return result;
   }
   function base(node) {
-    return node.querySelector('rb, .kp-story-char > b')?.textContent ||
+    return node.dataset.hanzi || node.querySelector('rb, .kp-story-char > b')?.textContent ||
       (node.classList.contains('kp-story-char') ? node.querySelector('b')?.textContent : node.textContent);
   }
   function decorate(element, local, splitUnmatched) {
