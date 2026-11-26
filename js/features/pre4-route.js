@@ -36,24 +36,58 @@
     back.setAttribute('aria-label', label);
   }
 
+  const stages = [
+    {id:'hello', title:'あいさつと自己紹介', icon:'👋', preview:'名前・家族・学校', units:['u01','u02','u06','extra-01','extra-13']},
+    {id:'daily', title:'時間・数・買い物', icon:'🛍️', preview:'時刻・値段・量詞', units:['u03','u08','extra-02','counters','u05','extra-04','u11','extra-16']},
+    {id:'town', title:'持ち物・場所・移動', icon:'🧭', preview:'持ち主・道案内・介詞', units:['particles','u07','extra-05','u04','prepositions','extra-03','extra-08','extra-09','extra-18']},
+    {id:'talk', title:'会話を広げる', icon:'💬', preview:'習慣・気持ち・副詞', units:['adverbs','u10','u09','extra-06','extra-07','extra-10','extra-11','extra-12','extra-14','extra-15','extra-17','extra-19']}
+  ];
+
+  function mapHref(stage, stop) {
+    return './pre4.html?stage='+stage.id+(stop?'#'+stop:'');
+  }
+
+  function stationHref(unitId, index) {
+    return route(unitId)+'&station='+(index+1);
+  }
+
   function showMap(data) {
-    const groups = [
-      ['あいさつから短い文へ', ['u01','u02','u06','extra-01','extra-13']],
-      ['時間・数・買い物', ['u03','u08','extra-02','counters','u05','extra-04','u11','extra-16']],
-      ['持ち物・場所・移動', ['particles','u07','extra-05','u04','prepositions','extra-03','extra-08','extra-09','extra-18']],
-      ['習慣・気持ち・会話の広がり', ['adverbs','u10','u09','extra-06','extra-07','extra-10','extra-11','extra-12','extra-14','extra-15','extra-17','extra-19']]
-    ];
+    const stage = stages.find(item => item.id === params.get('stage')) || stages[0];
+    const nextStage = stages[stages.indexOf(stage)+1];
     const units = new Map(data.units.map(unit => [unit.unit_id,unit]));
-    main.innerHTML = heading('準4級のぼうけん', '短い会話を聞いて、ことばの使い方を身につけよう。') +
-      `<nav class="pre4-tools" aria-label="テストと復習"><a class="pre4-button pre4-primary" href="${route('exam')}">画面で解く模試・練習</a>
-      <a class="pre4-button" href="${route('past')}">公式過去問</a>
-      <a class="pre4-button" href="./practice-session.html?reviewLesson=pre4">まちがいレッスン</a></nav>` +
-      groups.map(([title, ids], group) => `<details class="pre4-stage"${group === 0 ? ' open' : ''}>
-        <summary>${escape(title)}</summary><ol class="pr-map-list">${ids.map(id => {
-          const unit = units.get('pre4-'+id);
-          const stations = window.KP_PRE4_STATIONS[unit.unit_id];
-          return node(route(unit.unit_id), '›', unit.title_ja, stations.map(item=>item.title).join(' ／ '));
-        }).join('')}</ol></details>`).join('');
+    main.classList.add('pre4-roadmap');
+    main.innerHTML = `<h1 class="pre4-map-title">準4級のぼうけん</h1>
+      <nav class="pre4-regions" aria-label="学習エリア">${stages.map(item => `
+        <a class="pre4-region" href="${mapHref(item)}"${item===stage?' aria-current="page"':''}>
+          <span class="pre4-region-icon" aria-hidden="true">${item.icon}</span>
+          <span><b>${item.title}</b><small>${item.preview}</small></span>
+        </a>`).join('')}</nav>
+      <section class="pre4-region-route pre4-region-${stage.id}" aria-labelledby="pre4-region-heading">
+        <h2 id="pre4-region-heading">${stage.title}</h2>
+        <p class="pre4-region-note">1レッスン約5分 · 会話とミニテスト</p>
+        <ol class="pre4-stops">${stage.units.map(id => {
+          const unitId='pre4-'+id;
+          const unit=units.get(unitId);
+          return `<li class="pre4-stop" id="${unitId}">
+            <div class="pre4-stop-card">
+              <h3><a href="${route(unitId)}">${escape(unit.title_ja)}<span aria-hidden="true">›</span></a></h3>
+              <ol class="pre4-stop-lessons">${window.KP_PRE4_STATIONS[unitId].map((item,index) => `
+                <li><a href="${stationHref(unitId,index)}"><span class="pre4-lesson-dot" aria-hidden="true"></span>${escape(item.title)}<span class="pre4-lesson-arrow" aria-hidden="true">›</span></a></li>`).join('')}</ol>
+            </div>
+          </li>`;
+        }).join('')}</ol>
+        ${nextStage?`<a class="pre4-next-region" href="${mapHref(nextStage)}">次は ${nextStage.title} <span aria-hidden="true">›</span></a>`:''}
+      </section>
+      <section class="pre4-map-review" aria-labelledby="pre4-review-heading">
+        <h2 id="pre4-review-heading">模試と復習</h2>
+        <nav class="pre4-tools" aria-labelledby="pre4-review-heading">
+          <a class="pre4-button" href="${route('exam')}">模試・練習</a>
+          <a class="pre4-button" href="${route('past')}">公式過去問</a>
+          <a class="pre4-button" href="./practice-session.html?reviewLesson=pre4">まちがいレッスン</a>
+        </nav>
+      </section>`;
+    const stop = document.getElementById(location.hash.slice(1));
+    if (stop?.classList.contains('pre4-stop')) stop.scrollIntoView({block:'start'});
   }
 
   function showExam() {
@@ -128,7 +162,8 @@
   }
 
   function showStation(unit,number,item){
-    setBack(route(unit.unit_id),'テーマへ戻る');
+    const stage=stages.find(item=>item.units.includes(unit.unit_id.slice(5)));
+    setBack(stage?mapHref(stage,unit.unit_id):route(unit.unit_id),'学習ルートへ戻る');
     const lines=[item.ask,item.reply], translations=[item.jaAsk,item.jaReply];
     const glosses=dictionary;
     const endings=item.endings||[item.ask.some(w=>['谁','什么','吗','几','哪儿','几本','几口','几杯','几斤','几点','几月','几号','是不是','哪','多久','多少','怎么','怎么样','星期几','呢','还是','哪只'].includes(w))?'？':'。','。'];
@@ -183,6 +218,8 @@
       setBack('./pre4.html', '準4級のルートへ戻る');
       const unit = data.units.find(item => item.unit_id === unitId);
       if (!unit) throw Error('単元が見つかりません。');
+      const stage=stages.find(item=>item.units.includes(unitId.slice(5)));
+      if(stage)setBack(mapHref(stage,unitId),'学習ルートへ戻る');
       const lessons = window.KP_PRE4.lessons(data, unit);
       const stations=window.KP_PRE4_STATIONS[unitId];
       if(params.has('station')){
@@ -197,7 +234,7 @@
         return;
       }
       main.innerHTML = heading(unit.title_ja,'短い会話を聞いて使ってみよう。') +
-        '<ol class="pr-map-list">'+stations.map((s,i)=>node(route(unitId)+'&station='+(i+1),i+1,s.title,'約5分 · 会話とミニテスト')).join('')+'</ol>'+
+        '<ol class="pr-map-list">'+stations.map((s,i)=>node(stationHref(unitId,i),i+1,s.title,'約5分 · 会話とミニテスト')).join('')+'</ol>'+
         (lessons.length ? '<details><summary>このテーマのことばを練習する</summary>'+
         `<ol class="pr-map-list pre4-lesson-list">${lessons.map((words, index) => node(
           route(unit.unit_id, index + 1), index + 1, 'レッスン ' + (index + 1),
