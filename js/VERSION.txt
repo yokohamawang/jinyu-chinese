@@ -1,1 +1,3 @@
-Koepanda 301.389 — Curved Hanzi trail
+301.425
+Base: 301.419
+Also applies over: 301.420, 301.421, 301.422, 301.423, 301.424
