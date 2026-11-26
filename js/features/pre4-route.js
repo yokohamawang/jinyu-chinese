@@ -37,16 +37,23 @@
   }
 
   function showMap(data) {
-    main.innerHTML = heading('準4級のぼうけん', `${data.units.length}テーマ・${data.vocabulary_entries.length}の基礎語句から始めよう。`) +
+    const groups = [
+      ['あいさつから短い文へ', ['u01','u02','u06','extra-01','extra-13']],
+      ['時間・数・買い物', ['u03','u08','extra-02','counters','u05','extra-04','u11','extra-16']],
+      ['持ち物・場所・移動', ['particles','u07','extra-05','u04','prepositions','extra-03','extra-08','extra-09','extra-18']],
+      ['習慣・気持ち・会話の広がり', ['adverbs','u10','u09','extra-06','extra-07','extra-10','extra-11','extra-12','extra-14','extra-15','extra-17','extra-19']]
+    ];
+    const units = new Map(data.units.map(unit => [unit.unit_id,unit]));
+    main.innerHTML = heading('準4級のぼうけん', '短い会話を聞いて、ことばの使い方を身につけよう。') +
       `<nav class="pre4-tools" aria-label="テストと復習"><a class="pre4-button pre4-primary" href="${route('exam')}">画面で解く模試・練習</a>
       <a class="pre4-button" href="${route('past')}">公式過去問</a>
-      <a class="pre4-button" href="./practice-session.html?reviewLesson=pre4">まちがいレッスン</a></nav>
-      <details class="pr-footnote"><summary>準4級までの進め方</summary>
-        <ol><li>各レッスンで語句の意味と発音を覚え、小テストで確かめる。</li>
-        <li>模試を解き、まちがいレッスンで苦手を直す。簡体字は紙にも書いて練習する。</li>
-        <li>初めて見る模試や過去問を50分で解き、聞き取りと筆記を通して安定して得点できるか確かめる。</li></ol></details>
-      <ol class="pr-map-list">${data.units.map((unit, index) => node(route(unit.unit_id), index + 1,
-        unit.title_ja, window.KP_PRE4_STATIONS[unit.unit_id].map(s=>s.title).join(' ／ '))).join('')}</ol>`;
+      <a class="pre4-button" href="./practice-session.html?reviewLesson=pre4">まちがいレッスン</a></nav>` +
+      groups.map(([title, ids], group) => `<details class="pre4-stage"${group === 0 ? ' open' : ''}>
+        <summary>${escape(title)}</summary><ol class="pr-map-list">${ids.map(id => {
+          const unit = units.get('pre4-'+id);
+          const stations = window.KP_PRE4_STATIONS[unit.unit_id];
+          return node(route(unit.unit_id), '›', unit.title_ja, stations.map(item=>item.title).join(' ／ '));
+        }).join('')}</ol></details>`).join('');
   }
 
   function showExam() {
@@ -90,7 +97,7 @@
       count.textContent = `${index + 1} / ${words.length}`;
       previous.disabled = index === 0;
       next.disabled = index === words.length - 1;
-      word.innerHTML = `<p><ruby lang="zh-CN">${escape(current.simplified)}<rt>${escape(current.pinyin)}</rt></ruby></p>
+      word.innerHTML = `<p>${window.KP_PRE4_PINYIN.html(current.simplified)}</p>
         <p>${escape(current.ja_meaning)}</p>`;
     }
     previous.onclick = () => { index--; renderWord(); };
@@ -123,24 +130,31 @@
   function showStation(unit,number,item){
     setBack(route(unit.unit_id),'テーマへ戻る');
     const lines=[item.ask,item.reply], translations=[item.jaAsk,item.jaReply];
-    const glosses=window.KP_PRE4_GLOSSES;
-    const endings=[item.ask.some(w=>['谁','什么','吗','几','哪儿','几','哪','多久','多少','怎么','星期几','呢','还是'].includes(w))?'？':'。','。'];
+    const glosses=dictionary;
+    const endings=item.endings||[item.ask.some(w=>['谁','什么','吗','几','哪儿','几本','几口','几杯','几斤','几点','几月','几号','是不是','哪','多久','多少','怎么','怎么样','星期几','呢','还是','哪只'].includes(w))?'？':'。','。'];
     const sections=lines.map((line,i)=>{
-      const tokens=line.map(w=>glosses[w]?'<button type="button" class="station-word" data-word="'+escape(w)+'">'+escape(w)+'</button>':escape(w)).join('');
-      return '<div class="station-line"><p lang="zh-CN">'+tokens+endings[i]+'</p><button type="button" class="pre4-button" data-play="'+i+'">🔊 聞く</button><details><summary>日本語</summary>'+escape(translations[i])+'</details><p class="station-gloss" role="status"></p></div>';
+      let offset=0;const py=window.KP_PRE4_PINYIN;const aligned=py.pairs(line.join(''));
+      const tokens=line.map(w=>{const n=Array.from(w).length;const body=py.html(w,aligned.slice(offset,offset+n));offset+=n;return glosses.has(w)?'<button type="button" class="station-word" data-word="'+escape(w)+'">'+body+'</button>':body;}).join('');
+      return '<div class="station-line"><p lang="zh-CN">'+tokens+py.html(endings[i])+'</p><button type="button" class="pre4-button" data-play="'+i+'">🔊 聞く</button><details><summary>日本語</summary>'+escape(translations[i])+'</details><p class="station-gloss" role="status"></p></div>';
     });
-    main.innerHTML=heading(item.title,'会話 '+number+' ／ 2　·　約5分')+'<section class="pre4-card station-card"><p>ことばを押すと、読み方と日本語の意味が見られます。</p>'+sections.join('')+
-      '<label>再生速度 <select id="stationRate"><option value=".88">ふつう</option><option value=".65">ゆっくり</option></select></label><details><summary>ことばのヒント</summary>'+escape(item.tip)+'</details><a class="pre4-button pre4-primary" href="'+quiz(unit.unit_id,'station',number)+'">4問にチャレンジ</a></section>';
+    main.innerHTML=heading(item.title,'会話 '+number+' ／ '+window.KP_PRE4_STATIONS[unit.unit_id].length+'　·　約5分')+'<section class="pre4-card station-card"><p>ことばを押すと、読み方と日本語の意味が見られます。</p>'+sections.join('')+
+      '<label>再生速度 <select id="stationRate"><option value=".88">ふつう</option><option value=".65">ゆっくり</option></select></label><details><summary>ことばのヒント</summary>'+window.KP_PRE4_PINYIN.explanation(item.tip)+'</details><a class="pre4-button pre4-primary" href="'+quiz(unit.unit_id,'station',number)+'">4問にチャレンジ</a></section>';
     main.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{
-      const word=b.dataset.word;b.closest('.station-line').querySelector('[role=status]').textContent=word+'　'+glosses[word].join('　');
+      const word=b.dataset.word;b.closest('.station-line').querySelector('[role=status]').textContent=word+'　'+glosses.get(word).join('　');
     });
     main.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>{
       const status=b.closest('.station-line').querySelector('[role=status]');
       if(!window.speechSynthesis){status.textContent='中国語音声を利用できません。';return;}
       const i=Number(b.dataset.play);speechSynthesis.cancel();
+      main.querySelectorAll('.station-line.is-speaking').forEach(el=>el.classList.remove('is-speaking'));
+      const line=b.closest('.station-line');const glyphs=Array.from(line.querySelectorAll('.pre4-ruby'));
+      glyphs.forEach(el=>el.classList.remove('is-reading'));
+      const clear=()=>{line.classList.remove('is-speaking');glyphs.forEach(el=>el.classList.remove('is-reading'));};
       const utterance=new SpeechSynthesisUtterance(lines[i].join('')+endings[i]);
       utterance.lang='zh-CN';utterance.rate=Number(document.getElementById('stationRate').value);
-      utterance.onerror=e=>{if(!['interrupted','canceled'].includes(e.error))status.textContent='音声を再生できませんでした。';};
+      utterance.onstart=()=>line.classList.add('is-speaking');
+      utterance.onboundary=e=>{const offset=Array.from(utterance.text.slice(0,e.charIndex)).filter(c=>/\p{Script=Han}/u.test(c)).length;glyphs.forEach((el,j)=>el.classList.toggle('is-reading',j===offset));};
+      utterance.onend=clear;utterance.onerror=e=>{clear();if(!['interrupted','canceled'].includes(e.error))status.textContent='音声を再生できませんでした。';};
       window.KP_AUDIO_SESSION?.preparePlayback();speechSynthesis.speak(utterance);
     });
     window.addEventListener('pagehide',()=>window.speechSynthesis?.cancel(),{once:true});
@@ -184,10 +198,10 @@
       }
       main.innerHTML = heading(unit.title_ja,'短い会話を聞いて使ってみよう。') +
         '<ol class="pr-map-list">'+stations.map((s,i)=>node(route(unitId)+'&station='+(i+1),i+1,s.title,'約5分 · 会話とミニテスト')).join('')+'</ol>'+
-        '<details><summary>このテーマのことばを練習する</summary>'+
+        (lessons.length ? '<details><summary>このテーマのことばを練習する</summary>'+
         `<ol class="pr-map-list pre4-lesson-list">${lessons.map((words, index) => node(
           route(unit.unit_id, index + 1), index + 1, 'レッスン ' + (index + 1),
-          words.map(word => word.simplified).join('・'))).join('')}</ol></details>`;
+          words.map(word => word.simplified).join('・'))).join('')}</ol></details>` : '');
     } catch (error) {
       main.innerHTML = '<p class="pr-empty" role="alert"></p><a class="pre4-button" href="./pre4.html">準4級のルートへ戻る</a>';
       main.querySelector('p').textContent = error.message;

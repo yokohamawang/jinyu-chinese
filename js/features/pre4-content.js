@@ -63,7 +63,6 @@
     const item=window.KP_PRE4_STATIONS[unit]?.[index];
     if(!item)return null;
     const shared={course,context:item.title,reviewKey:prefix+'station:'+unit+':'+index+':'+type};
-    const text=item.reply.join('');
     if(type==='order'){
       const useAsk=item.reply.length<3;
       const source=useAsk?item.ask:item.reply;
@@ -71,7 +70,7 @@
       const comma=source.indexOf('，');
       return {...shared,kind:'order',prompt:'お手本の文を組み立てよう',target:useAsk?item.jaAsk:item.jaReply,
         answerIds:ids,tileIds:shuffle(ids.slice()),punctuationAfter:comma<0?[]:[comma],
-        text:source.join(''),explain:source.join('')+'　'+item.tip};
+        text:source.join('')+(item.endings?.[useAsk?0:1]||''),explain:source.join('')+'　'+item.tip};
     }
     let prompt,target='',audioText='',answers,explain;
     if(type==='sound'){
@@ -83,7 +82,12 @@
       explain=audioText+'　'+answers[0];
     }else if(type==='gap'){
       answers=item.options;prompt='日本語に合うことばを選ぼう';
-      target=item.jaReply+'　'+text.replace(answers[0],'＿＿');explain=text+'　'+item.tip;
+      const useAsk=item.gapLine===0;
+      const source=useAsk?item.ask:item.reply;
+      const ending=item.endings?.[useAsk?0:1]||(useAsk?'？':'');
+      const blank=source.indexOf(answers[0]);
+      target=(useAsk?item.jaAsk:item.jaReply)+'　'+source.map((token,i)=>i===blank?'＿＿':token).join('')+ending;
+      explain=source.join('')+ending+'　'+item.tip;
     }else return null;
     return {...shared,kind:'choice',prompt,target,audioText,answerId:answers[0],
       choices:stableChoices(answers[0],answers.slice(1),shuffle),explain};
@@ -151,7 +155,7 @@
     }
     return {
       ...data,
-      units:[...data.units,...extendedData.units],
+      units:[...data.units,...extendedData.units,...window.KP_PRE4_GRAMMAR_UNITS],
       vocabulary_entries:[...data.vocabulary_entries,...extendedData.vocabulary_entries]
     };
   }

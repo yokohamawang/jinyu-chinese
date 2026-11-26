@@ -50,6 +50,9 @@
     书:['shū','本'],住:['zhù','住む'],伞:['sǎn','傘'],店:['diàn','店'],想:['xiǎng','～したい'],
     打:['dǎ','する（球技など）・打つ'],走:['zǒu','歩く・行く'],到:['dào','着く・～まで'],
     菜:['cài','料理・野菜'],他们:['tāmen','彼ら'],
+    都不:['dōu bù','全員が～しない'],不都:['bù dōu','全員が～するわけではない'],
+    是不是:['shì bu shì','～ですか（はい・いいえで尋ねる）'],票:['piào','券・チケット'],那:['nà','その・あの'],没:['méi','～しなかった・～していない'],
+    写字:['xiězì','字を書く'],喝茶:['hēchá','お茶を飲む'],
     考试:['kǎoshì','試験'],带:['dài','持っていく・連れていく'],找:['zhǎo','探す'],帮:['bāng','手伝う']
   };
   const exampleByUnit = new Map(examples.map((example,index) => {
@@ -74,22 +77,23 @@
   function example(unit) {
     const entry = exampleByUnit.get(unit.unit_id);
     if (!entry) return '';
-    return `<aside class="pre4-example"><h2>例文</h2><p class="pre4-lookup-sentence" lang="zh-Hans">${escape(entry[0])}</p>
+    return `<aside class="pre4-example"><h2>例文</h2><p class="pre4-lookup-sentence" lang="zh-Hans">${window.KP_PRE4_PINYIN.html(entry[0])}</p>
       <p class="jp">${escape(entry[1])}</p></aside>`;
   }
 
   function review(question) {
     const chinese = value => value && /\p{Script=Han}/u.test(value) && !/[ぁ-ゟ゠-ヿ]/u.test(value);
-    const target = question.target;
+    const rawTarget = question.target;
+    const target = rawTarget?.includes('　') ? rawTarget.slice(rawTarget.lastIndexOf('　')+1) : rawTarget;
     const answer = question.answerId;
     const completed = typeof answer === 'string' && target?.includes('＿＿') && chinese(answer)
       ? target.replace('＿＿',answer) : target;
-    const japaneseAnswer = question.group==='number' || question.reviewKey?.startsWith('pre4-prep:meaning:');
+    const japaneseAnswer = question.group==='number' || question.reviewKey?.startsWith('pre4-prep:meaning:') || question.reviewKey?.endsWith(':listen');
     const lines = [...new Set([question.kind==="order"?question.text:null,question.audioText,completed,japaneseAnswer?null:answer].filter(chinese))]
       .filter(line => !line.includes('＿＿') && !line.includes(' · '));
     if (!lines.length) return '';
     return `<div class="pre4-review-sentences" aria-label="ことばの意味を調べる">${lines.map(line =>
-      `<p class="pre4-lookup-sentence" lang="zh-Hans">${escape(line)}</p>`).join('')}</div>`;
+      `<p class="pre4-lookup-sentence" lang="zh-Hans">${window.KP_PRE4_PINYIN.html(line)}</p>`).join('')}</div>`;
   }
 
   function splitUnmatched(term, local) {
