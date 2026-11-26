@@ -67,6 +67,7 @@
         map.set(simplified,[pinyin,ja_meaning]);
       }
     }
+    for(const [w,gloss] of Object.entries(window.KP_PRE4_GLOSSES||{}))map.set(w,gloss);
     return map;
   }
 
@@ -84,7 +85,7 @@
     const completed = typeof answer === 'string' && target?.includes('＿＿') && chinese(answer)
       ? target.replace('＿＿',answer) : target;
     const japaneseAnswer = question.group==='number' || question.reviewKey?.startsWith('pre4-prep:meaning:');
-    const lines = [...new Set([question.audioText,completed,japaneseAnswer?null:answer].filter(chinese))]
+    const lines = [...new Set([question.kind==="order"?question.text:null,question.audioText,completed,japaneseAnswer?null:answer].filter(chinese))]
       .filter(line => !line.includes('＿＿') && !line.includes(' · '));
     if (!lines.length) return '';
     return `<div class="pre4-review-sentences" aria-label="ことばの意味を調べる">${lines.map(line =>

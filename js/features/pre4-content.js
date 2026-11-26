@@ -59,9 +59,43 @@
     reviewKey:prefix + 'exercise:' + id, course
   }));
 
+  function stationQuestion(unit,index,type,shuffle){
+    const item=window.KP_PRE4_STATIONS[unit]?.[index];
+    if(!item)return null;
+    const shared={course,context:item.title,reviewKey:prefix+'station:'+unit+':'+index+':'+type};
+    const text=item.reply.join('');
+    if(type==='order'){
+      const useAsk=item.reply.length<3;
+      const source=useAsk?item.ask:item.reply;
+      const ids=source.filter(w=>w!=='，').map((w,i)=>'station/'+i+'/'+w);
+      const comma=source.indexOf('，');
+      return {...shared,kind:'order',prompt:'お手本の文を組み立てよう',target:useAsk?item.jaAsk:item.jaReply,
+        answerIds:ids,tileIds:shuffle(ids.slice()),punctuationAfter:comma<0?[]:[comma],
+        text:source.join(''),explain:source.join('')+'　'+item.tip};
+    }
+    let prompt,target='',audioText='',answers,explain;
+    if(type==='sound'){
+      const [word,...options]=item.sound;
+      audioText=word;answers=options;prompt='音と声調を聞いてピンインを選ぼう';
+      explain=word+' は '+answers[0]+'。母音・子音と声調記号を確かめよう。';
+    }else if(type==='listen'){
+      [audioText,...answers]=item.transfer;prompt='新しい文を聞いて意味を選ぼう';
+      explain=audioText+'　'+answers[0];
+    }else if(type==='gap'){
+      answers=item.options;prompt='日本語に合うことばを選ぼう';
+      target=item.jaReply+'　'+text.replace(answers[0],'＿＿');explain=text+'　'+item.tip;
+    }else return null;
+    return {...shared,kind:'choice',prompt,target,audioText,answerId:answers[0],
+      choices:stableChoices(answers[0],answers.slice(1),shuffle),explain};
+  }
+
   function restore(key, entries, shuffle) {
     if (!key.startsWith(prefix)) return null;
     const [mode, id] = key.slice(prefix.length).split(':');
+    if (mode === 'station') {
+      const [,unit,index,type]=key.slice(prefix.length).split(':');
+      return stationQuestion(unit,Number(index),type,shuffle);
+    }
     if (mode === 'mock') return window.KP_PRE4_MOCK.restore(key, shuffle);
     if (mode === 'exercise') {
       const question = extras.find(item => item.reviewKey === key);
@@ -80,6 +114,7 @@
 
   function build(data, unitId, lesson, mode, shuffle) {
     const entries = data.vocabulary_entries;
+    if (mode === 'station') return ['sound','listen','gap','order'].map(type=>stationQuestion(unitId,lesson-1,type,shuffle)).filter(Boolean);
     if (unitId === 'mock') return window.KP_PRE4_MOCK.build(mode, lesson, shuffle);
     if (unitId === 'exam') {
       const dictation = () => shuffle(entries.filter(entry => /^\p{Script=Han}{2}$/u.test(entry.simplified)))

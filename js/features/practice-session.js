@@ -42,7 +42,12 @@ function revealQuestion(){
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shuffle=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
-const byId=id=>entriesById.get(id);
+function byId(id){
+ if(typeof id==='string'&&id.startsWith('station/')){
+   const simplified=id.split('/')[2];return {simplified,pinyin:window.KP_PRE4_GLOSSES[simplified][0]};
+ }
+ return entriesById.get(id);
+}
 const testUnlocked=()=>{try{return typeof window.koepandaDevUnlockEnabled==='function'?Boolean(window.koepandaDevUnlockEnabled()):localStorage.getItem('koepandaDevUnlock12')==='1'}catch(_){return false}};
 
 const pageTitles={pre4:'中検 準4級',chapter:'章ごとの練習',theme:'テーマ練習',daily:'日常のひとこと',scenario:'場面で会話'};
@@ -58,7 +63,7 @@ function backHref(){
      return './pre4.html?unit=exam';
    }
    const query=new URLSearchParams({unit:unitId});
-   if(unitId!=='exam'&&lesson>0)query.set('lesson',lesson);
+   if(unitId!=='exam'&&lesson>0)query.set(mode==='station'?'station':'lesson',lesson);
    return './pre4.html?'+query.toString();
  }
  if(reviewLesson)return './index.html?open=records';const route=track==='daily'||reviewKey.startsWith('daily:')?'daily':track==='scenario'||reviewKey.startsWith('dialogue:')?'scenario':track;return './practice-routes.html?track='+encodeURIComponent(route)+(route==='chapter'&&unitId&&!reviewOnly?'&unit='+encodeURIComponent(unitId):'')}
@@ -275,8 +280,8 @@ function loadDictation(q,choices,primary){
  };
 }
 function drawOrder(q){const slots=document.getElementById('answerSlots'),choices=document.getElementById('choiceGrid');slots.replaceChildren();q.answerIds.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.className='ps-slot';if(selected[i]){const token=byId(selected[i]);b.textContent=token?.simplified||'';b.dataset.selectedIndex=String(i);b.setAttribute('aria-label',`${token?.simplified||''} を取り消す`);b.onclick=()=>{if(answered)return;selected.splice(i,1);drawOrder(q)}}else{b.classList.add('is-empty');b.textContent='＋';b.setAttribute('aria-label',`空欄 ${i+1}`)}slots.append(b);if(q.punctuationAfter?.includes(i+1)){const punctuation=document.createElement('span');punctuation.className='ps-punctuation';punctuation.textContent='，';slots.append(punctuation)}if(i===q.answerIds.length-1&&/[。？！]$/.test(q.text||'')){const punctuation=document.createElement('span');punctuation.className='ps-punctuation';punctuation.textContent=q.text.slice(-1);slots.append(punctuation)}});choices.replaceChildren();q.tileIds.forEach(id=>{const token=byId(id);if(!token)return;const b=document.createElement('button');b.type='button';b.className='ps-choice ps-order-choice';b.dataset.itemId=id;b.disabled=answered||selected.includes(id);b.innerHTML=`<small>${esc(token.pinyin)}</small><b>${esc(token.simplified)}</b>`;b.setAttribute('aria-label',`${token.pinyin} ${token.simplified}`);b.onclick=()=>{if(answered||selected.length>=q.answerIds.length)return;selected.push(id);drawOrder(q)};choices.append(b)});document.getElementById('primaryAction').disabled=answered||selected.length!==q.answerIds.length;document.getElementById('primaryAction').textContent=answered?(reviewOnly?'復習を終える':position===questions.length-1?'結果を見る':'答え合わせ'):selected.length===q.answerIds.length?'答え合わせ':`ことばを選んでね（${selected.length}/${q.answerIds.length}）`}
-function checkOrder(q){if(selected.length!==q.answerIds.length)return;answered=true;const ok=selected.every((id,i)=>id===q.answerIds[i]);score+=ok?1:0;drawOrder(q);showAnswer(q,ok);record(q,ok);document.getElementById('primaryAction').disabled=false;document.getElementById('primaryAction').textContent=nextLabel()}
-function showAnswer(q,ok){const f=document.getElementById('feedback'),detail=document.getElementById('answerDetail');f.textContent=ok?'できた！ぴったりだよ ✨':'おしい！ここを確認しよう';f.className='ps-feedback '+(ok?'':'is-wrong');const explanation=q.explain||q.text||'';if(!ok&&q.kind==='order'){const expected=q.answerIds.map(id=>byId(id)?.simplified||'').join('');const actual=selected.map(id=>byId(id)?.simplified||'').join('');const first=selected.findIndex((id,i)=>id!==q.answerIds[i]);detail.textContent=`あなたの答え：${actual}\n正しい順番：${expected}\n${first>=0?`${first+1}番目から語順が違います。`:'語順をもう一度確認しましょう。'}\n${explanation}`;}else if(!ok&&q.kind==='choice'){const right=q.choices.find(x=>x.id===q.answerId);detail.textContent=`正しい答え：${right?.label||''}${right?.pinyin?' · '+right.pinyin:''}\n${explanation}\n選んだ答えと、正しい意味・発音を比べてみよう。`;}else detail.textContent=explanation}
+function checkOrder(q){if(selected.length!==q.answerIds.length)return;answered=true;const ok=selected.every((id,i)=>id===q.answerIds[i] || (q.reviewKey?.startsWith(pre4.prefix+'station:') && byId(id)?.simplified===byId(q.answerIds[i])?.simplified));score+=ok?1:0;drawOrder(q);showAnswer(q,ok);record(q,ok,selected.map(id=>byId(id).simplified).join(""));document.getElementById('primaryAction').disabled=false;document.getElementById('primaryAction').textContent=nextLabel()}
+function showAnswer(q,ok){const f=document.getElementById('feedback'),detail=document.getElementById('answerDetail');f.textContent=ok?'できた！ぴったりだよ ✨':'おしい！ここを確認しよう';f.className='ps-feedback '+(ok?'':'is-wrong');const explanation=q.explain||q.text||'';if(!ok&&q.kind==='order'){const expected=q.answerIds.map(id=>byId(id)?.simplified||'').join('');const actual=selected.map(id=>byId(id)?.simplified||'').join('');const first=selected.findIndex((id,i)=>byId(id)?.simplified!==byId(q.answerIds[i])?.simplified);detail.textContent=`あなたの答え：${actual}\n正しい順番：${expected}\n${first>=0?`${first+1}番目から語順が違います。`:'語順をもう一度確認しましょう。'}\n${explanation}`;}else if(!ok&&q.kind==='choice'){const right=q.choices.find(x=>x.id===q.answerId);detail.textContent=`正しい答え：${right?.label||''}${right?.pinyin?' · '+right.pinyin:''}\n${explanation}\n選んだ答えと、正しい意味・発音を比べてみよう。`;}else detail.textContent=explanation}
 function offerMockFeedback(q,ok,actual){
  const area=document.getElementById('pre4AnswerReading');
  area.innerHTML=`<details class="ps-pre4-question-review">
@@ -321,9 +326,9 @@ function advance(){
 function renderMockReview(entries,fullResult){
  if(!entries.length)return '';
  const reviewRow=({question:q,actual,ok,number})=>{
-   const audio=q.audioText||q.choices&&q.choiceAudio&&q.answerId;
+   const audio=q.audioText||(q.kind==="order"&&q.text)||q.choices&&q.choiceAudio&&q.answerId;
    const choiceIndex=q.choices?.findIndex(choice=>choice.id===q.answerId);
-   const correct=q.choiceAudio?`${choiceIndex+1}：${q.answerId}`:q.answerId;
+   const correct=q.kind==='order'?q.text:q.choiceAudio?`${choiceIndex+1}：${q.answerId}`:q.answerId;
    const selected=q.choiceAudio?`${q.choices.findIndex(choice=>choice.label===actual)+1}：${actual}`:actual;
    return `<li value="${number}" class="ps-pre4-review-item">
      <details><summary>${number}. ${esc(q.context)} · ${ok?'正解':'不正解'}</summary>
@@ -355,7 +360,7 @@ function finishPre4Quiz(){
  const entries=fullResult?mockAnswers:pending.map(question=>({
    question, actual:question.actual, number:question.number, ok:false
  }));
- const corrections=unitId==='mock'?renderMockReview(entries,fullResult):'';
+ const corrections=renderMockReview(entries,fullResult);
  main.innerHTML=`<section class="ps-finish-card"><img src="./assets/hanzi/teacher-speaking.webp" alt="">
    <h2>${immediateRetry?'解き直しの結果':'テストの結果'}</h2>
    <span class="ps-score">${fullResult?`${listen+written} / 100`:`${score} / ${questions.length}`}</span>
@@ -363,6 +368,7 @@ function finishPre4Quiz(){
    <p>${pending.length?`まちがえた問題 ${pending.length}問`:'全問正解！'}</p>
    ${corrections}<p role="status" id="pre4SaveStatus"></p>
    ${pending.length?'<button type="button" id="pre4Retry" class="ps-primary ps-return">まちがえた問題を解き直す</button>':''}
+   <a class="ps-secondary ps-return" href="./practice-session.html?reviewLesson=pre4">準4級のまちがいレッスンへ</a>
    <a class="ps-secondary ps-return" href="${backHref()}">${params.get('from')==='past'?'過去問に戻る':unitId==='exam'||unitId==='mock'?'テスト一覧に戻る':'レッスンに戻る'}</a></section>`;
  for(const button of main.querySelectorAll('[data-pre4-review-audio]')){
    button.onclick=()=>{
@@ -383,7 +389,7 @@ function finishPre4Quiz(){
  const retry=document.getElementById('pre4Retry');
  if(retry)retry.onclick=()=>{
    immediateRetry=true;
-   questions=pending.map(q=>({...q,choices:q.choices&&shuffle(q.choices)}));
+   questions=pending.map(q=>({...q,choices:q.choices&&shuffle(q.choices),tileIds:q.tileIds&&shuffle(q.tileIds)}));
    position=0;
    score=0;
    main.innerHTML=quizMarkup;

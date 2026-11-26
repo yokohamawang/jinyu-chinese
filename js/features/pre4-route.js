@@ -46,12 +46,12 @@
         <li>模試を解き、まちがいレッスンで苦手を直す。簡体字は紙にも書いて練習する。</li>
         <li>初めて見る模試や過去問を50分で解き、聞き取りと筆記を通して安定して得点できるか確かめる。</li></ol></details>
       <ol class="pr-map-list">${data.units.map((unit, index) => node(route(unit.unit_id), index + 1,
-        unit.title_ja, unit.entry_ids.length + '語句')).join('')}</ol>`;
+        unit.title_ja, window.KP_PRE4_STATIONS[unit.unit_id].map(s=>s.title).join(' ／ '))).join('')}</ol>`;
   }
 
   function showExam() {
     setBack('./pre4.html','準4級のルートへ戻る');
-    main.innerHTML = heading('準4級の模試と練習', '本番を想定して、模試は50分を目安に。苦手な形式は5問ずつ練習できます。') +
+    main.innerHTML = heading('準4級の模試と練習', '模試は50分が目安です。1問ずつ答えを確認することも、最後にまとめて採点することもできます。') +
       `<ol class="pr-map-list">${[1,2,3].map(round =>
         node(quiz('mock','paper',round), round, '模擬試験 第'+round+'回', '聞き取り25問・筆記20問 · 自動採点・全問解説')).join('')}</ol>
       <h2>分野別練習</h2><ul class="pr-map-list">${window.KP_PRE4_MOCK.groups.map(([id,title,description]) =>
@@ -120,6 +120,32 @@
     renderWord();
   }
 
+  function showStation(unit,number,item){
+    setBack(route(unit.unit_id),'テーマへ戻る');
+    const lines=[item.ask,item.reply], translations=[item.jaAsk,item.jaReply];
+    const glosses=window.KP_PRE4_GLOSSES;
+    const endings=[item.ask.some(w=>['谁','什么','吗','几','哪儿','几','哪','多久','多少','怎么','星期几','呢','还是'].includes(w))?'？':'。','。'];
+    const sections=lines.map((line,i)=>{
+      const tokens=line.map(w=>glosses[w]?'<button type="button" class="station-word" data-word="'+escape(w)+'">'+escape(w)+'</button>':escape(w)).join('');
+      return '<div class="station-line"><p lang="zh-CN">'+tokens+endings[i]+'</p><button type="button" class="pre4-button" data-play="'+i+'">🔊 聞く</button><details><summary>日本語</summary>'+escape(translations[i])+'</details><p class="station-gloss" role="status"></p></div>';
+    });
+    main.innerHTML=heading(item.title,'会話 '+number+' ／ 2　·　約5分')+'<section class="pre4-card station-card"><p>ことばを押すと、読み方と日本語の意味が見られます。</p>'+sections.join('')+
+      '<label>再生速度 <select id="stationRate"><option value=".88">ふつう</option><option value=".65">ゆっくり</option></select></label><details><summary>ことばのヒント</summary>'+escape(item.tip)+'</details><a class="pre4-button pre4-primary" href="'+quiz(unit.unit_id,'station',number)+'">4問にチャレンジ</a></section>';
+    main.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{
+      const word=b.dataset.word;b.closest('.station-line').querySelector('[role=status]').textContent=word+'　'+glosses[word].join('　');
+    });
+    main.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>{
+      const status=b.closest('.station-line').querySelector('[role=status]');
+      if(!window.speechSynthesis){status.textContent='中国語音声を利用できません。';return;}
+      const i=Number(b.dataset.play);speechSynthesis.cancel();
+      const utterance=new SpeechSynthesisUtterance(lines[i].join('')+endings[i]);
+      utterance.lang='zh-CN';utterance.rate=Number(document.getElementById('stationRate').value);
+      utterance.onerror=e=>{if(!['interrupted','canceled'].includes(e.error))status.textContent='音声を再生できませんでした。';};
+      window.KP_AUDIO_SESSION?.preparePlayback();speechSynthesis.speak(utterance);
+    });
+    window.addEventListener('pagehide',()=>window.speechSynthesis?.cancel(),{once:true});
+  }
+
   async function start() {
     try {
       const unitId = params.get('unit');
@@ -144,16 +170,24 @@
       const unit = data.units.find(item => item.unit_id === unitId);
       if (!unit) throw Error('単元が見つかりません。');
       const lessons = window.KP_PRE4.lessons(data, unit);
+      const stations=window.KP_PRE4_STATIONS[unitId];
+      if(params.has('station')){
+        const i=Number(params.get('station'));
+        if(!stations[i-1])throw Error('会話が見つかりません。');
+        showStation(unit,i,stations[i-1]);return;
+      }
       const number = Number(params.get('lesson'));
       if (params.has('lesson')) {
         if (!lessons[number - 1]) throw Error('レッスンが見つかりません。');
         showLesson(unit, number, lessons[number - 1]);
         return;
       }
-      main.innerHTML = heading(unit.title_ja, 'ことばを聞いて、小テストで確かめよう。') + lookup.example(unit) +
+      main.innerHTML = heading(unit.title_ja,'短い会話を聞いて使ってみよう。') +
+        '<ol class="pr-map-list">'+stations.map((s,i)=>node(route(unitId)+'&station='+(i+1),i+1,s.title,'約5分 · 会話とミニテスト')).join('')+'</ol>'+
+        '<details><summary>このテーマのことばを練習する</summary>'+
         `<ol class="pr-map-list pre4-lesson-list">${lessons.map((words, index) => node(
           route(unit.unit_id, index + 1), index + 1, 'レッスン ' + (index + 1),
-          words.map(word => word.simplified).join('・'))).join('')}</ol>`;
+          words.map(word => word.simplified).join('・'))).join('')}</ol></details>`;
     } catch (error) {
       main.innerHTML = '<p class="pr-empty" role="alert"></p><a class="pre4-button" href="./pre4.html">準4級のルートへ戻る</a>';
       main.querySelector('p').textContent = error.message;
