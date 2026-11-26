@@ -53,7 +53,33 @@
     都不:['dōu bù','全員が～しない'],不都:['bù dōu','全員が～するわけではない'],
     是不是:['shì bu shì','～ですか（はい・いいえで尋ねる）'],票:['piào','券・チケット'],那:['nà','その・あの'],没:['méi','～しなかった・～していない'],
     写字:['xiězì','字を書く'],喝茶:['hēchá','お茶を飲む'],
+    大后天:['dàhòutiān','今日から3日後・しあさって'],上海:['Shànghǎi','上海'],下:['xià','次の・下'],
+    开:['kāi','開く・開ける'],着:['zhe','状態の継続を表す助詞'],
+    车:['chē','車'],台:['tái','機械などを数える量詞'],封:['fēng','手紙などを数える量詞'],
+    间:['jiān','部屋などを数える量詞'],这个:['zhège','これ'],那个:['nàge','あれ・それ'],
+    岁:['suì','〜歳'],骑:['qí','またがって乗る'],多少钱:['duōshao qián','いくら'],
+    毛:['máo','口語で1元の10分の1'],汉字:['hànzì','漢字'],里:['lǐ','中'],
+    下面:['xiàmian','下'],晴天:['qíngtiān','晴れの日'],做完:['zuòwán','やり終える'],
+    打工:['dǎgōng','アルバイトをする'],坐船:['zuò chuán','船に乗る'],
+    晚:['wǎn','遅い・遅くなる'],一百零八:['yìbǎi líng bā','108'],王老师:['Wáng lǎoshī','王先生'],教:['jiāo','教える'],
+    九:['jiǔ','9'],路上:['lùshang','道中・途中'],放假:['fàngjià','休みになる'],
+    这儿:['zhèr','ここ'],架:['jià','飛行機などを数える量詞'],些:['xiē','いくらか・いくつか'],
     考试:['kǎoshì','試験'],带:['dài','持っていく・連れていく'],找:['zhǎo','探す'],帮:['bāng','手伝う']
+  };
+  const greetingMeanings = {
+    老师好:'先生、こんにちは',同学们好:'皆さん、こんにちは',请坐:'どうぞ座ってください',
+    请进:'どうぞお入りください',请用茶:'お茶をどうぞ',谢谢您的招待:'おもてなしありがとうございます',
+    最近好吗:'最近お元気ですか',我很好:'元気です',您呢:'あなたはいかがですか',
+    你回来了:'お帰りなさい',吃饭了吗:'ご飯は食べましたか',
+    恭喜:'おめでとうございます',万事如意:'何事もうまくいきますように',
+    周末愉快:'良い週末を',玩得开心:'楽しんでください',多保重:'お大事に',
+    早日康复:'早く良くなりますように',身体健康:'お元気で',工作顺利:'お仕事がうまくいきますように',
+    麻烦你:'お手数ですが',可以吗:'よいですか',当然可以:'もちろん大丈夫です',
+    什么意思:'どういう意味ですか',解释一下:'少し説明する',别担心:'心配しないで',没事:'大丈夫です',
+    我来帮你:'私が手伝います',走错了:'道を間違えました',请往这边走:'こちらへどうぞ',
+    喂:'もしもし',请稍等:'少々お待ちください',他不在:'彼は席を外しています',
+    让你久等了:'お待たせしました',刚到:'今着いたばかり',有空再来玩:'時間があったらまた遊びに来てください',
+    下次见:'また今度',贵姓:'お名前は何とおっしゃいますか',再见:'さようなら',
   };
   const exampleByUnit = new Map(examples.map((example,index) => {
     const base = index < 11;
@@ -71,6 +97,10 @@
       }
     }
     for(const [w,gloss] of Object.entries(window.KP_PRE4_GLOSSES||{}))map.set(w,gloss);
+    for(const [phrase, meaning] of Object.entries(greetingMeanings)){
+      const pinyin=window.KP_PRE4_PINYIN?.pairs(phrase).map(({p})=>p).filter(Boolean).join(' ');
+      if(pinyin)map.set(phrase,[pinyin,meaning]);
+    }
     return map;
   }
 
@@ -88,7 +118,7 @@
     const answer = question.answerId;
     const completed = typeof answer === 'string' && target?.includes('＿＿') && chinese(answer)
       ? target.replace('＿＿',answer) : target;
-    const japaneseAnswer = question.group==='number' || question.reviewKey?.startsWith('pre4-prep:meaning:') || question.reviewKey?.endsWith(':listen');
+    const japaneseAnswer = question.group==='number' || question.reviewKey?.startsWith('pre4-prep:meaning:') || question.reviewKey?.endsWith(':listen') || /:context-\d+$/.test(question.reviewKey||'');
     const lines = [...new Set([question.kind==="order"?question.text:null,question.audioText,completed,japaneseAnswer?null:answer].filter(chinese))]
       .filter(line => !line.includes('＿＿') && !line.includes(' · '));
     if (!lines.length) return '';

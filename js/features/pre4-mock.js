@@ -176,13 +176,98 @@
         `簡体字は「${hanzi}」。意味は「${meaning}」。手元の紙にも書き、見本と字の部品を比べましょう。`]))
   };
 
+  const listeningGroups = [
+    groups[0], groups[1],
+    ['vocabulary','日本語に合う音声','日本語の意味を確認し、中国語の音声を聞いて選びます。'],
+    ['expressions','数字・日時の聞き分け','時刻だけでなく、曜日・前後の日や百の位も聞き分けます。'],
+    groups[4]
+  ];
+  const writtenGroups = [
+    groups[5], groups[6],
+    ['position','語順と空欄の位置','語句を並べ、指定された位置に入る語を選びます。'],
+    ['characters','文の中の簡体字','日本語を中国語にするとき、文の一部を簡体字で書きます。']
+  ];
+
+  const expressionPrompts = [
+    ['きのう','昨天','今天','前天','明天'],
+    ['今週','这个星期','下个星期','上个星期','星期一'],
+    ['3時半','三点半','三点','四点半','三分半'],
+    ['120','一百二十','一百零二','二百一十','十二'],
+    ['来年','明年','今年','去年','前年'],
+    ['あさって','后天','明天','前天','昨天'],
+    ['午前','上午','下午','晚上','中午'],
+    ['2時15分','两点十五分','五点十二分','两点五十分','两点五分'],
+    ['205','二百零五','二十五','二百五十','五百零二'],
+    ['先月','上个月','下个月','这个月','上个星期'],
+    ['おととい','前天','后天','昨天','今天'],
+    ['来週','下个星期','上个星期','这个星期','下个月'],
+    ['9時20分','九点二十分','九点十二分','两点九分','九点二分'],
+    ['310','三百一十','三百零一','一百三十','三十一'],
+    ['正午','中午','上午','下午','夜里']
+  ];
+
+  // Each paper has two paired single characters and three two-character answers.
+  const writingPrompts = [
+    ['水を＿＿。〔飲む〕','＿＿水。','喝','「飲む」は喝。口へんを確認します。'],
+    ['手紙を＿＿。〔書く〕','＿＿信。','写','「書く」は写。上の部品は冖です。'],
+    ['学校へ＿＿。〔行く〕','＿＿学校。','去','「行く」は去。場所は後ろに置きます。'],
+    ['本を＿＿。〔買う〕','＿＿书。','买','「買う」は买。売る「卖」と区別します。'],
+    ['＿＿で本を借ります。〔学校〕','在＿＿借书。','学校','「学校」は学校。学の上部を確認します。'],
+    ['＿＿で昼ご飯を食べます。〔家〕','在＿＿吃午饭。','家里','「家で」は在家里。里は中を表します。'],
+    ['＿＿を飲みます。〔牛乳〕','喝＿＿。','牛奶','「牛乳」は牛奶。奶の左側は女へんです。'],
+    ['＿＿を書きます。〔字〕','写＿＿。','字','「字」は字。宀の下に子を書きます。'],
+    ['服を＿＿。〔売る〕','＿＿衣服。','卖','「売る」は卖。上に十があります。'],
+    ['お茶を＿＿。〔飲む〕','＿＿茶。','喝','「飲む」は喝。喉の動きと口へんを結び付けて覚えましょう。'],
+    ['お父さんが＿＿。〔来る〕','爸爸＿＿。','来','「来る」は来。繁体字の來と形が異なります。'],
+    ['＿＿で働きます。〔病院〕','在＿＿工作。','医院','「病院」は医院。医は簡体字でもこの形です。'],
+    ['＿＿を見ます。〔映画〕','看＿＿。','电影','「映画」は电影。電は簡体字で电です。'],
+    ['＿＿を持っていきます。〔携帯電話〕','带＿＿。','手机','「携帯電話」は手机。機は簡体字で机です。'],
+    ['歌を＿＿。〔歌う〕','＿＿歌。','唱','「歌う」は唱。口の右に昌を書きます。'],
+    ['お名前は何と＿＿ますか。〔言う〕','你＿＿什么名字？','叫','名前を言うときは叫。口へんで書きます。'],
+    ['お金が＿＿ます。〔ある〕','＿＿钱。','有','存在や所有を表す「ある」は有です。'],
+    ['中国語を＿＿ことができます。〔話す〕','会＿＿汉语。','说','「話す」は说。言へんの簡体字は讠です。'],
+    ['＿＿を開きます。〔辞書〕','打开＿＿。','词典','「辞書」は词典。词の左は讠です。'],
+    ['＿＿に会います。〔明日〕','＿＿见。','明天','「明日」は明天。明は日と月でできています。'],
+    ['＿＿で散歩します。〔公園〕','在＿＿散步。','公园','「公園」は公园。园の囲いの中は元です。']
+  ];
+
+  bank.vocabulary = words.map(([hanzi,pinyin,meaning],i) => make('match',i,[
+    '日本語に合う音声は？',meaning,'',hanzi,[1,4,8].map(offset=>words[(i+offset)%words.length][0]),
+    `${meaning}は${hanzi}（${pinyin}）です。`
+  ])).map((question,i)=>({...question,group:'vocabulary',context:'日本語に合う音声',reviewKey:`pre4-prep:mock:vocabulary-${i+1}`}));
+
+  bank.expressions = expressionPrompts.map(([meaning,answer,...alternatives],i) => ({
+    ...make('number',i,['日本語に合う音声は？',meaning,'',answer,alternatives,`${answer}は「${meaning}」です。`]),
+    group:'expressions',context:'数字・日時の聞き分け',choiceAudio:true,reviewKey:`pre4-prep:mock:expressions-${i+1}`
+  }));
+  bank.position = order.map(([meaning,sequence,note],i) => {
+    const tokens = sequence.split(' ');
+    const position = i%tokens.length;
+    const blanks = tokens.map((_,index)=>index===position?'［　］':'＿').join(' ');
+    return {
+      ...make('order',i,[meaning,blanks,'',tokens[position],tokens.filter((_,index)=>index!==position),sequence.replaceAll(' ','')+'。'+note]),
+      group:'position',context:'語順と空欄の位置',reviewKey:`pre4-prep:mock:position-${i+1}`
+    };
+  });
+  bank.characters = writingPrompts.map(([meaning,sentence,answer,note],i) => {
+    const points = answer.length===1?2:4;
+    return {
+      ...make('writing',i,[meaning,sentence,'',answer,null,note]),
+      group:'characters',context:`文の中の簡体字 · ${answer.length}字`,points,
+      reviewKey:`pre4-prep:mock:characters-${i+1}`
+    };
+  });
+
   function withChoices(question, shuffle) {
     return {...question, choices:question.choices && shuffle(question.choices)};
   }
 
   function build(mode, lesson, shuffle) {
     if(mode==='paper' && [1,2,3].includes(lesson)){
-      return groups.flatMap(([group]) => shuffle(bank[group].slice((lesson-1)*5, lesson*5)))
+      const start = (lesson-1)*5;
+      const groups = [...listeningGroups,...writtenGroups].filter(([id])=>id!=='characters');
+      const items = groups.flatMap(([id]) => shuffle(bank[id].slice(start,start+5)));
+      return [...items,...bank.characters.slice((lesson-1)*7,lesson*7)]
         .map(question => withChoices(question,shuffle));
     }
     if(!Object.hasOwn(bank,mode))return [];
@@ -194,5 +279,5 @@
     return answer ? withChoices(answer,shuffle) : null;
   }
 
-  window.KP_PRE4_MOCK = {groups,build,restore};
+  window.KP_PRE4_MOCK = {groups,listeningGroups,writtenGroups,build,restore};
 })();

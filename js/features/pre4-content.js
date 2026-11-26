@@ -59,9 +59,39 @@
     reviewKey:prefix + 'exercise:' + id, course
   }));
 
+  function contextQuestion(item, unit, index, type, shuffle) {
+    const [kind, offset] = type.split('-');
+    const sentence = item.sentences[Number(offset)];
+    if (!sentence || !['context','cloze'].includes(kind)) return null;
+    const [text, translation, focus] = sentence;
+    const listening = kind === 'context';
+    const column = listening ? 1 : 2;
+    const answer = sentence[column];
+    const alternatives = item.sentences.filter(row => row !== sentence).map(row => row[column]);
+    return {
+      course, context:item.title, kind:'choice',
+      prompt:listening ? '文を聞いて日本語の意味を選ぼう' : '日本語に合うように文を完成させよう',
+      target:listening ? '' : translation+'　'+text.replace(focus,'＿＿'),
+      audioText:listening ? text : '',
+      answerId:answer, choices:stableChoices(answer,alternatives,shuffle),
+      explain:text+'　'+translation,
+      reviewKey:prefix+'station:'+unit+':'+index+':'+type
+    };
+  }
+
+  function stationQuestions(unit, lesson, shuffle) {
+    const index = lesson - 1;
+    const item = window.KP_PRE4_STATIONS[unit]?.[index];
+    if (!item) return [];
+    const types = item.sentences ? item.sentences.flatMap((_,i) => ['context-'+i, 'cloze-'+i]) :
+      ['sound', 'listen', 'gap', 'order'];
+    return types.map(type => stationQuestion(unit,index,type,shuffle)).filter(Boolean);
+  }
+
   function stationQuestion(unit,index,type,shuffle){
     const item=window.KP_PRE4_STATIONS[unit]?.[index];
     if(!item)return null;
+    if(item.sentences)return contextQuestion(item,unit,index,type,shuffle);
     const shared={course,context:item.title,reviewKey:prefix+'station:'+unit+':'+index+':'+type};
     if(type==='order'){
       const useAsk=item.reply.length<3;
@@ -75,8 +105,11 @@
     let prompt,target='',audioText='',answers,explain;
     if(type==='sound'){
       const [word,...options]=item.sound;
-      audioText=word;answers=options;prompt='音と声調を聞いてピンインを選ぼう';
-      explain=word+' は '+answers[0]+'。母音・子音と声調記号を確かめよう。';
+      const lines = [item.ask.join(''), item.reply.join(''), item.transfer[0]];
+      audioText = lines.find(line => line.includes(word));
+      answers = options;
+      prompt = '文を聞いて、「' + word + '」のピンインを選ぼう';
+      explain = audioText + '　' + word + ' は ' + answers[0] + '。母音・子音と声調記号を確かめよう。';
     }else if(type==='listen'){
       [audioText,...answers]=item.transfer;prompt='新しい文を聞いて意味を選ぼう';
       explain=audioText+'　'+answers[0];
@@ -109,20 +142,9 @@
     return entry ? wordQuestion(entry, entries, mode, shuffle) : null;
   }
 
-  function lessons(data, unit) {
-    const entries = new Map(data.vocabulary_entries.map(entry => [entry.entry_id, entry]));
-    const words = unit.entry_ids.map(id => entries.get(id)).filter(Boolean);
-    if (unit.unit_id === 'pre4-u11') {
-      const questionWords = new Set(['几','呢','还是','吧']);
-      return [words.filter(word=>questionWords.has(word.simplified)), words.filter(word=>!questionWords.has(word.simplified))];
-    }
-    return Array.from({length:Math.ceil(words.length / 5)}, (_, index) =>
-      words.slice(index * 5, index * 5 + 5));
-  }
-
   function build(data, unitId, lesson, mode, shuffle) {
     const entries = data.vocabulary_entries;
-    if (mode === 'station') return ['sound','listen','gap','order'].map(type=>stationQuestion(unitId,lesson-1,type,shuffle)).filter(Boolean);
+    if (mode === 'station') return stationQuestions(unitId, lesson, shuffle);
     if (unitId === 'mock') return window.KP_PRE4_MOCK.build(mode, lesson, shuffle);
     if (unitId === 'exam') {
       const dictation = () => shuffle(entries.filter(entry => /^\p{Script=Han}{2}$/u.test(entry.simplified)))
@@ -143,11 +165,7 @@
       }
       return [];
     }
-    const unit = data.units.find(item => item.unit_id === unitId);
-    const words = unit && lessons(data, unit)[lesson - 1];
-    if (!words || mode !== 'lesson') return [];
-    return ['meaning','reading','listening'].flatMap(type =>
-      shuffle(words).map(entry => wordQuestion(entry, entries, type, shuffle)));
+    return [];
   }
 
   let extendedData;
@@ -164,5 +182,5 @@
     };
   }
 
-  window.KP_PRE4 = {prefix, course, lessons, build, restore, extend};
+  window.KP_PRE4 = {prefix, course, build, restore, extend};
 })();

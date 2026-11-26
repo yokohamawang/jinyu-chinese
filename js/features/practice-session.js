@@ -3,7 +3,7 @@ const main=document.getElementById('practiceSession'),params=new URLSearchParams
 const pre4 = window.KP_PRE4;
 const lookup = window.KP_PRE4_LOOKUP;
 const py=window.KP_PRE4_PINYIN;
-const pre4JapaneseChoices=q=>q.group==='number'||q.reviewKey?.startsWith(pre4.prefix+'meaning:')||q.reviewKey?.endsWith(':listen');
+const pre4JapaneseChoices=q=>q.group==='number'||q.reviewKey?.startsWith(pre4.prefix+'meaning:')||q.reviewKey?.endsWith(':listen')||/:context-\d+$/.test(q.reviewKey||'');
 const pre4Teach=q=>q.course===pre4.course&&!q.reviewKey?.startsWith(pre4.prefix+'mock:')&&!q.reviewKey?.startsWith(pre4.prefix+'reading:')&&!q.reviewKey?.endsWith(':sound')&&unitId!=='exam';
 let lookupEntries;
 let lookupWords;
@@ -23,6 +23,27 @@ const mockAnswers = [];
 const missed = [];
 let immediateRetry = false;
 let quizMarkup = '', quizDock;
+let mockClock, mockTimedOut = false;
+
+function startMockClock(){
+ const title=document.getElementById('practiceTopTitle');
+ const timer=document.createElement('time');
+ timer.className='ps-mock-clock';
+ timer.setAttribute('aria-label','試験の残り時間');
+ title.after(timer);
+ const deadline=Date.now()+50*60*1000;
+ function tick(){
+   const seconds=Math.max(0,Math.ceil((deadline-Date.now())/1000));
+   timer.textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+   if(seconds===0){
+     mockTimedOut=true;
+     finishPre4Quiz();
+   }
+ }
+ mockClock=window.setInterval(tick,250);
+ tick();
+}
+
 let courseData,catalog,entriesById=new Map(),questions=[],position=0,score=0,selected=[],answered=false,reviewWrites=[],referenceAudio=null;
 lookup.mount(main,localWords);
 // Keep the action outside the scrolling question pane. Native clicks work for
@@ -47,7 +68,9 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const shuffle=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
 function byId(id){
  if(typeof id==='string'&&id.startsWith('station/')){
-   const simplified=id.split('/')[2];return {simplified,pinyin:window.KP_PRE4_GLOSSES[simplified][0]};
+   const simplified=id.split('/')[2];
+   const pinyin=localWords().get(simplified)?.[0] || py.pairs(simplified).map(pair=>pair.p).filter(Boolean).join(' ');
+   return {simplified,pinyin};
  }
  return entriesById.get(id);
 }
@@ -63,10 +86,10 @@ function backHref(){
        const query=new URLSearchParams({unit:'past',edition:params.get('edition')||''});
        return './pre4.html?'+query.toString();
      }
-     return './pre4.html?unit=exam';
+     return './pre4.html?unit='+(mockPaper?'exam':'practice');
    }
    const query=new URLSearchParams({unit:unitId});
-   if(unitId!=='exam'&&lesson>0)query.set(mode==='station'?'station':'lesson',lesson);
+   if(window.KP_PRE4_STATIONS[unitId]?.[lesson-1])query.set('station',lesson);
    return './pre4.html?'+query.toString();
  }
  if(reviewLesson)return './index.html?open=records';const route=track==='daily'||reviewKey.startsWith('daily:')?'daily':track==='scenario'||reviewKey.startsWith('dialogue:')?'scenario':track;return './practice-routes.html?track='+encodeURIComponent(route)+(route==='chapter'&&unitId&&!reviewOnly?'&unit='+encodeURIComponent(unitId):'')}
@@ -333,9 +356,9 @@ function renderMockReview(entries,fullResult){
    const audio=q.audioText||(q.kind==="order"&&q.text)||q.choices&&q.choiceAudio&&q.answerId;
    const choiceIndex=q.choices?.findIndex(choice=>choice.id===q.answerId);
    const correct=q.kind==='order'?q.text:q.choiceAudio?`${choiceIndex+1}：${q.answerId}`:q.answerId;
-   const selected=q.choiceAudio?`${q.choices.findIndex(choice=>choice.label===actual)+1}：${actual}`:actual;
+   const selected=actual===null?'未解答':q.choiceAudio?`${q.choices.findIndex(choice=>choice.label===actual)+1}：${actual}`:actual;
    return `<li value="${number}" class="ps-pre4-review-item">
-     <details><summary>${number}. ${esc(q.context)} · ${ok?'正解':'不正解'}</summary>
+     <details><summary>${number}. ${esc(q.context)} · ${actual===null?'未解答':ok?'正解':'不正解'}</summary>
        <p>${[q.prompt,q.target].filter(Boolean).map(esc).join(' · ')}</p>
        <p>あなたの答え：${pre4JapaneseChoices(q)?esc(selected):py.choice(selected)}<br>正解：<strong>${pre4JapaneseChoices(q)?esc(correct):py.choice(correct)}</strong></p>
        <p>${py.explanation(q.explain)}</p>
@@ -352,6 +375,9 @@ function renderMockReview(entries,fullResult){
    </details>`;
 }
 function finishPre4Quiz(){
+ stopReference();
+ window.clearInterval(mockClock);
+ document.querySelector('.ps-mock-clock')?.remove();
  quizDock.remove();
  window.speechSynthesis?.cancel();
  document.getElementById('questionCount').textContent='';
@@ -361,15 +387,19 @@ function finishPre4Quiz(){
  const points=section=>mockAnswers.reduce((sum,{question,ok})=>
    sum+(ok&&question.section===section?question.points:0),0);
  const listen=points('listen'), written=points('written');
- const entries=fullResult?mockAnswers:pending.map(question=>({
+ const unanswered = fullResult ? questions.slice(mockAnswers.length).map((question,index)=>({
+   question, actual:null, number:mockAnswers.length+index+1, ok:false
+ })) : [];
+ const entries=fullResult?[...mockAnswers,...unanswered]:pending.map(question=>({
    question, actual:question.actual, number:question.number, ok:false
  }));
  const corrections=renderMockReview(entries,fullResult);
  main.innerHTML=`<section class="ps-finish-card"><img src="./assets/hanzi/teacher-speaking.webp" alt="">
-   <h2>${immediateRetry?'解き直しの結果':'テストの結果'}</h2>
+   <h2>${immediateRetry?'解き直しの結果':mockTimedOut?'時間になりました':'テストの結果'}</h2>
    <span class="ps-score">${fullResult?`${listen+written} / 100`:`${score} / ${questions.length}`}</span>
    ${fullResult?`<p>聞き取り ${listen} / 50 · 筆記 ${written} / 50<br>練習の目安：60点 / 100点</p>`:''}
-   <p>${pending.length?`まちがえた問題 ${pending.length}問`:'全問正解！'}</p>
+   <p>${pending.length?`まちがえた問題 ${pending.length}問`:unanswered.length?(mockAnswers.length?'解答した問題はすべて正解です。':'解答なし'):'全問正解！'}</p>
+   ${unanswered.length?`<p>未解答 ${unanswered.length}問</p>`:''}
    ${corrections}<p role="status" id="pre4SaveStatus"></p>
    ${pending.length?'<button type="button" id="pre4Retry" class="ps-primary ps-return">まちがえた問題を解き直す</button>':''}
    <a class="ps-secondary ps-return" href="./practice-session.html?reviewLesson=pre4">準4級のまちがいレッスンへ</a>
@@ -393,6 +423,7 @@ function finishPre4Quiz(){
  const retry=document.getElementById('pre4Retry');
  if(retry)retry.onclick=()=>{
    immediateRetry=true;
+   mockTimedOut=false;
    questions=pending.map(q=>({...q,choices:q.choices&&shuffle(q.choices),tileIds:q.tileIds&&shuffle(q.tileIds)}));
    position=0;
    score=0;
@@ -415,7 +446,17 @@ function finish(isReview){stopReference();
    });
    return;
  }document.querySelector('.ps-action-dock')?.remove();main.scrollTop=0;const completion=window.KP_ACCOUNT_API?.recordLearningCompletion?.('practice',unitId||activityId||reviewKey);if(window.speechSynthesis)speechSynthesis.cancel();window.scrollTo(0,0);document.getElementById('questionCount').textContent='';document.getElementById('progressFill').style.width='100%';main.innerHTML=`<section class="ps-finish-card"><img src="./assets/hanzi/teacher-speaking.webp" alt="小音"><h2>🎉 ${isReview?'復習できたね！':'チャレンジ完了！'}</h2><span class="ps-score">${isReview?'✓':`${score} / ${questions.length}`}</span><p>🏅 今日のチャレンジ達成！<br>学習日は記録され、まちがえた問題は復習ノートからやり直せます。</p><p id="ps-record-status" role="status">学習記録を更新しています…</p><a class="ps-primary ps-return" href="${backHref()}">次の学習へ</a><a class="ps-secondary ps-return" href="./index.html?open=practice">復習・練習ひろばへ</a></section>`;Promise.resolve(completion).then(saved=>{const status=document.getElementById('ps-record-status');if(status)status.textContent=saved?'✓ 学習記録を保存しました。':'✓ この端末に学習日を記録しました。ログインすると学習履歴も同期できます。'}).catch(()=>{const status=document.getElementById('ps-record-status');if(status)status.textContent='学習日を記録しました。オンライン同期はあとで確認してください。'})}
-async function start(){document.getElementById('routeBack').href=backHref();try{const b=await fetch('./data/practice-catalog-0.1.json?v=301.256');if(!b.ok)throw Error('練習データを読み込めません');catalog=await b.json();if(!reviewLesson&&(track==='scenario'||reviewKey.startsWith('dialogue:'))){await window.KoepandaScenarioDialogue.start({main,catalog,activityId,reviewKey,backHref:backHref()});return}if(!reviewLesson&&(track==='daily'||reviewKey.startsWith('daily:'))){await window.KoepandaDailyPhrase.start({main,catalog,activityId,reviewKey,backHref:backHref()});return}prepareQuestionLayout();const a=await fetch('./data/pre4-content-package-0.1.json');if(!a.ok)throw Error('練習データを読み込めません');courseData=await a.json();if(pre4Quiz||pre4Review)courseData=await pre4.extend(courseData);courseData.vocabulary_entries.forEach(e=>entriesById.set(e.entry_id,e));(catalog.support_tokens||[]).forEach(e=>entriesById.set(e.id,e));catalog.daily_phrase_bank.forEach(e=>entriesById.set(e.id,e));if(reviewLesson)questions=await buildReviewLesson();else if(reviewKey)questions=buildReview(reviewKey);else if(pre4Quiz)questions=pre4.build(courseData,unitId,lesson,mode,shuffle);else if(track==='chapter')questions=buildChapter();else if(track==='theme')questions=buildTheme();else if(track==='daily')questions=buildDaily();else if(track==='scenario')questions=buildScenario();if(!questions.length)throw Error('このルートには問題がありません');document.title=document.getElementById('practiceTopTitle').textContent+' | KoePanda';document.getElementById('sessionTitle').textContent=reviewOnly?'もういちどチャレンジ':pageTitles[track]||'練習';if(pre4Quiz){quizMarkup=main.innerHTML;quizDock=document.querySelector('.ps-action-dock');}loadQuestion(questions[0])}catch(e){const locked=String(e.message).startsWith('unlock:');document.querySelector('.ps-action-dock')?.remove();main.innerHTML=`<div class="ps-error"><b>${locked?'この章はまだ開いていません':'練習を開けませんでした'}</b><p>${locked?'学習ルートで前の章を学んでから、もう一度開いてください。':esc(e.message||'データを読み込めませんでした。')}</p><a class="ps-secondary ps-return" href="${backHref()}">${pre4Review||pre4Quiz?'準4級へ戻る':reviewLesson?'学習の記録に戻る':'ルートに戻る'}</a></div>`}}
+async function start(){
+ if(pre4Quiz && mode==='lesson'){
+   if(!window.KP_PRE4_STATIONS[unitId]?.[lesson-1]){
+     location.replace(backHref());
+     return;
+   }
+   params.set('mode','station');
+   location.replace('./practice-session.html?'+params.toString());
+   return;
+ }
+ document.getElementById('routeBack').href=backHref();try{const b=await fetch('./data/practice-catalog-0.1.json?v=301.256');if(!b.ok)throw Error('練習データを読み込めません');catalog=await b.json();if(!reviewLesson&&(track==='scenario'||reviewKey.startsWith('dialogue:'))){await window.KoepandaScenarioDialogue.start({main,catalog,activityId,reviewKey,backHref:backHref()});return}if(!reviewLesson&&(track==='daily'||reviewKey.startsWith('daily:'))){await window.KoepandaDailyPhrase.start({main,catalog,activityId,reviewKey,backHref:backHref()});return}prepareQuestionLayout();const a=await fetch('./data/pre4-content-package-0.1.json');if(!a.ok)throw Error('練習データを読み込めません');courseData=await a.json();if(pre4Quiz||pre4Review)courseData=await pre4.extend(courseData);courseData.vocabulary_entries.forEach(e=>entriesById.set(e.entry_id,e));(catalog.support_tokens||[]).forEach(e=>entriesById.set(e.id,e));catalog.daily_phrase_bank.forEach(e=>entriesById.set(e.id,e));if(reviewLesson)questions=await buildReviewLesson();else if(reviewKey)questions=buildReview(reviewKey);else if(pre4Quiz)questions=pre4.build(courseData,unitId,lesson,mode,shuffle);else if(track==='chapter')questions=buildChapter();else if(track==='theme')questions=buildTheme();else if(track==='daily')questions=buildDaily();else if(track==='scenario')questions=buildScenario();if(!questions.length)throw Error('このルートには問題がありません');document.title=document.getElementById('practiceTopTitle').textContent+' | KoePanda';document.getElementById('sessionTitle').textContent=reviewOnly?'もういちどチャレンジ':pageTitles[track]||'練習';if(pre4Quiz){quizMarkup=main.innerHTML;quizDock=document.querySelector('.ps-action-dock');}loadQuestion(questions[0]);if(mockPaper)startMockClock();}catch(e){const locked=String(e.message).startsWith('unlock:');document.querySelector('.ps-action-dock')?.remove();main.innerHTML=`<div class="ps-error"><b>${locked?'この章はまだ開いていません':'練習を開けませんでした'}</b><p>${locked?'学習ルートで前の章を学んでから、もう一度開いてください。':esc(e.message||'データを読み込めませんでした。')}</p><a class="ps-secondary ps-return" href="${backHref()}">${pre4Review||pre4Quiz?'準4級へ戻る':reviewLesson?'学習の記録に戻る':'ルートに戻る'}</a></div>`}}
 window.addEventListener('pagehide',()=>{stopReference();if(window.speechSynthesis)speechSynthesis.cancel()});
 start();
 })();
