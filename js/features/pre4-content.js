@@ -112,6 +112,10 @@
   function lessons(data, unit) {
     const entries = new Map(data.vocabulary_entries.map(entry => [entry.entry_id, entry]));
     const words = unit.entry_ids.map(id => entries.get(id)).filter(Boolean);
+    if (unit.unit_id === 'pre4-u11') {
+      const questionWords = new Set(['几','呢','还是','吧']);
+      return [words.filter(word=>questionWords.has(word.simplified)), words.filter(word=>!questionWords.has(word.simplified))];
+    }
     return Array.from({length:Math.ceil(words.length / 5)}, (_, index) =>
       words.slice(index * 5, index * 5 + 5));
   }
