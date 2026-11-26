@@ -81,14 +81,110 @@
     "extra-17":["薬と体の部位", "薬を探し、右手・左手など痛い場所を伝えます。"]
   };
 
-  function showUnit(unit, stations) {
+  const landscapes = {
+    hello:   {icon:'🏡', name:'出会いの広場'},
+    daily:   {icon:'🌤️', name:'朝日の丘'},
+    grammar: {icon:'🪵', name:'ことばの森'},
+    town:    {icon:'🧺', name:'にぎわい市場'},
+    out:     {icon:'🚋', name:'旅の停車場'},
+    talk:    {icon:'🌷', name:'おしゃべりの庭'},
+  };
+
+  function mapHeader(title, description, icon) {
+    return `<header class="pre4-map-heading">
+      <div><h1>${escape(title)}</h1><p>${escape(description)}</p></div>
+      ${icon ? `<span class="pre4-map-heading-icon" aria-hidden="true">${icon}</span>` :
+        '<img src="./assets/hanzi/teacher-welcome-resting.webp" alt="" width="92" height="92">'}
+    </header>`;
+  }
+
+  function landmark({href, anchor, palette, icon, title, note, topic}, index) {
+    return `<li${anchor ? ` id="${escape(anchor)}"` : ''} data-landscape="${palette}" style="--trail-row:${Math.floor(index/2)+1}">
+      <a class="pre4-landmark" href="${href}">
+        <span class="pre4-landmark-pin" aria-hidden="true">${icon}</span>
+        <span class="pre4-landmark-label">
+          <strong>${escape(title)}</strong>
+          ${topic ? `<span>${escape(topic)}</span>` : ''}
+          ${note ? `<small>${escape(note)}</small>` : ''}
+        </span>
+      </a>
+    </li>`;
+  }
+
+  function trailMap(level, label, stops) {
+    return `<section class="pre4-trail pre4-trail--${level}" aria-label="${escape(label)}">
+      <canvas class="pre4-trail-path" aria-hidden="true"></canvas>
+      <ol class="pre4-trail-stops" role="list">${stops.map(landmark).join('')}</ol>
+    </section>`;
+  }
+
+  function drawTrail() {
+    const canvas = main.querySelector('.pre4-trail-path');
+    if (!canvas) return;
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    const pins = [...main.querySelectorAll('.pre4-landmark-pin')];
+    const paint = () => {
+      const {x,y,width,height} = canvas.getBoundingClientRect();
+      if (!width || !height) return;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      context.setTransform(ratio,0,0,ratio,0,0);
+      const points = pins.map(pin => {
+        const rect = pin.getBoundingClientRect();
+        return [rect.x-x+rect.width/2, rect.y-y+rect.height/2];
+      });
+      context.beginPath();
+      points.forEach(([x2,y2], index) => {
+        if (!index) { context.moveTo(x2,y2); return; }
+        const [x1,y1] = points[index-1];
+        if (Math.abs(y2-y1) < 22) {
+          const rise = Math.min(27,Math.abs(x2-x1)*.14);
+          context.bezierCurveTo(x1+(x2-x1)*.30,y1-rise,x2-(x2-x1)*.30,y2+rise,x2,y2);
+        } else {
+          const bend = Math.min(30,width*.065) * (x1 > width/2 ? 1 : -1);
+          context.bezierCurveTo(x1+bend,y1+(y2-y1)*.25,x2+bend,y2-(y2-y1)*.25,x2,y2);
+        }
+      });
+      context.lineCap = 'round';
+      context.strokeStyle = '#dfc793';
+      context.lineWidth = 14;
+      context.stroke();
+      context.strokeStyle = '#fff3d6';
+      context.lineWidth = 9;
+      context.stroke();
+      context.strokeStyle = '#c39e62';
+      context.lineWidth = 1.5;
+      context.setLineDash([2,7]);
+      context.stroke();
+    };
+    paint();
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(paint);
+      observer.observe(canvas.parentElement);
+      window.addEventListener('pagehide', () => observer.disconnect(), {once:true});
+      window.addEventListener('pageshow', event => {
+        if (event.persisted) observer.observe(canvas.parentElement);
+      });
+    } else window.addEventListener('resize', paint);
+  }
+
+  function returnToStop(stopId) {
+    if (stopId) document.getElementById(stopId)?.scrollIntoView({block:'center'});
+  }
+
+  function showUnit(unit, stations, stage) {
     const [title, goal] = chapterGoals[unit.unit_id.slice(5)];
-    main.innerHTML = heading(title, goal) +
-      `<section class="pre4-chapter-section" aria-labelledby="pre4-conversation">
-        <h2 id="pre4-conversation">文で学ぶレッスン</h2>
-        <ol class="pr-map-list">${stations.map((item,index)=>node(
-          stationHref(unit.unit_id,index),index+1,item.title,item.sentences?.[0][1] || item.jaReply)).join('')}</ol>
-      </section>`;
+    const palette = stage.id;
+    main.classList.add('pre4-journey');
+    main.innerHTML = mapHeader(title, goal, landscapes[palette].icon) +
+      trailMap('lessons', 'レッスンの道', stations.map((item,index) => ({
+        href:stationHref(unit.unit_id,index), anchor:'lesson-'+(index+1), palette,
+        icon:item.sentences ? '💬' : '◈', title:item.title,
+      })));
+    drawTrail();
+    returnToStop(location.hash.slice(1));
   }
 
   function mapHref(stage, stop) {
@@ -103,53 +199,44 @@
     const stopId = location.hash.slice(1);
     const stage = stages.find(item => item.units.some(id => 'pre4-'+id === stopId)) ||
       stages.find(item => item.id === params.get('stage'));
-    main.classList.add('pre4-roadmap');
+    main.classList.add('pre4-journey');
     if (stage) {
       showStage(stage, stopId);
       return;
     }
 
-    main.innerHTML = `<section class="pre4-intro">
-      <div><h1>準4級への道</h1><p>文を聞いて、声に出して、使い方を学ぼう。</p></div>
-      <img src="./assets/hanzi/teacher-speaking.webp" alt="">
-    </section>
-    <nav class="pre4-mode-nav" aria-label="準4級のメニュー">
-      <a href="#pre4-learning" aria-current="page">レッスン</a>
-      <a href="${route('practice')}">出題別練習</a>
-      <a href="${route('exam')}">模擬試験</a>
-    </nav>
-    <section id="pre4-learning" aria-labelledby="pre4-learning-title">
-      <h2 id="pre4-learning-title">学習コース</h2>
-      <ol class="pre4-course-path">${stages.map((item, index) => `
-        <li class="pre4-region-${item.id}">
-          <a class="pre4-course-stop" href="${mapHref(item)}">
-            <span class="pre4-course-number" aria-hidden="true">${index+1}</span>
-            <span><strong>${item.title}</strong><small>${item.preview}</small></span>
-            <span class="pre4-course-arrow" aria-hidden="true">›</span>
-          </a>
-        </li>`).join('')}</ol>
-    </section>`;
+    main.innerHTML = mapHeader('準4級 ことばの旅', '小音と、聞いて話せる場面を増やそう。') +
+      trailMap('world', '学習コース', stages.map(item => ({
+        href:mapHref(item), anchor:'region-'+item.id, palette:item.id,
+        icon:landscapes[item.id].icon, title:landscapes[item.id].name,
+        topic:item.title, note:item.preview,
+      }))) +
+      `<nav class="pre4-journey-links" aria-label="試験の準備">
+        <a href="${route('practice')}">出題別練習 <span aria-hidden="true">›</span></a>
+        <a href="${route('exam')}">模擬試験 <span aria-hidden="true">›</span></a>
+      </nav>`;
+    drawTrail();
+    returnToStop(stopId);
   }
 
   function showStage(stage, stopId) {
-    setBack('./pre4.html#pre4-learning','学習コースに戻る');
+    setBack('./pre4.html#region-'+stage.id,'旅の地図に戻る');
     const next = stages[stages.indexOf(stage)+1];
-    const colorClass = 'pre4-region-'+stage.id;
-    main.innerHTML = `<section class="pre4-stage ${colorClass}">${heading(stage.title,stage.preview)}
-      <ol class="pre4-stops">${stage.units.map(id => {
+    const scenery = landscapes[stage.id];
+    main.innerHTML = mapHeader(scenery.name, stage.title+' · '+stage.preview, scenery.icon) +
+      trailMap('chapters', stage.title, stage.units.map(id => {
         const unitId = 'pre4-'+id;
-        const [title, goal] = chapterGoals[id];
-        const count = window.KP_PRE4_STATIONS[unitId].length;
-        return `<li class="pre4-stop" id="${unitId}">
-          <a class="pre4-stop-card pre4-chapter-link" href="${route(unitId)}">
-            <h3>${escape(title)}</h3><p>${escape(goal)}</p>
-            <small>${count}レッスン</small><span aria-hidden="true">›</span>
-          </a>
-        </li>`;
-      }).join('')}</ol>
-      <a class="pre4-stage-next" href="${next?mapHref(next):route('exam')}">${next?'次のコースへ · '+next.title:'模擬試験へ'} <span aria-hidden="true">›</span></a>
-    </section>`;
-    if (stopId) document.getElementById(stopId)?.scrollIntoView({block:'start'});
+        const [title] = chapterGoals[id];
+        return {
+          href:route(unitId), anchor:unitId, palette:stage.id, icon:'⚑', title,
+          note:window.KP_PRE4_STATIONS[unitId].length+'レッスン',
+        };
+      })) +
+      `<nav class="pre4-journey-links" aria-label="次の行き先">
+        <a href="${next?mapHref(next):route('exam')}">${next?'次のエリア · '+landscapes[next.id].name:'模擬試験へ'} <span aria-hidden="true">›</span></a>
+      </nav>`;
+    drawTrail();
+    returnToStop(stopId);
   }
 
   function showExam() {
@@ -185,7 +272,7 @@
   }
 
   function showStation(unit,number,item){
-    setBack(route(unit.unit_id),'章の全体を見る');
+    setBack(route(unit.unit_id)+'#lesson-'+number,'レッスンの道に戻る');
     const glosses=dictionary;
     const supportingExamples = item.supportingExamples || [];
     const lines = item.sentences ? item.sentences.map(([text])=>sentenceTokens(text,glosses)) :
@@ -261,7 +348,7 @@
         location.replace(stationHref(unitId, legacyLesson - 1));
         return;
       }
-      showUnit(unit, stations);
+      showUnit(unit, stations, stage);
     } catch (error) {
       main.innerHTML = '<p class="pr-empty" role="alert"></p><a class="pre4-button" href="./pre4.html">準4級のルートへ戻る</a>';
       main.querySelector('p').textContent = error.message;
