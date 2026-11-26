@@ -147,3 +147,31 @@
 .station-word:focus-visible,.station-word:hover {background:#e4f4ea}
 .station-line details {display:inline-block;margin-inline-start:1em}
 .station-gloss:not(:empty) {padding:.5rem;background:#eef7ef;border-radius:.6rem}
+
+/* Scoped Chinese teaching ruby: each syllable belongs to one glyph, even at wraps. */
+.pre4-ruby {display:inline-flex;flex-direction:column-reverse;align-items:center;justify-content:flex-start;vertical-align:baseline;min-width:1.05em;max-width:100%;line-height:1.25;letter-spacing:0;white-space:nowrap;margin:0 .035em;}
+.pre4-ruby rb {display:block;text-align:center;line-height:1.25;font-size:1em;}
+.pre4-ruby rt {display:block;text-align:center;line-height:1.3;font-size:.53em;font-weight:500;color:#587567;min-height:1.3em;letter-spacing:0;}
+.station-word {display:inline-block;max-width:100%;white-space:nowrap;vertical-align:baseline;padding:.12em .10em;}
+.station-line p[lang],.pre4-lookup-sentence {line-height:1.85;overflow-wrap:anywhere;}
+.pre4-target-zh {display:block;margin-top:.25em;}
+.ps-prompt-target:has(.pre4-ruby){font-size:clamp(19px,5.8vw,29px);max-width:100%;line-height:1.85;}
+.ps-choice:has(.pre4-ruby),.ps-slot:has(.pre4-ruby){min-width:0;overflow-wrap:anywhere;}
+.ps-choice .pre4-ruby rt,.ps-slot .pre4-ruby rt {font-size:clamp(10px,.60em,15px);}
+.ps-choice .pre4-ruby rb {font-size:1.1em;}
+.ps-order-choice:has(.pre4-ruby){display:block;}
+.ps-order-choice .pre4-ruby {font-size:1.25em;}
+.ps-slot:has(.pre4-ruby){display:block;}
+.ps-result-detail:has(.pre4-ruby),.ps-pre4-review-item p:has(.pre4-ruby){line-height:1.85;}
+.station-line.is-speaking .station-word {background:#eff9f3;}
+.station-line .pre4-ruby.is-reading {background:#d9f4e3;border-radius:.2em;color:#086847;}
+.station-line .pre4-ruby.is-reading rt {color:inherit;}
+.station-line .pre4-ruby {font-size:inherit;}
+.pre4-example .pre4-ruby {font-size:inherit;}
+.pre4-ruby,.pre4-punct {vertical-align:bottom;}
+.pre4-punct {display:inline-block;line-height:1.25;}
+.station-word,.pre4-lookup-sentence .kp-lookup-word {vertical-align:bottom;}
+
+/* 301.417: never split a pinyin syllable, even inside narrow choices. */
+.pre4-ruby {flex:0 0 auto; width:max-content; min-width:1.05em; max-width:none; white-space:nowrap; overflow-wrap:normal; word-break:normal; hyphens:none;}
+.pre4-ruby > rb,.pre4-ruby > rt {flex:0 0 auto; width:max-content; min-width:max-content; max-width:none; white-space:nowrap; overflow-wrap:normal; word-break:normal; hyphens:none;}
