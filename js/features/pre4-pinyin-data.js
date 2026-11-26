@@ -21,3 +21,13 @@ Object.assign(window.KP_PRE4_PINYIN_DATA, {
   更:['gèng'], 套:['tào'], 舒:['shū'], 梳:['shū'], 脏:['zàng'], 糕:['gāo'],
   心脏:['xīn','zàng'], 公共汽车:['gōng','gòng','qì','chē'], 好的:['hǎo','de'],
 });
+
+// Readings for the additional model sentences.
+Object.assign(window.KP_PRE4_PINYIN_DATA, {
+  姑:['gū'], 舅:['jiù'], 袋:['dài'], 篇:['piān'], 章:['zhāng'], 首:['shǒu'], 种:['zhǒng'],
+  姑姑:['gū','gu'], 舅舅:['jiù','jiu'], 叔叔:['shū','shu'], 爷爷:['yé','ye'], 奶奶:['nǎi','nai'],
+  姐姐:['jiě','jie'], 哥哥:['gē','ge'], 弟弟:['dì','di'], 妹妹:['mèi','mei'],
+  下午好:['xià','wǔ','hǎo'], 晚上好:['wǎn','shang','hǎo'], 晚安:['wǎn','ān'],
+  不好意思:['bù','hǎo','yì','si'], 很抱歉:['hěn','bào','qiàn'],
+  文章:['wén','zhāng'], 差一刻:['chà','yí','kè'],
+});

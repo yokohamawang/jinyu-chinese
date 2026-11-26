@@ -187,13 +187,15 @@
   function showStation(unit,number,item){
     setBack(route(unit.unit_id),'章の全体を見る');
     const glosses=dictionary;
-    const lines = item.sentences ? item.sentences.map(([text])=>sentenceTokens(text,glosses)) : [item.ask,item.reply];
-    const translations = item.sentences ? item.sentences.map(([,translation])=>translation) : [item.jaAsk,item.jaReply];
+    const supportingExamples = item.supportingExamples || [];
+    const lines = item.sentences ? item.sentences.map(([text])=>sentenceTokens(text,glosses)) :
+      [item.ask,item.reply,...supportingExamples.map(([text])=>sentenceTokens(text,glosses))];
+    const translations = item.sentences ? item.sentences.map(([,translation])=>translation) : [item.jaAsk,item.jaReply,...supportingExamples.map(([,translation])=>translation)];
     const endings = item.sentences ? lines.map(()=>'') : item.endings ||[item.ask.some(w=>['谁','什么','吗','几','哪儿','几本','几口','几杯','几斤','几点','几月','几号','是不是','哪','多久','多少','怎么','怎么样','星期几','呢','还是','哪只'].includes(w))?'？':'。','。'];
     const sections=lines.map((line,i)=>{
       let offset=0;const py=window.KP_PRE4_PINYIN;const aligned=py.pairs(line.join(''));
       const tokens=line.map(w=>{const n=Array.from(w).length;const body=py.html(w,aligned.slice(offset,offset+n));offset+=n;return glosses.has(w)?'<button type="button" class="station-word" data-word="'+escape(w)+'">'+body+'</button>':body;}).join('');
-      return '<div class="station-line"><p lang="zh-CN">'+tokens+py.html(endings[i])+'</p><button type="button" class="pre4-button" data-play="'+i+'">🔊 聞く</button><details><summary>日本語</summary>'+escape(translations[i])+'</details><p class="station-gloss" role="status"></p></div>';
+      return '<div class="station-line"><p lang="zh-CN">'+tokens+py.html(endings[i] || '')+'</p><button type="button" class="pre4-button" data-play="'+i+'">🔊 聞く</button><details><summary>日本語</summary>'+escape(translations[i])+'</details><p class="station-gloss" role="status"></p></div>';
     });
     const quizCount = item.sentences ? item.sentences.length*2 : 4;
     main.innerHTML=heading(item.title,'レッスン '+number+' ／ '+window.KP_PRE4_STATIONS[unit.unit_id].length+'　·　約5分')+'<section class="pre4-card station-card">'+sections.join('')+'<p class="station-instruction">文の中のことばを押すと、日本語の意味と読み方を確認できます。</p>'+
@@ -211,7 +213,7 @@
       const line=b.closest('.station-line');const glyphs=Array.from(line.querySelectorAll('.pre4-ruby'));
       glyphs.forEach(el=>el.classList.remove('is-reading'));
       const clear=()=>{line.classList.remove('is-speaking');glyphs.forEach(el=>el.classList.remove('is-reading'));};
-      const utterance=new SpeechSynthesisUtterance(lines[i].join('')+endings[i]);
+      const utterance=new SpeechSynthesisUtterance(lines[i].join('')+(endings[i] || ''));
       utterance.lang='zh-CN';utterance.rate=Number(document.getElementById('stationRate').value);
       utterance.onstart=()=>line.classList.add('is-speaking');
       utterance.onboundary=e=>{const offset=Array.from(utterance.text.slice(0,e.charIndex)).filter(c=>/\p{Script=Han}/u.test(c)).length;glyphs.forEach((el,j)=>el.classList.toggle('is-reading',j===offset));};
