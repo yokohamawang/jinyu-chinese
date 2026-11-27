@@ -259,6 +259,14 @@
   list-style: none;
 }
 
+.pre4-trail--chapters .pre4-trail-stops {
+  row-gap: clamp(34px, 6.2vw, 53px);
+}
+
+.pre4-trail--lessons .pre4-trail-stops {
+  row-gap: clamp(29px, 5.4vw, 48px);
+}
+
 .pre4-trail-stops > li {
   --pin-light: #f1f9e5;
   --pin-edge: #8fb581;
