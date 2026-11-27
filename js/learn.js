@@ -97,7 +97,7 @@
         </a>
         <a class="kp-home-hotspot kp-home-hanzi" href="./hanzi-practice.html" aria-label="漢字のたんけんを開く"></a>
         <a class="kp-home-hotspot kp-home-pre4" href="./hanzi-practice.html" aria-label="準4級の漢字ルートを開く"></a>
-        <button type="button" class="kp-home-hotspot kp-home-grade4" data-action="roadmap-coming" data-level="4級" aria-label="4級コースの案内"></button>
+        <a class="kp-home-hotspot kp-home-grade4" href="./grade4.html" aria-label="4級のぼうけんを開く"></a>
         <button type="button" class="kp-home-hotspot kp-home-grade3" data-action="roadmap-coming" data-level="3級" aria-label="3級コースの案内"></button>
         <button type="button" class="kp-home-hotspot kp-home-grade2" data-action="roadmap-coming" data-level="2級" aria-label="2級コースの案内"></button>
         <button type="button" class="kp-home-hotspot kp-home-grade-pre1" data-action="roadmap-coming" data-level="準1級" aria-label="準1級コースの案内"></button>
