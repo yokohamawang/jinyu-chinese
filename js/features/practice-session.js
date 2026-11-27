@@ -236,7 +236,24 @@ function listenReference(q){
 function nextLabel(){return position===questions.length-1?(reviewOnly?'復習を終える':mockPaper&&!immediateRetry?'提出して採点':'結果を見る'):'次の問題へ';}
 function buildDailyQuestion(q){const phrases=new Map(catalog.daily_phrase_bank.map(x=>[x.id,x])),p=phrases.get(q.prompt_id);return[{kind:'choice',context:q.context,prompt:'音声にぴったりの返事は？',target:'音声を聞いて選ぼう',audioText:p.simplified,choices:q.choice_ids.map(id=>{const x=phrases.get(id);return{id,label:x.simplified,pinyin:x.pinyin}}),answerId:q.answer_id,explain:`${p.simplified} → ${phrases.get(q.answer_id).simplified} · ${phrases.get(q.answer_id).ja_meaning}`,reviewKey:'daily:'+q.id,course:'practice-daily'}]}
 function loadQuestion(q){document.getElementById('pre4AnswerReading').replaceChildren();stopReference();if(window.speechSynthesis)speechSynthesis.cancel();answered=false;selected=[];document.getElementById('questionCount').textContent=`${position+1} / ${questions.length}`;document.getElementById('progressFill').style.width=`${Math.round(position/questions.length*100)}%`;const context=document.getElementById('sceneLabel'),prompt=document.getElementById('promptText'),target=document.getElementById('promptTarget'),audio=document.getElementById('listenButton'),slots=document.getElementById('answerSlots'),choices=document.getElementById('choiceGrid'),feedback=document.getElementById('feedback'),primary=document.getElementById('primaryAction'),detail=document.getElementById('answerDetail');context.textContent=q.context||'';context.hidden=!q.context;prompt.textContent=q.prompt;target.textContent=q.target||'';if(pre4Teach(q)&&q.kind!=='dictation'&&q.kind!=='order')target.innerHTML=py.target(q.target);audio.hidden=!q.audioText&&!q.audioUrl;audio.onclick=()=>listenReference(q);slots.hidden=q.kind!=='order';slots.replaceChildren();choices.replaceChildren();feedback.textContent='';feedback.className='ps-feedback';detail.textContent='';primary.disabled=true;primary.textContent=q.kind==='order'?'ことばを選んでね':(reviewOnly?'答え合わせ': '答えを選んでね');primary.onclick=()=>{if(q.kind==='order'&&!answered){checkOrder(q);return}if(!answered){return}advance()};
- if(q.kind==='order'){for(let i=0;i<q.answerIds.length;i++){const b=document.createElement('button');b.type='button';b.className='ps-slot is-empty';b.textContent='＋';b.setAttribute('aria-label',`空欄 ${i+1}`);b.onclick=()=>{if(answered)return;const ix=Number(b.dataset.selectedIndex);if(Number.isInteger(ix)){selected.splice(ix,1);drawOrder(q)}};slots.append(b)}drawOrder(q);}
+ if(q.words&&q.kind==='order'){
+   const builder=window.KP_SENTENCE_TILES({words:q.words,bank:q.tileIds.map(id=>q.answerIds.indexOf(id)),slots,choices,onChange(values){
+     selected=values.map(i=>i===null?null:q.answerIds[i]);
+     primary.disabled=selected.includes(null);
+     primary.textContent=primary.disabled?'ことばを並べよう':'答え合わせ';
+   }});
+   primary.onclick=()=>{
+     if(answered){advance();return;}
+     if(selected.includes(null))return;
+     builder.lock();answered=true;
+     const swapped=[q.answerIds[1],q.answerIds[0],...q.answerIds.slice(2)];
+     const ok=selected.every((id,i)=>q.answerIds[i]===id)||(q.flexible&&selected.every((id,i)=>swapped[i]===id));
+     if(ok)score++;
+     showAnswer(q,ok);record(q,ok,selected.map(id=>byId(id).simplified).join(''));
+     primary.disabled=false;primary.textContent=position===questions.length-1?'結果を見る':'次の問題へ';
+   };
+ }
+ else if(q.kind==='order'){for(let i=0;i<q.answerIds.length;i++){const b=document.createElement('button');b.type='button';b.className='ps-slot is-empty';b.textContent='＋';b.setAttribute('aria-label',`空欄 ${i+1}`);b.onclick=()=>{if(answered)return;const ix=Number(b.dataset.selectedIndex);if(Number.isInteger(ix)){selected.splice(ix,1);drawOrder(q)}};slots.append(b)}drawOrder(q);}
  else if(q.kind==='dictation')loadDictation(q,choices,primary);
  else if(q.kind==='recall'){
    primary.disabled=false;primary.textContent='答えを見る';

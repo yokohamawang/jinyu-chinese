@@ -167,10 +167,6 @@
         `${hanzi}（${meaning}）は ${pinyin}。先頭の音節の声調記号を比べましょう。`])),
     grammar:grammar.map(([meaning,sentence,answer,a,b,c,note],i) =>
       make('grammar',i,[meaning,sentence,'',answer,[a,b,c],note])),
-    order:order.map(([meaning,sequence,note],i) => {
-      const [a,b,c,d] = sequence.split(' ');
-      return make('order',i,[meaning,'正しい語順を選ぼう','',a+b+c+d,[a+c+b+d,a+b+d+c,c+b+a+d],note]);
-    }),
     writing:words.map(([hanzi,pinyin,meaning],i) =>
       make('writing',i,['ピンインと意味に合う簡体字を入力しよう',pinyin+' · '+meaning,'',hanzi,null,
         `簡体字は「${hanzi}」。意味は「${meaning}」。手元の紙にも書き、見本と字の部品を比べましょう。`]))
@@ -184,7 +180,7 @@
   ];
   const writtenGroups = [
     groups[5], groups[6],
-    ['position','語順と空欄の位置','語句を並べ、指定された位置に入る語を選びます。'],
+    ['position','一文を組み立てよう','すべての語句を並べて文を作ります。'],
     ['characters','文の中の簡体字','日本語を中国語にするとき、文の一部を簡体字で書きます。']
   ];
 
@@ -242,13 +238,17 @@
   }));
   bank.position = order.map(([meaning,sequence,note],i) => {
     const tokens = sequence.split(' ');
-    const position = i%tokens.length;
-    const blanks = tokens.map((_,index)=>index===position?'［　］':'＿').join(' ');
-    return {
-      ...make('order',i,[meaning,blanks,'',tokens[position],tokens.filter((_,index)=>index!==position),sequence.replaceAll(' ','')+'。'+note]),
-      group:'position',context:'語順と空欄の位置',reviewKey:`pre4-prep:mock:position-${i+1}`
-    };
+    const ids=tokens.map((word,j)=>'station/'+j+'/'+word);
+    const text=tokens.join('')+(/ですか。$/.test(meaning)?'？':'。');
+    const flexible=['明天','每天早上','今天','今年','下午三点','星期六'].includes(tokens[1]);
+    return {kind:'order',group:'position',context:'一文を組み立てよう',prompt:meaning,
+      target:'ことばをドラッグ、または順番にタップ',text,answerId:text,
+      answerIds:ids,tileIds:ids,words:tokens,flexible,
+      explain:note,section:'written',course:'pre4-preparation',points:2,
+      reviewKey:`pre4-prep:mock:position-${i+1}`};
+
   });
+  bank.order = bank.position.map((q,i)=>({...q,group:"order",reviewKey:"pre4-prep:mock:order-"+(i+1)}));
   bank.characters = writingPrompts.map(([meaning,sentence,answer,note],i) => {
     const points = answer.length===1?2:4;
     return {
@@ -259,6 +259,7 @@
   });
 
   function withChoices(question, shuffle) {
+    if(question.words)return {...question,tileIds:shuffle(question.answerIds.slice())};
     return {...question, choices:question.choices && shuffle(question.choices)};
   }
 
