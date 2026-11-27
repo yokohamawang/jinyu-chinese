@@ -31,3 +31,5 @@ Object.assign(window.KP_PRE4_PINYIN_DATA, {
   不好意思:['bù','hǎo','yì','si'], 很抱歉:['hěn','bào','qiàn'],
   文章:['wén','zhāng'], 差一刻:['chà','yí','kè'],
 });
+
+Object.assign(window.KP_PRE4_PINYIN_DATA, {"踩": ["cǎi"], "弄": ["nòng"], "坏": ["huài"], "不小心": ["bù", "xiǎo", "xīn"], "踩到": ["cǎi", "dào"], "拿错": ["ná", "cuò"], "弄坏": ["nòng", "huài"], "拐": ["guǎi"], "页": ["yè"], "右拐": ["yòu", "guǎi"], "去不去": ["qù", "bu", "qù"], "有没有": ["yǒu", "méi", "yǒu"], "能不能": ["néng", "bu", "néng"], "麻烦你": ["má", "fan", "nǐ"]});
