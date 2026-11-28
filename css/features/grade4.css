@@ -1,3 +1,11 @@
 .g4-card{background:#fffef8;border:1px solid #d2decf;border-radius:22px;padding:clamp(16px,4vw,28px);color:#234c40;box-shadow:0 4px 0 #d6e3d8;margin:12px auto;max-width:620px}.g4-card h2{margin:.2em 0 .6em;font-size:1.24rem}.g4-cn{font-size:1.4rem;line-height:1.65;margin:.3em 0}.g4-card .jp{color:#52665c;margin:.15em 0 .6em}.g4-card button,.g4-go{font:inherit;font-weight:650;border:1px solid #b8cdbd;border-radius:14px;padding:10px 15px;background:#f6faf4;color:#214e41;min-height:44px;cursor:pointer;text-decoration:none;display:inline-block;margin:4px}.g4-card button:active,.g4-go:active{transform:translateY(2px)}.g4-card .primary,.g4-go{background:#246450;color:white}.g4-card textarea{font:inherit;width:100%;box-sizing:border-box;min-height:65px;padding:10px}.g4-card details{margin:.6em 0}.g4-feedback{background:#edf5e9;border-radius:12px;padding:12px}.g4-card small{color:#4d675a}.g4-card .choices{display:grid}.g4-card hr{border:0;border-top:1px solid #d9e4d9}
 
 #g4slots,#g4bank{display:flex;flex-wrap:wrap;gap:4px}#g4slots button{border-style:dashed;min-width:42px;margin:1px}#g4bank button:disabled{opacity:.4}.g4-card button.primary:disabled{opacity:.55}
+
+.g4-card .kp-lookup-word[aria-pressed="true"]{background:#dcefe2;border-color:#51836a}
+.g4-card .g4-cn button.kp-lookup-word{display:inline;border:0;border-radius:0;background:transparent;color:inherit;font:inherit;padding:0;margin:0;min-width:0;min-height:0;text-decoration:underline dotted #77a28f;text-underline-offset:.18em}
+.g4-card .g4-cn button[aria-pressed="true"]{background:#dcefe2}
+.g4-reading{padding:.75rem 1rem;background:#f0f6ef;border-radius:14px}
+.g4-reading small{display:block;color:#496655;margin-bottom:.5em}
+.g4-reading .jp:empty{display:none}
+.g4-reading + h3{font-size:1rem;margin:1rem 0 .3rem}
