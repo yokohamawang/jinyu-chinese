@@ -1,0 +1,8 @@
+/* Maintain a stable teacher footprint while the mouth changes. */
+.pr-top img[data-kp-teacher], .ps-top img[data-kp-teacher]{width:58px;height:58px;object-fit:contain;flex:0 0 58px;align-self:center}
+.hero img[data-kp-teacher]{width:82px;height:76px;object-fit:contain;display:block;margin:4px auto 0}
+.ps-top img[data-kp-teacher]{width:48px;height:48px;flex-basis:48px}
+.g4-card .choices button.g4-correct:disabled{background:#d9efe1;color:#18583b;border:2px solid #37835b;opacity:1}
+.g4-card .choices button.g4-wrong:disabled{background:#fff0e7;color:#923c30;border:2px solid #c86b58;opacity:1}
+.g4-card .choices button:disabled:not(.g4-correct):not(.g4-wrong){opacity:.65}
+.g4-card .g4-feedback{scroll-margin-block:95px 24px}
