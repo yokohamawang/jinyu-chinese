@@ -9,3 +9,5 @@
 .g4-reading small{display:block;color:#496655;margin-bottom:.5em}
 .g4-reading .jp:empty{display:none}
 .g4-reading + h3{font-size:1rem;margin:1rem 0 .3rem}
+
+.g4-vocab>div{display:grid;grid-template-columns:1fr auto;padding:.45rem 0;border-bottom:1px solid #d9e4d9}.g4-vocab dd{margin:0;grid-column:1}.g4-vocab button{grid-column:2;grid-row:span 2}.g4-vocab-actions{display:flex;flex-wrap:wrap}.g4-card button.g4-correct{background:#daeddf}.g4-card button.g4-wrong{background:#ffe5dc}
