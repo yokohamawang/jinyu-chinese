@@ -82,13 +82,13 @@ const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
     } else window.addEventListener('resize', paint);
   }
 
-const stages=['人と出会う','毎日のくらし','ことばの森','買い物と食事','場所とお出かけ','気持ちとお願い'];
-const icons=['🏡','🌤️','🌳','🧺','🚋','🌷'];
-const palettes=['hello','daily','grammar','town','out','talk'];
+const stages=['人と出会う','毎日のくらし','ことばの森','買い物と食事','場所とお出かけ','気持ちとお願い','疑問と否定','時制とアスペクト','修飾と結果','方向と比較','変化と特殊文型','複文と接続'];
+const icons=['🏡','🌤️','🌳','🧺','🚋','🌷','🔍','⏳','📝','🧭','🌿','🌈'];
+const palettes=['hello','daily','grammar','town','out','talk','hello','daily','grammar','town','out','talk'];
 const params=new URLSearchParams(location.search);
 const indexParam=(name,max)=>/^\d+$/.test(params.get(name)||'') && Number(params.get(name))<max ? Number(params.get(name)) : -1;
 const lesson=indexParam('lesson',lessons.length);
-const stage=lesson>=0 ? Math.floor(lesson/4) : indexParam('stage',6);
+const stage=lesson>=0 ? Math.floor(lesson/4) : indexParam('stage',stages.length);
 const dictionary=window.KP_PRE4_LOOKUP.words();
 Object.entries(baseGlosses).forEach(([w,g])=>dictionary.set(w,g));
 lessons.forEach(([,word,reading,meaning])=>dictionary.set(word,[reading,meaning]));
@@ -107,7 +107,7 @@ function map(){
    palette:palettes[world?i:stage],title,note:world?'4つの小さな旅':lessons[stage*4+i][1]
  }));
  back.href=world?'./index.html?open=learn':'./grade4.html';
- show(mapHeader(world?'4級のぼうけん':stages[stage],world?'今日のテーマを選ぼう':'気になる場面から始めよう',world?'':icons[stage])+trailMap(world?'world':'lessons','学習ルート',stops)+
+ show(mapHeader(world?'4級のぼうけん':stages[stage],world?'今日のテーマを選ぼう':'気になる場面から始めよう',world?'':icons[stage])+(world?(window.KP_COURSE_OVERVIEW?.markup('grade4')||''):'')+trailMap(world?'world':'lessons','学習ルート',stops)+
  (world?'':'<nav class="pre4-journey-links"><a href="?challenge='+stage+'">章末チャレンジ · '+stories[stage][0]+'</a></nav>')+'<nav class="pre4-journey-links"><a href="?review=1">まちがえた問題を復習</a></nav>');drawTrail();
 }
 function study(){
@@ -117,7 +117,7 @@ function study(){
 }
 const types=['読解','ピンイン','語の意味','漢字を書く','聞き取り','日本語から中国語へ'];
 types.push('まとまりのある読解','まとまりのある聴解','別の場面で使う','一文を組み立てる');
-const challenge=indexParam('challenge',6);
+const challenge=indexParam('challenge',stages.length);
 const key=(i,t)=>'grade4:'+i+':'+t;
 const getKey=k=>/^grade4:(\d+):([0-9])$/.test(k)&&lessons[Number(k.split(':')[1])];
 const missed=new Set();
@@ -132,8 +132,8 @@ function exercise(k){
    const story=stories[Math.floor(i/4)],at=t===6?2:7;
    return {prompt:story[at],body:t===6?line(story[1],''):'',audio:t===7?story[1]:null,choices:story.slice(at+1,at+4),tip:story[at+4],transcript:story[1]};
  }
- const peers=[lessons[(i+1)%24],lessons[(i+7)%24]];
- if(t===0)return {prompt,body:'<div class="g4-reading"><small>会話を読もう · ことばをタップすると意味が見られます</small>'+line(a,'')+line(b,'')+'</div><h3>答えをひとつ選ぼう</h3>',choices:[yes,no,other],tip};
+ const peers=[lessons[(i+1)%lessons.length],lessons[(i+7)%lessons.length]];
+ if(t===0)return {prompt:i>=24?'最初の文の意味は？':prompt,body:'<div class="g4-reading"><small>会話を読もう · ことばをタップすると意味が見られます</small>'+line(a,'')+line(b,'')+'</div><h3>答えをひとつ選ぼう</h3>',choices:[yes,no,other],tip};
  if(t===1||t===2){const col=t===1?2:3;return {prompt:t===1?'このことばの読み方は？':'このことばの意味は？',body:line(w,''),choices:[lessons[i][col],...(t===1?toneChoices[i]:peers.map(r=>r[col]))],tip:w+'（'+p+'）＝ '+m+'。'+tip};}
  if(t===3)return {prompt:'簡体字で書いてみよう',body:'<p>'+p+' ／ '+m+'</p>',word:w,tip:w+'（'+p+'）＝ '+m};
  if(t===4)return {prompt:'音声に合う日本語を選ぼう',audio:b,choices:[jb,...peers.map(r=>r[7])],tip:b+' ／ '+jb};

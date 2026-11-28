@@ -206,6 +206,7 @@
     }
 
     main.innerHTML = mapHeader('準4級 ことばの旅', '小音と、毎日の場面で使える中国語を話そう。') +
+      (window.KP_COURSE_OVERVIEW?.markup('pre4')||'') +
       trailMap('world', '学習コース', stages.map(item => ({
         href:mapHref(item), anchor:'region-'+item.id, palette:item.id,
         icon:landscapes[item.id].icon, title:landscapes[item.id].name,
