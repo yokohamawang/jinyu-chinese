@@ -66,10 +66,10 @@
     function point(e){const r=pad.getBoundingClientRect();return [(e.clientX-r.left)*400/r.width,(e.clientY-r.top)*400/r.height];}
     pad.onpointerdown=e=>{
       if(done||active!==null||e.button!==0)return;
-      active=e.pointerId;pad.setPointerCapture(active);lines.push([point(e)]);render();
+      pad.setPointerCapture(e.pointerId);active=e.pointerId;lines.push([point(e)]);render();
     };
     pad.onpointermove=e=>{if(e.pointerId===active){lines.at(-1).push(point(e));render();}};
-    pad.onpointercancel=e=>{if(e.pointerId===active){active=null;lines.pop();render();}};
+    pad.onlostpointercapture=pad.onpointercancel=e=>{if(e.pointerId===active){active=null;lines.pop();render();}};
     pad.onpointerup=e=>{
       if(active!==e.pointerId)return;
       active=null;lines.at(-1).push(point(e));
@@ -80,10 +80,11 @@
         if(index===chars.length)complete(true);else {hint();if(result==='order')status.textContent='「'+chars[index-1]+'」を入力しました。筆順も確認しよう。'+status.textContent;}
       }else{
         render();
-        if(model && lines.length>=model.length)status.textContent=(index+1)+'文字目の「'+chars[index]+'」を書いてみよう（'+model.length+'画）。';
+        if(model && lines.length>=model.length)status.textContent=(index+1)+'文字目の「'+chars[index]+'」を書いてみよう（'+model.length+'画）。「一画戻す」か「書き直す」で何度でも試せます。';
       }
     };
-    undo.onclick=()=>{lines.pop();hint();render();};clear.onclick=()=>{lines=[];hint();render();};
+    undo.onclick=()=>{active=null;lines.pop();hint();render();};
+    clear.onclick=()=>{active=null;lines=[];hint();render();};
     skip.onclick=()=>complete(false);render();hint();
   };
 })();
