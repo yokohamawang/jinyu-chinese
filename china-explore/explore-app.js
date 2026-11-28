@@ -253,7 +253,7 @@ function placePage() {
     place === places.westlake && ['中国無形文化遺産網 · 白蛇伝','https://www.ihchina.cn/project_details/12185.html']
   ].filter(Boolean))];
   return `<button type="button" class="back" data-back>‹ ${topic.title[2]}</button>
-    <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}${readingSpeed()}</header>
+    <header class="hero ${topic.id}">${bilingual(place.name, 'h1')}${readingSpeed()}<img data-kp-teacher src="../assets/hanzi/teacher-resting.webp" alt="小音先生"></header>
     <div class="feature-reading">
       ${chapters.length > 1 ? `<nav class="pane sight-overview" aria-label="この課の見どころ">
         <ol>${chapters.map(([heading], i) => `<li><button type="button" data-chapter="${i}">${heading}</button></li>`).join('')}</ol>
