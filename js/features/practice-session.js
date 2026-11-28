@@ -292,35 +292,18 @@ function loadQuestion(q){document.getElementById('pre4AnswerReading').replaceChi
  if(q.audioText||q.audioUrl)listenReference(q);
 }
 function loadDictation(q,choices,primary){
- const field=document.createElement('input');
- field.type='text';
- field.lang='zh-CN';
- field.autocomplete='off';
- field.spellcheck=false;
- field.className='ps-dictation';
- field.placeholder='中国語キーボードで入力';
- field.setAttribute('aria-label','簡体字の答え');
- choices.append(field);
- primary.textContent=mockPaper&&!immediateRetry?'答えを確定':'答え合わせ';
- const answer=()=>field.value.normalize('NFKC').trim().replace(/[。!?]$/, '').trim();
- field.addEventListener('input',()=>{primary.disabled=!answer();});
- field.addEventListener('keydown',event=>{
-   if(event.key==='Enter'&&!event.isComposing&&!primary.disabled)primary.click();
- });
- primary.onclick=()=>{
-   if(answered){advance();return;}
-   const actual=answer();
-   if(!actual)return;
+ const pad=document.createElement('div');
+ choices.append(pad);
+ document.getElementById('promptText').textContent=q.prompt.replace('入力','手書き');
+ primary.textContent='マスに手書きしよう';
+ window.KP_HANDWRITE(pad,q.answerId,(ok,actual)=>{
+   if(answered)return;
    answered=true;
-   field.disabled=true;
-   const ok=actual===q.answerId;
    if(ok)score++;
    if(!mockPaper||immediateRetry)showAnswer(q,ok);
-   if(!ok&&(!mockPaper||immediateRetry))document.getElementById('answerDetail').textContent=
-     `あなたの答え：${actual}\n正しい簡体字：${q.answerId}\n${q.explain}`;
    record(q,ok,actual);
-   primary.textContent=nextLabel();
- };
+   primary.disabled=false;primary.textContent=nextLabel();primary.onclick=advance;
+ });
 }
 function drawOrder(q){const slots=document.getElementById('answerSlots'),choices=document.getElementById('choiceGrid');slots.replaceChildren();q.answerIds.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.className='ps-slot';if(selected[i]){const token=byId(selected[i]);b.textContent=token?.simplified||'';if(pre4Teach(q))b.innerHTML=py.html(token?.simplified||'');b.dataset.selectedIndex=String(i);b.setAttribute('aria-label',`${token?.simplified||''} を取り消す`);b.onclick=()=>{if(answered)return;selected.splice(i,1);drawOrder(q)}}else{b.classList.add('is-empty');b.textContent='＋';b.setAttribute('aria-label',`空欄 ${i+1}`)}slots.append(b);if(q.punctuationAfter?.includes(i+1)){const punctuation=document.createElement('span');punctuation.className='ps-punctuation';punctuation.textContent='，';slots.append(punctuation)}if(i===q.answerIds.length-1&&/[。？！]$/.test(q.text||'')){const punctuation=document.createElement('span');punctuation.className='ps-punctuation';punctuation.textContent=q.text.slice(-1);slots.append(punctuation)}});choices.replaceChildren();q.tileIds.forEach(id=>{const token=byId(id);if(!token)return;const b=document.createElement('button');b.type='button';b.className='ps-choice ps-order-choice';b.dataset.itemId=id;b.disabled=answered||selected.includes(id);b.innerHTML=`<small>${esc(token.pinyin)}</small><b>${esc(token.simplified)}</b>`;if(pre4Teach(q))b.innerHTML=py.html(token.simplified);else if(q.course===pre4.course)b.textContent=token.simplified;b.setAttribute('aria-label',pre4Teach(q)?`${token.pinyin} ${token.simplified}`:token.simplified);b.onclick=()=>{if(answered||selected.length>=q.answerIds.length)return;selected.push(id);drawOrder(q)};choices.append(b)});document.getElementById('primaryAction').disabled=answered||selected.length!==q.answerIds.length;document.getElementById('primaryAction').textContent=answered?(reviewOnly?'復習を終える':position===questions.length-1?'結果を見る':'答え合わせ'):selected.length===q.answerIds.length?'答え合わせ':`ことばを選んでね（${selected.length}/${q.answerIds.length}）`}
 function checkOrder(q){if(selected.length!==q.answerIds.length)return;answered=true;const ok=selected.every((id,i)=>id===q.answerIds[i] || (q.reviewKey?.startsWith(pre4.prefix+'station:') && byId(id)?.simplified===byId(q.answerIds[i])?.simplified));score+=ok?1:0;drawOrder(q);showAnswer(q,ok);record(q,ok,selected.map(id=>byId(id).simplified).join(""));document.getElementById('primaryAction').disabled=false;document.getElementById('primaryAction').textContent=nextLabel()}

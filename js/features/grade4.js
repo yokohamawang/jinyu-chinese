@@ -151,8 +151,9 @@ function question(){
    return;
  }
  currentOptions=q.choices?mix(q.choices):[];
- const input=currentOptions.length?'<div class="choices">'+currentOptions.map((v,j)=>button(v,'pick'+j)).join('')+'</div>':'<textarea aria-label="中国語の答え" lang="zh" id="response"></textarea>'+button(q.model?'解答例と見比べる':'答え合わせ','check',true);
+ const input=q.word?'<div id="g4write"></div>':currentOptions.length?'<div class="choices">'+currentOptions.map((v,j)=>button(v,'pick'+j)).join('')+'</div>':'<textarea aria-label="中国語の答え" lang="zh" id="response"></textarea>'+button(q.model?'解答例と見比べる':'答え合わせ','check',true);
  show(card('<small>'+types[Number(queue[position].split(':')[2])]+' · '+(position+1)+' / '+queue.length+'</small><h2>'+q.prompt+'</h2>'+(q.body||'')+(q.audio?button('▶ 聞く','listen'):'')+input+'<div id="feedback" aria-live="polite"></div>'));
+ if(q.word)window.KP_HANDWRITE(main.querySelector('#g4write'),q.word,grade);
 }
 const writes=[];
 function grade(ok){
@@ -183,7 +184,6 @@ main.addEventListener('click',e=>{
  if(action.startsWith('pick'))grade(currentOptions[Number(action.slice(4))]===q.choices[0]);
  if(action==='check'){
    const input=document.querySelector('#response');if(!input.value.trim()){input.focus();return;}
-   if(q.word){grade(input.value.trim()===q.word);return;}
    input.readOnly=true;e.target.disabled=true;document.querySelector('#feedback').innerHTML='<h3>解答例</h3>'+line(q.model,'')+'<p>'+escape(q.tip)+'</p>'+button('意味と語順が合っていた','yes')+button('復習に入れる','no');return;
  }
  if(action==='yes'||action==='no')grade(action==='yes');
