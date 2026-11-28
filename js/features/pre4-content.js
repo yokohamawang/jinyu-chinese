@@ -99,7 +99,7 @@
       const ids=source.filter(w=>w!=='，').map((w,i)=>'station/'+i+'/'+w);
       const comma=source.indexOf('，');
       return {...shared,kind:'order',prompt:'お手本の文を組み立てよう',target:useAsk?item.jaAsk:item.jaReply,
-        answerIds:ids,tileIds:shuffle(ids.slice()),punctuationAfter:comma<0?[]:[comma],
+        words:source.filter(w=>w!=='，'),answerIds:ids,tileIds:shuffle(ids.slice()),punctuationAfter:comma<0?[]:[comma],
         text:source.join('')+(item.endings?.[useAsk?0:1]||''),explain:source.join('')+'　'+item.tip};
     }
     let prompt,target='',audioText='',answers,explain;

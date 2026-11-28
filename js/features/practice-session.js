@@ -247,7 +247,7 @@ function loadQuestion(q){document.getElementById('pre4AnswerReading').replaceChi
      if(selected.includes(null))return;
      builder.lock();answered=true;
      const swapped=[q.answerIds[1],q.answerIds[0],...q.answerIds.slice(2)];
-     const ok=selected.every((id,i)=>q.answerIds[i]===id)||(q.flexible&&selected.every((id,i)=>swapped[i]===id));
+     const ok=selected.every((id,i)=>q.words[i]===q.words[q.answerIds.indexOf(id)])||(q.flexible&&selected.every((id,i)=>swapped[i]===id));
      if(ok)score++;
      showAnswer(q,ok);record(q,ok,selected.map(id=>byId(id).simplified).join(''));
      primary.disabled=false;primary.textContent=position===questions.length-1?'結果を見る':'次の問題へ';

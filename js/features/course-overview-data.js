@@ -15,20 +15,23 @@ window.KP_COURSE_OVERVIEW_DATA={
     "mockPapers": 3
   },
   "grade4": {
-    "characters": 338,
-    "words": 48,
-    "focusWords": 48,
-    "sentenceWords": 295,
-    "sentences": 96,
+    "characters": 820,
+    "words": 462,
+    "focusWords": 462,
+    "sentenceWords": 844,
+    "sentences": 564,
     "lessons": 48,
     "topics": 12,
     "readingTexts": 12,
     "lessonQuestions": 384,
     "chapterQuestions": 24,
-    "mockPapers": 0,
-    "newWords": 22,
-    "cumulativeWords": 677,
-    "cumulativeCharacters": 644,
-    "cumulativeSentences": 587
+    "mockPapers": 3,
+    "mockQuestions": 180,
+    "vocabQuestions": 1260,
+    "vocabGroups": 60,
+    "newWords": 358,
+    "cumulativeWords": 1013,
+    "cumulativeCharacters": 904,
+    "cumulativeSentences": 1055
   }
 };

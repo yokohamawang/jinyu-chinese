@@ -7,7 +7,22 @@
  const n=x=>Number(x).toLocaleString('ja-JP');
  function markup(level){const d=window.KP_COURSE_OVERVIEW_DATA?.[level],c=descriptions[level];if(!d||!c)return '';
   const metric=(label,count,unit)=>`<div class="kp-course-metric"><span>${label}</span><strong>${n(count)}<small>${unit}</small></strong></div>`;
-  return `<section class="kp-course-overview" aria-label="コースの学習内容"><h2>このコースで学べること</h2><p>${c.goal}</p><div class="kp-course-metrics">${metric('掲載漢字',d.characters,'字')}${metric(level==='grade4'?'重点語句':'学習語句',d.words,'語')}${metric('例文',d.sentences,'文')}</div><details><summary>詳しい学習内容</summary><div class="kp-course-overview-details"><p>${c.topics}</p><dl><div><dt>レッスン</dt><dd>${n(d.lessons)} 回</dd></div><div><dt>レッスン練習</dt><dd>${n(d.lessonQuestions)} 問</dd></div>${level==='pre4'?`<div><dt>模擬試験</dt><dd>${n(d.mockPapers)} 回分</dd></div><div><dt>模擬試験の問題</dt><dd>${n(d.mockQuestions)} 問</dd></div>`:`<div><dt>章末の読解・聴解</dt><dd>${n(d.readingTexts)} 篇・${n(d.chapterQuestions)} 問</dd></div><div><dt>準4級からの新しい重点語句</dt><dd>${n(d.newWords)} 語</dd></div><div><dt>準4級からの累計語句</dt><dd>${n(d.cumulativeWords)} 語</dd></div><div><dt>準4級からの累計例文</dt><dd>${n(d.cumulativeSentences)} 文</dd></div>`}<div><dt>例文中で意味を確認できる語句</dt><dd>${n(d.sentenceWords)} 語</dd></div></dl><small>${c.note} 同じ語句・例文は1回だけ数え、練習問題はレッスンごとの出題数です。</small></div></details></section>`;
+  const grade=level==='grade4';
+  const rows=grade?[
+    ['常用語約1,000語',`準4級から累計${n(d.cumulativeWords)}語句。本級の重点${d.words}語句（新出${d.newWords}）。${d.vocabGroups}組で意味・聞き取り・手書きを練習。`],
+    ['日常の問答・長めの会話の聞き取り','各課の会話音声、章末の聴解12問、模試の聴解60問。'],
+    ['ピンイン・声調','48課で発音を確認。模試は声調比較15問・ピンイン15問。'],
+    ['基本文法・単文の組み立て','48課で文法穴埋めと整句を各48問。模試は穴埋め30問、文の選択15問、整句15問。'],
+    ['長めの文章の読解','章末12篇と、模試の長文3篇・18問。'],
+    ['日本語から中国語への記述','48課で作文し、解答例と照合。模試でも12問。']
+  ]:[
+    ['基本単語約500語・あいさつ約80語',`本コースに${d.words}語句。あいさつ・自己紹介から生活場面へ進みます。`],
+    ['基礎的な聞き取り','会話の聞き取りと音声選択。模試は各回25問のリスニング。'],
+    ['ピンイン・声調、基本文法・単文の組み立て','読み方、文脈の穴埋め、語順を小課時と模試で練習。'],
+    ['簡体字の書き取り','漢字の筆順・臨写に加え、模試で手書き解答。']
+  ];
+  return `<section class="kp-course-overview"><h2>中検${grade?'4級':'準4級'}の出題内容</h2><p>${rows.map(r=>r[0]).join(' ／ ')}</p><small><a href="https://www.chuken.gr.jp/tcp/grade">日本中国語検定協会の出題内容</a></small><h2>コースの対応と学習量</h2><p>${grade?`全12章・48課＋語彙60組。課内384問、語彙1,260問、章末24問、模試3回180問。`:`全${d.topics}テーマ・${d.lessons}課。課内${d.lessonQuestions}問、模試3回141問。`}</p><details><summary>出題項目ごとの学習内容</summary><dl>${rows.map(([k,v])=>`<dt><strong>${k}</strong></dt><dd>${v}</dd>`).join('')}</dl><p>本級の例文 ${d.sentences}文・掲載漢字 ${d.characters}字。${grade?`準4級からの累計例文は${d.cumulativeSentences}文。`:''}語句数は教材内で重複を除いた数です。</p></details></section>`;
+
  }
  window.KP_COURSE_OVERVIEW={markup};
 })();
