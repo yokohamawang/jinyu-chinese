@@ -26,8 +26,15 @@
     const points=lines.flat(), xs=points.map(p=>p[0]), ys=points.map(p=>p[1]);
     if(Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys))<45)return false;
     const reference=normalized(model), attempt=normalized(lines);
-    const errors=attempt.map((s,i)=>s.reduce((sum,p,j)=>sum+distance(p,reference[i][j]),0)/s.length);
-    return Math.max(...errors)<0.32 && errors.reduce((a,b)=>a+b,0)/errors.length<0.16;
+    const costs=attempt.map(stroke=>reference.map(target=>
+      stroke.reduce((sum,p,j)=>sum+distance(p,target[j]),0)/stroke.length
+    ));
+    const errors=costs.map((row,i)=>row[i]);
+    const fits=values=>Math.max(...values)<0.32 && values.reduce((a,b)=>a+b,0)/values.length<0.16;
+    if(fits(errors)) return 'correct';
+    const nearest=costs.map(row=>row.indexOf(Math.min(...row)));
+    if(new Set(nearest).size===model.length && fits(costs.map((row,i)=>row[nearest[i]]))) return 'order';
+    return false;
   }
   window.KP_HANDWRITE=(root,word,finish)=>{
     const symbols=Array.from(word);
@@ -40,7 +47,15 @@
     let index=0,lines=[],active=null,done=false;
     function render(){
       let letter=0;
-      slots.textContent=symbols.map(ch=>isPunctuation(ch)||letter++<index?ch:'□').join(' ');
+      slots.replaceChildren(...symbols.flatMap(ch=>{
+        if(isPunctuation(ch))return [ch];
+        const position=letter++;
+        if(position!==index)return [position<index?ch+' ':'□ '];
+        const current=document.createElement('strong');
+        current.textContent='□';
+        current.style.borderBottom='3px solid currentColor';
+        return [current,' '];
+      }));
       ctx.clearRect(0,0,400,400);
       ctx.lineWidth=7;ctx.lineCap=ctx.lineJoin='round';ctx.strokeStyle='#215446';
       for(const stroke of lines){ctx.beginPath();ctx.moveTo(...stroke[0]);for(const p of stroke.slice(1))ctx.lineTo(...p);ctx.stroke();}
@@ -59,12 +74,13 @@
       if(active!==e.pointerId)return;
       active=null;lines.at(-1).push(point(e));
       const model=window.KP_WRITE_MEDIANS[chars[index]];
-      if(model && matches(lines,model)){
+      const result=model && matches(lines,model);
+      if(result){
         index++;lines=[];render();
-        if(index===chars.length)complete(true);else hint();
+        if(index===chars.length)complete(true);else {hint();if(result==='order')status.textContent='「'+chars[index-1]+'」を入力しました。筆順も確認しよう。'+status.textContent;}
       }else{
         render();
-        if(model && lines.length>=model.length)status.textContent='形と筆順を確認しよう。一画戻すか、書き直せます。';
+        if(model && lines.length>=model.length)status.textContent=(index+1)+'文字目の「'+chars[index]+'」を書いてみよう（'+model.length+'画）。';
       }
     };
     undo.onclick=()=>{lines.pop();hint();render();};clear.onclick=()=>{lines=[];hint();render();};
