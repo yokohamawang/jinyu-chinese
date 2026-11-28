@@ -206,7 +206,7 @@ function lessonExercise(k){
  if(t===1||t===2){const col=t===1?2:3;return {prompt:t===1?'このことばの読み方は？':'このことばの意味は？',body:'<p class="g4-cn">'+escape(w)+'</p>',choices:[lessons[i][col],...(t===1?toneChoices[i]:peers.map(r=>r[col]))],tip:w+'（'+p+'）＝ '+m+'。'+tip};}
  if(t===3)return {prompt:'簡体字で書いてみよう',body:'<p>'+p+' ／ '+m+'</p>',word:w,tip:w+'（'+p+'）＝ '+m};
  if(t===4)return {prompt:'音声に合う日本語を選ぼう',audio:b,choices:[jb,...peers.map(r=>r[7])],tip:b+' ／ '+jb};
- return {prompt:'中国語でどう言う？',body:'<p>'+ja+'</p>',model:a,tip};
+ return {prompt:'日本語に合う中国語を一字ずつ書こう',body:'<p>'+ja+'</p>',word:a,tip};
 }
 function buildMock(round){
  const start=round*10;

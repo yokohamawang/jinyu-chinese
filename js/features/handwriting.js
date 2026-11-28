@@ -30,14 +30,17 @@
     return Math.max(...errors)<0.32 && errors.reduce((a,b)=>a+b,0)/errors.length<0.16;
   }
   window.KP_HANDWRITE=(root,word,finish)=>{
-    const chars=Array.from(word);
+    const symbols=Array.from(word);
+    const isPunctuation=ch=>/^[，。？！、；：]$/u.test(ch);
+    const chars=symbols.filter(ch=>!isPunctuation(ch));
     root.innerHTML='<div class="hw-word" aria-live="polite"></div><canvas class="hw-pad" width="400" height="400" aria-label="指で書くマス"></canvas><small aria-live="polite"></small><div class="hw-actions"><button type="button">一画戻す</button><button type="button">書き直す</button><button type="button">わからない</button></div>';
     root.classList.add('hw-root');
     const [slots,pad,status,actions]=root.children, [undo,clear,skip]=actions.children;
     const ctx=pad.getContext('2d');
     let index=0,lines=[],active=null,done=false;
     function render(){
-      slots.textContent=chars.map((ch,i)=>i<index?ch:'□').join(' ');
+      let letter=0;
+      slots.textContent=symbols.map(ch=>isPunctuation(ch)||letter++<index?ch:'□').join(' ');
       ctx.clearRect(0,0,400,400);
       ctx.lineWidth=7;ctx.lineCap=ctx.lineJoin='round';ctx.strokeStyle='#215446';
       for(const stroke of lines){ctx.beginPath();ctx.moveTo(...stroke[0]);for(const p of stroke.slice(1))ctx.lineTo(...p);ctx.stroke();}
