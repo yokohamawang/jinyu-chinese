@@ -103,7 +103,7 @@ const card=body=>'<section class="g4-card">'+body+'</section>';
 const link=(url,title)=>'<a class="g4-go" href="'+url+'">'+title+'</a>';
 function show(body){window.KP_TEACHER_SPEECH?.stop();window.speechSynthesis?.cancel();main.innerHTML=body;main.classList.add('pre4-journey');main.removeAttribute('aria-busy');window.scrollTo(0,0);}
 function button(title,action,primary=false){return '<button type="button" data-act="'+action+'" class="'+(primary?'primary':'')+'">'+escape(title)+'</button>';}
-function speak(text, onError){
+function speak(text, onError, singleWord=false){
  if(!window.speechSynthesis){onError?.();return;}
  window.KP_TEACHER_SPEECH?.stop();
  speechSynthesis.cancel();
@@ -113,7 +113,7 @@ function speak(text, onError){
  utterance.rate=.9;
  const voice=speechSynthesis.getVoices().find(v=>/^zh[-_](CN|Hans)/i.test(v.lang));
  if(voice)utterance.voice=voice;
- window.KP_TEACHER_SPEECH?.bind(utterance);
+ window.KP_TEACHER_SPEECH?.bind(utterance, {singleWord});
  utterance.addEventListener('error',event=>{
    if(!['interrupted','canceled'].includes(event.error))onError?.();
  });
@@ -147,7 +147,7 @@ function vocabulary(){
    return card('<h2>'+escape(rows[0][0])+' 〜 '+escape(rows.at(-1)[0])+'</h2>'+
      '<dl class="g4-vocab">'+rows.map(([word,reading,meaning],index)=>'<div><dt><b lang="zh-Hans">'+escape(word)+'</b> <small>'+
        escape(reading)+'</small></dt><dd>'+escape(meaning)+'</dd>'+
-       button('🔊 '+word,'say-'+encodeURIComponent(word))+'<details><summary>例文</summary>'+line(grade4WordExamples[chapterWords][start+index],'')+button('▶ 例文を聞く','say-'+encodeURIComponent(grade4WordExamples[chapterWords][start+index]))+'</details></div>').join('')+'</dl>'+
+       button('🔊 '+word,'word-say-'+encodeURIComponent(word))+'<details><summary>例文</summary>'+line(grade4WordExamples[chapterWords][start+index],'')+button('▶ 例文を聞く','say-'+encodeURIComponent(grade4WordExamples[chapterWords][start+index]))+'</details></div>').join('')+'</dl>'+
      examples.map(([word,zh,ja,tip])=>'<div class="g4-reading"><h3>'+escape(word)+' の使い方</h3>'+
        line(zh,ja)+button('▶ 例文を聞く','say-'+encodeURIComponent(zh))+'<p>'+escape(tip)+'</p></div>').join('')+
      '<div class="g4-vocab-actions">'+labels.map((label,mode)=>button(label,'vocab-'+start+'-'+mode)).join('')+'</div>');
@@ -342,6 +342,10 @@ main.addEventListener('click',e=>{
    return;
  }
  const action=e.target.closest('[data-act]')?.dataset.act;if(!action)return;
+ if(action.startsWith('word-say-')){
+   speak(decodeURIComponent(action.slice(9)), undefined, true);
+   return;
+ }
  if(action.startsWith('say-')){
    speak(decodeURIComponent(action.slice(4)));
    return;
@@ -356,7 +360,7 @@ main.addEventListener('click',e=>{
    return;
  }
  if(action==='load'){review();return;}
- if(action==='audio'||action==='word'){const r=lessons[lesson];speak(action==='audio'?r[4]+r[6]:(e.target.closest('[data-act]').dataset.word||r[1]));return;}
+ if(action==='audio'||action==='word'){const r=lessons[lesson];speak(action==='audio'?r[4]+r[6]:(e.target.closest('[data-act]').dataset.word||r[1]), undefined, action==='word');return;}
  if(action==='start'){queue=[0,1,2,3,4,5,8,9].map(t=>key(lesson,t));question();return;}
  if(action==='retry'){queue=[...missed];position=score=0;reviewing=true;question();return;}
  const q=exercise(queue[position]);
