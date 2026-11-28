@@ -297,6 +297,7 @@ function question(){
 let pendingWrite=Promise.resolve(true);
 function grade(ok,selectedIndex){
  if(answered)return;answered=true;
+ if(ok)window.KP_AUDIO_SESSION?.playCorrectAnswer?.();
  const k=queue[position],q=exercise(k);if(ok){score++;missed.delete(k);if(paper>=0&&!reviewing)sectionScores[position<20?'listening':'written']+=q.points;}else missed.add(k);
  if(q.choices){main.querySelectorAll('.choices button').forEach((b,i)=>{const right=currentOptions[i]===q.choices[0];if(right||i===selectedIndex){b.classList.add(right?'g4-correct':'g4-wrong');b.textContent=(right?'○ ':'× ')+currentOptions[i];}});}
  main.querySelectorAll('button[data-act]:not([data-act="listen"]),textarea').forEach(el=>el.disabled=true);

@@ -318,6 +318,7 @@ function offerMockFeedback(q,ok,actual){
  panel.addEventListener('toggle',()=>{
    if(!panel.open||panel.dataset.revealed)return;
    panel.dataset.revealed='true';
+   if(ok)window.KP_AUDIO_SESSION?.playCorrectAnswer?.();
    const correct=q.choices?.find(choice=>choice.id===q.answerId)?.label ?? q.answerId;
    panel.querySelector('summary').textContent='正誤・解説';
    panel.querySelector('.ps-pre4-question-review-body').innerHTML=`
@@ -327,6 +328,8 @@ function offerMockFeedback(q,ok,actual){
  });
 }
 function record(q,ok,actual){
+ if(ok && (!mockPaper || immediateRetry) && (pre4Quiz || pre4Review || q.course===pre4.course))window.KP_AUDIO_SESSION?.playCorrectAnswer?.();
+ 
  if(q.course===pre4.course&&(!mockPaper||immediateRetry)){
    const detail=document.getElementById('answerDetail');if(detail.textContent)detail.innerHTML=py.explanation(detail.textContent);
    document.getElementById('pre4AnswerReading').innerHTML=lookup.review(q);
