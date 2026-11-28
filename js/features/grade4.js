@@ -113,7 +113,7 @@ function map(){
 function study(){
  const [title,word,py,meaning,a,ja,b,jb,,,,,tip]=lessons[lesson];
  back.href='?stage='+stage;
- show(mapHeader(title,'会話を聞いて、気になることばをタップ',icons[stage])+card(button('▶ 会話を聞く','audio')+line(a,ja)+line(b,jb)+'<hr><h2>'+word+' <small>'+py+'</small></h2><p>'+meaning+'</p><p>'+tip+'</p>'+button('▶ ことばを聞く','word')+button('練習へ','start',true)));
+ show(mapHeader(title,'会話を聞いて、気になることばをタップ',icons[stage])+card(button('▶ 会話を聞く','audio')+line(a,ja)+line(b,jb)+'<hr><section id="wordCard"><h2>'+word+' <small>'+py+'</small></h2><p>'+meaning+'</p></section><p>'+tip+'</p>'+button('▶ '+word+'を聞く','word')+button('練習へ','start',true)));
 }
 const types=['読解','ピンイン','語の意味','漢字を書く','聞き取り','日本語から中国語へ'];
 types.push('まとまりのある読解','まとまりのある聴解','別の場面で使う','一文を組み立てる');
@@ -133,7 +133,7 @@ function exercise(k){
    return {prompt:story[at],body:t===6?line(story[1],''):'',audio:t===7?story[1]:null,choices:story.slice(at+1,at+4),tip:story[at+4],transcript:story[1]};
  }
  const peers=[lessons[(i+1)%24],lessons[(i+7)%24]];
- if(t===0)return {prompt,body:line(a,'')+line(b,''),choices:[yes,no,other],tip};
+ if(t===0)return {prompt,body:'<div class="g4-reading"><small>会話を読もう · ことばをタップすると意味が見られます</small>'+line(a,'')+line(b,'')+'</div><h3>答えをひとつ選ぼう</h3>',choices:[yes,no,other],tip};
  if(t===1||t===2){const col=t===1?2:3;return {prompt:t===1?'このことばの読み方は？':'このことばの意味は？',body:line(w,''),choices:[lessons[i][col],...(t===1?toneChoices[i]:peers.map(r=>r[col]))],tip:w+'（'+p+'）＝ '+m+'。'+tip};}
  if(t===3)return {prompt:'簡体字で書いてみよう',body:'<p>'+p+' ／ '+m+'</p>',word:w,tip:w+'（'+p+'）＝ '+m};
  if(t===4)return {prompt:'音声に合う日本語を選ぼう',audio:b,choices:[jb,...peers.map(r=>r[7])],tip:b+' ／ '+jb};
@@ -174,9 +174,30 @@ async function review(){
  if(queue.length){reviewing=true;position=score=0;question();}else show(card('<h2>復習する問題はありません</h2><p>ゲストは練習結果から、その場で解き直せます。</p>'+link('./grade4.html','ルートに戻る')));
 }
 main.addEventListener('click',e=>{
+ const selected=e.target.closest('.kp-lookup-word');
+ const card=main.querySelector('#wordCard');
+ if(selected && card){
+   const word=selected.dataset.term;
+   const listen=main.querySelector('[data-act="word"]');
+   listen.dataset.word=word;
+   listen.textContent='▶ '+word+'を聞く';
+   main.querySelectorAll('.kp-lookup-word').forEach(el=>el.setAttribute('aria-pressed',String(el===selected)));
+   const display=(reading,meaning)=>{
+     card.innerHTML='<h2>'+escape(word)+' <small>'+escape(reading)+'</small></h2><p>'+escape(meaning)+'</p>';
+   };
+   const gloss=dictionary.get(word);
+   if(gloss)display(gloss[0],gloss[1]);
+   else {
+     display('','辞書を確認中…');
+     window.KP_READING_LOOKUP.lookup(word).then(entry=>{
+       if(card.isConnected && listen.dataset.word===word)display(entry?.readings.join(' / ')||'',entry?.gloss||'辞書に見つかりませんでした。');
+     }).catch(()=>{if(card.isConnected && listen.dataset.word===word)display('','辞書を読み込めませんでした。');});
+   }
+   return;
+ }
  const action=e.target.closest('[data-act]')?.dataset.act;if(!action)return;
  if(action==='load'){review();return;}
- if(action==='audio'||action==='word'){const r=lessons[lesson];speak(action==='audio'?r[4]+r[6]:r[1]);return;}
+ if(action==='audio'||action==='word'){const r=lessons[lesson];speak(action==='audio'?r[4]+r[6]:(e.target.closest('[data-act]').dataset.word||r[1]));return;}
  if(action==='start'){queue=[0,1,2,3,4,5,8,9].map(t=>key(lesson,t));question();return;}
  if(action==='retry'){queue=[...missed];position=score=0;reviewing=true;question();return;}
  const q=exercise(queue[position]);
