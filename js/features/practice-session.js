@@ -97,7 +97,7 @@ function speak(text,onError){
  if(onError && (!window.speechSynthesis || !window.SpeechSynthesisUtterance)){onError();return;}
  if(!text)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.88;if(onError)u.onerror=event=>{
  if(!['canceled','interrupted'].includes(event.error))onError();
- };const voice=speechSynthesis.getVoices().find(v=>/^zh(-|_)/i.test(v.lang));if(voice)u.voice=voice;(window.KP_AUDIO_SESSION&&window.KP_AUDIO_SESSION.preparePlayback(),window.speechSynthesis.speak(u))}catch(_){onError?.()}}
+ };const voice=speechSynthesis.getVoices().find(v=>/^zh(-|_)/i.test(v.lang));if(voice)u.voice=voice;(window.KP_AUDIO_SESSION&&window.KP_AUDIO_SESSION.preparePlayback(),(window.KP_TEACHER_SPEECH?.bind(u),window.speechSynthesis.speak(u)))}catch(_){onError?.()}}
 function makeChoiceQuestion(entry,pool,kind,course){
  let choices,answerId,prompt,target='',audioText=entry.simplified,explain=`${entry.simplified} · ${entry.pinyin} · ${entry.ja_meaning}`,review;
  if(kind==='meaning'){

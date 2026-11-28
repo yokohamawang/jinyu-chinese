@@ -94,7 +94,7 @@
     return `<header class="pre4-map-heading">
       <div><h1>${escape(title)}</h1><p>${escape(description)}</p></div>
       ${icon ? `<span class="pre4-map-heading-icon" aria-hidden="true">${icon}</span>` :
-        '<img src="./assets/hanzi/teacher-welcome-resting.webp" alt="" width="92" height="92">'}
+        '<img src="./assets/hanzi/teacher-avatar.webp" alt="" width="92" height="92">'}
     </header>`;
   }
 
@@ -305,7 +305,7 @@
       utterance.onstart=()=>line.classList.add('is-speaking');
       utterance.onboundary=e=>{const offset=Array.from(utterance.text.slice(0,e.charIndex)).filter(c=>/\p{Script=Han}/u.test(c)).length;glyphs.forEach((el,j)=>el.classList.toggle('is-reading',j===offset));};
       utterance.onend=clear;utterance.onerror=e=>{clear();if(!['interrupted','canceled'].includes(e.error))status.textContent='音声を再生できませんでした。';};
-      window.KP_AUDIO_SESSION?.preparePlayback();speechSynthesis.speak(utterance);
+      window.KP_AUDIO_SESSION?.preparePlayback();(window.KP_TEACHER_SPEECH?.bind(utterance),speechSynthesis.speak(utterance));
     });
     window.addEventListener('pagehide',()=>window.speechSynthesis?.cancel(),{once:true});
   }

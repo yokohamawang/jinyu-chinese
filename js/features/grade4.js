@@ -6,7 +6,7 @@ const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
     return `<header class="pre4-map-heading">
       <div><h1>${escape(title)}</h1><p>${escape(description)}</p></div>
       ${icon ? `<span class="pre4-map-heading-icon" aria-hidden="true">${icon}</span>` :
-        '<img src="./assets/hanzi/teacher-welcome-resting.webp" alt="" width="92" height="92">'}
+        '<img src="./assets/hanzi/teacher-avatar.webp" alt="" width="92" height="92">'}
     </header>`;
   }
 
@@ -96,9 +96,9 @@ window.KP_PRE4_LOOKUP.mount(main,()=>dictionary);
 const line=(zh,ja)=>'<div><p class="pre4-lookup-sentence g4-cn" lang="zh-Hans">'+escape(zh)+'</p><p class="jp">'+escape(ja)+'</p></div>';
 const card=body=>'<section class="g4-card">'+body+'</section>';
 const link=(url,title)=>'<a class="g4-go" href="'+url+'">'+title+'</a>';
-function show(body){main.innerHTML=body;main.classList.add('pre4-journey');main.removeAttribute('aria-busy');window.scrollTo(0,0);}
+function show(body){window.KP_TEACHER_SPEECH?.stop();window.speechSynthesis?.cancel();main.innerHTML=body;main.classList.add('pre4-journey');main.removeAttribute('aria-busy');window.scrollTo(0,0);}
 function button(title,action,primary=false){return '<button type="button" data-act="'+action+'" class="'+(primary?'primary':'')+'">'+escape(title)+'</button>';}
-function speak(text){if(!window.speechSynthesis){return false;}speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='zh-CN';utterance.rate=.9;speechSynthesis.speak(utterance);return true;}
+function speak(text){if(!window.speechSynthesis){return false;}window.KP_TEACHER_SPEECH?.stop();speechSynthesis.cancel();window.KP_AUDIO_SESSION?.preparePlayback();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='zh-CN';utterance.rate=.9;(window.KP_TEACHER_SPEECH?.bind(utterance),speechSynthesis.speak(utterance));return true;}
 window.addEventListener('pagehide',()=>window.speechSynthesis?.cancel());
 function map(){
  const world=stage<0;
@@ -156,12 +156,14 @@ function question(){
  if(q.word)window.KP_HANDWRITE(main.querySelector('#g4write'),q.word,grade);
 }
 const writes=[];
-function grade(ok){
+function grade(ok,selectedIndex){
  if(answered)return;answered=true;
  const k=queue[position],q=exercise(k);if(ok){score++;missed.delete(k);}else missed.add(k);
- const api=window.KP_ACCOUNT_API;if(api)writes.push(api.recordPracticeAttempt(k,'grade4',ok).catch(()=>false));
+ if(q.choices){main.querySelectorAll('.choices button').forEach((b,i)=>{const right=currentOptions[i]===q.choices[0];if(right||i===selectedIndex){b.classList.add(right?'g4-correct':'g4-wrong');b.textContent=(right?'○ ':'× ')+currentOptions[i];}});}
  main.querySelectorAll('button[data-act]:not([data-act="listen"]),textarea').forEach(el=>el.disabled=true);
- document.querySelector('#feedback').innerHTML='<div class="g4-feedback"><strong>'+(ok?'できました！':'ここを確認しよう')+'</strong><p>'+escape(q.choices?.[0]||q.word||q.model||q.solution)+'</p>'+escape(q.tip)+(q.transcript?'<details><summary>本文を読む</summary>'+line(q.transcript,'')+'</details>':'')+'</div>'+button(position+1===queue.length?'結果を見る':'次へ','next',true);
+ document.querySelector('#feedback').innerHTML='<div class="g4-feedback"><strong>'+(ok?'○ 正解！':'× 不正解 · ここを確認しよう')+'</strong><p>'+escape(q.choices?.[0]||q.word||q.model||q.solution)+'</p>'+escape(q.tip)+(q.transcript?'<details><summary>本文を読む</summary>'+line(q.transcript,'')+'</details>':'')+'</div>'+button(position+1===queue.length?'結果を見る':'次へ','next',true);
+ document.querySelector('#feedback').scrollIntoView({block:'nearest'});
+ const api=window.KP_ACCOUNT_API;if(api?.recordPracticeAttempt)writes.push(Promise.resolve().then(()=>api.recordPracticeAttempt(k,'grade4',ok)).catch(()=>false));
 }
 function finish(){
  if(!reviewing)window.KP_ACCOUNT_API?.recordLearningCompletion('practice',challenge>=0?'grade4-stage-'+challenge:'grade4-'+lesson);
@@ -202,7 +204,7 @@ main.addEventListener('click',e=>{
  if(action==='retry'){queue=[...missed];position=score=0;reviewing=true;question();return;}
  const q=exercise(queue[position]);
  if(action==='listen'){if(!speak(q.audio))document.querySelector('#feedback').textContent=q.audio;return;}
- if(action.startsWith('pick'))grade(currentOptions[Number(action.slice(4))]===q.choices[0]);
+ if(action.startsWith('pick'))grade(currentOptions[Number(action.slice(4))]===q.choices[0],Number(action.slice(4)));
  if(action==='check'){
    const input=document.querySelector('#response');if(!input.value.trim()){input.focus();return;}
    input.readOnly=true;e.target.disabled=true;document.querySelector('#feedback').innerHTML='<h3>解答例</h3>'+line(q.model,'')+'<p>'+escape(q.tip)+'</p>'+button('意味と語順が合っていた','yes')+button('復習に入れる','no');return;
