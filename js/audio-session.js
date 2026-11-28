@@ -135,6 +135,7 @@
     try {
       preparePlayback();
       synth.resume();
+      window.KP_TEACHER_SPEECH?.bind(utterance);
       synth.speak(utterance);
     } catch (error) {
       finish();
