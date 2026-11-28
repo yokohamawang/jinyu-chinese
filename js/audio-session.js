@@ -143,6 +143,36 @@
     }
     return stop;
   }
+  var feedbackContext;
+  function playCorrectAnswer() {
+    var Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) return;
+    try {
+      preparePlayback();
+      if (!feedbackContext || feedbackContext.state === 'closed') feedbackContext = new Audio();
+      var ctx = feedbackContext;
+      function play() {
+        if (document.hidden || ctx.state !== 'running') return;
+        var start = ctx.currentTime;
+        [523.25, 659.25, 783.99].forEach(function (frequency, index) {
+          var at = start + index * 0.085;
+          var note = ctx.createOscillator();
+          var gain = ctx.createGain();
+          note.frequency.value = frequency;
+          gain.gain.setValueAtTime(0.0001, at);
+          gain.gain.exponentialRampToValueAtTime(0.08, at + 0.012);
+          gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.16);
+          note.connect(gain);
+          gain.connect(ctx.destination);
+          note.onended = function () { note.disconnect(); gain.disconnect(); };
+          note.start(at);
+          note.stop(at + 0.17);
+        });
+      }
+      if (ctx.state === 'running') play();
+      else ctx.resume().then(play).catch(function () {});
+    } catch (_) { /* Sound is optional on devices without audio playback. */ }
+  }
   function reconnectOnNextPlay() { needsReconnect = true; }
   window.addEventListener('pageshow', reconnectOnNextPlay);
   window.addEventListener('focus', reconnectOnNextPlay);
@@ -156,5 +186,5 @@
     Array.from(externalCaptures).forEach(function (release) { release(); });
     Array.from(microphoneStreams).forEach(releaseMicrophone);
   });
-  window.KP_AUDIO_SESSION = { speakMandarin: speakMandarin, preparePlayback: preparePlayback, getMicrophone: getMicrophone, releaseMicrophone: releaseMicrophone, createRecorder: createRecorder, microphoneErrorMessage: microphoneErrorMessage, beginCapture: beginCapture };
+  window.KP_AUDIO_SESSION = { playCorrectAnswer: playCorrectAnswer, speakMandarin: speakMandarin, preparePlayback: preparePlayback, getMicrophone: getMicrophone, releaseMicrophone: releaseMicrophone, createRecorder: createRecorder, microphoneErrorMessage: microphoneErrorMessage, beginCapture: beginCapture };
 })();
